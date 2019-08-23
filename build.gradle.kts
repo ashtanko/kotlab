@@ -1,5 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+tasks.withType<Wrapper> {
+    gradleVersion = "5.2.1"
+}
+
 plugins {
     kotlin("jvm") version "1.3.50"
 }
