@@ -6,7 +6,7 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class DemoTest {
     @Test
-    fun `dummy FAILED`() {
-        Assert.assertTrue(false)
+    fun `dummy SUCCESSFUL`() {
+        Assert.assertTrue(true)
     }
 }
