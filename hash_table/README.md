@@ -13,3 +13,8 @@ In computing, a hash table (hash map) is a data structure that implements an ass
 	+-----------+-----------+-----------+
 	|Delete     |O(1)       |O(n)       |
 	+-----------+-----------+-----------+
+	
+	
+# Hashmap vs Hashtable
+1. HashMap is non synchronized. It is not-thread safe and can’t be shared between many threads without proper synchronization code whereas Hashtable is synchronized. It is thread-safe and can be shared with many threads.
+2. HashMap allows one null key and multiple null values whereas Hashtable doesn’t allow any null key or value.
