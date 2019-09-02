@@ -12,16 +12,19 @@ fun main() {
     // as they were inserted
     println(lhm)
 
-    println("Getting value for key 'one': "
-        + lhm.get("one"))
-    println("Size of the map: " + lhm.size)
-    println("Is map empty? " + lhm.isEmpty())
-    println("Contains key 'two'? "+
-        lhm.containsKey("two"))
-    println("Contains value 'practice.geeks"
-        +"forgeeks.org'? "+ lhm.containsValue("practice"+
-        ".geeksforgeeks.org"))
-    println("delete element 'one': " +
-        lhm.remove("one"))
+    println(
+        "Getting value for key 'one': ${lhm["one"]}"
+    )
+    println("Size of the map: ${lhm.size}")
+    println("Is map empty? ${lhm.isEmpty()}")
+    println("Contains key 'two'? ${lhm.containsKey("two")}")
+
+    println(
+        "Contains value 'practice.geeks"
+            + "forgeeks.org'? " + lhm.containsValue("practice.geeksforgeeks.org")
+    )
+    println(
+        "delete element 'one': ${lhm.remove("one")}"
+    )
     println(lhm)
 }

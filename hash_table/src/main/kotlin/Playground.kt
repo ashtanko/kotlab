@@ -30,4 +30,10 @@ fun main() {
 
     println(animals)
 
+    val lhm = LinkedHashMap<Int, String>()
+    lhm[101] = "101"
+    lhm[105] = "105"
+    lhm[103] = "103"
+    println(lhm)
+
 }
