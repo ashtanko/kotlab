@@ -1,1 +1,0 @@
-class BinarySearchTest: AbstractSearchTest<BinarySearch<Int>>(BinarySearch<Int>())
