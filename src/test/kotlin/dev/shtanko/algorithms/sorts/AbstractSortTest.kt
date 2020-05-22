@@ -14,43 +14,57 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
 
     @Test
     fun `when one element in the array`() {
-        val arr = arrayOf(1)
+        val arr = arrayOf(4)
         strategy.perform(arr)
-        assertArrayEquals(arrayOf(1), arr)
+        assertArrayEquals(arrayOf(4), arr)
     }
 
     @Test
     fun `when two elements in order`() {
-        val arr = arrayOf(5, 6)
+        val arr = arrayOf(4, 8)
         strategy.perform(arr)
-        assertArrayEquals(arrayOf(5, 6), arr)
+        assertArrayEquals(arrayOf(4, 8), arr)
     }
 
     @Test
     fun `when two elements out of order`() {
-        val arr = arrayOf(12, 11)
+        val arr = arrayOf(42, 23)
         strategy.perform(arr)
-        assertArrayEquals(arrayOf(11, 12), arr)
+        assertArrayEquals(arrayOf(23, 42), arr)
     }
 
     @Test
     fun `when two elements equal`() {
-        val arr = arrayOf(5, 5)
+        val arr = arrayOf(4, 4)
         strategy.perform(arr)
-        assertArrayEquals(arrayOf(5, 5), arr)
+        assertArrayEquals(arrayOf(4, 4), arr)
     }
 
     @Test
     fun `when reverse`() {
-        val arr = arrayOf(6, 5, 4, 3, 2, 1)
+        val arr = arrayOf(42, 23, 16, 15, 8, 4)
         strategy.perform(arr)
-        assertArrayEquals(arrayOf(1, 2, 3, 4, 5, 6), arr)
+        assertArrayEquals(arrayOf(4, 8, 15, 16, 23, 42), arr)
     }
 
     @Test
     fun `chaotic elements order`() {
-        val arr = arrayOf(1, 5, 2, 7, 3, 9, 11, 4)
+        val arr = arrayOf(15, 8, 16, 4, 42, 23)
         strategy.perform(arr)
-        assertArrayEquals(arrayOf(1, 2, 3, 4, 5, 7, 9, 11), arr)
+        assertArrayEquals(arrayOf(4, 8, 15, 16, 23, 42), arr)
+    }
+
+    @Test
+    fun `elements in order`() {
+        val arr = arrayOf(4, 8, 15, 16, 23, 42)
+        strategy.perform(arr)
+        assertArrayEquals(arrayOf(4, 8, 15, 16, 23, 42), arr)
+    }
+
+    @Test
+    fun `negative elements in order`() {
+        val arr = arrayOf(-4, -8, -15, -16, -23, -42)
+        strategy.perform(arr)
+        assertArrayEquals(arrayOf(-42, -23, -16, -15, -8, -4), arr)
     }
 }
