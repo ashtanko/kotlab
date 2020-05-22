@@ -8,7 +8,7 @@ package dev.shtanko.algorithms.sorts
  * it is too slow and impractical for most problems even when compared to insertion sort. It can be practical
  * if the input is usually in sorted order but may occasionally have some out-of-order elements nearly in position.
  */
-class BubbleSort : AbstractSortStrategy() {
+class BubbleSort : AbstractSortStrategy {
 
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         var exchanged: Boolean
@@ -23,5 +23,4 @@ class BubbleSort : AbstractSortStrategy() {
             }
         } while (exchanged)
     }
-
 }

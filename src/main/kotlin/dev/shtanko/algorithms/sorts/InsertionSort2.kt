@@ -5,7 +5,7 @@ package dev.shtanko.algorithms.sorts
  * Each iteration, insertion sort removes one element from the input data, finds the location it belongs within
  * the sorted list, and inserts it there. It repeats until no input elements remain.
  */
-class InsertionSort2 : AbstractSortStrategy() {
+class InsertionSort2 : AbstractSortStrategy {
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         for (i in 1 until arr.size) {
             val x = arr[i]

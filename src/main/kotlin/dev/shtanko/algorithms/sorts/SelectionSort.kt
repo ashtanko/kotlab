@@ -1,6 +1,6 @@
 package dev.shtanko.algorithms.sorts
 
-class SelectionSort : AbstractSortStrategy() {
+class SelectionSort : AbstractSortStrategy {
 
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         for (i in arr.indices) {

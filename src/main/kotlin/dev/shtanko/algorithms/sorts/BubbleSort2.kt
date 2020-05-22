@@ -1,6 +1,6 @@
 package dev.shtanko.algorithms.sorts
 
-class BubbleSort2 : AbstractSortStrategy() {
+class BubbleSort2 : AbstractSortStrategy {
 
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         for (i in 0 until arr.size - 1) {
