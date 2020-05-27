@@ -1,7 +1,9 @@
 package dev.shtanko.algorithms.sorts
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import kotlin.random.Random
 
 abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
 
@@ -66,5 +68,15 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
         val arr = arrayOf(-4, -8, -15, -16, -23, -42)
         strategy.perform(arr)
         assertArrayEquals(arrayOf(-42, -23, -16, -15, -8, -4), arr)
+    }
+
+    @Test
+    fun `random elements`() {
+        val arr = Array(10_000) { 0 }
+        for (i in 0 until 10_000) {
+            arr[i] = Random.nextInt(10_000)
+        }
+        strategy.perform(arr)
+        assertTrue(arr.asSequence().zipWithNext { a, b -> a <= b }.all { it })
     }
 }
