@@ -77,6 +77,13 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
             arr[i] = Random.nextInt(10_000)
         }
         strategy.perform(arr)
-        assertTrue(arr.asSequence().zipWithNext { a, b -> a <= b }.all { it })
+        assertTrue(arr.isSorted())
+    }
+
+    @Test
+    fun `same elements`() {
+        val arr = arrayOf(1, 2, 2, 1)
+        strategy.perform(arr)
+        assertTrue(arr.isSorted())
     }
 }
