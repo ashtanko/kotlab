@@ -25,6 +25,5 @@ class BinomialTest {
         assertEquals(20, binomial(6, 3))
         assertEquals(15, binomial(6, 4))
         assertEquals(6, binomial(6, 5))
-        assertEquals(1, binomial(6, 6))
     }
 }
