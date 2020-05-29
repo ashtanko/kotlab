@@ -70,6 +70,14 @@ class PerformanceTest {
         }
     }
 
+    @Test
+    fun `heap sort`() {
+        val cases = listOf(10_000, 20_000, 50_000, 100_000, 200_000, 600_000, 1000_000, 10_000_000)
+        cases.forEach {
+            executionTimeReport(HeapSort(), generateRandomArray(it))
+        }
+    }
+
     private fun generateRandomArray(count: Int): Array<Int> {
         val arr = Array<Int>(count) { 0 }
         for (i in 0 until count) {
