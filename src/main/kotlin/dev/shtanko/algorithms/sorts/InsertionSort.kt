@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.sorts
 
+import dev.shtanko.algorithms.extensions.swap
+
 /**
  * Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.
  * Each iteration, insertion sort removes one element from the input data, finds the location it belongs within
@@ -10,7 +12,7 @@ class InsertionSort : AbstractSortStrategy {
         for (i in 1 until arr.size) {
             for (j in i downTo 1) {
                 if (arr[j - 1] < arr[j]) break
-                arr.exch(j, j - 1)
+                arr.swap(j, j - 1)
             }
         }
     }

@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.sorts
 
+import dev.shtanko.algorithms.extensions.swap
+
 /**
  * Selection sort is a simple sorting algorithm dividing the input list into two parts: the sublist of items already
  * sorted, which is built up from left to right at the front (left) of the list, and the sublist of items remaining
@@ -18,7 +20,7 @@ class SelectionSort : AbstractSortStrategy {
                     min = j
                 }
             }
-            if (min != i) arr.exch(min, i)
+            if (min != i) arr.swap(min, i)
         }
     }
 }

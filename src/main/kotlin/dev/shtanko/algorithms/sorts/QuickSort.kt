@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.sorts
 
+import dev.shtanko.algorithms.extensions.swap
+
 /**
  * Developed by Tony Hoare in 1959, with his work published in 1961, Quicksort is an efficient sort algorithm using
  * divide and conquer approach. Quicksort first divides a large array into two smaller sub-arrays: the low elements
@@ -36,9 +38,9 @@ class QuickSort : AbstractSortStrategy {
                 if (j == lo) break
             }
             if (j <= i) break
-            arr.exch(j, i)
+            arr.swap(j, i)
         }
-        arr.exch(j, lo)
+        arr.swap(j, lo)
         return j
     }
 }

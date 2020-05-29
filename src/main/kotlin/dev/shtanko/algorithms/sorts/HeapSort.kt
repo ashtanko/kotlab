@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.sorts
 
+import dev.shtanko.algorithms.extensions.swap
+
 /**
  * Heap sort is a comparison based sorting technique based on Binary Heap data structure. It is similar to selection
  * sort where we first find the maximum element and place the maximum element at the end. We repeat the same process
@@ -14,7 +16,7 @@ class HeapSort : AbstractSortStrategy {
         }
 
         for (i in n - 1 downTo 0) {
-            arr.exch(0, i)
+            arr.swap(0, i)
             heapify(arr, i, 0)
         }
     }
@@ -33,7 +35,7 @@ class HeapSort : AbstractSortStrategy {
         }
 
         if (largest != i) {
-            arr.exch(i, largest)
+            arr.swap(i, largest)
             heapify(arr, n, largest)
         }
     }

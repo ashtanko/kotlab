@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.sorts
 
+import dev.shtanko.algorithms.extensions.swap
+
 /**
  * Bubble sort is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares
  * each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated
@@ -17,7 +19,7 @@ class BubbleSort : AbstractSortStrategy {
             exchanged = false
             for (i in 1 until arr.size) {
                 if (arr[i] < arr[i - 1]) {
-                    arr.exch(i, i - 1)
+                    arr.swap(i, i - 1)
                     exchanged = true
                 }
             }

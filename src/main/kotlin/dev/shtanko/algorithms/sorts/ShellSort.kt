@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.sorts
 
+import dev.shtanko.algorithms.extensions.swap
+
 /**
  * Shellsort, also known as Shell sort or Shell's method, is an in-place comparison sort. It can be seen as either a
  * generalization of sorting by exchange (bubble sort) or sorting by insertion (insertion sort). The method starts by
@@ -21,7 +23,7 @@ class ShellSort : AbstractSortStrategy {
             for (i in h until n) {
                 for (j in i downTo h step h) {
                     if (arr[j - h] < arr[j]) break
-                    arr.exch(j, j - h)
+                    arr.swap(j, j - h)
                 }
             }
             h /= GAP
