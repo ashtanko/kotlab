@@ -19,28 +19,34 @@ class QuickSort : AbstractSortStrategy {
     }
 
     private fun <T : Comparable<T>> sort(arr: Array<T>, lo: Int, hi: Int) {
-        if (hi <= lo) return
-        val j = partition(arr, lo, hi)
-        sort(arr, lo, j - 1)
-        sort(arr, j + 1, hi)
+        if (arr.isEmpty()) return
+
+        val divideIndex = partition(arr, lo, hi)
+
+        if (lo < divideIndex - 1) { // 2) Sorting left half
+            sort(arr, lo, divideIndex - 1)
+        }
+        if (divideIndex < hi) { // 3) Sorting right half
+            sort(arr, divideIndex, hi)
+        }
     }
 
-    private fun <T : Comparable<T>> partition(arr: Array<T>, lo: Int, hi: Int): Int {
-        var i = lo
-        var j = hi + 1
-        val v = arr[lo]
+    private fun <T : Comparable<T>> partition(array: Array<T>, lo: Int, hi: Int): Int {
+        var left = lo
+        var right = hi
+        val pivot = array[(left + right) / 2] // 4) Pivot Point
+        while (left <= right) {
+            while (array[left] < pivot) left++ // 5) Find the elements on left that should be on right
 
-        while (true) {
-            while (arr[++i] < v) {
-                if (i == hi) break
+            while (array[right] > pivot) right-- // 6) Find the elements on right that should be on left
+
+            // 7) Swap elements, and move left and right indices
+            if (left <= right) {
+                array.swap(left, right)
+                left++
+                right--
             }
-            while (v < arr[--j]) {
-                if (j == lo) break
-            }
-            if (j <= i) break
-            arr.swap(j, i)
         }
-        arr.swap(j, lo)
-        return j
+        return left
     }
 }
