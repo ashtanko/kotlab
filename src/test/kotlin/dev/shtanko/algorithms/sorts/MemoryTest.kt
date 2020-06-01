@@ -14,8 +14,43 @@ class MemoryTest {
     }
 
     @Test
+    fun `bubble sort 2`() {
+        execute(BubbleSort2(), getSortedArray())
+    }
+
+    @Test
+    fun `insertion sort`() {
+        execute(InsertionSort(), getSortedArray())
+    }
+
+    @Test
+    fun `insertion sort 2`() {
+        execute(InsertionSort2(), getSortedArray())
+    }
+
+    @Test
+    fun `merge sort`() {
+        execute(MergeSort(), getSortedArray())
+    }
+
+    @Test
     fun `quick sort`() {
         execute(QuickSort(), getSortedArray())
+    }
+
+    @Test
+    fun `selection sort`() {
+        execute(SelectionSort(), getSortedArray())
+    }
+
+    @Test
+    fun `shell sort`() {
+        execute(ShellSort(), getSortedArray())
+    }
+
+    @Test
+    fun `heap sort`() {
+        execute(HeapSort(), getSortedArray())
     }
 
     private fun getSortedArray(): Array<Int> {
