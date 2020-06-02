@@ -20,4 +20,11 @@ class ArrayExtensionTest {
         }
         assertArrayEquals(arrayOf(8, 15, 16, 4), arr)
     }
+
+    @Test
+    fun `simple reverse test`() {
+        val arr = arrayOf(4, 8, 15, 16, 23, 42)
+        arr.reverse()
+        assertArrayEquals(arrayOf(42, 23, 16, 15, 8, 4), arr)
+    }
 }
