@@ -63,6 +63,12 @@ class MemoryTest {
         execute(HeapSort(), getSortedArray())
     }
 
+    @Test
+    @Order(10)
+    fun `array sort`() {
+        execute(ArraySort(), getSortedArray())
+    }
+
     private fun getSortedArray(): IntArray {
         val array = IntArray(ARRAY_SIZE)
         for (i in 0 until ARRAY_SIZE) {

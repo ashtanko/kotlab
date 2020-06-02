@@ -31,6 +31,14 @@ class PerformanceTest {
     }
 
     @Test
+    @Order(10)
+    fun `array sort`() {
+        slowSortCases.forEach {
+            executionTimeReport(ArraySort(), generateRandomArray(it))
+        }
+    }
+
+    @Test
     @Order(6)
     fun `insertion sort`() {
         slowSortCases.forEach {
