@@ -18,22 +18,22 @@ class QuickSort : AbstractSortStrategy {
         sort(arr, 0, arr.size - 1)
     }
 
-    private fun <T : Comparable<T>> sort(arr: Array<T>, lo: Int, hi: Int) {
+    private fun <T : Comparable<T>> sort(arr: Array<T>, low: Int, high: Int) {
         if (arr.isEmpty()) return
 
-        val divideIndex = partition(arr, lo, hi)
+        val divideIndex = partition(arr, low, high)
 
-        if (lo < divideIndex - 1) { // 2) Sorting left half
-            sort(arr, lo, divideIndex - 1)
+        if (low < divideIndex - 1) { // 2) Sorting left half
+            sort(arr, low, divideIndex - 1)
         }
-        if (divideIndex < hi) { // 3) Sorting right half
-            sort(arr, divideIndex, hi)
+        if (divideIndex < high) { // 3) Sorting right half
+            sort(arr, divideIndex, high)
         }
     }
 
-    private fun <T : Comparable<T>> partition(array: Array<T>, lo: Int, hi: Int): Int {
-        var left = lo
-        var right = hi
+    private fun <T : Comparable<T>> partition(array: Array<T>, low: Int, high: Int): Int {
+        var left = low
+        var right = high
         val pivot = array[(left + right) / 2] // 4) Pivot Point
         while (left <= right) {
             while (array[left] < pivot) left++ // 5) Find the elements on left that should be on right
