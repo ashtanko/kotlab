@@ -26,7 +26,7 @@ class PerformanceTest {
     @Order(9)
     fun `bubble sort 2`() {
         slowSortCases.forEach {
-            executionTimeReport(BubbleSort2(), generateRandomArray(it))
+            executionTimeReport(SimpleBubbleSort(), generateRandomArray(it))
         }
     }
 

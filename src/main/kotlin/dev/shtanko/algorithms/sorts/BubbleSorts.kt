@@ -26,3 +26,16 @@ class BubbleSort : AbstractSortStrategy {
         } while (exchanged)
     }
 }
+
+class SimpleBubbleSort : AbstractSortStrategy {
+
+    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+        for (i in 0 until arr.size - 1) {
+            for (j in i + 1 until arr.size) {
+                if (arr[i] > arr[j]) {
+                    arr.swap(i, j)
+                }
+            }
+        }
+    }
+}

@@ -16,6 +16,6 @@ class HeapSortTest : AbstractSortTest<HeapSort>(HeapSort())
 
 class BubbleSortTest : AbstractSortTest<BubbleSort>(BubbleSort())
 
-class BubbleSort2Test : AbstractSortTest<BubbleSort2>(BubbleSort2())
+class SimpleBubbleSortTest : AbstractSortTest<SimpleBubbleSort>(SimpleBubbleSort())
 
 class ArraySortTest : AbstractSortTest<ArraySort>(ArraySort())

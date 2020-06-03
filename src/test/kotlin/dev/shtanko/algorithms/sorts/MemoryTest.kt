@@ -18,7 +18,7 @@ class MemoryTest {
     @Test
     @Order(9)
     fun `bubble sort 2`() {
-        execute(BubbleSort2(), getSortedArray())
+        execute(SimpleBubbleSort(), getSortedArray())
     }
 
     @Test
