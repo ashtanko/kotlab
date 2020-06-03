@@ -12,24 +12,24 @@ class MergeSort : AbstractSortStrategy {
         sort(arr, aux, 0, arr.size - 1)
     }
 
-    private fun <T : Comparable<T>> sort(arr: Array<T>, aux: Array<T>, lo: Int, hi: Int) {
-        if (hi <= lo) return
-        val mid = (lo + hi) / 2
-        sort(arr, aux, lo, mid)
-        sort(arr, aux, mid + 1, hi)
-        merge(arr, aux, lo, mid, hi)
+    private fun <T : Comparable<T>> sort(arr: Array<T>, aux: Array<T>, low: Int, high: Int) {
+        if (high <= low) return
+        val mid = (low + high) / 2
+        sort(arr, aux, low, mid)
+        sort(arr, aux, mid + 1, high)
+        merge(arr, aux, low, mid, high)
     }
 
-    private fun <T : Comparable<T>> merge(arr: Array<T>, aux: Array<T>, lo: Int, mid: Int, hi: Int) {
-        System.arraycopy(arr, lo, aux, lo, hi - lo + 1)
+    private fun <T : Comparable<T>> merge(arr: Array<T>, aux: Array<T>, low: Int, mid: Int, high: Int) {
+        System.arraycopy(arr, low, aux, low, high - low + 1)
 
-        var i = lo
+        var i = low
         var j = mid + 1
 
-        for (k in lo..hi) {
+        for (k in low..high) {
             when {
                 i > mid -> arr[k] = aux[j++]
-                j > hi -> arr[k] = aux[i++]
+                j > high -> arr[k] = aux[i++]
                 aux[j] < aux[i] -> arr[k] = aux[j++]
                 else -> arr[k] = aux[i++]
             }

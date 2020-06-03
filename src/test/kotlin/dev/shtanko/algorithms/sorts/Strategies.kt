@@ -2,6 +2,8 @@ package dev.shtanko.algorithms.sorts
 
 class SelectionSortTest : AbstractSortTest<SelectionSort>(SelectionSort())
 
+class StableSelectionSortTest : AbstractSortTest<StableSelectionSort>(StableSelectionSort())
+
 class ShellSortTest : AbstractSortTest<ShellSort>(ShellSort())
 
 class QuickSortTest : AbstractSortTest<QuickSort>(QuickSort())
