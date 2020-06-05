@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.*
+
 fun IntArray.trapRainWater(): Int {
     if (this.isEmpty()) return 0
 
@@ -21,5 +23,23 @@ fun IntArray.trapRainWater(): Int {
         }
     }
 
+    return ans
+}
+
+fun IntArray.trapRainWaterUsingStack(): Int {
+    var ans = 0
+    var current = 0
+    val stack = Stack<Int>()
+    while (current < this.size) {
+        while (stack.isNotEmpty() && this[current] > this[stack.peek()]) {
+            val top = stack.peek()
+            stack.pop()
+            if (stack.isEmpty()) break
+            val distance = current - stack.peek() - 1
+            val boundedHeight = this[current].coerceAtMost(this[stack.peek()] - this[top])
+            ans += distance * boundedHeight
+        }
+        stack.push(current++)
+    }
     return ans
 }
