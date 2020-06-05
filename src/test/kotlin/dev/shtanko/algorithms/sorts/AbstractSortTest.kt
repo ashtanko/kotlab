@@ -109,4 +109,41 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
         strategy.perform(arr)
         assertTrue(arr.isSorted())
     }
+
+    @Test
+    @Order(13)
+    fun `strings test`() {
+        val arr = arrayOf("A", "C", "B")
+        strategy.perform(arr)
+        val expected = arrayOf("A", "B", "C")
+        assertArrayEquals(expected, arr)
+    }
+
+    @Test
+    @Order(14)
+    fun `sorted strings test`() {
+        val arr = arrayOf("A", "B", "C", "D")
+        strategy.perform(arr)
+        val expected = arrayOf("A", "B", "C", "D")
+        assertArrayEquals(expected, arr)
+    }
+
+    @Test
+    @Order(14)
+    fun `string out of order test`() {
+        val arr = arrayOf("D", "C", "B", "A")
+        strategy.perform(arr)
+        val expected = arrayOf("A", "B", "C", "D")
+        assertArrayEquals(expected, arr)
+    }
+
+    @Test
+    @Order(15)
+    fun `upper and lower case test`() {
+        val arr = arrayOf("A", "c", "B", "e", "d", "F", "y", "G")
+        strategy.perform(arr)
+        println(arr.toList())
+        val expected = arrayOf("A", "B", "F", "G", "c", "d", "e", "y")
+        assertArrayEquals(expected, arr)
+    }
 }
