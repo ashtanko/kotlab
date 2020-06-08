@@ -2,6 +2,13 @@ package dev.shtanko.datastructures
 
 import dev.shtanko.algorithms.extensions.swap
 
+/**
+ * Priority queue is an abstract data type similar to regular queue or stack data structure in which each element
+ * additionally has a "priority" associated with it. In a priority queue, an element with high priority is served
+ * before an element with low priority. In some implementations, if two elements have the same priority, they are
+ * served according to the order in which they were enqueued, while in other implementations, ordering of elements
+ * with the same priority is undefined.
+ */
 class PriorityQueue<T>(size: Int, private val comparator: Comparator<T>? = null) : Collection<T> {
 
     override var size: Int = 0
