@@ -27,4 +27,12 @@ class ArrayExtensionTest {
         arr.reverse()
         assertArrayEquals(arrayOf(42, 23, 16, 15, 8, 4), arr)
     }
+
+    @Test
+    fun `flip test`() {
+        val arr = arrayOf(4, 8, 15, 16, 23, 42)
+        arr.flip(0, arr.size - 1)
+        val expected = arrayOf(42, 23, 16, 15, 8, 4)
+        assertArrayEquals(expected, arr)
+    }
 }

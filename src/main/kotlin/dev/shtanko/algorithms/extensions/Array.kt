@@ -17,3 +17,11 @@ fun <T> Array<T>.reverse() {
     for (i in 0 until n / 2)
         this.swap(i, n - 1 - i)
 }
+
+fun <T> Array<T>.flip(left: Int, right: Int) {
+    var l = left
+    var r = right
+    while (l <= r) {
+        swap(l++, r--)
+    }
+}
