@@ -69,6 +69,18 @@ class MemoryTest {
         execute(ArraySort(), getSortedArray())
     }
 
+    @Test
+    @Order(11)
+    fun `pancake sort`() {
+        execute(PancakeSort(), getSortedArray())
+    }
+
+    @Test
+    @Order(11)
+    fun `gnome sort`() {
+        execute(GnomeSort(), getSortedArray())
+    }
+
     private fun getSortedArray(): IntArray {
         val array = IntArray(ARRAY_SIZE)
         for (i in 0 until ARRAY_SIZE) {

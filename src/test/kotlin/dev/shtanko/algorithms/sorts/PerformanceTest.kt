@@ -39,6 +39,22 @@ class PerformanceTest {
     }
 
     @Test
+    @Order(11)
+    fun `pancake sort`() {
+        slowSortCases.forEach {
+            executionTimeReport(PancakeSort(), generateRandomArray(it))
+        }
+    }
+
+    @Test
+    @Order(12)
+    fun `gnome sort`() {
+        slowSortCases.forEach {
+            executionTimeReport(GnomeSort(), generateRandomArray(it))
+        }
+    }
+
+    @Test
     @Order(6)
     fun `insertion sort`() {
         slowSortCases.forEach {
