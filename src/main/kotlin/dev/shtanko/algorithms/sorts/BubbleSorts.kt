@@ -9,6 +9,11 @@ import dev.shtanko.algorithms.extensions.swap
  * is named for the way smaller or larger elements "bubble" to the top of the list. Although the algorithm is simple,
  * it is too slow and impractical for most problems even when compared to insertion sort. It can be practical
  * if the input is usually in sorted order but may occasionally have some out-of-order elements nearly in position.
+ *
+ * Worst-case performance       O(n^2)
+ * Best-case performance        O(n)
+ * Average performance          O(n^2)
+ * Worst-case space complexity  O(1)
  */
 class BubbleSort : AbstractSortStrategy {
 
