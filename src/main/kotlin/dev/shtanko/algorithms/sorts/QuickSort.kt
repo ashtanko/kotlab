@@ -12,6 +12,11 @@ import dev.shtanko.algorithms.extensions.swap
  * After this partitioning, the pivot is in its final position. This is called the partition operation.
  * 3) Recursively apply the above steps to the sub-array of elements with smaller values and separately to
  * the sub-array of elements with greater values.
+ *
+ * Worst-case performance O(n^2)
+ * Best-case performance O(nLogn)
+ * Average performance O(nLogn)
+ * Worst-case space complexity O(1)
  */
 class QuickSort : AbstractSortStrategy {
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
