@@ -44,3 +44,37 @@ fun Array<IntArray>.spiralOrder(): List<Int> {
     }
     return res
 }
+
+/**
+ * Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+ */
+fun Int.generateSpiralMatrix(): Array<IntArray> {
+    val res = Array(this) { IntArray(this) }
+    var current = 1
+    var rowBegin = 0
+    var rowEnd = this - 1
+    var colBegin = 0
+    var colEnd: Int = this - 1
+
+    while (current <= this * this) {
+        for (j in colBegin..colEnd) {
+            res[rowBegin][j] = current++
+        }
+        rowBegin++
+
+        for (i in rowBegin..rowEnd) {
+            res[i][colEnd] = current++
+        }
+        colEnd--
+        for (j in colEnd downTo colBegin) {
+            res[rowEnd][j] = current++
+        }
+        rowEnd--
+        for (i in rowEnd downTo rowBegin) {
+            res[i][colBegin] = current++
+        }
+        colBegin++
+    }
+
+    return res
+}
