@@ -23,3 +23,5 @@ class SimpleBubbleSortTest : AbstractSortTest<SimpleBubbleSort>(SimpleBubbleSort
 class ArraySortTest : AbstractSortTest<ArraySort>(ArraySort())
 
 class PancakeSortTest : AbstractSortTest<PancakeSort>(PancakeSort())
+
+class GnomeSortTest : AbstractSortTest<GnomeSort>(GnomeSort())
