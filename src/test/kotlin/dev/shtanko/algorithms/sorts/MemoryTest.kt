@@ -76,7 +76,7 @@ class MemoryTest {
     }
 
     @Test
-    @Order(11)
+    @Order(12)
     fun `gnome sort`() {
         execute(GnomeSort(), getSortedArray())
     }
