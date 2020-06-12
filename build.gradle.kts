@@ -1,21 +1,24 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.detekt
-import org.gradle.internal.Actions
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
     kotlin("jvm") version Versions.KOTLIN_VERSION
     id("java")
     id("idea")
     id("jacoco")
-    id("io.gitlab.arturbosch.detekt").version("1.9.1")
+    id("org.jlleitschuh.gradle.ktlint") version ("9.2.0")
+    id("io.gitlab.arturbosch.detekt") version ("1.9.1")
     id("org.jetbrains.dokka") version "0.10.1"
 }
 
 buildscript {
     repositories {
         mavenCentral()
+        maven("https://plugins.gradle.org/m2/")
     }
 
     dependencies {
@@ -23,17 +26,10 @@ buildscript {
     }
 }
 
-
-jacoco {
-
-}
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN_VERSION}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
-
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
-
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.7.0")
 }
 
@@ -47,6 +43,24 @@ allprojects {
     }
 }
 
+// Configuration documentation: https://github.com/JLLeitschuh/ktlint-gradle#configuration
+configure<KtlintExtension> {
+    // Prints the name of failed rules.
+    verbose.set(true)
+    reporters {
+        // Default "plain" reporter is actually harder to read.
+        reporter(ReporterType.JSON)
+    }
+
+    disabledRules.set(
+        setOf(
+            // IntelliJ refuses to sort imports correctly.
+            // This is a known issue: https://github.com/pinterest/ktlint/issues/527
+            "import-ordering"
+        )
+    )
+}
+
 detekt {
     config.from(file("config/detekt/detekt.yml"))
     parallel = true
@@ -54,7 +68,6 @@ detekt {
 }
 
 tasks {
-
     test {
         testLogging {
             events("passed", "skipped", "failed")

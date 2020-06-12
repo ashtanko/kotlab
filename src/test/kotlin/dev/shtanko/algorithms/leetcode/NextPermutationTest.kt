@@ -32,5 +32,4 @@ class NextPermutationTest {
         arr.nextPermutation()
         assertArrayEquals(intArrayOf(2, 1, 3), arr)
     }
-
 }

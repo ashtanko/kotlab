@@ -18,5 +18,4 @@ class TrappingRainWaterTest {
         val actual = arr.trapRainWaterUsingStack()
         assertEquals(6, actual)
     }
-
 }

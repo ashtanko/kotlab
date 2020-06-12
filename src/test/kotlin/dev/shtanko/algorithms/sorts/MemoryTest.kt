@@ -1,7 +1,11 @@
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.utils.measureTime
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class MemoryTest {
@@ -93,6 +97,6 @@ class MemoryTest {
         measureTime(strategy, array) {
             strategy.perform(array.toTypedArray())
         }
-        Assertions.assertTrue(array.isSorted())
+        assertTrue(array.isSorted())
     }
 }

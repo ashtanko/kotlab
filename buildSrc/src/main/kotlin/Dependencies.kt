@@ -1,3 +1,5 @@
+@file:JvmName("Dependencies")
+
 import Versions.COROUTINES_VERSION
 
 object Dependencies {

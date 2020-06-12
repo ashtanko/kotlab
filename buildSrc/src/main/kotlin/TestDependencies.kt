@@ -1,3 +1,5 @@
+@file:JvmName("TestDependencies")
+
 import Versions.JUNIT_VERSION
 
 object TestDependencies {

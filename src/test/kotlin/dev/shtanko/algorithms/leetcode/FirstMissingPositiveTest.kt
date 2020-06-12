@@ -28,7 +28,7 @@ class FirstMissingPositiveTest {
 
     @Test
     fun `simple test 4`() {
-        val arr = intArrayOf(1,2,3,4)
+        val arr = intArrayOf(1, 2, 3, 4)
         val actual = arr.firstMissingPositive()
         assertEquals(5, actual)
     }

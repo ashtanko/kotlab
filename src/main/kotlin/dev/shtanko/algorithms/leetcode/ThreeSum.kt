@@ -1,6 +1,6 @@
 package dev.shtanko.algorithms.leetcode
 
-import java.util.*
+import java.util.LinkedList
 
 fun IntArray.threeSum(): List<List<Int>> {
     sort()

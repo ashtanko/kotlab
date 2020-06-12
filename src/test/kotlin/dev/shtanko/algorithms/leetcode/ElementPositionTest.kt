@@ -28,5 +28,4 @@ class ElementPositionTest {
         val actual = arr.searchRange(target)
         assertArrayEquals(intArrayOf(-1, -1), actual)
     }
-
 }

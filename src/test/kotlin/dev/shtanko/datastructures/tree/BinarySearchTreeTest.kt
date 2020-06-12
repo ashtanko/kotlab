@@ -1,6 +1,9 @@
 package dev.shtanko.datastructures.tree
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class BinarySearchTreeTest {
@@ -219,5 +222,4 @@ class BinarySearchTreeTest {
         assertEquals("576", tree[24])
         assertEquals("625", tree[25])
     }
-
 }

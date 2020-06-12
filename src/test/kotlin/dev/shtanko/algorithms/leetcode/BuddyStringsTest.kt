@@ -40,5 +40,4 @@ class BuddyStringsTest {
         val actual = pair.buddyStrings()
         assertFalse(actual)
     }
-
 }

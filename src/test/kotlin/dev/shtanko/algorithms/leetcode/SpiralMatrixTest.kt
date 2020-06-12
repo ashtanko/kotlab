@@ -86,5 +86,4 @@ class SpiralMatrixTest {
         val actual = 19.generateSpiralMatrix()
         assertArrayEquals(matrix, actual)
     }
-
 }

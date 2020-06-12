@@ -25,7 +25,7 @@ class PriorityQueueTest {
     @Test
     fun `naive test`() {
         val pq = PriorityQueue<Int>(3)
-        for(i in 10 downTo 1){
+        for (i in 10 downTo 1) {
             pq.add(i)
             assertEquals(i, pq.peek())
         }
@@ -33,5 +33,4 @@ class PriorityQueueTest {
             assertEquals(i, pq.poll())
         }
     }
-
 }

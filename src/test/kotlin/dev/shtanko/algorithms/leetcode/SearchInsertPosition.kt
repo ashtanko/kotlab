@@ -31,7 +31,7 @@ class SearchInsertPosition {
 
     @Test
     fun `simple test 3`() {
-        val arr = intArrayOf(1,3,5,6)
+        val arr = intArrayOf(1, 3, 5, 6)
         val target = 7
         val actual = arr.searchInsertPosition(target)
         assertEquals(4, actual)
@@ -39,7 +39,7 @@ class SearchInsertPosition {
 
     @Test
     fun `simple test 4`() {
-        val arr = intArrayOf(1,3,5,6)
+        val arr = intArrayOf(1, 3, 5, 6)
         val target = 0
         val actual = arr.searchInsertPosition(target)
         assertEquals(0, actual)
