@@ -10,7 +10,8 @@ import org.junit.jupiter.api.TestMethodOrder
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class MemoryTest {
     companion object {
-        private const val ARRAY_SIZE = 1000 //1000_000 //uncomment for original test
+        // 1000_000 //uncomment for original test
+        private const val ARRAY_SIZE = 1000
     }
 
     @Test
