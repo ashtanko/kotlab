@@ -11,8 +11,11 @@ import kotlin.random.Random
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class PerformanceTest {
 
-    private val slowSortCases = listOf(5000, 10_000, 15_000)
-    private val fastSortCases = listOf(10_000, 20_000, 50_000, 100_000, 150_000)
+    //private val slowSortCases = listOf(10_000, 20_000, 50_000)
+    //private val fastSortCases = listOf(10_000, 20_000, 50_000, 100_000, 200_000, 600_000, 1000_000, 10_000_000)
+
+    private val slowSortCases = listOf(500, 600, 800) //only for ci for faster testing
+    private val fastSortCases = listOf(30_000, 50_000) //only for ci for faster testing
 
     @Test
     @Order(7)
