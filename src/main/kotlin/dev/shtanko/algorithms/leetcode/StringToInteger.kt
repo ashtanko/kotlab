@@ -1,6 +1,5 @@
 package dev.shtanko.algorithms.leetcode
 
-private const val DECIMAL = 10
 fun String.atoi(): Int {
     if (this.isEmpty()) return 0 // or throw NumberFormatException()
     val str = this.trim()
