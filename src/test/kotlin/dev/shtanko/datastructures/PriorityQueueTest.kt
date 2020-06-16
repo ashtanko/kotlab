@@ -33,4 +33,21 @@ class PriorityQueueTest {
             assertEquals(i, pq.poll())
         }
     }
+
+    @Test
+    fun `string order test`() {
+        val pq = PriorityQueue<String>(6)
+        pq.add("Lisa")
+        pq.add("Robert")
+        pq.add("John")
+        pq.add("Chris")
+        pq.add("Angelina")
+        pq.add("Joe")
+
+        val expectedOrder = mutableListOf<String>()
+        while (pq.isNotEmpty()) {
+            expectedOrder.add(pq.poll())
+        }
+        assertEquals(expectedOrder, listOf("Angelina", "Chris", "Joe", "John", "Lisa", "Robert"))
+    }
 }
