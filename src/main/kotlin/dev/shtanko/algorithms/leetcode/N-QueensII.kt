@@ -37,3 +37,31 @@ private fun Int.totalNQueensHelper(row: Int, c: Int): Int {
 
     return count
 }
+
+private var count = 0
+
+fun Int.totalNQueens2(): Int {
+    val cols = BooleanArray(this)
+    val d1 = BooleanArray(2 * this)
+    val d2 = BooleanArray(2 * this)
+    this.backtracking(0, cols, d1, d2)
+    return count
+}
+
+private fun Int.backtracking(row: Int, cols: BooleanArray, d1: BooleanArray, d2: BooleanArray) {
+    if (row == this) count++
+    for (col in 0 until this) {
+        val id1 = col - row + this
+        val id2 = col + row
+        if (cols[col] || d1[id1] || d2[id2]) {
+            continue
+        }
+        cols[col] = true
+        d1[id1] = true
+        d2[id2] = true
+        this.backtracking(row + 1, cols, d1, d2)
+        cols[col] = false
+        d1[id1] = false
+        d2[id2] = false
+    }
+}

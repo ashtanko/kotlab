@@ -9,4 +9,9 @@ class NQueensIITest {
     fun `simple test`() {
         assertEquals(2, 4.totalNQueens())
     }
+
+    @Test
+    fun `simple test 2`() {
+        assertEquals(2, 4.totalNQueens2())
+    }
 }
