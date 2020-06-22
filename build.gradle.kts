@@ -30,6 +30,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN_VERSION}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
+    testImplementation("org.assertj:assertj-core:3.16.1")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.7.0")
 }
 
