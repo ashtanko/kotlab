@@ -12,7 +12,8 @@ fun IntArray.searchRange(target: Int): IntArray {
 
     // left side
     while (low < high) {
-        val mid = low + (high - low) / 2
+        val local = (high - low)
+        val mid = low + local / 2
         if (target > this[mid]) {
             low = mid + 1
         } else {
@@ -28,7 +29,8 @@ fun IntArray.searchRange(target: Int): IntArray {
     // right side
     high = this.size - 1
     while (low < high) {
-        val mid = (low + (high - low) / 2) + 1
+        val local = (high - low)
+        val mid = (low + local / 2) + 1
         if (target < this[mid]) {
             high = mid - 1
         } else {

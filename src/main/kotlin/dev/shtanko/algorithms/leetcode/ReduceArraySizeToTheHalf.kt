@@ -46,7 +46,7 @@ fun IntArray.minSetSize2(): Int {
     for (num in this) {
         map[num] = map.getOrDefault(num, 0) + 1
     }
-    val pq = PriorityQueue<Int>(({ c, d -> d - c }))
+    val pq = PriorityQueue<Int> { c, d -> d - c }
 
     for (n in map.keys) {
         pq.offer(map[n])
@@ -54,7 +54,8 @@ fun IntArray.minSetSize2(): Int {
     while (!pq.isEmpty()) {
         sum += pq.poll()
         res++
-        if (sum >= (size + 1) / 2) return res
+        val local = (size + 1)
+        if (sum >= local / 2) return res
     }
 
     return 0

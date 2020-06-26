@@ -10,8 +10,8 @@ plugins {
     id("java")
     id("idea")
     id("jacoco")
-    id("org.jlleitschuh.gradle.ktlint") version ("9.2.0")
-    id("io.gitlab.arturbosch.detekt") version ("1.9.1")
+    id("org.jlleitschuh.gradle.ktlint") version "9.2.0"
+    id("io.gitlab.arturbosch.detekt") version "1.9.1"
     id("org.jetbrains.dokka") version "0.10.1"
 }
 
