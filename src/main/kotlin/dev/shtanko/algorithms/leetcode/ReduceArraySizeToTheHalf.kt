@@ -54,7 +54,7 @@ fun IntArray.minSetSize2(): Int {
     while (!pq.isEmpty()) {
         sum += pq.poll()
         res++
-        val local = (size + 1)
+        val local = size + 1
         if (sum >= local / 2) return res
     }
 

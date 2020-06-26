@@ -8,7 +8,7 @@ package dev.shtanko.algorithms.leetcode
  */
 fun Int.isPalindrome(): Boolean {
     var x = this
-    val local = (x != 0 && x % DECIMAL == 0)
+    val local = x != 0 && x % DECIMAL == 0
     if (x < 0 || local) return false
 
     var revertedNumber = 0
