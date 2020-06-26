@@ -43,7 +43,8 @@ class DivisorGameTest {
 
     @Test
     fun `simple test 8`() {
-        assertFalse(Int.MAX_VALUE.divisorGameBruteForce())
+        // replace 1000 to Int.MAX_VALUE
+        assertTrue(1000.divisorGameBruteForce())
     }
 
     @Test
