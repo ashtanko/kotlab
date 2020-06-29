@@ -14,8 +14,13 @@ class FahrenheitTemperature(private var celsiusTemperature: CelsiusTemperature) 
             celsiusTemperature.temperature = convertFahrenheitToCelsius(temperatureInF)
         }
 
-    private fun convertFahrenheitToCelsius(f: Double): Double =
-        (f - SCALE) * RISE / RATE
+    private fun convertFahrenheitToCelsius(f: Double): Double {
+        val scaleResult = (f - SCALE)
+        return scaleResult * RISE / RATE
+    }
 
-    private fun convertCelsiusToFahrenheit(c: Double): Double = (c * RATE / RISE) + SCALE
+    private fun convertCelsiusToFahrenheit(c: Double): Double {
+        val rateRiseResult = (c * RATE / RISE)
+        return rateRiseResult + SCALE
+    }
 }
