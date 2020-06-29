@@ -65,6 +65,6 @@ class DivisorGameTest {
     @Test
     fun `simple test 12`() {
         // replace 1000 to Int.MAX_VALUE
-        assertFalse(100.divisorGameBruteForce())
+        assertTrue(1000.divisorGameBruteForce())
     }
 }
