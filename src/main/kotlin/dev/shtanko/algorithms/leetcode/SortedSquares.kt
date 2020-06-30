@@ -1,7 +1,6 @@
 package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.abs
-import kotlin.math.pow
 
 /**
  * Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number,
@@ -37,17 +36,4 @@ fun IntArray.sortedSquares2(): IntArray {
     sort()
 
     return this
-}
-
-fun IntArray.sortedSquares3(): IntArray {
-    val res = IntArray(size)
-    var pn = 0
-    var pp = size - 1
-    var pos = size - 1
-    while (pn <= pp) {
-        res[pos] = (if (abs(this[pn]) < abs(this[pp])) this[pp--].toDouble() else this[pn++]
-            .toDouble().pow(2.0)).toInt()
-        --pos
-    }
-    return res
 }
