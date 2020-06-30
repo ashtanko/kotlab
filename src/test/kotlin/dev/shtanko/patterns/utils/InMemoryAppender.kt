@@ -6,7 +6,7 @@ import ch.qos.logback.core.AppenderBase
 import org.slf4j.LoggerFactory
 import java.util.LinkedList
 
-class InMemoryAppender(clazz: Class<*>?) : AppenderBase<ILoggingEvent>() {
+class InMemoryAppender(clazz: Class<*>? = null) : AppenderBase<ILoggingEvent>() {
     private val log: MutableList<ILoggingEvent> = LinkedList()
     override fun append(eventObject: ILoggingEvent) {
         log.add(eventObject)
@@ -19,7 +19,12 @@ class InMemoryAppender(clazz: Class<*>?) : AppenderBase<ILoggingEvent>() {
         get() = log.size
 
     init {
-        (LoggerFactory.getLogger(clazz) as Logger).addAppender(this)
+        if (clazz == null) {
+            (LoggerFactory.getLogger("root") as Logger).addAppender(this)
+        } else {
+            (LoggerFactory.getLogger(clazz) as Logger).addAppender(this)
+        }
+
         start()
     }
 }
