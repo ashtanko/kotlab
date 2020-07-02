@@ -1,4 +1,4 @@
-package dev.shtanko.algorithms.sorts
+```kotlin
 
 sealed class Complexity {
     /**
@@ -71,3 +71,5 @@ sealed class Complexity {
      */
     object Factorial : Complexity()
 }
+
+```
