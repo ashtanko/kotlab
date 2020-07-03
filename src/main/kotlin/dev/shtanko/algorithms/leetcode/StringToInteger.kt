@@ -12,8 +12,9 @@ fun String.atoi(): Int {
         start++
     }
 
-    while (start < str.length && str[start] >= '0' && str[start] <= '9') {
-        if (base > Int.MAX_VALUE / DECIMAL || (base == Int.MAX_VALUE / DECIMAL && str[start] - '0' > Int.MAX_VALUE % DECIMAL)) {
+    while (start < str.length && str[start] in '0'..'9') {
+        val a = base == Int.MAX_VALUE / DECIMAL && str[start] - '0' > Int.MAX_VALUE % DECIMAL
+        if (base > Int.MAX_VALUE / DECIMAL || a) {
             return if (sign > 0) {
                 Int.MAX_VALUE
             } else {
