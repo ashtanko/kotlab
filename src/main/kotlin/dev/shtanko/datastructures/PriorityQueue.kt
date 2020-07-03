@@ -27,7 +27,9 @@ class PriorityQueue<T>(size: Int, private val comparator: Comparator<T>? = null)
         arr.swap(1, size--)
         sink(1)
         arr[size + 1] = null
-        if ((size > 0) && (size == (arr.size - 1) / SQUAD)) {
+        val last = arr.size - 1
+        val local = size == last / SQUAD
+        if (size > 0 && local) {
             resize()
         }
         return res
@@ -84,7 +86,7 @@ class PriorityQueue<T>(size: Int, private val comparator: Comparator<T>? = null)
             return if (comparator != null) {
                 comparator.compare(arr[i], arr[j]) > 0
             } else {
-                val left = arr[i]!! as Comparable<T>
+                val left = arr[i] as Comparable<T>
                 left > arr[j]!!
             }
         }

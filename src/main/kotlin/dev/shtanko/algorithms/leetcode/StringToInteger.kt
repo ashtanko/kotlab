@@ -13,7 +13,7 @@ fun String.atoi(): Int {
     }
 
     while (start < str.length && str[start] >= '0' && str[start] <= '9') {
-        if (base > Int.MAX_VALUE / DECIMAL || (base == Int.MAX_VALUE / DECIMAL && (str[start]) - '0' > Int.MAX_VALUE % DECIMAL)) {
+        if (base > Int.MAX_VALUE / DECIMAL || (base == Int.MAX_VALUE / DECIMAL && str[start] - '0' > Int.MAX_VALUE % DECIMAL)) {
             return if (sign > 0) {
                 Int.MAX_VALUE
             } else {

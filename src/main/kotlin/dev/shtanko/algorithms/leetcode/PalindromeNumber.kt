@@ -16,5 +16,5 @@ fun Int.isPalindrome(): Boolean {
         revertedNumber = revertedNumber * DECIMAL + x % DECIMAL
         x /= DECIMAL
     }
-    return (x == revertedNumber || x == revertedNumber / DECIMAL)
+    return x == revertedNumber || x == revertedNumber / DECIMAL
 }

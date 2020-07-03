@@ -7,7 +7,8 @@ fun IntArray.threeSum(): List<List<Int>> {
 
     val result: MutableList<List<Int>> = LinkedList()
     for (i in 0 until this.size - 2) {
-        if (i == 0 || (i > 0 && this[i] != this[i - 1])) {
+        val local = i > 0 && this[i] != this[i - 1]
+        if (i == 0 || local) {
             var lo = i + 1
             var hi = this.size - 1
             val sum = 0 - this[i]
