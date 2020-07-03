@@ -41,3 +41,6 @@ fun CharArray.swap(i: Int, j: Int) {
     this[i] = this[j]
     this[j] = tmp
 }
+
+val Int.isEven: Boolean
+    get() = this % 2 == 0
