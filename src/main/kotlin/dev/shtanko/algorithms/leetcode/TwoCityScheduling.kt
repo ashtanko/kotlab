@@ -7,7 +7,9 @@ fun Array<IntArray>.twoCitySchedCost(): Int {
     var cost = 0
 
     sortWith(Comparator { a: IntArray, b: IntArray ->
-        (a[1] - a[0]) - (b[1] - b[0])
+        val first = a[1] - a[0]
+        val second = b[1] - b[0]
+        first - second
     })
 
     for (i in 0 until size / 2) {
