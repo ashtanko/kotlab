@@ -13,14 +13,31 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        vectorDrawables.useSupportLibrary = true
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // isMinifyEnabled = false
+            postprocessing.apply {
+                proguardFiles("proguard-rules.pro")
+                isOptimizeCode = true
+                isObfuscate = true
+                isRemoveUnusedCode = true
+                isRemoveUnusedResources = true
+            }
+            // proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+
+    dexOptions {
+        javaMaxHeapSize = "2g"
     }
 
     lintOptions {
