@@ -15,10 +15,14 @@ fun Array<String>.commonChars(): List<String> {
             if (map2.containsKey(i)) map2[i] = map2[i]?.plus(1) else map2[i] = 1
         }
         for (i in map2.keys) if (map1.containsKey(i)) {
-            val x = (map2[i]!!).coerceAtMost(map1[i]!!) // find the intersection between two pairs of strings
+            val x = map2[i]?.coerceAtMost(map1[i]!!) // find the intersection between two pairs of strings
             map1[i] = x
         }
-        for (i in map1.keys) if (!map2.containsKey(i)) arr.add(i) // temporarily store the char rather than delete right away to avoid cocurrent modification
+        for (i in map1.keys) {
+            if (!map2.containsKey(i)) {
+                arr.add(i)
+            }
+        } // temporarily store the char rather than delete right away to avoid concurrent modification
         for (t in arr) map1.remove(t) // remove whatever was not contained in the next string
         map2.clear() // clear the map
     }
