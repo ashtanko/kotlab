@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.TooltipCompat
 import dev.shtanko.algorithms.databinding.ActivityMainBinding
-import dev.shtanko.algorithms.utils.isDarkTheme
+import dev.shtanko.algorithms.extensions.isDarkTheme
 
 class MainActivity : AppCompatActivity() {
 

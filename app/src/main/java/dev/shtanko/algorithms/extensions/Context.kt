@@ -1,4 +1,4 @@
-package dev.shtanko.algorithms.utils
+package dev.shtanko.algorithms.extensions
 
 import android.content.Context
 import android.content.res.Configuration
