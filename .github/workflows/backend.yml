@@ -71,7 +71,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: detekt-report.html
-          path: app/build/reports/detekt/detekt.html
+          path: server/build/reports/detekt/detekt.html
 
   build:
     runs-on: ubuntu-latest
@@ -100,5 +100,5 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('checksum.txt') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Build APK
+      - name: Deploy
         run: ./gradlew :server:build
