@@ -82,7 +82,7 @@ dependencies {
 
     testImplementation("com.nhaarman:mockito-kotlin:1.6.0")
     testImplementation("org.mockito:mockito-android:3.0.0")
-    testImplementation("org.mockito:mockito-core:3.3.1")
+    testImplementation("org.mockito:mockito-core:3.3.3")
     testImplementation("org.robolectric:robolectric:4.3.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.3.72")
     testImplementation("android.arch.core:core-testing:1.1.1")
