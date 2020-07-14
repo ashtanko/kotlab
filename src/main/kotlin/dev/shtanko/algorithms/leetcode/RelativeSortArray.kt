@@ -1,6 +1,6 @@
 package dev.shtanko.algorithms.leetcode
 
-import java.util.*
+import java.util.TreeMap
 
 private const val MAX_ARRAY_SIZE = 1001
 
