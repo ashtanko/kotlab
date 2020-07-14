@@ -1,4 +1,5 @@
 rootProject.name = "KotlinAlgorithms"
 include(
-    ":app"
+    ":app",
+    ":server"
 )
