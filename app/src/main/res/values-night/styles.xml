@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Algorithms" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Algorithms" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#69f0ae</item>
         <item name="colorPrimaryVariant">#2bbd7e</item>
         <item name="colorOnPrimary">#000000</item>
@@ -24,52 +25,27 @@
 
     <style name="Algorithms.Home">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">#0277bd</item>
-        <item name="android:navigationBarColor">#4fc3f7</item>
+        <item name="android:statusBarColor">@color/immersive_bars</item>
+        <item name="android:navigationBarColor">@color/nav_bar</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">#b3e5fc</item>
+        <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:windowEnterTransition">@transition/home_enter</item>
     </style>
 
-    <style name="Widget.Toolbar" parent="@style/Widget.MaterialComponents.Toolbar">
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="android:elevation">4dp</item>
-        <item name="android:theme">@style/DarkOverlay</item>
-    </style>
-
-    <style name="DarkOverlay" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
-        <!-- Used to theme dark elements in light themed screens.
-             Extend the material dark Action Bar overlay as this contains text styling. -->
-    </style>
-
-    <style name="PlaidDarkOverlay" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
-        <!-- Used to theme dark elements in light themed screens.
-             Extend the material dark Action Bar overlay as this contains text styling. -->
-    </style>
-
-    <style name="Widget.HomeToolbar" parent="Widget.Toolbar.SmallCapsTitle">
-        <item name="android:background">@null</item>
-        <item name="android:elevation">0dp</item>
-        <item name="android:theme">@style/ThemeOverlay.HomeToolbar</item>
-    </style>
-
-    <style name="ThemeOverlay.HomeToolbar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+    <style name="ThemeOverlay.HomeToolbar" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.HomeToolbar.PopupTheme</item>
     </style>
 
-    <style name="ThemeOverlay.HomeToolbar.PopupTheme" parent="">
-        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+    <style name="DarkOverlay" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <!-- Used to theme dark elements in light themed screens.
+             Extend the material dark Action Bar overlay as this contains text styling. -->
     </style>
 
-    <style name="Widget.Toolbar.SmallCapsTitle">
-        <item name="android:titleTextAppearance">@style/TextAppearance.ToolbarTitleSmallCaps</item>
-    </style>
-
-    <style name="TextAppearance.ToolbarTitleSmallCaps" parent="@style/TextAppearance.MaterialComponents.Headline6">
-        <item name="android:fontFeatureSettings">smcp</item>
-        <item name="android:letterSpacing">0.2</item>
+    <style name="PlaidDarkOverlay" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <!-- Used to theme dark elements in light themed screens.
+             Extend the material dark Action Bar overlay as this contains text styling. -->
     </style>
 
 </resources>

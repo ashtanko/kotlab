@@ -4,27 +4,29 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
         applicationId = "dev.shtanko.algorithms"
-        minSdkVersion(21)
-        targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = BuildAndroidConfig.APPLICATION_ID
+        minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
+        targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
 
-        vectorDrawables.useSupportLibrary = true
+        versionCode = BuildAndroidConfig.VERSION_CODE
+        versionName = BuildAndroidConfig.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = BuildAndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
+        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
+        testInstrumentationRunnerArguments =
+            BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER_ARGUMENTS
     }
 
     buildFeatures {
-        viewBinding = true
+        viewBinding = BuildAndroidConfig.VIEW_BINDING
     }
 
     buildTypes {
         getByName("release") {
-            // isMinifyEnabled = false
             postprocessing.apply {
                 proguardFiles("proguard-rules.pro")
                 isOptimizeCode = true
@@ -32,7 +34,6 @@ android {
                 isRemoveUnusedCode = true
                 isRemoveUnusedResources = true
             }
-            // proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 

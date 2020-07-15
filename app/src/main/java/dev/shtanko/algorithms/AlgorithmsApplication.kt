@@ -12,6 +12,6 @@ class AlgorithmsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        themeUtils.setNightMode(true)
+        // themeUtils.setNightMode(true)
     }
 }
