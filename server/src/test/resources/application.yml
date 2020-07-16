@@ -1,0 +1,22 @@
+spring:
+  flyway:
+    enabled: false
+    placeholder-replacement: false
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/test
+    username: postgres
+    password: test
+    sql-script-encoding: UTF-8
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: none
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+        type: TRACE
+
+logging:
+  level:
+    ROOT: INFO

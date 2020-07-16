@@ -1,0 +1,13 @@
+spring:
+  output:
+    ansi:
+      enabled: never
+  datasource:
+    url: jdbc:postgresql://localhost:5432/algorithm_db
+    username: alexey
+    password:
+  jpa:
+    show-sql: false
+  servlet:
+    multipart:
+      max-file-size: 200MB
