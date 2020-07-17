@@ -1,2 +1,2 @@
 #!/bin/bash
-sh gradlew detekt ktlintCheck spotlessCheck
+sh gradlew detekt :app:detekt :server:detekt ktlintCheck :app:spotlessCheck
