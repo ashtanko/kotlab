@@ -7,7 +7,6 @@ android {
     compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
-        applicationId = "dev.shtanko.algorithms"
         applicationId = BuildAndroidConfig.APPLICATION_ID
         minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
@@ -26,13 +25,21 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        getByName(BuildType.DEBUG) {
+            applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
+            versionNameSuffix = BuildTypeDebug.versionNameSuffix
+            isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
+            isTestCoverageEnabled = BuildTypeDebug.isTestCoverageEnabled
+        }
+
+        getByName(BuildType.RELEASE) {
+            isTestCoverageEnabled = BuildTypeRelease.isTestCoverageEnabled
             postprocessing.apply {
                 proguardFiles("proguard-rules.pro")
-                isOptimizeCode = true
-                isObfuscate = true
-                isRemoveUnusedCode = true
-                isRemoveUnusedResources = true
+                isOptimizeCode = BuildTypeRelease.isOptimizeCode
+                isObfuscate = BuildTypeRelease.isObfuscate
+                isRemoveUnusedCode = BuildTypeRelease.isRemoveUnusedCode
+                isRemoveUnusedResources = BuildTypeRelease.isRemoveUnusedResources
             }
         }
     }
@@ -42,11 +49,29 @@ android {
     }
 
     lintOptions {
+        lintConfig = rootProject.file("app/.lint/config.xml")
         // Eliminates UnusedResources false positives for resources used in DataBinding layouts
         isCheckGeneratedSources = true
         // Running lint over the debug variant is enough
         isCheckReleaseBuilds = false
         // See lint.xml for rules configuration
+    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
+
+    sourceSets {
+        getByName("main") {
+            java.srcDir("src/main/kotlin")
+        }
+        getByName("test") {
+            java.srcDir("src/test/kotlin")
+        }
+        getByName("androidTest") {
+            java.srcDir("src/androidTest/kotlin")
+        }
     }
 
     compileOptions {

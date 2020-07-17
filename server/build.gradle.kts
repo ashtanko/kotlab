@@ -32,10 +32,6 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging:1.7.9")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.1")
 
-    //implementation("com.fasterxml.jackson.module:jackson-module-kotlin") {
-    //        exclude(module = "kotlin-reflect")
-    //    }
-
     implementation("org.postgresql:postgresql")
 
     implementation("org.springframework.boot:spring-boot-starter-web:2.3.1.RELEASE")
