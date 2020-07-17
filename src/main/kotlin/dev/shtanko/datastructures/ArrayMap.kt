@@ -76,7 +76,7 @@ class ArrayMap<K, V> constructor(capacity: Int = 0) {
         if (index < size) {
             System.arraycopy(hashes, index, hashes, index + 1, size - index)
             val increasedIndex = index + 1
-            System.arraycopy(array, index shl 1, array, increasedIndex shl 1, (size - index) shl 1)
+            System.arraycopy(array, index shl 1, array, increasedIndex shl 1, size - index shl 1)
         }
 
         hashes[index] = hash
@@ -101,7 +101,7 @@ class ArrayMap<K, V> constructor(capacity: Int = 0) {
             array = arrayOf()
         } else {
             System.arraycopy(hashes, index + 1, hashes, index, newSize - index)
-            System.arraycopy(array, (index + 1) shl 1, array, index shl 1, (newSize - index) shl 1)
+            System.arraycopy(array, index + 1 shl 1, array, index shl 1, newSize - index shl 1)
             array[newSize shl 1] = null
             array[(newSize shl 1) + 1] = null
         }
