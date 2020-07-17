@@ -1,4 +1,4 @@
-package dev.shtanko.algorithms.utils
+package dev.shtanko.core.utils
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="theme">Toggle Theme</string>
+</resources>

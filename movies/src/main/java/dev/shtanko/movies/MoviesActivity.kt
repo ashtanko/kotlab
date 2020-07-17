@@ -1,4 +1,4 @@
-package dev.shtanko.algorithms
+package dev.shtanko.movies
 
 import android.os.Bundle
 import android.view.Menu
@@ -6,20 +6,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.TooltipCompat
-import dev.shtanko.algorithms.databinding.ActivityMainBinding
+import dev.shtanko.algorithms.R
+import dev.shtanko.algorithms.databinding.ActivityMoviesBinding
 import dev.shtanko.core.extensions.isDarkTheme
 
-class MainActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMoviesBinding
 
     companion object {
-        private const val TOOLBAR_ANIM_DELAY = 800L
+        private const val TOOLBAR_ANIM_DELAY = 500L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMoviesBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 

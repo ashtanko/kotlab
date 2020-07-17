@@ -1,10 +1,10 @@
-package dev.shtanko.algorithms
+package dev.shtanko.movies
 
 import android.app.Application
 import dev.shtanko.core.utils.ThemeUtils
 import dev.shtanko.core.utils.ThemeUtilsImpl
 
-class AlgorithmsApplication : Application() {
+class Movies : Application() {
 
     private val themeUtils: ThemeUtils by lazy {
         ThemeUtilsImpl()

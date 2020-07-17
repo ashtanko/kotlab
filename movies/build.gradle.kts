@@ -7,7 +7,7 @@ android {
     compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
-        applicationId = BuildAndroidConfig.APPLICATION_ID
+        applicationId = "dev.shtanko.movies"
         minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
 
