@@ -63,7 +63,7 @@ complexity:
     includeStaticDeclarations: false
   ComplexMethod:
     active: true
-    threshold: 15
+    threshold: 22
     ignoreSingleWhenExpression: false
     ignoreSimpleWhenEntries: false
     ignoreNestingFunctions: false
