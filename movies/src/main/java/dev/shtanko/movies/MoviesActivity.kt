@@ -2,6 +2,7 @@ package dev.shtanko.movies
 
 import android.os.Bundle
 import android.view.Menu
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatCheckBox
@@ -9,10 +10,15 @@ import androidx.appcompat.widget.TooltipCompat
 import dev.shtanko.algorithms.R
 import dev.shtanko.algorithms.databinding.ActivityMoviesBinding
 import dev.shtanko.core.extensions.isDarkTheme
+import dev.shtanko.movies.di.provideMoviesViewModelFactory
 
 class MoviesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMoviesBinding
+
+    private val viewModel: MoviesViewModel by viewModels {
+        provideMoviesViewModelFactory()
+    }
 
     companion object {
         private const val TOOLBAR_ANIM_DELAY = 500L

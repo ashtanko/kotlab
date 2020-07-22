@@ -18,6 +18,12 @@ android {
         testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
         testInstrumentationRunnerArguments =
             BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER_ARGUMENTS
+        buildConfigField("String", "TMDB_V3_API_KEY", "e27483600d2ebf8039ddf4aae6c283bb")
+        buildConfigField(
+            "String",
+            "TMDB_V4_API_TOKEN",
+            "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMjc0ODM2MDBkMmViZjgwMzlkZGY0YWFlNmMyODNiYiIsInN1YiI6IjVlNGFiNjVlOWEzYzQ5MDAxMjMxMTA0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j6WySZnMf_Dojr-7ZK8sBHNLTQuOzU8GagY-LGQxLXI"
+        )
     }
 
     buildFeatures {
@@ -100,9 +106,18 @@ dependencies {
     implementation("androidx.drawerlayout:drawerlayout:1.1.0")
     implementation("androidx.core:core:1.3.0")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
+
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
+
+
+    implementation("com.google.code.gson:gson:2.8.6")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.7.2")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
     testImplementation("junit:junit:4.13")
 
