@@ -18,11 +18,11 @@ android {
         testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
         testInstrumentationRunnerArguments =
             BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER_ARGUMENTS
-        buildConfigField("String", "TMDB_V3_API_KEY", "e27483600d2ebf8039ddf4aae6c283bb")
+        buildConfigField("String", "TMDB_V3_API_KEY", "\"e27483600d2ebf8039ddf4aae6c283bb\"")
         buildConfigField(
             "String",
             "TMDB_V4_API_TOKEN",
-            "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMjc0ODM2MDBkMmViZjgwMzlkZGY0YWFlNmMyODNiYiIsInN1YiI6IjVlNGFiNjVlOWEzYzQ5MDAxMjMxMTA0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j6WySZnMf_Dojr-7ZK8sBHNLTQuOzU8GagY-LGQxLXI"
+            "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMjc0ODM2MDBkMmViZjgwMzlkZGY0YWFlNmMyODNiYiIsInN1YiI6IjVlNGFiNjVlOWEzYzQ5MDAxMjMxMTA0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j6WySZnMf_Dojr-7ZK8sBHNLTQuOzU8GagY-LGQxLXI\""
         )
     }
 
