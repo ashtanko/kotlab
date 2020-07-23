@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="testing">
+
+    <application android:theme="@style/Theme.AppCompat">
+
+        <activity android:name=".TestCompatActivity" />
+
+    </application>
+</manifest>

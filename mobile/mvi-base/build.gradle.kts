@@ -10,4 +10,5 @@ dependencies {
     implementation(Dependencies.CORE_KTX)
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.TIMBER)
+    implementation(project(":mobile:common:ui"))
 }

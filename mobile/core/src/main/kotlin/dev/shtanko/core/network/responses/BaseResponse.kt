@@ -1,4 +1,4 @@
-package dev.shtanko.hawk.network.model
+package dev.shtanko.core.network.responses
 
 data class DataResponse<T>(
     val offset: Int,

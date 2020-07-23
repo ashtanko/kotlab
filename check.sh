@@ -1,2 +1,2 @@
 #!/bin/bash
-sh gradlew detekt :app:detekt :server:detekt ktlintCheck :app:spotlessCheck :movies:detekt :movies:spotlessCheck
+sh gradlew detekt :app:detekt :server:detekt ktlintCheck :app:spotlessCheck :movies:detekt :movies:spotlessCheck :hawk:detekt :hawk:spotlessCheck

@@ -9,7 +9,7 @@ data class ExplicitContent(
     val filterLocked: Boolean
 )
 
-data class User(
+data class UserResponse(
     val country: String,
     @SerializedName("display_name")
     val displayName: String,
