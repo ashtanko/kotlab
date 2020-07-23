@@ -8,7 +8,7 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 
 plugins {
-    kotlin("jvm") version Versions.KOTLIN_VERSION
+    kotlin("jvm")
     id("java")
     id("idea")
     id("jacoco")

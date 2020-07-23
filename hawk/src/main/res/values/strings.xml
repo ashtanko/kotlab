@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Hawk</string>
+    <string name="theme">Toggle Theme</string>
+    <string name="profile">Profile</string>
+</resources>
