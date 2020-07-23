@@ -18,8 +18,8 @@ class RingBufferTest {
 
     @Test
     fun `second element test`() {
-        var secondElement = ringBuffer.incrementAndGet()
-        secondElement = ringBuffer.incrementAndGet()
+        ringBuffer.incrementAndGet()
+        val secondElement: Byte = ringBuffer.incrementAndGet()
         val expected = (-127).toByte()
         assertEquals(expected, secondElement)
     }
