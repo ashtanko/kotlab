@@ -9,13 +9,15 @@ import mvi.MviActivity
 class ProfileActivity :
     MviActivity<ProfileViewState, ProfileViewEffect, ProfileViewEvent, ProfileViewModel>() {
 
+    private val profileViewModel: ProfileViewModel by viewModels {
+        provideProfileViewModelFactory()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-    }
 
-    private val profileViewModel: ProfileViewModel by viewModels {
-        provideProfileViewModelFactory()
+        viewModel.process(ProfileViewEvent.FetchProfile)
     }
 
     override val viewModel: ProfileViewModel

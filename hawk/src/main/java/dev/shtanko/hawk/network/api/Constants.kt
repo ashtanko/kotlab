@@ -1,7 +1,7 @@
 package dev.shtanko.hawk.network.api
 
 const val ACCESS_TOKEN =
-    "Bearer BQBrUGw1Rcq_IG5M5apLNokTjtBSWDtVTFPK3mI_MkMgSH4G4aPwJL1evJ8In5TuMZJ7kszB5q9zVkzq" +
-            "RYnNy5Qqmc8ghfDV0ONWri63Fx4SVTxsI5DEm-w1TztnqWn-BXb9mo0srJIj3F0fhX9rpvqtfGFJBvOa2" +
-            "Pqb9kIkojFy4dY792fuLwYyu01hdkdk5H-rd49pAqX69XsDiIdwRckAiAkQJn41V36lM2FQk1mE2oKZTLF" +
-            "rASB38Af2FNbuw_QfOesl8k6Nbngw-u6sXo-VXWntQGoHrw"
+    "Bearer BQDHOCn9TpNpz8bdeK6i72G1T71sFcXCLSVzZQBcwHCpGBsRFdzEMr_fmapR8fw34j3Z-EOqeLW0a5xZwFy-" +
+            "TctWD5MdiBzpEMJpnbxfr1DDeknlRaLtP3nR4uhgzaRPp4-KFGH1BwrwB3JenE45hfX1QcA5f--LDOEMl59DOu" +
+            "eH0nRVW8f3bQvB_EemxXFIjyo_0o3uj0uX_fDgsbfr4p2IwYn3gx4y0J1YF5N33kR4jxL11ZG19QtcutmlPq_" +
+            "YMm11HJ-6VhyhHvHsBfSJzpgm6B7DT1SsM_Pc"

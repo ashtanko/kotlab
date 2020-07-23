@@ -1,6 +1,8 @@
 package dev.shtanko.hawk.ui.profile
 
-data class ProfileViewState(val fetchStatus: FetchStatus, val newsList: List<Int>)
+import dev.shtanko.hawk.ui.profile.model.User
+
+data class ProfileViewState(val fetchStatus: FetchStatus, val data: User? = null)
 
 sealed class ProfileViewEffect {
     data class ShowSnackbar(val message: String) : ProfileViewEffect()
@@ -11,7 +13,7 @@ sealed class ProfileViewEvent {
     data class NewsItemClicked(val newsItem: Int) : ProfileViewEvent()
     object FabClicked : ProfileViewEvent()
     object OnSwipeRefresh : ProfileViewEvent()
-    object FetchNews : ProfileViewEvent()
+    object FetchProfile : ProfileViewEvent()
 }
 
 sealed class FetchStatus {

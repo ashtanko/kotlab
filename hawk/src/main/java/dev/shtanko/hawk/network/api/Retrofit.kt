@@ -19,7 +19,7 @@ private const val WRITE_TIMEOUT = 60L
 
 fun getRetrofit(): Retrofit {
     val logger =
-        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
+        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 
     val gson = GsonBuilder().setPrettyPrinting()
         .setDateFormat(GSON_DATE_FORMAT)
