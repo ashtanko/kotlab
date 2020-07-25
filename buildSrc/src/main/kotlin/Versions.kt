@@ -20,9 +20,9 @@ object Versions {
     const val ROBOELECTRIC = "4.3.1"
     const val MOCKITO = "2.2.0"
     const val MOCKK = "1.9.3"
-    const val ASSERTJ = "3.14.0"
+    const val ASSERTJ = "3.16.1"
     const val ESPRESSO = "3.2.0"
-    const val FRAGMENT_TEST = "1.2.0-alpha02"
+    const val FRAGMENT_TEST = "1.2.5"
     const val MOCK_WEB_SERVER = "4.2.2"
     const val PLAY_CORE = "1.6.4"
 }
