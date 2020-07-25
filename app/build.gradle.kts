@@ -116,10 +116,9 @@ dependencies {
 
     androidTestImplementation("androidx.test:rules:1.2.0")
     androidTestImplementation("androidx.test:runner:1.2.0")
-    androidTestImplementation("androidx.fragment:fragment-testing:1.2.5")
+    debugImplementation("androidx.fragment:fragment-testing:1.2.5")
     androidTestImplementation("org.assertj:assertj-core:3.16.1")
     androidTestUtil("androidx.test:orchestrator:1.2.0")
-    androidTestImplementation("androidx.fragment:fragment-testing:1.2.5")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 

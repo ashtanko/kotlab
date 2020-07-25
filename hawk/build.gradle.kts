@@ -70,6 +70,24 @@ android {
         // See lint.xml for rules configuration
     }
 
+    packagingOptions {
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("licenses/javolution.license.TXT")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+        exclude("META-INF/*.kotlin_module")
+        exclude("org/apache/http/version.properties")
+        exclude("org/apache/maven/*.*")
+        exclude("org/apache/maven/*")
+        exclude("org/cyberneko/html/*")
+        exclude("org/cyberneko/html/*.*")
+    }
+
     testOptions {
         unitTests.isIncludeAndroidResources = true
         unitTests.isReturnDefaultValues = true
@@ -133,16 +151,15 @@ dependencies {
     testImplementation("com.nhaarman:mockito-kotlin:1.6.0")
     testImplementation("org.mockito:mockito-android:3.0.0")
     testImplementation("org.mockito:mockito-core:3.3.3")
-    testImplementation("org.robolectric:robolectric:4.3.1")
+    // testImplementation("org.robolectric:robolectric:4.3.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.3.72")
     testImplementation("android.arch.core:core-testing:1.1.1")
 
     androidTestImplementation("androidx.test:rules:1.2.0")
     androidTestImplementation("androidx.test:runner:1.2.0")
-    androidTestImplementation("androidx.fragment:fragment-testing:1.2.5")
+    debugImplementation("androidx.fragment:fragment-testing:1.2.5")
     androidTestImplementation("org.assertj:assertj-core:3.16.1")
     androidTestUtil("androidx.test:orchestrator:1.2.0")
-    androidTestImplementation("androidx.fragment:fragment-testing:1.2.5")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 

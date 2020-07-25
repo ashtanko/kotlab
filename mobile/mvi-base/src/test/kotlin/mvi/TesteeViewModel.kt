@@ -1,5 +1,3 @@
 package mvi
 
-class TesteeViewModel {
-
-}
+class TesteeViewModel
