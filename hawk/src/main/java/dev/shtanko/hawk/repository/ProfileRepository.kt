@@ -1,7 +1,7 @@
 package dev.shtanko.hawk.repository
 
 import dev.shtanko.core.network.responses.BaseResponse
-import dev.shtanko.hawk.network.api.UserService
+import dev.shtanko.hawk.network.api.service.UserService
 import dev.shtanko.hawk.network.model.UserResponse
 
 class ProfileRepository(

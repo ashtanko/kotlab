@@ -2,7 +2,7 @@ package dev.shtanko.hawk.di
 
 import com.spotify.android.appremote.api.ConnectionParams
 import dev.shtanko.hawk.BuildConfig
-import dev.shtanko.hawk.network.api.UserService
+import dev.shtanko.hawk.network.api.service.UserService
 import dev.shtanko.hawk.repository.ProfileRepository
 import dev.shtanko.hawk.ui.profile.ProfileViewModelFactory
 import dev.shtanko.hawk.ui.profile.mapper.UserMapper

@@ -1,6 +1,7 @@
 package dev.shtanko.hawk.network.api
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import dev.shtanko.hawk.network.api.service.UserService
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

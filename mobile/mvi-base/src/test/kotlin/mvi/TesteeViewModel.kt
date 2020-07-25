@@ -1,0 +1,5 @@
+package mvi
+
+class TesteeViewModel {
+
+}

@@ -1,6 +1,7 @@
-package dev.shtanko.hawk.network.api
+package dev.shtanko.hawk.network.api.service
 
 import dev.shtanko.core.network.responses.BaseResponse
+import dev.shtanko.hawk.network.api.getRetrofit
 import dev.shtanko.hawk.network.model.UserResponse
 import retrofit2.http.GET
 
@@ -10,6 +11,7 @@ interface UserService {
     suspend fun getCurrentUser(): BaseResponse<UserResponse>
 
     companion object {
-        fun create(): UserService = getRetrofit().create(UserService::class.java)
+        fun create(): UserService = getRetrofit()
+            .create(UserService::class.java)
     }
 }
