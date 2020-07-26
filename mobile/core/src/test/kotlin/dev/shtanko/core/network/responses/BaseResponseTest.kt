@@ -1,7 +1,7 @@
 package dev.shtanko.core.network.responses
 
 import com.nhaarman.mockitokotlin2.mock
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class BaseResponseTest {
@@ -20,9 +20,9 @@ class BaseResponseTest {
             data = data
         )
 
-        Assert.assertEquals(code, baseResponse.code)
-        Assert.assertEquals(status, baseResponse.status)
-        Assert.assertEquals(message, baseResponse.message)
-        Assert.assertEquals(data, baseResponse.data)
+        assertEquals(code, baseResponse.code)
+        assertEquals(status, baseResponse.status)
+        assertEquals(message, baseResponse.message)
+        assertEquals(data, baseResponse.data)
     }
 }
