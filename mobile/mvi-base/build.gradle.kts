@@ -11,5 +11,4 @@ dependencies {
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.TIMBER)
     implementation(project(":mobile:common:ui"))
-    implementation(project(":mobile:testing"))
 }

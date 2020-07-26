@@ -5,16 +5,10 @@ import dev.shtanko.hawk.repository.ProfileRepository
 import dev.shtanko.hawk.ui.profile.mapper.UserMapper
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
-import testing.CoroutineRule
 
 class ProfileViewModelTest {
-
-    @ExperimentalCoroutinesApi
-    @get:Rule
-    var coroutinesTestRule = CoroutineRule()
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()

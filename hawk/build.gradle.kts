@@ -165,9 +165,8 @@ dependencies {
 
     implementation(project(":mobile:core"))
     implementation(project(":mobile:mvi-base"))
-    implementation(project(":mobile:testing"))
+    //implementation(project(":mobile:testing"))
 
     testImplementation(TestDependencies.MOCKK)
-
     implementation(TestDependencies.MOCK_WEB_SERVER)
 }
