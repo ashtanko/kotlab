@@ -10,8 +10,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.robolectric.annotation.Config
-import testing.TestCompatActivity
-import testing.robolectric.TestRobolectric
+import dev.shtanko.testing.TestCompatActivity
+import dev.shtanko.testing.robolectric.TestRobolectric
 
 @Config(sdk = [Build.VERSION_CODES.O_MR1])
 class ThemeUtilsTest : TestRobolectric() {

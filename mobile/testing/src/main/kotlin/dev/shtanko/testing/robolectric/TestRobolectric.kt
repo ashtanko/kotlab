@@ -1,4 +1,4 @@
-package testing.robolectric
+package dev.shtanko.testing.robolectric
 
 import android.app.Application
 import android.content.Context
