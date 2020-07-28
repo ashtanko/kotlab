@@ -2,13 +2,6 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-/**
-3
-/ \
-4   5
-/ \   \
-5   4   7
- */
 internal class TreeNode(var value: Int) {
     var left: TreeNode? = null
     var right: TreeNode? = null
