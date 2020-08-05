@@ -18,6 +18,12 @@ class InMemoryAppender(clazz: Class<*>? = null) : AppenderBase<ILoggingEvent>() 
     val logSize: Int
         get() = log.size
 
+    fun logContains(message: String): Boolean {
+        return log.map {
+            it.formattedMessage
+        }.contains(message)
+    }
+
     init {
         if (clazz == null) {
             (LoggerFactory.getLogger("root") as Logger).addAppender(this)
