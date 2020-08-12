@@ -27,6 +27,10 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
+    buildFeatures {
+        dataBinding = BuildAndroidConfig.DATA_BINDING
+    }
+
     testOptions {
         unitTests.isIncludeAndroidResources = true
         unitTests.isReturnDefaultValues = true
@@ -46,10 +50,10 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.KOTLIN)
-    implementation(Dependencies.COROUTINES)
-    implementation(Dependencies.COROUTINES_ANDROID)
-    implementation(Dependencies.TIMBER)
+    implementation(Dependencies.JetBrains.KOTLIN)
+    implementation(Dependencies.Coroutines.CORE)
+    implementation(Dependencies.Coroutines.ANDROID)
+    implementation(Dependencies.Log.TIMBER)
 
     testImplementation(project(":mobile:testing"))
     addTestsDependencies()

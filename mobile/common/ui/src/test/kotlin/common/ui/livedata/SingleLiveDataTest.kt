@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import common.ui.extensions.observe
+import dev.shtanko.testing.lifecycle.TestLifecycleOwner
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule

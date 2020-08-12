@@ -1,4 +1,4 @@
-package common.ui.livedata
+package dev.shtanko.testing.lifecycle
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

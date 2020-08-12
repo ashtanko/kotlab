@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.APPCOMPAT)
-    implementation(Dependencies.CORE_KTX)
+    implementation(Dependencies.Android.APPCOMPAT)
+    implementation(Dependencies.Android.CORE_KTX)
 }

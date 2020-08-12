@@ -12,6 +12,7 @@ object BuildAndroidConfig {
     const val VERSION_NAME = "1.0"
 
     const val SUPPORT_LIBRARY_VECTOR_DRAWABLES = true
+    const val DATA_BINDING = true
 
     const val TEST_INSTRUMENTATION_RUNNER = "androidx.test.runner.AndroidJUnitRunner"
     val TEST_INSTRUMENTATION_RUNNER_ARGUMENTS = mapOf(

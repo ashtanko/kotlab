@@ -1,5 +1,3 @@
-@file:JvmName("TestDependencies")
-
 /**
  * Project test dependencies, makes it easy to include external binaries or
  * other library modules to build.

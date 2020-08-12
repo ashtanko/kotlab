@@ -3,12 +3,12 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.APPCOMPAT)
-    implementation(Dependencies.LIFECYCLE_VIEW_MODEL)
-    implementation(Dependencies.LIFECYCLE_EXTENSIONS)
-    implementation(Dependencies.CONSTRAIN_LAYOUT)
-    implementation(Dependencies.CORE_KTX)
-    implementation(Dependencies.KOTLIN)
-    implementation(Dependencies.TIMBER)
+    implementation(Dependencies.Android.APPCOMPAT)
+    implementation(Dependencies.Android.LIFECYCLE_VIEW_MODEL)
+    implementation(Dependencies.Android.LIFECYCLE_EXTENSIONS)
+    implementation(Dependencies.Android.CONSTRAIN_LAYOUT)
+    implementation(Dependencies.Android.CORE_KTX)
+    implementation(Dependencies.JetBrains.KOTLIN)
+    implementation(Dependencies.Log.TIMBER)
     implementation(project(":mobile:common:ui"))
 }

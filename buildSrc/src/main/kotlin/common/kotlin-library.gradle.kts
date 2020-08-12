@@ -8,5 +8,5 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.KOTLIN)
+    implementation(Dependencies.JetBrains.KOTLIN)
 }

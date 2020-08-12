@@ -12,7 +12,7 @@ import org.robolectric.annotation.Config
 @Config(
     manifest = "AndroidManifest.xml",
     application = TestRobolectric.ApplicationStub::class,
-    sdk = [Build.VERSION_CODES.P]
+    sdk = [Build.VERSION_CODES.LOLLIPOP]
 )
 open class TestRobolectric {
 

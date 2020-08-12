@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.APPCOMPAT)
+    implementation(Dependencies.Android.APPCOMPAT)
     implementation(TestDependencies.MOCKITO)
     implementation(TestDependencies.ASSERTJ)
     implementation(TestDependencies.ROBOELECTRIC)
