@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.sorts
 
+import dev.shtanko.algorithms.extensions.generateRandomArray
 import dev.shtanko.algorithms.utils.measureTime
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestMethodOrder
-import kotlin.random.Random
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class PerformanceTest {
@@ -21,7 +21,7 @@ class PerformanceTest {
     @Order(7)
     fun `bubble sort`() {
         slowSortCases.forEach {
-            executionTimeReport(BubbleSort(), generateRandomArray(it))
+            executionTimeReport(BubbleSort(), it.generateRandomArray())
         }
     }
 
@@ -29,7 +29,7 @@ class PerformanceTest {
     @Order(9)
     fun `bubble sort 2`() {
         slowSortCases.forEach {
-            executionTimeReport(SimpleBubbleSort(), generateRandomArray(it))
+            executionTimeReport(SimpleBubbleSort(), it.generateRandomArray())
         }
     }
 
@@ -37,7 +37,7 @@ class PerformanceTest {
     @Order(10)
     fun `array sort`() {
         slowSortCases.forEach {
-            executionTimeReport(ArraySort(), generateRandomArray(it))
+            executionTimeReport(ArraySort(), it.generateRandomArray())
         }
     }
 
@@ -45,7 +45,7 @@ class PerformanceTest {
     @Order(11)
     fun `pancake sort`() {
         slowSortCases.forEach {
-            executionTimeReport(PancakeSort(), generateRandomArray(it))
+            executionTimeReport(PancakeSort(), it.generateRandomArray())
         }
     }
 
@@ -53,7 +53,7 @@ class PerformanceTest {
     @Order(12)
     fun `gnome sort`() {
         slowSortCases.forEach {
-            executionTimeReport(GnomeSort(), generateRandomArray(it))
+            executionTimeReport(GnomeSort(), it.generateRandomArray())
         }
     }
 
@@ -61,7 +61,7 @@ class PerformanceTest {
     @Order(6)
     fun `insertion sort`() {
         slowSortCases.forEach {
-            executionTimeReport(InsertionSort(), generateRandomArray(it))
+            executionTimeReport(InsertionSort(), it.generateRandomArray())
         }
     }
 
@@ -69,7 +69,7 @@ class PerformanceTest {
     @Order(8)
     fun `insertion sort 2`() {
         slowSortCases.forEach {
-            executionTimeReport(InsertionSort2(), generateRandomArray(it))
+            executionTimeReport(InsertionSort2(), it.generateRandomArray())
         }
     }
 
@@ -77,7 +77,7 @@ class PerformanceTest {
     @Order(4)
     fun `merge sort`() {
         fastSortCases.forEach {
-            executionTimeReport(MergeSort(), generateRandomArray(it))
+            executionTimeReport(MergeSort(), it.generateRandomArray())
         }
     }
 
@@ -85,7 +85,7 @@ class PerformanceTest {
     @Order(3)
     fun `quick sort`() {
         fastSortCases.forEach {
-            executionTimeReport(QuickSort(), generateRandomArray(it))
+            executionTimeReport(QuickSort(), it.generateRandomArray())
         }
     }
 
@@ -93,7 +93,7 @@ class PerformanceTest {
     @Order(5)
     fun `selection sort`() {
         slowSortCases.forEach {
-            executionTimeReport(SelectionSort(), generateRandomArray(it))
+            executionTimeReport(SelectionSort(), it.generateRandomArray())
         }
     }
 
@@ -101,7 +101,7 @@ class PerformanceTest {
     @Order(2)
     fun `shell sort`() {
         fastSortCases.forEach {
-            executionTimeReport(ShellSort(), generateRandomArray(it))
+            executionTimeReport(ShellSort(), it.generateRandomArray())
         }
     }
 
@@ -109,16 +109,8 @@ class PerformanceTest {
     @Order(1)
     fun `heap sort`() {
         fastSortCases.forEach {
-            executionTimeReport(HeapSort(), generateRandomArray(it))
+            executionTimeReport(HeapSort(), it.generateRandomArray())
         }
-    }
-
-    private fun generateRandomArray(count: Int): IntArray {
-        val array = IntArray(count)
-        for (i in 0 until count) {
-            array[i] = Random.nextInt(count)
-        }
-        return array
     }
 
     private fun executionTimeReport(strategy: AbstractSortStrategy, array: IntArray) {
