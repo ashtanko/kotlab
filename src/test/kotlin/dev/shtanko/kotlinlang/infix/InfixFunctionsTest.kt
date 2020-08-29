@@ -8,7 +8,7 @@ class InfixFunctionsTest {
     @Test
     fun `test colours`() {
         val color = 0x123456
-        val red = (color and 0xff0000) shr 16
+        val red = color and 0xff0000 shr 16
         assertEquals(0x12, red)
     }
 
