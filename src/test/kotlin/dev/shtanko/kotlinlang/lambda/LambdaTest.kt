@@ -10,4 +10,16 @@ class LambdaTest {
         assertEquals(20, mul(10))
         assertEquals(6, mul(3))
     }
+
+    @Test
+    fun `given list of number when doing operations using lambda should return proper result`() {
+        // given
+        val listOfNumbers = listOf(1, 2, 3)
+
+        // when
+        val sum = listOfNumbers.reduce { a, b -> a + b }
+
+        // then
+        assertEquals(6, sum)
+    }
 }
