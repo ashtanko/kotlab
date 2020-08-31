@@ -67,12 +67,6 @@ jobs:
       - name: Run Detekt
         run: ./gradlew detekt
 
-      - name: Archive Detekt results
-        uses: actions/upload-artifact@v1
-        with:
-          name: detekt-report.html
-          path: server/build/reports/detekt/detekt.html
-
   build:
     runs-on: ubuntu-latest
     needs: [check, detekt]
