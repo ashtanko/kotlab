@@ -1,3 +1,0 @@
-package mvi
-
-class MviViewModelTest
