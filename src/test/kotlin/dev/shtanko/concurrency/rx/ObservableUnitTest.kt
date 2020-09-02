@@ -1,6 +1,7 @@
 package dev.shtanko.concurrency.rx
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.BiFunction
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
@@ -126,5 +127,78 @@ class ObservableUnitTest {
             sum[0] += it
         }
         assertTrue(sum[0] == 10)
+    }
+
+    @Test
+    fun `zip operator test`() {
+        val numbers = Observable.just(1, 2, 3, 4, 5)
+        val letters = Observable.just("a", "b", "c", "d", "e")
+        Observable.zip(numbers, letters, BiFunction<Int, String, String> { n: Int, c: String ->
+            "$n$c"
+        }).subscribe {
+            result += it
+        }
+        assertTrue(result == "1a2b3c4d5e")
+    }
+
+    @Test
+    fun `merge operator test`() {
+        val numbers = Observable.just(1, 2, 3, 4, 5)
+        val letters = Observable.just("a", "b", "c", "d", "e")
+        Observable.merge(numbers, letters).subscribe {
+            result += it
+        }
+        assertTrue(result == "12345abcde")
+    }
+
+    @Test
+    fun `concat operator test`() {
+        val numbers = Observable.just(1, 2, 3, 4, 5)
+        val letters = Observable.just("a", "b", "c", "d", "e")
+        Observable.concat(numbers, letters).subscribe {
+            result += it
+        }
+        assertTrue(result == "12345abcde")
+    }
+
+    @Test
+    fun `combine latest operator test`() {
+        val numbers = Observable.just(1, 2, 3, 4, 5)
+        val letters = Observable.just("a", "b", "c", "d", "e")
+        Observable.combineLatest(numbers, letters, BiFunction<Int, String, String> { n: Int, c: String ->
+            "$n$c"
+        }).subscribe {
+            result += it
+        }
+        assertTrue(result == "5a5b5c5d5e")
+    }
+
+    @Test
+    fun `scan test`() {
+        Observable.just(0, 1, 2, 3)
+            .scan { t1, t2 -> t1 + t2 }
+            .subscribe {
+                result += it
+            }
+        println(result)
+        assertTrue(result == "0136")
+    }
+
+    @Test
+    fun `task test`() {
+        val numbers = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        Observable.fromIterable(numbers)
+            .map {
+                it * 2
+            }.map {
+                print("square: $it")
+                it * 3
+            }
+            .subscribe(
+                ::println,
+                Throwable::printStackTrace
+            ) {
+                println("Done!")
+            }
     }
 }
