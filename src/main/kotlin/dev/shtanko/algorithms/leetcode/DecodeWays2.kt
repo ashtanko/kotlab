@@ -1,5 +1,6 @@
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.extensions.lessThanZero
 import dev.shtanko.algorithms.leetcode.DecodeWays2Strategy.Companion.FIFTEEN
 import dev.shtanko.algorithms.leetcode.DecodeWays2Strategy.Companion.NINE
 import dev.shtanko.algorithms.leetcode.DecodeWays2Strategy.Companion.SIX
@@ -23,7 +24,7 @@ class DecodeWays2RecursionWithMemoization : DecodeWays2Strategy {
     }
 
     private fun ways(s: String, i: Int, memo: Array<Int?>): Int {
-        if (i < 0) return 1
+        if (i.lessThanZero()) return 1
         if (memo[i] != null) return memo[i] ?: 1
         if (s[i] == '*') {
             var res = NINE * ways(s, i - 1, memo).toLong()

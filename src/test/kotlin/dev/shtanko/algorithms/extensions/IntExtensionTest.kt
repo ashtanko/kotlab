@@ -17,4 +17,14 @@ class IntExtensionTest {
     fun `random array test`() {
         assertEquals(3, 3.generateRandomArray().size)
     }
+
+    @Test
+    fun `less than zero test`() {
+        assertTrue((-1).lessThanZero())
+    }
+
+    @Test
+    fun `more than zero test`() {
+        assertFalse(1.lessThanZero())
+    }
 }

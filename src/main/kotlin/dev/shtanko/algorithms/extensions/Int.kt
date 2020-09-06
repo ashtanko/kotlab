@@ -12,3 +12,7 @@ fun Int.generateRandomArray(): IntArray {
     }
     return array
 }
+
+fun Int.lessThanZero(): Boolean {
+    return this < 0
+}
