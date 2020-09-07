@@ -16,6 +16,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.10.0"
     id("org.jetbrains.dokka") version "0.10.1"
     id("com.diffplug.gradle.spotless") version "3.26.1"
+    id("com.autonomousapps.dependency-analysis") version "0.58.0"
 }
 
 buildscript {
@@ -33,11 +34,12 @@ buildscript {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN_VERSION}")
+    api("org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN_VERSION}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
     implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("io.reactivex.rxjava3:rxjava:3.0.6")
 
+    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7")
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
     testImplementation("org.assertj:assertj-core:3.16.1")
@@ -45,6 +47,7 @@ dependencies {
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("ch.qos.logback:logback-core:1.2.3")
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
+    testImplementation("io.reactivex.rxjava3:rxjava:3.0.6")
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.10.0")
 }
