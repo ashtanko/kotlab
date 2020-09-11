@@ -12,7 +12,6 @@ fun isSubsequence(s: String, t: String): Boolean {
         } else {
             i++
         }
-
     }
     return j == m
 }
