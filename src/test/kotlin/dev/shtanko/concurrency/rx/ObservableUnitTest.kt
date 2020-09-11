@@ -2,8 +2,13 @@ package dev.shtanko.concurrency.rx
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.functions.BiFunction
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.fail
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicReference
 
 class ObservableUnitTest {
 
@@ -200,5 +205,33 @@ class ObservableUnitTest {
             ) {
                 println("Done!")
             }
+    }
+
+    @Test
+    fun `do on error`() {
+        val r = AtomicReference<Throwable?>()
+        val t: Throwable?
+        try {
+            Observable.error<String>(RuntimeException("an error"))
+                .doOnError { v -> r.set(v) }.blockingSingle()
+            fail {
+                "expected exception, not a return value"
+            }
+        } catch (e: Throwable) {
+            t = e
+        }
+
+        assertNotNull(t)
+        assertEquals(t, r.get())
+    }
+
+    @Test
+    fun `do on completed`() {
+        val r = AtomicBoolean()
+        val output = Observable.just("one")
+            .doOnComplete { r.set(true) }.blockingSingle()
+
+        assertEquals("one", output)
+        assertTrue(r.get())
     }
 }
