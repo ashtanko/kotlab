@@ -12,14 +12,13 @@ fun strongPasswordChecker(s: String): Int {
     val carr = s.toCharArray()
     val arr = IntArray(carr.size)
     var i = 0
-    while (i < arr.size) {
-        if (Character.isLowerCase(carr[i])) lowerCases = 0
-        if (Character.isUpperCase(carr[i])) upperCases = 0
-        if (Character.isDigit(carr[i])) digits = 0
-        val j = i
-        while (i < carr.size && carr[i] == carr[j]) i++
-        arr[j] = i - j
-    }
+    calculateSum(arr, i, carr, {
+        lowerCases = 0
+    }, {
+        upperCases = 0
+    }, {
+        digits = 0
+    })
     val totalMissing = lowerCases + upperCases + digits
     if (arr.size < STRONG_PASSWORD_VALUE) {
         res += totalMissing + 0.coerceAtLeast(STRONG_PASSWORD_VALUE - (arr.size + totalMissing))
@@ -51,4 +50,23 @@ fun strongPasswordChecker(s: String): Int {
         res += totalMissing.coerceAtLeast(leftOver)
     }
     return res
+}
+
+private fun calculateSum(
+    arr: IntArray,
+    i: Int,
+    carr: CharArray,
+    lowerCases: () -> Unit,
+    upperCases: () -> Unit,
+    digits: () -> Unit
+) {
+    var k = i
+    while (k < arr.size) {
+        if (Character.isLowerCase(carr[k])) lowerCases.invoke()
+        if (Character.isUpperCase(carr[k])) upperCases.invoke()
+        if (Character.isDigit(carr[k])) digits.invoke()
+        val j = k
+        while (k < carr.size && carr[k] == carr[j]) k++
+        arr[j] = k - j
+    }
 }
