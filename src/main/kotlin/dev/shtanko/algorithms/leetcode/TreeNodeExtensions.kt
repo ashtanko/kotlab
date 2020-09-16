@@ -1,7 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
 // Function to insert nodes in level order
-internal fun insertLevelOrder(rootNode: TreeNode?, arr: IntArray, i: Int): TreeNode? {
+internal fun insertLevelOrder(rootNode: TreeNode?, arr: IntArray, i: Int = 0): TreeNode? {
     var root: TreeNode? = rootNode
 
     // Base case for recursion
