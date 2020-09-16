@@ -4,6 +4,10 @@ private const val START_VALUE = 1
 private const val STRONG_PASSWORD_VALUE = 6
 private const val OVER_LENGTH = 20
 
+enum class CharacterType {
+    LOWER_CASE, UPPER_CASE, DIGIT
+}
+
 fun strongPasswordChecker(s: String): Int {
     var res = 0
     var lowerCases = START_VALUE
@@ -12,13 +16,13 @@ fun strongPasswordChecker(s: String): Int {
     val carr = s.toCharArray()
     val arr = IntArray(carr.size)
     var i = 0
-    calculateSum(arr, i, carr, {
-        lowerCases = 0
-    }, {
-        upperCases = 0
-    }, {
-        digits = 0
-    })
+    calculateSum(arr, i, carr) {
+        when (it) {
+            CharacterType.LOWER_CASE -> lowerCases = 0
+            CharacterType.UPPER_CASE -> upperCases = 0
+            CharacterType.DIGIT -> digits = 0
+        }
+    }
     val totalMissing = lowerCases + upperCases + digits
     if (arr.size < STRONG_PASSWORD_VALUE) {
         res += totalMissing + 0.coerceAtLeast(STRONG_PASSWORD_VALUE - (arr.size + totalMissing))
@@ -56,15 +60,13 @@ private fun calculateSum(
     arr: IntArray,
     i: Int,
     carr: CharArray,
-    lowerCases: () -> Unit,
-    upperCases: () -> Unit,
-    digits: () -> Unit
+    action: (type: CharacterType) -> Unit
 ) {
     var k = i
     while (k < arr.size) {
-        if (Character.isLowerCase(carr[k])) lowerCases.invoke()
-        if (Character.isUpperCase(carr[k])) upperCases.invoke()
-        if (Character.isDigit(carr[k])) digits.invoke()
+        if (Character.isLowerCase(carr[k])) action.invoke(CharacterType.LOWER_CASE)
+        if (Character.isUpperCase(carr[k])) action.invoke(CharacterType.UPPER_CASE)
+        if (Character.isDigit(carr[k])) action.invoke(CharacterType.DIGIT)
         val j = k
         while (k < carr.size && carr[k] == carr[j]) k++
         arr[j] = k - j
