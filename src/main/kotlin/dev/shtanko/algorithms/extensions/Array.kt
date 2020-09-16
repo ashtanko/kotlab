@@ -41,3 +41,10 @@ fun CharArray.swap(i: Int, j: Int) {
     this[i] = this[j]
     this[j] = tmp
 }
+
+fun IntArray.second(): Int {
+    if (isEmpty()) {
+        throw NoSuchElementException("Array is empty.")
+    }
+    return this[1]
+}

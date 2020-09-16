@@ -1,7 +1,10 @@
 package dev.shtanko.algorithms.extensions
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class ArrayExtensionTest {
 
@@ -55,5 +58,27 @@ class ArrayExtensionTest {
         val arr = intArrayOf(4, 8)
         arr.swap(1, 0)
         assertArrayEquals(intArrayOf(8, 4), arr)
+    }
+
+    @Test
+    fun `second function on empty array test`() {
+        val array = intArrayOf()
+        assertThrows(NoSuchElementException::class.java) {
+            array.second()
+        }
+    }
+
+    @Test
+    fun `second function on single item array test`() {
+        val array = intArrayOf(1)
+        assertThrows(ArrayIndexOutOfBoundsException::class.java) {
+            array.second()
+        }
+    }
+
+    @Test
+    fun `second function on array test`() {
+        val array = intArrayOf(1, 2)
+        assertEquals(2, array.second())
     }
 }
