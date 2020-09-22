@@ -2,42 +2,37 @@ package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
+
+data class BuddyStringsTestCase(
+    val pair: Pair<String, String>,
+    val assertMethod: Boolean
+)
 
 class BuddyStringsTest {
 
-    @Test
-    fun `simple test`() {
-        val pair = "ab" to "ba"
-        val actual = pair.buddyStrings()
-        assertTrue(actual)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<BuddyStringsTestCase> {
+            return listOf(
+                BuddyStringsTestCase("ab" to "ba", true),
+                BuddyStringsTestCase("ab" to "ab", false),
+                BuddyStringsTestCase("aa" to "aa", true),
+                BuddyStringsTestCase("aaaaaaabc" to "aaaaaaacb", true),
+                BuddyStringsTestCase("" to "aa", false)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val pair = "ab" to "ab"
-        val actual = pair.buddyStrings()
-        assertFalse(actual)
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val pair = "aa" to "aa"
-        val actual = pair.buddyStrings()
-        assertTrue(actual)
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val pair = "aaaaaaabc" to "aaaaaaacb"
-        val actual = pair.buddyStrings()
-        assertTrue(actual)
-    }
-
-    @Test
-    fun `simple test 5`() {
-        val pair = "" to "aa"
-        val actual = pair.buddyStrings()
-        assertFalse(actual)
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `buddy strings test`(testCase: BuddyStringsTestCase) {
+        val actual = testCase.pair.buddyStrings()
+        if (testCase.assertMethod) {
+            assertTrue(actual)
+        } else {
+            assertFalse(actual)
+        }
     }
 }
