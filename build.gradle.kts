@@ -9,9 +9,9 @@ import com.diffplug.gradle.spotless.SpotlessPlugin
 
 plugins {
     kotlin("jvm")
-    id("java")
-    id("idea")
-    id("jacoco")
+    java
+    jacoco
+    idea
     id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
     id("io.gitlab.arturbosch.detekt") version "1.10.0"
     id("org.jetbrains.dokka") version "0.10.1"
@@ -34,7 +34,7 @@ buildscript {
 
 dependencies {
     api("org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN_VERSION}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("io.reactivex.rxjava3:rxjava:3.0.6")
 
@@ -76,7 +76,7 @@ val depsFiles = "**/*Deps.kt"
 subprojects {
     pluginManager.apply(io.gitlab.arturbosch.detekt.DetektPlugin::class.java)
 
-    tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
+    tasks.withType<Detekt> {
         jvmTarget = projectJvmTarget
     }
 
@@ -94,43 +94,6 @@ subprojects {
     }
 
     apply(plugin = "com.diffplug.gradle.spotless")
-}
-
-fun PluginContainer.configureAppAndModules(subProject: Project) = apply {
-    whenPluginAdded {
-        when (this) {
-            is com.android.build.gradle.AppPlugin -> {
-                subProject.extensions
-                    .getByType<com.android.build.gradle.AppExtension>()
-                    .applyAppCommons()
-            }
-            is com.android.build.gradle.LibraryPlugin -> {
-                subProject.extensions
-                    .getByType<com.android.build.gradle.LibraryExtension>()
-                    .applyLibraryCommons()
-            }
-        }
-    }
-}
-
-fun com.android.build.gradle.AppExtension.applyAppCommons() = apply { applyBaseCommons() }
-fun com.android.build.gradle.LibraryExtension.applyLibraryCommons() = apply {
-    applyBaseCommons()
-}
-
-fun com.android.build.gradle.BaseExtension.applyBaseCommons() = apply {
-    compileOptions.apply {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-}
-
-fun PluginManager.configureKaptCache(subProject: Project) = apply {
-    withPlugin("kotlin-kapt") {
-        subProject.extensions
-            .getByType<org.jetbrains.kotlin.gradle.plugin.KaptExtension>()
-            .apply { useBuildCache = true }
-    }
 }
 
 fun PluginManager.configureSpotlessIntegration(subProject: Project) = apply {

@@ -1,5 +1,5 @@
 object Versions {
-    const val KOTLIN_VERSION = "1.3.72"
+    const val KOTLIN_VERSION = "1.4.10"
     const val COROUTINES = "1.3.3"
     const val ROOM = "2.2.3"
     const val MATERIAL = "1.1.0"

@@ -1,2 +1,2 @@
 #!/bin/bash
-sh gradlew detekt ktlintCheck :server:detekt --profile
+sh gradlew detekt ktlintCheck --profile
