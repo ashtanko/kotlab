@@ -22,7 +22,7 @@ suspend fun same(t1: Tree, t2: Tree): Boolean {
     return same
 }
 
-fun main(args: Array<String>) = mainBlocking {
+fun main() = mainBlocking {
     val t1 = newTree(1)
     val t2 = newTree(1)
     val t3 = newTree(2)
