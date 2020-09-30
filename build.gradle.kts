@@ -48,6 +48,7 @@ dependencies {
     testImplementation("ch.qos.logback:logback-core:1.2.3")
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
     testImplementation("io.reactivex.rxjava3:rxjava:3.0.6")
+    testImplementation("com.carrotsearch:junit-benchmarks:0.7.0")
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.10.0")
 }
