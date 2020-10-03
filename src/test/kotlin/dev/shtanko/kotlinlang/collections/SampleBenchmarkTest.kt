@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 @BenchmarkMethodChart(filePrefix = "benchmark-sample")
 class SampleBenchmarkTest : AbstractBenchmark() {
 
-    private val largeList = (0..1000)
+    private val largeList = 0..1000
     private val largeSequence = largeList.asSequence()
 
     @Test

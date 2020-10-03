@@ -4,7 +4,7 @@ import dev.shtanko.algorithms.extensions.isEven
 
 fun main() {
 
-    val smallList = (0..2)
+    val smallList = 0..2
     val smallSequence = smallList.asSequence()
 
     getFirstFromList(smallList)
