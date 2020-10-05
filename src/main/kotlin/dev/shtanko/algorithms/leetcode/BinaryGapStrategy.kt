@@ -35,3 +35,23 @@ class BGOnePass : BinaryGapStrategy {
         return ans
     }
 }
+
+class BGOther : BinaryGapStrategy {
+    override fun binaryGap(n: Int): Int {
+        var max = 0
+        var pos = 0
+        var lastPos = -1
+        var changed = n
+        while (changed != 0) {
+            pos++
+            if (changed and 1 == 1) {
+                if (lastPos != -1) {
+                    max = max.coerceAtLeast(pos - lastPos)
+                }
+                lastPos = pos
+            }
+            changed = changed shr 1
+        }
+        return max
+    }
+}

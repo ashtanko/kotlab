@@ -41,3 +41,5 @@ abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T)
 class BGStoreIndexesTest : BinaryGapTest<BGStoreIndexes>(BGStoreIndexes())
 
 class BGOnePassTest : BinaryGapTest<BGOnePass>(BGOnePass())
+
+class BGOtherTest : BinaryGapTest<BGOther>(BGOther())
