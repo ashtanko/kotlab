@@ -1,45 +1,160 @@
 package dev.shtanko.algorithms.learn
 
-internal data class Graph<T>(
-    val vertices: Set<T>,
-    val edges: Map<T, Set<T>>,
-    val weights: Map<Pair<T, T>, Int>
-)
+import java.util.TreeSet
 
-internal fun <T> dijkstra(graph: Graph<T>, start: T): Map<T, T?> {
-    val s: MutableSet<T> = mutableSetOf() // a subset of vertices, for which we know the true distance
+internal class Edge(val v1: String, val v2: String, val dist: Int)
 
-    val delta = graph.vertices.map { it to Int.MAX_VALUE }.toMap().toMutableMap()
-    delta[start] = 0
+/** One vertex of the graph, complete with mappings to neighbouring vertices */
+internal class Vertex(val name: String) : Comparable<Vertex> {
 
-    val previous: MutableMap<T, T?> = graph.vertices.map { it to null }.toMap().toMutableMap()
+    var dist = Int.MAX_VALUE // MAX_VALUE assumed to be infinity
+    var previous: Vertex? = null
+    val neighbours = HashMap<Vertex, Int>()
 
-    while (s != graph.vertices) {
-        val v: T = delta
-            .filter { !s.contains(it.key) }
-            .minBy { it.value }!!
-            .key
-
-        graph.edges.getValue(v).minus(s).forEach { neighbor ->
-            val newPath = delta.getValue(v) + graph.weights.getValue(Pair(v, neighbor))
-
-            if (newPath < delta.getValue(neighbor)) {
-                delta[neighbor] = newPath
-                previous[neighbor] = v
+    fun printPath() {
+        when (previous) {
+            this -> {
+                print(name)
+            }
+            null -> {
+                print("$name(unreached)")
+            }
+            else -> {
+                previous?.printPath()
+                print(" -> $name($dist)")
             }
         }
-
-        s.add(v)
     }
 
-    return previous.toMap()
+    override fun compareTo(other: Vertex): Int {
+        if (dist == other.dist) return name.compareTo(other.name)
+        return dist.compareTo(other.dist)
+    }
+
+    override fun toString() = "($name, $dist)"
 }
 
-fun <T> shortestPath(shortestPathTree: Map<T, T?>, start: T, end: T): List<T> {
-    fun pathTo(start: T, end: T): List<T> {
-        if (shortestPathTree[end] == null) return listOf(end)
-        return listOf(pathTo(start, shortestPathTree[end] ?: error("Error")), listOf(end)).flatten()
+internal class Graph(
+    edges: List<Edge>,
+    val directed: Boolean,
+    private val showAllPaths: Boolean = false
+) {
+    // mapping of vertex names to Vertex objects, built from a set of Edges
+    private val mainGraph = HashMap<String, Vertex>(edges.size)
+
+    init {
+        // one pass to find all vertices
+        for (e in edges) {
+            if (!mainGraph.containsKey(e.v1)) mainGraph[e.v1] = Vertex(e.v1)
+            if (!mainGraph.containsKey(e.v2)) mainGraph[e.v2] = Vertex(e.v2)
+        }
+
+        // another pass to set neighbouring vertices
+        for (e in edges) {
+            mainGraph[e.v2]?.let { vrx ->
+                val n = mainGraph[e.v1]?.neighbours
+                n?.let {
+                    it[vrx] = e.dist
+                }
+
+                // also do this for an undirected graph if applicable
+                if (!directed) {
+                    mainGraph[e.v1]?.let { v1 ->
+                        vrx.neighbours[v1] = e.dist
+                    }
+                }
+            }
+        }
     }
 
-    return pathTo(start, end)
+    /** Runs dijkstra using a specified source vertex */
+    fun dijkstra(startName: String) {
+        if (!mainGraph.containsKey(startName)) {
+            println("Graph doesn't contain start vertex '$startName'")
+            return
+        }
+        val source = mainGraph[startName]
+        val q = TreeSet<Vertex>()
+
+        // set-up vertices
+        for (v in mainGraph.values) {
+            v.previous = if (v == source) source else null
+            v.dist = if (v == source) 0 else Int.MAX_VALUE
+            q.add(v)
+        }
+
+        dijkstra(q)
+    }
+
+    /** Implementation of dijkstra's algorithm using a binary heap */
+    private fun dijkstra(q: TreeSet<Vertex>) {
+        while (!q.isEmpty()) {
+            // vertex with shortest distance (first iteration will return source)
+            val u = q.pollFirst() ?: return
+            // if distance is infinite we can ignore 'u' (and any other remaining vertices)
+            // since they are unreachable
+            if (u.dist == Int.MAX_VALUE) break
+
+            // look at distances to each neighbour
+            for (a in u.neighbours) {
+                val v = a.key // the neighbour in this iteration
+
+                val alternateDist = u.dist + a.value
+                if (alternateDist < v.dist) { // shorter path to neighbour found
+                    q.remove(v)
+                    v.dist = alternateDist
+                    v.previous = u
+                    q.add(v)
+                }
+            }
+        }
+    }
+
+    /** Prints a path from the source to the specified vertex */
+    fun printPath(endName: String) {
+        if (!mainGraph.containsKey(endName)) {
+            println("Graph doesn't contain end vertex '$endName'")
+            return
+        }
+        print(if (directed) "Directed   : " else "Undirected : ")
+        val v = mainGraph[endName]
+        v?.printPath()
+        println()
+        if (showAllPaths) printAllPaths() else println()
+    }
+
+    /** Prints the path from the source to every vertex (output order is not guaranteed) */
+    private fun printAllPaths() {
+        for (v in mainGraph.values) {
+            v.printPath()
+            println()
+        }
+        println()
+    }
+}
+
+private val GRAPH = listOf(
+    Edge("a", "b", 7),
+    Edge("a", "c", 9),
+    Edge("a", "f", 14),
+    Edge("b", "c", 10),
+    Edge("b", "d", 15),
+    Edge("c", "d", 11),
+    Edge("c", "f", 2),
+    Edge("d", "e", 6),
+    Edge("e", "f", 9)
+)
+
+private const val START = "a"
+private const val END = "e"
+
+fun main() {
+    with(Graph(GRAPH, true)) { // directed
+        dijkstra(START)
+        printPath(END)
+    }
+    with(Graph(GRAPH, false)) { // undirected
+        dijkstra(START)
+        printPath(END)
+    }
 }

@@ -4,22 +4,23 @@ import org.junit.jupiter.api.Test
 
 class DijkstraTest {
 
+    private val edges = listOf(
+        Edge("a", "b", 7),
+        Edge("a", "c", 9),
+        Edge("a", "f", 14),
+        Edge("b", "c", 10),
+        Edge("b", "d", 15),
+        Edge("c", "d", 11),
+        Edge("c", "f", 2),
+        Edge("d", "e", 6),
+        Edge("e", "f", 9)
+    )
+
     @Test
     fun `should calculate correct shortest paths`() {
-        val weights = mapOf(
-            Pair("A", "B") to 2,
-            Pair("A", "C") to 8,
-            Pair("A", "D") to 5,
-            Pair("B", "C") to 1,
-            Pair("C", "E") to 3,
-            Pair("D", "E") to 2
-        )
-
-        val start = "A"
-        // val shortestPathTree = dijkstra(Graph(weights), start)
-
-        // assertEquals(listOf(start, "B", "C"), shortestPath(shortestPathTree, start, "C"))
-        // assertEquals(listOf(start, "B", "C", "E"), shortestPath(shortestPathTree, start, "E"))
-        // assertEquals(listOf(start, "D"), shortestPath(shortestPathTree, start, "D"))
+        with(Graph(edges = edges, true)) { // directed
+            dijkstra("a")
+            printPath("e")
+        }
     }
 }
