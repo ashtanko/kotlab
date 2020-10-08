@@ -1,31 +1,33 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
-class ArrayPairSumTest {
+abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T) {
 
-    @Test
+    companion object {
+        @JvmStatic
+        fun casesProvider(): List<Pair<Int, IntArray>> {
+            return listOf(
+                4 to intArrayOf(1, 4, 3, 2),
+                0 to intArrayOf(2, 1, 3)
+            )
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("casesProvider")
     fun `simple test`() {
         val arr = intArrayOf(1, 4, 3, 2)
-        assertEquals(4, arr.pairSum())
-    }
-
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(1, 4, 3, 2)
-        assertEquals(4, arr.pairSum2())
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = intArrayOf(1, 4, 3, 2)
-        assertEquals(4, arr.pairSum3())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val arr = intArrayOf(1, 4, 3, 2)
-        assertEquals(4, arr.pairSum4())
+        assertEquals(4, strategy.perform(arr))
     }
 }
+
+class PairSumSort1Test : ArrayPairSumTest<PairSumSort1>(PairSumSort1())
+
+class PairSumSort2Test : ArrayPairSumTest<PairSumSort2>(PairSumSort2())
+
+class PairSumSort3Test : ArrayPairSumTest<PairSumSort3>(PairSumSort3())
+
+class PairSumOddTest : ArrayPairSumTest<PairSumOdd>(PairSumOdd())

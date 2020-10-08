@@ -1,0 +1,104 @@
+package dev.shtanko.algorithms.leetcode
+
+class Division {
+    var maxVal: Float = 0f
+    var minVal: Float = 0f
+    var minStr: String = ""
+    var maxStr: String = ""
+}
+
+interface OptimalDivisionStrategy {
+    fun perform(nums: IntArray): String
+}
+
+class OptimalDivisionBruteForce : OptimalDivisionStrategy {
+
+    override fun perform(nums: IntArray): String {
+        val t = optimal(nums, 0, nums.size - 1)
+        return t.maxStr
+    }
+
+    private fun optimal(nums: IntArray, start: Int, end: Int): Division {
+        val division = Division()
+        if (start == end) {
+            division.maxVal = nums[start].toFloat()
+            division.minVal = nums[start].toFloat()
+            division.minStr = "" + nums[start]
+            division.maxStr = "" + nums[start]
+            return division
+        }
+        division.minVal = Float.MAX_VALUE
+        division.maxVal = Float.MIN_VALUE
+        division.maxStr = ""
+        division.minStr = division.maxStr
+        for (i in start until end) {
+            val left = optimal(nums, start, i)
+            val right = optimal(nums, i + 1, end)
+            if (division.minVal > left.minVal / right.maxVal) {
+                division.minVal = left.minVal / right.maxVal
+                division.minStr =
+                    left.minStr + "/" + (if (i + 1 != end) "(" else "") + right.minStr + if (i + 1 != end) ")" else ""
+            }
+            if (division.maxVal < left.maxVal / right.minVal) {
+                division.maxVal = left.maxVal / right.minVal
+                division.maxStr =
+                    left.maxStr + "/" + (if (i + 1 != end) "(" else "") + right.minStr + if (i + 1 != end) ")" else ""
+            }
+        }
+        return division
+    }
+}
+
+class OptimalDivisionMemorization : OptimalDivisionStrategy {
+    override fun perform(nums: IntArray): String {
+        val memo: Array<Array<Division>> = Array(nums.size) { Array<Division>(nums.size) { Division() } }
+        val division: Division = optimal(nums, 0, nums.size - 1, memo)
+        return division.maxStr
+    }
+
+    private fun optimal(nums: IntArray, start: Int, end: Int, memo: Array<Array<Division>>): Division {
+        val division = Division()
+        if (start == end) {
+            division.maxVal = nums[start].toFloat()
+            division.minVal = nums[start].toFloat()
+            division.minStr = "" + nums[start]
+            division.maxStr = "" + nums[start]
+            memo[start][end] = division
+            return division
+        }
+        division.minVal = Float.MAX_VALUE
+        division.maxVal = Float.MIN_VALUE
+        division.maxStr = ""
+        division.minStr = division.maxStr
+
+        for (i in start until end) {
+            val left: Division = optimal(nums, start, i, memo)
+            val right: Division = optimal(nums, i + 1, end, memo)
+            if (division.minVal > left.minVal / right.maxVal) {
+                division.minVal = left.minVal / right.maxVal
+                division.minStr =
+                    left.minStr + "/" + (if (i + 1 != end) "(" else "") + right.maxStr + if (i + 1 != end) ")" else ""
+            }
+            if (division.maxVal < left.maxVal / right.minVal) {
+                division.maxVal = left.maxVal / right.minVal
+                division.maxStr =
+                    left.maxStr + "/" + (if (i + 1 != end) "(" else "") + right.minStr + if (i + 1 != end) ")" else ""
+            }
+        }
+        memo[start][end] = division
+        return division
+    }
+}
+
+class MathOptimalDivision : OptimalDivisionStrategy {
+    override fun perform(nums: IntArray): String {
+        if (nums.size == 1) return nums[0].toString() + ""
+        if (nums.size == 2) return nums[0].toString() + "/" + nums[1]
+        val res = StringBuilder(nums[0].toString() + "/(" + nums[1])
+        for (i in 2 until nums.size) {
+            res.append("/" + nums[i])
+        }
+        res.append(")")
+        return res.toString()
+    }
+}
