@@ -24,7 +24,7 @@ fun largestMultipleOfThree(digits: IntArray): String {
     }
     val sb = StringBuilder()
     for (i in ARRAY_SIZE - 1 downTo 0) {
-        sb.append((ZERO_CHAR.plus(i).toString().repeat(ds[i])))
+        sb.append(ZERO_CHAR.plus(i).toString().repeat(ds[i]))
     }
     return if (sb.isNotEmpty() && sb[0] == ZERO_CHAR) "0" else sb.toString()
 }
