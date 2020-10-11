@@ -18,7 +18,7 @@ class BrowserHistoryArray(homepage: String) : BrowserHistory {
 
     private var current = -1
     private var top = 0
-    private val h = Array<String>(ARRAY_SIZE) { "" }
+    private val h = Array(ARRAY_SIZE) { "" }
 
     init {
         current++
