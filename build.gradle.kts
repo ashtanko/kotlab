@@ -37,7 +37,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("io.reactivex.rxjava3:rxjava:3.0.6")
+    implementation("org.jetbrains.kotlinx:lincheck:2.8")
 
+    testImplementation("org.jetbrains.kotlinx:lincheck:2.8")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
