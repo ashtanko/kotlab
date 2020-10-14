@@ -1,25 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class CombinationSumTest {
 
-    @ExperimentalStdlibApi
-    @Test
-    fun `simple test`() {
-        val candidates = intArrayOf(2, 3, 6, 7)
-        val target = 7
-        val actual = combinationSum(candidates, target)
-        assertEquals(listOf(listOf(2, 2, 3), listOf(7)), actual)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<IntArray, Int>, List<List<Int>>>> {
+            return listOf(
+                intArrayOf(2, 3, 6, 7) to 7 to listOf(listOf(2, 2, 3), listOf(7)),
+                intArrayOf(2, 3, 5) to 8 to listOf(listOf(2, 2, 2, 2), listOf(2, 3, 3), listOf(3, 5))
+            )
+        }
     }
 
     @ExperimentalStdlibApi
-    @Test
-    fun `simple test 2`() {
-        val candidates = intArrayOf(2, 3, 5)
-        val target = 8
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `combination sum test`(testCase: Pair<Pair<IntArray, Int>, List<List<Int>>>) {
+        val candidates = testCase.first.first
+        val target = testCase.first.second
+        val expected = testCase.second
         val actual = combinationSum(candidates, target)
-        assertEquals(listOf(listOf(2, 2, 2, 2), listOf(2, 3, 3), listOf(3, 5)), actual)
+        assertEquals(expected, actual)
     }
 }

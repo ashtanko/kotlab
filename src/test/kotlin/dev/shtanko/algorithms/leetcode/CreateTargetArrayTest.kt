@@ -1,43 +1,37 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class CreateTargetArrayTest {
 
-    @Test
-    fun `simple test`() {
-        val pair = intArrayOf(0, 1, 2, 3, 4) to intArrayOf(0, 1, 2, 2, 1)
-        assertArrayEquals(intArrayOf(0, 4, 1, 3, 2), pair.createTargetArray())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<IntArray, IntArray>, IntArray>> {
+            return listOf(
+                intArrayOf(0, 1, 2, 3, 4) to intArrayOf(0, 1, 2, 2, 1) to intArrayOf(0, 4, 1, 3, 2),
+                intArrayOf(1, 2, 3, 4, 0) to intArrayOf(0, 1, 2, 3, 0) to intArrayOf(0, 1, 2, 3, 4),
+                intArrayOf(1) to intArrayOf(0) to intArrayOf(1)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val pair = intArrayOf(1, 2, 3, 4, 0) to intArrayOf(0, 1, 2, 3, 0)
-        assertArrayEquals(intArrayOf(0, 1, 2, 3, 4), pair.createTargetArray())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `create target array solution test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val pair = testCase.first
+        val expected = testCase.second
+        val actual = pair.createTargetArray()
+        assertArrayEquals(expected, actual)
     }
 
-    @Test
-    fun `simple test 3`() {
-        val pair = intArrayOf(1) to intArrayOf(0)
-        assertArrayEquals(intArrayOf(1), pair.createTargetArray())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val pair = intArrayOf(0, 1, 2, 3, 4) to intArrayOf(0, 1, 2, 2, 1)
-        assertArrayEquals(intArrayOf(0, 4, 1, 3, 2), pair.createTargetArray2())
-    }
-
-    @Test
-    fun `simple test 5`() {
-        val pair = intArrayOf(1, 2, 3, 4, 0) to intArrayOf(0, 1, 2, 3, 0)
-        assertArrayEquals(intArrayOf(0, 1, 2, 3, 4), pair.createTargetArray2())
-    }
-
-    @Test
-    fun `simple test 6`() {
-        val pair = intArrayOf(1) to intArrayOf(0)
-        assertArrayEquals(intArrayOf(1), pair.createTargetArray2())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `create target array solution 2 test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val pair = testCase.first
+        val expected = testCase.second
+        val actual = pair.createTargetArray2()
+        assertArrayEquals(expected, actual)
     }
 }

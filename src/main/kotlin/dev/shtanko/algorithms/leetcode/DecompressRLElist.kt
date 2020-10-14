@@ -2,7 +2,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.ArrayList
 
-fun IntArray.decompressRLElist(): IntArray {
+fun IntArray.decompressRLEList(): IntArray {
     val list: MutableList<Int> = ArrayList()
     var i = 0
     while (i < size) {

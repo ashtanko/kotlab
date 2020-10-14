@@ -1,32 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class DayOfTheWeekTest {
 
-    @Test
-    fun `simple test`() {
-        val date = Triple(31, 8, 2019)
-
-        assertEquals("Saturday", date.dayOfTheWeek())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Triple<Int, Int, Int>, String>> {
+            return listOf(
+                Triple(31, 8, 2019) to "Saturday",
+                Triple(18, 7, 1999) to "Sunday",
+                Triple(15, 8, 1993) to "Sunday",
+                Triple(23, 4, 1994) to "Saturday",
+                Triple(27, 10, 1999) to "Wednesday"
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val date = Triple(18, 7, 1999)
-        assertEquals("Sunday", date.dayOfTheWeek())
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val date = Triple(15, 8, 1993)
-        assertEquals("Sunday", date.dayOfTheWeek())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val date = Triple(23, 4, 1994)
-        assertEquals("Saturday", date.dayOfTheWeek())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `day of the week test`(testCase: Pair<Triple<Int, Int, Int>, String>) {
+        val date = testCase.first
+        val expected = testCase.second
+        val actual = date.dayOfTheWeek()
+        assertEquals(expected, actual)
     }
 }
