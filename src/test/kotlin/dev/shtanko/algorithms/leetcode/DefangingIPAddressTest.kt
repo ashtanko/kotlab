@@ -1,38 +1,35 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class DefangingIPAddressTest {
 
-    @Test
-    fun `simple test`() {
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<String, String>> {
+            return listOf(
+                "1.1.1.1" to "1[.]1[.]1[.]1",
+                "255.100.50.0" to "255[.]100[.]50[.]0"
+            )
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `defang IP address naive test`(testCase: Pair<String, String>) {
         val address = "1.1.1.1"
         val expected = "1[.]1[.]1[.]1"
         val actual = address.defangIPaddrNaive()
         assertEquals(expected, actual)
     }
 
-    @Test
-    fun `simple test 2`() {
-        val address = "255.100.50.0"
-        val expected = "255[.]100[.]50[.]0"
-        val actual = address.defangIPaddrNaive()
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 3`() {
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `defang IP address test`(testCase: Pair<String, String>) {
         val address = "1.1.1.1"
         val expected = "1[.]1[.]1[.]1"
-        val actual = address.defangIPaddr()
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val address = "255.100.50.0"
-        val expected = "255[.]100[.]50[.]0"
         val actual = address.defangIPaddr()
         assertEquals(expected, actual)
     }

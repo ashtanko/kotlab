@@ -1,27 +1,28 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class CountLargestGroupTest {
 
-    @Test
-    fun `simple test`() {
-        assertEquals(4, 13.countLargestGroup())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Int, Int>> {
+            return listOf(
+                4 to 13,
+                2 to 2,
+                6 to 15,
+                5 to 24
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertEquals(2, 2.countLargestGroup())
-    }
-
-    @Test
-    fun `simple test 3`() {
-        assertEquals(6, 15.countLargestGroup())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        assertEquals(5, 24.countLargestGroup())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `count largest group test`(testCase: Pair<Int, Int>) {
+        val expected = testCase.first
+        val n = testCase.second
+        assertEquals(expected, n.countLargestGroup())
     }
 }
