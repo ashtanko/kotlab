@@ -1,25 +1,31 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class MaxProductTest {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(3, 4, 5, 2)
-        assertEquals(12, arr.maxProduct())
+    companion object {
+        @JvmStatic
+        fun casesProvider(): List<Pair<Int, IntArray>> {
+            return listOf(
+                1 to intArrayOf(),
+                0 to intArrayOf(1),
+                0 to intArrayOf(1, 2),
+                2 to intArrayOf(1, 2, 3),
+                12 to intArrayOf(3, 4, 5, 2),
+                16 to intArrayOf(1, 5, 4, 5),
+                12 to intArrayOf(3, 7)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 1`() {
-        val arr = intArrayOf(1, 5, 4, 5)
-        assertEquals(16, arr.maxProduct())
-    }
-
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(3, 7)
-        assertEquals(12, arr.maxProduct())
+    @ParameterizedTest
+    @MethodSource("casesProvider")
+    fun `max product test`(testCase: Pair<Int, IntArray>) {
+        val arr = testCase.second
+        val expected = testCase.first
+        assertEquals(expected, arr.maxProduct())
     }
 }

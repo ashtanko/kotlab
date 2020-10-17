@@ -3,7 +3,7 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MaximumSubarrayTest {
+class MaximumSubArrayTest {
 
     @Test
     fun `simple test`() {

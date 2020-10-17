@@ -2,7 +2,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.TreeSet
 
-fun maxSumSubmatrix(matrix: Array<IntArray>, target: Int): Int {
+fun maxSumSubMatrix(matrix: Array<IntArray>, target: Int): Int {
     val row: Int = matrix.size
     if (row == 0) return 0
     val col: Int = matrix[0].size
@@ -19,9 +19,9 @@ fun maxSumSubmatrix(matrix: Array<IntArray>, target: Int): Int {
             for (k in 0 until n) {
                 array[k] = array[k] + if (colIsBig) matrix[j][k] else matrix[k][j]
                 value += array[k]
-                val subres: Int? = set.ceiling(value - target)
-                if (null != subres) {
-                    res = res.coerceAtLeast(value - subres)
+                val subRes: Int? = set.ceiling(value - target)
+                if (null != subRes) {
+                    res = res.coerceAtLeast(value - subRes)
                 }
                 set.add(value)
             }

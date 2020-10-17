@@ -8,9 +8,10 @@ package dev.shtanko.algorithms.leetcode
 fun Pair<IntArray, IntArray>.findMedianSortedArrays(): Double {
     val m = first.size
     val n = second.size
-    val l = (m + n + 1) / 2
-    val r = (m + n + 2) / 2
-    return (findKth(first, 0, second, 0, l) + findKth(first, 0, second, 0, r)) / 2.0
+    val l = m.plus(n).plus(1).div(2)
+    val r = m.plus(n).plus(2).div(2)
+    val local = findKth(first, 0, second, 0, l) + findKth(first, 0, second, 0, r)
+    return local.div(2.0)
 }
 
 private fun findKth(nums1: IntArray, aStart: Int, nums2: IntArray, bStart: Int, k: Int): Double {

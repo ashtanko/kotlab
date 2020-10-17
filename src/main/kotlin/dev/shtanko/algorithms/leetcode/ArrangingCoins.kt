@@ -12,9 +12,10 @@ class ArrangingCoinsBS : ArrangingCoinsStrategy {
         var right = n
         var k: Int
         var curr: Int
+
         while (left <= right) {
-            k = left + (right - left) / 2
-            curr = k * (k + 1) / 2
+            k = left + right.minus(left) / 2
+            curr = k * k.plus(1) / 2
             if (curr == n) return k
             if (n < curr) {
                 right = k - 1

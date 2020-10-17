@@ -15,5 +15,5 @@ fun IntArray.maxProduct(): Int {
             n = num
         }
     }
-    return (m - 1) * (n - 1)
+    return m.minus(1) * n.minus(1)
 }

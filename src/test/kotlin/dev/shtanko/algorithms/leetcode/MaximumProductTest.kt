@@ -1,46 +1,33 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class AbstractMaximumProductStrategyTest<out T : AbstractMaximumProductStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val products = intArrayOf(1, 2, 3)
-        assertEquals(6, strategy.perform(products))
+    companion object {
+        @JvmStatic
+        fun casesProvider(): List<Pair<Int, IntArray>> {
+            return listOf(
+                6 to intArrayOf(1, 2, 3),
+                24 to intArrayOf(1, 2, 3, 4),
+                60 to intArrayOf(1, 2, 3, 4, 5),
+                15456 to intArrayOf(4, 8, 15, 16, 23, 42),
+                60 to intArrayOf(5, 4, 3, 1),
+                2561598 to intArrayOf(
+                    5, 89, 1, 234, 78, 4, 9, 66, 123, 6, 9, 0
+                )
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val products = intArrayOf(1, 2, 3, 4)
-        assertEquals(24, strategy.perform(products))
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val products = intArrayOf(1, 2, 3, 4, 5)
-        assertEquals(60, strategy.perform(products))
-    }
-
-    @Test
-    fun `lost test`() {
-        val products = intArrayOf(4, 8, 15, 16, 23, 42)
-        assertEquals(15456, strategy.perform(products))
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val products = intArrayOf(5, 4, 3, 1)
-        assertEquals(60, strategy.perform(products))
-    }
-
-    @Test
-    fun `random test`() {
-        val products = intArrayOf(
-            5, 89, 1, 234, 78, 4, 9, 66, 123, 6, 9, 0
-        )
-        assertEquals(2561598, strategy.perform(products))
+    @ParameterizedTest
+    @MethodSource("casesProvider")
+    fun `maximum product test 4`(testCase: Pair<Int, IntArray>) {
+        val products = testCase.second
+        val expected = testCase.first
+        assertEquals(expected, strategy.perform(products))
     }
 }
 

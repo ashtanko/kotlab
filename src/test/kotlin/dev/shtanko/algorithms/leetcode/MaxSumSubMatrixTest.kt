@@ -3,7 +3,7 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MaxSumSubmatrixTest {
+class MaxSumSubMatrixTest {
 
     @Test
     fun `simple test`() {
@@ -12,7 +12,7 @@ class MaxSumSubmatrixTest {
             intArrayOf(0, -2, 3)
         )
         val k = 2
-        val actual = maxSumSubmatrix(matrix, k)
+        val actual = maxSumSubMatrix(matrix, k)
         val expected = 2
         assertEquals(expected, actual)
     }

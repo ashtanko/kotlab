@@ -16,5 +16,5 @@ fun IntArray.averageSalary(): Double {
             max = salary
         }
     }
-    return (sum - max - min) / (size - 2)
+    return sum.minus(max).minus(min) / size.minus(2)
 }
