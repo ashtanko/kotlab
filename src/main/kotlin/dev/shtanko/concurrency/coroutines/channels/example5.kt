@@ -40,8 +40,10 @@ data class Tree(val value: Int, val left: Tree? = null, val right: Tree? = null)
 fun Tree?.insert(v: Int): Tree {
     if (this == null) return Tree(v)
     return if (v < value) {
-        Tree(value, left.insert(v), right) } else {
-        Tree(value, left, right.insert(v)) }
+        Tree(value, left.insert(v), right)
+    } else {
+        Tree(value, left, right.insert(v))
+    }
 }
 
 fun newTree(k: Int): Tree {

@@ -37,7 +37,8 @@ class CommandTest {
         assertEquals(expectedName, goblin.toString(), "Goblin's name must be same as expectedName")
         assertEquals(expectedSize, goblin.size, "Goblin's size must be same as expectedSize")
         assertEquals(
-            expectedVisibility, goblin.visibility,
+            expectedVisibility,
+            goblin.visibility,
             "Goblin's visibility must be same as expectedVisibility"
         )
     }

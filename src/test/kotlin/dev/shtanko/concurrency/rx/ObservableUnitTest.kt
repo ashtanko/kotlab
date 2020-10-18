@@ -1,7 +1,6 @@
 package dev.shtanko.concurrency.rx
 
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.functions.BiFunction
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -138,9 +137,13 @@ class ObservableUnitTest {
     fun `zip operator test`() {
         val numbers = Observable.just(1, 2, 3, 4, 5)
         val letters = Observable.just("a", "b", "c", "d", "e")
-        Observable.zip(numbers, letters, BiFunction<Int, String, String> { n: Int, c: String ->
-            "$n$c"
-        }).subscribe {
+        Observable.zip(
+            numbers,
+            letters,
+            { n: Int, c: String ->
+                "$n$c"
+            }
+        ).subscribe {
             result += it
         }
         assertTrue(result == "1a2b3c4d5e")
@@ -170,9 +173,13 @@ class ObservableUnitTest {
     fun `combine latest operator test`() {
         val numbers = Observable.just(1, 2, 3, 4, 5)
         val letters = Observable.just("a", "b", "c", "d", "e")
-        Observable.combineLatest(numbers, letters, BiFunction<Int, String, String> { n: Int, c: String ->
-            "$n$c"
-        }).subscribe {
+        Observable.combineLatest(
+            numbers,
+            letters,
+            { n: Int, c: String ->
+                "$n$c"
+            }
+        ).subscribe {
             result += it
         }
         assertTrue(result == "5a5b5c5d5e")

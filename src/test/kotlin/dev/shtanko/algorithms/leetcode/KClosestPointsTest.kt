@@ -8,7 +8,8 @@ class KClosestPointsTest {
     @Test
     fun `simple test`() {
         val points = arrayOf(
-            intArrayOf(1, 3), intArrayOf(-2, 2)
+            intArrayOf(1, 3),
+            intArrayOf(-2, 2)
         )
         val k = 1
         val kPoints = points to k
@@ -32,7 +33,8 @@ class KClosestPointsTest {
     @Test
     fun `simple test 3`() {
         val points = arrayOf(
-            intArrayOf(1, 3), intArrayOf(-2, 2)
+            intArrayOf(1, 3),
+            intArrayOf(-2, 2)
         )
         val k = 1
         val kPoints = points to k

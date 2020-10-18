@@ -8,7 +8,10 @@ class UniqueMorseCodeWordsTest {
     @Test
     fun `simple test`() {
         val words = arrayOf(
-            "gin", "zen", "gig", "msg"
+            "gin",
+            "zen",
+            "gig",
+            "msg"
         )
         assertEquals(2, words.uniqueMorseRepresentations())
     }

@@ -8,10 +8,10 @@ class RegularExpressionMatchRecursion : RegularExpressionMatchStrategy {
     override fun perform(text: String, pattern: String): Boolean {
         if (pattern.isEmpty()) return text.isEmpty()
         val isFirstMatch = text.isNotEmpty() &&
-                (pattern[0] == text[0] || pattern[0] == '.')
+            (pattern[0] == text[0] || pattern[0] == '.')
         return if (pattern.length >= 2 && pattern[1] == '*') {
             perform(text, pattern.substring(2)) ||
-                    isFirstMatch && perform(text.substring(1), pattern)
+                isFirstMatch && perform(text.substring(1), pattern)
         } else {
             isFirstMatch && perform(text.substring(1), pattern.substring(1))
         }
@@ -57,9 +57,8 @@ class RegularExpressionMatchDPBottomUp : RegularExpressionMatchStrategy {
         dp[text.length][pattern.length] = true
         for (i in text.length downTo 0) {
             for (j in pattern.length - 1 downTo 0) {
-                val isFirstMatch = i < text.length &&
-                        (pattern[j] == text[i] ||
-                                pattern[j] == '.')
+                val local = pattern[j] == text[i] || pattern[j] == '.'
+                val isFirstMatch = i < text.length && local
                 if (j + 1 < pattern.length && pattern[j + 1] == '*') {
                     dp[i][j] = dp[i][j + 2] || isFirstMatch && dp[i + 1][j]
                 } else {

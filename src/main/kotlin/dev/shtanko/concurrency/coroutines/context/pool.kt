@@ -9,14 +9,17 @@ import kotlin.coroutines.CoroutineContext
 
 object CommonPool : Pool(ForkJoinPool.commonPool())
 
-open class Pool(val pool: ForkJoinPool) : AbstractCoroutineContextElement(ContinuationInterceptor),
-    ContinuationInterceptor {
+open class Pool(private val pool: ForkJoinPool) :
+    AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> =
-        PoolContinuation(pool, continuation.context.fold(continuation) { cont, element ->
-            if (element != this@Pool && element is ContinuationInterceptor) {
-                element.interceptContinuation(cont)
-} else cont
-        })
+        PoolContinuation(
+            pool,
+            continuation.context.fold(continuation) { cont, element ->
+                if (element != this@Pool && element is ContinuationInterceptor) {
+                    element.interceptContinuation(cont)
+                } else cont
+            }
+        )
 
     // runs new coroutine in this pool in parallel (schedule to a different thread)
     fun runParallel(block: suspend () -> Unit) {

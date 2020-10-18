@@ -15,23 +15,23 @@ class PrintInOrderTest {
         val latch = CountDownLatch(3)
 
         service.execute {
-            printInOrder.first(Runnable {
+            printInOrder.first {
                 print("first")
-            })
+            }
             latch.countDown()
         }
 
         service.execute {
-            printInOrder.second(Runnable {
+            printInOrder.second {
                 print("second")
-            })
+            }
             latch.countDown()
         }
 
         service.execute {
-            printInOrder.third(Runnable {
+            printInOrder.third {
                 print("third")
-            })
+            }
             latch.countDown()
         }
 
@@ -45,23 +45,23 @@ class PrintInOrderTest {
         val latch = CountDownLatch(3)
 
         service.execute {
-            printInOrder.first(Runnable {
+            printInOrder.first {
                 print("first")
-            })
+            }
             latch.countDown()
         }
 
         service.execute {
-            printInOrder.third(Runnable {
+            printInOrder.third {
                 print("third")
-            })
+            }
             latch.countDown()
         }
 
         service.execute {
-            printInOrder.second(Runnable {
+            printInOrder.second {
                 print("second")
-            })
+            }
             latch.countDown()
         }
         latch.await()

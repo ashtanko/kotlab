@@ -27,10 +27,8 @@ internal class UnivaluedBinaryTreeDFS : UnivaluedBinaryTreeStrategy {
 
 internal class UnivaluedBinaryTreeRecursive : UnivaluedBinaryTreeStrategy {
     override fun perform(root: TreeNode?): Boolean {
-        val isLeftCorrect = root?.left == null ||
-                root.value == root.left?.value && perform(root.left)
-        val isRightCorrect = root?.right == null ||
-                root.value == root.right?.value && perform(root.right)
+        val isLeftCorrect = root?.left == null || root.value == root.left?.value && perform(root.left)
+        val isRightCorrect = root?.right == null || root.value == root.right?.value && perform(root.right)
         return isLeftCorrect && isRightCorrect
     }
 }

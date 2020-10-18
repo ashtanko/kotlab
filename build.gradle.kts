@@ -12,8 +12,8 @@ plugins {
     java
     jacoco
     idea
-    id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
-    id("io.gitlab.arturbosch.detekt") version "1.10.0"
+    id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
+    id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
     id("org.jetbrains.dokka") version "0.10.1"
     id("com.diffplug.gradle.spotless") version "3.26.1"
     id("com.autonomousapps.dependency-analysis") version "0.58.0"
@@ -52,7 +52,7 @@ dependencies {
     testImplementation("io.reactivex.rxjava3:rxjava:3.0.6")
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.0")
 
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.10.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }
 
 repositories {

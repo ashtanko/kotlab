@@ -1,5 +1,6 @@
 object Versions {
     const val KOTLIN_VERSION = "1.4.10"
+    const val DETEKT = "1.14.1"
     const val COROUTINES = "1.3.9"
     const val TEST = "1.2.0"
     const val EXT = "1.1.1"

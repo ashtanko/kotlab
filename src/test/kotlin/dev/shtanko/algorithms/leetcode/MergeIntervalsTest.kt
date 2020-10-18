@@ -19,7 +19,8 @@ abstract class MergeIntervalsStrategyTest<out T : MergeIntervalsStrategy>(privat
                 intArrayOf(1, 6),
                 intArrayOf(8, 10),
                 intArrayOf(15, 18)
-            ), actual
+            ),
+            actual
         )
     }
 }

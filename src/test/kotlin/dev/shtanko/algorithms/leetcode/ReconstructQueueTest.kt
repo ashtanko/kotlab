@@ -15,7 +15,8 @@ class ReconstructQueueTest {
                 intArrayOf(6, 1),
                 intArrayOf(4, 4),
                 intArrayOf(7, 1)
-            ), reconstructQueue(
+            ),
+            reconstructQueue(
                 arrayOf(
                     intArrayOf(7, 0),
                     intArrayOf(4, 4),

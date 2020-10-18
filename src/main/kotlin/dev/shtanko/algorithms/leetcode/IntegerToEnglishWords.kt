@@ -48,7 +48,8 @@ class IntegerToEnglishWords {
             num < TWENTY -> belowTwenty[num - DECIMAL]
             num < HUNDRED -> String.format(HUNDRED_FORMAT, belowHundred[num / DECIMAL], helper(num % DECIMAL))
             num < THOUSAND -> String.format(
-                THOUSAND_FORMAT, helper(num / HUNDRED),
+                THOUSAND_FORMAT,
+                helper(num / HUNDRED),
                 HUNDRED_STRING,
                 helper(num % HUNDRED)
             )
@@ -59,7 +60,10 @@ class IntegerToEnglishWords {
                 helper(num % THOUSAND)
             )
             num < BILLION -> String.format(
-                BILLION_FORMAT, helper(num / MILLION), MILLION_STRING, helper(num % MILLION)
+                BILLION_FORMAT,
+                helper(num / MILLION),
+                MILLION_STRING,
+                helper(num % MILLION)
             )
             else -> String.format(FORMAT, helper(num / BILLION), BILLION_STRING, helper(num % BILLION))
         }

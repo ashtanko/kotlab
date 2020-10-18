@@ -53,13 +53,7 @@ class PermutationBruteForce : StringPermutationStrategy {
 class PermutationSorting : StringPermutationStrategy {
     override fun perform(s1: String, s2: String): Boolean {
         for (i in 0..s2.length - s1.length) {
-            if (s1 == sort(
-                    s2.substring(
-                        i,
-                        i + s1.length
-                    )
-                )
-            ) return true
+            if (s1 == sort(s2.substring(i, i + s1.length))) return true
         }
         return false
     }
