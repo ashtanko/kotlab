@@ -1,6 +1,5 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.detekt
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
@@ -14,7 +13,7 @@ plugins {
     idea
     id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
     id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
-    id("org.jetbrains.dokka") version "0.10.1"
+    id("org.jetbrains.dokka") version "1.4.10"
     id("com.diffplug.gradle.spotless") version "3.26.1"
     id("com.autonomousapps.dependency-analysis") version "0.58.0"
 }
@@ -166,17 +165,6 @@ tasks {
         testLogging {
             events("passed", "skipped", "failed")
         }
-    }
-
-    register<DokkaTask>("dokkaJavadoc") {
-        outputFormat = "javadoc"
-        outputDirectory = "$buildDir/javadoc"
-    }
-
-    register<Jar>("javadocJar") {
-        archiveClassifier.set("javadoc")
-        dependsOn("dokkaJavadoc")
-        from("$buildDir/javadoc")
     }
 
     withType<JavaCompile>().configureEach {
