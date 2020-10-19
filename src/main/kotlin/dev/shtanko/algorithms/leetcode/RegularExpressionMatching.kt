@@ -35,8 +35,7 @@ class RegularExpressionMatchDPTopDown : RegularExpressionMatchStrategy {
         if (memo[i][j] != null) {
             return memo[i][j] == Result.TRUE
         }
-        val ans: Boolean
-        ans = if (j == pattern.length) {
+        val ans = if (j == pattern.length) {
             i == text.length
         } else {
             val isFirstMatch = i < text.length && pattern[j] == text[i] || pattern[j] == '.'
@@ -57,8 +56,7 @@ class RegularExpressionMatchDPBottomUp : RegularExpressionMatchStrategy {
         dp[text.length][pattern.length] = true
         for (i in text.length downTo 0) {
             for (j in pattern.length - 1 downTo 0) {
-                val local = pattern[j] == text[i] || pattern[j] == '.'
-                val isFirstMatch = i < text.length && local
+                val isFirstMatch = i < text.length && (pattern[j] == text[i] || pattern[j] == '.')
                 if (j + 1 < pattern.length && pattern[j + 1] == '*') {
                     dp[i][j] = dp[i][j + 2] || isFirstMatch && dp[i + 1][j]
                 } else {
