@@ -7,11 +7,13 @@ class SearchInBinarySearchTreeTest {
 
     @Test
     fun `simple test`() {
-        val tree = TreeNode(4)
-        tree.left = TreeNode(2)
-        tree.right = TreeNode(7)
-        tree.left?.left = TreeNode(1)
-        tree.left?.right = TreeNode(3)
+        val tree = TreeNode(4).apply {
+            left = TreeNode(2).apply {
+                left = TreeNode(1)
+                right = TreeNode(3)
+            }
+            right = TreeNode(7)
+        }
         val actual = searchBST(tree, 2)
         val list = mutableListOf<Int?>()
         list.add(actual?.value)

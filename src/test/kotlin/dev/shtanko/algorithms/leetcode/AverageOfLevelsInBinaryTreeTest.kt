@@ -9,11 +9,14 @@ internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageO
 
     @Test
     fun `simple test`() {
-        val tree = TreeNode(3)
-        tree.left = TreeNode(9)
-        tree.right = TreeNode(20)
-        tree.right?.left = TreeNode(15)
-        tree.right?.right = TreeNode(7)
+        val tree = TreeNode(3).apply {
+            left = TreeNode(9)
+            right = TreeNode(20)
+            right?.apply {
+                left = TreeNode(15)
+                right = TreeNode(7)
+            }
+        }
         val actual = strategy.perform(tree)
         val expected = doubleArrayOf(3.0, 14.5, 11.0)
         assertArrayEquals(expected, actual)

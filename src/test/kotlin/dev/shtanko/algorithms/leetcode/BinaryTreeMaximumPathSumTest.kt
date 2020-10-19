@@ -8,19 +8,23 @@ class BinaryTreeMaximumPathSumTest {
 
     @Test
     fun `simple test`() {
-        val tree = TreeNode(1)
-        tree.left = TreeNode(2)
-        tree.right = TreeNode(3)
+        val tree = TreeNode(1).apply {
+            left = TreeNode(2)
+            right = TreeNode(3)
+        }
         assertEquals(6, tree.maxPathSum())
     }
 
     @Test
     fun `simple test 2`() {
-        val tree = TreeNode(-10)
-        tree.left = TreeNode(9)
-        tree.right = TreeNode(20)
-        tree.right?.right = TreeNode(7)
-        tree.right?.left = TreeNode(15)
+        val tree = TreeNode(-10).apply {
+            left = TreeNode(9)
+            right = TreeNode(20)
+            right?.apply {
+                right = TreeNode(7)
+                left = TreeNode(15)
+            }
+        }
         assertEquals(42, tree.maxPathSum())
     }
 }

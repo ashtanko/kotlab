@@ -7,10 +7,11 @@ internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(pri
 
     @Test
     fun `binary tree paths test`() {
-        val tree = TreeNode(1)
-        tree.left = TreeNode(2)
-        tree.right = TreeNode(3)
-        tree.left?.right = TreeNode(5)
+        val tree = TreeNode(1).apply {
+            left = TreeNode(2)
+            right = TreeNode(3)
+            left?.right = TreeNode(5)
+        }
         val actual = strategy.binaryTreePaths(tree).sorted()
         val expected = listOf("1->2->5", "1->3")
         assertEquals(expected, actual)

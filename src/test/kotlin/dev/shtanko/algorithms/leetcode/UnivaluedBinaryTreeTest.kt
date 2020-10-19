@@ -8,22 +8,27 @@ internal abstract class UnivaluedBinaryTreeStrategyTest<out T : UnivaluedBinaryT
 
     @Test
     fun `simple test`() {
-        val tree = TreeNode(1)
-        tree.left = TreeNode(1)
-        tree.left?.left = TreeNode(1)
-        tree.left?.right = TreeNode(1)
-        tree.right = TreeNode(1)
-        tree.right?.right = TreeNode(1)
+        val tree = TreeNode(1).apply {
+            left = TreeNode(1).apply {
+                left = TreeNode(1)
+                right = TreeNode(1)
+            }
+            right = TreeNode(1).apply {
+                right = TreeNode(1)
+            }
+        }
         assertTrue(strategy.perform(tree))
     }
 
     @Test
     fun `simple test 2`() {
-        val tree = TreeNode(2)
-        tree.left = TreeNode(2)
-        tree.right = TreeNode(2)
-        tree.left?.left = TreeNode(5)
-        tree.left?.right = TreeNode(2)
+        val tree = TreeNode(2).apply {
+            left = TreeNode(2).apply {
+                left = TreeNode(5)
+                right = TreeNode(2)
+            }
+            right = TreeNode(2)
+        }
         assertFalse(strategy.perform(tree))
     }
 }

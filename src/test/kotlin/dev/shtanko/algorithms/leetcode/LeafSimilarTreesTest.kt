@@ -8,27 +8,32 @@ class LeafSimilarTreesTest {
 
     @Test
     fun `simple test`() {
-        val root1 = TreeNode(3)
-        root1.left = TreeNode(5)
-        root1.left?.left = TreeNode(6)
-        root1.left?.right = TreeNode(2)
-        root1.left?.right?.left = TreeNode(7)
-        root1.left?.right?.right = TreeNode(4)
-        root1.right = TreeNode(1)
-        root1.right?.left = TreeNode(9)
-        root1.right?.right = TreeNode(8)
+        val root1 = TreeNode(3).apply {
+            left = TreeNode(5).apply {
+                left = TreeNode(6)
+                right = TreeNode(2)
+                right?.left = TreeNode(7)
+                right?.right = TreeNode(4)
+            }
+            right = TreeNode(1).apply {
+                left = TreeNode(9)
+                right = TreeNode(8)
+            }
+        }
 
-        val root2 = TreeNode(3)
-        root2.left = TreeNode(5)
-        root2.left?.left = TreeNode(6)
-        root2.left?.right = TreeNode(7)
-
-        root2.right = TreeNode(1)
-        root2.right?.left = TreeNode(4)
-        root2.right?.right = TreeNode(2)
-        root2.right?.right?.right = TreeNode(8)
-        root2.right?.right?.left = TreeNode(9)
-
+        val root2 = TreeNode(3).apply {
+            left = TreeNode(5).apply {
+                left = TreeNode(6)
+                right = TreeNode(7)
+            }
+            right = TreeNode(1).apply {
+                left = TreeNode(4)
+                right = TreeNode(2).apply {
+                    right = TreeNode(8)
+                    left = TreeNode(9)
+                }
+            }
+        }
         assertTrue(leafSimilar(root1, root2))
     }
 
@@ -50,22 +55,26 @@ class LeafSimilarTreesTest {
 
     @Test
     fun `simple test 4`() {
-        val root1 = TreeNode(1)
-        root1.left = TreeNode(2)
-        val root2 = TreeNode(2)
-        root2.left = TreeNode(2)
+        val root1 = TreeNode(1).apply {
+            left = TreeNode(2)
+        }
+        val root2 = TreeNode(2).apply {
+            left = TreeNode(2)
+        }
         assertTrue(leafSimilar(root1, root2))
     }
 
     @Test
     fun `simple test 5`() {
-        val root1 = TreeNode(1)
-        root1.left = TreeNode(2)
-        root1.right = TreeNode(3)
+        val root1 = TreeNode(1).apply {
+            left = TreeNode(2)
+            right = TreeNode(3)
+        }
 
-        val root2 = TreeNode(1)
-        root2.left = TreeNode(3)
-        root2.right = TreeNode(2)
+        val root2 = TreeNode(1).apply {
+            left = TreeNode(3)
+            right = TreeNode(2)
+        }
         assertFalse(leafSimilar(root1, root2))
     }
 }

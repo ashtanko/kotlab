@@ -7,9 +7,10 @@ class BinaryTreePreorderTraversalTest {
 
     @Test
     fun `simple test`() {
-        val root = TreeNode(1)
-        root.right = TreeNode(2)
-        root.right?.left = TreeNode(3)
+        val root = TreeNode(1).apply {
+            right = TreeNode(2)
+            right?.left = TreeNode(3)
+        }
         val actual = root.preorderTraversal()
         val expected = listOf(1, 2, 3)
         assertEquals(expected, actual)

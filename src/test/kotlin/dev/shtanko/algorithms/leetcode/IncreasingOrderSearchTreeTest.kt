@@ -8,15 +8,20 @@ class IncreasingOrderSearchTreeTest {
 
     @Test
     fun `simple test`() {
-        val root = TreeNode(5)
-        root.left = TreeNode(3)
-        root.right = TreeNode(6)
-        root.left?.left = TreeNode(2)
-        root.left?.right = TreeNode(4)
-        root.right?.right = TreeNode(8)
-        root.left?.left?.left = TreeNode(1)
-        root.right?.right?.left = TreeNode(7)
-        root.right?.right?.right = TreeNode(9)
+        val root = TreeNode(5).apply {
+            left = TreeNode(3)
+            right = TreeNode(6)
+            left?.apply {
+                left = TreeNode(2)
+                left?.left = TreeNode(1)
+                right = TreeNode(4)
+            }
+            right?.apply {
+                right = TreeNode(8)
+                right?.left = TreeNode(7)
+                right?.right = TreeNode(9)
+            }
+        }
 
         val increasingRoot = increasingBST(root)
         val actual = increasingRoot.levelOrder()

@@ -7,14 +7,16 @@ internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>
 
     @Test
     fun `simple test`() {
-        val tree = TreeNode(4)
-        tree.left = TreeNode(2)
-        tree.right = TreeNode(7)
-        tree.left?.left = TreeNode(1)
-        tree.left?.right = TreeNode(3)
-        tree.right?.left = TreeNode(6)
-        tree.right?.right = TreeNode(9)
-
+        val tree = TreeNode(4).apply {
+            left = TreeNode(2).apply {
+                left = TreeNode(1)
+                right = TreeNode(3)
+            }
+            right = TreeNode(7).apply {
+                left = TreeNode(6)
+                right = TreeNode(9)
+            }
+        }
         val invertedTree = strategy.perform(tree)
         val actual = invertedTree.levelOrder()
         val expected = listOf(
@@ -27,10 +29,10 @@ internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>
 
     @Test
     fun `simple test 2`() {
-        val tree = TreeNode(4)
-        tree.left = TreeNode(2)
-        tree.right = TreeNode(7)
-
+        val tree = TreeNode(4).apply {
+            left = TreeNode(2)
+            right = TreeNode(7)
+        }
         val invertedTree = strategy.perform(tree)
         val actual = invertedTree.levelOrder()
         val expected = listOf(
@@ -42,10 +44,10 @@ internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>
 
     @Test
     fun `simple test 3`() {
-        val tree = TreeNode(1)
-        tree.left = TreeNode(2)
-        tree.right = TreeNode(3)
-
+        val tree = TreeNode(1).apply {
+            left = TreeNode(2)
+            right = TreeNode(3)
+        }
         val invertedTree = strategy.perform(tree)
         val actual = invertedTree.levelOrder()
         val expected = listOf(

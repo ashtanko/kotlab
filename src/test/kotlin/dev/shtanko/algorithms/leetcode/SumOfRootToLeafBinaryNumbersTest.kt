@@ -9,13 +9,16 @@ internal abstract class SumOfRootToLeafBinaryNumbersTest<out T : SumOfRootToLeaf
 
     @Test
     fun `simple test`() {
-        val root = TreeNode(1)
-        root.left = TreeNode(0)
-        root.left?.left = TreeNode(0)
-        root.left?.right = TreeNode(1)
-        root.right = TreeNode(1)
-        root.right?.left = TreeNode(0)
-        root.right?.right = TreeNode(1)
+        val root = TreeNode(1).apply {
+            left = TreeNode(0).apply {
+                left = TreeNode(0)
+                right = TreeNode(1)
+            }
+            right = TreeNode(1).apply {
+                left = TreeNode(0)
+                right = TreeNode(1)
+            }
+        }
         val actual = strategy.sumRootToLeaf(root)
         assertEquals(22, actual)
     }

@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 private fun getTree(): TreeNode {
-    val tree = TreeNode(7)
-    tree.left = TreeNode(3)
-    tree.right = TreeNode(15)
-    tree.right?.left = TreeNode(9)
-    tree.right?.right = TreeNode(20)
-    return tree
+    return TreeNode(7).apply {
+        left = TreeNode(3)
+        right = TreeNode(15)
+        right?.apply {
+            left = TreeNode(9)
+            right = TreeNode(20)
+        }
+    }
 }
 
 abstract class BinarySearchTreeIteratorTest<out T : BSTIterator>(private val iterator: T) {

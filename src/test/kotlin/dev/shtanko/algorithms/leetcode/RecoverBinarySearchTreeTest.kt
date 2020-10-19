@@ -7,9 +7,10 @@ class RecoverBinarySearchTreeTest {
 
     @Test
     fun `simple test`() {
-        val root = TreeNode(1)
-        root.left = TreeNode(3)
-        root.left?.right = TreeNode(2)
+        val root = TreeNode(1).apply {
+            left = TreeNode(3)
+            left?.right = TreeNode(2)
+        }
         recoverTree(root)
         val list = listOf(
             root.value,
@@ -21,11 +22,12 @@ class RecoverBinarySearchTreeTest {
 
     @Test
     fun `simple test 2`() {
-        val root = TreeNode(3)
-        root.left = TreeNode(1)
-        root.right = TreeNode(4)
-        root.right?.left = TreeNode(2)
-
+        val root = TreeNode(3).apply {
+            left = TreeNode(1)
+            right = TreeNode(4).apply {
+                left = TreeNode(2)
+            }
+        }
         recoverTree(root)
         val list = listOf(
             root.value,

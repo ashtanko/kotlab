@@ -9,10 +9,11 @@ internal abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStrin
 
     @Test
     fun `simple test`() {
-        val tree = TreeNode(1)
-        tree.left = TreeNode(2)
-        tree.left?.left = TreeNode(4)
-        tree.right = TreeNode(3)
+        val tree = TreeNode(1).apply {
+            left = TreeNode(2)
+            right = TreeNode(3)
+            left?.left = TreeNode(4)
+        }
         val expected = "1(2(4))(3)"
         val actual = strategy.perform(tree)
         assertEquals(expected, actual)
@@ -20,10 +21,11 @@ internal abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStrin
 
     @Test
     fun `simple test 2`() {
-        val tree = TreeNode(1)
-        tree.left = TreeNode(2)
-        tree.left?.right = TreeNode(4)
-        tree.right = TreeNode(3)
+        val tree = TreeNode(1).apply {
+            left = TreeNode(2)
+            left?.right = TreeNode(4)
+            right = TreeNode(3)
+        }
         val expected = "1(2()(4))(3)"
         val actual = strategy.perform(tree)
         assertEquals(expected, actual)

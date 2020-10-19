@@ -7,11 +7,13 @@ internal abstract class SumOfLeftLeavesTest<out T : SumOfLeftLeavesStrategy>(val
 
     @Test
     fun `simple test`() {
-        val tree = TreeNode(3)
-        tree.left = TreeNode(9)
-        tree.right = TreeNode(20)
-        tree.right?.left = TreeNode(15)
-        tree.right?.right = TreeNode(7)
+        val tree = TreeNode(3).apply {
+            left = TreeNode(9)
+            right = TreeNode(20).apply {
+                left = TreeNode(15)
+                right = TreeNode(7)
+            }
+        }
         val expected = 24
         val actual = strategy.perform(tree)
         assertEquals(expected, actual)
