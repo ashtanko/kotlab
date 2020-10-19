@@ -1,47 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class AbstractMinSubsequenceStrategyTest<T : MinSubsequenceStrategy>(val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(4, 3, 10, 9, 8)
-        val actual = strategy.perform(arr)
-        val expected = listOf(10, 9)
-        assertEquals(expected, actual)
+    companion object {
+        @JvmStatic
+        fun casesProvider(): List<Pair<List<Int>, IntArray>> {
+            return listOf(
+                listOf(10, 9) to intArrayOf(4, 3, 10, 9, 8),
+                listOf(7, 7, 6) to intArrayOf(4, 4, 7, 6, 7),
+                listOf(6) to intArrayOf(6),
+                listOf(1, 1, 1) to intArrayOf(1, 1, 1, 1, 1),
+                listOf(5, 3) to intArrayOf(1, 1, 1, 1, 1, 3, 5)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(4, 4, 7, 6, 7)
+    @ParameterizedTest
+    @MethodSource("casesProvider")
+    fun `min subsequence test`(testCase: Pair<List<Int>, IntArray>) {
+        val arr = testCase.second
         val actual = strategy.perform(arr)
-        val expected = listOf(7, 7, 6)
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = intArrayOf(6)
-        val actual = strategy.perform(arr)
-        val expected = listOf(6)
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val arr = intArrayOf(1, 1, 1, 1, 1)
-        val actual = strategy.perform(arr)
-        val expected = listOf(1, 1, 1)
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 5`() {
-        val arr = intArrayOf(1, 1, 1, 1, 1, 3, 5)
-        val actual = strategy.perform(arr)
-        val expected = listOf(5, 3)
+        val expected = testCase.first
         assertEquals(expected, actual)
     }
 }

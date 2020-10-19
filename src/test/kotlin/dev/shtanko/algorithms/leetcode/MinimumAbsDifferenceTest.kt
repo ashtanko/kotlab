@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 
 class MinimumAbsDifferenceTest {
 
+    // TODO
     @Test
     fun `simple test`() {
         val arr = intArrayOf(4, 2, 1, 3)

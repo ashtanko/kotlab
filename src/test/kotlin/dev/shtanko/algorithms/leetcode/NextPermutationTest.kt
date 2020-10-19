@@ -1,35 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class NextPermutationTest {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(1, 2, 3)
-        arr.nextPermutation()
-        assertArrayEquals(intArrayOf(1, 3, 2), arr)
+    companion object {
+        @JvmStatic
+        fun casesProvider(): List<Pair<IntArray, IntArray>> {
+            return listOf(
+                intArrayOf(1, 3, 2) to intArrayOf(1, 2, 3),
+                intArrayOf(1, 2, 3) to intArrayOf(3, 2, 1),
+                intArrayOf(1, 5, 1) to intArrayOf(1, 1, 5),
+                intArrayOf(2, 1, 3) to intArrayOf(1, 3, 2)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(3, 2, 1)
+    @ParameterizedTest
+    @MethodSource("casesProvider")
+    fun `simple test`(testCase: Pair<IntArray, IntArray>) {
+        val arr = testCase.second
+        val expected = testCase.first
         arr.nextPermutation()
-        assertArrayEquals(intArrayOf(1, 2, 3), arr)
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = intArrayOf(1, 1, 5)
-        arr.nextPermutation()
-        assertArrayEquals(intArrayOf(1, 5, 1), arr)
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val arr = intArrayOf(1, 3, 2)
-        arr.nextPermutation()
-        assertArrayEquals(intArrayOf(2, 1, 3), arr)
+        assertArrayEquals(expected, arr)
     }
 }

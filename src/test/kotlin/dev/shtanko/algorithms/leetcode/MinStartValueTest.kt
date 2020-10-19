@@ -1,25 +1,28 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class MinStartValueTest {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(-3, 2, -3, 4, 2)
-        assertEquals(5, arr.findMinStartValue())
+    companion object {
+        @JvmStatic
+        fun casesProvider(): List<Pair<Int, IntArray>> {
+            return listOf(
+                5 to intArrayOf(-3, 2, -3, 4, 2),
+                1 to intArrayOf(1, 2),
+                5 to intArrayOf(1, -2, -3)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(1, 2)
-        assertEquals(1, arr.findMinStartValue())
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = intArrayOf(1, -2, -3)
-        assertEquals(5, arr.findMinStartValue())
+    @ParameterizedTest
+    @MethodSource("casesProvider")
+    fun `find min start value test`(testCase: Pair<Int, IntArray>) {
+        val arr = testCase.second
+        val actual = arr.findMinStartValue()
+        val expected = testCase.first
+        assertEquals(expected, actual)
     }
 }

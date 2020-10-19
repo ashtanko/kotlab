@@ -1,28 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class AbstractMissingNumberStrategyTest<out T : AbstractMissingNumberStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        assertEquals(2, strategy.perform(intArrayOf(3, 0, 1)))
+    companion object {
+        @JvmStatic
+        fun casesProvider(): List<Pair<Int, IntArray>> {
+            return listOf(
+                2 to intArrayOf(3, 0, 1),
+                8 to intArrayOf(9, 6, 4, 2, 3, 5, 7, 0, 1),
+                0 to intArrayOf(1, 2, 3),
+                7 to intArrayOf(9, 6, 4, 2, 3, 5, 8, 0, 1)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertEquals(8, strategy.perform(intArrayOf(9, 6, 4, 2, 3, 5, 7, 0, 1)))
-    }
-
-    @Test
-    fun `no missing test`() {
-        assertEquals(0, strategy.perform(intArrayOf(1, 2, 3)))
-    }
-
-    @Test
-    fun `missing test`() {
-        assertEquals(7, strategy.perform(intArrayOf(9, 6, 4, 2, 3, 5, 8, 0, 1)))
+    @ParameterizedTest
+    @MethodSource("casesProvider")
+    fun `missing number test`(testCase: Pair<Int, IntArray>) {
+        val expected = testCase.first
+        val arr = testCase.second
+        val actual = strategy.perform(arr)
+        assertEquals(expected, actual)
     }
 }
 
