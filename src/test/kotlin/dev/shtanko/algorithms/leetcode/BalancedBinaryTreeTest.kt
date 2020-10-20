@@ -13,19 +13,16 @@ class BalancedBinaryTreeTest {
             return listOf(
                 true to TreeNode(3).apply {
                     left = TreeNode(9)
-                    right = TreeNode(20)
-                    right?.apply {
+                    right = TreeNode(20).apply {
                         left = TreeNode(15)
                         right = TreeNode(7)
                     }
                 },
                 false to TreeNode(1).apply {
-                    left = TreeNode(2)
                     right = TreeNode(2)
-                    left?.apply {
-                        left = TreeNode(3)
+                    left = TreeNode(2).apply {
                         right = TreeNode(3)
-                        left?.apply {
+                        left = TreeNode(3).apply {
                             left = TreeNode(4)
                             right = TreeNode(4)
                         }

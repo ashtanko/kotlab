@@ -8,10 +8,10 @@ fun Array<String>.subdomainVisits(): List<String> {
     val map: MutableMap<String, Int> =
         HashMap() // key: subdomain, value: frequency
     val resultStringBuilder = StringBuilder()
-    for (cpdomain in this) {
-        val indexSpace = cpdomain.indexOf(' ')
-        val numClicks = cpdomain.substring(0, indexSpace).toInt()
-        val domain = cpdomain.substring(indexSpace + 1)
+    for (cpDomain in this) {
+        val indexSpace = cpDomain.indexOf(' ')
+        val numClicks = cpDomain.substring(0, indexSpace).toInt()
+        val domain = cpDomain.substring(indexSpace + 1)
         resultStringBuilder.setLength(0)
         resultStringBuilder.append(domain)
         while (true) {

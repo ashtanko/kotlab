@@ -1,18 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class SuperEggDropStrategyTest<out T : SuperEggDropStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        assertEquals(3, strategy.perform(2, 6))
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Int, Pair<Int, Int>>> {
+            return listOf(
+                3 to (2 to 6),
+                4 to (3 to 14)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertEquals(4, strategy.perform(3, 14))
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `super egg drop test`(testCase: Pair<Int, Pair<Int, Int>>) {
+        val expected = testCase.first
+        val eggs = testCase.second.first
+        val floors = testCase.second.second
+        val actual = strategy.perform(eggs, floors)
+        assertEquals(expected, actual)
     }
 }
 

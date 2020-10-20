@@ -1,28 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class StringToIntegerTest {
 
-    @Test
-    fun `empty string to int test`() {
-        val str = ""
-        val actual = str.atoi()
-        assertEquals(0, actual)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<String, Int>> {
+            return listOf(
+                "" to 0,
+                "0" to 0,
+                "4" to 4,
+                "-3" to -3,
+                "435" to 435
+            )
+        }
     }
 
-    @Test
-    fun `zero number string to int test`() {
-        val str = "0"
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `string to int test`(testCase: Pair<String, Int>) {
+        val str = testCase.first
         val actual = str.atoi()
-        assertEquals(0, actual)
-    }
-
-    @Test
-    fun `positive number string to int test`() {
-        val str = "4"
-        val actual = str.atoi()
-        assertEquals(4, actual)
+        val expected = testCase.second
+        assertEquals(expected, actual)
     }
 }
