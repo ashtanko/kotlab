@@ -1,35 +1,28 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class FairCandySwapTest {
 
-    @Test
-    fun `simple test`() {
-        val a = intArrayOf(1, 1)
-        val b = intArrayOf(2, 2)
-        assertArrayEquals(intArrayOf(1, 2), (a to b).fairCandySwap())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<IntArray, IntArray>, IntArray>> {
+            return listOf(
+                intArrayOf(1, 1) to intArrayOf(2, 2) to intArrayOf(1, 2),
+                intArrayOf(1, 2) to intArrayOf(2, 3) to intArrayOf(1, 2),
+                intArrayOf(2) to intArrayOf(1, 3) to intArrayOf(2, 3),
+                intArrayOf(1, 2, 5) to intArrayOf(2, 4) to intArrayOf(5, 4)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val a = intArrayOf(1, 2)
-        val b = intArrayOf(2, 3)
-        assertArrayEquals(intArrayOf(1, 2), (a to b).fairCandySwap())
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val a = intArrayOf(2)
-        val b = intArrayOf(1, 3)
-        assertArrayEquals(intArrayOf(2, 3), (a to b).fairCandySwap())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val a = intArrayOf(1, 2, 5)
-        val b = intArrayOf(2, 4)
-        assertArrayEquals(intArrayOf(5, 4), (a to b).fairCandySwap())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `fair candy swap test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val actual = testCase.first.fairCandySwap()
+        val expected = testCase.second
+        assertArrayEquals(expected, actual)
     }
 }
