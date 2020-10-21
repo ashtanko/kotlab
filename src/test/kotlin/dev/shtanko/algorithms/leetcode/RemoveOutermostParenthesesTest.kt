@@ -1,27 +1,34 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class RemoveOutermostParenthesesTest {
 
-    @Test
-    fun `simple test`() {
-        assertEquals("()()()", "(()())(())".removeOuterParentheses())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<String, String>> {
+            return listOf(
+                "(()())(())" to "()()()",
+                "()()" to ""
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertEquals("", "()()".removeOuterParentheses())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `remove outer parentheses test`(testCase: Pair<String, String>) {
+        val expected = testCase.second
+        val actual = testCase.first.removeOuterParentheses()
+        assertEquals(expected, actual)
     }
 
-    @Test
-    fun `simple test 3`() {
-        assertEquals("()()()", "(()())(())".removeOuterParentheses2())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        assertEquals("", "()()".removeOuterParentheses2())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `remove outer parentheses 2 test`(testCase: Pair<String, String>) {
+        val expected = testCase.second
+        val actual = testCase.first.removeOuterParentheses2()
+        assertEquals(expected, actual)
     }
 }

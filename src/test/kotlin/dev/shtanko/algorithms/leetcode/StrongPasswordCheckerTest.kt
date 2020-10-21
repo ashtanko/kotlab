@@ -1,35 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class StrongPasswordCheckerTest {
 
-    @Test
-    fun `simple test`() {
-        val actual = strongPasswordChecker("")
-        val expected = 6
-        assertEquals(expected, actual)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<String, Int>> {
+            return listOf(
+                "" to 6,
+                "123456" to 2,
+                "qwerty" to 2,
+                "password123456" to 1
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val actual = strongPasswordChecker("123456")
-        val expected = 2
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val actual = strongPasswordChecker("qwerty")
-        val expected = 2
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val actual = strongPasswordChecker("password123456")
-        val expected = 1
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `strong password checker test`(testCase: Pair<String, Int>) {
+        val password = testCase.first
+        val actual = strongPasswordChecker(password)
+        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

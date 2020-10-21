@@ -1,49 +1,37 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class SmallerNumbersThanCurrentTest {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(8, 1, 2, 2, 3)
-        val expected = intArrayOf(4, 0, 1, 1, 3)
-        assertArrayEquals(expected, arr.smallerNumbersThanCurrent())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<IntArray, IntArray>> {
+            return listOf(
+                intArrayOf(8, 1, 2, 2, 3) to intArrayOf(4, 0, 1, 1, 3),
+                intArrayOf(6, 5, 4, 8) to intArrayOf(2, 1, 0, 3),
+                intArrayOf(7, 7, 7, 7) to intArrayOf(0, 0, 0, 0)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 1`() {
-        val arr = intArrayOf(6, 5, 4, 8)
-        val expected = intArrayOf(2, 1, 0, 3)
-        assertArrayEquals(expected, arr.smallerNumbersThanCurrent())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `smaller numbers than current test`(testCase: Pair<IntArray, IntArray>) {
+        val arr = testCase.first
+        val expected = testCase.second
+        val actual = arr.smallerNumbersThanCurrent()
+        assertArrayEquals(expected, actual)
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(7, 7, 7, 7)
-        val expected = intArrayOf(0, 0, 0, 0)
-        assertArrayEquals(expected, arr.smallerNumbersThanCurrent())
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = intArrayOf(8, 1, 2, 2, 3)
-        val expected = intArrayOf(4, 0, 1, 1, 3)
-        assertArrayEquals(expected, arr.smallerNumbersThanCurrentNaive())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val arr = intArrayOf(6, 5, 4, 8)
-        val expected = intArrayOf(2, 1, 0, 3)
-        assertArrayEquals(expected, arr.smallerNumbersThanCurrentNaive())
-    }
-
-    @Test
-    fun `simple test 5`() {
-        val arr = intArrayOf(7, 7, 7, 7)
-        val expected = intArrayOf(0, 0, 0, 0)
-        assertArrayEquals(expected, arr.smallerNumbersThanCurrentNaive())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `smaller numbers than current naive test`(testCase: Pair<IntArray, IntArray>) {
+        val arr = testCase.first
+        val expected = testCase.second
+        val actual = arr.smallerNumbersThanCurrentNaive()
+        assertArrayEquals(expected, actual)
     }
 }

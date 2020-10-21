@@ -1,26 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class AbstractSortByParityStrategyTest<out T : AbstractSortByParityStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(4, 2, 5, 7)
-        assertArrayEquals(intArrayOf(4, 5, 2, 7), strategy.perform(arr))
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<IntArray, IntArray>> {
+            return listOf(
+                intArrayOf(4, 2, 5, 7) to intArrayOf(4, 5, 2, 7),
+                intArrayOf(1, 2, 3, 4) to intArrayOf(2, 1, 4, 3),
+                intArrayOf(4, 8, 15, 16, 23, 41) to intArrayOf(4, 15, 8, 23, 16, 41)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(1, 2, 3, 4)
-        assertArrayEquals(intArrayOf(2, 1, 4, 3), strategy.perform(arr))
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = intArrayOf(4, 8, 15, 16, 23, 41)
-        assertArrayEquals(intArrayOf(4, 15, 8, 23, 16, 41), strategy.perform(arr))
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `sort by parity test`(testCase: Pair<IntArray, IntArray>) {
+        val arr = testCase.first
+        val expected = testCase.second
+        val actual = strategy.perform(arr)
+        assertArrayEquals(expected, actual)
     }
 }
 

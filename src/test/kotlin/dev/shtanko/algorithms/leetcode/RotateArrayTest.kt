@@ -1,24 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class AbstractRotateArrayStrategyTest<out T : AbstractRotateArrayStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(1, 2, 3, 4, 5, 6, 7)
-        val k = 3
-        strategy.perform(arr, k)
-        assertArrayEquals(intArrayOf(5, 6, 7, 1, 2, 3, 4), arr)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<IntArray, Int>, IntArray>> {
+            return listOf(
+                (intArrayOf(1, 2, 3, 4, 5, 6, 7) to 3) to intArrayOf(5, 6, 7, 1, 2, 3, 4),
+                (intArrayOf(-1, -100, 3, 99) to 2) to intArrayOf(3, 99, -1, -100)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(-1, -100, 3, 99)
-        val k = 2
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `rotate array test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
+        val arr = testCase.first.first
+        val k = testCase.first.second
         strategy.perform(arr, k)
-        assertArrayEquals(intArrayOf(3, 99, -1, -100), arr)
+        val expected = testCase.second
+        assertArrayEquals(expected, arr)
     }
 }
 
