@@ -2,43 +2,53 @@ package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class ValidNumberTest {
 
-    @Test
-    fun `regex test`() {
-        assertTrue("0".isNumberRegex())
-        assertTrue(" 0.1 ".isNumberRegex())
-        assertFalse("abc".isNumberRegex())
-        assertFalse("1 a".isNumberRegex())
-        assertTrue("2e10".isNumberRegex())
-        assertTrue(" -90e3   ".isNumberRegex())
-        assertFalse(" 1e".isNumberRegex())
-        assertFalse("e3".isNumberRegex())
-        assertTrue(" 6e-1".isNumberRegex())
-        assertFalse(" 99e2.5 ".isNumberRegex())
-        assertTrue("53.5e93".isNumberRegex())
-        assertFalse(" --6 ".isNumberRegex())
-        assertFalse("-+3".isNumberRegex())
-        assertFalse("95a54e53".isNumberRegex())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Boolean, String>> {
+            return listOf(
+                true to "0",
+                true to " 0.1 ",
+                false to "abc",
+                false to "1 a",
+                true to "2e10",
+                true to " -90e3   ",
+                false to " 1e",
+                false to "e3",
+                true to " 6e-1",
+                false to " 99e2.5 ",
+                true to "53.5e93",
+                false to " --6 ",
+                false to "-+3",
+                false to "95a54e53",
+                true to "-1"
+            )
+        }
     }
 
-    @Test
-    fun `simple test`() {
-        assertTrue("0".isNumber())
-        assertTrue(" 0.1 ".isNumber())
-        assertFalse("abc".isNumber())
-        assertFalse("1 a".isNumber())
-        assertTrue("2e10".isNumber())
-        assertTrue(" -90e3   ".isNumber())
-        assertFalse(" 1e".isNumber())
-        assertFalse("e3".isNumber())
-        assertTrue(" 6e-1".isNumber())
-        assertFalse(" 99e2.5 ".isNumber())
-        assertTrue("53.5e93".isNumber())
-        assertFalse(" --6 ".isNumber())
-        assertFalse("-+3".isNumber())
-        assertFalse("95a54e53".isNumber())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `is number using regex test`(testCase: Pair<Boolean, String>) {
+        val actual = testCase.second.isNumberRegex()
+        if (testCase.first) {
+            assertTrue(actual)
+        } else {
+            assertFalse(actual)
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `is number test`(testCase: Pair<Boolean, String>) {
+        val actual = testCase.second.isNumber()
+        if (testCase.first) {
+            assertTrue(actual)
+        } else {
+            assertFalse(actual)
+        }
     }
 }
