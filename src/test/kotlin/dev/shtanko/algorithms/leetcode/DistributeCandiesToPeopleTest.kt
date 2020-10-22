@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
 class DistributeCandiesToPeopleTest {
+
     companion object {
         @JvmStatic
         fun dataProvider(): List<Triple<Int, Int, IntArray>> {
