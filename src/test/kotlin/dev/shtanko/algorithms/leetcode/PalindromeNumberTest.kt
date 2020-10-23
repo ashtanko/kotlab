@@ -2,17 +2,33 @@ package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class PalindromeNumberTest {
 
-    @Test
-    fun `number is not a palindrome test`() {
-        assertFalse(4815.isPalindrome())
+    companion object {
+        @JvmStatic
+        fun casesProvider(): List<Pair<Int, Boolean>> {
+            return listOf(
+                4815 to false,
+                121 to true,
+                -121 to false,
+                0 to true,
+                Int.MAX_VALUE to false,
+                444 to true
+            )
+        }
     }
 
-    @Test
-    fun `number is a palindrome test`() {
-        assertTrue(121.isPalindrome())
+    @ParameterizedTest
+    @MethodSource("casesProvider")
+    fun `is number palindrome test`(testCase: Pair<Int, Boolean>) {
+        val actual = testCase.first.isPalindrome()
+        if (testCase.second) {
+            assertTrue(actual)
+        } else {
+            assertFalse(actual)
+        }
     }
 }
