@@ -1,6 +1,5 @@
 package dev.shtanko.datastructures.tree
 
-import org.jetbrains.annotations.Nullable
 import java.util.Collections.swap
 
 /**
@@ -19,12 +18,10 @@ class Heap<T>(private val comparator: Comparator<T>) {
         siftUp()
     }
 
-    @Nullable
     fun peek(): T? {
         return tree.getOrNull(1)
     }
 
-    @Nullable
     fun poll(): T? {
         if (tree.isEmpty()) return null
         val result = tree[1]
@@ -53,9 +50,8 @@ class Heap<T>(private val comparator: Comparator<T>) {
             val rightChild = tree.getOrNull(rightChildIndex)
             val shouldContinue = !checkPredicate(tree[index]!!, leftChild, rightChild)
             if (shouldContinue) {
-                val nextIndex: Int = if (leftChild == null ||
-                    (rightChild != null && comparator.compare(leftChild, rightChild) > 0)
-                ) {
+                val predicate = rightChild != null && comparator.compare(leftChild, rightChild) > 0
+                val nextIndex: Int = if (leftChild == null || predicate) {
                     rightChildIndex
                 } else {
                     leftChildIndex
