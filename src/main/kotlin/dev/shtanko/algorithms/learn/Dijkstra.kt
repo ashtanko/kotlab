@@ -36,7 +36,7 @@ internal class Vertex(val name: String) : Comparable<Vertex> {
 
 internal class Graph(
     edges: List<Edge>,
-    val directed: Boolean,
+    private val directed: Boolean,
     private val showAllPaths: Boolean = false
 ) {
     // mapping of vertex names to Vertex objects, built from a set of Edges
