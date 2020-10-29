@@ -1,37 +1,31 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(private val strategy: T) {
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(1, 2, 3, 1)
-        assertEquals(4, strategy.perform(arr))
+
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<IntArray, Int>> {
+            return listOf(
+                intArrayOf(1, 2, 3, 1) to 4,
+                intArrayOf(2, 7, 9, 3, 1) to 12,
+                intArrayOf(4, 8, 15, 16, 23, 42) to 66,
+                intArrayOf(1, 1, 1, 1, 1, 1) to 3,
+                intArrayOf(1, 0, 1, 0, 1, 0, 1) to 4
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(2, 7, 9, 3, 1)
-        assertEquals(12, strategy.perform(arr))
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = intArrayOf(4, 8, 15, 16, 23, 42)
-        assertEquals(66, strategy.perform(arr))
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val arr = intArrayOf(1, 1, 1, 1, 1, 1)
-        assertEquals(3, strategy.perform(arr))
-    }
-
-    @Test
-    fun `simple test 6`() {
-        val arr = intArrayOf(1, 0, 1, 0, 1, 0, 1)
-        assertEquals(4, strategy.perform(arr))
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `robber test`(testCase: Pair<IntArray, Int>) {
+        val arr = testCase.first
+        val expected = testCase.second
+        val actual = strategy.perform(arr)
+        assertEquals(expected, actual)
     }
 }
 
