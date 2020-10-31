@@ -1,0 +1,105 @@
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+interface CandyStrategy {
+    fun perform(ratings: IntArray): Int
+}
+
+class CandyBruteForce : CandyStrategy {
+    override fun perform(ratings: IntArray): Int {
+        val candies = IntArray(ratings.size) { 1 }
+        var flag = true
+        var sum = 0
+        while (flag) {
+            flag = false
+            for (i in ratings.indices) {
+                if (i != ratings.size - 1 && ratings[i] > ratings[i + 1] && candies[i] <= candies[i + 1]) {
+                    candies[i] = candies[i + 1] + 1
+                    flag = true
+                }
+                if (i > 0 && ratings[i] > ratings[i - 1] && candies[i] <= candies[i - 1]) {
+                    candies[i] = candies[i - 1] + 1
+                    flag = true
+                }
+            }
+        }
+        for (candy in candies) {
+            sum += candy
+        }
+        return sum
+    }
+}
+
+class Candy2Arrays : CandyStrategy {
+    override fun perform(ratings: IntArray): Int {
+        var sum = 0
+        val left2right = IntArray(ratings.size) { 1 }
+        val right2left = IntArray(ratings.size) { 1 }
+        for (i in 1 until ratings.size) {
+            if (ratings[i] > ratings[i - 1]) {
+                left2right[i] = left2right[i - 1] + 1
+            }
+        }
+        for (i in ratings.size - 2 downTo 0) {
+            if (ratings[i] > ratings[i + 1]) {
+                right2left[i] = right2left[i + 1] + 1
+            }
+        }
+        for (i in ratings.indices) {
+            sum += max(left2right[i], right2left[i])
+        }
+        return sum
+    }
+}
+
+class CandyArray : CandyStrategy {
+    override fun perform(ratings: IntArray): Int {
+        val candies = IntArray(ratings.size) { 1 }
+        for (i in 1 until ratings.size) {
+            if (ratings[i] > ratings[i - 1]) {
+                candies[i] = candies[i - 1] + 1
+            }
+        }
+        var sum = candies[ratings.size - 1]
+        for (i in ratings.size - 2 downTo 0) {
+            if (ratings[i] > ratings[i + 1]) {
+                candies[i] = max(candies[i], candies[i + 1] + 1)
+            }
+            sum += candies[i]
+        }
+        return sum
+    }
+}
+
+class CandyMath : CandyStrategy {
+
+    fun count(n: Int) = n * n.plus(1) / 2
+
+    override fun perform(ratings: IntArray): Int {
+        if (ratings.size <= 1) {
+            return ratings.size
+        }
+        var candies = 0
+        var up = 0
+        var down = 0
+        var oldSlope = 0
+        for (i in 1 until ratings.size) {
+            val newSlope = if (ratings[i] > ratings[i - 1]) 1 else if (ratings[i] < ratings[i - 1]) -1 else 0
+            val equalPredicate = oldSlope > 0 && newSlope == 0
+            val greeterPredicate = oldSlope < 0 && newSlope >= 0
+
+            if (equalPredicate || greeterPredicate) {
+                candies += count(up) + count(down) + max(up, down)
+                up = 0
+                down = 0
+            }
+            if (newSlope > 0) up++
+            if (newSlope < 0) down++
+            if (newSlope == 0) candies++
+            oldSlope = newSlope
+        }
+        candies += count(up) + count(down) + max(up, down) + 1
+        return candies
+    }
+}
