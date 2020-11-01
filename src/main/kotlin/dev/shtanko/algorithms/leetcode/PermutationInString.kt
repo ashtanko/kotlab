@@ -36,7 +36,7 @@ class PermutationBruteForce : StringPermutationStrategy {
         return s1 + s[i1] + s2 + s[i0] + s3
     }
 
-    fun permute(str1: String, s2: String, l: Int) {
+    private fun permute(str1: String, s2: String, l: Int) {
         var s1 = str1
         if (l == s1.length) {
             if (s2.indexOf(s1) >= 0) flag = true
