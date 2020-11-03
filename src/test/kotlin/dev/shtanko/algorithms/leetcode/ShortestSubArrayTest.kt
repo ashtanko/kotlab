@@ -10,9 +10,9 @@ class ShortestSubArrayTest {
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<IntArray, Int>, Int>> {
             return listOf(
-                (intArrayOf(1) to 1) to 1,
-                (intArrayOf(1, 2) to 4) to -1,
-                (intArrayOf(2, -1, 2) to 3) to 3
+                Pair(Pair(intArrayOf(1), 1), 1),
+                Pair(Pair(intArrayOf(1, 2), 4), -1),
+                Pair(Pair(intArrayOf(2, -1, 2), 3), 3)
             )
         }
     }

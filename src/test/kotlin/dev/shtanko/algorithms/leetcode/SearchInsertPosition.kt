@@ -10,11 +10,11 @@ class SearchInsertPosition {
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<IntArray, Int>, Int>> {
             return listOf(
-                (intArrayOf() to 1) to 0,
-                (intArrayOf(1, 3, 5, 6) to 5) to 2,
-                (intArrayOf(1, 3, 5, 6) to 2) to 1,
-                (intArrayOf(1, 3, 5, 6) to 7) to 4,
-                (intArrayOf(1, 3, 5, 6) to 0) to 0
+                Pair(Pair(intArrayOf(), 1), 0),
+                Pair(Pair(intArrayOf(1, 3, 5, 6), 5), 2),
+                Pair(Pair(intArrayOf(1, 3, 5, 6), 2), 1),
+                Pair(Pair(intArrayOf(1, 3, 5, 6), 7), 4),
+                Pair(Pair(intArrayOf(1, 3, 5, 6), 0), 0)
             )
         }
     }

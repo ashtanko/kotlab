@@ -10,9 +10,9 @@ class SmallestRangeITest {
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<IntArray, Int>, Int>> {
             return listOf(
-                (intArrayOf(1) to 0) to 0,
-                (intArrayOf(0, 10) to 2) to 6,
-                (intArrayOf(1, 3, 6) to 3) to 0
+                Pair(Pair(intArrayOf(1), 0), 0),
+                Pair(Pair(intArrayOf(0, 10), 2), 6),
+                Pair(Pair(intArrayOf(1, 3, 6), 3), 0)
             )
         }
     }

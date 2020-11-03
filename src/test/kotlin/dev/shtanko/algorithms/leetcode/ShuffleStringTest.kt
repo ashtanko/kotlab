@@ -10,12 +10,12 @@ class ShuffleStringTest {
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<IntArray, String>, String>> {
             return listOf(
-                (intArrayOf(4, 5, 6, 7, 0, 2, 1, 3) to "codeleet") to "leetcode",
-                (intArrayOf(0, 1, 2) to "abc") to "abc",
-                (intArrayOf(3, 1, 4, 2, 0) to "aiohn") to "nihao",
-                (intArrayOf(4, 0, 2, 6, 7, 3, 1, 5) to "aaiougrt") to "arigatou",
-                (intArrayOf(1, 0, 2) to "art") to "rat",
-                (intArrayOf(3, 4, 5, 6, 0, 1, 2) to "ankosht") to "shtanko"
+                Pair(Pair(intArrayOf(4, 5, 6, 7, 0, 2, 1, 3), "codeleet"), "leetcode"),
+                Pair(Pair(intArrayOf(0, 1, 2), "abc"), "abc"),
+                Pair(Pair(intArrayOf(3, 1, 4, 2, 0), "aiohn"), "nihao"),
+                Pair(Pair(intArrayOf(4, 0, 2, 6, 7, 3, 1, 5), "aaiougrt"), "arigatou"),
+                Pair(Pair(intArrayOf(1, 0, 2), "art"), "rat"),
+                Pair(Pair(intArrayOf(3, 4, 5, 6, 0, 1, 2), "ankosht"), "shtanko")
             )
         }
     }
