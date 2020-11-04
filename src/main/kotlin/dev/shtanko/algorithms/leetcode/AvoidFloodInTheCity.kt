@@ -1,0 +1,63 @@
+package dev.shtanko.algorithms.leetcode
+
+import java.util.TreeSet
+
+interface AvoidFloodStrategy {
+    fun perform(rains: IntArray): IntArray
+}
+
+class AvoidFloodTree : AvoidFloodStrategy {
+    override fun perform(rains: IntArray): IntArray {
+        val full: MutableMap<Int, Int> = HashMap() // last days that is full
+
+        val drain: TreeSet<Int> = TreeSet() // storage days to be used for drain
+
+        val n: Int = rains.size
+        val res = IntArray(n) { 1 }
+
+        for (i in rains.indices) {
+            val lake = rains[i]
+            if (full.containsKey(lake)) {
+                val key: Int = drain.ceiling(full[lake])
+                    ?: return intArrayOf() // find if there is a day could be drain after last full
+                // did not find, flooded
+                res[key] = lake // set the day to be drained with lake
+                drain.remove(key)
+            }
+            if (lake == 0) drain.add(i) // we got new days
+            else {
+                full[lake] = i
+                res[i] = -1 // lake is 0, or could be dry
+            }
+        }
+        return res
+    }
+}
+
+class AvoidFloodSimple : AvoidFloodStrategy {
+
+    private val empty = IntArray(0)
+
+    override fun perform(rains: IntArray): IntArray {
+        val ans = IntArray(rains.size)
+        val n: Int = rains.size
+        val fullLakes: MutableMap<Int, Int> = HashMap()
+        val noRains = TreeSet<Int?>()
+
+        for (i in 0 until n) {
+            if (rains[i] == 0) {
+                noRains.add(i)
+                ans[i] = 1
+            } else if (rains[i] > 0) {
+                if (fullLakes.containsKey(rains[i])) {
+                    val canDry = noRains.ceiling(fullLakes[rains[i]]) ?: return empty
+                    ans[canDry] = rains[i]
+                    noRains.remove(canDry)
+                }
+                fullLakes[rains[i]] = i
+                ans[i] = -1
+            }
+        }
+        return ans
+    }
+}
