@@ -13,7 +13,7 @@ internal class AnimalShelter {
 
     data class Timestamped<T>(val inner: T, val time: Int) {
         companion object {
-            fun <T> make(inner: T): Timestamped<T> = Timestamped(inner, AnimalShelter.lastCount++)
+            fun <T> make(inner: T): Timestamped<T> = Timestamped(inner, lastCount++)
         }
     }
 
