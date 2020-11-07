@@ -1,22 +1,26 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class JumpGameTest {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(2, 3, 1, 1, 4)
-        val actual = arr.canJump()
-        assertTrue(actual)
+    companion object {
+
+        @JvmStatic
+        fun dataProvider(): List<Pair<IntArray, Boolean>> = listOf(
+            intArrayOf(2, 3, 1, 1, 4) to true,
+            intArrayOf(3, 2, 1, 0, 4) to false
+        )
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(3, 2, 1, 0, 4)
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `can jump test`(testCase: Pair<IntArray, Boolean>) {
+        val arr = testCase.first
         val actual = arr.canJump()
-        assertFalse(actual)
+        val expected = testCase.second
+        assertEquals(expected, actual)
     }
 }

@@ -1,53 +1,38 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.randomString
-import dev.shtanko.util.assertListEquals
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class FindCommonCharactersTest {
 
-    @Test
-    fun `simple test`() {
-        val arr = arrayOf("bella", "label", "roller")
-        val actual = arr.commonChars()
-        val expected = listOf("e", "l", "l")
-        assertTrue(assertListEquals(expected, actual))
-        assertEquals(expected, actual)
+    companion object {
+
+        private const val RANDOM_STRING_LENGTH = 6
+        private const val RANDOM_ARRAY_SIZE = 100_000
+
+        @JvmStatic
+        private fun provideChars(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of(arrayOf("bella", "label", "roller"), listOf("e", "l", "l")),
+                Arguments.of(arrayOf("cool", "lock", "cook"), listOf("c", "o")),
+                Arguments.of(arrayOf("a", "b", "c"), listOf<String>()),
+                Arguments.of(arrayOf("far", "bar", "rar"), listOf("a", "r")),
+                Arguments.of(
+                    Array(RANDOM_ARRAY_SIZE) { ('a'..'z').randomString(RANDOM_STRING_LENGTH) + "q" },
+                    listOf("q")
+                ),
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = arrayOf("cool", "lock", "cook")
+    @ParameterizedTest
+    @MethodSource("provideChars")
+    fun `common chars test`(arr: Array<String>, expected: List<String>) {
         val actual = arr.commonChars()
-        val expected = listOf("c", "o")
-        assertTrue(assertListEquals(expected, actual))
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = arrayOf("a", "b", "c")
-        val actual = arr.commonChars()
-        assertTrue(actual.isEmpty())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val arr = arrayOf("far", "bar", "rar")
-        val actual = arr.commonChars()
-        val expected = listOf("a", "r")
-        assertTrue(assertListEquals(expected, actual))
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 5`() {
-        val array = Array(100_000) { ('a'..'z').randomString(6) + "q" }
-        val actual = array.commonChars()
-        val expected = listOf("q")
-        assertTrue(assertListEquals(expected, actual))
         assertEquals(expected, actual)
     }
 }

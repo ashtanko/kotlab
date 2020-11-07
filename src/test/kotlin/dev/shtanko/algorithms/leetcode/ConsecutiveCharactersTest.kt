@@ -1,91 +1,36 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
-class ConsecutiveCharactersTest {
+abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val s = "leetcode"
-        assertEquals(2, s.maxPower())
+    companion object {
+
+        @JvmStatic
+        private fun provideData(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of("leetcode", 2),
+                Arguments.of("abbcccddddeeeeedcba", 5),
+                Arguments.of("triplepillooooow", 5),
+                Arguments.of("hooraaaaaaaaaaay", 11),
+                Arguments.of("tourist", 1),
+                Arguments.of("", 0),
+                Arguments.of("a", 1)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val s = "abbcccddddeeeeedcba"
-        assertEquals(5, s.maxPower())
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val s = "triplepillooooow"
-        assertEquals(5, s.maxPower())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val s = "hooraaaaaaaaaaay"
-        assertEquals(11, s.maxPower())
-    }
-
-    @Test
-    fun `simple test 5`() {
-        val s = "tourist"
-        assertEquals(1, s.maxPower())
-    }
-
-    @Test
-    fun `empty test`() {
-        val s = ""
-        assertEquals(0, s.maxPower())
-    }
-
-    @Test
-    fun `onr letter test`() {
-        val s = "a"
-        assertEquals(1, s.maxPower())
-    }
-
-    @Test
-    fun `simple test 6`() {
-        val s = "leetcode"
-        assertEquals(2, s.maxPower2())
-    }
-
-    @Test
-    fun `simple test 7`() {
-        val s = "abbcccddddeeeeedcba"
-        assertEquals(5, s.maxPower2())
-    }
-
-    @Test
-    fun `simple test 8`() {
-        val s = "triplepillooooow"
-        assertEquals(5, s.maxPower2())
-    }
-
-    @Test
-    fun `simple test 9`() {
-        val s = "hooraaaaaaaaaaay"
-        assertEquals(11, s.maxPower2())
-    }
-
-    @Test
-    fun `simple test 10`() {
-        val s = "tourist"
-        assertEquals(1, s.maxPower2())
-    }
-
-    @Test
-    fun `empty test 2`() {
-        val s = ""
-        assertEquals(0, s.maxPower2())
-    }
-
-    @Test
-    fun `onr letter test 2`() {
-        val s = "a"
-        assertEquals(1, s.maxPower2())
+    @ParameterizedTest
+    @MethodSource("provideData")
+    fun `consecutive characters test`(s: String, expected: Int) {
+        val actual = strategy.perform(s)
+        assertEquals(expected, actual)
     }
 }
+
+class MaxPower1Test : ConsecutiveCharactersTest<MaxPower1>(MaxPower1())
+class MaxPower2Test : ConsecutiveCharactersTest<MaxPower2>(MaxPower2())

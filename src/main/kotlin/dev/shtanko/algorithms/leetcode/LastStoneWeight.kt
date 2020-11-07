@@ -2,22 +2,34 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.PriorityQueue
 
-fun IntArray.lastStoneWeight(): Int {
-    sort()
-    for (i in size - 1 downTo 1) {
-        this[i - 1] = this[i] - this[i - 1]
-        sort()
-    }
-    return first()
+interface LastStoneWeightStrategy {
+    fun perform(arr: IntArray): Int
 }
 
-fun IntArray.lastStoneWeightQueue(): Int {
-    val pq = PriorityQueue<Int> { c, d -> d - c }
-    for (stone in this) {
-        pq.offer(stone)
+class LastStoneWeightSort : LastStoneWeightStrategy {
+    override fun perform(arr: IntArray): Int {
+        return arr.lastStoneWeight()
     }
-    while (pq.size > 1) {
-        pq.offer(pq.poll() - pq.poll())
+
+    private fun IntArray.lastStoneWeight(): Int {
+        sort()
+        for (i in size - 1 downTo 1) {
+            this[i - 1] = this[i] - this[i - 1]
+            sort()
+        }
+        return first()
     }
-    return pq.poll()
+}
+
+class LastStoneWeightQueue : LastStoneWeightStrategy {
+    override fun perform(arr: IntArray): Int {
+        val pq = PriorityQueue<Int> { c, d -> d - c }
+        for (stone in arr) {
+            pq.offer(stone)
+        }
+        while (pq.size > 1) {
+            pq.offer(pq.poll() - pq.poll())
+        }
+        return pq.poll()
+    }
 }

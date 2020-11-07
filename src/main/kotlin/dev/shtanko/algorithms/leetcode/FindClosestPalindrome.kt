@@ -8,6 +8,7 @@ fun String.mirroring(): String {
 }
 
 fun String.nearestPalindromic(): String {
+    if (this.isEmpty()) return ""
     if (this == "1") return "0"
     val a = this.mirroring()
     var diff1: Long

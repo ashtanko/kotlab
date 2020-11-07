@@ -3,70 +3,89 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.experimental.and
 import kotlin.experimental.or
 
+interface ContainsDuplicateStrategy {
+    fun perform(arr: IntArray): Boolean
+}
+
 /**
  * Given an array of integers, find if the array contains any duplicates.
  * Time complexity: O(N^2), memory: O(1)
  */
-fun IntArray.isContainsDuplicateBrutForce(): Boolean {
-    for (i in 0 until size) {
-        for (j in i + 1 until size) {
-            if (this[i] == this[j]) return true
+class IsContainsDuplicateBrutForce : ContainsDuplicateStrategy {
+    override fun perform(arr: IntArray): Boolean {
+        for (i in arr.indices) {
+            for (j in i + 1 until arr.size) {
+                if (arr[i] == arr[j]) return true
+            }
         }
+        return false
     }
-    return false
 }
 
 /**
  * Time complexity: O(N lg N), memory: O(1) - not counting the memory used by sort
  */
-fun IntArray.isContainsDuplicateSort(): Boolean {
-    sort()
-    for (i in 0 until size - 1) {
-        if (this[i] == this[i + 1]) return true
+class IsContainsDuplicateSort : ContainsDuplicateStrategy {
+    override fun perform(arr: IntArray): Boolean {
+        arr.sort()
+        for (i in 0 until arr.size - 1) {
+            if (arr[i] == arr[i + 1]) return true
+        }
+        return false
     }
-    return false
 }
 
 /**
  * Time complexity: O(N), memory: O(N)
  */
-fun IntArray.isContainsDuplicateSimpleSet(): Boolean {
-    return toHashSet().size < size
-}
-
-fun IntArray.isContainsDuplicateSet(): Boolean {
-    val set = hashSetOf<Int>()
-
-    for (i in 0 until size) {
-        if (set.contains(this[i])) return true
-        set.add(this[i])
+class IsContainsDuplicateSortSetSize : ContainsDuplicateStrategy {
+    override fun perform(arr: IntArray): Boolean {
+        return arr.toHashSet().size < arr.size
     }
-
-    return false
 }
 
-fun IntArray.isContainsDuplicateSet2(): Boolean {
-    val set = hashSetOf<Int>()
+class IsContainsDuplicateSortSet : ContainsDuplicateStrategy {
+    override fun perform(arr: IntArray): Boolean {
+        val set = hashSetOf<Int>()
 
-    for (i in indices) {
-        if (!set.add(this[i])) return true
-    }
-
-    return false
-}
-
-private const val ARR_SIZE = 150000
-
-fun IntArray.isContainsDuplicateBitManipulation(): Boolean {
-    val mark = ByteArray(ARR_SIZE)
-    for (i in this) {
-        val j = i / OCTAL
-        val k = i % OCTAL
-        val check = 1 shl k
-        if (mark[j] and check.toByte() != 0.toByte()) {
-            return true
+        for (i in arr.indices) {
+            if (set.contains(arr[i])) return true
+            set.add(arr[i])
         }
-        mark[j] = mark[j] or check.toByte()
+
+        return false
     }
-    return false
+}
+
+class IsContainsDuplicateSortSetOptimized : ContainsDuplicateStrategy {
+    override fun perform(arr: IntArray): Boolean {
+        val set = hashSetOf<Int>()
+
+        for (i in arr.indices) {
+            if (!set.add(arr[i])) return true
+        }
+
+        return false
+    }
+}
+
+class IsContainsDuplicateBitManipulation : ContainsDuplicateStrategy {
+
+    companion object {
+        private const val ARR_SIZE = 150000
+    }
+
+    override fun perform(arr: IntArray): Boolean {
+        val mark = ByteArray(ARR_SIZE)
+        for (i in arr) {
+            val j = i / OCTAL
+            val k = i % OCTAL
+            val check = 1 shl k
+            if (mark[j] and check.toByte() != 0.toByte()) {
+                return true
+            }
+            mark[j] = mark[j] or check.toByte()
+        }
+        return false
+    }
 }

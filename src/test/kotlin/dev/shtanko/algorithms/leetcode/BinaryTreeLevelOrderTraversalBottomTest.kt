@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-class BinaryTreeLevelOrderTraversalTest {
+class BinaryTreeLevelOrderTraversalBottomTest {
 
     companion object {
 
@@ -23,9 +23,9 @@ class BinaryTreeLevelOrderTraversalTest {
                         }
                     },
                     listOf(
-                        listOf(3),
+                        listOf(15, 7),
                         listOf(9, 20),
-                        listOf(15, 7)
+                        listOf(3)
                     )
                 )
             )
@@ -34,8 +34,8 @@ class BinaryTreeLevelOrderTraversalTest {
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `level order traversal test`(root: TreeNode, expected: List<List<Int>>) {
-        val actual = root.levelOrder()
+    fun `level order traversal bottom test`(root: TreeNode, expected: List<List<Int>>) {
+        val actual = root.levelOrderBottom()
         assertEquals(expected, actual)
     }
 }

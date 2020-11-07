@@ -1,59 +1,53 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>(val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val tree = TreeNode(4).apply {
-            left = TreeNode(2).apply {
-                left = TreeNode(1)
+    companion object {
+
+        @JvmStatic
+        fun dataProvider(): List<Pair<TreeNode, List<List<Int>>>> = listOf(
+            TreeNode(4).apply {
+                left = TreeNode(2).apply {
+                    left = TreeNode(1)
+                    right = TreeNode(3)
+                }
+                right = TreeNode(7).apply {
+                    left = TreeNode(6)
+                    right = TreeNode(9)
+                }
+            } to listOf(
+                listOf(4),
+                listOf(7, 2),
+                listOf(9, 6, 3, 1)
+            ),
+            TreeNode(4).apply {
+                left = TreeNode(2)
+                right = TreeNode(7)
+            } to listOf(
+                listOf(4),
+                listOf(7, 2)
+            ),
+            TreeNode(1).apply {
+                left = TreeNode(2)
                 right = TreeNode(3)
-            }
-            right = TreeNode(7).apply {
-                left = TreeNode(6)
-                right = TreeNode(9)
-            }
-        }
-        val invertedTree = strategy.perform(tree)
-        val actual = invertedTree.levelOrder()
-        val expected = listOf(
-            listOf(4),
-            listOf(7, 2),
-            listOf(9, 6, 3, 1)
+            } to listOf(
+                listOf(1),
+                listOf(3, 2)
+            )
         )
-        assertEquals(expected, actual)
     }
 
-    @Test
-    fun `simple test 2`() {
-        val tree = TreeNode(4).apply {
-            left = TreeNode(2)
-            right = TreeNode(7)
-        }
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `invert binary tree test`(testCase: Pair<TreeNode, List<List<Int>>>) {
+        val tree = testCase.first
         val invertedTree = strategy.perform(tree)
         val actual = invertedTree.levelOrder()
-        val expected = listOf(
-            listOf(4),
-            listOf(7, 2)
-        )
-        assertEquals(expected, actual)
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val tree = TreeNode(1).apply {
-            left = TreeNode(2)
-            right = TreeNode(3)
-        }
-        val invertedTree = strategy.perform(tree)
-        val actual = invertedTree.levelOrder()
-        val expected = listOf(
-            listOf(1),
-            listOf(3, 2)
-        )
+        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

@@ -1,32 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class AbstractIntersectionTest<out T : IntersectionStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val pair = intArrayOf(1, 2, 2, 1) to intArrayOf(2, 2)
-        assertArrayEquals(intArrayOf(2), strategy.perform(pair))
+    companion object {
+
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<IntArray, IntArray>, IntArray>> = listOf(
+            intArrayOf(1, 2, 2, 1) to intArrayOf(2, 2) to intArrayOf(2),
+            intArrayOf(4, 9, 5) to intArrayOf(9, 4, 9, 8, 4) to intArrayOf(4, 9),
+            intArrayOf(4, 8) to intArrayOf(15, 16, 23, 4) to intArrayOf(4),
+            intArrayOf(4, 8) to intArrayOf(15, 16, 23, 42) to intArrayOf()
+        )
     }
 
-    @Test
-    fun `simple test 2`() {
-        val pair = intArrayOf(4, 9, 5) to intArrayOf(9, 4, 9, 8, 4)
-        assertArrayEquals(intArrayOf(4, 9), strategy.perform(pair))
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val pair = intArrayOf(4, 8) to intArrayOf(15, 16, 23, 4)
-        assertArrayEquals(intArrayOf(4), strategy.perform(pair))
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val pair = intArrayOf(4, 8) to intArrayOf(15, 16, 23, 42)
-        assertArrayEquals(intArrayOf(), strategy.perform(pair))
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `intersection test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val pair = testCase.first
+        val expected = testCase.second
+        val actual = strategy.perform(pair)
+        assertArrayEquals(expected, actual)
     }
 }
 

@@ -1,18 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 abstract class AbstractDecodeWays2StrategyTest<out T : DecodeWays2Strategy>(private val strategy: DecodeWays2Strategy) {
 
-    @Test
-    fun `simple test`() {
-        assertEquals(9, strategy.perform("*"))
+    companion object {
+
+        @JvmStatic
+        private fun provideNumbers(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of("*", 9),
+                Arguments.of("1*", 18)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertEquals(18, strategy.perform("1*"))
+    @ParameterizedTest
+    @MethodSource("provideNumbers")
+    fun `simple test`(str: String, expected: Int) {
+        val actual = strategy.perform(str)
+        assertEquals(expected, actual)
     }
 }
 

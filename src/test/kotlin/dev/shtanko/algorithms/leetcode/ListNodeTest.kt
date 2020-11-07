@@ -7,9 +7,11 @@ class ListNodeTest {
 
     @Test
     fun `simple test`() {
-        val node = ListNode(1)
-        node.next = ListNode(2)
-        node.next?.next = ListNode(3)
+        val node = ListNode(1).apply {
+            next = ListNode(2).apply {
+                next = ListNode(3)
+            }
+        }
         assertEquals("1->2->3", node.prettyPrinted())
     }
 

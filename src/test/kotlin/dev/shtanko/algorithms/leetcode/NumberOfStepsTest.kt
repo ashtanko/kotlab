@@ -1,37 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
-class NumberOfStepsTest {
+abstract class NumberOfStepsTest<out T : NumberOfStepsStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        assertEquals(6, 14.numberOfSteps())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Int, Int>> {
+            return listOf(
+                14 to 6,
+                8 to 4,
+                123 to 12
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertEquals(4, 8.numberOfSteps())
-    }
-
-    @Test
-    fun `simple test 3`() {
-        assertEquals(12, 123.numberOfSteps())
-    }
-
-    @Test
-    fun `simple test 4`() {
-        assertEquals(6, 14.numberOfStepsBinary())
-    }
-
-    @Test
-    fun `simple test 5`() {
-        assertEquals(4, 8.numberOfStepsBinary())
-    }
-
-    @Test
-    fun `simple test 6`() {
-        assertEquals(12, 123.numberOfStepsBinary())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `simple test`(testCase: Pair<Int, Int>) {
+        val expected = testCase.second
+        val actual = strategy.perform(testCase.first)
+        assertEquals(expected, actual)
     }
 }
+
+class NumberOfStepsStraightForwardTest : NumberOfStepsTest<NumberOfStepsStraightForward>(NumberOfStepsStraightForward())
+class NumberOfStepsBinaryTest : NumberOfStepsTest<NumberOfStepsBinary>(NumberOfStepsBinary())

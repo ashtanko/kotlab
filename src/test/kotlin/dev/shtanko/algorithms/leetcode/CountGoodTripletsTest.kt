@@ -1,27 +1,28 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class CountGoodTripletsTest {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(3, 0, 1, 1, 9, 7)
-        val a = 7
-        val b = 2
-        val c = 3
-        val expected = 4
-        assertEquals(expected, countGoodTriplets(arr, a, b, c))
+    companion object {
+
+        @JvmStatic
+        private fun provideNumbers(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of(intArrayOf(3, 0, 1, 1, 9, 7), 7, 2, 3, 4),
+                Arguments.of(intArrayOf(1, 1, 2, 2, 3), 0, 0, 1, 0)
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(1, 1, 2, 2, 3)
-        val a = 0
-        val b = 0
-        val c = 1
-        val expected = 0
-        assertEquals(expected, countGoodTriplets(arr, a, b, c))
+    @ParameterizedTest
+    @MethodSource("provideNumbers")
+    fun `count good triplets test`(arr: IntArray, a: Int, b: Int, c: Int, expected: Int) {
+        val actual = countGoodTriplets(arr, a, b, c)
+        assertEquals(expected, actual)
     }
 }

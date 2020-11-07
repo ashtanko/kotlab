@@ -1,12 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class JumpGame2Test {
 
-    @Test
-    fun `simple test`() {
-        assertEquals(2, intArrayOf(2, 3, 1, 1, 4).jump())
+    companion object {
+
+        @JvmStatic
+        fun dataProvider(): List<Pair<IntArray, Int>> = listOf(
+            intArrayOf(2, 3, 1, 1, 4) to 2,
+            intArrayOf(4, 8, 15, 16, 23, 42) to 2,
+            intArrayOf() to 0,
+            intArrayOf(1) to 0,
+            intArrayOf(1, 1) to 1,
+            intArrayOf(1, 2) to 1,
+            intArrayOf(1, 1, 1) to 2
+        )
+    }
+
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `jump test`(testCase: Pair<IntArray, Int>) {
+        val expected = testCase.second
+        val actual = testCase.first.jump()
+        assertEquals(expected, actual)
     }
 }

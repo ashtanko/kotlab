@@ -1,42 +1,31 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class KHTFactorTest {
 
-    @Test
-    fun `simple test`() {
-        val n = 12
-        val k = 3
-        assertEquals(3, kthFactor(n, k))
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<Int, Int>, Int>> {
+            return listOf(
+                12 to 3 to 3,
+                7 to 2 to 7,
+                4 to 4 to -1,
+                1 to 1 to 1,
+                1000 to 3 to 4
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val n = 7
-        val k = 2
-        assertEquals(7, kthFactor(n, k))
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val n = 4
-        val k = 4
-        assertEquals(-1, kthFactor(n, k))
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val n = 1
-        val k = 1
-        assertEquals(1, kthFactor(n, k))
-    }
-
-    @Test
-    fun `simple test 5`() {
-        val n = 1000
-        val k = 3
-        assertEquals(4, kthFactor(n, k))
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `kth factor test`(testCase: Pair<Pair<Int, Int>, Int>) {
+        val n = testCase.first.first
+        val k = testCase.first.second
+        val expected = testCase.second
+        val actual = kthFactor(n, k)
+        assertEquals(expected, actual)
     }
 }

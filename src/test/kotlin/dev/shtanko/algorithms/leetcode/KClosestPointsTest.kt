@@ -1,57 +1,37 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
-class KClosestPointsTest {
+abstract class KClosestPointsTest<out T : KClosestPointsStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val points = arrayOf(
-            intArrayOf(1, 3),
-            intArrayOf(-2, 2)
+    companion object {
+
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<Array<IntArray>, Int>, Array<IntArray>>> = listOf(
+            arrayOf(
+                intArrayOf(1, 3),
+                intArrayOf(-2, 2)
+            ) to 1 to arrayOf(intArrayOf(-2, 2)),
+            arrayOf(
+                intArrayOf(3, 3),
+                intArrayOf(5, -1),
+                intArrayOf(-2, 4)
+            ) to 2 to arrayOf(intArrayOf(3, 3), intArrayOf(-2, 4))
         )
-        val k = 1
-        val kPoints = points to k
-        val kClosest = kPoints.kClosest2()
-        assertArrayEquals(arrayOf(intArrayOf(-2, 2)), kClosest)
     }
 
-    @Test
-    fun `simple test 2`() {
-        val points = arrayOf(
-            intArrayOf(3, 3),
-            intArrayOf(5, -1),
-            intArrayOf(-2, 4)
-        )
-        val k = 2
-        val kPoints = points to k
-        val kClosest = kPoints.kClosest2()
-        assertArrayEquals(arrayOf(intArrayOf(3, 3), intArrayOf(-2, 4)), kClosest)
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val points = arrayOf(
-            intArrayOf(1, 3),
-            intArrayOf(-2, 2)
-        )
-        val k = 1
-        val kPoints = points to k
-        val kClosest = kPoints.kClosest()
-        assertArrayEquals(arrayOf(intArrayOf(-2, 2)), kClosest)
-    }
-
-    @Test
-    fun `simple test 4`() {
-        val points = arrayOf(
-            intArrayOf(3, 3),
-            intArrayOf(5, -1),
-            intArrayOf(-2, 4)
-        )
-        val k = 2
-        val kPoints = points to k
-        val kClosest = kPoints.kClosest()
-        assertArrayEquals(arrayOf(intArrayOf(3, 3), intArrayOf(-2, 4)), kClosest)
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `kClosest test`(testCase: Pair<Pair<Array<IntArray>, Int>, Array<IntArray>>) {
+        val points = testCase.first.first
+        val k = testCase.first.second
+        val actual = strategy.perform(points, k)
+        val expected = testCase.second
+        assertArrayEquals(expected, actual)
     }
 }
+
+class KClosestPointsQueueTest : KClosestPointsTest<KClosestPointsQueue>(KClosestPointsQueue())
+class KClosestPointsSortTest : KClosestPointsTest<KClosestPointsSort>(KClosestPointsSort())

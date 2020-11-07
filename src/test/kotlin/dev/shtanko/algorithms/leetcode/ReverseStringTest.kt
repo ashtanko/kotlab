@@ -1,21 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class ReverseStringTest {
 
-    @Test
-    fun `empty test`() {
-        val arr = charArrayOf()
-        arr.reverse()
-        assertArrayEquals(charArrayOf(), arr)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<CharArray, CharArray>> {
+            return listOf(
+                charArrayOf() to charArrayOf(),
+                charArrayOf('h', 'e', 'l', 'l', 'o') to charArrayOf('o', 'l', 'l', 'e', 'h'),
+                charArrayOf('T', 'E', 'N', 'E', 'T') to charArrayOf('T', 'E', 'N', 'E', 'T'),
+                charArrayOf('2', '1') to charArrayOf('1', '2'),
+                charArrayOf('$', '%') to charArrayOf('%', '$')
+            )
+        }
     }
 
-    @Test
-    fun `simple test`() {
-        val arr = charArrayOf('h', 'e', 'l', 'l', 'o')
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `reverse string test`(testCase: Pair<CharArray, CharArray>) {
+        val arr = testCase.first
         arr.reverse()
-        assertArrayEquals(charArrayOf('o', 'l', 'l', 'e', 'h'), arr)
+        val expected = testCase.second
+        assertArrayEquals(expected, arr)
     }
 }

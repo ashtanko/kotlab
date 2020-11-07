@@ -1,25 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class ThreeSumTest {
-    @Test
-    fun `no solution test`() {
-        val array = intArrayOf(0, 0, 1)
-        val result = array.threeSum()
-        Assertions.assertTrue(result.isEmpty())
+
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<IntArray, List<List<Int>>>> {
+            return listOf(
+                intArrayOf(0, 0, 1) to listOf(),
+                intArrayOf(-1, 0, 1, 2, -1, -4) to listOf(
+                    listOf(-1, -1, 2),
+                    listOf(-1, 0, 1)
+                )
+            )
+        }
     }
 
-    @Test
-    fun `solution test`() {
-        val array = intArrayOf(-1, 0, 1, 2, -1, -4)
-        val result = array.threeSum()
-        val actual = listOf(
-            listOf(-1, -1, 2),
-            listOf(-1, 0, 1)
-        )
-        assertEquals(result, actual)
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `three sum test`(testCase: Pair<IntArray, List<List<Int>>>) {
+        val array = testCase.first
+        val actual = array.threeSum()
+        val expected = testCase.second
+        assertEquals(expected, actual)
     }
 }

@@ -1,12 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class FindClosestPalindromeTest {
 
-    @Test
-    fun `simple test`() {
-        assertEquals("121", "123".nearestPalindromic())
+    companion object {
+
+        @JvmStatic
+        private fun provideStringData(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of("123", "121"),
+                Arguments.of("", ""),
+                Arguments.of("1", "0"),
+                Arguments.of("456", "454")
+            )
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideStringData")
+    fun `nearest palindromic test`(str: String, expected: String) {
+        val actual = str.nearestPalindromic()
+        assertEquals(expected, actual)
     }
 }

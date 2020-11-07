@@ -1,18 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
-fun IntArray.kidsWithCandiesStream(extraCandies: Int): BooleanArray {
-    return map {
-        it + extraCandies >= max()!!
-    }.toBooleanArray()
+interface KidsWithCandiesStrategy {
+    fun perform(arr: IntArray, extraCandies: Int): BooleanArray
 }
 
-fun IntArray.kidsWithCandies(extraCandies: Int): BooleanArray {
-    val arr = BooleanArray(size) { true }
-
-    for (i in indices) {
-        if (this[i] + extraCandies < max()!!) {
-            arr[i] = false
-        }
+class KidsWithCandiesStraightForward : KidsWithCandiesStrategy {
+    override fun perform(arr: IntArray, extraCandies: Int): BooleanArray {
+        return arr.kidsWithCandies(extraCandies)
     }
-    return arr
+
+    private fun IntArray.kidsWithCandies(extraCandies: Int): BooleanArray {
+        val arr = BooleanArray(size) { true }
+
+        for (i in indices) {
+            if (this[i] + extraCandies < maxOrNull()!!) {
+                arr[i] = false
+            }
+        }
+        return arr
+    }
+}
+
+class KidsWithCandiesStream : KidsWithCandiesStrategy {
+    override fun perform(arr: IntArray, extraCandies: Int): BooleanArray {
+        return arr.map {
+            it + extraCandies >= arr.maxOrNull()!!
+        }.toBooleanArray()
+    }
 }

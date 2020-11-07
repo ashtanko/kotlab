@@ -1,26 +1,29 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class AbstractNumIdenticalPairsTest<T : AbstractNumIdenticalPairs>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(1, 2, 3, 1, 1, 3)
-        assertEquals(4, strategy.perform(arr))
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<IntArray, Int>> {
+            return listOf(
+                intArrayOf(1, 2, 3, 1, 1, 3) to 4,
+                intArrayOf(1, 1, 1, 1) to 6,
+                intArrayOf(1, 2, 3) to 0
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val arr = intArrayOf(1, 1, 1, 1)
-        assertEquals(6, strategy.perform(arr))
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val arr = intArrayOf(1, 2, 3)
-        assertEquals(0, strategy.perform(arr))
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `simple test`(testCase: Pair<IntArray, Int>) {
+        val arr = testCase.first
+        val expected = testCase.second
+        val actual = strategy.perform(arr)
+        assertEquals(expected, actual)
     }
 }
 

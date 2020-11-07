@@ -1,23 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
-class MaximumAverageSubarray1Test {
+abstract class MaximumAverageSubArray1Test<out T : FindMaxAverageStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        val nums = intArrayOf(1, 12, -5, -6, 50, 3)
-        val k = 4
-        val actual = findMaxAverage(nums, k)
-        assertEquals(12.75, actual)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<IntArray, Int>, Double>> {
+            return listOf(
+                intArrayOf(1, 12, -5, -6, 50, 3) to 4 to 12.75
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val nums = intArrayOf(1, 12, -5, -6, 50, 3)
-        val k = 4
-        val actual = findMaxAverage2(nums, k)
-        assertEquals(12.75, actual)
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `simple test`(testCase: Pair<Pair<IntArray, Int>, Double>) {
+        val nums = testCase.first.first
+        val k = testCase.first.second
+        val actual = strategy.perform(nums, k)
+        val expected = testCase.second
+        assertEquals(expected, actual)
     }
 }
+
+class FindMaxAverage1Test : MaximumAverageSubArray1Test<FindMaxAverage1>(FindMaxAverage1())
+class FindMaxAverage2Test : MaximumAverageSubArray1Test<FindMaxAverage2>(FindMaxAverage2())

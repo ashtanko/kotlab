@@ -2,47 +2,46 @@ package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class SameTreeTest {
 
-    @Test
-    fun `same test`() {
-        val t1 = TreeNode(1).apply {
-            left = TreeNode(2)
-            right = TreeNode(3)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<TreeNode, TreeNode>, Boolean>> {
+            return listOf(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                } to TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                } to true,
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                } to TreeNode(1).apply {
+                    right = TreeNode(2)
+                } to false,
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(2)
+                } to TreeNode(1).apply {
+                    right = TreeNode(2)
+                    left = TreeNode(1)
+                } to false
+            )
         }
-
-        val t2 = TreeNode(1).apply {
-            left = TreeNode(2)
-            right = TreeNode(3)
-        }
-        assertTrue((t1 to t2).isSame())
     }
 
-    @Test
-    fun `not same test`() {
-        val t1 = TreeNode(1).apply {
-            left = TreeNode(2)
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `is same test test`(testCase: Pair<Pair<TreeNode, TreeNode>, Boolean>) {
+        val actual = testCase.first.isSame()
+        if (testCase.second) {
+            assertTrue(actual)
+        } else {
+            assertFalse(actual)
         }
-        val t2 = TreeNode(1).apply {
-            right = TreeNode(2)
-        }
-
-        assertFalse((t1 to t2).isSame())
-    }
-
-    @Test
-    fun `not same 2 test`() {
-        val t1 = TreeNode(1).apply {
-            left = TreeNode(2)
-            right = TreeNode(2)
-        }
-
-        val t2 = TreeNode(1).apply {
-            right = TreeNode(2)
-            left = TreeNode(1)
-        }
-        assertFalse((t1 to t2).isSame())
     }
 }

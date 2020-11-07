@@ -1,18 +1,25 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class IsSubsequenceTest {
 
-    @Test
-    fun `simple test`() {
-        assertTrue(isSubsequence("abc", "ahbgdc"))
+    companion object {
+
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> = listOf(
+            "abc" to "ahbgdc" to true,
+            "axc" to "ahbgdc" to false
+        )
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertFalse(isSubsequence("axc", "ahbgdc"))
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `is subsequence test`(testCase: Pair<Pair<String, String>, Boolean>) {
+        val expected = testCase.second
+        val actual = isSubsequence(testCase.first.first, testCase.first.second)
+        assertEquals(expected, actual)
     }
 }

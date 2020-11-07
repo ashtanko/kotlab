@@ -1,17 +1,26 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class LongestPalindromeTest {
 
-    @Test
-    fun `simple test`() {
-        assertEquals("bab", "babad".longestPalindrome())
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<String, String>> {
+            return listOf(
+                "babad" to "bab",
+                "cbbd" to "bb"
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertEquals("bb", "cbbd".longestPalindrome())
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `simple test`(testCase: Pair<String, String>) {
+        val actual = testCase.first.longestPalindrome()
+        val expected = testCase.second
+        assertEquals(expected, actual)
     }
 }

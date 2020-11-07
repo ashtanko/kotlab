@@ -6,20 +6,28 @@ package dev.shtanko.algorithms.leetcode
  * The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive,
  * so "a" is considered a different type of stone from "A".
  */
-fun Pair<String, String>.numJewelsInStones(): Int {
-    var res = 0
-    val setJ = hashSetOf<Char>()
-    for (jewel in first) {
-        setJ.add(jewel)
-    }
-    for (stone in second) {
-        if (setJ.contains(stone)) {
-            res++
-        }
-    }
-    return res
+interface NumJewelsInStonesStrategy {
+    fun perform(a: String, b: String): Int
 }
 
-fun Pair<String, String>.numJewelsInStonesRegex(): Int {
-    return second.replace("[^$first]".toRegex(), "").length
+class NumJewelsInStonesMap : NumJewelsInStonesStrategy {
+    override fun perform(a: String, b: String): Int {
+        var res = 0
+        val setJ = hashSetOf<Char>()
+        for (jewel in a) {
+            setJ.add(jewel)
+        }
+        for (stone in b) {
+            if (setJ.contains(stone)) {
+                res++
+            }
+        }
+        return res
+    }
+}
+
+class NumJewelsInStonesRegex : NumJewelsInStonesStrategy {
+    override fun perform(a: String, b: String): Int {
+        return b.replace("[^$a]".toRegex(), "").length
+    }
 }

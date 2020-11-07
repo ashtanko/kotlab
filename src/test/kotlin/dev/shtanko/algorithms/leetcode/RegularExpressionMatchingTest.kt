@@ -2,33 +2,33 @@ package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 abstract class RegularExpressionMatchingStrategyTest<out T : RegularExpressionMatchStrategy>(private val strategy: T) {
 
-    @Test
-    fun `simple test`() {
-        assertFalse(strategy.perform("aa", "a"))
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> {
+            return listOf(
+                "aa" to "a" to false,
+                "aa" to "a*" to true,
+                "ab" to ".*" to true,
+                "aab" to "c*a*b" to true,
+                "mississippi" to "mis*is*p*." to false
+            )
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        assertTrue(strategy.perform("aa", "a*"))
-    }
-
-    @Test
-    fun `simple test 3`() {
-        assertTrue(strategy.perform("ab", ".*"))
-    }
-
-    @Test
-    fun `simple test 4`() {
-        assertTrue(strategy.perform("aab", "c*a*b"))
-    }
-
-    @Test
-    fun `simple test 5`() {
-        assertFalse(strategy.perform("mississippi", "mis*is*p*."))
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `regular expression matching test`(testCase: Pair<Pair<String, String>, Boolean>) {
+        val actual = strategy.perform(testCase.first.first, testCase.first.second)
+        if (testCase.second) {
+            assertTrue(actual)
+        } else {
+            assertFalse(actual)
+        }
     }
 }
 

@@ -1,81 +1,34 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.Order
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestMethodOrder
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
-class FindLuckyTest {
+abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val strategy: T) {
 
-    @Test
-    @Order(1)
-    fun `simple test`() {
-        val arr = intArrayOf(2, 2, 3, 4)
-        assertEquals(2, arr.findLucky())
+    companion object {
+
+        @JvmStatic
+        private fun provideNumbers(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of(intArrayOf(2, 2, 3, 4), 2),
+                Arguments.of(intArrayOf(1, 2, 2, 3, 3, 3), 3),
+                Arguments.of(intArrayOf(2, 2, 2, 3, 3), -1),
+                Arguments.of(intArrayOf(5), -1),
+                Arguments.of(intArrayOf(7, 7, 7, 7, 7, 7, 7), 7),
+            )
+        }
     }
 
-    @Test
-    @Order(2)
-    fun `simple test 2`() {
-        val arr = intArrayOf(1, 2, 2, 3, 3, 3)
-        assertEquals(3, arr.findLucky())
-    }
-
-    @Test
-    @Order(3)
-    fun `simple test 3`() {
-        val arr = intArrayOf(2, 2, 2, 3, 3)
-        assertEquals(-1, arr.findLucky())
-    }
-
-    @Test
-    @Order(4)
-    fun `simple test 4`() {
-        val arr = intArrayOf(5)
-        assertEquals(-1, arr.findLucky())
-    }
-
-    @Test
-    @Order(5)
-    fun `simple test 5`() {
-        val arr = intArrayOf(7, 7, 7, 7, 7, 7, 7)
-        assertEquals(7, arr.findLucky())
-    }
-
-    @Test
-    @Order(6)
-    fun `simple test 6`() {
-        val arr = intArrayOf(2, 2, 3, 4)
-        assertEquals(2, arr.findLuckyMap())
-    }
-
-    @Test
-    @Order(7)
-    fun `simple test 7`() {
-        val arr = intArrayOf(1, 2, 2, 3, 3, 3)
-        assertEquals(3, arr.findLuckyMap())
-    }
-
-    @Test
-    @Order(8)
-    fun `simple test 8`() {
-        val arr = intArrayOf(2, 2, 2, 3, 3)
-        assertEquals(-1, arr.findLuckyMap())
-    }
-
-    @Test
-    @Order(9)
-    fun `simple test 9`() {
-        val arr = intArrayOf(5)
-        assertEquals(-1, arr.findLuckyMap())
-    }
-
-    @Test
-    @Order(10)
-    fun `simple test 10`() {
-        val arr = intArrayOf(7, 7, 7, 7, 7, 7, 7)
-        assertEquals(7, arr.findLuckyMap())
+    @ParameterizedTest
+    @MethodSource("provideNumbers")
+    fun `simple test`(arr: IntArray, expected: Int) {
+        val actual = strategy.perform(arr)
+        assertEquals(expected, actual)
     }
 }
+
+class FindLuckyStraightForwardTest : FindLuckyTest<FindLuckyStraightForward>(FindLuckyStraightForward())
+class FindLuckyMapTest : FindLuckyTest<FindLuckyMap>(FindLuckyMap())

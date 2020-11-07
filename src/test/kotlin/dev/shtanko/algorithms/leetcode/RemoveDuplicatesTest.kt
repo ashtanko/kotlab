@@ -1,21 +1,30 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class RemoveDuplicatesTest {
 
-    @Test
-    fun `simple test`() {
-        val arr = intArrayOf(1, 1, 2)
-        val actual = arr.removeDuplicates()
-        assertEquals(2, actual)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<IntArray, Int>> {
+            return listOf(
+                intArrayOf(1, 1, 2) to 2,
+                intArrayOf(4, 8, 15) to 3,
+                intArrayOf(1, 1, 1, 1, 1) to 1,
+                intArrayOf() to 0,
+                intArrayOf(1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1) to 5
+            )
+        }
     }
 
-    @Test
-    fun `no duplicates test`() {
-        val arr = intArrayOf(4, 8, 15)
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `remove duplicates test`(testCase: Pair<IntArray, Int>) {
+        val arr = testCase.first
         val actual = arr.removeDuplicates()
-        assertEquals(3, actual)
+        val expected = testCase.second
+        assertEquals(expected, actual)
     }
 }

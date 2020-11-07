@@ -1,38 +1,40 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class TheKWeakestRowsInMatrixTest {
 
-    @Test
-    fun `simple test`() {
-        val matrix =
-            arrayOf(
-                intArrayOf(1, 1, 0, 0, 0),
-                intArrayOf(1, 1, 1, 1, 0),
-                intArrayOf(1, 0, 0, 0, 0),
-                intArrayOf(1, 1, 0, 0, 0),
-                intArrayOf(1, 1, 1, 1, 1)
+    companion object {
+        @JvmStatic
+        fun dataProvider(): List<Pair<Pair<Array<IntArray>, Int>, IntArray>> {
+            return listOf(
+                arrayOf(
+                    intArrayOf(1, 1, 0, 0, 0),
+                    intArrayOf(1, 1, 1, 1, 0),
+                    intArrayOf(1, 0, 0, 0, 0),
+                    intArrayOf(1, 1, 0, 0, 0),
+                    intArrayOf(1, 1, 1, 1, 1)
+                ) to 3 to intArrayOf(2, 0, 3),
+                arrayOf(
+                    intArrayOf(1, 0, 0, 0),
+                    intArrayOf(1, 1, 1, 1),
+                    intArrayOf(1, 0, 0, 0),
+                    intArrayOf(1, 0, 0, 0)
+                ) to 2 to intArrayOf(0, 2)
             )
-
-        val k = 3
-        val data = matrix to k
-        assertArrayEquals(intArrayOf(2, 0, 3), data.kWeakestRows())
+        }
     }
 
-    @Test
-    fun `simple test 2`() {
-        val matrix =
-            arrayOf(
-                intArrayOf(1, 0, 0, 0),
-                intArrayOf(1, 1, 1, 1),
-                intArrayOf(1, 0, 0, 0),
-                intArrayOf(1, 0, 0, 0)
-            )
-
-        val k = 2
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `kWeakest rows test`(testCase: Pair<Pair<Array<IntArray>, Int>, IntArray>) {
+        val matrix = testCase.first.first
+        val k = testCase.first.second
         val data = matrix to k
-        assertArrayEquals(intArrayOf(0, 2), data.kWeakestRows())
+        val expected = testCase.second
+        val actual = data.kWeakestRows()
+        assertArrayEquals(expected, actual)
     }
 }
