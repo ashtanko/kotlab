@@ -7,10 +7,10 @@ class BinaryTreeNode(private val parent: BinaryTreeNode? = null) {
     val right: WeightedTree = WeightedTree()
 
     fun getRandom(getBetween: (range: IntRange) -> Int = { range -> range.random() }): BinaryTreeNode {
-        val rand = getBetween(0 until left.weight + right.weight + 1)
-        return when (rand) {
+        val n = right.weight + left.weight
+        return when (getBetween(0 until left.weight + right.weight + 1)) {
             in (0 until left.weight) -> left.child!!.getRandom(getBetween)
-            in (left.weight until right.weight + left.weight) -> right.child!!.getRandom(getBetween)
+            in (left.weight until n) -> right.child!!.getRandom(getBetween)
             else -> this
         }
     }
@@ -54,4 +54,4 @@ class WeightedTree {
 }
 
 fun IntRange.random() =
-    Random().nextInt((endInclusive + 1) - start) + start
+    Random().nextInt(endInclusive.plus(1).minus(start)) + start
