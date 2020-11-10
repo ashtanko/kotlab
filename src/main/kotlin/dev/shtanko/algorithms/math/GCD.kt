@@ -13,3 +13,7 @@ fun Pair<Int, Int>.gcd(): Int {
     }
     return a
 }
+
+fun gcd(a: Int, b: Int): Int {
+    return if (b == 0) a else gcd(b, a % b)
+}

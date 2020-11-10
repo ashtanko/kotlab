@@ -1,5 +1,6 @@
 package dev.shtanko.algorithms.leetcode
 
+// Time complexity O(lg N)
 internal fun searchBST(root: TreeNode?, value: Int): TreeNode? {
     var cur = root
     while (cur != null) {
