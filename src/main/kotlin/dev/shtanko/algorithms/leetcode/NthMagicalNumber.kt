@@ -4,7 +4,7 @@ import dev.shtanko.algorithms.math.gcd
 import kotlin.math.ceil
 import kotlin.math.min
 
-private const val MOD = 1000000007
+private const val MOD = 1_000_000_007
 
 interface NthMagicalNumberStrategy {
     fun perform(n: Int, a: Int, b: Int): Int
@@ -26,7 +26,7 @@ class NthMagicalNumberMath : NthMagicalNumberStrategy {
 
 class NthMagicalNumberBS : NthMagicalNumberStrategy {
     override fun perform(n: Int, a: Int, b: Int): Int {
-        val l: Int = a / (a to b).gcd() * b
+        val l: Int = a / gcd(a, b) * b
 
         var lo: Long = 0
         var hi: Long = n.toLong() * min(a, b)
