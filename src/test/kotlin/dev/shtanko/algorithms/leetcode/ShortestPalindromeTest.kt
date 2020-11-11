@@ -12,8 +12,14 @@ abstract class ShortestPalindromeTest<out T : ShortestPalindromeStrategy>(privat
         @JvmStatic
         private fun provideData(): Stream<Arguments?>? {
             return Stream.of(
+                Arguments.of("", ""),
                 Arguments.of("aacecaaa", "aaacecaaa"),
-                Arguments.of("abcd", "dcbabcd")
+                Arguments.of("abcd", "dcbabcd"),
+                Arguments.of("fffr", "rfffr"),
+                Arguments.of("shtanko", "oknathshtanko"),
+                Arguments.of("TENET", "TENET"),
+                Arguments.of("^^^%", "%^^^%"),
+                Arguments.of("&^&^%$%^$^%", "%^\$^%\$%^&^&^%\$%^\$^%")
             )
         }
     }
