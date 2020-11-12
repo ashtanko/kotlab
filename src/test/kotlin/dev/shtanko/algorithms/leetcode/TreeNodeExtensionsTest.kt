@@ -25,4 +25,11 @@ class TreeNodeExtensionsTest {
         assertEquals(6, root?.right?.left?.value)
         assertEquals(7, root?.right?.right?.value)
     }
+
+    @Test
+    fun `array to tree test`() {
+        val arr = intArrayOf(1, 2, 3, 4, 5, 6, 7)
+        val tree = arr.toTree()
+        println(tree.levelOrder().flatten())
+    }
 }
