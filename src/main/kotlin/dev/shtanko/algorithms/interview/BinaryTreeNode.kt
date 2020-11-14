@@ -8,7 +8,8 @@ class BinaryTreeNode(private val parent: BinaryTreeNode? = null) {
 
     fun getRandom(getBetween: (range: IntRange) -> Int = { range -> range.random() }): BinaryTreeNode {
         val n = right.weight + left.weight
-        return when (getBetween(0 until left.weight + right.weight + 1)) {
+        val local = left.weight + right.weight + 1
+        return when (getBetween(0 until local)) {
             in (0 until left.weight) -> left.child!!.getRandom(getBetween)
             in (left.weight until n) -> right.child!!.getRandom(getBetween)
             else -> this
