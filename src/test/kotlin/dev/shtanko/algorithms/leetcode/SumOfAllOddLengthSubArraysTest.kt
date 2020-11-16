@@ -9,6 +9,8 @@ import java.util.stream.Stream
 abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArraysStrategy>(private val strategy: T) {
 
     companion object {
+
+        @JvmStatic
         fun dataProvider(): Stream<Arguments> = Stream.of(
             Arguments.of(intArrayOf(1, 4, 2, 5, 3), 58),
             Arguments.of(intArrayOf(1, 2), 3),
