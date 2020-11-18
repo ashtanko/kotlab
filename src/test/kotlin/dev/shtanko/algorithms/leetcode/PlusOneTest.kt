@@ -24,7 +24,6 @@ class PlusOneTest {
     @MethodSource("dataProvider")
     fun `simple test`(arr: IntArray, expected: IntArray) {
         val actual = PlusOne().perform(arr)
-        println(actual.toList())
         assertArrayEquals(expected, actual)
     }
 }
