@@ -2,6 +2,7 @@ package dev.shtanko.algorithms.interview
 
 import java.util.Random
 
+@Suppress("UnnecessaryParentheses")
 class BinaryTreeNode(private val parent: BinaryTreeNode? = null) {
     val left: WeightedTree = WeightedTree()
     val right: WeightedTree = WeightedTree()
