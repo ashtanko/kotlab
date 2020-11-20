@@ -1,9 +1,12 @@
+import com.diffplug.gradle.spotless.SpotlessExtension
+import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
+import org.jlleitschuh.gradle.ktlint.KtlintPlugin
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
-import com.diffplug.gradle.spotless.SpotlessPlugin
+
+val projectJvmTarget = "1.8"
 
 plugins {
     // Kotlin support
@@ -69,40 +72,15 @@ allprojects {
     }
 }
 
-val projectJvmTarget = "1.8"
-val analysisDir = files(projectDir)
-
-val kotlinFiles = "**/*.kt"
-val kotlinScriptFiles = "**/*.kts"
-val resourceFiles = "**/resources/**"
-val buildFiles = "**/build/**"
-val depsFiles = "**/*Deps.kt"
-
-subprojects {
-    apply<org.jlleitschuh.gradle.ktlint.KtlintPlugin>()
-    apply<SpotlessPlugin>()
-    ktlint {
-        this.debug.set(true)
-    }
-
-    detekt {
-        config.from(file("config/detekt/detekt.yml"))
-        parallel = true
-        autoCorrect = true
-        input = files("src/main/kotlin")
-
-        reports {
-            html.enabled = true
-            xml.enabled = true
-            txt.enabled = true
-        }
-    }
-}
-
 // Configuration documentation: https://github.com/JLLeitschuh/ktlint-gradle#configuration
 configure<KtlintExtension> {
     // Prints the name of failed rules.
     verbose.set(true)
+    android.set(false)
+    outputToConsole.set(true)
+    outputColorName.set("RED")
+    ignoreFailures.set(true)
+    enableExperimentalRules.set(true)
     reporters {
         // Default "plain" reporter is actually harder to read.
         reporter(ReporterType.JSON)
@@ -115,6 +93,31 @@ configure<KtlintExtension> {
             "import-ordering"
         )
     )
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
+}
+
+detekt {
+    config.from(file("config/detekt/detekt.yml"))
+    parallel = true
+    autoCorrect = true
+    input = files("src/main/kotlin")
+
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        txt.enabled = true
+    }
+}
+
+configure<SpotlessExtension> {
+}
+
+subprojects {
+    apply<KtlintPlugin>()
+    apply<SpotlessPlugin>()
 }
 
 tasks {
@@ -122,11 +125,6 @@ tasks {
         testLogging {
             events("passed", "skipped", "failed")
         }
-    }
-
-    withType<JavaCompile>().configureEach {
-        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-        targetCompatibility = JavaVersion.VERSION_1_8.toString()
     }
 
     withType<KotlinCompile>().configureEach {
@@ -160,6 +158,6 @@ tasks {
 
     // config JVM target to 1.8 for kotlin compilation tasks
     withType<KotlinCompile>().configureEach {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = projectJvmTarget
     }
 }

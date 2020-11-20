@@ -2,8 +2,8 @@ package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.leetcode.BinaryTreePathsStrategy.Companion.ARROW
 import dev.shtanko.algorithms.leetcode.BinaryTreePathsStrategy.Companion.FORMAT
-import java.util.LinkedList
 import java.util.ArrayList
+import java.util.LinkedList
 import java.util.Queue
 import java.util.Stack
 
