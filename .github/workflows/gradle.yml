@@ -82,4 +82,9 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Run all checks
-        run: ./gradlew detekt ktlintCheck test --build-cache --no-daemon --stacktrace --gradle-user-home "$GRADLE_HOME"
+        run: ./gradlew detekt ktlintCheck test jacocoTestReport --build-cache --no-daemon --stacktrace --gradle-user-home "$GRADLE_HOME"
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
