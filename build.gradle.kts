@@ -1,4 +1,3 @@
-import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -46,8 +45,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
-    // testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.assertj:assertj-core:3.16.1")
     testImplementation("org.mockito:mockito-core:3.3.3")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
@@ -80,7 +79,7 @@ configure<KtlintExtension> {
     outputToConsole.set(true)
     outputColorName.set("RED")
     ignoreFailures.set(true)
-    enableExperimentalRules.set(true)
+    enableExperimentalRules.set(false)
     reporters {
         // Default "plain" reporter is actually harder to read.
         reporter(ReporterType.JSON)
@@ -99,20 +98,42 @@ configure<KtlintExtension> {
     }
 }
 
-detekt {
+val detektAll by tasks.registering(Detekt::class) {
+    description = "Runs over whole code base without the starting overhead for each module."
     config.from(file("config/detekt/detekt.yml"))
-    parallel = true
+    buildUponDefaultConfig = true
     autoCorrect = true
-    input = files("src/main/kotlin")
-
+    parallel = true
+    setSource(files(rootDir))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude(".*/resources/.*")
+    exclude(".*/build/.*")
+    exclude("/versions.gradle.kts")
+    exclude("buildSrc/settings.gradle.kts")
+    baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
     reports {
-        html.enabled = true
         xml.enabled = true
+        xml.destination = file("build/reports/detekt/detekt.xml")
+        html.enabled = true
         txt.enabled = true
     }
 }
 
-configure<SpotlessExtension> {
+val detektAllBaseline by tasks.registering(io.gitlab.arturbosch.detekt.DetektCreateBaselineTask::class) {
+    description = "Overrides current top level baseline with issues found on this run." +
+        "Issues found on the baseline will be ignored on detekt runs."
+    buildUponDefaultConfig.set(true)
+    ignoreFailures.set(true)
+    parallel.set(true)
+    setSource(files(rootDir))
+    baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude(".*/resources/.*")
+    exclude(".*/build/.*")
+    exclude("/versions.gradle.kts")
+    exclude("buildSrc/settings.gradle.kts")
 }
 
 subprojects {
