@@ -83,3 +83,20 @@ jobs:
 
       - name: Run all checks
         run: ./gradlew detekt ktlintCheck test --build-cache --no-daemon --stacktrace --gradle-user-home "$GRADLE_HOME"
+      - name: Jacoco test report
+        run: ./gradlew jacocoTestReport
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload test results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: "${{ github.workspace }}/**/build/reports/tests"
+      - name: Upload jacoco report
+        uses: actions/upload-artifact@v2
+        with:
+          name: jacoco-report
+          path: "${{ github.workspace }}/**/build/reports/jacoco"
