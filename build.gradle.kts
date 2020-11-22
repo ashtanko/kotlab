@@ -142,7 +142,20 @@ subprojects {
 }
 
 tasks {
+
+    jacocoTestReport {
+        reports {
+            html.isEnabled = true
+            xml.isEnabled = true
+            xml.destination = file("$buildDir/reports/jacoco/report.xml")
+            csv.isEnabled = false
+        }
+        executionData(file("build/jacoco/test.exec"))
+    }
+
     test {
+        useJUnitPlatform()
+        finalizedBy(jacocoTestReport)
         testLogging {
             events("passed", "skipped", "failed")
         }

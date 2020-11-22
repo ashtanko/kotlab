@@ -26,14 +26,3 @@ fun IntArray.sortedSquares(): IntArray {
 
     return result
 }
-
-fun IntArray.sortedSquares2(): IntArray {
-
-    for (i in indices) {
-        this[i] = this[i] * this[i]
-    }
-
-    sort()
-
-    return this
-}
