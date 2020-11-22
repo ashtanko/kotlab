@@ -1,17 +1,21 @@
+import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
+import org.jlleitschuh.gradle.ktlint.KtlintPlugin
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
-import com.diffplug.gradle.spotless.SpotlessExtension
-import com.diffplug.gradle.spotless.SpotlessPlugin
+
+val projectJvmTarget = "1.8"
 
 plugins {
+    // Kotlin support
     kotlin("jvm")
     java
     jacoco
     idea
+    // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
     id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
+    // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
     id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
     id("org.jetbrains.dokka") version "1.4.10"
     id("com.diffplug.gradle.spotless") version "3.26.1"
@@ -35,20 +39,20 @@ dependencies {
     api("org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN_VERSION}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     implementation("org.slf4j:slf4j-api:1.7.30")
-    implementation("io.reactivex.rxjava3:rxjava:3.0.6")
-    implementation("org.jetbrains.kotlinx:lincheck:2.8")
+    implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
+    implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
 
-    testImplementation("org.jetbrains.kotlinx:lincheck:2.8")
+    testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.assertj:assertj-core:3.16.1")
     testImplementation("org.mockito:mockito-core:3.3.3")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("ch.qos.logback:logback-core:1.2.3")
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
-    testImplementation("io.reactivex.rxjava3:rxjava:3.0.6")
+    testImplementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.0")
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
@@ -67,73 +71,15 @@ allprojects {
     }
 }
 
-val projectJvmTarget = JavaVersion.VERSION_1_8.toString()
-val analysisDir = files(projectDir)
-
-val kotlinFiles = "**/*.kt"
-val kotlinScriptFiles = "**/*.kts"
-val resourceFiles = "**/resources/**"
-val buildFiles = "**/build/**"
-val depsFiles = "**/*Deps.kt"
-
-subprojects {
-    pluginManager.apply(io.gitlab.arturbosch.detekt.DetektPlugin::class.java)
-
-    tasks.withType<Detekt> {
-        jvmTarget = projectJvmTarget
-    }
-
-    pluginManager.configureSpotlessIntegration(subProject = project)
-
-    tasks.withType<KotlinCompile> {
-        dependsOn("spotlessKotlinApply") // todo uncomment
-        sourceCompatibility = projectJvmTarget
-        targetCompatibility = projectJvmTarget
-
-        kotlinOptions {
-            jvmTarget = projectJvmTarget
-            freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
-        }
-    }
-
-    apply(plugin = "com.diffplug.gradle.spotless")
-}
-
-fun PluginManager.configureSpotlessIntegration(subProject: Project) = apply {
-    val spotlessConfiguration: (AppliedPlugin) -> Unit = {
-        subProject.pluginManager.apply(SpotlessPlugin::class.java)
-        subProject.configure<SpotlessExtension> {
-            kotlin {
-                target("src/**/*.kt")
-                ktlint()
-                trimTrailingWhitespace()
-                indentWithSpaces()
-                endWithNewline()
-            }
-
-            format("misc") {
-                target("**/*.gradle", "**/*.md", "**/.gitignore")
-                indentWithSpaces()
-                trimTrailingWhitespace()
-                endWithNewline()
-            }
-
-            kotlinGradle {
-                // same as kotlin, but for .gradle.kts files (defaults to '*.gradle.kts')
-                target("*.gradle.kts", "additionalScripts/*.gradle.kts")
-                // ktlint()
-            }
-        }
-    }
-
-    withPlugin("org.jetbrains.kotlin.android", spotlessConfiguration)
-    withPlugin("org.jetbrains.kotlin.jvm", spotlessConfiguration)
-}
-
 // Configuration documentation: https://github.com/JLLeitschuh/ktlint-gradle#configuration
 configure<KtlintExtension> {
     // Prints the name of failed rules.
     verbose.set(true)
+    android.set(false)
+    outputToConsole.set(true)
+    outputColorName.set("RED")
+    ignoreFailures.set(true)
+    enableExperimentalRules.set(false)
     reporters {
         // Default "plain" reporter is actually harder to read.
         reporter(ReporterType.JSON)
@@ -146,18 +92,53 @@ configure<KtlintExtension> {
             "import-ordering"
         )
     )
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
 }
 
-detekt {
+val detektAll by tasks.registering(Detekt::class) {
+    description = "Runs over whole code base without the starting overhead for each module."
     config.from(file("config/detekt/detekt.yml"))
-    parallel = true
+    buildUponDefaultConfig = true
     autoCorrect = true
-
+    parallel = true
+    setSource(files(rootDir))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude(".*/resources/.*")
+    exclude(".*/build/.*")
+    exclude("/versions.gradle.kts")
+    exclude("buildSrc/settings.gradle.kts")
+    baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
     reports {
-        html.enabled = false
-        xml.enabled = false
-        txt.enabled = false
+        xml.enabled = true
+        xml.destination = file("build/reports/detekt/detekt.xml")
+        html.enabled = true
+        txt.enabled = true
     }
+}
+
+val detektAllBaseline by tasks.registering(io.gitlab.arturbosch.detekt.DetektCreateBaselineTask::class) {
+    description = "Overrides current top level baseline with issues found on this run." +
+        "Issues found on the baseline will be ignored on detekt runs."
+    buildUponDefaultConfig.set(true)
+    ignoreFailures.set(true)
+    parallel.set(true)
+    setSource(files(rootDir))
+    baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude(".*/resources/.*")
+    exclude(".*/build/.*")
+    exclude("/versions.gradle.kts")
+    exclude("buildSrc/settings.gradle.kts")
+}
+
+subprojects {
+    apply<KtlintPlugin>()
+    apply<SpotlessPlugin>()
 }
 
 tasks {
@@ -167,14 +148,9 @@ tasks {
         }
     }
 
-    withType<JavaCompile>().configureEach {
-        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-        targetCompatibility = JavaVersion.VERSION_1_8.toString()
-    }
-
     withType<KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
+            jvmTarget = projectJvmTarget
             freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.Experimental"
         }
     }
@@ -185,7 +161,7 @@ tasks {
     }
 
     withType<Detekt>().configureEach {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = "1.8"
     }
 
     withType<Detekt> {
@@ -203,6 +179,6 @@ tasks {
 
     // config JVM target to 1.8 for kotlin compilation tasks
     withType<KotlinCompile>().configureEach {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = projectJvmTarget
     }
 }

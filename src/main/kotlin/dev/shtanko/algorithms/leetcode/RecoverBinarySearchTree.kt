@@ -6,7 +6,7 @@ internal fun recoverTree(root: TreeNode?) {
     var first: TreeNode? = null
     var second: TreeNode? = null
     // Morris Traversal
-    var temp: TreeNode? = null
+    var temp: TreeNode?
     while (rootNode != null) {
         if (rootNode.left != null) {
             // connect threading for root

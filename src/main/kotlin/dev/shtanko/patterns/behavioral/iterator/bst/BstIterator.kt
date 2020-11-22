@@ -27,10 +27,10 @@ class BstIterator<T : Comparable<T>>(root: TreeNode<T>?) : CustomIterator<TreeNo
     }
 
     private fun pushPathToNextSmallest(node: TreeNode<T>?) {
-        var node = node
-        while (node != null) {
-            pathStack.push(node)
-            node = node.left
+        var treeNode = node
+        while (treeNode != null) {
+            pathStack.push(treeNode)
+            treeNode = treeNode.left
         }
     }
 }

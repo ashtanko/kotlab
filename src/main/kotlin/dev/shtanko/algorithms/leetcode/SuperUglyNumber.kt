@@ -1,9 +1,8 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.Arrays
-import kotlin.math.min
-import dev.shtanko.algorithms.leetcode.SuperUglyNumberHeap.Num
 import java.util.PriorityQueue
+import kotlin.math.min
 
 interface SuperUglyNumberStrategy {
     fun perform(n: Int, primes: IntArray): Int

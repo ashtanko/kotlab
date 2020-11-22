@@ -1,2 +1,2 @@
 #!/bin/bash
-sh gradlew detekt ktlintCheck --profile
+sh gradlew detekt ktlintCheck spotlessCheck --profile
