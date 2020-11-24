@@ -4,6 +4,7 @@ import java.util.Arrays
 
 private const val ARRAY_MAP_SIZE_INDEX = 4
 
+@Suppress("UNCHECKED_CAST")
 class ArrayMap<K, V> constructor(capacity: Int = 0) {
 
     private lateinit var hashes: IntArray

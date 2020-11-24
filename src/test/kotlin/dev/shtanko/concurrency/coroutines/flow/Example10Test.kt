@@ -11,6 +11,6 @@ internal class Example10Test {
     @ExperimentalCoroutinesApi
     @Test
     fun `numbers test`() = runBlockingTest {
-        assertEquals(listOf(1, 2), numbers().take(2).toList())
+        assertEquals(listOf(1, 2), Example10.numbers().take(2).toList())
     }
 }

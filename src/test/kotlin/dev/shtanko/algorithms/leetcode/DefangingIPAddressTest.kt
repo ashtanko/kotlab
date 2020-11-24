@@ -19,8 +19,8 @@ class DefangingIPAddressTest {
     @ParameterizedTest
     @MethodSource("dataProvider")
     fun `defang IP address naive test`(testCase: Pair<String, String>) {
-        val address = "1.1.1.1"
-        val expected = "1[.]1[.]1[.]1"
+        val address = testCase.first
+        val expected = testCase.second
         val actual = address.defangIPaddrNaive()
         assertEquals(expected, actual)
     }
@@ -28,8 +28,8 @@ class DefangingIPAddressTest {
     @ParameterizedTest
     @MethodSource("dataProvider")
     fun `defang IP address test`(testCase: Pair<String, String>) {
-        val address = "1.1.1.1"
-        val expected = "1[.]1[.]1[.]1"
+        val address = testCase.first
+        val expected = testCase.second
         val actual = address.defangIPaddr()
         assertEquals(expected, actual)
     }

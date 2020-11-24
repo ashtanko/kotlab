@@ -26,6 +26,7 @@ object PluginsVersions {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${PluginsVersions.KOTLIN}")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:${PluginsVersions.KOTLIN}")
 }
 
 tasks.withType<KotlinCompile> {

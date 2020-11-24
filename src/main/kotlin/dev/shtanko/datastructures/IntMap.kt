@@ -5,6 +5,7 @@ import java.util.Arrays
 private const val INT_MAP_CAPACITY = 10
 private const val ARRAY_MAP_SIZE_INDEX = 4
 
+@Suppress("UNCHECKED_CAST")
 class IntMap<V> constructor(capacity: Int = INT_MAP_CAPACITY) {
 
     private var hashes: IntArray

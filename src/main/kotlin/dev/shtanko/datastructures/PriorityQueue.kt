@@ -9,6 +9,7 @@ import dev.shtanko.algorithms.extensions.swap
  * served according to the order in which they were enqueued, while in other implementations, ordering of elements
  * with the same priority is undefined.
  */
+@Suppress("UNCHECKED_CAST")
 class PriorityQueue<T>(size: Int, private val comparator: Comparator<T>? = null) : Collection<T> {
 
     override var size: Int = 0
@@ -25,7 +26,7 @@ class PriorityQueue<T>(size: Int, private val comparator: Comparator<T>? = null)
         if (size == 0) throw NoSuchElementException()
         val res = peek()
         arr.swap(1, size--)
-        sink(1)
+        sink()
         arr[size + 1] = null
         val last = arr.size - 1
         val local = size == last / SQUAD
@@ -68,8 +69,8 @@ class PriorityQueue<T>(size: Int, private val comparator: Comparator<T>? = null)
         swim(arr, n, comparator)
     }
 
-    private fun sink(n: Int) {
-        sink(arr, n, size, comparator)
+    private fun sink() {
+        sink(arr, 1, size, comparator)
     }
 
     private fun resize() {
