@@ -9,14 +9,14 @@ import kotlinx.coroutines.runBlocking
 
 private const val DELAY = 100L
 
-private fun foo(): Flow<Int> = flow { // flow builder
+fun example4Foo(): Flow<Int> = flow { // flow builder
     for (i in 1..3) {
         delay(DELAY) // pretend we are doing something useful here
         emit(i) // emit next value
     }
 }
 
-fun main() = runBlocking<Unit> {
+fun main() = runBlocking {
     // Launch a concurrent coroutine to check if the basic.main thread is blocked
     launch {
         for (k in 1..3) {
@@ -25,5 +25,5 @@ fun main() = runBlocking<Unit> {
         }
     }
     // Collect the flow
-    foo().collect { value -> println(value) }
+    example4Foo().collect { value -> println(value) }
 }

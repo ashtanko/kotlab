@@ -8,16 +8,18 @@ import kotlinx.coroutines.runBlocking
 
 private const val MAX = 5
 
-fun main() = runBlocking<Unit> {
-    (1..MAX).asFlow()
-        .filter {
-            println("Filter $it")
-            it % 2 == 0
-        }
-        .map {
-            println("Map $it")
-            "string $it"
-        }.collect {
-            println("Collect $it")
-        }
+fun getData12(limit: Int) = (1..limit).asFlow()
+    .filter {
+        println("Filter $it")
+        it % 2 == 0
+    }
+    .map {
+        println("Map $it")
+        "string $it"
+    }
+
+fun main() = runBlocking {
+    getData12(MAX).collect {
+        println("Collect $it")
+    }
 }

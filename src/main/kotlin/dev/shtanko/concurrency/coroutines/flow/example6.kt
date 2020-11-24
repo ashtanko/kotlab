@@ -18,7 +18,7 @@ private fun foo(): Flow<Int> = flow {
     }
 }
 
-fun main() = runBlocking<Unit> {
+fun main() = runBlocking {
     withTimeoutOrNull(TIMEOUT) { // Timeout after 250ms
         foo().collect { value -> println(value) }
     }

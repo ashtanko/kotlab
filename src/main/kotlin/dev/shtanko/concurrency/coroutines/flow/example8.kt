@@ -8,13 +8,17 @@ import kotlinx.coroutines.runBlocking
 
 private const val DELAY = 1000L
 
-private suspend fun performRequest(request: Int): String {
+suspend fun performRequestExample8(request: Int): String {
     delay(DELAY) // imitate long-running asynchronous work
     return "response $request"
 }
 
-fun main() = runBlocking<Unit> {
-    (1..3).asFlow() // a flow of requests
-        .map { request -> performRequest(request) }
-        .collect { response -> println(response) }
+suspend fun getExample8Data() = (1..3).asFlow() // a flow of requests
+    .map { request -> performRequestExample8(request) }
+
+suspend fun performExample8() = getExample8Data()
+    .collect { response -> println(response) }
+
+fun main() = runBlocking {
+    performExample8()
 }

@@ -8,16 +8,19 @@ import kotlinx.coroutines.runBlocking
 
 private const val DELAY = 1000L
 
-private suspend fun performRequest(request: Int): String {
+suspend fun performRequest9(request: Int): String {
     delay(DELAY) // imitate long-running asynchronous work
     return "response $request"
 }
 
-fun main() = runBlocking<Unit> {
-    (1..3).asFlow() // a flow of requests
-        .transform { request ->
-            emit("Making request $request")
-            emit(performRequest(request))
-        }
-        .collect { response -> println(response) }
+suspend fun getData9() = (1..3).asFlow() // a flow of requests
+    .transform { request ->
+        emit("Making request $request")
+        emit(performRequest9(request))
+    }
+
+fun main() = runBlocking {
+    getData9().collect { response ->
+        println(response)
+    }
 }

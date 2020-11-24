@@ -5,11 +5,11 @@ import kotlinx.coroutines.runBlocking
 
 private const val DELAY = 1000L
 
-private suspend fun foo(): List<Int> {
+suspend fun example3Foo(): List<Int> {
     delay(DELAY) // pretend we are doing something asynchronous here
     return listOf(1, 2, 3)
 }
 
-fun main() = runBlocking<Unit> {
-    foo().forEach { value -> println(value) }
+fun main() = runBlocking {
+    example3Foo().forEach { value -> println(value) }
 }

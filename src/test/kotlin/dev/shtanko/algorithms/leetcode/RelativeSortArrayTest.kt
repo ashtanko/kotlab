@@ -28,4 +28,13 @@ class RelativeSortArrayTest {
         val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
+
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    fun `relative sort array using tree test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val pair = testCase.first
+        val actual = pair.relativeSortArrayTree()
+        val expected = testCase.second
+        assertArrayEquals(expected, actual)
+    }
 }

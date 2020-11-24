@@ -7,9 +7,11 @@ import kotlinx.coroutines.runBlocking
 
 private const val MAX = 5
 
-fun main() = runBlocking<Unit> {
-    val sum = (1..MAX).asFlow()
-        .map { it * it } // squares of numbers from 1 to 5
-        .reduce { a, b -> a + b } // sum them (terminal operator)
+suspend fun getData11(limit: Int) = (1..limit).asFlow()
+    .map { it * it } // squares of numbers from 1 to 5
+    .reduce { a, b -> a + b } // sum them (terminal operator)
+
+fun main() = runBlocking {
+    val sum = getData11(MAX)
     println(sum)
 }
