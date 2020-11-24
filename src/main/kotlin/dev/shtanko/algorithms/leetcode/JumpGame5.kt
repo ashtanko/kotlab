@@ -149,6 +149,7 @@ class JP5BidirectionalBFS : JumpGame5Strategy {
     }
 }
 
+@Suppress("ComplexMethod")
 class JP5BidirectionalBFS2 : JumpGame5Strategy {
 
     private var head: MutableSet<Int> = HashSet()
