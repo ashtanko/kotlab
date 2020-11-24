@@ -4,6 +4,20 @@ import java.util.LinkedList
 
 interface JumpGame5Strategy {
     fun perform(arr: IntArray): Int
+
+    fun checkNeighbors(visited: MutableSet<Int>, node: Int, n: Int, nex: MutableList<Int>) {
+        if (node + 1 < n && !visited.contains(node + 1)) {
+            val value = node + 1
+            visited.add(value)
+            nex.add(value)
+        }
+
+        if (node - 1 >= 0 && !visited.contains(node - 1)) {
+            val value = node - 1
+            visited.add(value)
+            nex.add(value)
+        }
+    }
 }
 
 class JP5BreadthFirstSearch : JumpGame5Strategy {
@@ -21,12 +35,9 @@ class JP5BreadthFirstSearch : JumpGame5Strategy {
         }
 
         var curs: MutableList<Int> = LinkedList() // store current layer
-
         curs.add(0)
         val visited: MutableSet<Int> = HashSet()
         var step = 0
-
-        // when current layer exists
 
         // when current layer exists
         while (curs.isNotEmpty()) {
@@ -39,26 +50,13 @@ class JP5BreadthFirstSearch : JumpGame5Strategy {
                     return step
                 }
 
-                // check same value
                 for (child in graph[arr[node]]!!) {
-                    if (!visited.contains(child)) {
-                        visited.add(child)
-                        nex.add(child)
-                    }
+                    checkSameValue(visited, child, nex)
                 }
-
                 // clear the list to prevent redundant search
-                graph[arr[node]]!!.clear()
+                graph[arr[node]]?.clear()
 
-                // check neighbors
-                if (node + 1 < n && !visited.contains(node + 1)) {
-                    visited.add(node + 1)
-                    nex.add(node + 1)
-                }
-                if (node - 1 >= 0 && !visited.contains(node - 1)) {
-                    visited.add(node - 1)
-                    nex.add(node - 1)
-                }
+                checkNeighbors(visited, node, n, nex)
             }
             curs = nex
             step++
@@ -66,75 +64,62 @@ class JP5BreadthFirstSearch : JumpGame5Strategy {
 
         return -1
     }
+
+    private fun checkSameValue(visited: MutableSet<Int>, child: Int, nex: MutableList<Int>) {
+        if (!visited.contains(child)) {
+            visited.add(child)
+            nex.add(child)
+        }
+    }
 }
 
 class JP5BidirectionalBFS : JumpGame5Strategy {
+
+    private var curs: MutableList<Int> = LinkedList() // store layers from start
+    private val graph: MutableMap<Int, MutableList<Int>> = HashMap()
+    private val visited: MutableSet<Int> = HashSet()
+    var other: MutableList<Int> = LinkedList() // store layers from end
+
+    init {
+        curs.add(0)
+        visited.add(0)
+    }
+
     override fun perform(arr: IntArray): Int {
         val n: Int = arr.size
         if (n <= 1) {
             return 0
         }
-
-        val graph: MutableMap<Int, MutableList<Int>> = HashMap()
         for (i in 0 until n) {
             graph.computeIfAbsent(arr[i]) {
                 LinkedList()
             }.add(i)
         }
-
-        var curs: MutableList<Int> = LinkedList() // store layers from start
-
-        curs.add(0)
-        val visited: MutableSet<Int> = HashSet()
-        visited.add(0)
         visited.add(n - 1)
         var step = 0
-
-        var other: MutableList<Int> = LinkedList() // store layers from end
-
         other.add(n - 1)
-
-        // when current layer exists
-
         // when current layer exists
         while (curs.isNotEmpty()) {
-            // search from the side with fewer nodes
-            if (curs.size > other.size) {
-                val tmp = curs
-                curs = other
-                other = tmp
-            }
+            searchFewerNodes()
             val nex: MutableList<Int> = LinkedList()
 
             // iterate the layer
             for (node in curs) {
-
                 // check same value
                 for (child in graph[arr[node]]!!) {
                     if (other.contains(child)) {
                         return step + 1
                     }
-                    if (!visited.contains(child)) {
-                        visited.add(child)
-                        nex.add(child)
-                    }
+                    checkNotVisited(child, nex)
                 }
 
                 // clear the list to prevent redundant search
                 graph[arr[node]]?.clear()
 
-                // check neighbors
-                if (other.contains(node + 1) || other.contains(node - 1)) {
+                if (isOtherContains(other, node)) {
                     return step + 1
                 }
-                if (node + 1 < n && !visited.contains(node + 1)) {
-                    visited.add(node + 1)
-                    nex.add(node + 1)
-                }
-                if (node - 1 >= 0 && !visited.contains(node - 1)) {
-                    visited.add(node - 1)
-                    nex.add(node - 1)
-                }
+                checkNeighbors(visited, node, n, nex)
             }
             curs = nex
             step++
@@ -142,36 +127,54 @@ class JP5BidirectionalBFS : JumpGame5Strategy {
 
         return -1
     }
+
+    // search from the side with fewer nodes
+    private fun searchFewerNodes() {
+        if (curs.size > other.size) {
+            val tmp = curs
+            curs = other
+            other = tmp
+        }
+    }
+
+    private fun checkNotVisited(child: Int, nex: MutableList<Int>) {
+        if (!visited.contains(child)) {
+            visited.add(child)
+            nex.add(child)
+        }
+    }
+
+    private fun isOtherContains(other: MutableList<Int>, node: Int): Boolean {
+        return other.contains(node + 1) || other.contains(node - 1)
+    }
 }
 
+@Suppress("ComplexMethod")
 class JP5BidirectionalBFS2 : JumpGame5Strategy {
+
+    private var head: MutableSet<Int> = HashSet()
+    private var tail: MutableSet<Int> = HashSet()
+    private val idxMap: MutableMap<Int, MutableList<Int>> = HashMap()
+
+    init {
+        head.add(0)
+    }
+
     override fun perform(arr: IntArray): Int {
         val totalNums = arr.size
         if (totalNums == 1) return 0
 
-        // a map of value to indexes of `nums`
-        val idxMap = HashMap<Int, ArrayList<Int>>()
         for (idx in totalNums - 1 downTo 0) {
             idxMap.getOrPut(arr[idx]) { arrayListOf() }.add(idx)
         }
 
-        val visited = BooleanArray(totalNums) { false }
-
-        var head = HashSet<Int>()
-        head.add(0)
-        visited[0] = true
-
-        var tail = HashSet<Int>()
+        val visited = getVisitedArray(totalNums)
         tail.add(totalNums - 1)
         visited[totalNums - 1] = true
-
         var steps = 0
 
         while (head.isNotEmpty() && tail.isNotEmpty()) {
-            if (head.size > tail.size) {
-                // to swap the two sets
-                head = tail.also { tail = head }
-            }
+            swapTwoSets()
 
             val next = HashSet<Int>()
             for (idx in head) {
@@ -207,5 +210,17 @@ class JP5BidirectionalBFS2 : JumpGame5Strategy {
         }
 
         return -1
+    }
+
+    private fun swapTwoSets() {
+        if (head.size > tail.size) {
+            head = tail.also { tail = head }
+        }
+    }
+
+    private fun getVisitedArray(totalNums: Int): BooleanArray {
+        val visited = BooleanArray(totalNums) { false }
+        visited[0] = true
+        return visited
     }
 }
