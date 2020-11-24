@@ -37,38 +37,22 @@ abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>(
                 0
             ),
             Arguments.of(
-                ListNode(1).apply {
-                    next = ListNode(0).apply {
-                        next = ListNode(0).apply {
-                            next = ListNode(1).apply {
-                                next = ListNode(0).apply {
-                                    next = ListNode(0).apply {
-                                        next = ListNode(1).apply {
-                                            next = ListNode(1).apply {
-                                                next = ListNode(1).apply {
-                                                    next = ListNode(0).apply {
-                                                        next = ListNode(0).apply {
-                                                            next = ListNode(0).apply {
-                                                                next = ListNode(0).apply {
-                                                                    next = ListNode(0).apply {
-                                                                        next = ListNode(0)
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
+                getNode(),
                 18880
             )
         )
+
+        private fun getNode(): ListNode {
+            var node = ListNode(0)
+            val arr = listOf(1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0)
+            for (value in arr.reversed()) {
+                val newNode = ListNode(value)
+                newNode.next = node
+                node = newNode
+            }
+            node.prettyPrint()
+            return node
+        }
     }
 
     @ParameterizedTest
