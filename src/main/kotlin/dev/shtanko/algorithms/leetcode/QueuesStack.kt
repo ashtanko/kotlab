@@ -82,26 +82,26 @@ class StackTwoQueues2 : QueuesStack {
 
 class StackOneQueue : QueuesStack {
 
-    private var q1: Queue<Int> = LinkedList()
+    private var queue: Queue<Int> = LinkedList()
 
     override fun push(x: Int) {
-        q1.add(x)
-        var sz = q1.size
+        queue.add(x)
+        var sz = queue.size
         while (sz > 1) {
-            q1.add(q1.remove())
+            queue.add(queue.remove())
             sz--
         }
     }
 
     override fun pop(): Int {
-        return q1.remove()
+        return queue.remove()
     }
 
     override fun top(): Int {
-        return q1.peek()
+        return queue.peek()
     }
 
     override fun empty(): Boolean {
-        return q1.isEmpty()
+        return queue.isEmpty()
     }
 }
