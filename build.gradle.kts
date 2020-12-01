@@ -1,4 +1,3 @@
-
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -7,6 +6,7 @@ import org.jlleitschuh.gradle.ktlint.KtlintPlugin
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 val projectJvmTarget = "1.8"
+val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 
 plugins {
     kotlin("jvm")
@@ -107,7 +107,7 @@ plugins.withId("info.solidsoft.pitest") {
         targetTests.set(setOf("dev.shtanko.algorithms.*"))
         pitestVersion.set("1.4.11")
         verbose.set(true)
-        threads.set(System.getenv("PITEST_THREADS")?.toInt() ?: Runtime.getRuntime().availableProcessors())
+        threads.set(System.getenv("PITEST_THREADS")?.toInt() ?: satisfyingNumberOfCores)
         outputFormats.set(setOf("XML", "HTML"))
         testPlugin.set("junit5")
         junit5PluginVersion.set("0.12")
@@ -203,7 +203,7 @@ tasks {
     }
 
     withType<Test> {
-        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
+        maxParallelForks = satisfyingNumberOfCores
     }
 
     // config JVM target to 1.8 for kotlin compilation tasks
