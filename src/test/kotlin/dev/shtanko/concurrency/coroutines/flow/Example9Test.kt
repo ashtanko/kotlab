@@ -24,7 +24,8 @@ internal class Example9Test {
                 "response 2",
                 "Making request 3",
                 "response 3"
-            ), getData9().toList()
+            ),
+            getData9().toList()
         )
     }
 }

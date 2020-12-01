@@ -1,3 +1,4 @@
+
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -8,7 +9,6 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 val projectJvmTarget = "1.8"
 
 plugins {
-    // Kotlin support
     kotlin("jvm")
     java
     jacoco
@@ -20,6 +20,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.4.10"
     id("com.diffplug.gradle.spotless") version "3.26.1"
     id("com.autonomousapps.dependency-analysis") version "0.58.0"
+    id("info.solidsoft.pitest") version "1.5.1"
 }
 
 buildscript {
@@ -95,6 +96,21 @@ configure<KtlintExtension> {
     filter {
         exclude("**/generated/**")
         include("**/kotlin/**")
+    }
+}
+
+plugins.withId("info.solidsoft.pitest") {
+    configure<info.solidsoft.gradle.pitest.PitestPluginExtension> {
+        jvmArgs.set(listOf("-Xmx1024m"))
+        avoidCallsTo.set(setOf("kotlin.jvm.internal", "kotlin.Result"))
+        targetClasses.set(setOf("dev.shtanko.algorithms.*"))
+        targetTests.set(setOf("dev.shtanko.algorithms.*"))
+        pitestVersion.set("1.4.11")
+        verbose.set(true)
+        threads.set(System.getenv("PITEST_THREADS")?.toInt() ?: Runtime.getRuntime().availableProcessors())
+        outputFormats.set(setOf("XML", "HTML"))
+        testPlugin.set("junit5")
+        junit5PluginVersion.set("0.12")
     }
 }
 
