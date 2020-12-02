@@ -2,6 +2,9 @@ package dev.shtanko.datastructures.tree
 
 import dev.shtanko.datastructures.Queue
 
+/**
+ * A custom implementation of BinarySearchTree
+ */
 class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
 
     data class Node<K, V>(
@@ -60,36 +63,63 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
 
     override fun isEmpty(): Boolean = size == 0
 
+    /**
+     * @return height of the tree.
+     */
     fun height(): Int {
         return height(root)
     }
 
+    /**
+     * @return min value of the tree.
+     */
     fun min(): K {
         return min(root).key
     }
 
+    /**
+     * Add new [BinarySearchTree.Node].
+     * @param key a key of the tree [K].
+     * @param value a key of the tree [V].
+     */
     fun add(key: K, value: V) {
         root = add(key, value, root)
     }
 
+    /**
+     * @return max value of the tree.
+     */
     fun max(): K {
         return max(root).key
     }
 
+    /**
+     * Removes node by key [K].
+     * @param key a key [K].
+     */
     fun remove(key: K) {
         root = remove(key, root)
     }
 
+    /**
+     * TODO
+     */
     fun pollMin() {
         if (root == null) throw NoSuchElementException()
         root = pollMin(root!!)
     }
 
+    /**
+     * TODO
+     */
     fun pollMax() {
         if (root == null) throw NoSuchElementException()
         root = pollMax(root!!)
     }
 
+    /**
+     * TODO
+     */
     private fun pollMax(x: Node<K, V>): Node<K, V>? {
         if (x.right == null) return x.left
         x.right = pollMax(x.right!!)
@@ -97,6 +127,9 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
         return x
     }
 
+    /**
+     * TODO
+     */
     private fun max(node: Node<K, V>?): Node<K, V> {
         if (node == null) throw NoSuchElementException()
         var x: Node<K, V> = node
@@ -106,6 +139,9 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
         return x
     }
 
+    /**
+     * TODO
+     */
     private fun min(node: Node<K, V>?): Node<K, V> {
         if (node == null) throw NoSuchElementException()
         var x: Node<K, V> = node
@@ -115,11 +151,17 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
         return x
     }
 
+    /**
+     * TODO
+     */
     private fun height(x: Node<K, V>?): Int {
         if (x == null) return 0
         return maxOf(height(x.left), height(x.right)) + 1
     }
 
+    /**
+     * TODO
+     */
     private fun remove(key: K, root: Node<K, V>?): Node<K, V>? {
         var x: Node<K, V> = root ?: throw NoSuchElementException()
         when {
@@ -138,6 +180,9 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
         return x
     }
 
+    /**
+     * TODO
+     */
     private fun pollMin(x: Node<K, V>): Node<K, V>? {
         if (x.left == null) return x.right
         x.left = pollMin(x.left!!)
@@ -145,6 +190,9 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
         return x
     }
 
+    /**
+     * TODO
+     */
     private fun add(key: K, value: V, x: Node<K, V>?): Node<K, V> {
         if (x == null) return Node(key, value)
         when {
@@ -156,8 +204,14 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
         return x
     }
 
+    /**
+     * @return size of the tree.
+     */
     private fun size(x: Node<K, V>?): Int = x?.size ?: 0
 
+    /**
+     * TODO
+     */
     private fun inorder(x: Node<K, V>?, lambda: (Node<K, V>) -> Unit) {
         if (x == null) return
         inorder(x.left, lambda)

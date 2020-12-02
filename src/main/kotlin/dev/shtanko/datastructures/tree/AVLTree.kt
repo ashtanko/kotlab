@@ -45,7 +45,7 @@ class AVLTree {
                     } else {
                         parent?.right = Node(key = key, parent = parent)
                     }
-                    rebalance(parent)
+                    reBalance(parent)
                     break
                 }
             }
@@ -54,7 +54,7 @@ class AVLTree {
         return true
     }
 
-    private fun rebalance(n: Node?) {
+    private fun reBalance(n: Node?) {
         var node = n
         setBalance(node)
         if (node?.balance == -TWO) {
@@ -63,7 +63,7 @@ class AVLTree {
             node = if (height(n.right?.right) >= height(n.right?.left)) rotateLeft(n) else rotateRightThenLeft(n)
         }
         if (n?.parent != null) {
-            rebalance(n.parent)
+            reBalance(n.parent)
         } else {
             root = node
         }
@@ -74,36 +74,36 @@ class AVLTree {
     }
 
     private fun rotateLeft(a: Node?): Node? {
-        val b = a?.right
-        b?.parent = a?.parent
-        a?.right = b?.left
+        val right = a?.right
+
+        right?.parent = a?.parent
+
+        a?.right = right?.left
         if (a?.right != null) {
             a.right?.parent = a
         }
-        b?.left = a
-        a?.parent = b
-        if (b?.parent != null) {
-            if (b.parent?.right === a) {
-                b.parent?.right = b
-            } else {
-                b.parent?.left = b
-            }
-        }
-        setBalance(a, b)
-        return b
+        right?.left = a
+        a?.parent = right
+        return rotateTree(a, right)
     }
 
     private fun rotateRight(a: Node?): Node? {
-        val b = a?.left
-        b?.parent = a?.parent
-        a?.left = b?.right
+        val left = a?.left
+
+        left?.parent = a?.parent
+
+        a?.left = left?.right
         if (a?.left != null) {
             a.left?.parent = a
         }
-        b?.right = a
-        a?.parent = b
+        left?.right = a
+        a?.parent = left
+        return rotateTree(a, left)
+    }
+
+    private fun rotateTree(a: Node?, b: Node?): Node? {
         if (b?.parent != null) {
-            if (b.parent?.right === a) {
+            if (b.parent?.right == a) {
                 b.parent?.right = b
             } else {
                 b.parent?.left = b
@@ -133,12 +133,12 @@ class AVLTree {
 
     private fun setBalance(vararg nodes: Node?) {
         for (node in nodes) {
-            reheight(node)
+            reHeight(node)
             node?.balance = height(node?.right) - height(node?.left)
         }
     }
 
-    private fun reheight(node: Node?) {
+    private fun reHeight(node: Node?) {
         if (node == null) {
             node?.height = 1 + height(node?.left).coerceAtLeast(height(node?.right))
         }
