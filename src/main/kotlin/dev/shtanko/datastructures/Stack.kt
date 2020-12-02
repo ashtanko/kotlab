@@ -7,8 +7,7 @@ package dev.shtanko.datastructures
  * @property stackNode the [Stack.Node] of this data structure.
  * @constructor Creates an [Iterator].
  */
-class StackIterator<T>(var stackNode: Stack.Node<T>?) : Iterator<T> {
-
+class StackIterator<T>(private var stackNode: Stack.Node<T>?) : Iterator<T> {
     /**
      * Returns `true` if the iteration has more elements.
      */
@@ -38,8 +37,6 @@ class StackIterator<T>(var stackNode: Stack.Node<T>?) : Iterator<T> {
 class Stack<T> : Collection<T> {
     private var head: Node<T>? = null
 
-    private val stackIterator = StackIterator(head)
-
     class Node<T>(val value: T) {
         var next: Node<T>? = null
     }
@@ -64,7 +61,7 @@ class Stack<T> : Collection<T> {
 
     override fun isEmpty(): Boolean = size == 0
 
-    override fun iterator(): Iterator<T> = stackIterator
+    override fun iterator(): Iterator<T> = StackIterator(head)
 
     /**
      * Returns the object [T] at the top of the [Stack] without removing it.

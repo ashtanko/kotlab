@@ -21,7 +21,7 @@ kotlinDslPluginOptions {
 }
 
 object PluginsVersions {
-    const val KOTLIN = "1.4.10"
+    const val KOTLIN = "1.4.20"
 }
 
 dependencies {
