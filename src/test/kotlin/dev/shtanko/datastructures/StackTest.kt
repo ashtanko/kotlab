@@ -3,12 +3,14 @@ package dev.shtanko.datastructures
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class StackTest {
 
     @Test
+    @DisplayName("when stack is empty")
     fun `empty test`() {
         val stack = Stack<Int>()
         assertEquals(0, stack.size)
@@ -16,6 +18,7 @@ class StackTest {
     }
 
     @Test
+    @DisplayName("when trying peek on empty stack")
     fun `exception test`() {
         assertThrows<NoSuchElementException> {
             val stack = Stack<Int>()
@@ -24,6 +27,7 @@ class StackTest {
     }
 
     @Test
+    @DisplayName("when add 10 elements and poll them should be empty")
     fun `naive test`() {
         val stack = Stack<Int>()
 
@@ -35,6 +39,13 @@ class StackTest {
             assertEquals(i, stack.poll())
         }
         assertEquals(0, stack.size)
+    }
+
+    @Test
+    fun `test pop`() {
+        val stack = Stack<Int>()
+        stack.push(1)
+        assertFalse(stack.isEmpty())
     }
 
     @Test

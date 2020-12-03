@@ -1,6 +1,7 @@
 package dev.shtanko.algorithms.codility
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
@@ -33,6 +34,7 @@ class BinaryGapTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
+    @DisplayName("find binary gap test")
     fun `simple test`(testCase: Pair<Int, Int>) {
         val n = testCase.first
         val expected = testCase.second

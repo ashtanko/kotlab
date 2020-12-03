@@ -11,7 +11,7 @@ class MaxWeightPathEvaluatorTest {
     }
 
     @Test
-    fun testOnFile() {
+    fun `max weight path evaluator on file test`() {
         val weights = Files.lines(Paths.get(FILE_NAME)).skip(1).mapToLong { it.toLong() }.toArray()
         val evaluator = MaxWeightPathEvaluator(weights)
         val maxWeight = evaluator.evaluate()
