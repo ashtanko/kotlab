@@ -1,39 +1,37 @@
 package dev.shtanko.algorithms.search
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 abstract class AbstractSearchTest<out T : AbstractSearchStrategy<Int>>(private val strategy: T) {
 
-    @Test
-    fun `empty test`() {
-        assertEquals(-1, strategy.perform(emptyArray(), 1))
+    private class InputIntArrayArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(arrayOf<Int>(), 1, -1),
+            Arguments.of(arrayOf(1), 1, 0),
+            Arguments.of(arrayOf(1), 2, -1),
+            Arguments.of(arrayOf(4, 8), 4, 0),
+            Arguments.of(arrayOf(4, 8), 8, 1),
+            Arguments.of(arrayOf(4, 8), 9, -1),
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 4, 0),
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 8, 1),
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 15, 2),
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 16, 3),
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 23, 4),
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 42, 5),
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 43, -1)
+        )
     }
 
-    @Test
-    fun `single element test`() {
-        val arr = arrayOf(1)
-        assertEquals(0, strategy.perform(arr, 1))
-        assertEquals(-1, strategy.perform(arr, 2))
-    }
-
-    @Test
-    fun `two elements test`() {
-        val arr = arrayOf(4, 8)
-        assertEquals(0, strategy.perform(arr, 4))
-        assertEquals(1, strategy.perform(arr, 8))
-        assertEquals(-1, strategy.perform(arr, 15))
-    }
-
-    @Test
-    fun `six elements test`() {
-        val arr = arrayOf(4, 8, 15, 16, 23, 42)
-        assertEquals(0, strategy.perform(arr, 4))
-        assertEquals(1, strategy.perform(arr, 8))
-        assertEquals(2, strategy.perform(arr, 15))
-        assertEquals(3, strategy.perform(arr, 16))
-        assertEquals(4, strategy.perform(arr, 23))
-        assertEquals(5, strategy.perform(arr, 42))
-        assertEquals(-1, strategy.perform(arr, 56))
+    @ParameterizedTest
+    @ArgumentsSource(InputIntArrayArgumentsProvider::class)
+    fun `int array test`(arr: Array<Int>, element: Int, expected: Int) {
+        val actual = strategy.perform(arr, element)
+        assertEquals(expected, actual)
     }
 }
