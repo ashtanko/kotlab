@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 import kotlin.random.Random
 
+@Suppress("ArrayPrimitive")
 abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
 
     class InputArrayArgumentsProvider : ArgumentsProvider {

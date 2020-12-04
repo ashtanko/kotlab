@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
+@Suppress("ArrayPrimitive")
 abstract class AbstractSearchTest<out T : AbstractSearchStrategy<Int>>(private val strategy: T) {
 
     private class InputIntArrayArgumentsProvider : ArgumentsProvider {
