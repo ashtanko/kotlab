@@ -1,5 +1,6 @@
 package dev.shtanko.concurrency.coroutines.flow
 
+import java.lang.System.currentTimeMillis
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -9,7 +10,6 @@ import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
-import java.lang.System.currentTimeMillis
 
 private const val DELAY = 100L
 private const val WAIT_DELAY = 500L

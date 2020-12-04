@@ -1,9 +1,13 @@
 package dev.shtanko.concurrency.coroutines.flow
 
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.runBlocking
 import java.lang.System.currentTimeMillis
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.runBlocking
 
 object Example22 {
     private const val DELAY = 300L
@@ -26,6 +30,6 @@ object Example22 {
 
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
-
+        perform()
     }
 }

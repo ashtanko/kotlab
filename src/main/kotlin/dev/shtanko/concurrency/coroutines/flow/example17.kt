@@ -1,12 +1,12 @@
 package dev.shtanko.concurrency.coroutines.flow
 
+import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
-import kotlin.system.measureTimeMillis
 
 private const val DELAY = 100L
 private const val PROCESSING_DELAY = 300L
@@ -18,7 +18,7 @@ private fun foo(): Flow<Int> = flow {
     }
 }
 
-fun main() = runBlocking<Unit> {
+fun main() = runBlocking {
     val time = measureTimeMillis {
         foo()
             .buffer() // buffer emissions, don't wait, faster
