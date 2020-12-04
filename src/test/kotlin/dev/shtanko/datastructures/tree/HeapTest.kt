@@ -10,7 +10,7 @@ import java.util.stream.IntStream
 class HeapTest {
 
     companion object {
-        val RANDOM = Random()
+        private val RANDOM = Random()
     }
 
     @ParameterizedTest

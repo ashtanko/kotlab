@@ -8,7 +8,7 @@ data class TreeNode<T : Comparable<T>>(var value: T, var left: TreeNode<T>? = nu
     }
 
     private fun getParentNodeOfValueToBeInserted(valToInsert: T): TreeNode<T> {
-        var parent: TreeNode<T> = this // todo
+        var parent: TreeNode<T> = this
         var curr: TreeNode<T>? = this
         while (curr != null) {
             parent = curr
