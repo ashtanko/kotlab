@@ -9,14 +9,14 @@ import org.jetbrains.kotlinx.lincheck.strategy.stress.StressCTest
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
 import org.jetbrains.kotlinx.lincheck.verifier.VerifierState
 import org.junit.jupiter.api.Test
-import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
+import java.util.concurrent.ConcurrentSkipListMap
 
 @StressCTest(minimizeFailedScenario = false)
 @Param(name = "key", gen = IntGen::class, conf = "1:5")
-class HashMapLinearizabilityTest : VerifierState() {
+class SkipListMapLinearizabilityTest : VerifierState() {
 
-    private val map: ConcurrentMap<Int, Int> = ConcurrentHashMap()
+    private val map: ConcurrentMap<Int, Int> = ConcurrentSkipListMap()
 
     @Operation
     fun put(@Param(name = "key") key: Int, value: Int): Int? {
@@ -34,7 +34,7 @@ class HashMapLinearizabilityTest : VerifierState() {
             .iterations(5)
             .threads(3)
             .logLevel(LoggingLevel.INFO)
-        LinChecker.check(HashMapLinearizabilityTest::class.java, opts)
+        LinChecker.check(SkipListMapLinearizabilityTest::class.java, opts)
     }
 
     override fun extractState(): Any {
