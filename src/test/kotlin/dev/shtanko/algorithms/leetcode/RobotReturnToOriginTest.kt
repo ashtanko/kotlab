@@ -1,31 +1,27 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class RobotReturnToOriginTest {
+internal class RobotReturnToOriginTest {
 
     companion object {
         @JvmStatic
-        fun dataProvider(): List<Pair<Boolean, String>> {
+        fun dataProvider(): List<Pair<String, Boolean>> {
             return listOf(
-                true to "UD",
-                false to "LL"
+                "" to true,
+                "UD" to true,
+                "LL" to false
             )
         }
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Boolean, String>) {
-        val moves = testCase.second
+    internal fun `robot return to origin test`(testCase: Pair<String, Boolean>) {
+        val (moves, expected) = testCase
         val actual = judgeCircle(moves)
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }

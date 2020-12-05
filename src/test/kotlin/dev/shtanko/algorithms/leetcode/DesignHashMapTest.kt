@@ -3,10 +3,10 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class DesignHashMapTest {
+internal class DesignHashMapTest {
 
     @Test
-    fun `hash map behavioral test`() {
+    internal fun `hash map behavioral test`() {
         val map = DesignHashMap()
         map.put(1, 1)
         map.put(2, 2)

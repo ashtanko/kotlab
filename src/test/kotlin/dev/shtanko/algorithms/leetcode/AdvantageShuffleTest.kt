@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class AdvantageShuffleTest {
+internal class AdvantageShuffleTest {
 
     companion object {
         @JvmStatic
@@ -19,11 +19,9 @@ class AdvantageShuffleTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(data: Triple<IntArray, IntArray, IntArray>) {
+    internal fun `simple test`(data: Triple<IntArray, IntArray, IntArray>) {
         data.run {
-            val a = first
-            val b = second
-            val expected = third
+            val (a, b, expected) = data
             val actual = advantageCount(a, b)
             assertArrayEquals(expected, actual)
         }

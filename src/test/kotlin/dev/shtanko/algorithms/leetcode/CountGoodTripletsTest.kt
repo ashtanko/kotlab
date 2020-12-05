@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class CountGoodTripletsTest {
+internal class CountGoodTripletsTest {
 
     companion object {
 
@@ -21,7 +21,7 @@ class CountGoodTripletsTest {
 
     @ParameterizedTest
     @MethodSource("provideNumbers")
-    fun `count good triplets test`(arr: IntArray, a: Int, b: Int, c: Int, expected: Int) {
+    internal fun `count good triplets test`(arr: IntArray, a: Int, b: Int, c: Int, expected: Int) {
         val actual = countGoodTriplets(arr, a, b, c)
         assertEquals(expected, actual)
     }

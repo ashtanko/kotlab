@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class DivisorGameTest {
+internal class DivisorGameTest {
 
     companion object {
         @JvmStatic
@@ -21,34 +20,25 @@ class DivisorGameTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `divisor game test`(testCase: Pair<Boolean, Int>) {
-        val actual = testCase.second.divisorGame()
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `divisor game test`(testCase: Pair<Boolean, Int>) {
+        val (expected, num) = testCase
+        val actual = num.divisorGame()
+        assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `divisor game naive test`(testCase: Pair<Boolean, Int>) {
-        val actual = testCase.second.divisorGameNaive()
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `divisor game naive test`(testCase: Pair<Boolean, Int>) {
+        val (expected, num) = testCase
+        val actual = num.divisorGameNaive()
+        assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `divisor game brute force test`(testCase: Pair<Boolean, Int>) {
-        val actual = testCase.second.divisorGameBruteForce()
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `divisor game brute force test`(testCase: Pair<Boolean, Int>) {
+        val (expected, num) = testCase
+        val actual = num.divisorGameBruteForce()
+        assertEquals(expected, actual)
     }
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MinimumAbsDifferenceTest {
+internal class MinimumAbsDifferenceTest {
 
     companion object {
         @JvmStatic
@@ -29,18 +29,16 @@ class MinimumAbsDifferenceTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `minimum abs difference test`(testCase: Pair<IntArray, List<List<Int>>>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `minimum abs difference test`(testCase: Pair<IntArray, List<List<Int>>>) {
+        val (arr, expected) = testCase
         val actual = arr.minimumAbsDifference()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `minimum abs difference test 2`(testCase: Pair<IntArray, List<List<Int>>>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `minimum abs difference 2 test`(testCase: Pair<IntArray, List<List<Int>>>) {
+        val (arr, expected) = testCase
         val actual = arr.minimumAbsDifference2()
         assertEquals(expected, actual)
     }

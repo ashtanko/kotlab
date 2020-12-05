@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ElementPositionTest {
+internal class ElementPositionTest {
 
     companion object {
         @JvmStatic
@@ -19,11 +19,10 @@ class ElementPositionTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `search range test`(testCase: Pair<Pair<Int, IntArray>, IntArray>) {
-        val arr = testCase.first.second
-        val target = testCase.first.first
+    internal fun `search range test`(testCase: Pair<Pair<Int, IntArray>, IntArray>) {
+        val (data, expected) = testCase
+        val (target, arr) = data
         val actual = arr.searchRange(target)
-        val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
 }

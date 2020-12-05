@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class DistributeCandiesToPeopleTest {
+internal class DistributeCandiesToPeopleTest {
 
     companion object {
         @JvmStatic
@@ -18,10 +18,8 @@ class DistributeCandiesToPeopleTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(case: Triple<Int, Int, IntArray>) {
-        val candies = case.first
-        val numOfPeople = case.second
-        val expected = case.third
+    internal fun `simple test`(testCase: Triple<Int, Int, IntArray>) {
+        val (candies, numOfPeople, expected) = testCase
         val actual = distributeCandies(candies, numOfPeople)
         println(actual.toList())
         assertArrayEquals(expected, actual)

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class RemoveElementTest {
+internal class RemoveElementTest {
 
     companion object {
         @JvmStatic
@@ -19,10 +19,10 @@ class RemoveElementTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `remove element test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
-        val arr = testCase.first.first
-        val size = arr.removeElement(testCase.first.second)
-        val expected = testCase.second
+    internal fun `remove element test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
+        val (data, expected) = testCase
+        val (arr, elem) = data
+        val size = arr.removeElement(elem)
         assertEquals(expected, size)
     }
 }

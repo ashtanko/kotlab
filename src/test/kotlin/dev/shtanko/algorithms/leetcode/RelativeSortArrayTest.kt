@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class RelativeSortArrayTest {
+internal class RelativeSortArrayTest {
 
     companion object {
         @JvmStatic
@@ -22,19 +22,17 @@ class RelativeSortArrayTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `relative sort array test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
-        val pair = testCase.first
+    internal fun `relative sort array test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val (pair, expected) = testCase
         val actual = pair.relativeSortArray()
-        val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `relative sort array using tree test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
-        val pair = testCase.first
+    internal fun `relative sort array using tree test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val (pair, expected) = testCase
         val actual = pair.relativeSortArrayTree()
-        val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
 }

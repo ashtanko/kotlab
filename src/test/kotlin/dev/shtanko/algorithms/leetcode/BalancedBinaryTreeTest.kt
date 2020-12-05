@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class BalancedBinaryTreeTest {
+internal class BalancedBinaryTreeTest {
 
     companion object {
         @JvmStatic
@@ -35,12 +34,8 @@ class BalancedBinaryTreeTest {
     @ParameterizedTest
     @MethodSource("dataProvider")
     internal fun `is balanced test`(testCase: Pair<Boolean, TreeNode>) {
-        val root = testCase.second
+        val (expected, root) = testCase
         val actual = isBalanced(root)
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }

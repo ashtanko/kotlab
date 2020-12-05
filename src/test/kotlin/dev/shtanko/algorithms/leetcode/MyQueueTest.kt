@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 internal class MyQueueTest {
 
     @Test
-    fun `queue using stacks test`() {
+    internal fun `queue using stacks test`() {
         val queue = MyQueue()
         queue.push(1)
         queue.push(2)

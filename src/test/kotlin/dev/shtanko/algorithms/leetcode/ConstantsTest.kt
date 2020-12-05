@@ -3,9 +3,9 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class ConstantsTest {
+internal class ConstantsTest {
     @Test
-    fun `simple test`() {
+    internal fun `simple test`() {
         assertEquals(10, DECIMAL)
         assertEquals(8, OCTAL)
         assertEquals(16, HEXADECIMAL)

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class DIStringMatchTest {
+internal class DIStringMatchTest {
 
     companion object {
         @JvmStatic
@@ -19,9 +19,8 @@ class DIStringMatchTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `di string match test`(testCase: Pair<IntArray, String>) {
-        val expected = testCase.first
-        val str = testCase.second
+    internal fun `di string match test`(testCase: Pair<IntArray, String>) {
+        val (expected, str) = testCase
         assertArrayEquals(expected, str.diStringMatch())
     }
 }

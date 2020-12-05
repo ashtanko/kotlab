@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.MethodSource
 internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>(val strategy: T) {
 
     companion object {
-
         @JvmStatic
         fun dataProvider(): List<Pair<TreeNode, List<List<Int>>>> = listOf(
             TreeNode(4).apply {
@@ -43,11 +42,10 @@ internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `invert binary tree test`(testCase: Pair<TreeNode, List<List<Int>>>) {
-        val tree = testCase.first
+    internal fun `invert binary tree test`(testCase: Pair<TreeNode, List<List<Int>>>) {
+        val (tree, expected) = testCase
         val invertedTree = strategy.perform(tree)
         val actual = invertedTree.levelOrder()
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

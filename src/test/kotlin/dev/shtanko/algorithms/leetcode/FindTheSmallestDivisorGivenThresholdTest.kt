@@ -1,14 +1,14 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-abstract class SmallestDivisorStrategyTest<out T : SmallestDivisorStrategy>(private val strategy: T) {
+internal abstract class SmallestDivisorStrategyTest<out T : SmallestDivisorStrategy>(private val strategy: T) {
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -31,13 +31,13 @@ abstract class SmallestDivisorStrategyTest<out T : SmallestDivisorStrategy>(priv
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find the smallest divisor given a threshold test`(nums: IntArray, threshold: Int, expected: Int) {
+    internal fun `find the smallest divisor given a threshold test`(nums: IntArray, threshold: Int, expected: Int) {
         val actual = strategy.perform(nums, threshold)
         assertEquals(expected, actual)
     }
 }
 
-class SmallestDivisorBinarySearchTest :
+internal class SmallestDivisorBinarySearchTest :
     SmallestDivisorStrategyTest<SmallestDivisorBinarySearch>(SmallestDivisorBinarySearch())
 
-class SmallestDivisorMathTest : SmallestDivisorStrategyTest<SmallestDivisorMath>(SmallestDivisorMath())
+internal class SmallestDivisorMathTest : SmallestDivisorStrategyTest<SmallestDivisorMath>(SmallestDivisorMath())

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T) {
+internal abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -30,16 +30,15 @@ abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T)
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(case: Pair<Int, Int>) {
-        val n = case.first
-        val expected = case.second
+    internal fun `simple test`(testCase: Pair<Int, Int>) {
+        val (n, expected) = testCase
         val actual = strategy.binaryGap(n)
         assertEquals(expected, actual)
     }
 }
 
-class BGStoreIndexesTest : BinaryGapTest<BGStoreIndexes>(BGStoreIndexes())
+internal class BGStoreIndexesTest : BinaryGapTest<BGStoreIndexes>(BGStoreIndexes())
 
-class BGOnePassTest : BinaryGapTest<BGOnePass>(BGOnePass())
+internal class BGOnePassTest : BinaryGapTest<BGOnePass>(BGOnePass())
 
-class BGOtherTest : BinaryGapTest<BGOther>(BGOther())
+internal class BGOtherTest : BinaryGapTest<BGOther>(BGOther())

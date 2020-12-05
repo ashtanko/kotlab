@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ReachNumberTest {
+internal class ReachNumberTest {
 
     companion object {
         @JvmStatic
@@ -18,9 +18,8 @@ class ReachNumberTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `reach number test`(param: Pair<Int, Int>) {
-        val target = param.first
-        val expected = param.second
+    internal fun `reach number test`(param: Pair<Int, Int>) {
+        val (target, expected) = param
         assertEquals(expected, reachNumber(target))
     }
 }

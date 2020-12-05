@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal abstract class DesignBrowserHistoryTest<out T : BrowserHistory>(private val history: T) {
 
     @Test
-    fun `history test`() {
+    internal fun `history test`() {
         history.visit("google.com")
         history.visit("facebook.com")
         history.visit("youtube.com")

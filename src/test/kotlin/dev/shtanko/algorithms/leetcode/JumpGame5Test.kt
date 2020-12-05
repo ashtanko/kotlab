@@ -1,15 +1,15 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-abstract class JumpGame5Test<out T : JumpGame5Strategy>(private val strategy: T) {
-    class InputArgumentsProvider : ArgumentsProvider {
+internal abstract class JumpGame5Test<out T : JumpGame5Strategy>(private val strategy: T) {
+    internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(100, -23, -23, 404, 100, 23, 23, 23, 3, 404),
@@ -36,14 +36,14 @@ abstract class JumpGame5Test<out T : JumpGame5Strategy>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `jump game test`(arr: IntArray, expected: Int) {
+    internal fun `jump game test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-class JP5BreadthFirstSearchTest : JumpGame5Test<JP5BreadthFirstSearch>(JP5BreadthFirstSearch())
+internal class JP5BreadthFirstSearchTest : JumpGame5Test<JP5BreadthFirstSearch>(JP5BreadthFirstSearch())
 
-class JP5BidirectionalBFSTest : JumpGame5Test<JP5BidirectionalBFS>(JP5BidirectionalBFS())
+internal class JP5BidirectionalBFSTest : JumpGame5Test<JP5BidirectionalBFS>(JP5BidirectionalBFS())
 
-class JP5BidirectionalBFS2Test : JumpGame5Test<JP5BidirectionalBFS2>(JP5BidirectionalBFS2())
+internal class JP5BidirectionalBFS2Test : JumpGame5Test<JP5BidirectionalBFS2>(JP5BidirectionalBFS2())

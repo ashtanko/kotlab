@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class RankTransformArrayTest {
+internal class RankTransformArrayTest {
 
     companion object {
         @JvmStatic
@@ -19,9 +19,8 @@ class RankTransformArrayTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `array rank transform test`(testCase: Pair<IntArray, IntArray>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `array rank transform test`(testCase: Pair<IntArray, IntArray>) {
+        val (arr, expected) = testCase
         val actual = arr.arrayRankTransform()
         assertArrayEquals(expected, actual)
     }

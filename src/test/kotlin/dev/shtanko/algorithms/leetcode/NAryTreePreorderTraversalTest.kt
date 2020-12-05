@@ -8,7 +8,7 @@ internal abstract class NAryTreePreorderTraversalTest<out T : NAryTreePreorderTr
 ) {
 
     @Test
-    fun `simple test`() {
+    internal fun `NAry tree preorder traversal test`() {
         val root = NAryNode(1)
         val third = NAryNode(3)
         third.children = listOf(NAryNode(5), NAryNode(6))
@@ -18,7 +18,7 @@ internal abstract class NAryTreePreorderTraversalTest<out T : NAryTreePreorderTr
     }
 
     @Test
-    fun `simple test 2`() {
+    internal fun `NAry tree preorder traversal 2 test`() {
         val root = NAryNode(1)
         val third = NAryNode(3)
         val seventh = NAryNode(7)

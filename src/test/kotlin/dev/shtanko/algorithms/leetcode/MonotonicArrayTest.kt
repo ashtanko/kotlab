@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MonotonicArrayTest {
+internal class MonotonicArrayTest {
 
     companion object {
         @JvmStatic
@@ -24,14 +23,9 @@ class MonotonicArrayTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `is monotonic test`(testCase: Pair<Boolean, IntArray>) {
-        val checkTrue = testCase.first
-        val arr = testCase.second
+    internal fun `is monotonic test`(testCase: Pair<Boolean, IntArray>) {
+        val (expected, arr) = testCase
         val actual = arr.isMonotonic()
-        if (checkTrue) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }

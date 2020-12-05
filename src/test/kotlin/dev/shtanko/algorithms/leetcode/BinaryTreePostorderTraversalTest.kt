@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class BinaryTreePostorderTraversalTest {
+internal class BinaryTreePostorderTraversalTest {
 
     companion object {
 
@@ -26,7 +26,7 @@ class BinaryTreePostorderTraversalTest {
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `binary tree postorder traversal test`(root: TreeNode, expected: List<Int>) {
+    internal fun `binary tree postorder traversal test`(root: TreeNode, expected: List<Int>) {
         val actual = root.postOrderTraversal()
         assertEquals(expected, actual)
     }

@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private val strategy: T) {
+internal abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -17,35 +17,33 @@ abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private 
         @JvmStatic
         private fun provideData(): Stream<Arguments?>? {
             return Stream.of(
-                Arguments.of(duplicateShortArray to true, duplicateArray to true, uniqueArray to false)
+                Arguments.of(duplicateShortArray to true, duplicateArray to true, uniqueArray to false),
+                Arguments.of(duplicateArray to true, uniqueArray to false),
+                Arguments.of(uniqueArray to false)
             )
         }
     }
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `duplicate items test`(
-        duplicateShort: Pair<IntArray, Boolean>,
-        duplicate: Pair<IntArray, Boolean>,
-        unique: Pair<IntArray, Boolean>
-    ) {
-        assertEquals(strategy.perform(duplicateShort.first), duplicateShort.second)
-        assertEquals(strategy.perform(duplicate.first), duplicate.second)
-        assertEquals(strategy.perform(unique.first), unique.second)
+    internal fun `duplicate items test`(testCase: Pair<IntArray, Boolean>) {
+        val (arr, expected) = testCase
+        val actual = strategy.perform(arr)
+        assertEquals(expected, actual)
     }
 }
 
-class IsContainsDuplicateBrutForceTest :
+internal class IsContainsDuplicateBrutForceTest :
     ContainsDuplicateTest<IsContainsDuplicateBrutForce>(IsContainsDuplicateBrutForce())
 
-class IsContainsDuplicateSortTest :
+internal class IsContainsDuplicateSortTest :
     ContainsDuplicateTest<IsContainsDuplicateSort>(IsContainsDuplicateSort())
 
-class IsContainsDuplicateSortSetTest :
+internal class IsContainsDuplicateSortSetTest :
     ContainsDuplicateTest<IsContainsDuplicateSortSet>(IsContainsDuplicateSortSet())
 
-class IsContainsDuplicateSortSetOptimizedTest :
+internal class IsContainsDuplicateSortSetOptimizedTest :
     ContainsDuplicateTest<IsContainsDuplicateSortSetOptimized>(IsContainsDuplicateSortSetOptimized())
 
-class IsContainsDuplicateBitManipulationTest :
+internal class IsContainsDuplicateBitManipulationTest :
     ContainsDuplicateTest<IsContainsDuplicateBitManipulation>(IsContainsDuplicateBitManipulation())

@@ -4,26 +4,25 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class AverageSalaryTest {
+internal class AverageSalaryTest {
 
     companion object {
         @JvmStatic
         fun dataProvider(): List<Any> {
             return listOf(
-                2500.00000 to listOf(4000, 3000, 1000, 2000),
-                2000.00000 to listOf(1000, 2000, 3000),
-                3500.00000 to listOf(6000, 5000, 4000, 3000, 2000, 1000),
-                4750.00000 to listOf(8000, 9000, 2000, 3000, 6000, 1000)
+                intArrayOf(4000, 3000, 1000, 2000) to 2500.00000,
+                intArrayOf(1000, 2000, 3000) to 2000.00000,
+                intArrayOf(6000, 5000, 4000, 3000, 2000, 1000) to 3500.00000,
+                intArrayOf(8000, 9000, 2000, 3000, 6000, 1000) to 4750.00000
             )
         }
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `average salary test`(param: Pair<Double, List<Int>>) {
-        val arr = param.second
-        val expected = param.first
-        val actual = arr.toIntArray().averageSalary()
+    internal fun `average salary test`(param: Pair<IntArray, Double>) {
+        val (arr, expected) = param
+        val actual = arr.averageSalary()
         assertEquals(expected, actual)
     }
 }

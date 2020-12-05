@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class CreateMaximumNumberTest {
+internal class CreateMaximumNumberTest {
     companion object {
         @JvmStatic
         fun dataProvider(): List<Pair<Triple<IntArray, IntArray, Int>, IntArray>> {
@@ -16,11 +16,9 @@ class CreateMaximumNumberTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `maximum number test`(testCase: Pair<Triple<IntArray, IntArray, Int>, IntArray>) {
-        val nums1 = testCase.first.first
-        val nums2 = testCase.first.second
-        val k = testCase.first.third
-        val expected = testCase.second
+    internal fun `maximum number test`(testCase: Pair<Triple<IntArray, IntArray, Int>, IntArray>) {
+        val (data, expected) = testCase
+        val (nums1, nums2, k) = data
         val actual = maxNumber(nums1, nums2, k)
         assertArrayEquals(expected, actual)
     }

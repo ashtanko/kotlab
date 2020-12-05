@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class PeakIndexInMountainArrayTest<out T : PeakIndexInMountainArrayStrategy>(private val strategy: T) {
+internal abstract class PeakIndexInMountainArrayTest<out T : PeakIndexInMountainArrayStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -21,21 +21,20 @@ abstract class PeakIndexInMountainArrayTest<out T : PeakIndexInMountainArrayStra
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `peak index in mountain test`(testCase: Pair<IntArray, Int>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `peak index in mountain test`(testCase: Pair<IntArray, Int>) {
+        val (arr, expected) = testCase
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-class PeakIndexInMountainArrayLinearScanTest :
+internal class PeakIndexInMountainArrayLinearScanTest :
     PeakIndexInMountainArrayTest<PeakIndexInMountainArrayLinearScan>(PeakIndexInMountainArrayLinearScan())
 
-class PeakIndexInMountainArrayBinarySearchTest :
+internal class PeakIndexInMountainArrayBinarySearchTest :
     PeakIndexInMountainArrayTest<PeakIndexInMountainArrayBinarySearch>(PeakIndexInMountainArrayBinarySearch())
 
-class PeakIndexInMountainArrayBetterThanBinarySearchTest :
+internal class PeakIndexInMountainArrayBetterThanBinarySearchTest :
     PeakIndexInMountainArrayTest<PeakIndexInMountainArrayBetterThanBinarySearch>(
         PeakIndexInMountainArrayBetterThanBinarySearch()
     )

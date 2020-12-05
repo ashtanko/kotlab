@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MoveZeroesTest {
+internal class MoveZeroesTest {
 
     companion object {
         @JvmStatic
@@ -18,9 +18,8 @@ class MoveZeroesTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `simple test`(testCase: Pair<IntArray, IntArray>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `move zeroes test`(testCase: Pair<IntArray, IntArray>) {
+        val (arr, expected) = testCase
         arr.moveZeroes()
         assertArrayEquals(expected, arr)
     }

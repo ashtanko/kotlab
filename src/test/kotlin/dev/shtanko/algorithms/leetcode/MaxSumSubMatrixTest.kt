@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MaxSumSubMatrixTest {
+internal class MaxSumSubMatrixTest {
 
     companion object {
         @JvmStatic
@@ -20,11 +20,10 @@ class MaxSumSubMatrixTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `max sum sub matrix test`(testCase: Pair<Pair<Int, Array<IntArray>>, Int>) {
-        val matrix = testCase.first.second
-        val k = testCase.first.first
+    internal fun `max sum sub matrix test`(testCase: Pair<Pair<Int, Array<IntArray>>, Int>) {
+        val (data, expected) = testCase
+        val (k, matrix) = data
         val actual = maxSumSubMatrix(matrix, k)
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

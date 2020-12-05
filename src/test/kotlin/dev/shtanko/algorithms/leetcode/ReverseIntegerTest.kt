@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ReverseIntegerTest {
+internal class ReverseIntegerTest {
 
     companion object {
         @JvmStatic
@@ -19,9 +19,9 @@ class ReverseIntegerTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `reversed number test`(testCase: Pair<Int, Int>) {
-        val actual = testCase.first.reversed()
-        val expected = testCase.second
+    internal fun `reversed number test`(testCase: Pair<Int, Int>) {
+        val (num, expected) = testCase
+        val actual = num.reversed()
         assertEquals(expected, actual)
     }
 }

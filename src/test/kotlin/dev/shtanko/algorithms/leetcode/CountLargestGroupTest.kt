@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class CountLargestGroupTest {
+internal class CountLargestGroupTest {
 
     companion object {
         @JvmStatic
@@ -20,9 +20,9 @@ class CountLargestGroupTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `count largest group test`(testCase: Pair<Int, Int>) {
-        val expected = testCase.first
-        val n = testCase.second
-        assertEquals(expected, n.countLargestGroup())
+    internal fun `count largest group test`(testCase: Pair<Int, Int>) {
+        val (expected, n) = testCase
+        val actual = n.countLargestGroup()
+        assertEquals(expected, actual)
     }
 }

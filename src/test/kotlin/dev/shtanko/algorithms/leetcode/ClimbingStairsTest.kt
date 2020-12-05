@@ -1,14 +1,14 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(private val strategy: T) {
+internal abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(private val strategy: T) {
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(1, 1),
@@ -29,16 +29,20 @@ abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(private val st
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `climb stairs test`(n: Int, expected: Int) {
+    internal fun `climb stairs test`(n: Int, expected: Int) {
         val actual = strategy.perform(n)
         assertEquals(expected, actual)
     }
 }
 
-class ClimbingStairsBruteForceTest : ClimbingStairsTest<ClimbingStairsBruteForce>(ClimbingStairsBruteForce())
-class ClimbingStairsRecursionMemoTest : ClimbingStairsTest<ClimbingStairsRecursionMemo>(ClimbingStairsRecursionMemo())
-class ClimbingStairsDPTest : ClimbingStairsTest<ClimbingStairsDP>(ClimbingStairsDP())
-class ClimbingStairsFibonacciTest : ClimbingStairsTest<ClimbingStairsFibonacci>(ClimbingStairsFibonacci())
-class ClimbingStairsBinetsMethodTest : ClimbingStairsTest<ClimbingStairsBinetsMethod>(ClimbingStairsBinetsMethod())
-class ClimbingStairsFibonacciFormulaTest :
+internal class ClimbingStairsBruteForceTest : ClimbingStairsTest<ClimbingStairsBruteForce>(ClimbingStairsBruteForce())
+internal class ClimbingStairsRecursionMemoTest :
+    ClimbingStairsTest<ClimbingStairsRecursionMemo>(ClimbingStairsRecursionMemo())
+
+internal class ClimbingStairsDPTest : ClimbingStairsTest<ClimbingStairsDP>(ClimbingStairsDP())
+internal class ClimbingStairsFibonacciTest : ClimbingStairsTest<ClimbingStairsFibonacci>(ClimbingStairsFibonacci())
+internal class ClimbingStairsBinetsMethodTest :
+    ClimbingStairsTest<ClimbingStairsBinetsMethod>(ClimbingStairsBinetsMethod())
+
+internal class ClimbingStairsFibonacciFormulaTest :
     ClimbingStairsTest<ClimbingStairsFibonacciFormula>(ClimbingStairsFibonacciFormula())

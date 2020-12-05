@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class ImplementTrieTest {
+internal class ImplementTrieTest {
 
     @Test
-    fun `trie test`() {
+    internal fun `trie test`() {
         val trie = TrieImpl()
         trie.insert("apple")
         assertTrue(trie.search("apple"))

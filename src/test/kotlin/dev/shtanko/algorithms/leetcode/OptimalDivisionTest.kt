@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class OptimalDivisionTest<out T : OptimalDivisionStrategy>(private val strategy: T) {
+internal abstract class OptimalDivisionTest<out T : OptimalDivisionStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -17,16 +17,17 @@ abstract class OptimalDivisionTest<out T : OptimalDivisionStrategy>(private val 
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `simple test`(testCase: Pair<IntArray, String>) {
-        val nums = testCase.first
-        val expected = testCase.second
+    internal fun `optimal division test`(testCase: Pair<IntArray, String>) {
+        val (nums, expected) = testCase
         val actual = strategy.perform(nums)
         assertEquals(expected, actual)
     }
 }
 
-class OptimalDivisionBruteForceTest : OptimalDivisionTest<OptimalDivisionBruteForce>(OptimalDivisionBruteForce())
+internal class OptimalDivisionBruteForceTest :
+    OptimalDivisionTest<OptimalDivisionBruteForce>(OptimalDivisionBruteForce())
 
-class OptimalDivisionMemorizationTest : OptimalDivisionTest<OptimalDivisionMemorization>(OptimalDivisionMemorization())
+internal class OptimalDivisionMemorizationTest :
+    OptimalDivisionTest<OptimalDivisionMemorization>(OptimalDivisionMemorization())
 
-class MathOptimalDivisionTest : OptimalDivisionTest<MathOptimalDivision>(MathOptimalDivision())
+internal class MathOptimalDivisionTest : OptimalDivisionTest<MathOptimalDivision>(MathOptimalDivision())

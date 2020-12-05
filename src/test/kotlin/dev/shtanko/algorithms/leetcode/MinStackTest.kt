@@ -3,10 +3,10 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MinStackTest {
+internal class MinStackTest {
 
     @Test
-    fun `min stack test`() {
+    internal fun `min stack test`() {
         val minStack = MinStack()
         minStack.push(-2)
         minStack.push(0)

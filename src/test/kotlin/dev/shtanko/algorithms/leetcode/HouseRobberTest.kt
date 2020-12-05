@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(private val strategy: T) {
+internal abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -21,18 +21,17 @@ abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(private val st
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `robber test`(testCase: Pair<IntArray, Int>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `robber test`(testCase: Pair<IntArray, Int>) {
+        val (arr, expected) = testCase
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-class RecursiveRobberTest : AbstractRobberTest<RecursiveRobber>(RecursiveRobber())
+internal class RecursiveRobberTest : AbstractRobberTest<RecursiveRobber>(RecursiveRobber())
 
-class RecursiveRobberMemoTest : AbstractRobberTest<RecursiveRobberMemo>(RecursiveRobberMemo())
+internal class RecursiveRobberMemoTest : AbstractRobberTest<RecursiveRobberMemo>(RecursiveRobberMemo())
 
-class IterativeRobberMemoTest : AbstractRobberTest<IterativeRobberMemo>(IterativeRobberMemo())
+internal class IterativeRobberMemoTest : AbstractRobberTest<IterativeRobberMemo>(IterativeRobberMemo())
 
-class IterativeRobberTest : AbstractRobberTest<IterativeRobber>(IterativeRobber())
+internal class IterativeRobberTest : AbstractRobberTest<IterativeRobber>(IterativeRobber())

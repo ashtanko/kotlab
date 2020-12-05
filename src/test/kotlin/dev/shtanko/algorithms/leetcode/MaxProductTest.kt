@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MaxProductTest {
+internal class MaxProductTest {
 
     companion object {
         @JvmStatic
@@ -23,9 +23,9 @@ class MaxProductTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `max product test`(testCase: Pair<Int, IntArray>) {
-        val arr = testCase.second
-        val expected = testCase.first
-        assertEquals(expected, arr.maxProduct())
+    internal fun `max product test`(testCase: Pair<Int, IntArray>) {
+        val (expected, arr) = testCase
+        val actual = arr.maxProduct()
+        assertEquals(expected, actual)
     }
 }

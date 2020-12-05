@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AbstractRotateArrayStrategyTest<out T : AbstractRotateArrayStrategy>(private val strategy: T) {
+internal abstract class AbstractRotateArrayStrategyTest<out T : AbstractRotateArrayStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -18,22 +18,22 @@ abstract class AbstractRotateArrayStrategyTest<out T : AbstractRotateArrayStrate
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `rotate array test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
-        val arr = testCase.first.first
-        val k = testCase.first.second
+    internal fun `rotate array test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
+        val (data, expected) = testCase
+        val (arr, k) = data
         strategy.perform(arr, k)
-        val expected = testCase.second
         assertArrayEquals(expected, arr)
     }
 }
 
-class RotateArrayBruteForceTest : AbstractRotateArrayStrategyTest<RotateArrayBruteForce>(RotateArrayBruteForce())
+internal class RotateArrayBruteForceTest :
+    AbstractRotateArrayStrategyTest<RotateArrayBruteForce>(RotateArrayBruteForce())
 
-class RotateArrayUsingExtraArrayTest :
+internal class RotateArrayUsingExtraArrayTest :
     AbstractRotateArrayStrategyTest<RotateArrayUsingExtraArray>(RotateArrayUsingExtraArray())
 
-class RotateArrayUsingCyclicReplacementsTest :
+internal class RotateArrayUsingCyclicReplacementsTest :
     AbstractRotateArrayStrategyTest<RotateArrayUsingCyclicReplacements>(RotateArrayUsingCyclicReplacements())
 
-class RotateArrayUsingReverseTest :
+internal class RotateArrayUsingReverseTest :
     AbstractRotateArrayStrategyTest<RotateArrayUsingReverse>(RotateArrayUsingReverse())

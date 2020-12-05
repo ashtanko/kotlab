@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val strategy: T) {
+internal abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val strategy: T) {
     companion object {
         @JvmStatic
         fun positiveCasesProvider(): List<Int> {
@@ -72,17 +72,17 @@ abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val strategy: 
 
     @ParameterizedTest
     @MethodSource("positiveCasesProvider")
-    fun `power of two test`(n: Int) {
+    internal fun `power of two test`(n: Int) {
         assertTrue(strategy.isPowerOfTwo(n))
     }
 
     @ParameterizedTest
     @MethodSource("negativeCasesProvider")
-    fun `not power of two test`(n: Int) {
+    internal fun `not power of two test`(n: Int) {
         assertFalse(strategy.isPowerOfTwo(n))
     }
 }
 
-class POTIterativeTest : PowerOfTwoTest<POTIterative>(POTIterative())
+internal class POTIterativeTest : PowerOfTwoTest<POTIterative>(POTIterative())
 
-class POTBitwiseTest : PowerOfTwoTest<POTBitwise>(POTBitwise())
+internal class POTBitwiseTest : PowerOfTwoTest<POTBitwise>(POTBitwise())

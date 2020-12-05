@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class PathSumTest<out T : PathSumStrategy>(private val strategy: T) {
+internal abstract class PathSumTest<out T : PathSumStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -31,18 +30,14 @@ abstract class PathSumTest<out T : PathSumStrategy>(private val strategy: T) {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `simple test`(testCase: Pair<Pair<TreeNode, Int>, Boolean>) {
-        val tree = testCase.first.first
-        val sum = testCase.first.second
+    internal fun `path sum test`(testCase: Pair<Pair<TreeNode, Int>, Boolean>) {
+        val (data, expected) = testCase
+        val (tree, sum) = data
         val actual = strategy.hasPathSum(tree, sum)
-        if (testCase.second) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }
 
-class PathSumRecursiveTest : PathSumTest<PathSumRecursive>(PathSumRecursive())
+internal class PathSumRecursiveTest : PathSumTest<PathSumRecursive>(PathSumRecursive())
 
-class PathSumStackTest : PathSumTest<PathSumStack>(PathSumStack())
+internal class PathSumStackTest : PathSumTest<PathSumStack>(PathSumStack())

@@ -1,10 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 internal abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStringFromBinaryTreeStrategy>(
     private val strategy: T
@@ -37,7 +37,7 @@ internal abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStrin
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `construct string from binary tree test`(tree: TreeNode, expected: String) {
+    internal fun `construct string from binary tree test`(tree: TreeNode, expected: String) {
         val actual = strategy.perform(tree)
         assertEquals(expected, actual)
     }

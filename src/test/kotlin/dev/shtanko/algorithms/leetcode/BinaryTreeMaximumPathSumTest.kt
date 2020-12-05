@@ -1,13 +1,13 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.leetcode.BinaryTreeMaximumPathSum.maxPathSum
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class BinaryTreeMaximumPathSumTest {
+internal class BinaryTreeMaximumPathSumTest {
 
     companion object {
 
@@ -38,7 +38,7 @@ class BinaryTreeMaximumPathSumTest {
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `binary tree maximum path test`(tree: TreeNode, expected: Int) {
+    internal fun `binary tree maximum path test`(tree: TreeNode, expected: Int) {
         val actual = tree.maxPathSum()
         assertEquals(expected, actual)
     }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 internal abstract class CombinationIteratorTest<out T : CombinationIterator>(private val iterator: T) {
 
     @Test
-    fun `combination iterator test`() {
+    internal fun `combination iterator test`() {
         assertEquals("ab", iterator.next())
         assertTrue(iterator.hasNext())
         assertEquals("ac", iterator.next())

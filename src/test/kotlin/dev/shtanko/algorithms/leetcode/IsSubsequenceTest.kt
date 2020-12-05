@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class IsSubsequenceTest {
+internal class IsSubsequenceTest {
 
     companion object {
 
@@ -17,9 +17,10 @@ class IsSubsequenceTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `is subsequence test`(testCase: Pair<Pair<String, String>, Boolean>) {
-        val expected = testCase.second
-        val actual = isSubsequence(testCase.first.first, testCase.first.second)
+    internal fun `is subsequence test`(testCase: Pair<Pair<String, String>, Boolean>) {
+        val (data, expected) = testCase
+        val (s, t) = data
+        val actual = isSubsequence(s, t)
         assertEquals(expected, actual)
     }
 }

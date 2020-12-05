@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class ReduceArraySizeToTheHalfTest<out T : MinSetSizeStrategy>(private val strategy: T) {
+internal abstract class ReduceArraySizeToTheHalfTest<out T : MinSetSizeStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -21,14 +21,14 @@ abstract class ReduceArraySizeToTheHalfTest<out T : MinSetSizeStrategy>(private 
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<IntArray, Int>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `simple test`(testCase: Pair<IntArray, Int>) {
+        val (arr, expected) = testCase
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-class MinSetSizeHashMapTest : ReduceArraySizeToTheHalfTest<MinSetSizeHashMap>(MinSetSizeHashMap())
+internal class MinSetSizeHashMapTest : ReduceArraySizeToTheHalfTest<MinSetSizeHashMap>(MinSetSizeHashMap())
 
-class MinSetSizePriorityQueueTest : ReduceArraySizeToTheHalfTest<MinSetSizePriorityQueue>(MinSetSizePriorityQueue())
+internal class MinSetSizePriorityQueueTest :
+    ReduceArraySizeToTheHalfTest<MinSetSizePriorityQueue>(MinSetSizePriorityQueue())

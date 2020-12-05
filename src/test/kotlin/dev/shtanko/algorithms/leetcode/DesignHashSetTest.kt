@@ -4,10 +4,10 @@ import org.junit.Assert.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class DesignHashSetTest {
+internal class DesignHashSetTest {
 
     @Test
-    fun `hash set test`() {
+    internal fun `hash set test`() {
         val hashSet: DesignHashSet = DesignHashSetImpl()
         hashSet.add(1)
         hashSet.add(2)

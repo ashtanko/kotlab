@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class PalindromeNumberTest {
+internal class PalindromeNumberTest {
 
     companion object {
         @JvmStatic
@@ -23,12 +22,9 @@ class PalindromeNumberTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `is number palindrome test`(testCase: Pair<Int, Boolean>) {
-        val actual = testCase.first.isPalindrome()
-        if (testCase.second) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `is number palindrome test`(testCase: Pair<Int, Boolean>) {
+        val (num, expected) = testCase
+        val actual = num.isPalindrome()
+        assertEquals(expected, actual)
     }
 }

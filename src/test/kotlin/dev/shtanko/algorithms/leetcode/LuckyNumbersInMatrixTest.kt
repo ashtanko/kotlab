@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AbstractLuckyNumbersStrategyTest<out T : AbstractLuckyNumbersStrategy>(private val strategy: T) {
+internal abstract class AbstractLuckyNumbersStrategyTest<out T : AbstractLuckyNumbersStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -30,13 +30,12 @@ abstract class AbstractLuckyNumbersStrategyTest<out T : AbstractLuckyNumbersStra
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Array<IntArray>, List<Int>>) {
-        val matrix = testCase.first
-        val expected = testCase.second
+    internal fun `simple test`(testCase: Pair<Array<IntArray>, List<Int>>) {
+        val (matrix, expected) = testCase
         assertEquals(expected, strategy.perform(matrix))
     }
 }
 
-class LuckyNumbersTest : AbstractLuckyNumbersStrategyTest<LuckyNumbers>(LuckyNumbers())
+internal class LuckyNumbersTest : AbstractLuckyNumbersStrategyTest<LuckyNumbers>(LuckyNumbers())
 
-class LuckyNumbersSetTest : AbstractLuckyNumbersStrategyTest<LuckyNumbersSet>(LuckyNumbersSet())
+internal class LuckyNumbersSetTest : AbstractLuckyNumbersStrategyTest<LuckyNumbersSet>(LuckyNumbersSet())

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class SearchInsertPosition {
+internal class SearchInsertPosition {
 
     companion object {
         @JvmStatic
@@ -21,7 +21,7 @@ class SearchInsertPosition {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `search insert position test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
+    internal fun `search insert position test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
         val arr = testCase.first.first
         val target = testCase.first.second
         val expected = testCase.second

@@ -1,16 +1,15 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-data class BuddyStringsTestCase(
-    val pair: Pair<String, String>,
-    val assertMethod: Boolean
+internal data class BuddyStringsTestCase(
+    val buddyString: Pair<String, String>,
+    val expected: Boolean
 )
 
-class BuddyStringsTest {
+internal class BuddyStringsTest {
 
     companion object {
         @JvmStatic
@@ -27,12 +26,8 @@ class BuddyStringsTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `buddy strings test`(testCase: BuddyStringsTestCase) {
-        val actual = testCase.pair.buddyStrings()
-        if (testCase.assertMethod) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `buddy strings test`(testCase: BuddyStringsTestCase) {
+        val actual = testCase.buddyString.buddyStrings()
+        assertEquals(testCase.expected, actual)
     }
 }

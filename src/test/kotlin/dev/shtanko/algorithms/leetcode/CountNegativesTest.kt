@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AbstractCountNegativesTest<out T : AbstractCountNegativesStrategy>(private val strategy: T) {
+internal abstract class AbstractCountNegativesTest<out T : AbstractCountNegativesStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -33,16 +33,16 @@ abstract class AbstractCountNegativesTest<out T : AbstractCountNegativesStrategy
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `count negatives test`(testCase: Pair<Int, Array<IntArray>>) {
-        val grid = testCase.second
-        val expected = testCase.first
+    internal fun `count negatives test`(testCase: Pair<Int, Array<IntArray>>) {
+        val (expected, grid) = testCase
         val actual = strategy.perform(grid)
         assertEquals(expected, actual)
     }
 }
 
-class SimpleCountNegativesTest : AbstractCountNegativesTest<SimpleCountNegatives>(SimpleCountNegatives())
+internal class SimpleCountNegativesTest : AbstractCountNegativesTest<SimpleCountNegatives>(SimpleCountNegatives())
 
-class CountNegativesTwoPointersTest : AbstractCountNegativesTest<CountNegativesTwoPointers>(CountNegativesTwoPointers())
+internal class CountNegativesTwoPointersTest :
+    AbstractCountNegativesTest<CountNegativesTwoPointers>(CountNegativesTwoPointers())
 
-class CountNegativesBinaryTest : AbstractCountNegativesTest<CountNegativesBinary>(CountNegativesBinary())
+internal class CountNegativesBinaryTest : AbstractCountNegativesTest<CountNegativesBinary>(CountNegativesBinary())

@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class CountGoodNodesInBinaryTreeTest {
+internal class CountGoodNodesInBinaryTreeTest {
 
     companion object {
         @JvmStatic
@@ -18,7 +18,7 @@ class CountGoodNodesInBinaryTreeTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `count good nodes in binary tree test`(tree: TreeNode, expected: Int) {
+    internal fun `count good nodes in binary tree test`(tree: TreeNode, expected: Int) {
         val actual = CountGoodNodesInBinaryTree().goodNodes(tree)
         assertEquals(expected, actual)
     }

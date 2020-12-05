@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class DecompressRLEListTest {
+internal class DecompressRLEListTest {
 
     companion object {
         @JvmStatic
@@ -18,10 +18,9 @@ class DecompressRLEListTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `decompress RLE list test`(testCase: Pair<IntArray, IntArray>) {
-        val arr = testCase.first
+    internal fun `decompress RLE list test`(testCase: Pair<IntArray, IntArray>) {
+        val (arr, expected) = testCase
         val actual = arr.decompressRLEList()
-        val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
 }

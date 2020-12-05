@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class NextPermutationTest {
+internal class NextPermutationTest {
 
     companion object {
         @JvmStatic
@@ -20,9 +20,8 @@ class NextPermutationTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `simple test`(testCase: Pair<IntArray, IntArray>) {
-        val arr = testCase.second
-        val expected = testCase.first
+    internal fun `next permutation test`(testCase: Pair<IntArray, IntArray>) {
+        val (expected, arr) = testCase
         arr.nextPermutation()
         assertArrayEquals(expected, arr)
     }

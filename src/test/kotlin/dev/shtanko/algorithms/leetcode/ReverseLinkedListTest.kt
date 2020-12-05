@@ -6,10 +6,10 @@ import dev.shtanko.algorithms.leetcode.ReverseLinkedList.reverseListRecursive
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class ReverseLinkedListTest {
+internal class ReverseLinkedListTest {
 
     @Test
-    fun `iterative test`() {
+    internal fun `iterative test`() {
         val list = ListNode(1).apply {
             next = ListNode(2).apply {
                 next = ListNode(3).apply {
@@ -34,7 +34,7 @@ class ReverseLinkedListTest {
     }
 
     @Test
-    fun `recursive test`() {
+    internal fun `recursive test`() {
         val list = ListNode(1).apply {
             next = ListNode(2).apply {
                 next = ListNode(3).apply {
