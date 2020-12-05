@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
+internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -19,15 +19,14 @@ abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `two sum test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
-        val array = testCase.first.first
-        val target = testCase.first.second
+    internal fun `two sum test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
+        val (data, expected) = testCase
+        val (array, target) = data
         val actual = strategy.perform(array, target)
-        val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
 }
 
-class TwoSumBruteForceTest : TwoSumTest<TwoSumBruteForce>(TwoSumBruteForce())
-class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumTwoPassHashTable>(TwoSumTwoPassHashTable())
-class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumOnePassHashTable>(TwoSumOnePassHashTable())
+internal class TwoSumBruteForceTest : TwoSumTest<TwoSumBruteForce>(TwoSumBruteForce())
+internal class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumTwoPassHashTable>(TwoSumTwoPassHashTable())
+internal class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumOnePassHashTable>(TwoSumOnePassHashTable())

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class SummaryRangesTest {
+internal class SummaryRangesTest {
 
     companion object {
         @JvmStatic
@@ -18,9 +18,8 @@ class SummaryRangesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `summary ranges test`(testCase: Pair<IntArray, List<String>>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `summary ranges test`(testCase: Pair<IntArray, List<String>>) {
+        val (arr, expected) = testCase
         val summaryRanges = arr.summaryRanges()
         assertEquals(expected, summaryRanges)
     }

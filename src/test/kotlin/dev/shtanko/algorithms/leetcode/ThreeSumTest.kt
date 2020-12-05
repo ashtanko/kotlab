@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ThreeSumTest {
+internal class ThreeSumTest {
 
     companion object {
         @JvmStatic
@@ -21,10 +21,9 @@ class ThreeSumTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `three sum test`(testCase: Pair<IntArray, List<List<Int>>>) {
-        val array = testCase.first
+    internal fun `three sum test`(testCase: Pair<IntArray, List<List<Int>>>) {
+        val (array, expected) = testCase
         val actual = array.threeSum()
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

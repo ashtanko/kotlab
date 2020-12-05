@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ShortestSubArrayTest {
+internal class ShortestSubArrayTest {
 
     companion object {
         @JvmStatic
@@ -19,9 +19,10 @@ class ShortestSubArrayTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `shortest sub array test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
-        val expected = testCase.second
-        val actual = shortestSubarray(testCase.first.first, testCase.first.second)
+    internal fun `shortest sub array test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
+        val (data, expected) = testCase
+        val (a, k) = data
+        val actual = shortestSubarray(a, k)
         assertEquals(expected, actual)
     }
 }

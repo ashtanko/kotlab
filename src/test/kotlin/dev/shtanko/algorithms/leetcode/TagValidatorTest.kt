@@ -8,9 +8,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class TagValidatorTest<out T : TagValidatorStrategy>(private val strategy: T) {
+internal abstract class TagValidatorTest<out T : TagValidatorStrategy>(private val strategy: T) {
 
-    class InputArgumentsProvider : ArgumentsProvider {
+    internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("<DIV>This is the first line <![CDATA[<div>]]></DIV>", true),
             Arguments.of("<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>", true),
@@ -25,12 +25,12 @@ abstract class TagValidatorTest<out T : TagValidatorStrategy>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `tag validator test`(str: String, expected: Boolean) {
+    internal fun `tag validator test`(str: String, expected: Boolean) {
         val actual = strategy.perform(str)
         assertEquals(expected, actual)
     }
 }
 
-class TagValidatorStackTest : TagValidatorTest<TagValidatorStack>(TagValidatorStack())
+internal class TagValidatorStackTest : TagValidatorTest<TagValidatorStack>(TagValidatorStack())
 
-class TagValidatorRegexTest : TagValidatorTest<TagValidatorRegex>(TagValidatorRegex())
+internal class TagValidatorRegexTest : TagValidatorTest<TagValidatorRegex>(TagValidatorRegex())

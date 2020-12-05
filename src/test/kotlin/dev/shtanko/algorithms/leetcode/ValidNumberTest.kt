@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ValidNumberTest {
+internal class ValidNumberTest {
 
     companion object {
         @JvmStatic
@@ -32,23 +31,17 @@ class ValidNumberTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `is number using regex test`(testCase: Pair<Boolean, String>) {
-        val actual = testCase.second.isNumberRegex()
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `is number using regex test`(testCase: Pair<Boolean, String>) {
+        val (expected, str) = testCase
+        val actual = str.isNumberRegex()
+        assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `is number test`(testCase: Pair<Boolean, String>) {
-        val actual = testCase.second.isNumber()
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `is number test`(testCase: Pair<Boolean, String>) {
+        val (expected, str) = testCase
+        val actual = str.isNumber()
+        assertEquals(expected, actual)
     }
 }

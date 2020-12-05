@@ -1,7 +1,6 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
@@ -33,14 +32,10 @@ internal abstract class UnivaluedBinaryTreeStrategyTest<out T : UnivaluedBinaryT
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `univalued binary tree test`(testCase: Pair<Boolean, TreeNode>) {
-        val tree = testCase.second
+    internal fun `univalued binary tree test`(testCase: Pair<Boolean, TreeNode>) {
+        val (expected, tree) = testCase
         val actual = strategy.perform(tree)
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }
 

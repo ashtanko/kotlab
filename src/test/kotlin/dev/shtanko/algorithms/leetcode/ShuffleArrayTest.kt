@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ShuffleArrayTest {
+internal class ShuffleArrayTest {
 
     companion object {
         @JvmStatic
@@ -19,10 +19,9 @@ class ShuffleArrayTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `shuffle test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
-        val arr = testCase.first.first
-        val n = testCase.first.second
-        val expected = testCase.second
+    internal fun `shuffle test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
+        val (data, expected) = testCase
+        val (arr, n) = data
         val actual = arr.shuffle(n)
         assertArrayEquals(expected, actual)
     }

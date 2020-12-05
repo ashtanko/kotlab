@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class SmallestRangeITest {
+internal class SmallestRangeITest {
 
     companion object {
         @JvmStatic
@@ -19,9 +19,9 @@ class SmallestRangeITest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
-        val expected = testCase.second
-        val actual = testCase.first.smallestRangeI()
+    internal fun `smallest range I test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
+        val (data, expected) = testCase
+        val actual = data.smallestRangeI()
         assertEquals(expected, actual)
     }
 }

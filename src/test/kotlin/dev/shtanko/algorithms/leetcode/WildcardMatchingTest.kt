@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class WildcardMatchingTest {
+internal class WildcardMatchingTest {
 
     companion object {
         @JvmStatic
@@ -22,12 +21,9 @@ class WildcardMatchingTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
-        val actual = testCase.first.isMatch()
-        if (testCase.second) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
+        val (pair, expected) = testCase
+        val actual = pair.isMatch()
+        assertEquals(expected, actual)
     }
 }

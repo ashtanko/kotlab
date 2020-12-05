@@ -1,12 +1,11 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import java.util.TreeMap
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.TreeMap
 
-class ValidParenthesesTest {
+internal class ValidParenthesesTest {
 
     companion object {
         @JvmStatic
@@ -23,25 +22,17 @@ class ValidParenthesesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `is valid parentheses test`(testCase: Pair<Boolean, String>) {
-        val actual = testCase.second.isValidParentheses()
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `is valid parentheses test`(testCase: Pair<Boolean, String>) {
+        val (expected, str) = testCase
+        val actual = str.isValidParentheses()
+        assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `is valid parentheses mapping test`(testCase: Pair<Boolean, String>) {
-        val s = testCase.second
+    internal fun `is valid parentheses mapping test`(testCase: Pair<Boolean, String>) {
+        val (expected, s) = testCase
         val actual = ValidParentheses(TreeMap()).perform(s)
-
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class TheKWeakestRowsInMatrixTest {
+internal class TheKWeakestRowsInMatrixTest {
 
     companion object {
         @JvmStatic
@@ -29,11 +29,10 @@ class TheKWeakestRowsInMatrixTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `kWeakest rows test`(testCase: Pair<Pair<Array<IntArray>, Int>, IntArray>) {
-        val matrix = testCase.first.first
-        val k = testCase.first.second
+    internal fun `kWeakest rows test`(testCase: Pair<Pair<Array<IntArray>, Int>, IntArray>) {
+        val (pair, expected) = testCase
+        val (matrix, k) = pair
         val data = matrix to k
-        val expected = testCase.second
         val actual = data.kWeakestRows()
         assertArrayEquals(expected, actual)
     }

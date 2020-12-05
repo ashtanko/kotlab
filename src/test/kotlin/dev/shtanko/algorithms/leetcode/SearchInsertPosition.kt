@@ -22,9 +22,8 @@ internal class SearchInsertPosition {
     @ParameterizedTest
     @MethodSource("dataProvider")
     internal fun `search insert position test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
-        val arr = testCase.first.first
-        val target = testCase.first.second
-        val expected = testCase.second
+        val (data, expected) = testCase
+        val (arr, target) = data
         val actual = arr.searchInsertPosition(target)
         assertEquals(expected, actual)
     }

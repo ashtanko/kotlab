@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class UncrossedLinesTest {
+internal class UncrossedLinesTest {
 
     companion object {
         @JvmStatic
@@ -19,10 +19,9 @@ class UncrossedLinesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `max uncrossed lines test`(testCase: Pair<Pair<IntArray, IntArray>, Int>) {
-        val numbers = testCase.first
+    internal fun `max uncrossed lines test`(testCase: Pair<Pair<IntArray, IntArray>, Int>) {
+        val (numbers, expected) = testCase
         val actual = numbers.maxUncrossedLines()
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

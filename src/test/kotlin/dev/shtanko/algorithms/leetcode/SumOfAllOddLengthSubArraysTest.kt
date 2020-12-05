@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArraysStrategy>(private val strategy: T) {
+internal abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArraysStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -20,11 +20,11 @@ abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArrays
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(arr: IntArray, expected: Int) {
+    internal fun `sum of all odd length sub arrays test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-class SumOfAllOddLengthSubArraysSFTest :
+internal class SumOfAllOddLengthSubArraysSFTest :
     SumOfAllOddLengthSubArraysTest<SumOfAllOddLengthSubArraysSF>(SumOfAllOddLengthSubArraysSF())

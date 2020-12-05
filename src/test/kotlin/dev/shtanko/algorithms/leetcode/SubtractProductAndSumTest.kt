@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class SubtractProductAndSumTest {
+internal class SubtractProductAndSumTest {
 
     companion object {
         @JvmStatic
@@ -18,10 +18,9 @@ class SubtractProductAndSumTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `subtract product and sum test`(testCase: Pair<Int, Int>) {
-        val n = testCase.first
+    internal fun `subtract product and sum test`(testCase: Pair<Int, Int>) {
+        val (n, expected) = testCase
         val actual = n.subtractProductAndSum()
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

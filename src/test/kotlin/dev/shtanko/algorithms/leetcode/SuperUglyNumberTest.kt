@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class SuperUglyNumberTest<out T : SuperUglyNumberStrategy>(private val strategy: T) {
+internal abstract class SuperUglyNumberTest<out T : SuperUglyNumberStrategy>(private val strategy: T) {
     companion object {
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<Int, IntArray>, Int>> {
@@ -16,19 +16,18 @@ abstract class SuperUglyNumberTest<out T : SuperUglyNumberStrategy>(private val 
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `super ugly number test`(testCase: Pair<Pair<Int, IntArray>, Int>) {
-        val n = testCase.first.first
-        val primes = testCase.first.second
-        val expected = testCase.second
+    internal fun `super ugly number test`(testCase: Pair<Pair<Int, IntArray>, Int>) {
+        val (data, expected) = testCase
+        val (n, primes) = data
         val actual = strategy.perform(n, primes)
         assertEquals(expected, actual)
     }
 }
 
-class SuperUglyNumberCommonTest : SuperUglyNumberTest<SuperUglyNumberCommon>(SuperUglyNumberCommon())
+internal class SuperUglyNumberCommonTest : SuperUglyNumberTest<SuperUglyNumberCommon>(SuperUglyNumberCommon())
 
-class SuperUglyNumberRedundantMultiplicationTest :
+internal class SuperUglyNumberRedundantMultiplicationTest :
     SuperUglyNumberTest<SuperUglyNumberRedundantMultiplication>(SuperUglyNumberRedundantMultiplication())
 
-class SuperUglyNumberHeapTest :
+internal class SuperUglyNumberHeapTest :
     SuperUglyNumberTest<SuperUglyNumberHeap>(SuperUglyNumberHeap())

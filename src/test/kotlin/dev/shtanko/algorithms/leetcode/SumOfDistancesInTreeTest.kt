@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class SumOfDistancesInTreeTest {
+internal class SumOfDistancesInTreeTest {
     companion object {
         @JvmStatic
         fun dataProvider(): Stream<Arguments?> = Stream.of(
@@ -32,7 +32,7 @@ class SumOfDistancesInTreeTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `sum of distances in tree test`(n: Int, edges: Array<IntArray>, expected: IntArray) {
+    internal fun `sum of distances in tree test`(n: Int, edges: Array<IntArray>, expected: IntArray) {
         val actual = SumOfDistancesInTree().perform(n, edges)
         assertArrayEquals(expected, actual)
     }

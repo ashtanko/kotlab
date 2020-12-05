@@ -20,9 +20,10 @@ class XOROperationTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<Int, Int>, Int>) {
-        val expected = testCase.second
-        val actual = testCase.first.first.xorOperation(testCase.first.second)
+    fun `XOR operation test`(testCase: Pair<Pair<Int, Int>, Int>) {
+        val (data, expected) = testCase
+        val (n, start) = data
+        val actual = n.xorOperation(start)
         assertEquals(expected, actual)
     }
 }

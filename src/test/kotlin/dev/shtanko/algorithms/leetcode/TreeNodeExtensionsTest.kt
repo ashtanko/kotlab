@@ -1,12 +1,31 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-class TreeNodeExtensionsTest {
+internal class TreeNodeExtensionsTest {
+
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(),
+                listOf<Int>()
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7),
+                listOf(1, 2, 3, 4, 5, 6, 7)
+            )
+        )
+    }
 
     @Test
-    fun `insert level order test`() {
+    internal fun `insert level order test`() {
         val arr = intArrayOf(1, 2, 3, 4, 5, 6, 7)
         val tree: TreeNode? = null
         val root = insertLevelOrder(tree, arr, 0)
@@ -26,10 +45,11 @@ class TreeNodeExtensionsTest {
         assertEquals(7, root?.right?.right?.value)
     }
 
-    @Test
-    fun `array to tree test`() {
-        val arr = intArrayOf(1, 2, 3, 4, 5, 6, 7)
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `array to tree test`(arr: IntArray, expected: List<Int>) {
         val tree = arr.toTree()
-        println(tree.levelOrder().flatten())
+        val actual = tree.levelOrder().flatten()
+        assertEquals(expected, actual)
     }
 }

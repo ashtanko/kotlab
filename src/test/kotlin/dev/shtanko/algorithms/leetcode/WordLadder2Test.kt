@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AbstractWordLadder2StrategyTest<out T : AbstractWordLadder2Strategy>(private val strategy: T) {
+internal abstract class AbstractWordLadder2StrategyTest<out T : AbstractWordLadder2Strategy>(private val strategy: T) {
 
     data class WordLadderTestCase(
         val beginWord: String,
@@ -38,14 +38,11 @@ abstract class AbstractWordLadder2StrategyTest<out T : AbstractWordLadder2Strate
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `word ladder 2 test`(testCase: WordLadderTestCase) {
-        val beginWord = testCase.beginWord
-        val endWord = testCase.endWord
-        val wordList = testCase.wordList
-        val expected = testCase.output
+    internal fun `word ladder 2 test`(testCase: WordLadderTestCase) {
+        val (beginWord, endWord, wordList, expected) = testCase
         val actual = strategy.perform(beginWord, endWord, wordList)
         assertEquals(expected, actual)
     }
 }
 
-class WordLadder2Test : AbstractWordLadder2StrategyTest<WordLadder2>(WordLadder2())
+internal class WordLadder2Test : AbstractWordLadder2StrategyTest<WordLadder2>(WordLadder2())
