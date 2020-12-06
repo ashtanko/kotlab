@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MedianOfTwoSortedArraysTest {
+internal class MedianOfTwoSortedArraysTest {
 
     companion object {
         @JvmStatic
@@ -18,9 +18,8 @@ class MedianOfTwoSortedArraysTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `simple test`(testCase: Pair<Double, Pair<IntArray, IntArray>>) {
-        val pair = testCase.second
-        val expected = testCase.first
+    internal fun `median of two sorted arrays test`(testCase: Pair<Double, Pair<IntArray, IntArray>>) {
+        val (expected, pair) = testCase
         val median = pair.findMedianSortedArrays()
         assertEquals(expected, median)
     }

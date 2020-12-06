@@ -1,16 +1,16 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-class SimilarStringGroupsTest {
+internal class SimilarStringGroupsTest {
 
-    class InputArgumentsProvider : ArgumentsProvider {
+    internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf("tars", "rats", "arts", "star"), 2),
             Arguments.of(arrayOf("omv", "ovm"), 1)
@@ -19,7 +19,7 @@ class SimilarStringGroupsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num similar groups test`(strings: Array<String>, expected: Int) {
+    internal fun `num similar groups test`(strings: Array<String>, expected: Int) {
         val actual = SimilarStringGroups().perform(strings)
         assertEquals(expected, actual)
     }

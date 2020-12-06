@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class DefangingIPAddressTest {
+internal class DefangingIPAddressTest {
 
     companion object {
         @JvmStatic
@@ -18,18 +18,16 @@ class DefangingIPAddressTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `defang IP address naive test`(testCase: Pair<String, String>) {
-        val address = testCase.first
-        val expected = testCase.second
+    internal fun `defang IP address naive test`(testCase: Pair<String, String>) {
+        val (address, expected) = testCase
         val actual = address.defangIPaddrNaive()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `defang IP address test`(testCase: Pair<String, String>) {
-        val address = testCase.first
-        val expected = testCase.second
+    internal fun `defang IP address test`(testCase: Pair<String, String>) {
+        val (address, expected) = testCase
         val actual = address.defangIPaddr()
         assertEquals(expected, actual)
     }

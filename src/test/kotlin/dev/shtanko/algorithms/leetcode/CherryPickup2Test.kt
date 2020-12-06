@@ -1,14 +1,14 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private val strategy: T) {
+internal abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private val strategy: T) {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -26,12 +26,12 @@ abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private val stra
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `cherry pickup test`(grid: Array<IntArray>, expected: Int) {
+    internal fun `cherry pickup test`(grid: Array<IntArray>, expected: Int) {
         val actual = strategy.perform(grid)
         assertEquals(expected, actual)
     }
 }
 
-class CherryPickup2DPTopDownTest : CherryPickup2Test<CherryPickup2DPTopDown>(CherryPickup2DPTopDown())
+internal class CherryPickup2DPTopDownTest : CherryPickup2Test<CherryPickup2DPTopDown>(CherryPickup2DPTopDown())
 
-class CherryPickup2DPBottomUpTest : CherryPickup2Test<CherryPickup2DPBottomUp>(CherryPickup2DPBottomUp())
+internal class CherryPickup2DPBottomUpTest : CherryPickup2Test<CherryPickup2DPBottomUp>(CherryPickup2DPBottomUp())

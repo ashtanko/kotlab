@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class NumberOfStepsTest<out T : NumberOfStepsStrategy>(private val strategy: T) {
+internal abstract class NumberOfStepsTest<out T : NumberOfStepsStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -19,12 +19,14 @@ abstract class NumberOfStepsTest<out T : NumberOfStepsStrategy>(private val stra
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Int, Int>) {
-        val expected = testCase.second
-        val actual = strategy.perform(testCase.first)
+    internal fun `number of steps test`(testCase: Pair<Int, Int>) {
+        val (n, expected) = testCase
+        val actual = strategy.perform(n)
         assertEquals(expected, actual)
     }
 }
 
-class NumberOfStepsStraightForwardTest : NumberOfStepsTest<NumberOfStepsStraightForward>(NumberOfStepsStraightForward())
-class NumberOfStepsBinaryTest : NumberOfStepsTest<NumberOfStepsBinary>(NumberOfStepsBinary())
+internal class NumberOfStepsStraightForwardTest :
+    NumberOfStepsTest<NumberOfStepsStraightForward>(NumberOfStepsStraightForward())
+
+internal class NumberOfStepsBinaryTest : NumberOfStepsTest<NumberOfStepsBinary>(NumberOfStepsBinary())

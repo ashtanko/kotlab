@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class KidsWithCandiesTest<out T : KidsWithCandiesStrategy>(private val strategy: T) {
+internal abstract class KidsWithCandiesTest<out T : KidsWithCandiesStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -19,16 +19,15 @@ abstract class KidsWithCandiesTest<out T : KidsWithCandiesStrategy>(private val 
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<IntArray, Int>, BooleanArray>) {
-        val candies = testCase.first.first
-        val extraCandies = testCase.first.second
+    internal fun `kids with candies test`(testCase: Pair<Pair<IntArray, Int>, BooleanArray>) {
+        val (data, expected) = testCase
+        val (candies, extraCandies) = data
         val actual = strategy.perform(candies, extraCandies)
-        val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
 }
 
-class KidsWithCandiesStraightForwardTest :
+internal class KidsWithCandiesStraightForwardTest :
     KidsWithCandiesTest<KidsWithCandiesStraightForward>(KidsWithCandiesStraightForward())
 
-class KidsWithCandiesStreamTest : KidsWithCandiesTest<KidsWithCandiesStream>(KidsWithCandiesStream())
+internal class KidsWithCandiesStreamTest : KidsWithCandiesTest<KidsWithCandiesStream>(KidsWithCandiesStream())

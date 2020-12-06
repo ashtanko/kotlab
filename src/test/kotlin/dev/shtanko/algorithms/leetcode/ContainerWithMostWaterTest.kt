@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWithMostWaterStrategy>(private val strategy: T) {
+internal abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWithMostWaterStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -31,8 +31,8 @@ abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWithMostWater
     }
 }
 
-class ContainerWithMostWaterBruteForceTest :
+internal class ContainerWithMostWaterBruteForceTest :
     ContainerWithMostWaterStrategyTest<ContainerWithMostWaterBruteForce>(ContainerWithMostWaterBruteForce())
 
-class ContainerWithMostWaterTwoPointerTest :
+internal class ContainerWithMostWaterTwoPointerTest :
     ContainerWithMostWaterStrategyTest<ContainerWithMostWaterTwoPointer>(ContainerWithMostWaterTwoPointer())

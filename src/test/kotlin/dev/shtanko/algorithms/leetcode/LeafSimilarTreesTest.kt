@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class LeafSimilarTreesTest {
+internal class LeafSimilarTreesTest {
 
     companion object {
         @JvmStatic
@@ -56,13 +55,10 @@ class LeafSimilarTreesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<TreeNode, TreeNode>, Boolean>) {
-        val root1 = testCase.first.first
-        val root2 = testCase.first.second
-        if (testCase.second) {
-            assertTrue(leafSimilar(root1, root2))
-        } else {
-            assertFalse(leafSimilar(root1, root2))
-        }
+    internal fun `leaf similar trees test`(testCase: Pair<Pair<TreeNode, TreeNode>, Boolean>) {
+        val (data, expected) = testCase
+        val (root1, root2) = data
+        val actual = leafSimilar(root1, root2)
+        assertEquals(expected, actual)
     }
 }

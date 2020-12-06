@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class SubdomainVisitCountTest {
+internal class SubdomainVisitCountTest {
 
     companion object {
         @JvmStatic
@@ -33,9 +33,8 @@ class SubdomainVisitCountTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `subdomain visits test`(testCase: Pair<Array<String>, List<String>>) {
-        val cpDomains = testCase.first
-        val expected = testCase.second
+    internal fun `subdomain visits test`(testCase: Pair<Array<String>, List<String>>) {
+        val (cpDomains, expected) = testCase
         val actual = cpDomains.subdomainVisits()
         assertEquals(expected, actual)
         assertTrue(assertListEquals(expected, actual))

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class NQueensIITest<out T : TotalNQueensStrategy>(private val strategy: T) {
+internal abstract class NQueensIITest<out T : TotalNQueensStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -17,12 +17,14 @@ abstract class NQueensIITest<out T : TotalNQueensStrategy>(private val strategy:
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Int, Int>) {
-        val actual = strategy.perform(testCase.first)
-        val expected = testCase.second
+    internal fun `n queens 2 test`(testCase: Pair<Int, Int>) {
+        val (n, expected) = testCase
+        val actual = strategy.perform(n)
         assertEquals(expected, actual)
     }
 }
 
-class TotalNQueensStraightForwardTest : NQueensIITest<TotalNQueensStraightForward>(TotalNQueensStraightForward())
-class TotalNQueensRecursiveTest : NQueensIITest<TotalNQueensRecursive>(TotalNQueensRecursive())
+internal class TotalNQueensStraightForwardTest :
+    NQueensIITest<TotalNQueensStraightForward>(TotalNQueensStraightForward())
+
+internal class TotalNQueensRecursiveTest : NQueensIITest<TotalNQueensRecursive>(TotalNQueensRecursive())

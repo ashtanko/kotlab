@@ -19,7 +19,7 @@ class FindNearestRightNodeTwoQueues : FindNearestRightNodeStrategy {
         nextLevel.offer(root)
 
         var currLevel: ArrayDeque<TreeNode>
-        var node: TreeNode? = null
+        var node: TreeNode?
         while (!nextLevel.isEmpty()) {
             // prepare for the next level
             currLevel = nextLevel.clone()

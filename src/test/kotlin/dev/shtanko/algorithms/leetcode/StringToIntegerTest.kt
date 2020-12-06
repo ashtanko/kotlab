@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class StringToIntegerTest {
+internal class StringToIntegerTest {
 
     companion object {
         @JvmStatic
@@ -21,10 +21,9 @@ class StringToIntegerTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `string to int test`(testCase: Pair<String, Int>) {
-        val str = testCase.first
+    internal fun `string to int test`(testCase: Pair<String, Int>) {
+        val (str, expected) = testCase
         val actual = str.atoi()
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

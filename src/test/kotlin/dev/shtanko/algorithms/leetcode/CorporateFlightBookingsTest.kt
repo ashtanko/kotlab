@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class CorporateFlightBookingsTest {
+internal class CorporateFlightBookingsTest {
 
     companion object {
 
@@ -28,7 +28,7 @@ class CorporateFlightBookingsTest {
 
     @ParameterizedTest
     @MethodSource("provideDataFlights")
-    fun `simple test`(bookings: Array<IntArray>, n: Int, expected: IntArray) {
+    internal fun `simple test`(bookings: Array<IntArray>, n: Int, expected: IntArray) {
         val actual = corpFlightBookings(bookings, n)
         assertArrayEquals(expected, actual)
     }

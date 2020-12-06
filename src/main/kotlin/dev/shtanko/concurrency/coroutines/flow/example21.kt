@@ -1,5 +1,6 @@
 package dev.shtanko.concurrency.coroutines.flow
 
+import java.lang.System.currentTimeMillis
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
@@ -7,7 +8,6 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.runBlocking
-import java.lang.System.currentTimeMillis
 
 private const val DELAY = 300L
 private const val PROCESSING_DELAY = 400L

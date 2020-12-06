@@ -1,13 +1,13 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.randomString
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class FindCommonCharactersTest {
+internal class FindCommonCharactersTest {
 
     companion object {
 
@@ -31,7 +31,7 @@ class FindCommonCharactersTest {
 
     @ParameterizedTest
     @MethodSource("provideChars")
-    fun `common chars test`(arr: Array<String>, expected: List<String>) {
+    internal fun `common chars test`(arr: Array<String>, expected: List<String>) {
         val actual = arr.commonChars()
         assertEquals(expected, actual)
     }

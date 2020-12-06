@@ -1,14 +1,14 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-abstract class WiggleSortTest<out T : WiggleSort>(private val strategy: T) {
+internal abstract class WiggleSortTest<out T : WiggleSort>(private val strategy: T) {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -25,11 +25,10 @@ abstract class WiggleSortTest<out T : WiggleSort>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `wiggle sort test`(nums: IntArray, expected: IntArray) {
+    internal fun `wiggle sort test`(nums: IntArray, expected: IntArray) {
         strategy.perform(nums)
-        println(nums.toList())
         assertArrayEquals(expected, nums)
     }
 }
 
-class WiggleSortOnePassSwapTest : WiggleSortTest<WiggleSortOnePassSwap>(WiggleSortOnePassSwap())
+internal class WiggleSortOnePassSwapTest : WiggleSortTest<WiggleSortOnePassSwap>(WiggleSortOnePassSwap())

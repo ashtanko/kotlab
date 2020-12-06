@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class HandOfStraightsTest {
+internal class HandOfStraightsTest {
 
     companion object {
         @JvmStatic
@@ -18,9 +18,10 @@ class HandOfStraightsTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<IntArray, Int>, Boolean>) {
-        val actual = isNStraightHand(testCase.first.first, testCase.first.second)
-        val expected = testCase.second
+    internal fun `is n straight hand test`(testCase: Pair<Pair<IntArray, Int>, Boolean>) {
+        val (data, expected) = testCase
+        val (hand, w) = data
+        val actual = isNStraightHand(hand, w)
         assertEquals(expected, actual)
     }
 }

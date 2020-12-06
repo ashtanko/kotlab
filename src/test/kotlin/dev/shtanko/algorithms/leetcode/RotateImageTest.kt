@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class RotateImageTest {
+internal class RotateImageTest {
 
     companion object {
         @JvmStatic
@@ -36,10 +36,9 @@ class RotateImageTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `rotate image test`(testCase: Pair<Array<IntArray>, Array<IntArray>>) {
-        val arr = testCase.first
+    internal fun `rotate image test`(testCase: Pair<Array<IntArray>, Array<IntArray>>) {
+        val (arr, expected) = testCase
         arr.rotateImage()
-        val expected = testCase.second
         assertArrayEquals(expected, arr)
     }
 }

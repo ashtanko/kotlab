@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class TwoSum2Test {
+internal class TwoSum2Test {
 
     companion object {
         @JvmStatic
@@ -18,11 +18,10 @@ class TwoSum2Test {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `two sum 2 test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
-        val arr = testCase.first.first
-        val target = testCase.first.second
+    internal fun `two sum 2 test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
+        val (data, expected) = testCase
+        val (arr, target) = data
         val actual = arr.twoSum2(target)
-        val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
 }

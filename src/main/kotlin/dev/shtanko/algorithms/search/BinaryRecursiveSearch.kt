@@ -15,7 +15,7 @@ class BinaryRecursiveSearch<T : Comparable<T>> : AbstractSearchStrategy<T> {
 
     private fun Array<T>.search(low: Int, high: Int, element: T): Int {
         if (high >= low) {
-            val mid = (low + high) / 2
+            val mid = low.plus(high).div(2)
 
             if (this[mid] == element) {
                 return mid

@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersStrategy>(private val strategy: T) {
+internal abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -26,11 +26,11 @@ abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersStrategy>(
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `consecutive characters test`(s: String, expected: Int) {
+    internal fun `consecutive characters test`(s: String, expected: Int) {
         val actual = strategy.perform(s)
         assertEquals(expected, actual)
     }
 }
 
-class MaxPower1Test : ConsecutiveCharactersTest<MaxPower1>(MaxPower1())
-class MaxPower2Test : ConsecutiveCharactersTest<MaxPower2>(MaxPower2())
+internal class MaxPower1Test : ConsecutiveCharactersTest<MaxPower1>(MaxPower1())
+internal class MaxPower2Test : ConsecutiveCharactersTest<MaxPower2>(MaxPower2())

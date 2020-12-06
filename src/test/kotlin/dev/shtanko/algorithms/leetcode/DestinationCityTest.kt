@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class DestinationCityTest<out T : DestinationCityStrategy>(private val strategy: T) {
+internal abstract class DestinationCityTest<out T : DestinationCityStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -26,13 +26,13 @@ abstract class DestinationCityTest<out T : DestinationCityStrategy>(private val 
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `destination city test`(testCase: Pair<List<List<String>>, String>) {
-        val actual = strategy.perform(testCase.first)
-        val expected = testCase.second
+    internal fun `destination city test`(testCase: Pair<List<List<String>>, String>) {
+        val (paths, expected) = testCase
+        val actual = strategy.perform(paths)
         assertEquals(expected, actual)
     }
 }
 
-class DestinationCitySetTest : DestinationCityTest<DestinationCitySet>(DestinationCitySet())
+internal class DestinationCitySetTest : DestinationCityTest<DestinationCitySet>(DestinationCitySet())
 
-class DestinationCityHashMapTest : DestinationCityTest<DestinationCityHashMap>(DestinationCityHashMap())
+internal class DestinationCityHashMapTest : DestinationCityTest<DestinationCityHashMap>(DestinationCityHashMap())

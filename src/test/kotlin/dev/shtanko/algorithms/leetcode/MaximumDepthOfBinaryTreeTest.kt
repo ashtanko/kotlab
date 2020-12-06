@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class MaximumDepthOfBinaryTreeTest<out T : MaxDepthStrategy>(private val strategy: T) {
+internal abstract class MaximumDepthOfBinaryTreeTest<out T : MaxDepthStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -23,13 +23,12 @@ abstract class MaximumDepthOfBinaryTreeTest<out T : MaxDepthStrategy>(private va
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `maximum depth of binary tree test`(testCase: Pair<TreeNode, Int>) {
-        val root = testCase.first
-        val expected = testCase.second
+    internal fun `maximum depth of binary tree test`(testCase: Pair<TreeNode, Int>) {
+        val (root, expected) = testCase
         val actual = strategy.perform(root)
         assertEquals(expected, actual)
     }
 }
 
-class MaxDepthRecursiveTest : MaximumDepthOfBinaryTreeTest<MaxDepthRecursive>(MaxDepthRecursive())
-class MaxDepthIterativeTest : MaximumDepthOfBinaryTreeTest<MaxDepthIterative>(MaxDepthIterative())
+internal class MaxDepthRecursiveTest : MaximumDepthOfBinaryTreeTest<MaxDepthRecursive>(MaxDepthRecursive())
+internal class MaxDepthIterativeTest : MaximumDepthOfBinaryTreeTest<MaxDepthIterative>(MaxDepthIterative())

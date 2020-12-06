@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class CandyTest<out T : CandyStrategy>(private val strategy: T) {
+internal abstract class CandyTest<out T : CandyStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -16,14 +16,14 @@ abstract class CandyTest<out T : CandyStrategy>(private val strategy: T) {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `candy test`(testCase: Pair<IntArray, Int>) {
-        val expected = testCase.second
-        val actual = strategy.perform(testCase.first)
+    internal fun `candy test`(testCase: Pair<IntArray, Int>) {
+        val (arr, expected) = testCase
+        val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-class CandyBruteForceTest : CandyTest<CandyBruteForce>(CandyBruteForce())
-class Candy2ArraysTest : CandyTest<Candy2Arrays>(Candy2Arrays())
-class CandyArrayTest : CandyTest<CandyArray>(CandyArray())
-class CandyMathTest : CandyTest<CandyMath>(CandyMath())
+internal class CandyBruteForceTest : CandyTest<CandyBruteForce>(CandyBruteForce())
+internal class Candy2ArraysTest : CandyTest<Candy2Arrays>(Candy2Arrays())
+internal class CandyArrayTest : CandyTest<CandyArray>(CandyArray())
+internal class CandyMathTest : CandyTest<CandyMath>(CandyMath())

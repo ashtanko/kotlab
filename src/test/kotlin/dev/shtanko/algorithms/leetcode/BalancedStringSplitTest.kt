@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class BalancedStringSplitTest {
+internal class BalancedStringSplitTest {
 
     companion object {
         @JvmStatic
@@ -20,7 +20,9 @@ class BalancedStringSplitTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `balanced string split test`(param: Pair<String, Int>) {
-        assertEquals(param.second, param.first.balancedStringSplit())
+    internal fun `balanced string split test`(param: Pair<String, Int>) {
+        val (str, expected) = param
+        val actual = str.balancedStringSplit()
+        assertEquals(expected, actual)
     }
 }

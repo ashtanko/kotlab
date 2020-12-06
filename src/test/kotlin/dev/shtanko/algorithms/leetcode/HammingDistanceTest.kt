@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class HammingDistanceTest {
+internal class HammingDistanceTest {
 
     companion object {
 
@@ -21,7 +21,7 @@ class HammingDistanceTest {
 
     @ParameterizedTest
     @MethodSource("provideCoordinates")
-    fun `simple test`(x: Int, y: Int, expected: Int) {
+    internal fun `hamming distance test`(x: Int, y: Int, expected: Int) {
         val actual = hammingDistance(x, y)
         assertEquals(expected, actual)
     }

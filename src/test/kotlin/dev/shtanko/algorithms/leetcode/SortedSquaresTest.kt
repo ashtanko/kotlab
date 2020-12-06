@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class SortedSquaresTest {
+internal class SortedSquaresTest {
 
     companion object {
         @JvmStatic
@@ -20,9 +20,8 @@ class SortedSquaresTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `sorted squares test`(testCase: Pair<IntArray, IntArray>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `sorted squares test`(testCase: Pair<IntArray, IntArray>) {
+        val (arr, expected) = testCase
         val actual = arr.sortedSquares()
         assertArrayEquals(expected, actual)
     }

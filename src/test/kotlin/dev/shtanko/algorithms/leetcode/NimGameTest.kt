@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class NimGameTest {
+internal class NimGameTest {
 
     companion object {
         @JvmStatic
@@ -20,14 +19,9 @@ class NimGameTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `simple test`(testCase: Pair<Boolean, Int>) {
-        val expected = testCase.first
-        val n = testCase.second
+    internal fun `nim game test`(testCase: Pair<Boolean, Int>) {
+        val (expected, n) = testCase
         val actual = canWinNim(n)
-        if (expected) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }

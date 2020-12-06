@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class FindModeInBinarySearchTreeTest {
+internal class FindModeInBinarySearchTreeTest {
 
     companion object {
 
@@ -25,7 +25,7 @@ class FindModeInBinarySearchTreeTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(root: TreeNode, expected: IntArray) {
+    internal fun `find mode in binary search tree test`(root: TreeNode, expected: IntArray) {
         val actual = FindModeInBinarySearchTree().perform(root)
         assertArrayEquals(actual, expected)
     }

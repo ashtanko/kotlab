@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class DayOfTheWeekTest {
+internal class DayOfTheWeekTest {
 
     companion object {
         @JvmStatic
@@ -21,9 +21,8 @@ class DayOfTheWeekTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `day of the week test`(testCase: Pair<Triple<Int, Int, Int>, String>) {
-        val date = testCase.first
-        val expected = testCase.second
+    internal fun `day of the week test`(testCase: Pair<Triple<Int, Int, Int>, String>) {
+        val (date, expected) = testCase
         val actual = date.dayOfTheWeek()
         assertEquals(expected, actual)
     }

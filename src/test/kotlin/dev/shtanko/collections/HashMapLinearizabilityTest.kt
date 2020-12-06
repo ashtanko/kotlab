@@ -1,19 +1,22 @@
 package dev.shtanko.collections
 
 import org.jetbrains.kotlinx.lincheck.LinChecker
+import org.jetbrains.kotlinx.lincheck.LoggingLevel
 import org.jetbrains.kotlinx.lincheck.annotations.Operation
 import org.jetbrains.kotlinx.lincheck.annotations.Param
 import org.jetbrains.kotlinx.lincheck.paramgen.IntGen
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressCTest
+import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
 import org.jetbrains.kotlinx.lincheck.verifier.VerifierState
 import org.junit.jupiter.api.Test
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ConcurrentMap
 
 @StressCTest(minimizeFailedScenario = false)
 @Param(name = "key", gen = IntGen::class, conf = "1:5")
 class HashMapLinearizabilityTest : VerifierState() {
 
-    private val map: ConcurrentHashMap<Int, Int> = ConcurrentHashMap()
+    private val map: ConcurrentMap<Int, Int> = ConcurrentHashMap()
 
     @Operation
     fun put(@Param(name = "key") key: Int, value: Int): Int? {
@@ -27,7 +30,11 @@ class HashMapLinearizabilityTest : VerifierState() {
 
     @Test
     fun test() {
-        LinChecker.check(HashMapLinearizabilityTest::class.java)
+        val opts = StressOptions()
+            .iterations(5)
+            .threads(3)
+            .logLevel(LoggingLevel.INFO)
+        LinChecker.check(HashMapLinearizabilityTest::class.java, opts)
     }
 
     override fun extractState(): Any {

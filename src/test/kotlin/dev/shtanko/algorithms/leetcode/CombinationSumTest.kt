@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class CombinationSumTest {
+internal class CombinationSumTest {
 
     companion object {
         @JvmStatic
@@ -19,10 +19,9 @@ class CombinationSumTest {
     @ExperimentalStdlibApi
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `combination sum test`(testCase: Pair<Pair<IntArray, Int>, List<List<Int>>>) {
-        val candidates = testCase.first.first
-        val target = testCase.first.second
-        val expected = testCase.second
+    internal fun `combination sum test`(testCase: Pair<Pair<IntArray, Int>, List<List<Int>>>) {
+        val (data, expected) = testCase
+        val (candidates, target) = data
         val actual = combinationSum(candidates, target)
         assertEquals(expected, actual)
     }

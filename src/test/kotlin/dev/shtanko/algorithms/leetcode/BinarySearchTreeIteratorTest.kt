@@ -16,10 +16,10 @@ private fun getTree(): TreeNode {
     }
 }
 
-abstract class BinarySearchTreeIteratorTest<out T : BSTIterator>(private val iterator: T) {
+internal abstract class BinarySearchTreeIteratorTest<out T : BSTIterator>(private val iterator: T) {
 
     @Test
-    fun `bst iterator test`() {
+    internal fun `bst iterator test`() {
         assertEquals(3, iterator.next())
         assertEquals(7, iterator.next())
         assertTrue(iterator.hasNext())

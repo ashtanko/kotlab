@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class ContainsDuplicate2Test {
+internal class ContainsDuplicate2Test {
 
     companion object {
 
@@ -22,7 +22,7 @@ class ContainsDuplicate2Test {
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `is contains nearby duplicate test`(arr: IntArray, k: Int, expected: Boolean) {
+    internal fun `is contains nearby duplicate test`(arr: IntArray, k: Int, expected: Boolean) {
         val actual = arr.isContainsNearbyDuplicate(k)
         assertEquals(expected, actual)
     }

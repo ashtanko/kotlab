@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private val strategy: T) {
+internal abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -22,17 +21,13 @@ abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private v
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `can be equal test`(testCase: Pair<Pair<IntArray, IntArray>, Boolean>) {
-        val target = testCase.first.first
-        val arr = testCase.first.second
+    internal fun `can be equal test`(testCase: Pair<Pair<IntArray, IntArray>, Boolean>) {
+        val (data, expected) = testCase
+        val (target, arr) = data
         val actual = strategy.perform(target, arr)
-        if (testCase.second) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }
 
-class CanBeEqualSortTest : TwoArraysEqualReversingTest<CanBeEqualSort>(CanBeEqualSort())
-class CanBeEqualMapTest : TwoArraysEqualReversingTest<CanBeEqualMap>(CanBeEqualMap())
+internal class CanBeEqualSortTest : TwoArraysEqualReversingTest<CanBeEqualSort>(CanBeEqualSort())
+internal class CanBeEqualMapTest : TwoArraysEqualReversingTest<CanBeEqualMap>(CanBeEqualMap())

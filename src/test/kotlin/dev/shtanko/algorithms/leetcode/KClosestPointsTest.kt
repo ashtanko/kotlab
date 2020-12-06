@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class KClosestPointsTest<out T : KClosestPointsStrategy>(private val strategy: T) {
+internal abstract class KClosestPointsTest<out T : KClosestPointsStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -24,14 +24,13 @@ abstract class KClosestPointsTest<out T : KClosestPointsStrategy>(private val st
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `kClosest test`(testCase: Pair<Pair<Array<IntArray>, Int>, Array<IntArray>>) {
-        val points = testCase.first.first
-        val k = testCase.first.second
+    internal fun `K closest points test`(testCase: Pair<Pair<Array<IntArray>, Int>, Array<IntArray>>) {
+        val (data, expected) = testCase
+        val (points, k) = data
         val actual = strategy.perform(points, k)
-        val expected = testCase.second
         assertArrayEquals(expected, actual)
     }
 }
 
-class KClosestPointsQueueTest : KClosestPointsTest<KClosestPointsQueue>(KClosestPointsQueue())
-class KClosestPointsSortTest : KClosestPointsTest<KClosestPointsSort>(KClosestPointsSort())
+internal class KClosestPointsQueueTest : KClosestPointsTest<KClosestPointsQueue>(KClosestPointsQueue())
+internal class KClosestPointsSortTest : KClosestPointsTest<KClosestPointsSort>(KClosestPointsSort())

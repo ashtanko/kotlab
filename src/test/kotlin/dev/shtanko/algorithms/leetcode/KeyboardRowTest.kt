@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class KeyboardRowTest {
+internal class KeyboardRowTest {
 
     companion object {
         @JvmStatic
@@ -17,9 +17,8 @@ class KeyboardRowTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Array<String>, Array<String>>) {
-        val words = testCase.first
-        val expected = testCase.second
+    internal fun `keyboard row test`(testCase: Pair<Array<String>, Array<String>>) {
+        val (words, expected) = testCase
         val actual = words.findWords()
         assertArrayEquals(expected, actual)
     }

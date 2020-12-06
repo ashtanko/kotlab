@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class BasicCalculatorTest<out T : CalculationStrategy>(private val strategy: T) {
+internal abstract class BasicCalculatorTest<out T : CalculationStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -20,13 +20,13 @@ abstract class BasicCalculatorTest<out T : CalculationStrategy>(private val stra
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `calculator test`(testCase: Pair<String, Int>) {
-        val expected = testCase.second
-        val actual = strategy.calculate(testCase.first)
+    internal fun `calculator test`(testCase: Pair<String, Int>) {
+        val (s, expected) = testCase
+        val actual = strategy.calculate(s)
         assertEquals(expected, actual)
     }
 }
 
-class StackAndStringReversalTest : BasicCalculatorTest<StackAndStringReversal>(StackAndStringReversal())
+internal class StackAndStringReversalTest : BasicCalculatorTest<StackAndStringReversal>(StackAndStringReversal())
 
-class StackAndNoStringReversalTest : BasicCalculatorTest<StackAndNoStringReversal>(StackAndNoStringReversal())
+internal class StackAndNoStringReversalTest : BasicCalculatorTest<StackAndNoStringReversal>(StackAndNoStringReversal())

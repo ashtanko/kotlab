@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MinimumPathSumTest {
+internal class MinimumPathSumTest {
 
     companion object {
         @JvmStatic
@@ -46,10 +46,9 @@ class MinimumPathSumTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `min path sum test`(testCase: Pair<Int, Array<IntArray>>) {
-        val matrix = testCase.second
+    internal fun `min path sum test`(testCase: Pair<Int, Array<IntArray>>) {
+        val (expected, matrix) = testCase
         val actual = minPathSum(matrix)
-        val expected = testCase.first
         assertEquals(expected, actual)
     }
 }

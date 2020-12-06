@@ -2,10 +2,10 @@ package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Test
 
-class MergeTwoBinaryTreesTest {
+internal class MergeTwoBinaryTreesTest {
 
     @Test
-    fun `simple test`() {
+    internal fun `merge two binary trees test`() {
         val tree1 = BinaryTree()
         tree1.root = TreeNode(1)
         tree1.root?.left = TreeNode(3)

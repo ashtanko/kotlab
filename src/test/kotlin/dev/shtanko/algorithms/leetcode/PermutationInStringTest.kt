@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class PermutationInStringStrategyTest<out T : StringPermutationStrategy>(private val strategy: T) {
+internal abstract class PermutationInStringStrategyTest<out T : StringPermutationStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -19,27 +18,25 @@ abstract class PermutationInStringStrategyTest<out T : StringPermutationStrategy
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
-        val expected = testCase.second
-        val actual = strategy.perform(testCase.first.first, testCase.first.second)
-        if (expected) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
+        val (data, expected) = testCase
+        val (s1, s2) = data
+        val actual = strategy.perform(s1, s2)
+        assertEquals(expected, actual)
     }
 }
 
-class PermutationBruteForceTest : PermutationInStringStrategyTest<PermutationBruteForce>(PermutationBruteForce())
+internal class PermutationBruteForceTest :
+    PermutationInStringStrategyTest<PermutationBruteForce>(PermutationBruteForce())
 
-class PermutationSortingTest : PermutationInStringStrategyTest<PermutationSorting>(PermutationSorting())
+internal class PermutationSortingTest : PermutationInStringStrategyTest<PermutationSorting>(PermutationSorting())
 
-class PermutationHashmapTest : PermutationInStringStrategyTest<PermutationHashmap>(PermutationHashmap())
+internal class PermutationHashmapTest : PermutationInStringStrategyTest<PermutationHashmap>(PermutationHashmap())
 
-class PermutationArrayTest : PermutationInStringStrategyTest<PermutationArray>(PermutationArray())
+internal class PermutationArrayTest : PermutationInStringStrategyTest<PermutationArray>(PermutationArray())
 
-class PermutationSlidingWindowTest :
+internal class PermutationSlidingWindowTest :
     PermutationInStringStrategyTest<PermutationSlidingWindow>(PermutationSlidingWindow())
 
-class PermutationOptimizedSlidingWindowTest :
+internal class PermutationOptimizedSlidingWindowTest :
     PermutationInStringStrategyTest<PermutationOptimizedSlidingWindow>(PermutationOptimizedSlidingWindow())

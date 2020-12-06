@@ -4,30 +4,31 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T) {
+internal abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
-        fun casesProvider(): List<Pair<Int, IntArray>> {
+        fun casesProvider(): List<Pair<IntArray, Int>> {
             return listOf(
-                4 to intArrayOf(1, 4, 3, 2),
-                0 to intArrayOf(2, 1, 3)
+                intArrayOf() to 0,
+                intArrayOf(1, 4, 3, 2) to 4
             )
         }
     }
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `simple test`() {
-        val arr = intArrayOf(1, 4, 3, 2)
-        assertEquals(4, strategy.perform(arr))
+    internal fun `simple test`(data: Pair<IntArray, Int>) {
+        val (arr, expected) = data
+        val actual = strategy.perform(arr)
+        assertEquals(expected, actual)
     }
 }
 
-class PairSumSort1Test : ArrayPairSumTest<PairSumSort1>(PairSumSort1())
+internal class PairSumSort1Test : ArrayPairSumTest<PairSumSort1>(PairSumSort1())
 
-class PairSumSort2Test : ArrayPairSumTest<PairSumSort2>(PairSumSort2())
+internal class PairSumSort2Test : ArrayPairSumTest<PairSumSort2>(PairSumSort2())
 
-class PairSumSort3Test : ArrayPairSumTest<PairSumSort3>(PairSumSort3())
+internal class PairSumSort3Test : ArrayPairSumTest<PairSumSort3>(PairSumSort3())
 
-class PairSumOddTest : ArrayPairSumTest<PairSumOdd>(PairSumOdd())
+internal class PairSumOddTest : ArrayPairSumTest<PairSumOdd>(PairSumOdd())

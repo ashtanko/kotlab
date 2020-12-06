@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(private val strategy: T) {
+internal abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -20,13 +20,13 @@ abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(private val s
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `avoid flood test`(testCase: Pair<IntArray, IntArray>) {
-        val expected = testCase.second
-        val rains = testCase.first
+    internal fun `avoid flood test`(testCase: Pair<IntArray, IntArray>) {
+        val (rains, expected) = testCase
         val actual = strategy.perform(rains)
         assertArrayEquals(expected, actual)
     }
 }
 
-class AvoidFloodTreeTest : AvoidFloodInTheCityTest<AvoidFloodTree>(AvoidFloodTree())
-class AvoidFloodSimpleTest : AvoidFloodInTheCityTest<AvoidFloodSimple>(AvoidFloodSimple())
+internal class AvoidFloodTreeTest : AvoidFloodInTheCityTest<AvoidFloodTree>(AvoidFloodTree())
+
+internal class AvoidFloodSimpleTest : AvoidFloodInTheCityTest<AvoidFloodSimple>(AvoidFloodSimple())

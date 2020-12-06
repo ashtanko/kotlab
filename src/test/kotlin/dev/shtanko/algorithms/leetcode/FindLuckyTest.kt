@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val strategy: T) {
+internal abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -24,11 +24,11 @@ abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val strategy: T)
 
     @ParameterizedTest
     @MethodSource("provideNumbers")
-    fun `simple test`(arr: IntArray, expected: Int) {
+    internal fun `simple test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-class FindLuckyStraightForwardTest : FindLuckyTest<FindLuckyStraightForward>(FindLuckyStraightForward())
-class FindLuckyMapTest : FindLuckyTest<FindLuckyMap>(FindLuckyMap())
+internal class FindLuckyStraightForwardTest : FindLuckyTest<FindLuckyStraightForward>(FindLuckyStraightForward())
+internal class FindLuckyMapTest : FindLuckyTest<FindLuckyMap>(FindLuckyMap())

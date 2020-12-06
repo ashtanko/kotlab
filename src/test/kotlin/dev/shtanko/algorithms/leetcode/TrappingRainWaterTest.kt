@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class TrappingRainWaterTest<out T : RainWaterStrategy>(private val strategy: T) {
+internal abstract class TrappingRainWaterTest<out T : RainWaterStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -21,13 +21,14 @@ abstract class TrappingRainWaterTest<out T : RainWaterStrategy>(private val stra
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<IntArray, Int>) {
-        val arr = testCase.first
+    internal fun `trapping rain water test`(testCase: Pair<IntArray, Int>) {
+        val (arr, expected) = testCase
         val actual = strategy.perform(arr)
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }
 
-class RainWaterStraightForwardTest : TrappingRainWaterTest<RainWaterStraightForward>(RainWaterStraightForward())
-class RainWaterStackTest : TrappingRainWaterTest<RainWaterStack>(RainWaterStack())
+internal class RainWaterStraightForwardTest :
+    TrappingRainWaterTest<RainWaterStraightForward>(RainWaterStraightForward())
+
+internal class RainWaterStackTest : TrappingRainWaterTest<RainWaterStack>(RainWaterStack())

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class SqrtTest<out T : SqrtStrategy>(private val strategy: T) {
+internal abstract class SqrtTest<out T : SqrtStrategy>(private val strategy: T) {
     companion object {
         @JvmStatic
         fun dataProvider(): List<Pair<Int, Int>> {
@@ -40,16 +40,15 @@ abstract class SqrtTest<out T : SqrtStrategy>(private val strategy: T) {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Int, Int>) {
-        val n = testCase.first
-        val expected = testCase.second
+    internal fun `sqrt test`(testCase: Pair<Int, Int>) {
+        val (n, expected) = testCase
         val actual = strategy.mySqrt(n)
         assertEquals(expected, actual)
     }
 }
 
-class SqrtBSTest : SqrtTest<SqrtBS>(SqrtBS())
+internal class SqrtBSTest : SqrtTest<SqrtBS>(SqrtBS())
 
-class SqrtNewtonTest : SqrtTest<SqrtNewton>(SqrtNewton())
+internal class SqrtNewtonTest : SqrtTest<SqrtNewton>(SqrtNewton())
 
-class SqrtBruteForceTest : SqrtTest<SqrtBruteForce>(SqrtBruteForce())
+internal class SqrtBruteForceTest : SqrtTest<SqrtBruteForce>(SqrtBruteForce())

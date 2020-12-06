@@ -1,162 +1,106 @@
 package dev.shtanko.algorithms.sorts
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.Order
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestMethodOrder
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 import kotlin.random.Random
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+@Suppress("ArrayPrimitive")
 abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
 
-    @Test
-    @Order(1)
-    fun `empty test`() {
-        val arr = arrayOf<Int>()
-        strategy.perform(arr)
-        assertArrayEquals(emptyArray(), arr)
-    }
-
-    @Test
-    @Order(2)
-    fun `single element test`() {
-        val arr = arrayOf(4)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(4), arr)
-    }
-
-    @Test
-    @Order(3)
-    fun `two elements in order test`() {
-        val arr = arrayOf(4, 8)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(4, 8), arr)
-    }
-
-    @Test
-    @Order(4)
-    fun `two elements out of order test`() {
-        val arr = arrayOf(42, 23)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(23, 42), arr)
-    }
-
-    @Test
-    @Order(5)
-    fun `two elements equal test`() {
-        val arr = arrayOf(4, 4)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(4, 4), arr)
-    }
-
-    @Test
-    @Order(6)
-    fun `reverse order test`() {
-        val arr = arrayOf(42, 23, 16, 15, 8, 4)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(4, 8, 15, 16, 23, 42), arr)
-    }
-
-    @Test
-    @Order(7)
-    fun `chaotic order test`() {
-        val arr = arrayOf(15, 8, 16, 4, 42, 23)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(4, 8, 15, 16, 23, 42), arr)
-    }
-
-    @Test
-    @Order(8)
-    fun `sorted elements test`() {
-        val arr = arrayOf(4, 8, 15, 16, 23, 42)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(4, 8, 15, 16, 23, 42), arr)
-    }
-
-    @Test
-    @Order(9)
-    fun `negative elements in order test`() {
-        val arr = arrayOf(-4, -8, -15, -16, -23, -42)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(-42, -23, -16, -15, -8, -4), arr)
-    }
-
-    @Test
-    @Order(10)
-    fun `random distinct elements test`() {
-        val arr = Array(10_000) { 0 }
-        for (i in 0 until 10_000) {
-            arr[i] = Random.nextInt(10_000)
-        }
-        strategy.perform(arr)
-        assertTrue(arr.isSorted())
-    }
-
-    @Test
-    @Order(11)
-    fun `partial sort test`() {
-        val arr = arrayOf(4, 8, 15, 16, 42, 23)
-        strategy.perform(arr)
-        assertArrayEquals(arrayOf(4, 8, 15, 16, 23, 42), arr)
-    }
-
-    @Test
-    @Order(12)
-    fun `repeated elements test`() {
-        val arr = arrayOf(1, 2, 2, 1)
-        strategy.perform(arr)
-        assertTrue(arr.isSorted())
-    }
-
-    @Test
-    @Order(13)
-    fun `strings test`() {
-        val arr = arrayOf("A", "C", "B")
-        strategy.perform(arr)
-        val expected = arrayOf("A", "B", "C")
-        assertArrayEquals(expected, arr)
-    }
-
-    @Test
-    @Order(14)
-    fun `sorted strings test`() {
-        val arr = arrayOf("A", "B", "C", "D")
-        strategy.perform(arr)
-        val expected = arrayOf("A", "B", "C", "D")
-        assertArrayEquals(expected, arr)
-    }
-
-    @Test
-    @Order(15)
-    fun `string out of order test`() {
-        val arr = arrayOf("D", "C", "B", "A")
-        strategy.perform(arr)
-        val expected = arrayOf("A", "B", "C", "D")
-        assertArrayEquals(expected, arr)
-    }
-
-    @Test
-    @Order(16)
-    fun `upper and lower case test`() {
-        val arr = arrayOf("A", "c", "B", "e", "d", "F", "y", "G")
-        strategy.perform(arr)
-        println(arr.toList())
-        val expected = arrayOf("A", "B", "F", "G", "c", "d", "e", "y")
-        assertArrayEquals(expected, arr)
-    }
-
-    @Test
-    @Order(17)
-    fun `object test`() {
-        val objects = arrayOf(
-            TestObject(0, "Jake"),
-            TestObject(3, "William"),
-            TestObject(1, "Roy"),
-            TestObject(2, "Alex")
+    class InputArrayArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(arrayOf<Int>(), emptyArray<Int>()),
+            Arguments.of(arrayOf(4), arrayOf(4)),
+            Arguments.of(arrayOf(4, 8), arrayOf(4, 8)),
+            Arguments.of(arrayOf(4, 4), arrayOf(4, 4)),
+            Arguments.of(arrayOf(42, 23), arrayOf(23, 42)),
+            Arguments.of(arrayOf(42, 23, 16, 15, 8, 4), arrayOf(4, 8, 15, 16, 23, 42)),
+            Arguments.of(arrayOf(15, 8, 16, 4, 42, 23), arrayOf(4, 8, 15, 16, 23, 42)),
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), arrayOf(4, 8, 15, 16, 23, 42)),
+            Arguments.of(arrayOf(-4, -8, -15, -16, -23, -42), arrayOf(-42, -23, -16, -15, -8, -4)),
+            Arguments.of(arrayOf(-4, -8, -15, -16, -23, -42), arrayOf(-42, -23, -16, -15, -8, -4)),
+            Arguments.of(arrayOf(4, 8, 15, 16, 42, 23), arrayOf(4, 8, 15, 16, 23, 42))
         )
-        strategy.perform(objects)
-        println(objects.toList())
+    }
+
+    class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(getRandomArray(), true),
+            Arguments.of(arrayOf(1, 2, 2, 1), true)
+        )
+
+        private fun getRandomArray(): Array<Int> {
+            val arr = Array(10_000) { 0 }
+            for (i in 0 until 10_000) {
+                arr[i] = Random.nextInt(10_000)
+            }
+            return arr
+        }
+    }
+
+    class InputStringArrayArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(arrayOf<String>(), emptyArray<String>()),
+            Arguments.of(arrayOf("A"), arrayOf("A")),
+            Arguments.of(arrayOf("A", "B", "C"), arrayOf("A", "B", "C")),
+            Arguments.of(arrayOf("D", "C", "B", "A"), arrayOf("A", "B", "C", "D")),
+            Arguments.of(
+                arrayOf("A", "c", "B", "e", "d", "F", "y", "G"),
+                arrayOf("A", "B", "F", "G", "c", "d", "e", "y")
+            )
+        )
+    }
+
+    class InputObjectArrayArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(arrayOf(TestObject.empty()), arrayOf(TestObject.empty())),
+            Arguments.of(
+                arrayOf(TestObject(0, "Jake"), TestObject(3, "William")),
+                arrayOf(TestObject(0, "Jake"), TestObject(3, "William"))
+            ),
+            Arguments.of(
+                arrayOf(TestObject(0, "William"), TestObject(3, "Anna")),
+                arrayOf(TestObject(3, "Anna"), TestObject(0, "William")),
+            ),
+            Arguments.of(
+                arrayOf(TestObject(0, "Jake"), TestObject(1, "Anna"), TestObject(2, "Alex")),
+                arrayOf(TestObject(2, "Alex"), TestObject(1, "Anna"), TestObject(0, "Jake")),
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputArrayArgumentsProvider::class)
+    fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
+        strategy.perform(arr)
+        assertArrayEquals(expected, arr)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is sorted test`(arr: Array<Int>, expected: Boolean) {
+        strategy.perform(arr)
+        val actual = arr.isSorted()
+        assertEquals(expected, actual)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputStringArrayArgumentsProvider::class)
+    fun `string array test`(arr: Array<String>, expected: Array<String>) {
+        strategy.perform(arr)
+        assertArrayEquals(expected, arr)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputObjectArrayArgumentsProvider::class)
+    fun `object test`(arr: Array<TestObject>, expected: Array<TestObject>) {
+        strategy.perform(arr)
+        assertArrayEquals(expected, arr)
     }
 }

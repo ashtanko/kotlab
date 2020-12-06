@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MaxPointsTest {
+internal class MaxPointsTest {
 
     companion object {
         @JvmStatic
@@ -31,9 +31,9 @@ class MaxPointsTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `max points test`(testCase: Pair<Int, Array<IntArray>>) {
-        val points = testCase.second
-        val expected = testCase.first
-        assertEquals(expected, points.maxPoints())
+    internal fun `max points test`(testCase: Pair<Int, Array<IntArray>>) {
+        val (expected, points) = testCase
+        val actual = points.maxPoints()
+        assertEquals(expected, actual)
     }
 }

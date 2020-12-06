@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ClosestDivisorsTest {
+internal class ClosestDivisorsTest {
 
     companion object {
         @JvmStatic
@@ -19,9 +19,8 @@ class ClosestDivisorsTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `closest divisor test`(testCase: Pair<Int, IntArray>) {
-        val num = testCase.first
-        val expected = testCase.second
+    internal fun `closest divisor test`(testCase: Pair<Int, IntArray>) {
+        val (num, expected) = testCase
         val actual = closestDivisors(num)
         assertArrayEquals(expected, actual)
     }

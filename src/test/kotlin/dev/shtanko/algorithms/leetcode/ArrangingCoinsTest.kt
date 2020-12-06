@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(private val strategy: T) {
+internal abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -18,14 +18,13 @@ abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(private val st
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `simple test`(testCase: Pair<Int, Int>) {
-        val coins = testCase.first
-        val expected = testCase.second
+    internal fun `simple test`(testCase: Pair<Int, Int>) {
+        val (coins, expected) = testCase
         val actual = strategy.arrangeCoins(coins)
         assertEquals(expected, actual)
     }
 }
 
-class ArrangingCoinsMathTest : ArrangingCoinsTest<ArrangingCoinsMath>(ArrangingCoinsMath())
+internal class ArrangingCoinsMathTest : ArrangingCoinsTest<ArrangingCoinsMath>(ArrangingCoinsMath())
 
-class ArrangingCoinsBSTest : ArrangingCoinsTest<ArrangingCoinsBS>(ArrangingCoinsBS())
+internal class ArrangingCoinsBSTest : ArrangingCoinsTest<ArrangingCoinsBS>(ArrangingCoinsBS())

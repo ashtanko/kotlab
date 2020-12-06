@@ -77,7 +77,7 @@ class DesignHashSetImpl : DesignHashSet {
     private fun addTail(key: Int) {
         val idx = key % capacity
         val tail = list[idx]!!.tail
-        val pre: DesignListNode = tail.pre ?: return // TODO
+        val pre: DesignListNode = tail.pre ?: return
         val cur = DesignListNode(key)
         pre.next = cur
         cur.pre = pre

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class DuplicateZerosTest {
+internal class DuplicateZerosTest {
     companion object {
         @JvmStatic
         fun dataProvider(): List<Pair<IntArray, IntArray>> {
@@ -17,11 +17,9 @@ class DuplicateZerosTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `duplicate zeros test`(testCase: Pair<IntArray, IntArray>) {
-        val expected = testCase.second
-        val arr = testCase.first
+    internal fun `duplicate zeros test`(testCase: Pair<IntArray, IntArray>) {
+        val (arr, expected) = testCase
         duplicateZeros(arr)
-        println(arr.toList())
         assertArrayEquals(expected, arr)
     }
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ReformatTheStringTest {
+internal class ReformatTheStringTest {
 
     companion object {
         @JvmStatic
@@ -21,9 +21,9 @@ class ReformatTheStringTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `reformat string test`(testCase: Pair<String, String>) {
-        val actual = testCase.second.reformat()
-        val expected = testCase.first
+    internal fun `reformat string test`(testCase: Pair<String, String>) {
+        val (expected, str) = testCase
+        val actual = str.reformat()
         assertEquals(expected, actual)
     }
 }

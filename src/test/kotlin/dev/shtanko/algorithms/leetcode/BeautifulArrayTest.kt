@@ -1,14 +1,14 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-class BeautifulArrayTest {
+internal class BeautifulArrayTest {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -25,14 +25,14 @@ class BeautifulArrayTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `beautiful array test`(n: Int, expected: IntArray) {
+    internal fun `beautiful array test`(n: Int, expected: IntArray) {
         val actual = BeautifulArray().perform(n)
         assertArrayEquals(expected, actual)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `beautiful array divide and conquer test`(n: Int, expected: IntArray) {
+    internal fun `beautiful array divide and conquer test`(n: Int, expected: IntArray) {
         val actual = BeautifulArray().divideAndConquer(n)
         assertArrayEquals(expected, actual)
     }

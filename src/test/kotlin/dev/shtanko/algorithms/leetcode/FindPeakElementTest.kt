@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(private val strategy: T) {
+internal abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -18,16 +18,16 @@ abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(private val 
     @ParameterizedTest
     @MethodSource("dataProvider")
     fun `find peek element`(testCase: Pair<IntArray, Int>) {
-        val actual = strategy.perform(testCase.first)
-        val expected = testCase.second
+        val (nums, expected) = testCase
+        val actual = strategy.perform(nums)
         assertEquals(expected, actual)
     }
 }
 
-class FindPeakElementLinearTest : FindPeakElementTest<FindPeakElementLinear>(FindPeakElementLinear())
+internal class FindPeakElementLinearTest : FindPeakElementTest<FindPeakElementLinear>(FindPeakElementLinear())
 
-class FindPeakElementRecursiveBinarySearchTest :
+internal class FindPeakElementRecursiveBinarySearchTest :
     FindPeakElementTest<FindPeakElementRecursiveBinarySearch>(FindPeakElementRecursiveBinarySearch())
 
-class FindPeakElementIterativeBinarySearchTest :
+internal class FindPeakElementIterativeBinarySearchTest :
     FindPeakElementTest<FindPeakElementIterativeBinarySearch>(FindPeakElementIterativeBinarySearch())

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private val strategy: T) {
+internal abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -73,21 +73,23 @@ abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private val strate
 
     @ParameterizedTest
     @MethodSource("positiveCasesProvider")
-    fun `power of tree test`(n: Int) {
-        assertTrue(strategy.isPowerOfThree(n))
+    internal fun `power of tree test`(n: Int) {
+        val actual = strategy.isPowerOfThree(n)
+        assertTrue(actual)
     }
 
     @ParameterizedTest
     @MethodSource("negativeCasesProvider")
-    fun `not power of tree test`(n: Int) {
-        assertFalse(strategy.isPowerOfThree(n))
+    internal fun `not power of tree test`(n: Int) {
+        val actual = strategy.isPowerOfThree(n)
+        assertFalse(actual)
     }
 }
 
-class POTLoopIterationTest : PowerOfThreeTest<POTLoopIteration>(POTLoopIteration())
+internal class POTLoopIterationTest : PowerOfThreeTest<POTLoopIteration>(POTLoopIteration())
 
-class POTBaseConversionTest : PowerOfThreeTest<POTBaseConversion>(POTBaseConversion())
+internal class POTBaseConversionTest : PowerOfThreeTest<POTBaseConversion>(POTBaseConversion())
 
-class POTMathematicsTest : PowerOfThreeTest<POTMathematics>(POTMathematics())
+internal class POTMathematicsTest : PowerOfThreeTest<POTMathematics>(POTMathematics())
 
-class POTIntegerLimitationsTest : PowerOfThreeTest<POTIntegerLimitations>(POTIntegerLimitations())
+internal class POTIntegerLimitationsTest : PowerOfThreeTest<POTIntegerLimitations>(POTIntegerLimitations())

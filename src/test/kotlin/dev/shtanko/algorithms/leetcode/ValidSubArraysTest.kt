@@ -1,14 +1,14 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-class ValidSubArraysTest {
+internal class ValidSubArraysTest {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -20,7 +20,7 @@ class ValidSubArraysTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `valid sub arrays test`(nums: IntArray, expected: Int) {
+    internal fun `valid sub arrays test`(nums: IntArray, expected: Int) {
         val actual = ValidSubArrays().perform(nums)
         assertEquals(expected, actual)
     }

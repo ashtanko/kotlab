@@ -1,11 +1,11 @@
 package dev.shtanko.concurrency.coroutines.channels
 
+import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.system.measureTimeMillis
 
 class Example2ATest {
 

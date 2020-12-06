@@ -3,10 +3,10 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class LRUCacheTest {
+internal class LRUCacheTest {
 
     @Test
-    fun `LRU cache test`() {
+    internal fun `LRU cache test`() {
         val lRUCache = LRUCache(2)
         lRUCache.put(1, 1) // cache is {1=1}
         lRUCache.put(2, 2) // cache is {1=1, 2=2}

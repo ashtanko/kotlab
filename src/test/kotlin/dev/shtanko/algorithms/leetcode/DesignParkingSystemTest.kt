@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class DesignParkingSystemTest {
+internal class DesignParkingSystemTest {
 
     @Test
-    fun `simple test`() {
+    internal fun `parking system test`() {
         val parkingSystem = DesignParkingSystem(1, 1, 0)
         assertTrue(parkingSystem.addCar(1))
         assertTrue(parkingSystem.addCar(2))

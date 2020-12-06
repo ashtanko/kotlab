@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val strategy: T) {
+internal abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -26,14 +26,13 @@ abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val strategy
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Int, Int>) {
-        val n = testCase.first
-        val expected = testCase.second
+    internal fun `simple test`(testCase: Pair<Int, Int>) {
+        val (n, expected) = testCase
         val actual = strategy.perform(n)
         assertEquals(expected, actual)
     }
 }
 
-class CountPrimesBrutForceTest : CountPrimesTest<CountPrimesBrutForce>(CountPrimesBrutForce())
+internal class CountPrimesBrutForceTest : CountPrimesTest<CountPrimesBrutForce>(CountPrimesBrutForce())
 
-class CountPrimesTimeComplexityTest : CountPrimesTest<CountPrimesTimeComplexity>(CountPrimesTimeComplexity())
+internal class CountPrimesTimeComplexityTest : CountPrimesTest<CountPrimesTimeComplexity>(CountPrimesTimeComplexity())

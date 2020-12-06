@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-abstract class ShortestPalindromeTest<out T : ShortestPalindromeStrategy>(private val strategy: T) {
+internal abstract class ShortestPalindromeTest<out T : ShortestPalindromeStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -26,16 +26,16 @@ abstract class ShortestPalindromeTest<out T : ShortestPalindromeStrategy>(privat
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `shortest palindrome test`(s: String, expected: String) {
+    internal fun `shortest palindrome test`(s: String, expected: String) {
         val actual = strategy.perform(s)
         assertEquals(expected, actual)
     }
 }
 
-class ShortestPalindromeBruteForceTest :
+internal class ShortestPalindromeBruteForceTest :
     ShortestPalindromeTest<ShortestPalindromeBruteForce>(ShortestPalindromeBruteForce())
 
-class ShortestPalindromeTwoPointersTest :
+internal class ShortestPalindromeTwoPointersTest :
     ShortestPalindromeTest<ShortestPalindromeTwoPointers>(ShortestPalindromeTwoPointers())
 
-class ShortestPalindromeMPTest : ShortestPalindromeTest<ShortestPalindromeMP>(ShortestPalindromeMP())
+internal class ShortestPalindromeMPTest : ShortestPalindromeTest<ShortestPalindromeMP>(ShortestPalindromeMP())

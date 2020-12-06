@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class FinalPricesTest {
+internal class FinalPricesTest {
 
     companion object {
 
@@ -20,7 +20,7 @@ class FinalPricesTest {
 
     @ParameterizedTest
     @MethodSource("provideNumbers")
-    fun `final prices test`(arr: IntArray, expected: IntArray) {
+    internal fun `final prices test`(arr: IntArray, expected: IntArray) {
         val actual = arr.finalPrices()
         assertArrayEquals(expected, actual)
     }

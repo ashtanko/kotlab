@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AbstractMaximumProductStrategyTest<out T : AbstractMaximumProductStrategy>(private val strategy: T) {
+internal abstract class AbstractMaximumProductStrategyTest<out T : AbstractMaximumProductStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -24,17 +24,18 @@ abstract class AbstractMaximumProductStrategyTest<out T : AbstractMaximumProduct
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `maximum product test 4`(testCase: Pair<Int, IntArray>) {
-        val products = testCase.second
-        val expected = testCase.first
-        assertEquals(expected, strategy.perform(products))
+    internal fun `maximum product test`(testCase: Pair<Int, IntArray>) {
+        val (expected, products) = testCase
+        val actual = strategy.perform(products)
+        assertEquals(expected, actual)
     }
 }
 
-class MaximumProductBrutForceTest :
+internal class MaximumProductBrutForceTest :
     AbstractMaximumProductStrategyTest<MaximumProductBrutForce>(MaximumProductBrutForce())
 
-class MaximumProductSortingTest : AbstractMaximumProductStrategyTest<MaximumProductSorting>(MaximumProductSorting())
+internal class MaximumProductSortingTest :
+    AbstractMaximumProductStrategyTest<MaximumProductSorting>(MaximumProductSorting())
 
-class MaximumProductSingleScanTest :
+internal class MaximumProductSingleScanTest :
     AbstractMaximumProductStrategyTest<MaximumProductSingleScan>(MaximumProductSingleScan())

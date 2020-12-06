@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class SingleNumberTest {
+internal class SingleNumberTest {
 
     companion object {
         @JvmStatic
@@ -18,18 +18,16 @@ class SingleNumberTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `single number test`(testCase: Pair<IntArray, Int>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `single number test`(testCase: Pair<IntArray, Int>) {
+        val (arr, expected) = testCase
         val actual = arr.singleNumber()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `single number set test`(testCase: Pair<IntArray, Int>) {
-        val arr = testCase.first
-        val expected = testCase.second
+    internal fun `single number set test`(testCase: Pair<IntArray, Int>) {
+        val (arr, expected) = testCase
         val actual = arr.singleNumberUsingSet()
         assertEquals(expected, actual)
     }

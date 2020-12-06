@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ThirdMaximumNumberTest {
+internal class ThirdMaximumNumberTest {
 
     companion object {
         @JvmStatic
@@ -19,9 +19,9 @@ class ThirdMaximumNumberTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `third max test`(testCase: Pair<IntArray, Int>) {
-        val actual = thirdMax(testCase.first)
-        val expected = testCase.second
+    internal fun `third max test`(testCase: Pair<IntArray, Int>) {
+        val (nums, expected) = testCase
+        val actual = thirdMax(nums)
         assertEquals(expected, actual)
     }
 }

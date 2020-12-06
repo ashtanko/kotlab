@@ -1,12 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
-class PlusOneTest {
+internal class PlusOneTest {
     companion object {
 
         @JvmStatic
@@ -22,7 +22,7 @@ class PlusOneTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(arr: IntArray, expected: IntArray) {
+    internal fun `plus one test`(arr: IntArray, expected: IntArray) {
         val actual = PlusOne().perform(arr)
         assertArrayEquals(expected, actual)
     }

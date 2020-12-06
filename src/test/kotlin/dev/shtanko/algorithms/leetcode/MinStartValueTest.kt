@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MinStartValueTest {
+internal class MinStartValueTest {
 
     companion object {
         @JvmStatic
@@ -19,10 +19,9 @@ class MinStartValueTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `find min start value test`(testCase: Pair<Int, IntArray>) {
-        val arr = testCase.second
+    internal fun `find min start value test`(testCase: Pair<Int, IntArray>) {
+        val (expected, arr) = testCase
         val actual = arr.findMinStartValue()
-        val expected = testCase.first
         assertEquals(expected, actual)
     }
 }

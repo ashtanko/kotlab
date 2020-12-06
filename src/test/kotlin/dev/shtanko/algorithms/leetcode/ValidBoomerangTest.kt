@@ -1,11 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ValidBoomerangTest {
+internal class ValidBoomerangTest {
 
     companion object {
         @JvmStatic
@@ -27,13 +26,9 @@ class ValidBoomerangTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `is boomerang test`(testCase: Pair<Boolean, Array<IntArray>>) {
-        val points = testCase.second
+    internal fun `is boomerang test`(testCase: Pair<Boolean, Array<IntArray>>) {
+        val (expected, points) = testCase
         val actual = isBoomerang(points)
-        if (testCase.first) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+        assertEquals(expected, actual)
     }
 }

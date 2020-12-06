@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AbstractMinSubsequenceStrategyTest<T : MinSubsequenceStrategy>(val strategy: T) {
+internal abstract class AbstractMinSubsequenceStrategyTest<T : MinSubsequenceStrategy>(val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -21,16 +21,15 @@ abstract class AbstractMinSubsequenceStrategyTest<T : MinSubsequenceStrategy>(va
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    fun `min subsequence test`(testCase: Pair<List<Int>, IntArray>) {
-        val arr = testCase.second
+    internal fun `min subsequence test`(testCase: Pair<List<Int>, IntArray>) {
+        val (expected, arr) = testCase
         val actual = strategy.perform(arr)
-        val expected = testCase.first
         assertEquals(expected, actual)
     }
 }
 
-class MinSubsequenceCountingSortTest :
+internal class MinSubsequenceCountingSortTest :
     AbstractMinSubsequenceStrategyTest<MinSubsequenceCountingSort>(MinSubsequenceCountingSort())
 
-class MinSubsequencePriorityQueueTest :
+internal class MinSubsequencePriorityQueueTest :
     AbstractMinSubsequenceStrategyTest<MinSubsequencePriorityQueue>(MinSubsequencePriorityQueue())

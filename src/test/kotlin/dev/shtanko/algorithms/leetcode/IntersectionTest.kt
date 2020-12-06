@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-abstract class AbstractIntersectionTest<out T : IntersectionStrategy>(private val strategy: T) {
+internal abstract class AbstractIntersectionTest<out T : IntersectionStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -19,16 +19,17 @@ abstract class AbstractIntersectionTest<out T : IntersectionStrategy>(private va
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `intersection test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
-        val pair = testCase.first
-        val expected = testCase.second
+    internal fun `intersection test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val (pair, expected) = testCase
         val actual = strategy.perform(pair)
         assertArrayEquals(expected, actual)
     }
 }
 
-class IntersectionTwoSetsTest : AbstractIntersectionTest<IntersectionTwoSets>(IntersectionTwoSets())
+internal class IntersectionTwoSetsTest : AbstractIntersectionTest<IntersectionTwoSets>(IntersectionTwoSets())
 
-class IntersectionTwoPointersTest : AbstractIntersectionTest<IntersectionTwoPointers>(IntersectionTwoPointers())
+internal class IntersectionTwoPointersTest :
+    AbstractIntersectionTest<IntersectionTwoPointers>(IntersectionTwoPointers())
 
-class IntersectionBinarySearchTest : AbstractIntersectionTest<IntersectionBinarySearch>(IntersectionBinarySearch())
+internal class IntersectionBinarySearchTest :
+    AbstractIntersectionTest<IntersectionBinarySearch>(IntersectionBinarySearch())

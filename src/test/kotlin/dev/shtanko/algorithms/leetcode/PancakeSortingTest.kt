@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class PancakeSortingTest {
+internal class PancakeSortingTest {
 
     companion object {
 
@@ -19,9 +19,9 @@ class PancakeSortingTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `pancake sort test`(testCase: Pair<IntArray, List<Int>>) {
-        val expected = testCase.second
-        val actual = pancakeSort(testCase.first)
+    internal fun `pancake sort test`(testCase: Pair<IntArray, List<Int>>) {
+        val (arr, expected) = testCase
+        val actual = pancakeSort(arr)
         assertEquals(expected, actual)
     }
 }

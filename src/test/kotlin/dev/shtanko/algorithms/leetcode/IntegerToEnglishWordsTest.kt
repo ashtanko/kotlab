@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class IntegerToEnglishWordsTest {
+internal class IntegerToEnglishWordsTest {
 
     companion object {
         @JvmStatic
@@ -24,9 +24,8 @@ class IntegerToEnglishWordsTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Int, String>) {
-        val num = testCase.first
-        val expected = testCase.second
+    internal fun `integer to English words test`(testCase: Pair<Int, String>) {
+        val (num, expected) = testCase
         val actual = IntegerToEnglishWords().numberToWords(num)
         assertEquals(expected, actual)
     }

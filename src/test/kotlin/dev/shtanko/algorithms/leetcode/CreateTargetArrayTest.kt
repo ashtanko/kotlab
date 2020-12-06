@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class CreateTargetArrayTest {
+internal class CreateTargetArrayTest {
 
     companion object {
         @JvmStatic
@@ -19,18 +19,16 @@ class CreateTargetArrayTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `create target array solution test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
-        val pair = testCase.first
-        val expected = testCase.second
+    internal fun `create target array solution test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val (pair, expected) = testCase
         val actual = pair.createTargetArray()
         assertArrayEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `create target array solution 2 test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
-        val pair = testCase.first
-        val expected = testCase.second
+    internal fun `create target array solution 2 test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val (pair, expected) = testCase
         val actual = pair.createTargetArray2()
         assertArrayEquals(expected, actual)
     }

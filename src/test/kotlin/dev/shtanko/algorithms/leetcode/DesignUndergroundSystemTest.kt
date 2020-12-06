@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal abstract class DesignUndergroundSystemTest<out T : UndergroundSystem>(private val system: T) {
 
     @Test
-    fun `simple test`() {
+    fun `underground system test`() {
         system.checkIn(45, "Leyton", 3)
         system.checkIn(32, "Paradise", 8)
         system.checkIn(27, "Leyton", 10)
