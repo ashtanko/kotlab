@@ -14,11 +14,12 @@ interface FindNearestRightNodeStrategy {
 class FindNearestRightNodeTwoQueues : FindNearestRightNodeStrategy {
 
     override fun perform(root: TreeNode?, u: TreeNode?): TreeNode? {
-        if (root == null) return null
-        val nextLevel: ArrayDeque<TreeNode> = ArrayDeque()
-        nextLevel.offer(root)
+        val nextLevel: ArrayDeque<TreeNode?> = ArrayDeque()
+        root?.let {
+            nextLevel.offer(it)
+        }
 
-        var currLevel: ArrayDeque<TreeNode>
+        var currLevel: ArrayDeque<TreeNode?>
         var node: TreeNode?
         while (!nextLevel.isEmpty()) {
             // prepare for the next level
@@ -43,10 +44,10 @@ class FindNearestRightNodeTwoQueues : FindNearestRightNodeStrategy {
 // Approach 2: BFS: One Queue + Sentinel
 class FindNearestRightNodeSentinel : FindNearestRightNodeStrategy {
     override fun perform(root: TreeNode?, u: TreeNode?): TreeNode? {
-        if (root == null) return null
-
-        val queue: Queue<TreeNode> = LinkedList()
-        queue.offer(root)
+        val queue: Queue<TreeNode?> = LinkedList()
+        root?.let {
+            queue.offer(it)
+        }
         queue.offer(null)
 
         var curr: TreeNode? = null
@@ -76,10 +77,10 @@ class FindNearestRightNodeSentinel : FindNearestRightNodeStrategy {
 // Approach 3: BFS: One Queue + Level Size Measurements
 class FindNearestRightNodeSizeMeasurements : FindNearestRightNodeStrategy {
     override fun perform(root: TreeNode?, u: TreeNode?): TreeNode? {
-        if (root == null) return null
-
         val queue: Deque<TreeNode> = ArrayDeque()
-        queue.offer(root)
+        root?.let {
+            queue.offer(it)
+        }
         while (!queue.isEmpty()) {
             val levelLength: Int = queue.size
             for (i in 0 until levelLength) {

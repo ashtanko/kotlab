@@ -162,7 +162,7 @@ class JP5BidirectionalBFS2 : JumpGame5Strategy {
 
     override fun perform(arr: IntArray): Int {
         val totalNums = arr.size
-        if (totalNums == 1) return 0
+        if (totalNums <= 1) return 0
 
         for (idx in totalNums - 1 downTo 0) {
             idxMap.getOrPut(arr[idx]) { arrayListOf() }.add(idx)
@@ -170,7 +170,9 @@ class JP5BidirectionalBFS2 : JumpGame5Strategy {
 
         val visited = getVisitedArray(totalNums)
         tail.add(totalNums - 1)
-        visited[totalNums - 1] = true
+        if (totalNums > 1) {
+            visited[totalNums - 1] = true
+        }
         var steps = 0
 
         while (head.isNotEmpty() && tail.isNotEmpty()) {
@@ -220,7 +222,9 @@ class JP5BidirectionalBFS2 : JumpGame5Strategy {
 
     private fun getVisitedArray(totalNums: Int): BooleanArray {
         val visited = BooleanArray(totalNums) { false }
-        visited[0] = true
+        if (totalNums != 0) {
+            visited[0] = true
+        }
         return visited
     }
 }

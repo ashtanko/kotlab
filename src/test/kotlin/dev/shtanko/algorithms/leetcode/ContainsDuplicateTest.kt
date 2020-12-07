@@ -9,17 +9,12 @@ import org.junit.jupiter.params.provider.MethodSource
 internal abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private val strategy: T) {
 
     companion object {
-
-        private val duplicateShortArray = intArrayOf(1, 2, 3, 1)
-        private val duplicateArray = intArrayOf(1, 1, 1, 3, 3, 4, 3, 2, 4, 2)
-        private val uniqueArray = intArrayOf(1, 2, 3, 4)
-
         @JvmStatic
         private fun provideData(): Stream<Arguments?>? {
             return Stream.of(
-                Arguments.of(duplicateShortArray to true, duplicateArray to true, uniqueArray to false),
-                Arguments.of(duplicateArray to true, uniqueArray to false),
-                Arguments.of(uniqueArray to false)
+                Arguments.of(intArrayOf(1, 2, 3, 1) to true),
+                Arguments.of(intArrayOf(1, 1, 1, 3, 3, 4, 3, 2, 4, 2) to true),
+                Arguments.of(intArrayOf(1, 2, 3, 4) to false)
             )
         }
     }
@@ -32,6 +27,9 @@ internal abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>
         assertEquals(expected, actual)
     }
 }
+
+internal class IsContainsDuplicateSortSetSizeTest :
+    ContainsDuplicateTest<IsContainsDuplicateSortSetSize>(IsContainsDuplicateSortSetSize())
 
 internal class IsContainsDuplicateBrutForceTest :
     ContainsDuplicateTest<IsContainsDuplicateBrutForce>(IsContainsDuplicateBrutForce())

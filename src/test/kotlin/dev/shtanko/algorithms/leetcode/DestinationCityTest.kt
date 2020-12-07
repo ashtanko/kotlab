@@ -10,6 +10,7 @@ internal abstract class DestinationCityTest<out T : DestinationCityStrategy>(pri
         @JvmStatic
         fun dataProvider(): List<Pair<List<List<String>>, String>> {
             return listOf(
+                emptyList<List<String>>() to "",
                 listOf(
                     listOf("London", "New York"),
                     listOf("New York", "Lima"),

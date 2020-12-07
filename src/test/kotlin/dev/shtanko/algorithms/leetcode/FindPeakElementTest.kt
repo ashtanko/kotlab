@@ -10,6 +10,7 @@ internal abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(pri
 
         @JvmStatic
         fun dataProvider() = listOf(
+            intArrayOf() to 0,
             intArrayOf(1, 2, 3, 1) to 2,
             intArrayOf(1, 2, 1, 3, 5, 6, 4) to 5
         )

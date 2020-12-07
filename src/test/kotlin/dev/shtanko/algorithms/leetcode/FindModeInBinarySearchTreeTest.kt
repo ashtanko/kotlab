@@ -13,6 +13,10 @@ internal class FindModeInBinarySearchTreeTest {
         @JvmStatic
         fun dataProvider(): Stream<Arguments> = Stream.of(
             Arguments.of(
+                TreeNode(1),
+                intArrayOf(1)
+            ),
+            Arguments.of(
                 TreeNode(1).apply {
                     right = TreeNode(2).apply {
                         left = TreeNode(2)

@@ -16,4 +16,17 @@ internal class ImplementTrieTest {
         trie.insert("app")
         assertTrue(trie.search("app"))
     }
+
+    @Test
+    internal fun `empty string trie test`() {
+        val trie = TrieImpl()
+        trie.insert("")
+        assertFalse(trie.search("app"))
+    }
+
+    @Test
+    internal fun `empty trie test`() {
+        val trie = TrieImpl()
+        assertFalse(trie.search(""))
+    }
 }

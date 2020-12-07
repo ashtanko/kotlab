@@ -10,7 +10,9 @@ class FindPeakElementLinear : FindPeakElementStrategy {
     }
 
     private fun helper(num: IntArray, start: Int, end: Int): Int {
-        return if (start == end) {
+        return if (num.isEmpty()) {
+            0
+        } else if (start == end) {
             start
         } else if (start + 1 == end) {
             if (num[start] > num[end]) start else end
@@ -33,6 +35,7 @@ class FindPeakElementRecursiveBinarySearch : FindPeakElementStrategy {
     }
 
     private fun search(nums: IntArray, l: Int, r: Int): Int {
+        if (nums.isEmpty()) return 0
         if (l == r) return l
         val mid = (l + r) / 2
         return if (nums[mid] > nums[mid + 1]) search(nums, l, mid) else search(nums, mid + 1, r)

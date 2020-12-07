@@ -10,6 +10,7 @@ internal class DayOfTheWeekTest {
         @JvmStatic
         fun dataProvider(): List<Pair<Triple<Int, Int, Int>, String>> {
             return listOf(
+                Triple(28, 2, 2019) to "Thursday",
                 Triple(31, 8, 2019) to "Saturday",
                 Triple(18, 7, 1999) to "Sunday",
                 Triple(15, 8, 1993) to "Sunday",

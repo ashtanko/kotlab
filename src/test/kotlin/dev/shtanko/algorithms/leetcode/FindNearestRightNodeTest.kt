@@ -38,13 +38,23 @@ internal abstract class FindNearestRightNodeTest<out T : FindNearestRightNodeStr
                 TreeNode(1),
                 TreeNode(1),
                 null
+            ),
+            Arguments.of(
+                null,
+                TreeNode(1),
+                null
+            ),
+            Arguments.of(
+                null,
+                null,
+                null
             )
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find nearest right node in binary tree test`(root: TreeNode, u: TreeNode, expected: TreeNode?) {
+    internal fun `find nearest right node in binary tree test`(root: TreeNode?, u: TreeNode?, expected: TreeNode?) {
         val actual = strategy.perform(root, u).levelOrder().flatten()
         assertEquals(expected.levelOrder().flatten(), actual)
     }

@@ -13,10 +13,15 @@ internal class FindClosestPalindromeTest {
         @JvmStatic
         private fun provideStringData(): Stream<Arguments?>? {
             return Stream.of(
-                Arguments.of("123", "121"),
                 Arguments.of("", ""),
                 Arguments.of("1", "0"),
-                Arguments.of("456", "454")
+                Arguments.of("1", "0"),
+                Arguments.of("10", "9"),
+                Arguments.of("111", "101"),
+                Arguments.of("123", "121"),
+                Arguments.of("456", "454"),
+                Arguments.of("1000", "999"),
+                Arguments.of("1999", "2002")
             )
         }
     }

@@ -12,6 +12,10 @@ internal abstract class JumpGame5Test<out T : JumpGame5Strategy>(private val str
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                intArrayOf(),
+                0
+            ),
+            Arguments.of(
                 intArrayOf(100, -23, -23, 404, 100, 23, 23, 23, 3, 404),
                 3
             ),

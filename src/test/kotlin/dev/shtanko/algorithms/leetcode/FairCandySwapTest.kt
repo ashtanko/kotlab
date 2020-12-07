@@ -10,6 +10,7 @@ internal class FairCandySwapTest {
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<IntArray, IntArray>, IntArray>> {
             return listOf(
+                intArrayOf() to intArrayOf() to intArrayOf(),
                 intArrayOf(1, 1) to intArrayOf(2, 2) to intArrayOf(1, 2),
                 intArrayOf(1, 2) to intArrayOf(2, 3) to intArrayOf(1, 2),
                 intArrayOf(2) to intArrayOf(1, 3) to intArrayOf(2, 3),

@@ -10,6 +10,7 @@ internal abstract class AbstractFindSubstringTest<T : AbstractFindSubstring>(pri
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<String, Array<String>>, List<Int>>> {
             return listOf(
+                "" to arrayOf("foo", "bar") to listOf(),
                 "barfoothefoobarman" to arrayOf("foo", "bar") to listOf(0, 9),
                 "wordgoodgoodgoodbestword" to arrayOf("word", "good", "best", "word") to emptyList()
             )

@@ -13,6 +13,14 @@ internal abstract class AbstractDecodeWays2StrategyTest<out T : DecodeWays2Strat
         @JvmStatic
         private fun provideNumbers(): Stream<Arguments?>? {
             return Stream.of(
+                Arguments.of("", 0),
+                Arguments.of("0", 0),
+                Arguments.of("1", 1),
+                Arguments.of("2", 1),
+                Arguments.of("4", 1),
+                Arguments.of("7", 1),
+                Arguments.of("10", 1),
+                Arguments.of("11", 2),
                 Arguments.of("*", 9),
                 Arguments.of("1*", 18)
             )

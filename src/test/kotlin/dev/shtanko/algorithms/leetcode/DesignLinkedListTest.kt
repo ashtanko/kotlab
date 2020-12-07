@@ -6,6 +6,17 @@ import org.junit.jupiter.api.Test
 internal class DesignLinkedListTest {
 
     @Test
+    internal fun `linked add at index test`() {
+        val list = DesignLinkedList()
+        list.addAtIndex(-1, 2)
+        list.addAtIndex(1, 1)
+        list.addAtIndex(2, 4)
+        assertEquals(0, list.get(0))
+        assertEquals(1, list.get(1))
+        assertEquals(4, list.get(2))
+    }
+
+    @Test
     internal fun `linked list test`() {
         val list = DesignLinkedList()
         list.addAtHead(1)

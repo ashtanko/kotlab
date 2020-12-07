@@ -1,23 +1,12 @@
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Stack
+import org.slf4j.LoggerFactory
 
 internal class BinaryTree {
     var root: TreeNode? = null
 
-    fun inorder() {
-        if (root == null) return
-        val stack = Stack<TreeNode>()
-        var curr: TreeNode? = root
-        while (curr != null || stack.size > 0) {
-            while (curr != null) {
-                stack.push(curr)
-                curr = curr.left
-            }
-            curr = stack.pop()
-            print(curr.value)
-            curr = curr.right
-        }
+    companion object {
+        private val LOGGER = LoggerFactory.getLogger(BinaryTree::class.java)
     }
 
     fun printLevelOrder() {
@@ -32,7 +21,7 @@ internal class BinaryTree {
             return
         }
         if (level == 1) {
-            println(root.value)
+            LOGGER.info("${root.value}")
         } else if (level > 1) {
             printGivenLevel(root.left, level - 1)
             printGivenLevel(root.right, level - 1)
@@ -52,16 +41,5 @@ internal class BinaryTree {
                 rHeight + 1
             }
         }
-    }
-
-    private fun preorder(node: TreeNode?) {
-        if (root == null) return
-        println(node?.value)
-        preorder(node?.left)
-        preorder(node?.right)
-    }
-
-    fun printPreorder() {
-        preorder(root)
     }
 }

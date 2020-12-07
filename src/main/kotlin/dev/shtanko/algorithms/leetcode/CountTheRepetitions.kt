@@ -6,6 +6,7 @@ interface CountTheRepetitionsStrategy {
 
 class CountTheRepetitionsBruteForce : CountTheRepetitionsStrategy {
     override fun perform(s1: String, n1: Int, s2: String, n2: Int): Int {
+        if (n2 == 0) return 0
         var index = 0
         var repeatCount = 0
         val s1Size: Int = s1.length

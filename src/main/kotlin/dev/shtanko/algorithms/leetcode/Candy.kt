@@ -55,6 +55,7 @@ class Candy2Arrays : CandyStrategy {
 
 class CandyArray : CandyStrategy {
     override fun perform(ratings: IntArray): Int {
+        if (ratings.isEmpty()) return 0
         val candies = IntArray(ratings.size) { 1 }
         for (i in 1 until ratings.size) {
             if (ratings[i] > ratings[i - 1]) {

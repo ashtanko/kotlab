@@ -12,6 +12,8 @@ internal abstract class CountTheRepetitionsTest<out T : CountTheRepetitionsStrat
         @JvmStatic
         private fun provideData(): Stream<Arguments?>? {
             return Stream.of(
+                Arguments.of("", 0, "", 0, 0),
+                Arguments.of("", 0, "", 1, 0),
                 Arguments.of("acb", 4, "ab", 2, 2)
             )
         }

@@ -3,13 +3,18 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.experimental.and
 import kotlin.experimental.or
 
+/**
+ * Given an array of integers, find if the array contains any duplicates.
+ * @link https://leetcode.com/problems/contains-duplicate/
+ */
 interface ContainsDuplicateStrategy {
     fun perform(arr: IntArray): Boolean
 }
 
 /**
- * Given an array of integers, find if the array contains any duplicates.
- * Time complexity: O(N^2), memory: O(1)
+ * Approach #1 (Naive Linear Search) [Time Limit Exceeded]
+ * Time complexity: O(n^2).
+ * Space complexity: O(1).
  */
 class IsContainsDuplicateBrutForce : ContainsDuplicateStrategy {
     override fun perform(arr: IntArray): Boolean {
@@ -23,7 +28,8 @@ class IsContainsDuplicateBrutForce : ContainsDuplicateStrategy {
 }
 
 /**
- * Time complexity: O(N lg N), memory: O(1) - not counting the memory used by sort
+ * Time complexity: O(n log n).
+ * Space complexity: O(1) - not counting the memory used by sort
  */
 class IsContainsDuplicateSort : ContainsDuplicateStrategy {
     override fun perform(arr: IntArray): Boolean {
@@ -36,7 +42,8 @@ class IsContainsDuplicateSort : ContainsDuplicateStrategy {
 }
 
 /**
- * Time complexity: O(N), memory: O(N)
+ * Time complexity: O(n).
+ * Space complexity: O(n).
  */
 class IsContainsDuplicateSortSetSize : ContainsDuplicateStrategy {
     override fun perform(arr: IntArray): Boolean {
@@ -44,6 +51,10 @@ class IsContainsDuplicateSortSetSize : ContainsDuplicateStrategy {
     }
 }
 
+/**
+ * Time complexity: O(n).
+ * Space complexity: O(n).
+ */
 class IsContainsDuplicateSortSet : ContainsDuplicateStrategy {
     override fun perform(arr: IntArray): Boolean {
         val set = hashSetOf<Int>()
@@ -64,7 +75,6 @@ class IsContainsDuplicateSortSetOptimized : ContainsDuplicateStrategy {
         for (i in arr.indices) {
             if (!set.add(arr[i])) return true
         }
-
         return false
     }
 }

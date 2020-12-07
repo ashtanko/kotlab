@@ -18,4 +18,14 @@ internal class DesignHashSetTest {
         hashSet.remove(2)
         assertFalse(hashSet.contains(2))
     }
+
+    @Test
+    internal fun `hash set rehash test`() {
+        val hashSet: DesignHashSet = DesignHashSetImpl()
+        val n = 32 * 3
+        for (i in 0 until n) {
+            hashSet.add(i)
+        }
+        assertTrue(hashSet.contains(n - 1))
+    }
 }

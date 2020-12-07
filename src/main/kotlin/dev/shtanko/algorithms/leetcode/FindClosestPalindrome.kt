@@ -7,6 +7,7 @@ fun String.mirroring(): String {
     return x + (if (length % 2 == 1) this[length / 2] else "") + StringBuilder(x).reverse().toString()
 }
 
+@Throws(NumberFormatException::class)
 fun String.nearestPalindromic(): String {
     if (this.isEmpty()) return ""
     if (this == "1") return "0"

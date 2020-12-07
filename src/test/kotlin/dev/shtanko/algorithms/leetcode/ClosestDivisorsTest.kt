@@ -10,6 +10,9 @@ internal class ClosestDivisorsTest {
         @JvmStatic
         fun dataProvider(): List<Pair<Int, IntArray>> {
             return listOf(
+                -2 to intArrayOf(),
+                -1 to intArrayOf(1, 0),
+                0 to intArrayOf(1, 1),
                 8 to intArrayOf(3, 3),
                 123 to intArrayOf(5, 25),
                 999 to intArrayOf(25, 40)
