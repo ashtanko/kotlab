@@ -32,25 +32,15 @@ class ContainsDuplicateLinear : ContainsDuplicate2 {
  * Time complexity : O(nlog(min(k,n))).
  * Space complexity : O(min(n,k)).
  */
-class ContainsDuplicateBinarySearchTree : ContainsDuplicate2 {
-    override fun perform(nums: IntArray, k: Int): Boolean {
-        val set: MutableSet<Int> = TreeSet()
-        return ContainsDuplicateDecorator(set).perform(nums, k)
-    }
-}
+class ContainsDuplicateBinarySearchTree : ContainsDuplicate2 by ContainsDuplicateBehavior(TreeSet())
 
 /**
  * Approach #3: Hash Table.
  *
  */
-class ContainsDuplicateHash : ContainsDuplicate2 {
-    override fun perform(nums: IntArray, k: Int): Boolean {
-        val set: MutableSet<Int> = HashSet()
-        return ContainsDuplicateDecorator(set).perform(nums, k)
-    }
-}
+class ContainsDuplicateHash : ContainsDuplicate2 by ContainsDuplicateBehavior(HashSet())
 
-class ContainsDuplicateDecorator(private val set: MutableSet<Int>) : ContainsDuplicate2 {
+class ContainsDuplicateBehavior(private val set: MutableSet<Int>) : ContainsDuplicate2 {
     override fun perform(nums: IntArray, k: Int): Boolean {
         for (i in nums.indices) {
             if (set.contains(nums[i])) return true
