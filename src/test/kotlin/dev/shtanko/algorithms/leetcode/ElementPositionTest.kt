@@ -1,6 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
@@ -23,6 +24,6 @@ internal class ElementPositionTest {
         val (data, expected) = testCase
         val (target, arr) = data
         val actual = arr.searchRange(target)
-        assertArrayEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }
