@@ -171,7 +171,7 @@ tasks {
 
     test {
         useJUnitPlatform()
-        finalizedBy(jacocoTestReport)
+        // finalizedBy(jacocoTestReport)
         testLogging {
             events("passed", "skipped", "failed")
         }
