@@ -13,7 +13,7 @@ interface UniqueCharacters {
 
 class UniqueCharactersSet : UniqueCharacters {
     override fun perform(str: String): Boolean {
-        if (str.isEmpty()) return false
+        if (str.isBlank()) return false
         return str.length == str.toSet().size
     }
 }
@@ -23,7 +23,7 @@ class UniqueCharactersSet : UniqueCharacters {
  */
 class UniqueCharactersSort : UniqueCharacters {
     override fun perform(str: String): Boolean {
-        if (str.isEmpty()) return false
+        if (str.isBlank()) return false
         val chars = str.toCharArray().sorted()
         for (i in 0 until chars.size - 1) {
             if (chars[i] != chars[i + 1]) {
@@ -39,19 +39,20 @@ class UniqueCharactersSort : UniqueCharacters {
 class UniqueCharactersStream : UniqueCharacters {
 
     override fun perform(str: String): Boolean {
-        if (str.isEmpty()) return false
+        if (str.isBlank()) return false
 
         return str.chars().filter { e ->
-            Collections.frequency(
-                str.chars().boxed().collect(Collectors.toList()), e
-            ) > 1
+            val c = str.chars()
+                .boxed()
+                .collect(Collectors.toList())
+            Collections.frequency(c, e) > 1
         }.count() <= 1
     }
 }
 
 class UniqueCharactersBruteForce : UniqueCharacters {
     override fun perform(str: String): Boolean {
-        if (str.isEmpty()) return false
+        if (str.isBlank()) return false
         for (i in str.indices) {
             for (j in i + 1 until str.length) {
                 if (str[i] == str[j]) {

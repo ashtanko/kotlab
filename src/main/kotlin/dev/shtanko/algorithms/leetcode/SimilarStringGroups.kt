@@ -16,12 +16,14 @@ class SimilarStringGroups {
             val buckets: MutableMap<String, MutableList<Int>> = HashMap()
             for (i in 0 until n) {
                 val l: CharArray = strings[i].toCharArray()
-                for (j0 in l.indices) for (j1 in j0 + 1 until l.size) {
-                    l.swap(j0, j1)
-                    val sb = StringBuilder()
-                    for (c in l) sb.append(c)
-                    buckets.computeIfAbsent(sb.toString()) { ArrayList() }.add(i)
-                    l.swap(j0, j1)
+                for (j0 in l.indices) {
+                    for (j1 in j0 + 1 until l.size) {
+                        l.swap(j0, j1)
+                        val sb = StringBuilder()
+                        for (c in l) sb.append(c)
+                        buckets.computeIfAbsent(sb.toString()) { ArrayList() }.add(i)
+                        l.swap(j0, j1)
+                    }
                 }
             }
             for (i1 in strings.indices) if (buckets.containsKey(strings[i1])) for (i2 in buckets[strings[i1]]!!) {

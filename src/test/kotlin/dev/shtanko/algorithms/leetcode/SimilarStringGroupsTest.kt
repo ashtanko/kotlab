@@ -13,6 +13,8 @@ internal class SimilarStringGroupsTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf(""), 1),
+            Arguments.of(arrayOf("a"), 1),
+            Arguments.of(arrayOf("a", "aa", "a"), 3),
             Arguments.of(arrayOf("one"), 1),
             Arguments.of(arrayOf("tars", "rats", "arts", "star"), 2),
             Arguments.of(arrayOf("omv", "ovm"), 1)
