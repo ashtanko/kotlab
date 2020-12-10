@@ -16,7 +16,7 @@ internal abstract class IntersectionThreeSortedArraysTest<out T : IntersectionTh
                 intArrayOf(1, 2, 3, 4, 5),
                 intArrayOf(1, 2, 5, 7, 9),
                 intArrayOf(1, 3, 4, 5, 8),
-                listOf(1, 5)
+                listOf(1, 5),
             )
         )
     }

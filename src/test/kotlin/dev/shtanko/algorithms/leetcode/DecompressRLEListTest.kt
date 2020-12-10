@@ -11,7 +11,7 @@ internal class DecompressRLEListTest {
         fun dataProvider(): List<Pair<IntArray, IntArray>> {
             return listOf(
                 intArrayOf(1, 2, 3, 4) to intArrayOf(2, 4, 4, 4),
-                intArrayOf(1, 1, 2, 3) to intArrayOf(1, 3, 3)
+                intArrayOf(1, 1, 2, 3) to intArrayOf(1, 3, 3),
             )
         }
     }

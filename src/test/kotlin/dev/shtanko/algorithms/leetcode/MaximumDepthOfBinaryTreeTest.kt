@@ -16,7 +16,7 @@ internal abstract class MaximumDepthOfBinaryTreeTest<out T : MaxDepthStrategy>(p
                         left = TreeNode(15)
                         right = TreeNode(7)
                     }
-                } to 3
+                } to 3,
             )
         }
     }

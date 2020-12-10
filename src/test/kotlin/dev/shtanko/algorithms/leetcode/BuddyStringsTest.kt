@@ -19,7 +19,7 @@ internal class BuddyStringsTest {
                 BuddyStringsTestCase("ab" to "ab", false),
                 BuddyStringsTestCase("aa" to "aa", true),
                 BuddyStringsTestCase("aaaaaaabc" to "aaaaaaacb", true),
-                BuddyStringsTestCase("" to "aa", false)
+                BuddyStringsTestCase("" to "aa", false),
             )
         }
     }

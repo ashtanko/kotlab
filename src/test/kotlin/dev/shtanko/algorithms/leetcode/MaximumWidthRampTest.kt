@@ -11,7 +11,7 @@ internal abstract class MaximumWidthRampTest<out T : MaximumWidthRampStrategy>(p
         fun dataProvider(): List<Pair<IntArray, Int>> {
             return listOf(
                 intArrayOf(6, 0, 8, 2, 1, 5) to 4,
-                intArrayOf(9, 8, 1, 0, 1, 9, 4, 0, 4, 1) to 7
+                intArrayOf(9, 8, 1, 0, 1, 9, 4, 0, 4, 1) to 7,
             )
         }
     }

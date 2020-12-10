@@ -15,7 +15,7 @@ internal class BuildArrayWithStackOperationsTest {
             Arguments.of(intArrayOf(1, 3), 3, listOf("Push", "Push", "Pop", "Push")),
             Arguments.of(intArrayOf(1, 2, 3), 3, listOf("Push", "Push", "Push")),
             Arguments.of(intArrayOf(1, 2), 4, listOf("Push", "Push")),
-            Arguments.of(intArrayOf(2, 3, 4), 4, listOf("Push", "Pop", "Push", "Push", "Push"))
+            Arguments.of(intArrayOf(2, 3, 4), 4, listOf("Push", "Pop", "Push", "Push", "Push")),
         )
     }
 

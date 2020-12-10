@@ -13,7 +13,7 @@ internal class DivisorGameTest {
                 true to 2,
                 false to 3,
                 true to 48,
-                true to 1000 // or Int.MAX_VALUE
+                true to 1000, // or Int.MAX_VALUE
             )
         }
     }

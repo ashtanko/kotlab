@@ -10,7 +10,7 @@ internal abstract class LastStoneWeightTest<out T : LastStoneWeightStrategy>(pri
         @JvmStatic
         fun dataProvider(): List<Pair<IntArray, Int>> {
             return listOf(
-                intArrayOf(2, 7, 4, 1, 8, 1) to 1
+                intArrayOf(2, 7, 4, 1, 8, 1) to 1,
             )
         }
     }

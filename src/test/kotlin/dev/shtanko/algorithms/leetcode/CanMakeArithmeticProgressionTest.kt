@@ -12,7 +12,7 @@ internal class CanMakeArithmeticProgressionTest {
             return listOf(
                 true to intArrayOf(3, 5, 1),
                 false to intArrayOf(1, 2, 4),
-                false to intArrayOf(0, 1, 4, 9, 16, 25, 36)
+                false to intArrayOf(0, 1, 4, 9, 16, 25, 36),
             )
         }
     }

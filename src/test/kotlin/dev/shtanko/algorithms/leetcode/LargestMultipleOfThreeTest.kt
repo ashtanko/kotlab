@@ -12,7 +12,7 @@ internal class LargestMultipleOfThreeTest {
                 intArrayOf(8, 1, 9) to "981",
                 intArrayOf(8, 6, 7, 1, 0) to "8760",
                 intArrayOf(1) to "",
-                intArrayOf(0, 0, 0, 0, 0, 0) to "0"
+                intArrayOf(0, 0, 0, 0, 0, 0) to "0",
             )
         }
     }

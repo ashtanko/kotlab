@@ -20,7 +20,7 @@ internal abstract class DestinationCityTest<out T : DestinationCityStrategy>(pri
                     listOf("B", "C"),
                     listOf("D", "B"),
                     listOf("C", "A"),
-                ) to "A"
+                ) to "A",
             )
         }
     }

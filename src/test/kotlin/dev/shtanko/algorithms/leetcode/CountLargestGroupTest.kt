@@ -13,7 +13,7 @@ internal class CountLargestGroupTest {
                 4 to 13,
                 2 to 2,
                 6 to 15,
-                5 to 24
+                5 to 24,
             )
         }
     }

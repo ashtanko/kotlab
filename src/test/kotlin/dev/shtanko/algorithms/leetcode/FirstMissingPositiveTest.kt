@@ -13,7 +13,7 @@ internal class FirstMissingPositiveTest {
                 intArrayOf(1, 2, 0) to 3,
                 intArrayOf(3, 4, -1, 1) to 2,
                 intArrayOf(7, 8, 9, 11, 12) to 1,
-                intArrayOf(1, 2, 3, 4) to 5
+                intArrayOf(1, 2, 3, 4) to 5,
             )
         }
     }

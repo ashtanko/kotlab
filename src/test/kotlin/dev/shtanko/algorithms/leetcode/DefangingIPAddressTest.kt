@@ -11,7 +11,7 @@ internal class DefangingIPAddressTest {
         fun dataProvider(): List<Pair<String, String>> {
             return listOf(
                 "1.1.1.1" to "1[.]1[.]1[.]1",
-                "255.100.50.0" to "255[.]100[.]50[.]0"
+                "255.100.50.0" to "255[.]100[.]50[.]0",
             )
         }
     }

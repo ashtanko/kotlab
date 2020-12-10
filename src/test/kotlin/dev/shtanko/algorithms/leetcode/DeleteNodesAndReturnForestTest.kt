@@ -22,7 +22,7 @@ internal class DeleteNodesAndReturnForestTest {
                 listOf(4)
             ),
             listOf(listOf(6)),
-            listOf(listOf(7))
+            listOf(listOf(7)),
         )
         assertEquals(expected, actual)
     }

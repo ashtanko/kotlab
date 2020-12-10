@@ -9,7 +9,7 @@ internal class CreateMaximumNumberTest {
         @JvmStatic
         fun dataProvider(): List<Pair<Triple<IntArray, IntArray, Int>, IntArray>> {
             return listOf(
-                Triple(intArrayOf(3, 4, 6, 5), intArrayOf(9, 1, 2, 5, 8, 3), 5) to intArrayOf(9, 8, 6, 5, 3)
+                Triple(intArrayOf(3, 4, 6, 5), intArrayOf(9, 1, 2, 5, 8, 3), 5) to intArrayOf(9, 8, 6, 5, 3),
             )
         }
     }

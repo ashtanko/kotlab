@@ -14,7 +14,7 @@ internal class MajorityCheckerTest {
             return listOf(
                 1 to Triple(0, 5, 4),
                 -1 to Triple(0, 3, 3),
-                2 to Triple(2, 3, 2)
+                2 to Triple(2, 3, 2),
             )
         }
     }

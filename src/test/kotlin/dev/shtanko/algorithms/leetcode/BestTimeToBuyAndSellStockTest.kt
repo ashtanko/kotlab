@@ -11,7 +11,7 @@ internal class BestTimeToBuyAndSellStockTest {
         fun dataProvider(): List<Any> {
             return listOf(
                 5 to intArrayOf(7, 1, 5, 3, 6, 4),
-                0 to intArrayOf(7, 6, 4, 3, 1)
+                0 to intArrayOf(7, 6, 4, 3, 1),
             )
         }
     }

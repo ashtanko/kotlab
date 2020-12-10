@@ -12,7 +12,7 @@ internal class DIStringMatchTest {
             return listOf(
                 intArrayOf(0, 4, 1, 3, 2) to "IDID",
                 intArrayOf(0, 1, 2, 3) to "III",
-                intArrayOf(3, 2, 0, 1) to "DDI"
+                intArrayOf(3, 2, 0, 1) to "DDI",
             )
         }
     }

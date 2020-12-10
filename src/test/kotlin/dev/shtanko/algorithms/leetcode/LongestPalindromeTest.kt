@@ -11,7 +11,7 @@ internal class LongestPalindromeTest {
         fun dataProvider(): List<Pair<String, String>> {
             return listOf(
                 "babad" to "bab",
-                "cbbd" to "bb"
+                "cbbd" to "bb",
             )
         }
     }

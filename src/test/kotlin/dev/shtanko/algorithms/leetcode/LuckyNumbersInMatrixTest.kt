@@ -23,7 +23,7 @@ internal abstract class AbstractLuckyNumbersStrategyTest<out T : AbstractLuckyNu
                 arrayOf(
                     intArrayOf(7, 8),
                     intArrayOf(1, 2)
-                ) to listOf(7)
+                ) to listOf(7),
             )
         }
     }

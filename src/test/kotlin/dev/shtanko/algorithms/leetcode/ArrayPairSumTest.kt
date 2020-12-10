@@ -11,7 +11,7 @@ internal abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val st
         fun casesProvider(): List<Pair<IntArray, Int>> {
             return listOf(
                 intArrayOf() to 0,
-                intArrayOf(1, 4, 3, 2) to 4
+                intArrayOf(1, 4, 3, 2) to 4,
             )
         }
     }

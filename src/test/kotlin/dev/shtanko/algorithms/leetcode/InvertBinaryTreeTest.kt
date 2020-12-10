@@ -36,7 +36,7 @@ internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>
             } to listOf(
                 listOf(1),
                 listOf(3, 2)
-            )
+            ),
         )
     }
 

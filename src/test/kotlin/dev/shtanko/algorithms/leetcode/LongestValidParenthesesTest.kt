@@ -24,7 +24,7 @@ internal abstract class LongestValidParenthesesTest<out T : LongestValidParenthe
             Arguments.of(
                 ")()())",
                 4
-            )
+            ),
         )
     }
 
@@ -34,7 +34,7 @@ internal abstract class LongestValidParenthesesTest<out T : LongestValidParenthe
             "" to 0,
             "(()" to 2,
             ")()())" to 4,
-            "((())))()())))(((()()(())))((()(())()((()))())())())()()" to 42
+            "((())))()())))(((()()(())))((()(())()((()))())())())()()" to 42,
         )
     }
 

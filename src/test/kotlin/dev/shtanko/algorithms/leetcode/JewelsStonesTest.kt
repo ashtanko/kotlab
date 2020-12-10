@@ -11,7 +11,7 @@ internal abstract class JewelsStonesTest<out T : NumJewelsInStonesStrategy>(priv
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<String, String>, Int>> = listOf(
             "aA" to "aAAbbbb" to 3,
-            "z" to "ZZ" to 0
+            "z" to "ZZ" to 0,
         )
     }
 

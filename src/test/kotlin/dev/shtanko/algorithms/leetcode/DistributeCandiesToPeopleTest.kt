@@ -11,7 +11,7 @@ internal class DistributeCandiesToPeopleTest {
         fun dataProvider(): List<Triple<Int, Int, IntArray>> {
             return listOf(
                 Triple(7, 4, intArrayOf(1, 2, 3, 1)),
-                Triple(10, 3, intArrayOf(5, 2, 3))
+                Triple(10, 3, intArrayOf(5, 2, 3)),
             )
         }
     }

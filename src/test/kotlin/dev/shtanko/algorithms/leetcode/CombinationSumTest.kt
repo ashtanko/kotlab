@@ -11,7 +11,7 @@ internal class CombinationSumTest {
         fun dataProvider(): List<Pair<Pair<IntArray, Int>, List<List<Int>>>> {
             return listOf(
                 intArrayOf(2, 3, 6, 7) to 7 to listOf(listOf(2, 2, 3), listOf(7)),
-                intArrayOf(2, 3, 5) to 8 to listOf(listOf(2, 2, 2, 2), listOf(2, 3, 3), listOf(3, 5))
+                intArrayOf(2, 3, 5) to 8 to listOf(listOf(2, 2, 2, 2), listOf(2, 3, 3), listOf(3, 5)),
             )
         }
     }

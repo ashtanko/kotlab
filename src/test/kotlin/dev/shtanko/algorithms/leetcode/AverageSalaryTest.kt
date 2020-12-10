@@ -13,7 +13,7 @@ internal class AverageSalaryTest {
                 intArrayOf(4000, 3000, 1000, 2000) to 2500.00000,
                 intArrayOf(1000, 2000, 3000) to 2000.00000,
                 intArrayOf(6000, 5000, 4000, 3000, 2000, 1000) to 3500.00000,
-                intArrayOf(8000, 9000, 2000, 3000, 6000, 1000) to 4750.00000
+                intArrayOf(8000, 9000, 2000, 3000, 6000, 1000) to 4750.00000,
             )
         }
     }

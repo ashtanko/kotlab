@@ -13,7 +13,7 @@ internal class ElementPositionTest {
             return listOf(
                 4 to intArrayOf() to intArrayOf(-1, -1),
                 8 to intArrayOf(5, 7, 7, 8, 8, 10) to intArrayOf(3, 4),
-                6 to intArrayOf(5, 7, 7, 8, 8, 10) to intArrayOf(-1, -1)
+                6 to intArrayOf(5, 7, 7, 8, 8, 10) to intArrayOf(-1, -1),
             )
         }
     }

@@ -1,11 +1,14 @@
 package dev.shtanko.algorithms.leetcode
 
+import java.lang.Double.NaN
+
 interface FindMaxAverageStrategy {
     fun perform(nums: IntArray, k: Int): Double
 }
 
 class FindMaxAverage1 : FindMaxAverageStrategy {
     override fun perform(nums: IntArray, k: Int): Double {
+        if (nums.isEmpty()) return NaN
         val sum = IntArray(nums.size)
         sum[0] = nums[0]
         for (i in 1 until nums.size) sum[i] = sum[i - 1] + nums[i]

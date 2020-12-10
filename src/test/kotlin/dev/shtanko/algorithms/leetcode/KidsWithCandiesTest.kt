@@ -12,7 +12,7 @@ internal abstract class KidsWithCandiesTest<out T : KidsWithCandiesStrategy>(pri
             return listOf(
                 intArrayOf(2, 3, 5, 1, 3) to 3 to booleanArrayOf(true, true, true, false, true),
                 intArrayOf(4, 2, 1, 1, 2) to 1 to booleanArrayOf(true, false, false, false, false),
-                intArrayOf(12, 1, 12) to 10 to booleanArrayOf(true, false, true)
+                intArrayOf(12, 1, 12) to 10 to booleanArrayOf(true, false, true),
             )
         }
     }

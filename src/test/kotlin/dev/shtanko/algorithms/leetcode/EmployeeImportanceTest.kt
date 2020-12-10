@@ -14,7 +14,7 @@ internal class EmployeeImportanceTest {
                     EmployeeImportance.Employee(1, 5, listOf(2, 3)),
                     EmployeeImportance.Employee(2, 3, listOf()),
                     EmployeeImportance.Employee(3, 3, listOf()),
-                ) to 11
+                ) to 11,
             )
         }
     }

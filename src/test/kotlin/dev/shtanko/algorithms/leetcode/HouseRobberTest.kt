@@ -14,7 +14,7 @@ internal abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(priva
                 intArrayOf(2, 7, 9, 3, 1) to 12,
                 intArrayOf(4, 8, 15, 16, 23, 42) to 66,
                 intArrayOf(1, 1, 1, 1, 1, 1) to 3,
-                intArrayOf(1, 0, 1, 0, 1, 0, 1) to 4
+                intArrayOf(1, 0, 1, 0, 1, 0, 1) to 4,
             )
         }
     }

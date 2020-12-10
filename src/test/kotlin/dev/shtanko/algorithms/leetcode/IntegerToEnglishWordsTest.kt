@@ -17,7 +17,7 @@ internal class IntegerToEnglishWordsTest {
                 444 to "Four Hundred Forty Four",
                 12_345 to "Twelve Thousand Three Hundred Forty Five",
                 1_234_567 to "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven",
-                1_234_567_891 to "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One"
+                1_234_567_891 to "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One",
             )
         }
     }

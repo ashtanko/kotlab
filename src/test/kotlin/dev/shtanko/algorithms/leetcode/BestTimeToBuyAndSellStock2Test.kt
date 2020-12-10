@@ -12,7 +12,7 @@ internal class BestTimeToBuyAndSellStock2Test {
             return listOf(
                 7 to intArrayOf(7, 1, 5, 3, 6, 4),
                 4 to intArrayOf(1, 2, 3, 4, 5),
-                0 to intArrayOf(7, 6, 4, 3, 1)
+                0 to intArrayOf(7, 6, 4, 3, 1),
             )
         }
     }

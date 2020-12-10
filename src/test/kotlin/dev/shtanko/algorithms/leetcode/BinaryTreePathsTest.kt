@@ -24,7 +24,7 @@ internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(pri
                 Arguments.of(
                     t2(),
                     listOf("1->2->4", "1->2->5", "1->3->6", "1->3->7")
-                )
+                ),
             )
         }
 

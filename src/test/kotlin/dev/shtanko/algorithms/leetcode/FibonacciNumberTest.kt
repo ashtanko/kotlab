@@ -53,7 +53,7 @@ internal abstract class FibonacciNumberTest<out T : FibonacciStrategy>(private v
             41 to 165580141L,
             42 to 267914296L,
             43 to 433494437L,
-            44 to 701408733L
+            44 to 701408733L,
         )
     }
 

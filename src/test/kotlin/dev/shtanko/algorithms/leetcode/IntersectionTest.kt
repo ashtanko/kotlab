@@ -13,7 +13,7 @@ internal abstract class AbstractIntersectionTest<out T : IntersectionStrategy>(p
             intArrayOf(1, 2, 2, 1) to intArrayOf(2, 2) to intArrayOf(2),
             intArrayOf(4, 9, 5) to intArrayOf(9, 4, 9, 8, 4) to intArrayOf(4, 9),
             intArrayOf(4, 8) to intArrayOf(15, 16, 23, 4) to intArrayOf(4),
-            intArrayOf(4, 8) to intArrayOf(15, 16, 23, 42) to intArrayOf()
+            intArrayOf(4, 8) to intArrayOf(15, 16, 23, 42) to intArrayOf(),
         )
     }
 

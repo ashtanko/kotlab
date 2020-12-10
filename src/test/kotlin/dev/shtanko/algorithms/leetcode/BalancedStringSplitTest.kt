@@ -13,7 +13,7 @@ internal class BalancedStringSplitTest {
                 "RLRRLLRLRL" to 4,
                 "RLLLLRRRLR" to 3,
                 "LLLLRRRR" to 1,
-                "RLRRRLLRLL" to 2
+                "RLRRRLLRLL" to 2,
             )
         }
     }

@@ -12,7 +12,7 @@ internal class AdvantageShuffleTest {
             return listOf(
                 Triple(intArrayOf(), intArrayOf(), intArrayOf()),
                 Triple(intArrayOf(2, 7, 11, 15), intArrayOf(1, 10, 4, 11), intArrayOf(2, 11, 7, 15)),
-                Triple(intArrayOf(12, 24, 8, 32), intArrayOf(13, 25, 32, 11), intArrayOf(24, 32, 8, 12))
+                Triple(intArrayOf(12, 24, 8, 32), intArrayOf(13, 25, 32, 11), intArrayOf(24, 32, 8, 12)),
             )
         }
     }

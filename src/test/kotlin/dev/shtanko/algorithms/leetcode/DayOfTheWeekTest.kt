@@ -15,7 +15,7 @@ internal class DayOfTheWeekTest {
                 Triple(18, 7, 1999) to "Sunday",
                 Triple(15, 8, 1993) to "Sunday",
                 Triple(23, 4, 1994) to "Saturday",
-                Triple(27, 10, 1999) to "Wednesday"
+                Triple(27, 10, 1999) to "Wednesday",
             )
         }
     }

@@ -47,8 +47,7 @@ internal class LeafSimilarTreesTest {
                 } to TreeNode(1).apply {
                     left = TreeNode(3)
                     right = TreeNode(2)
-                } to false
-
+                } to false,
             )
         }
     }

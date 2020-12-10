@@ -12,7 +12,7 @@ internal class IsomorphicStringsTest {
         fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> = listOf(
             "egg" to "add" to true,
             "foo" to "bar" to false,
-            "paper" to "title" to true
+            "paper" to "title" to true,
         )
     }
 

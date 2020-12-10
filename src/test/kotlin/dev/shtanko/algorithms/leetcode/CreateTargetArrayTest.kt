@@ -13,7 +13,7 @@ internal class CreateTargetArrayTest {
                 intArrayOf() to intArrayOf() to intArrayOf(),
                 intArrayOf(0, 1, 2, 3, 4) to intArrayOf(0, 1, 2, 2, 1) to intArrayOf(0, 4, 1, 3, 2),
                 intArrayOf(1, 2, 3, 4, 0) to intArrayOf(0, 1, 2, 3, 0) to intArrayOf(0, 1, 2, 3, 4),
-                intArrayOf(1) to intArrayOf(0) to intArrayOf(1)
+                intArrayOf(1) to intArrayOf(0) to intArrayOf(1),
             )
         }
     }

@@ -19,7 +19,7 @@ internal abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val
                 11 to 4,
                 10 to 4,
                 13 to 5,
-                1_000_000 to 78498
+                1_000_000 to 78498,
             )
         }
     }

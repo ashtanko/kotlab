@@ -13,7 +13,7 @@ internal abstract class BasicCalculatorTest<out T : CalculationStrategy>(private
                 "1 + 1" to 2,
                 " 2-1 + 2 " to 3,
                 "(1+(4+5+2)-3)+(6+8)" to 23,
-                "2   +2" to 4
+                "2   +2" to 4,
             )
         }
     }

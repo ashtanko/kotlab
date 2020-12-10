@@ -24,7 +24,7 @@ internal class FloodFillTest {
                     1,
                     2,
                     listOf(intArrayOf(2, 2, 2), intArrayOf(2, 2, 0), intArrayOf(2, 0, 1))
-                )
+                ),
             )
         }
     }

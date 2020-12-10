@@ -18,7 +18,7 @@ internal abstract class KClosestPointsTest<out T : KClosestPointsStrategy>(priva
                 intArrayOf(3, 3),
                 intArrayOf(5, -1),
                 intArrayOf(-2, 4)
-            ) to 2 to arrayOf(intArrayOf(3, 3), intArrayOf(-2, 4))
+            ) to 2 to arrayOf(intArrayOf(3, 3), intArrayOf(-2, 4)),
         )
     }
 

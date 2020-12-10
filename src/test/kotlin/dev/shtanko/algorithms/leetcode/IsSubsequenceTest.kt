@@ -11,7 +11,7 @@ internal class IsSubsequenceTest {
         @JvmStatic
         fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> = listOf(
             "abc" to "ahbgdc" to true,
-            "axc" to "ahbgdc" to false
+            "axc" to "ahbgdc" to false,
         )
     }
 

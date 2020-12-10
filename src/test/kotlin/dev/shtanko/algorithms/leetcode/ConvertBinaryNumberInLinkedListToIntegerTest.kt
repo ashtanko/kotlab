@@ -39,7 +39,7 @@ internal abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>
             Arguments.of(
                 getNode(),
                 18880
-            )
+            ),
         )
 
         private fun getNode(): ListNode {

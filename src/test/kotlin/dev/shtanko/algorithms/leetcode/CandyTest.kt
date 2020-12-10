@@ -11,7 +11,7 @@ internal abstract class CandyTest<out T : CandyStrategy>(private val strategy: T
         fun dataProvider(): List<Pair<IntArray, Int>> = listOf(
             intArrayOf() to 0,
             intArrayOf(1, 0, 2) to 5,
-            intArrayOf(1, 2, 2) to 4
+            intArrayOf(1, 2, 2) to 4,
         )
     }
 

@@ -10,7 +10,7 @@ internal class KeyboardRowTest {
         @JvmStatic
         fun dataProvider(): List<Pair<Array<String>, Array<String>>> {
             return listOf(
-                arrayOf("Hello", "Alaska", "Dad", "Peace") to arrayOf("Alaska", "Dad")
+                arrayOf("Hello", "Alaska", "Dad", "Peace") to arrayOf("Alaska", "Dad"),
             )
         }
     }

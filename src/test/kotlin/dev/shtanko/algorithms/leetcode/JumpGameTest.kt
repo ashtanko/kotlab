@@ -11,7 +11,7 @@ internal class JumpGameTest {
         @JvmStatic
         fun dataProvider(): List<Pair<IntArray, Boolean>> = listOf(
             intArrayOf(2, 3, 1, 1, 4) to true,
-            intArrayOf(3, 2, 1, 0, 4) to false
+            intArrayOf(3, 2, 1, 0, 4) to false,
         )
     }
 

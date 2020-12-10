@@ -16,7 +16,7 @@ internal class JumpGame2Test {
             intArrayOf(1) to 0,
             intArrayOf(1, 1) to 1,
             intArrayOf(1, 2) to 1,
-            intArrayOf(1, 1, 1) to 2
+            intArrayOf(1, 1, 1) to 2,
         )
     }
 

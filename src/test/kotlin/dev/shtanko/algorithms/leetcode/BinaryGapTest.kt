@@ -23,7 +23,7 @@ internal abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val str
                 56 to 1,
                 114 to 3,
                 2345 to 3,
-                Int.MAX_VALUE to 1
+                Int.MAX_VALUE to 1,
             )
         }
     }

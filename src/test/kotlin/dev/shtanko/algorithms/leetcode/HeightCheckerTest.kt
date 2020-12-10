@@ -12,7 +12,7 @@ internal class HeightCheckerTest {
             return listOf(
                 intArrayOf(1, 1, 4, 2, 1, 3) to 3,
                 intArrayOf(5, 1, 2, 3, 4) to 5,
-                intArrayOf(1, 2, 3, 4, 5) to 0
+                intArrayOf(1, 2, 3, 4, 5) to 0,
             )
         }
     }

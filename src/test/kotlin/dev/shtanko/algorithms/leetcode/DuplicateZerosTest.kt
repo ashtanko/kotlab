@@ -10,7 +10,7 @@ internal class DuplicateZerosTest {
         fun dataProvider(): List<Pair<IntArray, IntArray>> {
             return listOf(
                 intArrayOf(1, 0, 2, 3, 0, 4, 5, 0) to intArrayOf(1, 0, 0, 2, 3, 0, 0, 4),
-                intArrayOf(1, 2, 3) to intArrayOf(1, 2, 3)
+                intArrayOf(1, 2, 3) to intArrayOf(1, 2, 3),
             )
         }
     }

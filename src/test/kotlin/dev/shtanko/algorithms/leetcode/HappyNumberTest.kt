@@ -16,7 +16,7 @@ internal class HappyNumberTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(19, true),
             Arguments.of(16, false),
-            Arguments.of(23, true)
+            Arguments.of(23, true),
         )
     }
 
@@ -26,7 +26,7 @@ internal class HappyNumberTest {
             Arguments.of(5, listOf(1)),
             Arguments.of(25, listOf(1, 7, 10, 13, 19, 23)),
             Arguments.of(50, listOf(1, 7, 10, 13, 19, 23, 28, 31, 32, 44, 49)),
-            Arguments.of(100, listOf(1, 7, 10, 13, 19, 23, 28, 31, 32, 44, 49, 68, 70, 79, 82, 86, 91, 94, 97))
+            Arguments.of(100, listOf(1, 7, 10, 13, 19, 23, 28, 31, 32, 44, 49, 68, 70, 79, 82, 86, 91, 94, 97)),
         )
     }
 

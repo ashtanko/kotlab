@@ -11,7 +11,7 @@ internal class MajorityElementTest {
         fun dataProvider(): List<Pair<IntArray, Int>> {
             return listOf(
                 intArrayOf(3, 2, 3) to 3,
-                intArrayOf(2, 2, 1, 1, 1, 2, 2) to 2
+                intArrayOf(2, 2, 1, 1, 1, 2, 2) to 2,
             )
         }
     }

@@ -12,7 +12,7 @@ internal abstract class AbstractFindSubstringTest<T : AbstractFindSubstring>(pri
             return listOf(
                 "" to arrayOf("foo", "bar") to listOf(),
                 "barfoothefoobarman" to arrayOf("foo", "bar") to listOf(0, 9),
-                "wordgoodgoodgoodbestword" to arrayOf("word", "good", "best", "word") to emptyList()
+                "wordgoodgoodgoodbestword" to arrayOf("word", "good", "best", "word") to emptyList(),
             )
         }
     }

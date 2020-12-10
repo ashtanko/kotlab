@@ -14,7 +14,7 @@ internal class FairCandySwapTest {
                 intArrayOf(1, 1) to intArrayOf(2, 2) to intArrayOf(1, 2),
                 intArrayOf(1, 2) to intArrayOf(2, 3) to intArrayOf(1, 2),
                 intArrayOf(2) to intArrayOf(1, 3) to intArrayOf(2, 3),
-                intArrayOf(1, 2, 5) to intArrayOf(2, 4) to intArrayOf(5, 4)
+                intArrayOf(1, 2, 5) to intArrayOf(2, 4) to intArrayOf(5, 4),
             )
         }
     }

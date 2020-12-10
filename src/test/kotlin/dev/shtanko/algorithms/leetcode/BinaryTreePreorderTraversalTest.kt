@@ -19,7 +19,7 @@ internal class BinaryTreePreorderTraversalTest {
                         right?.left = TreeNode(3)
                     },
                     listOf(1, 2, 3)
-                )
+                ),
             )
         }
     }

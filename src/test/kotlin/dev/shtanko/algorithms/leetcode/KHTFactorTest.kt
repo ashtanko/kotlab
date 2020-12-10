@@ -14,7 +14,7 @@ internal class KHTFactorTest {
                 7 to 2 to 7,
                 4 to 4 to -1,
                 1 to 1 to 1,
-                1000 to 3 to 4
+                1000 to 3 to 4,
             )
         }
     }

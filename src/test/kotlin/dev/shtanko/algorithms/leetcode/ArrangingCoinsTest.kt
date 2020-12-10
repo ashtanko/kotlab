@@ -11,7 +11,7 @@ internal abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(priva
         fun casesProvider(): List<Pair<Int, Int>> {
             return listOf(
                 5 to 2,
-                8 to 3
+                8 to 3,
             )
         }
     }

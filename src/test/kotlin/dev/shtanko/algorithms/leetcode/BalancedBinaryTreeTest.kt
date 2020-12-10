@@ -26,7 +26,7 @@ internal class BalancedBinaryTreeTest {
                             right = TreeNode(4)
                         }
                     }
-                }
+                },
             )
         }
     }

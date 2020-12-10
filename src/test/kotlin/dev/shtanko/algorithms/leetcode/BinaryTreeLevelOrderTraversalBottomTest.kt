@@ -25,7 +25,7 @@ internal class BinaryTreeLevelOrderTraversalBottomTest {
                     listOf(
                         listOf(15, 7),
                         listOf(9, 20),
-                        listOf(3)
+                        listOf(3),
                     )
                 )
             )
