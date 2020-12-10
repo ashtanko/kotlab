@@ -1,13 +1,8 @@
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.BinaryGapStrategy.Companion.MAX_SIZE
+private const val MAX_SIZE = 32
 
 interface BinaryGapStrategy {
-
-    companion object {
-        const val MAX_SIZE = 32
-    }
-
     fun binaryGap(n: Int): Int
 }
 

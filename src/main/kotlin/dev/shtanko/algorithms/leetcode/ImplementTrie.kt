@@ -1,9 +1,6 @@
 package dev.shtanko.algorithms.leetcode
 
 data class TrieNode(var isEnd: Boolean = false) {
-    companion object {
-        private const val R = 26
-    }
 
     private val links: Array<TrieNode?> = Array(R) { null }
 
@@ -17,6 +14,10 @@ data class TrieNode(var isEnd: Boolean = false) {
 
     fun put(ch: Char, node: TrieNode?) {
         links[ch - 'a'] = node
+    }
+
+    companion object {
+        private const val R = 26
     }
 }
 

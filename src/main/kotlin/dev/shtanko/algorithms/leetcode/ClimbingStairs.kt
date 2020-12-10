@@ -108,15 +108,15 @@ class ClimbingStairsBinetsMethod : ClimbingStairsStrategy {
 
 class ClimbingStairsFibonacciFormula : ClimbingStairsStrategy {
 
-    companion object {
-        private const val FIB_FORMULA_VALUE = 5.0
-    }
-
     override fun perform(n: Int): Int {
         val sqrt5 = sqrt(FIB_FORMULA_VALUE)
         val firstPart = 1.plus(sqrt5).div(2).pow(n.plus(1).toDouble())
         val secondPart = 1.minus(sqrt5).div(2).pow((n + 1).toDouble())
         val fibN = firstPart - secondPart
         return fibN.div(sqrt5).toInt()
+    }
+
+    companion object {
+        private const val FIB_FORMULA_VALUE = 5.0
     }
 }

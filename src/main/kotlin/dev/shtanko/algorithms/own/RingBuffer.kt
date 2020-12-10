@@ -6,10 +6,6 @@ package dev.shtanko.algorithms.own
  * <p>All methods of this class are non-blocking and not synchronized (not thread-safe).
  */
 class RingBuffer {
-    companion object {
-        private const val MIN_VALUE = Byte.MIN_VALUE // -128
-        private const val MAX_VALUE = Byte.MAX_VALUE // 127
-    }
 
     /**
      * position of first (oldest) data byte within the ring buffer
@@ -45,5 +41,10 @@ class RingBuffer {
      */
     private fun increment() {
         bufferPosition = bufferPosition.inc()
+    }
+
+    companion object {
+        private const val MIN_VALUE = Byte.MIN_VALUE // -128
+        private const val MAX_VALUE = Byte.MAX_VALUE // 127
     }
 }

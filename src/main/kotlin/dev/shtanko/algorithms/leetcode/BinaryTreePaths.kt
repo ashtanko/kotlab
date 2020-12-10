@@ -1,18 +1,13 @@
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.BinaryTreePathsStrategy.Companion.ARROW
-import dev.shtanko.algorithms.leetcode.BinaryTreePathsStrategy.Companion.FORMAT
-import java.util.ArrayList
 import java.util.LinkedList
 import java.util.Queue
 import java.util.Stack
 
-internal interface BinaryTreePathsStrategy {
-    companion object {
-        const val FORMAT = "%s%s%s"
-        const val ARROW = "->"
-    }
+private const val FORMAT = "%s%s%s"
+private const val ARROW = "->"
 
+internal interface BinaryTreePathsStrategy {
     fun binaryTreePaths(root: TreeNode?): List<String>
 }
 

@@ -9,12 +9,6 @@ interface BinaryTreeCamerasStrategy {
 
 class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {
 
-    companion object {
-        private const val NOT_MONITORED = 0
-        private const val MONITORED_NO_CAM = 1
-        private const val MONITORED_WITH_CAM = 2
-    }
-
     private var cameras = 0
 
     override fun perform(root: TreeNode?): Int {
@@ -37,13 +31,15 @@ class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {
             MONITORED_NO_CAM
         }
     }
+
+    companion object {
+        private const val NOT_MONITORED = 0
+        private const val MONITORED_NO_CAM = 1
+        private const val MONITORED_WITH_CAM = 2
+    }
 }
 
 class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {
-
-    companion object {
-        private const val MAX_ARRAY_SIZE = 99999
-    }
 
     override fun perform(root: TreeNode?): Int {
         val ans = solve(root)
@@ -63,6 +59,10 @@ class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {
         val d1 = min(l[2] + mR12, r[2] + mL12)
         val d2 = 1 + min(l[0], mL12) + min(r[0], mR12)
         return intArrayOf(d0, d1, d2)
+    }
+
+    companion object {
+        private const val MAX_ARRAY_SIZE = 99999
     }
 }
 

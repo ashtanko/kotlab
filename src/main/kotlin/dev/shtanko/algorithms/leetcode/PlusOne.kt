@@ -2,10 +2,6 @@ package dev.shtanko.algorithms.leetcode
 
 class PlusOne {
 
-    companion object {
-        private const val MAX_DIGIT_RESTRICTION = 9
-    }
-
     fun perform(digits: IntArray): IntArray {
         val carry = 1
         for (i in digits.size - 1 downTo 0) {
@@ -18,5 +14,9 @@ class PlusOne {
         val ret = IntArray(digits.size + 1)
         ret[0] = 1
         return ret
+    }
+
+    companion object {
+        private const val MAX_DIGIT_RESTRICTION = 9
     }
 }

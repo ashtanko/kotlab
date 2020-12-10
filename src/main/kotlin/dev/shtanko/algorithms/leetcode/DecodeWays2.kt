@@ -1,25 +1,21 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.lessThanZero
-import dev.shtanko.algorithms.leetcode.DecodeWays2Strategy.Companion.FIFTEEN
-import dev.shtanko.algorithms.leetcode.DecodeWays2Strategy.Companion.NINE
-import dev.shtanko.algorithms.leetcode.DecodeWays2Strategy.Companion.SIX
+
+// TODO Rename constants
+private const val NINE = 9
+private const val SIX = 6
+private const val FIFTEEN = 15
 
 interface DecodeWays2Strategy {
     fun perform(s: String): Int
-
-    companion object {
-        const val NINE = 9
-        const val SIX = 6
-        const val FIFTEEN = 15
-    }
 }
 
 class DecodeWays2RecursionWithMemoization : DecodeWays2Strategy {
     private var m = 1000000007
 
     override fun perform(s: String): Int {
-        if (s.isEmpty()) return 0
+        if (s.isEmpty) return 0
         val memo = arrayOfNulls<Int>(s.length)
         return ways(s, s.length - 1, memo)
     }
@@ -84,7 +80,7 @@ class DecodeWays2DynamicProgramming : DecodeWays2Strategy {
     private var m = 1000000007
 
     override fun perform(s: String): Int {
-        if (s.isEmpty()) return 0
+        if (s.isEmpty) return 0
         val dp = LongArray(s.length + 1)
         dp[0] = 1
         dp[1] = if (s[0] == '*') NINE.toLong() else if (s[0] == '0') 0 else 1L
@@ -141,7 +137,7 @@ class DecodeWays2ConstantSpaceDynamicProgramming : DecodeWays2Strategy {
     private var m = 1000000007
 
     override fun perform(s: String): Int {
-        if (s.isEmpty()) return 0
+        if (s.isEmpty) return 0
         var first: Long = 1
         var second = if (s[0] == '*') NINE.toLong() else if (s[0] == '0') 0 else 1.toLong()
         for (i in 1 until s.length) {

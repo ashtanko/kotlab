@@ -123,12 +123,12 @@ class FibonacciMatrixExponentiation : FibonacciStrategy {
 
 class FibonacciMath : FibonacciStrategy {
 
-    companion object {
-        private const val GOLDEN_RATIO_VALUE = 5.0
-    }
-
     override fun perform(n: Int): Long {
         val goldenRatio = 1.plus(sqrt(GOLDEN_RATIO_VALUE)) / 2
         return goldenRatio.pow(n).div(sqrt(GOLDEN_RATIO_VALUE)).roundToLong()
+    }
+
+    companion object {
+        private const val GOLDEN_RATIO_VALUE = 5.0
     }
 }

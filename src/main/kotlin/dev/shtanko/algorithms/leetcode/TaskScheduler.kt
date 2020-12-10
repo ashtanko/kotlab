@@ -10,10 +10,6 @@ interface TaskSchedulerStrategy {
 
 class TaskSchedulerSimple : TaskSchedulerStrategy {
 
-    companion object {
-        private const val ARR_SIZE = 26
-    }
-
     override fun perform(tasks: CharArray, n: Int): Int {
         val counter = IntArray(ARR_SIZE)
         var max = 0
@@ -35,6 +31,10 @@ class TaskSchedulerSimple : TaskSchedulerStrategy {
         val idles = max(0, emptySlots - availableTasks)
 
         return tasks.size + idles
+    }
+
+    companion object {
+        private const val ARR_SIZE = 26
     }
 }
 

@@ -1,13 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.PowerOfThreeStrategy.Companion.POWER
 import kotlin.math.log10
 
-interface PowerOfThreeStrategy {
-    companion object {
-        const val POWER = 3
-    }
+private const val POWER = 3
 
+interface PowerOfThreeStrategy {
     fun isPowerOfThree(n: Int): Boolean
 }
 

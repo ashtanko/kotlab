@@ -81,10 +81,6 @@ class IsContainsDuplicateSortSetOptimized : ContainsDuplicateStrategy {
 
 class IsContainsDuplicateBitManipulation : ContainsDuplicateStrategy {
 
-    companion object {
-        private const val ARR_SIZE = 150000
-    }
-
     override fun perform(arr: IntArray): Boolean {
         val mark = ByteArray(ARR_SIZE)
         for (i in arr) {
@@ -97,5 +93,9 @@ class IsContainsDuplicateBitManipulation : ContainsDuplicateStrategy {
             mark[j] = mark[j] or check.toByte()
         }
         return false
+    }
+
+    companion object {
+        private const val ARR_SIZE = 150000
     }
 }

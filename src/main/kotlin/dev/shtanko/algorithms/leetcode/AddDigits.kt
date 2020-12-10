@@ -1,13 +1,8 @@
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.AddDigitsStrategy.Companion.MAX
+private const val MAX = 9
 
 interface AddDigitsStrategy {
-
-    companion object {
-        const val MAX = 9
-    }
-
     fun perform(digits: Int): Int
 }
 

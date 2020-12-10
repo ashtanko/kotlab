@@ -8,10 +8,6 @@ interface DesignHashSet {
 
 class DesignHashSetImpl : DesignHashSet {
 
-    companion object {
-        private const val DEFAULT_CAPACITY = 32
-    }
-
     private var capacity = DEFAULT_CAPACITY
     private var cnt = 0
     var list = arrayOfNulls<DesignList>(capacity)
@@ -83,6 +79,10 @@ class DesignHashSetImpl : DesignHashSet {
         cur.pre = pre
         cur.next = tail
         tail.pre = cur
+    }
+
+    companion object {
+        private const val DEFAULT_CAPACITY = 32
     }
 }
 

@@ -9,10 +9,6 @@ private const val OBSERVE_COUNT = 14
 
 class WaitNotifyExampleKotlin(private val maxItems: Int) {
 
-    companion object {
-        private const val BOUND = 100
-    }
-
     @Volatile
     private var items = 0
     private val rand = Random()
@@ -37,6 +33,10 @@ class WaitNotifyExampleKotlin(private val maxItems: Int) {
         items--
         println("Consumed, count is $items: ${Thread.currentThread()}")
         lock.notifyAll()
+    }
+
+    companion object {
+        private const val BOUND = 100
     }
 }
 

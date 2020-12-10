@@ -4,10 +4,6 @@ import kotlin.math.max
 
 class CountGoodNodesInBinaryTree {
 
-    companion object {
-        private const val MIN_VALUE = -10000
-    }
-
     fun goodNodes(root: TreeNode?): Int {
         return goodNodes(root, MIN_VALUE)
     }
@@ -18,5 +14,9 @@ class CountGoodNodesInBinaryTree {
         res += goodNodes(root.left, max(ma, root.value))
         res += goodNodes(root.right, max(ma, root.value))
         return res
+    }
+
+    companion object {
+        private const val MIN_VALUE = -10000
     }
 }

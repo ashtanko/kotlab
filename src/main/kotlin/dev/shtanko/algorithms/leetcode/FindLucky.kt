@@ -1,13 +1,8 @@
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.FindLuckyStrategy.Companion.MAX_ARR_SIZE
+private const val MAX_ARR_SIZE = 500
 
 interface FindLuckyStrategy {
-
-    companion object {
-        const val MAX_ARR_SIZE = 500
-    }
-
     fun perform(arr: IntArray): Int
 }
 

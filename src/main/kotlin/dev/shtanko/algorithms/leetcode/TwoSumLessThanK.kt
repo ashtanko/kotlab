@@ -61,11 +61,6 @@ class TwoSumLessThanKBinarySearch : TwoSumLessThanKStrategy {
 
 class TwoSumLessThanKCountingSort : TwoSumLessThanKStrategy {
 
-    companion object {
-        private const val ARRAY_SIZE = 1001
-        private const val MAX = 1000
-    }
-
     override fun perform(nums: IntArray, k: Int): Int {
         var answer = -1
         val count = IntArray(ARRAY_SIZE)
@@ -85,5 +80,10 @@ class TwoSumLessThanKCountingSort : TwoSumLessThanKStrategy {
             }
         }
         return answer
+    }
+
+    companion object {
+        private const val ARRAY_SIZE = 1001
+        private const val MAX = 1000
     }
 }

@@ -26,10 +26,6 @@ class CountTheRepetitionsBruteForce : CountTheRepetitionsStrategy {
 
 class CountTheRepetitionsBetterBruteForce : CountTheRepetitionsStrategy {
 
-    companion object {
-        private const val ARRAY_SIZE = 102
-    }
-
     override fun perform(s1: String, n1: Int, s2: String, n2: Int): Int {
         val reps = IntArray(ARRAY_SIZE)
         val rests = IntArray(ARRAY_SIZE)
@@ -63,5 +59,9 @@ class CountTheRepetitionsBetterBruteForce : CountTheRepetitionsStrategy {
         val repeatTimes = repeatCount * reps[i].minus(reps[k])
         val remainTimes = reps[n1.minus(k) % interval + k]
         return repeatTimes.plus(remainTimes) / n2
+    }
+
+    companion object {
+        private const val ARRAY_SIZE = 102
     }
 }

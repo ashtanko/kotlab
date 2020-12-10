@@ -10,10 +10,6 @@ interface LargestUniqueNumber {
  */
 class LargestUniqueNumberBruteForce : LargestUniqueNumber {
 
-    companion object {
-        private const val ARR_SIZE = 1001
-    }
-
     override fun perform(arr: IntArray): Int {
         var res = -1
         val temp = IntArray(ARR_SIZE)
@@ -27,6 +23,10 @@ class LargestUniqueNumberBruteForce : LargestUniqueNumber {
             }
         }
         return res
+    }
+
+    companion object {
+        private const val ARR_SIZE = 1001
     }
 }
 

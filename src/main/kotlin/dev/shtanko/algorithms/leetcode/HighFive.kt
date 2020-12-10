@@ -1,20 +1,15 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.second
-import dev.shtanko.algorithms.leetcode.HighFiveStrategy.Companion.CAPACITY
-import dev.shtanko.algorithms.leetcode.HighFiveStrategy.Companion.SIZE
 import java.util.ArrayList
 import java.util.Arrays
 import java.util.PriorityQueue
 import java.util.TreeMap
 
+private const val CAPACITY = 5
+private const val SIZE = 2
+
 interface HighFiveStrategy {
-
-    companion object {
-        const val CAPACITY = 5
-        const val SIZE = 2
-    }
-
     fun perform(items: Array<IntArray>): Array<IntArray>
 }
 

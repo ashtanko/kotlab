@@ -12,10 +12,6 @@ internal interface BrowserHistory {
 
 class BrowserHistoryArray(homepage: String) : BrowserHistory {
 
-    companion object {
-        private const val ARRAY_SIZE = 101
-    }
-
     private var current = -1
     private var top = 0
     private val h = Array(ARRAY_SIZE) { "" }
@@ -48,6 +44,10 @@ class BrowserHistoryArray(homepage: String) : BrowserHistory {
             current += steps
         }
         return h[current]
+    }
+
+    companion object {
+        private const val ARRAY_SIZE = 101
     }
 }
 

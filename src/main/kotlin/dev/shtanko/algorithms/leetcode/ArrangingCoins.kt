@@ -29,14 +29,14 @@ class ArrangingCoinsBS : ArrangingCoinsStrategy {
 
 class ArrangingCoinsMath : ArrangingCoinsStrategy {
 
+    override fun arrangeCoins(n: Int): Int {
+        val local = sqrt(C1 * n + C2) - C3
+        return local.toInt()
+    }
+
     companion object {
         private const val C1 = 2
         private const val C2 = 0.25
         private const val C3 = 0.5
-    }
-
-    override fun arrangeCoins(n: Int): Int {
-        val local = sqrt(C1 * n + C2) - C3
-        return local.toInt()
     }
 }

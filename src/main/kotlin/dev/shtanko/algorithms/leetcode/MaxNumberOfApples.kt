@@ -1,10 +1,11 @@
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.MaxNumberOfApples.Companion.BASKET_SIZE
 import java.util.PriorityQueue
 import java.util.Queue
 import kotlin.math.max
 import kotlin.math.min
+
+private const val BASKET_SIZE = 5000
 
 /**
  * How Many Apples Can You Put into the Basket.
@@ -13,11 +14,6 @@ import kotlin.math.min
  * Return the maximum number of apples you can put in the basket.
  */
 interface MaxNumberOfApples {
-
-    companion object {
-        const val BASKET_SIZE = 5000
-    }
-
     fun perform(arr: IntArray): Int
 }
 

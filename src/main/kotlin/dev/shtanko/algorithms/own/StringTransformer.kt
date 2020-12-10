@@ -6,25 +6,6 @@ package dev.shtanko.algorithms.own
  */
 class StringTransformer(private val ringBuffer: RingBuffer) {
 
-    companion object {
-        /**
-         * The chunk size
-         */
-        private const val CHUNK_SIZE = 18
-
-        /**
-         * First byte marker of all chunks until the last chunk
-         * [[ELEMENT_MARK], id, n1, n2 ... n[CHUNK_SIZE]]
-         */
-        private const val ELEMENT_MARK = 0.toByte()
-
-        /**
-         * First byte marker of the last chunk
-         * [[LAST_ELEMENT_MARK], id, n1, n2 ... n[CHUNK_SIZE]]
-         */
-        private const val LAST_ELEMENT_MARK = 1.toByte()
-    }
-
     /**
      * This function separates input string to chunks if the string length more than [CHUNK_SIZE]
      * Marks the first two bytes every chunk and gather them
@@ -81,5 +62,24 @@ class StringTransformer(private val ringBuffer: RingBuffer) {
             newArray.add(chunkList.toByteArray())
         }
         return newArray
+    }
+
+    companion object {
+        /**
+         * The chunk size
+         */
+        private const val CHUNK_SIZE = 18
+
+        /**
+         * First byte marker of all chunks until the last chunk
+         * [[ELEMENT_MARK], id, n1, n2 ... n[CHUNK_SIZE]]
+         */
+        private const val ELEMENT_MARK = 0.toByte()
+
+        /**
+         * First byte marker of the last chunk
+         * [[LAST_ELEMENT_MARK], id, n1, n2 ... n[CHUNK_SIZE]]
+         */
+        private const val LAST_ELEMENT_MARK = 1.toByte()
     }
 }

@@ -1,14 +1,10 @@
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.StringPermutationStrategy.Companion.MAX
 import java.util.Arrays
 
+private const val MAX = 25
+
 interface StringPermutationStrategy {
-
-    companion object {
-        const val MAX = 25
-    }
-
     fun perform(s1: String, s2: String): Boolean
 
     fun matches(s1map: IntArray, s2map: IntArray): Boolean {

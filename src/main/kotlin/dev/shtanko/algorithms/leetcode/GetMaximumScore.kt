@@ -6,10 +6,6 @@ import kotlin.math.max
 // Get the Maximum Score
 class GetMaximumScore {
 
-    companion object {
-        private const val M = 1e9.toInt() + 7
-    }
-
     fun maxSum(nums1: IntArray, nums2: IntArray): Int {
         val map: MutableMap<Int, MutableList<Int>> = HashMap()
         for (i in 0 until nums1.size - 1) map.computeIfAbsent(
@@ -32,5 +28,9 @@ class GetMaximumScore {
         maxSum += cur.toLong()
         memo[cur] = maxSum
         return maxSum
+    }
+
+    companion object {
+        private const val M = 1e9.toInt() + 7
     }
 }

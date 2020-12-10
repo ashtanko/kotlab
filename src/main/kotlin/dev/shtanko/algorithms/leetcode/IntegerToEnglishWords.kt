@@ -2,26 +2,6 @@ package dev.shtanko.algorithms.leetcode
 
 class IntegerToEnglishWords {
 
-    companion object {
-        private const val TWENTY = 20
-        private const val HUNDRED = 100
-        private const val THOUSAND = 1000
-        private const val MILLION = 1_000_000
-        private const val BILLION = 1_000_000_000
-
-        private const val ZERO_STRING = "Zero"
-        private const val HUNDRED_STRING = "Hundred"
-        private const val THOUSAND_STRING = "Thousand"
-        private const val MILLION_STRING = "Million"
-        private const val BILLION_STRING = "Billion"
-        private const val HUNDRED_FORMAT = "%s %s"
-        private const val THOUSAND_FORMAT = "%s %s %s"
-        private const val MILLION_FORMAT = "%s %s %s"
-        private const val BILLION_FORMAT = "%s %s %s"
-        private const val FORMAT = "%s %s %s"
-        private const val BLANK = ' '
-    }
-
     private val belowTen = arrayOf("", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine")
     private val belowTwenty = arrayOf(
         "Ten",
@@ -68,5 +48,24 @@ class IntegerToEnglishWords {
             else -> String.format(FORMAT, helper(num / BILLION), BILLION_STRING, helper(num % BILLION))
         }
         return result.trim { it <= BLANK }
+    }
+
+    companion object {
+        private const val TWENTY = 20
+        private const val HUNDRED = 100
+        private const val THOUSAND = 1000
+        private const val MILLION = 1_000_000
+        private const val BILLION = 1_000_000_000
+        private const val ZERO_STRING = "Zero"
+        private const val HUNDRED_STRING = "Hundred"
+        private const val THOUSAND_STRING = "Thousand"
+        private const val MILLION_STRING = "Million"
+        private const val BILLION_STRING = "Billion"
+        private const val HUNDRED_FORMAT = "%s %s"
+        private const val THOUSAND_FORMAT = "%s %s %s"
+        private const val MILLION_FORMAT = "%s %s %s"
+        private const val BILLION_FORMAT = "%s %s %s"
+        private const val FORMAT = "%s %s %s"
+        private const val BLANK = ' '
     }
 }

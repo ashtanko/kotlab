@@ -7,18 +7,15 @@ data class Dog(val name: String) : Animal()
 data class Cat(val name: String) : Animal()
 
 internal class AnimalShelter {
-    companion object {
-        private var lastCount = 0
-    }
+
+    private val dogs = LinkedList<Timestamped<Dog>>()
+    private val cats = LinkedList<Timestamped<Cat>>()
 
     data class Timestamped<T>(val inner: T, val time: Int) {
         companion object {
             fun <T> make(inner: T): Timestamped<T> = Timestamped(inner, lastCount++)
         }
     }
-
-    private val dogs = LinkedList<Timestamped<Dog>>()
-    private val cats = LinkedList<Timestamped<Cat>>()
 
     fun enqueue(animal: Animal) {
         when (animal) {
@@ -48,5 +45,9 @@ internal class AnimalShelter {
         } else {
             dequeueCat()
         }
+    }
+
+    companion object {
+        private var lastCount = 0
     }
 }

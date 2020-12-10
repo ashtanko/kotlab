@@ -8,10 +8,6 @@ class SuperEggDropDPBinarySearch : SuperEggDropStrategy {
 
     private var memo: MutableMap<Int, Int?> = HashMap()
 
-    companion object {
-        private const val HUNDRED = 100
-    }
-
     override fun perform(eggs: Int, floors: Int): Int {
         return calculate(eggs, floors)
     }
@@ -45,6 +41,10 @@ class SuperEggDropDPBinarySearch : SuperEggDropStrategy {
             memo[floors * HUNDRED + eggs] = ans
         }
         return memo[floors * HUNDRED + eggs]!!
+    }
+
+    companion object {
+        private const val HUNDRED = 100
     }
 }
 
@@ -89,7 +89,7 @@ class SuperEggDropMathematical : SuperEggDropStrategy {
         return lo
     }
 
-    fun calculate(x: Int, eggs: Int, floors: Int): Int {
+    private fun calculate(x: Int, eggs: Int, floors: Int): Int {
         var ans = 0
         var res = 1
         for (i in 1..eggs) {

@@ -5,10 +5,6 @@ import org.slf4j.LoggerFactory
 internal class BinaryTree {
     var root: TreeNode? = null
 
-    companion object {
-        private val LOGGER = LoggerFactory.getLogger(BinaryTree::class.java)
-    }
-
     fun printLevelOrder() {
         val h = height(root)
         for (i in 1 until h) {
@@ -41,5 +37,9 @@ internal class BinaryTree {
                 rHeight + 1
             }
         }
+    }
+
+    companion object {
+        private val LOGGER = LoggerFactory.getLogger(BinaryTree::class.java)
     }
 }

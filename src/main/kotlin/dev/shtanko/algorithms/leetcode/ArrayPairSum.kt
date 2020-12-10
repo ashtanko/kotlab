@@ -39,11 +39,6 @@ class PairSumSort3 : PairSumStrategy {
 
 class PairSumOdd : PairSumStrategy {
 
-    companion object {
-        private const val MAX_ARR_SIZE = 20001
-        private const val ARR_HELPER = 10000
-    }
-
     override fun perform(arr: IntArray): Int {
         val exist = IntArray(MAX_ARR_SIZE)
         for (i in arr.indices) {
@@ -61,5 +56,10 @@ class PairSumOdd : PairSumStrategy {
             }
         }
         return sum
+    }
+
+    companion object {
+        private const val MAX_ARR_SIZE = 20001
+        private const val ARR_HELPER = 10000
     }
 }

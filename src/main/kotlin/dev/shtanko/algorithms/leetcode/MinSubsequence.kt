@@ -7,22 +7,12 @@ interface MinSubsequenceStrategy {
     fun perform(arr: IntArray): List<Int>
 }
 
-class MinSubsequenceNaive : MinSubsequenceStrategy {
-    override fun perform(arr: IntArray): List<Int> {
-        TODO("Not yet implemented")
-    }
-}
-
 /**
  * Counting sort since the values are in [1, 100]
  * O(n) time
  * O(n) space
  */
 class MinSubsequenceCountingSort : MinSubsequenceStrategy {
-
-    companion object {
-        private const val ARR_SIZE = 101
-    }
 
     override fun perform(arr: IntArray): List<Int> {
         val count = IntArray(ARR_SIZE)
@@ -48,6 +38,10 @@ class MinSubsequenceCountingSort : MinSubsequenceStrategy {
         }
         return currentSubseq
     }
+
+    companion object {
+        private const val ARR_SIZE = 101
+    }
 }
 
 class MinSubsequencePriorityQueue : MinSubsequenceStrategy {
@@ -55,7 +49,7 @@ class MinSubsequencePriorityQueue : MinSubsequenceStrategy {
         return arr.solve()
     }
 
-    fun IntArray.solve(): List<Int> {
+    private fun IntArray.solve(): List<Int> {
         val res = mutableListOf<Int>()
 
         val pq = PriorityQueue<Int>(Collections.reverseOrder())
