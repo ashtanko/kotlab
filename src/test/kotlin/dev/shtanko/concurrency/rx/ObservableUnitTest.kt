@@ -1,6 +1,10 @@
 package dev.shtanko.concurrency.rx
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.observers.TestObserver
+import org.hamcrest.CoreMatchers.hasItems
+import org.hamcrest.CoreMatchers.notNullValue
+import org.hamcrest.MatcherAssert.assertThat
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -9,12 +13,12 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
 
-class ObservableUnitTest {
+internal class ObservableUnitTest {
 
     private var result: String = ""
 
     @Test
-    fun `given string when just and subscribe then emits single item`() {
+    internal fun `given string when just and subscribe then emits single item`() {
         val observable = Observable.just("Hello")
         observable.subscribe { str ->
             result = str
@@ -23,7 +27,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `given array when from and subscribe then emits items`() {
+    internal fun `given array when from and subscribe then emits items`() {
         val letters = listOf("a", "b", "c", "d", "e", "f", "g")
         val observable = Observable.fromIterable(letters)
         observable.subscribe(
@@ -41,7 +45,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `given Array when converts observable to blocking observable then return first element`() {
+    internal fun `given Array when converts observable to blocking observable then return first element`() {
         val letters = listOf("a", "b", "c", "d", "e", "f", "g")
         val observable = Observable.fromIterable(letters)
         val blockingObservable: String = observable.blockingFirst()
@@ -60,7 +64,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `given array when map and subscribe then return capital letters`() {
+    internal fun `given array when map and subscribe then return capital letters`() {
         val letters = listOf("a", "b", "c", "d", "e", "f", "g")
         Observable.fromIterable(letters).map {
             it.toUpperCase()
@@ -71,7 +75,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `given array when scan and subscribe then return the sum of all letters`() {
+    internal fun `given array when scan and subscribe then return the sum of all letters`() {
         val letters = listOf("a", "b", "c")
         Observable.fromIterable(letters)
             .scan(StringBuilder(), StringBuilder::append)
@@ -82,7 +86,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `given array of numbers when group by then create two groups based on parity`() {
+    internal fun `given array of numbers when group by then create two groups based on parity`() {
         val numbers = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         val evens = mutableListOf("")
         val odds = mutableListOf("")
@@ -102,7 +106,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `given array of numbers when filter then get all odd numbers`() {
+    internal fun `given array of numbers when filter then get all odd numbers`() {
         val numbers = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         Observable.fromIterable(numbers).filter {
             it % 2 == 1
@@ -113,7 +117,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `given empty observable when default if empty then get default message`() {
+    internal fun `given empty observable when default if empty then get default message`() {
         Observable.empty<String>().defaultIfEmpty("Observable is empty")
             .subscribe {
                 result += it
@@ -122,7 +126,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `given observable from array when take while then get sum of numbers from condition`() {
+    internal fun `given observable from array when take while then get sum of numbers from condition`() {
         val numbers = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
         val sum = intArrayOf(0)
         Observable.fromIterable(numbers).takeWhile {
@@ -134,7 +138,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `zip operator test`() {
+    internal fun `zip operator test`() {
         val numbers = Observable.just(1, 2, 3, 4, 5)
         val letters = Observable.just("a", "b", "c", "d", "e")
         Observable.zip(
@@ -150,7 +154,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `merge operator test`() {
+    internal fun `merge operator test`() {
         val numbers = Observable.just(1, 2, 3, 4, 5)
         val letters = Observable.just("a", "b", "c", "d", "e")
         Observable.merge(numbers, letters).subscribe {
@@ -160,7 +164,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `concat operator test`() {
+    internal fun `concat operator test`() {
         val numbers = Observable.just(1, 2, 3, 4, 5)
         val letters = Observable.just("a", "b", "c", "d", "e")
         Observable.concat(numbers, letters).subscribe {
@@ -170,24 +174,26 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `combine latest operator test`() {
+    internal fun `combine latest operator test`() {
         val numbers = Observable.just(1, 2, 3, 4, 5)
         val letters = Observable.just("a", "b", "c", "d", "e")
-        Observable.combineLatest(
-            numbers,
-            letters,
-            { n: Int, c: String ->
-                "$n$c"
+        Observable
+            .combineLatest(
+                numbers,
+                letters,
+                { n: Int, c: String ->
+                    "$n$c"
+                }
+            ).subscribe {
+                result += it
             }
-        ).subscribe {
-            result += it
-        }
         assertTrue(result == "5a5b5c5d5e")
     }
 
     @Test
-    fun `scan test`() {
-        Observable.just(0, 1, 2, 3)
+    internal fun `scan test`() {
+        Observable
+            .just(0, 1, 2, 3)
             .scan { t1, t2 -> t1 + t2 }
             .subscribe {
                 result += it
@@ -197,9 +203,10 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `task test`() {
+    internal fun `task test`() {
         val numbers = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-        Observable.fromIterable(numbers)
+        Observable
+            .fromIterable(numbers)
             .map {
                 it * 2
             }.map {
@@ -215,7 +222,7 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `do on error`() {
+    internal fun `do on error`() {
         val r = AtomicReference<Throwable?>()
         val t: Throwable?
         try {
@@ -233,12 +240,147 @@ class ObservableUnitTest {
     }
 
     @Test
-    fun `do on completed`() {
+    internal fun `do on completed`() {
         val r = AtomicBoolean()
-        val output = Observable.just("one")
+        val output = Observable
+            .just("one")
             .doOnComplete { r.set(true) }.blockingSingle()
 
         assertEquals("one", output)
         assertTrue(r.get())
+    }
+
+    @Test
+    internal fun `zip with operator test`() {
+        val letters = listOf("A", "B", "C", "D")
+        val results: MutableList<String> = ArrayList()
+        val observable =
+            Observable
+                .fromIterable(letters)
+                .zipWith(
+                    Observable.range(
+                        1,
+                        Int.MAX_VALUE
+                    ),
+                    { str: String, idx: Int ->
+                        "$idx-$str"
+                    }
+                )
+
+        observable.subscribe(results::add)
+        assertThat(results, notNullValue())
+        assertThat(results, hasItems("1-A", "2-B", "3-C", "4-D"))
+    }
+
+    @Test
+    internal fun `zip with operator using test subscriber test`() {
+        val subscriber: TestObserver<Int> = TestObserver()
+        val observable = Observable
+            .fromIterable(listOf(1, 2, 3, 4, 5))
+            .zipWith(
+                Observable.range(
+                    1,
+                    Int.MAX_VALUE
+                ),
+                { a: Int, b: Int ->
+                    a * b
+                }
+            )
+        observable.subscribeWith(subscriber)
+        subscriber.apply {
+            assertComplete()
+            assertNoErrors()
+            assertValueCount(5)
+        }
+        assertThat(subscriber.values(), hasItems(1, 4, 9, 16, 25))
+    }
+
+    @Test
+    internal fun `zip with operator exception test`() {
+        val subscriber: TestObserver<Int> = TestObserver()
+        val observable = Observable
+            .fromIterable(listOf(4))
+            .zipWith(
+                Observable.range(
+                    1,
+                    2
+                ),
+                { a: Int, b: Int ->
+                    a * b
+                }
+            )
+            .concatWith(Observable.error(RuntimeException("error in Observable")))
+        observable.subscribeWith(subscriber)
+        subscriber.assertError(RuntimeException::class.java)
+        subscriber.assertNotComplete()
+    }
+
+    @Test
+    internal fun `concat map test`() {
+        val subscriber: TestObserver<String> = TestObserver()
+        val numbers = Observable.fromIterable(listOf(1, 2, 3))
+        val observable = Observable
+            .fromIterable(listOf("A", "B", "C"))
+            .concatMap { s ->
+                numbers.map { num ->
+                    "$s$num"
+                }
+            }
+        observable.subscribeWith(subscriber)
+        subscriber.apply {
+            assertComplete()
+            assertNoErrors()
+            assertValueCount(9)
+        }
+        assertThat(subscriber.values(), hasItems("A1", "A2", "A2", "B1", "B2", "B3", "C1", "C2", "C3"))
+    }
+
+    @Test
+    internal fun `concat map 2 test`() {
+        val subscriber: TestObserver<String> = TestObserver()
+        val observable = Observable
+            .fromIterable(listOf(1, 2, 3))
+            .concatMap { n ->
+                Observable.just("$n")
+            }
+        observable.subscribeWith(subscriber)
+        subscriber.apply {
+            assertComplete()
+            assertNoErrors()
+            assertValueCount(3)
+        }
+        assertThat(subscriber.values(), hasItems("1", "2", "3"))
+    }
+
+    @Test
+    internal fun `flat map test`() {
+        val subscriber: TestObserver<String> = TestObserver()
+        val observable = Observable.fromIterable(listOf("Q", "W")).flatMap { s ->
+            Observable.just(1, 2).map { n ->
+                "$n$s"
+            }
+        }
+        observable.subscribeWith(subscriber)
+        subscriber.apply {
+            assertComplete()
+            assertNoErrors()
+            assertValueCount(4)
+        }
+        assertThat(subscriber.values(), hasItems("1Q", "2Q", "1W", "2W"))
+    }
+
+    @Test
+    internal fun `flat map 2 test`() {
+        val subscriber: TestObserver<String> = TestObserver()
+        val observable = Observable.fromIterable(listOf(1, 2)).flatMap { n ->
+            Observable.just("$n")
+        }
+        observable.subscribeWith(subscriber)
+        subscriber.apply {
+            assertComplete()
+            assertNoErrors()
+            assertValueCount(2)
+        }
+        assertThat(subscriber.values(), hasItems("1", "2"))
     }
 }
