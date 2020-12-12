@@ -1,6 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
@@ -21,7 +22,7 @@ internal abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(priva
     internal fun `simple test`(testCase: Pair<Int, Int>) {
         val (coins, expected) = testCase
         val actual = strategy.arrangeCoins(coins)
-        assertEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }
 

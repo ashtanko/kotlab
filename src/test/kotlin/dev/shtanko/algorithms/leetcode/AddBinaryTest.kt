@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -21,7 +23,7 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `simple test`(a: String, b: String, expected: String) {
         val actual = strategy.perform(a, b)
-        assertEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }
 

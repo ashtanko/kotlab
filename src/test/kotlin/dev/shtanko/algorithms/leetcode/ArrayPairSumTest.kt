@@ -1,6 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
@@ -21,7 +22,7 @@ internal abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val st
     internal fun `simple test`(data: Pair<IntArray, Int>) {
         val (arr, expected) = data
         val actual = strategy.perform(arr)
-        assertEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }
 

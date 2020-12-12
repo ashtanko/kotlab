@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.core.Is.`is`
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
@@ -23,6 +25,7 @@ internal class CombinationSumTest {
         val (data, expected) = testCase
         val (candidates, target) = data
         val actual = combinationSum(candidates, target)
+        assertThat(actual, `is`(expected))
         assertEquals(expected, actual)
     }
 }

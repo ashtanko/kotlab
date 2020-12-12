@@ -1,7 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -24,7 +24,7 @@ internal abstract class PowerOfFourTest<out T : PowOfFour>(private val strategy:
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `power of four test`(n: Int, expected: Boolean) {
         val actual = strategy.isPow4(n)
-        MatcherAssert.assertThat(actual, CoreMatchers.equalTo(expected))
+        assertThat(actual, equalTo(expected))
     }
 }
 

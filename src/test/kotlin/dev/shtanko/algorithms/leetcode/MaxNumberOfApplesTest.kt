@@ -86,7 +86,7 @@ internal abstract class MaxNumberOfApplesTest<out T : MaxNumberOfApples>(private
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `max number of apples test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
-        assertThat(expected, equalTo(actual))
+        assertThat(actual, equalTo(expected))
     }
 }
 

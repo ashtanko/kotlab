@@ -55,6 +55,7 @@ dependencies {
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
     testImplementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.0")
+    testImplementation("org.hamcrest:hamcrest:2.2")
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }

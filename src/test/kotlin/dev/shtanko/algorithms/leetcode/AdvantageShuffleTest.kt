@@ -1,5 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
@@ -24,6 +26,7 @@ internal class AdvantageShuffleTest {
             val (a, b, expected) = data
             val actual = advantageCount(a, b)
             assertArrayEquals(expected, actual)
+            assertThat(actual, equalTo(expected))
         }
     }
 }

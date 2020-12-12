@@ -38,6 +38,6 @@ internal class SubdomainVisitCountTest {
         val actual = cpDomains.subdomainVisits()
         assertEquals(expected, actual)
         assertTrue(assertListEquals(expected, actual))
-        assertThat(expected).isEqualTo(actual)
+        assertThat(actual).isEqualTo(expected)
     }
 }

@@ -23,6 +23,6 @@ internal class WaterBottlesTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `num water bottles test`(numBottles: Int, numExchange: Int, expected: Int) {
         val actual = WaterBottles().perform(numBottles, numExchange)
-        assertThat(expected, `is`(actual))
+        assertThat(actual, `is`(expected))
     }
 }

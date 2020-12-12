@@ -1,6 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
@@ -23,6 +24,6 @@ internal class AverageSalaryTest {
     internal fun `average salary test`(param: Pair<IntArray, Double>) {
         val (arr, expected) = param
         val actual = arr.averageSalary()
-        assertEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }

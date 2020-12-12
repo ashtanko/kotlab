@@ -1,6 +1,7 @@
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
@@ -23,7 +24,7 @@ internal abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(priv
     internal fun `avoid flood test`(testCase: Pair<IntArray, IntArray>) {
         val (rains, expected) = testCase
         val actual = strategy.perform(rains)
-        assertArrayEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }
 

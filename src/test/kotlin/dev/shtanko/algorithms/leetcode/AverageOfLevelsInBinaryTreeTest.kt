@@ -1,10 +1,11 @@
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageOfLevelsInBinaryTreeStrategy>(
     private val strategy: T
@@ -33,7 +34,7 @@ internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageO
     @MethodSource("provideData")
     internal fun `average of levels in binary tree test`(tree: TreeNode, expected: DoubleArray) {
         val actual = strategy.perform(tree)
-        assertArrayEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }
 
