@@ -1,24 +1,30 @@
 package dev.shtanko.algorithms.extensions
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
-class CharTest {
-    @Test
-    fun `simple test`() {
-        val randomString = ('a'..'z').randomString(6)
-        assertEquals(6, randomString.length)
+internal class CharTest {
+
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of('a'..'z', 0, 0),
+            Arguments.of('a'..'z', 6, 6),
+            Arguments.of('A'..'Z', 6, 6),
+            Arguments.of('A'..'Z', 600, 600),
+        )
     }
 
-    @Test
-    fun `simple test 2`() {
-        val randomString = ('A'..'Z').randomString(6)
-        assertEquals(6, randomString.length)
-    }
-
-    @Test
-    fun `simple test 3`() {
-        val randomString = ('A'..'Z').randomString(600)
-        assertEquals(600, randomString.length)
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `random string test`(range: CharRange, len: Int, expected: Int) {
+        val randomString = range.randomString(len)
+        val actual = randomString.length
+        assertThat(actual, equalTo(expected))
     }
 }

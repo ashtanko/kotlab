@@ -1,4 +1,4 @@
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.algorithms.extensions
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
@@ -9,25 +9,22 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T) {
+internal class IntArrayTest {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of("11", "1", "100"),
-            Arguments.of("1010", "1011", "10101"),
+            Arguments.of(intArrayOf(), 0, 0, intArrayOf()),
+            Arguments.of(intArrayOf(1), 0, 0, intArrayOf(1)),
+            Arguments.of(intArrayOf(1, 3), 0, 2, intArrayOf(3, 1)),
+            Arguments.of(intArrayOf(4, 8, 15, 16, 23, 42), 0, 6, intArrayOf(42, 23, 16, 15, 8, 4)),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9), 5, 9, intArrayOf(1, 2, 3, 4, 5, 9, 8, 7, 6)),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `add binary test`(a: String, b: String, expected: String) {
-        val actual = strategy.perform(a, b)
-        assertThat(actual, equalTo(expected))
+    fun `reverse int array test`(arr: IntArray, start: Int, end: Int, expected: IntArray) {
+        arr.reverse(start, end)
+        assertThat(arr, equalTo(expected))
     }
 }
-
-internal class AddBinaryBitByBitComputationTest :
-    AddBinaryTest<AddBinaryBitByBitComputation>(AddBinaryBitByBitComputation())
-
-internal class AddBinaryBitManipulationTest :
-    AddBinaryTest<AddBinaryBitManipulation>(AddBinaryBitManipulation())

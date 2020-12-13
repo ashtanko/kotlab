@@ -4,19 +4,18 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
-class ArrayExtensionTest {
+internal class ArrayExtensionTest {
 
     @Test
-    fun `simple swap test`() {
+    internal fun `simple swap test`() {
         val arr = arrayOf(4, 8)
         arr.swap(1, 0)
         assertArrayEquals(arrayOf(8, 4), arr)
     }
 
     @Test
-    fun `loop swap test`() {
+    internal fun `loop swap test`() {
         val arr = arrayOf(4, 8, 15, 16)
         for (i in 0 until arr.size - 1) {
             arr.swap(i, i + 1)
@@ -25,21 +24,21 @@ class ArrayExtensionTest {
     }
 
     @Test
-    fun `simple reverse test`() {
+    internal fun `simple reverse test`() {
         val arr = arrayOf(4, 8, 15, 16, 23, 42)
         arr.reverse()
         assertArrayEquals(arrayOf(42, 23, 16, 15, 8, 4), arr)
     }
 
     @Test
-    fun `two pointers technique reverse test`() {
+    internal fun `two pointers technique reverse test`() {
         val arr = arrayOf(4, 8, 15, 16, 23, 42)
         arr.reverse2()
         assertArrayEquals(arrayOf(42, 23, 16, 15, 8, 4), arr)
     }
 
     @Test
-    fun `flip test`() {
+    internal fun `flip test`() {
         val arr = arrayOf(4, 8, 15, 16, 23, 42)
         arr.flip(0, arr.size - 1)
         val expected = arrayOf(42, 23, 16, 15, 8, 4)
@@ -47,21 +46,21 @@ class ArrayExtensionTest {
     }
 
     @Test
-    fun `char swap test`() {
+    internal fun `char swap test`() {
         val arr = charArrayOf('A', 'B')
         arr.swap(1, 0)
         assertArrayEquals(charArrayOf('B', 'A'), arr)
     }
 
     @Test
-    fun `int array swap test`() {
+    internal fun `int array swap test`() {
         val arr = intArrayOf(4, 8)
         arr.swap(1, 0)
         assertArrayEquals(intArrayOf(8, 4), arr)
     }
 
     @Test
-    fun `second function on empty array test`() {
+    internal fun `second function on empty array test`() {
         val array = intArrayOf()
         assertThrows(NoSuchElementException::class.java) {
             array.second()
@@ -69,7 +68,7 @@ class ArrayExtensionTest {
     }
 
     @Test
-    fun `second function on single item array test`() {
+    internal fun `second function on single item array test`() {
         val array = intArrayOf(1)
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             array.second()
@@ -77,7 +76,7 @@ class ArrayExtensionTest {
     }
 
     @Test
-    fun `second function on array test`() {
+    internal fun `second function on array test`() {
         val array = intArrayOf(1, 2)
         assertEquals(2, array.second())
     }

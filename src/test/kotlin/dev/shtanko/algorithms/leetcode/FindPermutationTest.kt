@@ -9,25 +9,25 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T) {
+internal abstract class FindPermutationTest<out T : FindPermutation>(private val strategy: T) {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of("11", "1", "100"),
-            Arguments.of("1010", "1011", "10101"),
+            Arguments.of("I", intArrayOf(1, 2)),
+            Arguments.of("DI", intArrayOf(2, 1, 3)),
+            Arguments.of("DDIIDI", intArrayOf(3, 2, 1, 4, 6, 5, 7)),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `add binary test`(a: String, b: String, expected: String) {
-        val actual = strategy.perform(a, b)
+    internal fun `find permutation test`(s: String, expected: IntArray) {
+        val actual = strategy.perform(s)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class AddBinaryBitByBitComputationTest :
-    AddBinaryTest<AddBinaryBitByBitComputation>(AddBinaryBitByBitComputation())
-
-internal class AddBinaryBitManipulationTest :
-    AddBinaryTest<AddBinaryBitManipulation>(AddBinaryBitManipulation())
+internal class FindPermutationStackTest : FindPermutationTest<FindPermutationStack>(FindPermutationStack())
+internal class FindPermutationReversingTest : FindPermutationTest<FindPermutationReversing>(FindPermutationReversing())
+internal class FindPermutationTwoPointersTest :
+    FindPermutationTest<FindPermutationTwoPointers>(FindPermutationTwoPointers())
