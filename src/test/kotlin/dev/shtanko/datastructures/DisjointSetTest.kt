@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class DisjointSetTest {
+internal class DisjointSetTest {
 
     @Test
-    fun `size test`() {
+    internal fun `size test`() {
         val set = DisjointSet(10)
         assertEquals(10, set.count)
         assertEquals(10, set.size)
@@ -21,7 +21,7 @@ class DisjointSetTest {
     }
 
     @Test
-    fun `naive test`() {
+    internal fun `naive test`() {
         val set = DisjointSet(10)
         for (i in 1 until set.size) {
             assertFalse(set.connected(i, i - 1))

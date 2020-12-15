@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.util.TreeSet
 
-class CompositionSolutionTest {
+internal class CompositionSolutionTest {
     @Test
-    fun `composition instrumented hash set test`() {
+    internal fun `composition instrumented hash set test`() {
         val s = CompositionInstrumentedHashSet<String>(TreeSet())
         s.addAll(listOf("Snap", "Crackle", "Pop"))
         val actual = s.getAddCount()

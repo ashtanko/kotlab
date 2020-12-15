@@ -3,7 +3,7 @@ package dev.shtanko.algorithms.own
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class ByteBufferTest {
+internal class ByteBufferTest {
 
     private val ringBuffer: RingBuffer by lazy {
         RingBuffer()
@@ -13,7 +13,7 @@ class ByteBufferTest {
     }
 
     @Test
-    fun `one chunked sting test`() {
+    internal fun `one chunked sting test`() {
         val string = "{\"ev\":\"one\"}"
         val byteBuffer = ByteBuffer { message ->
             val actual = String(message)
@@ -26,7 +26,7 @@ class ByteBufferTest {
     }
 
     @Test
-    fun `one full chunk and half test`() {
+    internal fun `one full chunk and half test`() {
         val string = "{\"ev\":\"Lorem Ipsum\"}"
         val chunks = transformer.transform(string)
 
@@ -41,7 +41,7 @@ class ByteBufferTest {
     }
 
     @Test
-    fun `big string test`() {
+    internal fun `big string test`() {
         val string =
             "{\"ev\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"}"
         val chunks = transformer.transform(string)
@@ -57,7 +57,7 @@ class ByteBufferTest {
     }
 
     @Test
-    fun `different strings test`() {
+    internal fun `different strings test`() {
         val one = "{\"ev\":\"first event\"}"
         val two = "{\"ev\":\"second event\"}"
         val three = "{\"ev\":\"third event\"}"
@@ -80,7 +80,7 @@ class ByteBufferTest {
     }
 
     @Test
-    fun `combine events test`() {
+    internal fun `combine events test`() {
 
         val expected = listOf(
             "{\"ev\":\"one big event lorem lorem\"}",

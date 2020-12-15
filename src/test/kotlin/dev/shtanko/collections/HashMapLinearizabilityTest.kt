@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentMap
 
 @StressCTest(minimizeFailedScenario = false)
 @Param(name = "key", gen = IntGen::class, conf = "1:5")
-class HashMapLinearizabilityTest : VerifierState() {
+internal class HashMapLinearizabilityTest : VerifierState() {
 
     private val map: ConcurrentMap<Int, Int> = ConcurrentHashMap()
 
@@ -29,7 +29,7 @@ class HashMapLinearizabilityTest : VerifierState() {
     }
 
     @Test
-    fun test() {
+    internal fun test() {
         val opts = StressOptions()
             .iterations(5)
             .threads(3)

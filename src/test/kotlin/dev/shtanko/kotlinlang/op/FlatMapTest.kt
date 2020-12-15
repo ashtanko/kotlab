@@ -3,10 +3,10 @@ package dev.shtanko.kotlinlang.op
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class FlatMapTest {
+internal class FlatMapTest {
 
     @Test
-    fun `flat map test`() {
+    internal fun `flat map test`() {
         val list = listOf(4)
         val actual = list.flatMap {
             it.rangeTo(it * 2).toList()
@@ -16,7 +16,7 @@ class FlatMapTest {
     }
 
     @Test
-    fun `flat map test 2`() {
+    internal fun `flat map test 2`() {
         val list = listOf(4, 8)
         val actual = list.flatMap {
             listOf(it * 2)

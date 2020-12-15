@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.lincheck.verifier.linearizability.LinearizabilityVe
 
 @Param(name = "value", gen = IntGen::class, conf = "1:5")
 @StressCTest(verifier = LinearizabilityVerifier::class, actorsAfter = 0)
-class ChanelLinearizabilityTest : VerifierState() {
+internal class ChanelLinearizabilityTest : VerifierState() {
     private val ch = Channel<Int>(capacity = 3)
 
     @Operation
@@ -31,7 +31,7 @@ class ChanelLinearizabilityTest : VerifierState() {
     // }
 
     @Operation
-    fun close() = ch.close()
+    internal fun close() = ch.close()
 
     // state = elements in the channel + closed flag
     @ExperimentalCoroutinesApi

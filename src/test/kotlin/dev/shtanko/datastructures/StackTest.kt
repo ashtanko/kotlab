@@ -7,11 +7,11 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class StackTest {
+internal class StackTest {
 
     @Test
     @DisplayName("when stack is empty")
-    fun `empty test`() {
+    internal fun `empty test`() {
         val stack = Stack<Int>()
         assertEquals(0, stack.size)
         assertTrue(stack.isEmpty())
@@ -19,7 +19,7 @@ class StackTest {
 
     @Test
     @DisplayName("when trying peek on empty stack")
-    fun `exception test`() {
+    internal fun `exception test`() {
         assertThrows<NoSuchElementException> {
             val stack = Stack<Int>()
             stack.peek()
@@ -28,7 +28,7 @@ class StackTest {
 
     @Test
     @DisplayName("when add 10 elements and poll them should be empty")
-    fun `naive test`() {
+    internal fun `naive test`() {
         val stack = Stack<Int>()
 
         for (i in 0..10) {
@@ -42,14 +42,14 @@ class StackTest {
     }
 
     @Test
-    fun `test pop`() {
+    internal fun `test pop`() {
         val stack = Stack<Int>()
         stack.push(1)
         assertFalse(stack.isEmpty())
     }
 
     @Test
-    fun `naive iterator test`() {
+    internal fun `naive iterator test`() {
         val stack = Stack<Int>()
         for (i in 0..10) {
             stack.push(i)
@@ -61,7 +61,7 @@ class StackTest {
     }
 
     @Test
-    fun `naive contains test`() {
+    internal fun `naive contains test`() {
         val stack = Stack<Int>()
         for (i in 0..10) {
             stack.push(i)
@@ -77,7 +77,7 @@ class StackTest {
     }
 
     @Test
-    fun `naive contains all test`() {
+    internal fun `naive contains all test`() {
         val stack = Stack<Int>()
         for (i in 0..10) {
             stack.push(i)
@@ -85,7 +85,6 @@ class StackTest {
 
         val list = listOf(0, 1, 2, 3, 4, 5, 6, 7, 7)
         assertTrue(stack.containsAll(list))
-
         assertFalse(stack.containsAll(listOf(23, 42)))
     }
 }

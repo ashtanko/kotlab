@@ -16,21 +16,21 @@ internal class QuickSortRecursiveTest {
                 listOf<Int>()
             ),
             Arguments.of(
-                listOf<Int>(1),
-                listOf<Int>(1)
+                listOf(1),
+                listOf(1)
             ),
             Arguments.of(
-                listOf<Int>(1, 2, 3),
-                listOf<Int>(1, 2, 3)
+                listOf(1, 2, 3),
+                listOf(1, 2, 3)
             ),
             Arguments.of(
-                listOf<Int>(3, 2, 1),
-                listOf<Int>(1, 2, 3)
+                listOf(3, 2, 1),
+                listOf(1, 2, 3)
             ),
             Arguments.of(
-                listOf<Int>(5, 0, 1, 5, 3, 7, 4, 2),
-                listOf<Int>(0, 1, 2, 3, 4, 5, 5, 7)
-            )
+                listOf(5, 0, 1, 5, 3, 7, 4, 2),
+                listOf(0, 1, 2, 3, 4, 5, 5, 7)
+            ),
         )
     }
 

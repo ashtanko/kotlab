@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class RodCuttingProblemTest {
+internal class RodCuttingProblemTest {
 
     companion object {
         @JvmStatic
@@ -18,7 +18,7 @@ class RodCuttingProblemTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `cut rod test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
+    internal fun `cut rod test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
         val expected = testCase.second
         val actual = cutRod(testCase.first.first, testCase.first.second)
         assertEquals(expected, actual)

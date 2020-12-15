@@ -5,17 +5,17 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class PriorityQueueTest {
+internal class PriorityQueueTest {
 
     @Test
-    fun `empty test`() {
+    internal fun `empty test`() {
         val pq = PriorityQueue<Int>(3)
         assertEquals(0, pq.size)
         assertTrue(pq.isEmpty())
     }
 
     @Test
-    fun `exception test`() {
+    internal fun `exception test`() {
         assertThrows<NoSuchElementException> {
             val pq = PriorityQueue<Int>(3)
             pq.peek()
@@ -23,7 +23,7 @@ class PriorityQueueTest {
     }
 
     @Test
-    fun `naive test`() {
+    internal fun `naive test`() {
         val pq = PriorityQueue<Int>(3)
         for (i in 10 downTo 1) {
             pq.add(i)
@@ -35,7 +35,7 @@ class PriorityQueueTest {
     }
 
     @Test
-    fun `string order test`() {
+    internal fun `string order test`() {
         val pq = PriorityQueue<String>(6)
         pq.add("Lisa")
         pq.add("Robert")

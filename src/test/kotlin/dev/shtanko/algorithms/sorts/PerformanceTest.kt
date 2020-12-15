@@ -10,9 +10,9 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-class PerformanceTest {
+internal class PerformanceTest {
 
-    class SlowSortsArgumentsProvider : ArgumentsProvider {
+    internal class SlowSortsArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(BubbleSort(), hundred),
             Arguments.of(BubbleSort(), fiveHundred),
@@ -48,7 +48,7 @@ class PerformanceTest {
         private val eightHundred = 800.generateRandomArray()
     }
 
-    class FastSortsArgumentsProvider : ArgumentsProvider {
+    internal class FastSortsArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(mergeSortStrategy, thirtyK),
             Arguments.of(mergeSortStrategy, fiftyK),
@@ -81,13 +81,13 @@ class PerformanceTest {
 
     @ParameterizedTest
     @ArgumentsSource(SlowSortsArgumentsProvider::class)
-    fun `slow sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
+    internal fun `slow sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
         executionTimeReport(strategy, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(FastSortsArgumentsProvider::class)
-    fun `fast sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
+    internal fun `fast sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
         executionTimeReport(strategy, arr)
     }
 

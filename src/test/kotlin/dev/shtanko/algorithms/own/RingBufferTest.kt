@@ -3,21 +3,21 @@ package dev.shtanko.algorithms.own
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class RingBufferTest {
+internal class RingBufferTest {
 
     private val ringBuffer: RingBuffer by lazy {
         RingBuffer()
     }
 
     @Test
-    fun `first element test`() {
+    internal fun `first element test`() {
         val firstElement = ringBuffer.incrementAndGet()
         val expected = Byte.MIN_VALUE
         assertEquals(expected, firstElement)
     }
 
     @Test
-    fun `second element test`() {
+    internal fun `second element test`() {
         ringBuffer.incrementAndGet()
         val secondElement: Byte = ringBuffer.incrementAndGet()
         val expected = (-127).toByte()
@@ -25,7 +25,7 @@ class RingBufferTest {
     }
 
     @Test
-    fun `last element test`() {
+    internal fun `last element test`() {
         var lastElement: Byte = Byte.MIN_VALUE
         for (i in 0 until 256) {
             lastElement = ringBuffer.incrementAndGet()
@@ -35,7 +35,7 @@ class RingBufferTest {
     }
 
     @Test
-    fun `one lap test`() {
+    internal fun `one lap test`() {
         var lastElement: Byte = Byte.MIN_VALUE
         for (i in 0 until 512) {
             lastElement = ringBuffer.incrementAndGet()

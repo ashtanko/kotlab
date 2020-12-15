@@ -1,27 +1,27 @@
 package dev.shtanko.algorithms.sorts
 
-class SelectionSortTest : AbstractSortTest<SelectionSort>(SelectionSort())
+internal class SelectionSortTest : AbstractSortTest<SelectionSort>(SelectionSort())
 
-class StableSelectionSortTest : AbstractSortTest<StableSelectionSort>(StableSelectionSort())
+internal class StableSelectionSortTest : AbstractSortTest<StableSelectionSort>(StableSelectionSort())
 
-class ShellSortTest : AbstractSortTest<ShellSort>(ShellSort())
+internal class ShellSortTest : AbstractSortTest<ShellSort>(ShellSort())
 
-class QuickSortTest : AbstractSortTest<QuickSort>(QuickSort())
+internal class QuickSortTest : AbstractSortTest<QuickSort>(QuickSort())
 
-class MergeSortTest : AbstractSortTest<MergeSort>(MergeSort())
+internal class MergeSortTest : AbstractSortTest<MergeSort>(MergeSort())
 
-class InsertionSortTest : AbstractSortTest<InsertionSort>(InsertionSort())
+internal class InsertionSortTest : AbstractSortTest<InsertionSort>(InsertionSort())
 
-class InsertionSort2Test : AbstractSortTest<InsertionSort2>(InsertionSort2())
+internal class InsertionSort2Test : AbstractSortTest<InsertionSort2>(InsertionSort2())
 
-class HeapSortTest : AbstractSortTest<HeapSort>(HeapSort())
+internal class HeapSortTest : AbstractSortTest<HeapSort>(HeapSort())
 
-class BubbleSortTest : AbstractSortTest<BubbleSort>(BubbleSort())
+internal class BubbleSortTest : AbstractSortTest<BubbleSort>(BubbleSort())
 
-class SimpleBubbleSortTest : AbstractSortTest<SimpleBubbleSort>(SimpleBubbleSort())
+internal class SimpleBubbleSortTest : AbstractSortTest<SimpleBubbleSort>(SimpleBubbleSort())
 
-class ArraySortTest : AbstractSortTest<ArraySort>(ArraySort())
+internal class ArraySortTest : AbstractSortTest<ArraySort>(ArraySort())
 
-class PancakeSortTest : AbstractSortTest<PancakeSort>(PancakeSort())
+internal class PancakeSortTest : AbstractSortTest<PancakeSort>(PancakeSort())
 
-class GnomeSortTest : AbstractSortTest<GnomeSort>(GnomeSort())
+internal class GnomeSortTest : AbstractSortTest<GnomeSort>(GnomeSort())

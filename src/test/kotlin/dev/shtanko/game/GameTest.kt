@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class GameTest {
+internal class GameTest {
 
     @Test
-    fun `display empty grid test`() {
+    internal fun `display empty grid test`() {
         val grid = arrayOf(
             intArrayOf()
         )
@@ -17,7 +17,7 @@ class GameTest {
     }
 
     @Test
-    fun `organize test`() {
+    internal fun `organize test`() {
         val row = intArrayOf()
         val idxToMatch = 0
         val idxToCompare = 1
@@ -27,7 +27,7 @@ class GameTest {
     }
 
     @Test
-    fun `merge test`() {
+    internal fun `merge test`() {
         val row = intArrayOf()
         val idxToMatch = 0
         val idxToCompare = 1
@@ -37,7 +37,7 @@ class GameTest {
     }
 
     @Test
-    fun `merge and organize cells test`() {
+    internal fun `merge and organize cells test`() {
         val row = intArrayOf()
         val actual = mergeAndOrganizeCells(row)
         val expected = intArrayOf()
@@ -45,7 +45,7 @@ class GameTest {
     }
 
     @Test
-    fun `shift cells down test`() {
+    internal fun `shift cells down test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
                 intArrayOf()
@@ -55,7 +55,7 @@ class GameTest {
     }
 
     @Test
-    fun `shift cells up test`() {
+    internal fun `shift cells up test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
                 intArrayOf()
@@ -65,7 +65,7 @@ class GameTest {
     }
 
     @Test
-    fun `shift cells right test`() {
+    internal fun `shift cells right test`() {
         val grid = arrayOf(
             intArrayOf()
         )
@@ -77,7 +77,7 @@ class GameTest {
     }
 
     @Test
-    fun `shift cells left test`() {
+    internal fun `shift cells left test`() {
         val grid = arrayOf(
             intArrayOf()
         )
@@ -89,7 +89,7 @@ class GameTest {
     }
 
     @Test
-    fun `manipulate grid with unsupported input test`() {
+    internal fun `manipulate grid with unsupported input test`() {
         assertThrows(IllegalArgumentException::class.java) {
             val grid = arrayOf(
                 intArrayOf()
@@ -100,7 +100,7 @@ class GameTest {
     }
 
     @Test
-    fun `manipulate grid with A input test`() {
+    internal fun `manipulate grid with A input test`() {
         val grid = arrayOf(
             intArrayOf()
         )
@@ -113,7 +113,7 @@ class GameTest {
     }
 
     @Test
-    fun `manipulate grid with S input test`() {
+    internal fun `manipulate grid with S input test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
                 intArrayOf()
@@ -124,7 +124,7 @@ class GameTest {
     }
 
     @Test
-    fun `manipulate grid with D input test`() {
+    internal fun `manipulate grid with D input test`() {
         val grid = arrayOf(
             intArrayOf()
         )
@@ -137,7 +137,7 @@ class GameTest {
     }
 
     @Test
-    fun `manipulate grid with W input test`() {
+    internal fun `manipulate grid with W input test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
                 intArrayOf()
@@ -148,12 +148,12 @@ class GameTest {
     }
 
     @Test
-    fun `when invalid input test`() {
+    internal fun `when invalid input test`() {
         assertFalse(isValidInput(""))
     }
 
     @Test
-    fun `when valid input test`() {
+    internal fun `when valid input test`() {
         assertTrue(isValidInput("a"))
         assertTrue(isValidInput("s"))
         assertTrue(isValidInput("d"))

@@ -11,9 +11,9 @@ import java.util.stream.Stream
 import kotlin.random.Random
 
 @Suppress("ArrayPrimitive")
-abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
+internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
 
-    class InputArrayArgumentsProvider : ArgumentsProvider {
+    internal class InputArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<Int>(), emptyArray<Int>()),
             Arguments.of(arrayOf(4), arrayOf(4)),
@@ -29,7 +29,7 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
         )
     }
 
-    class InputArgumentsProvider : ArgumentsProvider {
+    internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(getRandomArray(), true),
             Arguments.of(arrayOf(1, 2, 2, 1), true)
@@ -44,7 +44,7 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
         }
     }
 
-    class InputStringArrayArgumentsProvider : ArgumentsProvider {
+    internal class InputStringArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<String>(), emptyArray<String>()),
             Arguments.of(arrayOf("A"), arrayOf("A")),
@@ -57,7 +57,7 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
         )
     }
 
-    class InputObjectArrayArgumentsProvider : ArgumentsProvider {
+    internal class InputObjectArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf(TestObject.empty()), arrayOf(TestObject.empty())),
             Arguments.of(
@@ -77,14 +77,14 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArrayArgumentsProvider::class)
-    fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
+    internal fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is sorted test`(arr: Array<Int>, expected: Boolean) {
+    internal fun `is sorted test`(arr: Array<Int>, expected: Boolean) {
         strategy.perform(arr)
         val actual = arr.isSorted()
         assertEquals(expected, actual)
@@ -92,14 +92,14 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputStringArrayArgumentsProvider::class)
-    fun `string array test`(arr: Array<String>, expected: Array<String>) {
+    internal fun `string array test`(arr: Array<String>, expected: Array<String>) {
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputObjectArrayArgumentsProvider::class)
-    fun `object test`(arr: Array<TestObject>, expected: Array<TestObject>) {
+    internal fun `object test`(arr: Array<TestObject>, expected: Array<TestObject>) {
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }

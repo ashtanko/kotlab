@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class ArrayMapTest {
+internal class ArrayMapTest {
 
     @Test
-    fun `empty test`() {
+    internal fun `empty test`() {
         val map = ArrayMap<String, String>()
         assertTrue(map.isEmpty())
     }
 
     @Test
-    fun `put test`() {
+    internal fun `put test`() {
         val map = ArrayMap<String, String>()
         map.put("A", "Apple")
         map.put("B", "Banana")
@@ -24,7 +24,7 @@ class ArrayMapTest {
     }
 
     @Test
-    fun `indexOfKey test`() {
+    internal fun `indexOfKey test`() {
         val map = ArrayMap<String, String>()
         map.put("A", "Apple")
         map.put("B", "Banana")
@@ -34,7 +34,7 @@ class ArrayMapTest {
     }
 
     @Test
-    fun `containsKey test`() {
+    internal fun `containsKey test`() {
         val map = ArrayMap<String, String>()
         map.put("A", "Apple")
         map.put("B", "Banana")
@@ -44,7 +44,7 @@ class ArrayMapTest {
     }
 
     @Test
-    fun `valueAt test`() {
+    internal fun `valueAt test`() {
         val map = ArrayMap<String, String>()
         map.put("A", "Apple")
         map.put("B", "Banana")
@@ -54,7 +54,7 @@ class ArrayMapTest {
     }
 
     @Test
-    fun `keyAt test`() {
+    internal fun `keyAt test`() {
         val map = ArrayMap<String, String>()
         map.put("A", "Apple")
         map.put("B", "Banana")
@@ -64,7 +64,7 @@ class ArrayMapTest {
     }
 
     @Test
-    fun `setValueAt test`() {
+    internal fun `setValueAt test`() {
         val map = ArrayMap<String, String>()
         map.put("A", "Apple")
         map.put("B", "Banana")
@@ -75,7 +75,7 @@ class ArrayMapTest {
     }
 
     @Test
-    fun `remove test`() {
+    internal fun `remove test`() {
         val map = ArrayMap<String, String>()
         map.put("A", "Apple")
         map.put("B", "Banana")

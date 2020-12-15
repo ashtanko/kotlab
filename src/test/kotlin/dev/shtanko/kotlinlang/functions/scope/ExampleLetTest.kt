@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class ExampleLetTest {
+internal class ExampleLetTest {
 
     @Test
-    fun `let scope function test`() {
+    internal fun `let scope function test`() {
         val example = ExampleLet()
         example.printNonNull(null)
         example.printNonNull("a")

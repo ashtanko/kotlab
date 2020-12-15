@@ -1,29 +1,43 @@
 package dev.shtanko.algorithms.math
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
-class BinomialTest {
+internal class BinomialTest {
 
-    @Test
-    fun `simple test`() {
-        assertEquals(0, binomial(0, 1))
-        assertEquals(1, binomial(1, 1))
-        assertEquals(2, binomial(2, 1))
-        assertEquals(3, binomial(3, 1))
-        assertEquals(3, binomial(3, 2))
-        assertEquals(4, binomial(4, 1))
-        assertEquals(1, binomial(5, 0))
-        assertEquals(5, binomial(5, 1))
-        assertEquals(10, binomial(5, 2))
-        assertEquals(10, binomial(5, 3))
-        assertEquals(5, binomial(5, 4))
-        assertEquals(1, binomial(5, 5))
-        assertEquals(1, binomial(6, 0))
-        assertEquals(6, binomial(6, 1))
-        assertEquals(15, binomial(6, 2))
-        assertEquals(20, binomial(6, 3))
-        assertEquals(15, binomial(6, 4))
-        assertEquals(6, binomial(6, 5))
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(0, 1, 0),
+            Arguments.of(1, 1, 1),
+            Arguments.of(2, 1, 2),
+            Arguments.of(3, 1, 3),
+            Arguments.of(3, 2, 3),
+            Arguments.of(4, 1, 4),
+            Arguments.of(5, 0, 1),
+            Arguments.of(5, 1, 5),
+            Arguments.of(5, 2, 10),
+            Arguments.of(5, 3, 10),
+            Arguments.of(5, 4, 5),
+            Arguments.of(5, 5, 1),
+            Arguments.of(6, 0, 1),
+            Arguments.of(6, 1, 6),
+            Arguments.of(6, 2, 15),
+            Arguments.of(6, 3, 20),
+            Arguments.of(6, 4, 15),
+            Arguments.of(6, 5, 6),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `binomial test`(n: Int, k: Int, expected: Long) {
+        val actual = binomial(n, k)
+        assertThat(actual, equalTo(expected))
     }
 }

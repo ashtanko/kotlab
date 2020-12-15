@@ -3,10 +3,10 @@ package dev.shtanko.kotlinlang.op
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MapTest {
+internal class MapTest {
 
     @Test
-    fun `map test`() {
+    internal fun `map test`() {
         val list = listOf(4, 8, 15, 16, 23, 42)
         val actual = list.map {
             "$it"

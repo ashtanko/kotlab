@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class StringTransformerTest {
+internal class StringTransformerTest {
 
     private val ringBuffer: RingBuffer by lazy {
         RingBuffer()
@@ -14,14 +14,14 @@ class StringTransformerTest {
     }
 
     @Test
-    fun `empty string test`() {
+    internal fun `empty string test`() {
         val actual = transformer.transform("").size
         val expected = 0
         assertEquals(expected, actual)
     }
 
     @Test
-    fun `short string test`() {
+    internal fun `short string test`() {
         val string = "{\"ev\":\"one\"}"
         val actual = transformer.transform(string).first()
         val expected = byteArrayOf(1, -128, 123, 34, 101, 118, 34, 58, 34, 111, 110, 101, 34, 125)
@@ -29,7 +29,7 @@ class StringTransformerTest {
     }
 
     @Test
-    fun `one full chunk and half test`() {
+    internal fun `one full chunk and half test`() {
         val string = "{\"ev\":\"Lorem Ipsum\"}"
         val actual = transformer.transform(string)
         val expected = Pair(0.toByte(), 1.toByte())
@@ -40,7 +40,7 @@ class StringTransformerTest {
     }
 
     @Test
-    fun `two full chunks and half test`() {
+    internal fun `two full chunks and half test`() {
         val string = "{\"ev\":\"\"Lorem ipsum dolor sit amet.\"}"
         val actual = transformer.transform(string)
         val expected = Triple(0.toByte(), 0.toByte(), 1.toByte())
@@ -52,7 +52,7 @@ class StringTransformerTest {
     }
 
     @Test
-    fun `big string test`() {
+    internal fun `big string test`() {
         val string =
             "{\"ev\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"}"
         val actual = transformer.transform(string)
@@ -63,7 +63,7 @@ class StringTransformerTest {
     }
 
     @Test
-    fun `two one chunked transformed strings test`() {
+    internal fun `two one chunked transformed strings test`() {
         val firstString = "{\"ev\":\"one\"}"
         val secondString = "{\"ev\":\"two\"}"
         val firstTransformed = transformer.transform(firstString)
@@ -77,7 +77,7 @@ class StringTransformerTest {
     }
 
     @Test
-    fun `one lap transformed strings test`() {
+    internal fun `one lap transformed strings test`() {
         val string = "{\"ev\":\"one\"}"
         val ids = mutableListOf<Byte>()
         for (i in 0 until 256) {

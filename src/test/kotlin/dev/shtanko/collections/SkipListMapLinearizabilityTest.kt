@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentSkipListMap
 
 @StressCTest(minimizeFailedScenario = false)
 @Param(name = "key", gen = IntGen::class, conf = "1:5")
-class SkipListMapLinearizabilityTest : VerifierState() {
+internal class SkipListMapLinearizabilityTest : VerifierState() {
 
     private val map: ConcurrentMap<Int, Int> = ConcurrentSkipListMap()
 
@@ -29,7 +29,7 @@ class SkipListMapLinearizabilityTest : VerifierState() {
     }
 
     @Test
-    fun test() {
+    internal fun test() {
         val opts = StressOptions()
             .iterations(5)
             .threads(3)

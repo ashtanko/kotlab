@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class IntMapTest {
+internal class IntMapTest {
 
     @Test
-    fun `empty test`() {
+    internal fun `empty test`() {
         val map = IntMap<String>()
         assertTrue(map.isEmpty())
     }
 
     @Test
-    fun `get test`() {
+    internal fun `get test`() {
         val map = IntMap<String>()
         map.put(1, "Apple")
         map.put(2, "Banana")
@@ -24,7 +24,7 @@ class IntMapTest {
     }
 
     @Test
-    fun `indexOfKey test`() {
+    internal fun `indexOfKey test`() {
         val map = IntMap<String>()
         map.put(1, "Apple")
         map.put(2, "Banana")
@@ -34,7 +34,7 @@ class IntMapTest {
     }
 
     @Test
-    fun `containsKey test`() {
+    internal fun `containsKey test`() {
         val map = IntMap<String>()
         map.put(1, "Apple")
         map.put(2, "Banana")
@@ -44,7 +44,7 @@ class IntMapTest {
     }
 
     @Test
-    fun `valueAt test`() {
+    internal fun `valueAt test`() {
         val map = IntMap<String>()
         map.put(1, "Apple")
         map.put(2, "Banana")
@@ -54,7 +54,7 @@ class IntMapTest {
     }
 
     @Test
-    fun `keyAt test`() {
+    internal fun `keyAt test`() {
         val map = IntMap<String>()
         map.put(1, "Apple")
         map.put(2, "Banana")
@@ -64,7 +64,7 @@ class IntMapTest {
     }
 
     @Test
-    fun `setValueAt test`() {
+    internal fun `setValueAt test`() {
         val map = IntMap<String>()
         map.put(1, "Apple")
         map.put(2, "Banana")
@@ -75,7 +75,7 @@ class IntMapTest {
     }
 
     @Test
-    fun `delete test`() {
+    internal fun `delete test`() {
         val map = IntMap<String>()
         map.put(1, "Apple")
         map.put(2, "Banana")

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class MemoryTest {
+internal class MemoryTest {
     companion object {
         // 1000_000 //uncomment for original test
         private const val ARRAY_SIZE = 1000
@@ -39,7 +39,7 @@ class MemoryTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `sorts test`(testCase: AbstractSortStrategy) {
+    internal fun `sorts test`(testCase: AbstractSortStrategy) {
         execute(testCase, getSortedArray())
     }
 

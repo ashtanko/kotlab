@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class QueueTest {
+internal class QueueTest {
 
     @Test
-    fun `empty test`() {
+    internal fun `empty test`() {
         val queue = Queue<Int>()
         assertEquals(0, queue.size)
         assertTrue(queue.isEmpty())
     }
 
     @Test
-    fun `exception test`() {
+    internal fun `exception test`() {
         assertThrows<NoSuchElementException> {
             val queue = Queue<Int>()
             queue.peek()
@@ -24,7 +24,7 @@ class QueueTest {
     }
 
     @Test
-    fun `naive test`() {
+    internal fun `naive test`() {
         val queue = Queue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -37,7 +37,7 @@ class QueueTest {
     }
 
     @Test
-    fun `naive iterator test`() {
+    internal fun `naive iterator test`() {
         val queue = Queue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -49,7 +49,7 @@ class QueueTest {
     }
 
     @Test
-    fun `naive contains test`() {
+    internal fun `naive contains test`() {
         val queue = Queue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -64,7 +64,7 @@ class QueueTest {
     }
 
     @Test
-    fun `naive contains all test`() {
+    internal fun `naive contains all test`() {
         val queue = Queue<Int>()
         for (i in 0..10) {
             queue.add(i)
