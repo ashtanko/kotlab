@@ -37,8 +37,12 @@ buildscript {
 }
 
 dependencies {
-    api("org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN_VERSION}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.KOTLIN_VERSION}")
+    implementation(kotlin("reflect"))
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
+
     implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
@@ -56,6 +60,16 @@ dependencies {
     testImplementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.0")
     testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("io.mockk:mockk:1.10.0")
+
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.SPEK}") {
+        exclude(group = "org.jetbrains.kotlin")
+    }
+    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:${Versions.SPEK}") {
+        exclude(group = "org.jetbrains.kotlin")
+    }
+    // spek requires kotlin-reflect, can be omitted if already in the classpath
+    testRuntimeOnly(kotlin("reflect"))
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }
@@ -171,7 +185,9 @@ tasks {
     }
 
     test {
-        useJUnitPlatform()
+        useJUnitPlatform {
+            includeEngines("spek2", "junit-jupiter")
+        }
         // finalizedBy(jacocoTestReport)
         testLogging {
             events("passed", "skipped", "failed")

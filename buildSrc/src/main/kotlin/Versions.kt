@@ -4,6 +4,7 @@ object Versions {
     const val RX_JAVA = "3.0.7"
     const val DETEKT = "1.15.0-RC1" // "1.14.1 "
     const val COROUTINES = "1.3.9"
+    const val SPEK = "2.0.15"
     const val TEST = "1.2.0"
     const val EXT = "1.1.1"
     const val ARCH_CORE = "2.1.0"
