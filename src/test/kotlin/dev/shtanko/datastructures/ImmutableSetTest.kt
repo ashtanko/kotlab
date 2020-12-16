@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020 Alexey Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package dev.shtanko.datastructures
 
 import org.hamcrest.CoreMatchers.equalTo
@@ -27,13 +43,13 @@ internal class ImmutableSetTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `simple test`(n: Int, value: Int, expected: Boolean) {
+    internal fun `contains test`(n: Int, value: Int, expected: Boolean) {
         val actual = immutableSetOf(n).contains(value)
         assertThat(actual, equalTo(expected))
     }
 
     @Test
-    internal fun `simple test 2`() {
+    internal fun `contains test 2`() {
         val set = immutableSetOf(*(10 downTo 1).toList().toTypedArray())
         for (v in set) {
             assertTrue(set.contains(v))
@@ -45,7 +61,7 @@ internal class ImmutableSetTest {
     }
 
     @Test
-    internal fun `simple test 3`() {
+    internal fun `contains in ranges test`() {
         val set = immutableSetOf(*(0..100).toList().toTypedArray())
         for (v in -100..-1) {
             assertFalse(set.contains(v))

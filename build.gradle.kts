@@ -153,7 +153,7 @@ val detektAll by tasks.registering(Detekt::class) {
 
 val detektAllBaseline by tasks.registering(io.gitlab.arturbosch.detekt.DetektCreateBaselineTask::class) {
     description = "Overrides current top level baseline with issues found on this run." +
-        "Issues found on the baseline will be ignored on detekt runs."
+            "Issues found on the baseline will be ignored on detekt runs."
     buildUponDefaultConfig.set(true)
     ignoreFailures.set(true)
     parallel.set(true)
@@ -165,6 +165,28 @@ val detektAllBaseline by tasks.registering(io.gitlab.arturbosch.detekt.DetektCre
     exclude(".*/build/.*")
     exclude("/versions.gradle.kts")
     exclude("buildSrc/settings.gradle.kts")
+}
+
+spotless {
+    kotlin {
+        target(
+            fileTree(
+                mapOf(
+                    "dir" to ".",
+                    "include" to listOf("**/*.kt"),
+                    "exclude" to listOf("**/build/**", "**/spotless/*.kt")
+                )
+            )
+        )
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+        // ktlint()
+        licenseHeaderFile(
+            rootProject.file("spotless/copyright.kt"),
+            "^(package|object|import|interface|internal|@file|//startfile)"
+        )
+    }
 }
 
 subprojects {
