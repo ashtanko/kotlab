@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class DwarvenGoldmineFacadeTest {
+internal class DwarvenGoldmineFacadeTest {
     private lateinit var appender: InMemoryAppender
 
     @BeforeEach
@@ -21,7 +21,7 @@ class DwarvenGoldmineFacadeTest {
     }
 
     @Test
-    fun `test full work day`() {
+    internal fun `test full work day`() {
         val goldMine = DwarvenGoldmineFacade()
         goldMine.startNewDay()
         assertTrue(appender.logContains("Dwarf gold digger wakes up."))

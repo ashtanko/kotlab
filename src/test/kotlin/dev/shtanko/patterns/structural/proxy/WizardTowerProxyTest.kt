@@ -3,11 +3,12 @@ package dev.shtanko.patterns.structural.proxy
 import dev.shtanko.kotlinlang.inline.each
 import dev.shtanko.patterns.utils.InMemoryAppender
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class WizardTowerProxyTest {
+internal class WizardTowerProxyTest {
     private lateinit var appender: InMemoryAppender
 
     @BeforeEach
@@ -21,7 +22,7 @@ class WizardTowerProxyTest {
     }
 
     @Test
-    fun `enter test`() {
+    internal fun `enter test`() {
         val wizards = listOf(
             Wizard("Gandalf"),
             Wizard("Dumbledore"),
@@ -30,10 +31,10 @@ class WizardTowerProxyTest {
         )
         val proxy = WizardTowerProxy(IvoryTower())
         wizards.each(proxy::enter)
-        Assertions.assertTrue(appender.logContains("Gandalf enters the tower."))
-        Assertions.assertTrue(appender.logContains("Dumbledore enters the tower."))
-        Assertions.assertTrue(appender.logContains("Oz enters the tower."))
-        Assertions.assertTrue(appender.logContains("Merlin is not allowed to enter!"))
-        Assertions.assertEquals(4, appender.logSize)
+        assertTrue(appender.logContains("Gandalf enters the tower."))
+        assertTrue(appender.logContains("Dumbledore enters the tower."))
+        assertTrue(appender.logContains("Oz enters the tower."))
+        assertTrue(appender.logContains("Merlin is not allowed to enter!"))
+        assertEquals(4, appender.logSize)
     }
 }

@@ -7,10 +7,10 @@ import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
 
-class ClubbedTrollTest {
+internal class ClubbedTrollTest {
 
     @Test
-    fun `clubbed troll test`() {
+    internal fun `clubbed troll test`() {
         val simpleTroll = spy(SimpleTroll())
 
         val clubbed = ClubbedTroll(simpleTroll)

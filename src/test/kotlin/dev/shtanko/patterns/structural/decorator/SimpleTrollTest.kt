@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class SimpleTrollTest {
+internal class SimpleTrollTest {
 
     private lateinit var appender: InMemoryAppender
 
@@ -21,7 +21,7 @@ class SimpleTrollTest {
     }
 
     @Test
-    fun `troll actions test`() {
+    internal fun `troll actions test`() {
         val troll = SimpleTroll()
         assertEquals(10, troll.getAttackPower())
         troll.attack()

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class IvoryTowerTest {
+internal class IvoryTowerTest {
     private lateinit var appender: InMemoryAppender
 
     @BeforeEach
@@ -22,7 +22,7 @@ class IvoryTowerTest {
     }
 
     @Test
-    fun `enter wizard test`() {
+    internal fun `enter wizard test`() {
         val wizards = listOf(
             Wizard("Gandalf"),
             Wizard("Dumbledore"),

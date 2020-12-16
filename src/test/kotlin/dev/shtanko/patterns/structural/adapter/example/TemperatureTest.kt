@@ -1,22 +1,27 @@
 package dev.shtanko.patterns.structural.adapter.example
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Test
 
-class TemperatureTest {
+internal class TemperatureTest {
 
     private val celsiusTemperature = CelsiusTemperature(0.0)
     private val fahrenheitTemperature = FahrenheitTemperature(celsiusTemperature)
 
     @Test
-    fun `celsius to fahrenheit test`() {
+    internal fun `celsius to fahrenheit test`() {
         celsiusTemperature.temperature = 36.6
-        assertEquals(97.88, fahrenheitTemperature.temperature)
+        val actual = fahrenheitTemperature.temperature
+        val expected = 97.88
+        assertThat(actual, equalTo(expected))
     }
 
     @Test
-    fun `fahrenheit to celsius test`() {
+    internal fun `fahrenheit to celsius test`() {
         fahrenheitTemperature.temperature = 100.0
-        assertEquals(37.77777777777778, celsiusTemperature.temperature)
+        val actual = celsiusTemperature.temperature
+        val expected = 37.77777777777778
+        assertThat(actual, equalTo(expected))
     }
 }

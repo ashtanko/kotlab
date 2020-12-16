@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.spy
 import org.mockito.Mockito.verify
 
-class AdapterTest {
+internal class AdapterTest {
 
     companion object {
         private const val FISHING_BEAN = "fisher"
@@ -14,7 +14,7 @@ class AdapterTest {
     }
 
     private val beans: MutableMap<String, Any> by lazy {
-        hashMapOf<String, Any>()
+        hashMapOf()
     }
 
     @BeforeEach
@@ -28,7 +28,7 @@ class AdapterTest {
     }
 
     @Test
-    fun `simple test`() {
+    internal fun `adapter pattern test test`() {
         val captain = beans[ROWING_BEAN] as Captain
 
         // when captain moves

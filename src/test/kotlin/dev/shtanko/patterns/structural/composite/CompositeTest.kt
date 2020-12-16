@@ -8,10 +8,10 @@ class FloppyDisk : Equipment(70, "Floppy Disk")
 class HardDrive : Equipment(250, "Hard Drive")
 class Memory : Equipment(280, "Memory")
 
-class CompositeTest {
+internal class CompositeTest {
 
     @Test
-    fun `simple test`() {
+    internal fun `composite pattern test`() {
         val cabbinet = Cabbinet()
         cabbinet.add(FloppyDisk())
         cabbinet.add(HardDrive())

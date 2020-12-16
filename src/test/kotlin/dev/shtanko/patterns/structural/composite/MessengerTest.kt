@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
-class MessengerTest {
+internal class MessengerTest {
 
     private var stdOutBuffer = ByteArrayOutputStream()
     private val realStdOut: PrintStream = System.out
@@ -24,7 +24,7 @@ class MessengerTest {
     }
 
     @Test
-    fun `message from Orcs test`() {
+    internal fun `message from Orcs test`() {
         val messenger = Messenger()
         testMessage(
             messenger.messageFromOrcs(),
@@ -33,7 +33,7 @@ class MessengerTest {
     }
 
     @Test
-    fun `message from Elves test`() {
+    internal fun `message from Elves test`() {
         val messenger = Messenger()
         testMessage(
             messenger.messageFromElves(),
