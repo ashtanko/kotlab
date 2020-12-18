@@ -129,44 +129,6 @@ plugins.withId("info.solidsoft.pitest") {
     }
 }
 
-val detektAll by tasks.registering(Detekt::class) {
-    description = "Runs over whole code base without the starting overhead for each module."
-    config.from(file("config/detekt/detekt.yml"))
-    buildUponDefaultConfig = true
-    autoCorrect = true
-    parallel = true
-    setSource(files(rootDir))
-    include("**/*.kt")
-    include("**/*.kts")
-    exclude(".*/resources/.*")
-    exclude(".*/build/.*")
-    exclude("/versions.gradle.kts")
-    exclude("buildSrc/settings.gradle.kts")
-    baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
-    reports {
-        xml.enabled = true
-        xml.destination = file("build/reports/detekt/detekt.xml")
-        html.enabled = true
-        txt.enabled = true
-    }
-}
-
-val detektAllBaseline by tasks.registering(io.gitlab.arturbosch.detekt.DetektCreateBaselineTask::class) {
-    description = "Overrides current top level baseline with issues found on this run." +
-            "Issues found on the baseline will be ignored on detekt runs."
-    buildUponDefaultConfig.set(true)
-    ignoreFailures.set(true)
-    parallel.set(true)
-    setSource(files(rootDir))
-    baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
-    include("**/*.kt")
-    include("**/*.kts")
-    exclude(".*/resources/.*")
-    exclude(".*/build/.*")
-    exclude("/versions.gradle.kts")
-    exclude("buildSrc/settings.gradle.kts")
-}
-
 spotless {
     kotlin {
         target(
@@ -181,7 +143,6 @@ spotless {
         trimTrailingWhitespace()
         indentWithSpaces()
         endWithNewline()
-        // ktlint()
         licenseHeaderFile(
             rootProject.file("spotless/copyright.kt"),
             "^(package|object|import|interface|internal|@file|//startfile)"
@@ -195,7 +156,6 @@ subprojects {
 }
 
 tasks {
-
     jacocoTestReport {
         reports {
             html.isEnabled = true
@@ -206,16 +166,6 @@ tasks {
         executionData(file("build/jacoco/test.exec"))
     }
 
-    test {
-        useJUnitPlatform {
-            includeEngines("spek2", "junit-jupiter")
-        }
-        // finalizedBy(jacocoTestReport)
-        testLogging {
-            events("passed", "skipped", "failed")
-        }
-    }
-
     withType<KotlinCompile>().configureEach {
         kotlinOptions {
             jvmTarget = projectJvmTarget
@@ -224,21 +174,39 @@ tasks {
     }
 
     withType<Test>().configureEach {
+        useJUnitPlatform {
+            includeEngines("spek2", "junit-jupiter")
+        }
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
         testLogging.showStandardStreams = true
         useJUnitPlatform()
     }
 
     withType<Detekt>().configureEach {
-        jvmTarget = "1.8"
+        jvmTarget = projectJvmTarget
     }
 
     withType<Detekt> {
+        description = "Runs over whole code base without the starting overhead for each module."
+        parallel = true
+        baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
+        config.from(file("config/detekt/detekt.yml"))
+
         include("**/*.kt")
         include("**/*.kts")
         exclude(".*/resources/.*")
         exclude(".*/build/.*")
         exclude("/versions.gradle.kts")
         exclude("buildSrc/settings.gradle.kts")
+
+        reports {
+            xml.enabled = true
+            xml.destination = file("build/reports/detekt/detekt.xml")
+            html.enabled = true
+            txt.enabled = true
+        }
     }
 
     withType<Test> {

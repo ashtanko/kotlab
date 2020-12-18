@@ -30,6 +30,12 @@ internal class NQueensTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                1,
+                listOf(
+                    listOf("Q")
+                )
+            ),
+            Arguments.of(
                 4,
                 listOf(
                     listOf(".Q..", "...Q", "Q...", "..Q."),
@@ -39,10 +45,31 @@ internal class NQueensTest {
         )
     }
 
+    internal class InputBoardArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                2, arrayOf<Pair<Int, Char>>(), "2 |_||_|\n1 |_||_|\n  a  b\n"
+            ),
+            Arguments.of(
+                8,
+                arrayOf<Pair<Int, Char>>(),
+                "8 |_||_||_||_||_||_||_||_|\n7 |_||_||_||_||_||_||_||_|\n6 |_||_||_||_||_||_||_||_|\n5 |_||_||_||_||_||_||_||_|\n4 |_||_||_||_||_||_||_||_|\n3 |_||_||_||_||_||_||_||_|\n2 |_||_||_||_||_||_||_||_|\n1 |_||_||_||_||_||_||_||_|\n  a  b  c  d  e  f  g  h\n"
+            )
+        )
+    }
+
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `n queens test`(target: Int, expected: List<List<String>>) {
         val actual = target.solveNQueens()
+        assertThat(actual, equalTo(expected))
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputBoardArgumentsProvider::class)
+    fun `generate board test`(n: Int, loc: Array<Pair<Int, Char>>, expected: String) {
+        val actual = n.genBoard(*loc)
+        println(actual)
         assertThat(actual, equalTo(expected))
     }
 }

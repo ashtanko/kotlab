@@ -32,10 +32,59 @@ fun Int.solveNQueens(): List<List<String>> {
             chess[i][j] = '.'
         }
     }
-    val res: MutableList<List<String>> =
-        ArrayList()
+    val res: MutableList<List<String>> = ArrayList()
     solve(res, chess, 0)
     return res
+}
+
+@Throws(IllegalStateException::class)
+fun Array<out Pair<Int, Char>>.assertLocations(size: Int, abc: CharArray) {
+    if (this.isEmpty()) return
+    if (!this.map { it.first }.none { it > size }) {
+        throw IllegalStateException("Column cannot be more that $size x $size board")
+    }
+    if (this.map { it.second }.none { abc.contains(it) }) {
+        throw IllegalStateException(
+            "Wrong row - should be one of this: ${
+                abc.toList().joinToString()
+            }"
+        )
+    }
+}
+
+private const val BOARD_MAX_SIZE = 8
+/**
+ * Max 8x8.
+ */
+fun Int.genBoard(vararg locations: Pair<Int, Char>): String {
+    if (this > BOARD_MAX_SIZE) throw IllegalStateException("Board size cannot be more than 8x8")
+    val abc = charArrayOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
+    val empty = "|_|"
+    val filled = "|#|"
+    val unique = locations.toSet().toTypedArray()
+    unique.assertLocations(this, abc)
+
+    val trueLocations = unique.map {
+        it.first - 1 to abc.indexOf(it.second.toLowerCase())
+    }
+
+    val board = Array(this) { IntArray(this) { 0 } }
+    for (loc in trueLocations) {
+        board.reversedArray()[loc.first][loc.second] = 1
+    }
+    val sb = StringBuilder()
+    for (i in board.reversedArray().indices) {
+        sb.append("${this - i} ")
+        for (b in board[i]) {
+            if (b == 0) sb.append(empty) else sb.append(filled)
+        }
+        sb.append("\n")
+    }
+    for (j in 0 until this) {
+        sb.append("  ${abc[j]}")
+    }
+    sb.append("\n")
+    return sb.toString()
 }
 
 private fun solve(

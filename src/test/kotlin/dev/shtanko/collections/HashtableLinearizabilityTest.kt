@@ -25,13 +25,13 @@ import org.jetbrains.kotlinx.lincheck.strategy.stress.StressCTest
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
 import org.jetbrains.kotlinx.lincheck.verifier.VerifierState
 import org.junit.jupiter.api.Test
-import java.util.concurrent.ConcurrentHashMap
+import java.util.Hashtable
 
 @StressCTest(minimizeFailedScenario = false)
 @Param(name = "key", gen = IntGen::class, conf = "1:5")
-internal class HashMapLinearizabilityTest : VerifierState() {
+internal class HashtableLinearizabilityTest : VerifierState() {
 
-    private val map: MutableMap<Int, Int> = ConcurrentHashMap()
+    private val map: MutableMap<Int, Int> = Hashtable()
 
     @Operation
     fun put(@Param(name = "key") key: Int, value: Int): Int? {
@@ -49,7 +49,7 @@ internal class HashMapLinearizabilityTest : VerifierState() {
             .iterations(5)
             .threads(3)
             .logLevel(LoggingLevel.INFO)
-        LinChecker.check(HashMapLinearizabilityTest::class.java, opts)
+        LinChecker.check(HashtableLinearizabilityTest::class.java, opts)
     }
 
     override fun extractState(): Any {
