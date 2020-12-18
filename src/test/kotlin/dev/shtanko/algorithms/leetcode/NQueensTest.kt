@@ -48,7 +48,9 @@ internal class NQueensTest {
     internal class InputBoardArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                2, arrayOf<Pair<Int, Char>>(), "2 |_||_|\n1 |_||_|\n  a  b\n"
+                2,
+                arrayOf<Pair<Int, Char>>(),
+                "2 |_||_|\n1 |_||_|\n  a  b\n"
             ),
             Arguments.of(
                 8,

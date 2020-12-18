@@ -45,14 +45,13 @@ fun Array<out Pair<Int, Char>>.assertLocations(size: Int, abc: CharArray) {
     }
     if (this.map { it.second }.none { abc.contains(it) }) {
         throw IllegalStateException(
-            "Wrong row - should be one of this: ${
-                abc.toList().joinToString()
-            }"
+            "Wrong row - should be one of this: ${abc.toList().joinToString()}"
         )
     }
 }
 
 private const val BOARD_MAX_SIZE = 8
+
 /**
  * Max 8x8.
  */
