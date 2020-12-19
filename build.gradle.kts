@@ -45,6 +45,7 @@ dependencies {
 
     implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
+    implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
 
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")

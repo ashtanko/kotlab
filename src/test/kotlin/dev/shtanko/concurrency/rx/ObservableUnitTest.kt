@@ -17,17 +17,18 @@
 package dev.shtanko.concurrency.rx
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.kotlin.toFlowable
 import io.reactivex.rxjava3.observers.TestObserver
 import org.hamcrest.CoreMatchers.hasItems
 import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.MatcherAssert.assertThat
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicReference
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicReference
 
 internal class ObservableUnitTest {
 
@@ -398,5 +399,34 @@ internal class ObservableUnitTest {
             assertValueCount(2)
         }
         assertThat(subscriber.values(), hasItems("1", "2"))
+    }
+
+    // Combining Observables
+    @Test
+    internal fun `startWith test`() {
+        val subscriber: TestObserver<String> = TestObserver()
+        val observable = Observable.just("Spock", "McCoy")
+            .startWithItem("Kirk")
+        observable.subscribeWith(subscriber)
+        subscriber.apply {
+            assertComplete()
+            assertNoErrors()
+            assertValueCount(3)
+        }
+        assertThat(subscriber.values(), hasItems("Kirk", "Spock", "McCoy"))
+    }
+
+    @Test
+    internal fun `merge test`() {
+        val subscriber: TestObserver<Int> = TestObserver()
+        val observable = Observable.just(1, 2, 3)
+            .mergeWith(Observable.just(4, 5, 6))
+        observable.subscribeWith(subscriber)
+        subscriber.apply {
+            assertComplete()
+            assertNoErrors()
+            assertValueCount(6)
+        }
+        assertThat(subscriber.values(), hasItems(1, 2, 3, 4, 5, 6))
     }
 }
