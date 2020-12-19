@@ -17,7 +17,6 @@
 package dev.shtanko.concurrency.rx
 
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.kotlin.toFlowable
 import io.reactivex.rxjava3.observers.TestObserver
 import org.hamcrest.CoreMatchers.hasItems
 import org.hamcrest.CoreMatchers.notNullValue
