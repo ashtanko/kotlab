@@ -16,30 +16,42 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
-internal class ThreeSumTest {
+internal abstract class ThreeSumTest<out T : ThreeSum>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, List<List<Int>>>> {
-            return listOf(
-                intArrayOf(0, 0, 1) to listOf(),
-                intArrayOf(-1, 0, 1, 2, -1, -4) to listOf(
-                    listOf(-1, -1, 2),
-                    listOf(-1, 0, 1)
-                )
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(),
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(-1, 0, 1, 2, -1, -4),
+                listOf(listOf(-1, -1, 2), listOf(-1, 0, 1))
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `three sum test`(testCase: Pair<IntArray, List<List<Int>>>) {
-        val (array, expected) = testCase
-        val actual = array.threeSum()
-        assertEquals(expected, actual)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `three sum test`(nums: IntArray, expected: List<List<Int>>) {
+        val actual = strategy.perform(nums)
+        assertThat(actual.flatten().sorted(), equalTo(expected.flatten().sorted()))
     }
 }
+
+internal class ThreeSumTwoPointersTest : ThreeSumTest<ThreeSumTwoPointers>(ThreeSumTwoPointers())
+internal class ThreeSumHashsetTest : ThreeSumTest<ThreeSumHashset>(ThreeSumHashset())
+internal class ThreeSumNoSortTest : ThreeSumTest<ThreeSumNoSort>(ThreeSumNoSort())

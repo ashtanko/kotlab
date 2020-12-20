@@ -16,37 +16,111 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.LinkedList
+import java.util.ArrayList
 
-fun IntArray.threeSum(): List<List<Int>> {
-    sort()
+/**
+ * 3 Sum.
+ * @link https://leetcode.com/problems/3sum/
+ */
+interface ThreeSum {
+    fun perform(nums: IntArray): List<List<Int>>
+}
 
-    val result: MutableList<List<Int>> = LinkedList()
-    for (i in 0 until this.size - 2) {
-        val local = i > 0 && this[i] != this[i - 1]
-        if (i == 0 || local) {
-            var lo = i + 1
-            var hi = this.size - 1
-            val sum = 0 - this[i]
+/**
+ * Approach 1: Two Pointers.
+ * Time Complexity: O(n^2).
+ * Space Complexity: O(n^2).
+ */
+class ThreeSumTwoPointers : ThreeSum {
+    override fun perform(nums: IntArray): List<List<Int>> {
+        nums.sort()
+        val res: MutableList<List<Int>> = ArrayList<List<Int>>()
+        var i = 0
+        while (i < nums.size && nums[i] <= 0) {
+            if (i == 0 || nums[i - 1] != nums[i]) {
+                twoSumII(nums, i, res)
+            }
+            ++i
+        }
+        return res
+    }
 
-            while (lo < hi) {
-                when {
-                    this[lo] + this[hi] == sum -> {
-                        result.add(listOf(this[i], this[lo], this[hi]))
-                        while (lo < hi && this[lo] == this[lo + 1]) lo++
-                        while (lo < hi && this[hi] == this[hi - 1]) hi--
-                        lo++
-                        hi--
-                    }
-                    this[lo] + this[hi] < sum -> {
-                        lo++
-                    }
-                    else -> {
-                        hi--
-                    }
+    private fun twoSumII(nums: IntArray, i: Int, res: MutableList<List<Int>>) {
+        var lo = i + 1
+        var hi = nums.size - 1
+        while (lo < hi) {
+            val sum = nums[i] + nums[lo] + nums[hi]
+            when {
+                sum < 0 -> {
+                    ++lo
+                }
+                sum > 0 -> {
+                    --hi
+                }
+                else -> {
+                    res.add(listOf(nums[i], nums[lo++], nums[hi--]))
+                    while (lo < hi && nums[lo] == nums[lo - 1]) ++lo
                 }
             }
         }
     }
-    return result
+}
+
+/**
+ * Approach 2: Hashset.
+ * Time Complexity: O(n^2).
+ * Space Complexity: O(n^2).
+ */
+class ThreeSumHashset : ThreeSum {
+    override fun perform(nums: IntArray): List<List<Int>> {
+        nums.sort()
+        val res: MutableList<List<Int>> = ArrayList<List<Int>>()
+        var i = 0
+        while (i < nums.size && nums[i] <= 0) {
+            if (i == 0 || nums[i - 1] != nums[i]) {
+                twoSum(nums, i, res)
+            }
+            ++i
+        }
+        return res
+    }
+
+    private fun twoSum(nums: IntArray, i: Int, res: MutableList<List<Int>>) {
+        val seen = HashSet<Int>()
+        var j = i + 1
+        while (j < nums.size) {
+            val complement = -nums[i] - nums[j]
+            if (seen.contains(complement)) {
+                res.add(listOf(nums[i], nums[j], complement))
+                while (j + 1 < nums.size && nums[j] == nums[j + 1]) ++j
+            }
+            seen.add(nums[j])
+            ++j
+        }
+    }
+}
+
+/**
+ * Approach 3: "No-Sort".
+ * Time Complexity: O(n^2).
+ * Space Complexity: O(n).
+ */
+class ThreeSumNoSort : ThreeSum {
+    override fun perform(nums: IntArray): List<List<Int>> {
+        val res: MutableSet<List<Int>> = HashSet()
+        val dups: MutableSet<Int> = HashSet()
+        val seen: MutableMap<Int, Int> = HashMap()
+        for (i in nums.indices) if (dups.add(nums[i])) {
+            for (j in i + 1 until nums.size) {
+                val complement = -nums[i] - nums[j]
+                if (seen.containsKey(complement) && seen[complement] == i) {
+                    val triplet: MutableList<Int> = mutableListOf(nums[i], nums[j], complement)
+                    triplet.sort()
+                    res.add(triplet)
+                }
+                seen[nums[j]] = i
+            }
+        }
+        return ArrayList(res)
+    }
 }
