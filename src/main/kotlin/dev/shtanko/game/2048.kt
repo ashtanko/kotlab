@@ -19,7 +19,7 @@ package dev.shtanko.game
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-private const val POSITIVE_GAME_OVER_MESSAGE = "So sorry, but you won the game."
+private const val POSITIVE_GAME_OVER_MESSAGE = "Congratulations! You won the game."
 private const val NEGATIVE_GAME_OVER_MESSAGE = "So sorry, but you lost the game."
 private const val SOLVED = 2048
 private const val RANDOM = 0.10

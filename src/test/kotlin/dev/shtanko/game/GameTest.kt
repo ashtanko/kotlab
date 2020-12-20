@@ -16,11 +16,23 @@
 
 package dev.shtanko.game
 
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.greaterThan
+import org.hamcrest.Matchers.lessThan
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertThrows
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import org.junit.jupiter.params.provider.ValueSource
+import java.util.stream.Stream
 
 internal class GameTest {
 
@@ -28,6 +40,17 @@ internal class GameTest {
     internal fun `display empty grid test`() {
         val grid = arrayOf(
             intArrayOf()
+        )
+        display(grid)
+    }
+
+    @Test
+    internal fun `display low grid test`() {
+        val grid = arrayOf(
+            intArrayOf(0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0),
         )
         display(grid)
     }
@@ -61,7 +84,7 @@ internal class GameTest {
     }
 
     @Test
-    internal fun `shift cells down test`() {
+    internal fun `shift cells down error test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
                 intArrayOf()
@@ -70,8 +93,137 @@ internal class GameTest {
         }
     }
 
+    internal class ShiftCellsDownInputParams : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(2, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(2, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(4, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 2, 0),
+                    intArrayOf(0, 0, 2, 0),
+                    intArrayOf(0, 0, 2, 0),
+                    intArrayOf(0, 0, 2, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 4, 0),
+                    intArrayOf(0, 0, 4, 0),
+                )
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ShiftCellsDownInputParams::class)
+    internal fun `shift cells down test`(grid: Array<IntArray>, expected: Array<IntArray>) {
+        val actual = shiftCellsDown(grid)
+        assertThat(actual, equalTo(expected))
+    }
+
+    internal class ShiftCellsUpInputParams : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 2, 0, 0),
+                    intArrayOf(0, 2, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 4, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 4, 8, 16),
+                    intArrayOf(2, 4, 8, 16),
+                    intArrayOf(2, 4, 8, 16),
+                    intArrayOf(2, 4, 8, 16),
+                ),
+                arrayOf(
+                    intArrayOf(4, 8, 16, 32),
+                    intArrayOf(4, 8, 16, 32),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(16, 32, 64, 128),
+                    intArrayOf(16, 32, 64, 128),
+                    intArrayOf(16, 32, 64, 128),
+                    intArrayOf(16, 32, 64, 128),
+                ),
+                arrayOf(
+                    intArrayOf(32, 64, 128, 256),
+                    intArrayOf(32, 64, 128, 256),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+        )
+    }
+
     @Test
-    internal fun `shift cells up test`() {
+    internal fun `shift cells up error test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
                 intArrayOf()
@@ -80,28 +232,164 @@ internal class GameTest {
         }
     }
 
-    @Test
-    internal fun `shift cells right test`() {
-        val grid = arrayOf(
-            intArrayOf()
-        )
-        val actual = shiftCellsRight(grid)
-        val expected = arrayOf(
-            intArrayOf()
-        )
-        assertArrayEquals(expected, actual)
+    @ParameterizedTest
+    @ArgumentsSource(ShiftCellsUpInputParams::class)
+    internal fun `shift cells up test`(grid: Array<IntArray>, expected: Array<IntArray>) {
+        val actual = shiftCellsUp(grid)
+        assertThat(actual, equalTo(expected))
     }
 
     @Test
-    internal fun `shift cells left test`() {
-        val grid = arrayOf(
-            intArrayOf()
-        )
-        val actual = shiftCellsLeft(grid)
-        val expected = arrayOf(
-            intArrayOf()
-        )
+    internal fun `shift cells right empty test`() {
+        val grid = arrayOf<IntArray>()
+        val actual = shiftCellsRight(grid)
+        val expected = arrayOf<IntArray>()
         assertArrayEquals(expected, actual)
+    }
+
+    internal class ShiftCellsRightInputParams : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(4, 4, 4, 4),
+                    intArrayOf(8, 8, 8, 8),
+                    intArrayOf(16, 16, 16, 16),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 4, 4),
+                    intArrayOf(0, 0, 8, 8),
+                    intArrayOf(0, 0, 16, 16),
+                    intArrayOf(0, 0, 32, 32),
+                )
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ShiftCellsRightInputParams::class)
+    internal fun `shift cells right test`(grid: Array<IntArray>, expected: Array<IntArray>) {
+        val actual = shiftCellsRight(grid)
+        assertThat(actual, equalTo(expected))
+    }
+
+    internal class ShiftCellsLeftInputParams : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(4, 4, 4, 4),
+                    intArrayOf(8, 8, 8, 8),
+                    intArrayOf(16, 16, 16, 16),
+                ),
+                arrayOf(
+                    intArrayOf(4, 4, 0, 0),
+                    intArrayOf(8, 8, 0, 0),
+                    intArrayOf(16, 16, 0, 0),
+                    intArrayOf(32, 32, 0, 0),
+                )
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ShiftCellsLeftInputParams::class)
+    internal fun `shift cells left test`(grid: Array<IntArray>, expected: Array<IntArray>) {
+        val actual = shiftCellsLeft(grid)
+        assertThat(actual, equalTo(expected))
+    }
+
+    internal class ManipulateGridInputParams : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "a",
+                arrayOf(
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(4, 4, 4, 4),
+                    intArrayOf(8, 8, 8, 8),
+                    intArrayOf(16, 16, 16, 16),
+                ),
+                arrayOf(
+                    intArrayOf(4, 4, 0, 0),
+                    intArrayOf(8, 8, 0, 0),
+                    intArrayOf(16, 16, 0, 0),
+                    intArrayOf(32, 32, 0, 0),
+                )
+            ),
+            Arguments.of(
+                "s",
+                arrayOf(
+                    intArrayOf(2, 4, 8, 16),
+                    intArrayOf(2, 4, 8, 16),
+                    intArrayOf(4, 8, 16, 32),
+                    intArrayOf(4, 8, 16, 32),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(4, 8, 16, 32),
+                    intArrayOf(8, 16, 32, 64),
+                )
+            ),
+            Arguments.of(
+                "d",
+                arrayOf(
+                    intArrayOf(4, 4, 2, 2),
+                    intArrayOf(8, 8, 4, 4),
+                    intArrayOf(16, 16, 8, 8),
+                    intArrayOf(32, 32, 16, 16),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 8, 4),
+                    intArrayOf(0, 0, 16, 8),
+                    intArrayOf(0, 0, 32, 16),
+                    intArrayOf(0, 0, 64, 32),
+                )
+            ),
+            Arguments.of(
+                "w",
+                arrayOf(
+                    intArrayOf(2, 8, 32, 256),
+                    intArrayOf(2, 8, 32, 256),
+                    intArrayOf(4, 16, 128, 512),
+                    intArrayOf(4, 16, 128, 512),
+                ),
+                arrayOf(
+                    intArrayOf(4, 16, 64, 512),
+                    intArrayOf(8, 32, 256, 1024),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+        )
     }
 
     @Test
@@ -115,16 +403,10 @@ internal class GameTest {
         }
     }
 
-    @Test
-    internal fun `manipulate grid with A input test`() {
-        val grid = arrayOf(
-            intArrayOf()
-        )
-        val input = "a"
+    @ParameterizedTest
+    @ArgumentsSource(ManipulateGridInputParams::class)
+    internal fun `manipulate grid test`(input: String, grid: Array<IntArray>, expected: Array<IntArray>) {
         val actual = manipulateGrid(grid, input)
-        val expected = arrayOf(
-            intArrayOf()
-        )
         assertArrayEquals(expected, actual)
     }
 
@@ -168,11 +450,277 @@ internal class GameTest {
         assertFalse(isValidInput(""))
     }
 
+    @DisplayName("Valid inputs")
+    @ParameterizedTest
+    @ValueSource(strings = ["a", "s", "d", "w"])
+    internal fun `when valid input test`(inputString: String) {
+        val actual = isValidInput(inputString)
+        assertThat(actual, equalTo(true))
+    }
+
+    internal class UpdateGridInputParams : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                0 to 0,
+                2,
+                arrayOf(
+                    intArrayOf(2, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                0 to 1,
+                2,
+                arrayOf(
+                    intArrayOf(0, 2, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                1 to 0,
+                2,
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(2, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                )
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                3 to 3,
+                2,
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 2),
+                )
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(UpdateGridInputParams::class)
+    internal fun `update grid test`(
+        grid: Array<IntArray>,
+        coordinates: Pair<Int, Int>,
+        value: Int,
+        expected: Array<IntArray>
+    ) {
+        val actual = updateGrid(grid, coordinates, value)
+        assertArrayEquals(expected, actual)
+    }
+
     @Test
-    internal fun `when valid input test`() {
-        assertTrue(isValidInput("a"))
-        assertTrue(isValidInput("s"))
-        assertTrue(isValidInput("d"))
-        assertTrue(isValidInput("w"))
+    internal fun `generate number test`() {
+        val actual = generateNumber()
+        assertThat(actual, lessThan(5))
+    }
+
+    @Test
+    internal fun `locate spawn coordinates error test`() {
+        val grid = arrayOf(
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+        )
+        assertThrows<IndexOutOfBoundsException> {
+            locateSpawnCoordinates(grid)
+        }
+    }
+
+    @Test
+    internal fun `locate spawn coordinates test`() {
+        val grid = arrayOf(
+            intArrayOf(0, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+        )
+        val actual = locateSpawnCoordinates(grid)
+        assertThat(actual, equalTo(0 to 0))
+    }
+
+    @Test
+    internal fun `spawn number error test`() {
+        val grid = arrayOf(
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+        )
+        assertThrows<IndexOutOfBoundsException> {
+            spawnNumber(grid)
+        }
+    }
+
+    @Test
+    internal fun `spawn number test`() {
+        val grid = arrayOf(
+            intArrayOf(0, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+            intArrayOf(2, 2, 2, 2),
+        )
+        val actual = spawnNumber(grid).first().first()
+        assertThat(actual, greaterThan(0))
+    }
+
+    internal class GridInputParams : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                false
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                false
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                false
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                false
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 0),
+                ),
+                false
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 2),
+                    intArrayOf(2, 2, 2, 2),
+                ),
+                true
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(GridInputParams::class)
+    internal fun `is grid full test`(grid: Array<IntArray>, expected: Boolean) {
+        val actual = isGridFull(grid)
+        assertThat(actual, equalTo(expected))
+    }
+
+    internal class GridSolvedInputParams : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                false
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 4, 8, 16),
+                    intArrayOf(32, 64, 128, 256),
+                    intArrayOf(512, 1024, 2, 2),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                false
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 4, 8, 16),
+                    intArrayOf(32, 64, 128, 256),
+                    intArrayOf(512, 1024, 2048, 2),
+                    intArrayOf(0, 0, 0, 0),
+                ),
+                true
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(GridSolvedInputParams::class)
+    internal fun `is grid solved test`(grid: Array<IntArray>, expected: Boolean) {
+        val actual = isGridSolved(grid)
+        assertThat(actual, equalTo(expected))
+    }
+
+    @Test
+    internal fun `run solved grid test`() {
+        val grid = arrayOf(
+            intArrayOf(2, 4, 8, 16),
+            intArrayOf(32, 64, 128, 256),
+            intArrayOf(512, 1024, 2048, 2),
+            intArrayOf(0, 0, 0, 0),
+        )
+        val actual = run2048(grid)
+        assertThat(actual, equalTo("Congratulations! You won the game."))
+    }
+
+    @Test
+    internal fun `run full grid test`() {
+        val grid = arrayOf(
+            intArrayOf(2, 4, 8, 16),
+            intArrayOf(32, 64, 128, 256),
+            intArrayOf(512, 1024, 8, 2),
+            intArrayOf(16, 32, 512, 256),
+        )
+        val actual = run2048(grid)
+        assertThat(actual, equalTo("So sorry, but you lost the game."))
     }
 }

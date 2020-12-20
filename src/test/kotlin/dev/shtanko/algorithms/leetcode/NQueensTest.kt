@@ -18,6 +18,8 @@ package dev.shtanko.algorithms.leetcode
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -53,6 +55,11 @@ internal class NQueensTest {
                 "2 |_||_|\n1 |_||_|\n  a  b\n"
             ),
             Arguments.of(
+                2,
+                arrayOf(1 to 'a', 2 to 'b'),
+                "2 |_||#|\n1 |#||_|\n  a  b\n"
+            ),
+            Arguments.of(
                 8,
                 arrayOf<Pair<Int, Char>>(),
                 "8 |_||_||_||_||_||_||_||_|\n7 |_||_||_||_||_||_||_||_|\n6 |_||_||_||_||_||_||_||_|\n5 |_||_||_||_||_||_||_||_|\n4 |_||_||_||_||_||_||_||_|\n3 |_||_||_||_||_||_||_||_|\n2 |_||_||_||_||_||_||_||_|\n1 |_||_||_||_||_||_||_||_|\n  a  b  c  d  e  f  g  h\n"
@@ -69,9 +76,25 @@ internal class NQueensTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputBoardArgumentsProvider::class)
-    fun `generate board test`(n: Int, loc: Array<Pair<Int, Char>>, expected: String) {
+    internal fun `generate board test`(n: Int, loc: Array<Pair<Int, Char>>, expected: String) {
         val actual = n.genBoard(*loc)
         println(actual)
         assertThat(actual, equalTo(expected))
+    }
+
+    @Test
+    internal fun `assert locations wrong input char test`() {
+        val abc = charArrayOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
+        assertThrows<IllegalStateException> {
+            arrayOf(1 to 'x').assertLocations(2, abc)
+        }
+    }
+
+    @Test
+    internal fun `assert locations wrong input int test`() {
+        val abc = charArrayOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
+        assertThrows<IllegalStateException> {
+            arrayOf(3 to 'a').assertLocations(2, abc)
+        }
     }
 }

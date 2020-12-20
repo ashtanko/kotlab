@@ -29,7 +29,9 @@ internal class StrongPasswordCheckerTest {
                 "" to 6,
                 "123456" to 2,
                 "qwerty" to 2,
-                "password123456" to 1
+                "password123456" to 1,
+                "QWERTY" to 2,
+                "QWERTYuiopasdfghjkl;'[]zxcvbnm,./." to 15,
             )
         }
     }
