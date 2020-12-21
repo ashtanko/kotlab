@@ -22,7 +22,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private val strategy: T) {
+internal abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private val strategy: T) {
     companion object {
 
         @JvmStatic
@@ -65,17 +65,17 @@ abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private val stra
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `in order iterative test`(root: BinaryTreeNode, expected: List<Int>) {
+    internal fun `in order iterative test`(root: BinaryTreeNode, expected: List<Int>) {
         val actual = strategy.inOrderIterative(root)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `in order iterative using stack test`(root: BinaryTreeNode, expected: List<Int>) {
+    internal fun `in order iterative using stack test`(root: BinaryTreeNode, expected: List<Int>) {
         val actual = strategy.inOrderIterativeStack(root)
         assertEquals(expected, actual)
     }
 }
 
-class TreeTraversalImplTest : TreeTraversalTest<TreeTraversal>(TreeTraversal())
+internal class TreeTraversalImplTest : TreeTraversalTest<TreeTraversal>(TreeTraversal())

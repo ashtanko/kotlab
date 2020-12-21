@@ -22,17 +22,17 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class BinarySearchTreeTest {
+internal class BinarySearchTreeTest {
 
     @Test
-    fun `empty test`() {
+    internal fun `empty test`() {
         val tree = BinarySearchTree<Int, Int>()
         assertEquals(0, tree.size)
         assertTrue(tree.isEmpty())
     }
 
     @Test
-    fun `size of one`() {
+    internal fun `size of one test`() {
         val tree = BinarySearchTree<Int, String>()
         tree.add(1, "1")
         assertFalse(tree.isEmpty())
@@ -46,7 +46,7 @@ class BinarySearchTreeTest {
     }
 
     @Test
-    fun `size of three`() {
+    internal fun `size of three test`() {
         val tree = BinarySearchTree<Int, String>()
         tree.add(1, "1")
         tree.add(2, "2")
@@ -72,7 +72,7 @@ class BinarySearchTreeTest {
     }
 
     @Test
-    fun `overwrite test`() {
+    internal fun `overwrite test`() {
         val tree = BinarySearchTree<Int, String>()
         tree.add(1, "1")
         assertFalse(tree.isEmpty())
@@ -91,7 +91,7 @@ class BinarySearchTreeTest {
     }
 
     @Test
-    fun `letters test`() {
+    internal fun `letters test`() {
         val tree = BinarySearchTree<Char, String>()
         val letters = arrayOf(
             'j', 'p', 'q', 's', 'f', 'o', 'g', 'v', 'h', 'm', 'x', 'z',
@@ -177,7 +177,7 @@ class BinarySearchTreeTest {
     }
 
     @Test
-    fun `remove test`() {
+    internal fun `remove test`() {
         val tree = BinarySearchTree<Int, String>()
         for (i in 0..30) {
             tree.add(i, (i * i).toString())

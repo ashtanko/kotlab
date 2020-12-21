@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.learn
 
 import org.junit.jupiter.api.Test
 
-class DijkstraTest {
+internal class DijkstraTest {
 
     companion object {
         private const val START = "a"
@@ -38,7 +38,7 @@ class DijkstraTest {
     }
 
     @Test
-    fun `should calculate correct shortest paths`() {
+    internal fun `should calculate correct shortest paths`() {
         with(Graph(edges = GRAPH, true)) { // directed
             dijkstra(START)
             printPath(END)

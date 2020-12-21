@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.interview
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class StackQueueTest {
+internal class StackQueueTest {
 
     @Test
-    fun `stack queue test`() {
+    internal fun `stack queue test`() {
         val queue = StackQueue<Int>()
 
         queue.add(1)

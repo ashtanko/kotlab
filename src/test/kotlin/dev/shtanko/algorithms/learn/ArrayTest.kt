@@ -21,10 +21,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class ArrayTest {
+internal class ArrayTest {
 
     companion object {
-
         @JvmStatic
         fun dataProvider(): List<Any> {
             return listOf(
@@ -53,47 +52,42 @@ class ArrayTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `find min using sort test`(testCase: Pair<Int, IntArray>) {
-        val arr = testCase.second
-        val expected = testCase.first
+    internal fun `find min using sort test`(testCase: Pair<Int, IntArray>) {
+        val (expected, arr) = testCase
         val actual = secondMinSort(arr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `find min second straight forward test`(testCase: Pair<Int, IntArray>) {
-        val arr = testCase.second
-        val expected = testCase.first
+    internal fun `find min second straight forward test`(testCase: Pair<Int, IntArray>) {
+        val (expected, arr) = testCase
         val actual = secondStraightForward(arr)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("firstUniqueProvider")
-    fun `find first unique elements test`(testCase: Pair<IntArray, IntArray>) {
-        val arr = testCase.second
-        val expected = testCase.first
+    internal fun `find first unique elements test`(testCase: Pair<IntArray, IntArray>) {
+        val (expected, arr) = testCase
         val actual = uniqueWholeNumbersSet(arr)
         assertArrayEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("mergeArrayDataProvider")
-    fun `merge two sorted arrays using plus operator test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
-        val arr1 = testCase.first.first
-        val arr2 = testCase.first.second
-        val expected = testCase.second
+    internal fun `merge two sorted arrays using plus operator test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val (data, expected) = testCase
+        val (arr1, arr2) = data
         val actual = mergeTwoSortedPlus(arr1, arr2)
         assertArrayEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("mergeArrayDataProvider")
-    fun `merge two sorted arrays straight forward test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
-        val arr1 = testCase.first.first
-        val arr2 = testCase.first.second
-        val expected = testCase.second
+    internal fun `merge two sorted arrays straight forward test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+        val (data, expected) = testCase
+        val (arr1, arr2) = data
         val actual = mergeTwoSortedSF(arr1, arr2)
         assertArrayEquals(expected, actual)
     }

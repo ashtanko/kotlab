@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class FibonacciSequenceTest {
+internal class FibonacciSequenceTest {
 
     companion object {
 
@@ -70,7 +70,7 @@ class FibonacciSequenceTest {
 
     @ParameterizedTest
     @MethodSource("numberProvider")
-    fun `fibonacci number test`(testCase: Pair<Int, Long>) {
+    internal fun `fibonacci number test`(testCase: Pair<Int, Long>) {
         val actual = fibonacciAt(testCase.first)
         val expected = testCase.second
         assertEquals(expected, actual)
@@ -78,7 +78,7 @@ class FibonacciSequenceTest {
 
     @ParameterizedTest
     @MethodSource("sequenceProvider")
-    fun `fibonacci sequence test`(testCase: Pair<Int, List<Int>>) {
+    internal fun `fibonacci sequence test`(testCase: Pair<Int, List<Int>>) {
         val n = testCase.first
         val actual = fibonacci().take(n).toList()
         val expected = testCase.second

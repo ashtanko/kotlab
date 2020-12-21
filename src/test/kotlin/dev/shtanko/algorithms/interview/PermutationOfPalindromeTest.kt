@@ -16,33 +16,29 @@
 
 package dev.shtanko.algorithms.interview
 
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class PermutationOfPalindromeTest {
+internal class PermutationOfPalindromeTest {
 
     companion object {
-
         @JvmStatic
         fun dataProvider() = listOf(
             "tactcoa" to true,
             "abcdefg" to false,
             "aaaa" to true,
             "aaaabbbb" to true,
-            "aaaacbbb" to false
+            "aaaacbbb" to false,
         )
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    fun `is permutation of palindrome test`(testCase: Pair<String, Boolean>) {
-        val actual = testCase.first.isPermutationOfPalindrome()
-        if (testCase.second) {
-            assertTrue(actual)
-        } else {
-            assertFalse(actual)
-        }
+    internal fun `is permutation of palindrome test`(testCase: Pair<String, Boolean>) {
+        val (s, expected) = testCase
+        val actual = s.isPermutationOfPalindrome()
+        assertThat(actual, equalTo(expected))
     }
 }

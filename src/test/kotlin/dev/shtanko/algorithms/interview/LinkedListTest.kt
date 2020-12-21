@@ -22,13 +22,13 @@ import org.junit.jupiter.api.Test
 internal class LinkedListTest {
 
     @Test
-    fun `linked list test`() {
+    internal fun `linked list test`() {
         assertTrue(test(intArrayOf(1, 1, 2, 4, 5, 8, 5), intArrayOf(1, 2, 4, 5, 8)))
         assertTrue(test(intArrayOf(1, 2, 3, 4, 5), intArrayOf(1, 2, 3, 4, 5)))
     }
 
     @Test
-    fun `remove duplicates test`() {
+    internal fun `remove duplicates test`() {
         assertTrue(test(intArrayOf(0, 1, 2, 3), 0, 3))
         assertTrue(test(intArrayOf(0, 1, 2, 3), 1, 2))
         assertTrue(test(intArrayOf(0, 1, 2, 3), 2, 1))
@@ -36,9 +36,9 @@ internal class LinkedListTest {
     }
 
     @Test
-    fun `delete current node value test`() {
+    internal fun `delete current node value test`() {
         val list = LinkedList.fromArray(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8))
-        val node = list.asSequence().find { e -> e.data == 3 }!!
+        val node = list.find { e -> e.data == 3 }!!
         deleteCurrentNodeValue(node)
 
         val output = list.asSequence()
@@ -51,13 +51,13 @@ internal class LinkedListTest {
     }
 
     @Test
-    fun `partition and check test`() {
+    internal fun `partition and check test`() {
         assertTrue(test(5, intArrayOf(3, 5, 8, 5, 10, 2, 1)))
         assertTrue(!check(5, intArrayOf(3, 5, 8, 5, 10, 2, 1)))
     }
 
     @Test
-    fun `add to linked list test`() {
+    internal fun `add to linked list test`() {
         assertTrue(test(intArrayOf(7, 1, 6), intArrayOf(5, 9, 2), intArrayOf(2, 1, 9)))
         assertTrue(test(intArrayOf(2, 7, 1, 6), intArrayOf(5, 9, 2), intArrayOf(7, 6, 4, 6)))
         assertTrue(test(intArrayOf(3, 2, 7, 1, 6), intArrayOf(5, 9, 2), intArrayOf(8, 1, 0, 2, 6)))
@@ -65,14 +65,14 @@ internal class LinkedListTest {
     }
 
     @Test
-    fun `is linked list palindrome test`() {
+    internal fun `is linked list palindrome test`() {
         assertTrue(test(intArrayOf(1, 2, 1)))
         assertTrue(!test(intArrayOf(1, 2, 3)))
         assertTrue(test(intArrayOf(1, 2, 2, 1)))
     }
 
     @Test
-    fun `find first intersection test`() {
+    internal fun `find first intersection test`() {
         testTail(intArrayOf(1, 2, 3), intArrayOf(4, 5, 6), intArrayOf(7, 8, 9))
         testTail(intArrayOf(1, 2, 3, 9), intArrayOf(4, 5, 6), intArrayOf(7, 8, 9))
 
@@ -85,7 +85,7 @@ internal class LinkedListTest {
     }
 
     @Test
-    fun `loop test`() {
+    internal fun `loop test`() {
         testInnerLoop()
         testNonInnerLoop()
         testLongInnerLoop()

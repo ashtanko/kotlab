@@ -22,17 +22,17 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class TwoStackQueueTest {
+internal class TwoStackQueueTest {
 
     @Test
-    fun `empty test`() {
+    internal fun `empty test`() {
         val queue = TwoStackQueue<Int>()
         assertEquals(0, queue.size)
         assertTrue(queue.isEmpty())
     }
 
     @Test
-    fun `exception test`() {
+    internal fun `exception test`() {
         assertThrows<NoSuchElementException> {
             val queue = TwoStackQueue<Int>()
             queue.peek()
@@ -40,7 +40,7 @@ class TwoStackQueueTest {
     }
 
     @Test
-    fun `naive test`() {
+    internal fun `naive test`() {
         val queue = TwoStackQueue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -52,7 +52,7 @@ class TwoStackQueueTest {
     }
 
     @Test
-    fun `naive iterator test`() {
+    internal fun `naive iterator test`() {
         val queue = TwoStackQueue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -63,7 +63,7 @@ class TwoStackQueueTest {
     }
 
     @Test
-    fun `naive contains test`() {
+    internal fun `naive contains test`() {
         val queue = TwoStackQueue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -78,7 +78,7 @@ class TwoStackQueueTest {
     }
 
     @Test
-    fun `naive contains all test`() {
+    internal fun `naive contains all test`() {
         val queue = TwoStackQueue<Int>()
         for (i in 0..10) {
             queue.add(i)

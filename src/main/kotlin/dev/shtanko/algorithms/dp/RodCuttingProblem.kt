@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.dynamicprogramming
+package dev.shtanko.dp
 
 import kotlin.math.max
 

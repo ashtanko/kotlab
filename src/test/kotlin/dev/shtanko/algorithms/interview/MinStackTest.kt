@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.interview
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class MinStackTest {
+internal class MinStackTest {
 
     @Test
-    fun `test push min`() {
+    internal fun `test push min`() {
         val stack = MinStack()
         stack.push(10)
         stack.push(11)

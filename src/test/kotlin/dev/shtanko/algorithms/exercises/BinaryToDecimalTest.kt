@@ -16,8 +16,8 @@
 
 package dev.shtanko.algorithms.exercises
 
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -41,6 +41,6 @@ internal class BinaryToDecimalTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `binary to decimal test`(binary: String, expected: Int) {
         val actual = BinaryToDecimal().perform(binary)
-        MatcherAssert.assertThat(actual, CoreMatchers.equalTo(expected))
+        assertThat(actual, equalTo(expected))
     }
 }

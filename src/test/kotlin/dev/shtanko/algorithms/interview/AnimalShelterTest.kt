@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.interview
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class AnimalShelterTest {
+internal class AnimalShelterTest {
 
     @Test
-    fun `Animal shelter test`() {
+    internal fun `animal shelter test`() {
         val animalShelter = AnimalShelter()
         val dog1 = Dog("sean's dog")
         val cat1 = Cat("jim's cat 1")

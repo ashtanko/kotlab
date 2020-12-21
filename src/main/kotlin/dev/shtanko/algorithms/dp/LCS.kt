@@ -14,27 +14,11 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.interview
+package dev.shtanko.algorithms.dp
 
-import org.junit.jupiter.api.Test
-import java.util.Stack
-
-internal class SortStackTest {
-
-    @Test
-    internal fun `sort stack test`() {
-        val input = intArrayOf(34, 3, 31, 98, 92, 23)
-        val sorted = intArrayOf(3, 23, 31, 34, 92, 98)
-        val inputStack = Stack<Int>()
-
-        for (i in input) {
-            inputStack.push(i)
-        }
-
-        val sortedStack = sortStack(inputStack)
-
-        for (i in sorted) {
-            require(sortedStack.pop() == i)
-        }
-    }
+/**
+ * The longest common subsequence.
+ */
+class LCS {
+    // TODO
 }

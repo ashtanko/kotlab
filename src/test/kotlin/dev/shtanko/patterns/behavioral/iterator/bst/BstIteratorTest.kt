@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class BstIteratorTest {
+internal class BstIteratorTest {
 
     private lateinit var nonEmptyRoot: TreeNode<Int>
     private var emptyRoot: TreeNode<Int>? = null
@@ -43,7 +43,7 @@ class BstIteratorTest {
     }
 
     @Test
-    fun `next for empty tree test`() {
+    internal fun `next for empty tree test`() {
         val bstIterator = BstIterator(emptyRoot)
         assertThrows(
             NoSuchElementException::class.java,
@@ -53,7 +53,7 @@ class BstIteratorTest {
     }
 
     @Test
-    fun `next over entire populated tree test`() {
+    internal fun `next over entire populated tree test`() {
         val bstIterator = BstIterator(nonEmptyRoot)
         assertEquals(Integer.valueOf(1), bstIterator.next()?.value, "First Node is 1.")
         assertEquals(Integer.valueOf(3), bstIterator.next()?.value, "Second Node is 3.")
@@ -64,19 +64,19 @@ class BstIteratorTest {
     }
 
     @Test
-    fun `has next for empty tree test`() {
+    internal fun `has next for empty tree test`() {
         val bstIterator = BstIterator(emptyRoot)
         assertFalse(bstIterator.hasNext(), "hasNext() should return false for empty tree.")
     }
 
     @Test
-    fun `has next for populated tree test`() {
+    internal fun `has next for populated tree test`() {
         val bstIterator = BstIterator(nonEmptyRoot)
         assertTrue(bstIterator.hasNext(), "hasNext() should return true for populated tree.")
     }
 
     @Test
-    fun `next and has next over entire populated tree test`() {
+    internal fun `next and has next over entire populated tree test`() {
         val bstIterator = BstIterator(nonEmptyRoot)
         assertTrue(bstIterator.hasNext(), "Iterator hasNext() should be true.")
         assertEquals(Integer.valueOf(1), bstIterator.next()?.value, "First Node is 1.")

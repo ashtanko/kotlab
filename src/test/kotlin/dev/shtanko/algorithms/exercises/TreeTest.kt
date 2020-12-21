@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.exercises
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class TreeTest {
+internal class TreeTest {
 
     @Test
-    fun `clone tree test`() {
+    internal fun `clone tree test`() {
         val t1 = TreeNode(4)
         val t2 = TreeNode(8)
         val t3 = TreeNode(15)

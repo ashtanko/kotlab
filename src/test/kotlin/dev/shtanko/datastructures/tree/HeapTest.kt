@@ -23,7 +23,7 @@ import java.util.PriorityQueue
 import java.util.Random
 import java.util.stream.IntStream
 
-class HeapTest {
+internal class HeapTest {
 
     companion object {
         private val RANDOM = Random()
@@ -31,7 +31,7 @@ class HeapTest {
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 10, 100, 1000, 10000, 100000])
-    fun `heap test`(size: Int) {
+    internal fun `heap test`(size: Int) {
         val priorityQueue = PriorityQueue<Int>()
         val heap = Heap<Int>(naturalOrder())
 

@@ -22,7 +22,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.Stack
 
-class StackTest {
+internal class StackTest {
 
     companion object {
         @JvmStatic
@@ -30,13 +30,13 @@ class StackTest {
             return listOf(
                 "rap" to "par",
                 "car" to "rac",
-                "tenet" to "tenet"
+                "tenet" to "tenet",
             )
         }
     }
 
     @Test
-    fun `sort values in stack`() {
+    internal fun `sort values in stack`() {
         val stack = Stack<Int>().apply {
             push(4)
             push(1)
@@ -53,10 +53,9 @@ class StackTest {
 
     @ParameterizedTest
     @MethodSource("reverseStringProvider")
-    fun `reverse string using stack`(testCase: Pair<String, String>) {
-        val str = testCase.first
+    internal fun `reverse string using stack`(testCase: Pair<String, String>) {
+        val (str, expected) = testCase
         val actual = str.reversed()
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }

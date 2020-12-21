@@ -24,9 +24,9 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-abstract class UniqueCharactersTest<out T : UniqueCharacters>(private val strategy: T) {
+internal abstract class UniqueCharactersTest<out T : UniqueCharacters>(private val strategy: T) {
 
-    class InputArgumentsProvider : ArgumentsProvider {
+    internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",
@@ -53,18 +53,18 @@ abstract class UniqueCharactersTest<out T : UniqueCharacters>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find unique characters test`(str: String, expected: Boolean) {
+    internal fun `find unique characters test`(str: String, expected: Boolean) {
         val actual = strategy.perform(str)
         assertEquals(expected, actual)
     }
 }
 
-class UniqueCharactersSetTest : UniqueCharactersTest<UniqueCharactersSet>(UniqueCharactersSet())
-class UniqueCharactersSortTest :
+internal class UniqueCharactersSetTest : UniqueCharactersTest<UniqueCharactersSet>(UniqueCharactersSet())
+internal class UniqueCharactersSortTest :
     UniqueCharactersTest<UniqueCharactersSort>(UniqueCharactersSort())
 
-class UniqueCharactersStreamTest :
+internal class UniqueCharactersStreamTest :
     UniqueCharactersTest<UniqueCharactersStream>(UniqueCharactersStream())
 
-class UniqueCharactersBruteForceTest :
+internal class UniqueCharactersBruteForceTest :
     UniqueCharactersTest<UniqueCharactersBruteForce>(UniqueCharactersBruteForce())

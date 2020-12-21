@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.interview
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class BinaryTreeNodeTest {
+internal class BinaryTreeNodeTest {
 
     @Test
-    fun `binary tree node test`() {
+    internal fun `binary tree node test`() {
         testRootOnly()
         test()
     }

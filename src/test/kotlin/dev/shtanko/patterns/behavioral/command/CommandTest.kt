@@ -19,14 +19,14 @@ package dev.shtanko.patterns.behavioral.command
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class CommandTest {
+internal class CommandTest {
 
     companion object {
         private const val GOBLIN = "Goblin"
     }
 
     @Test
-    fun `command test`() {
+    internal fun `command test`() {
         val wizard = Wizard()
         val goblin = Goblin()
 

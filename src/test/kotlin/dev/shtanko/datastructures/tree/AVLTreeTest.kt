@@ -18,10 +18,10 @@ package dev.shtanko.datastructures.tree
 
 import org.junit.jupiter.api.Test
 
-class AVLTreeTest {
+internal class AVLTreeTest {
 
     @Test
-    fun `empty test`() {
+    internal fun `empty test`() {
         val tree = AVLTree()
         for (i in 1 until 10) {
             tree.insert(i)

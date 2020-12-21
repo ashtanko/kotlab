@@ -22,17 +22,17 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class OneStackQueueTest {
+internal class OneStackQueueTest {
 
     @Test
-    fun `empty test`() {
+    internal fun `empty test`() {
         val queue = OneStackQueue<Int>()
         assertEquals(0, queue.size)
         assertTrue(queue.isEmpty())
     }
 
     @Test
-    fun `exception test`() {
+    internal fun `exception test`() {
         assertThrows<NoSuchElementException> {
             val queue = OneStackQueue<Int>()
             queue.peek()
@@ -40,7 +40,7 @@ class OneStackQueueTest {
     }
 
     @Test
-    fun `naive test`() {
+    internal fun `naive test`() {
         val queue = OneStackQueue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -52,7 +52,7 @@ class OneStackQueueTest {
     }
 
     @Test
-    fun `naive iterator test`() {
+    internal fun `naive iterator test`() {
         val queue = OneStackQueue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -63,7 +63,7 @@ class OneStackQueueTest {
     }
 
     @Test
-    fun `naive contains test`() {
+    internal fun `naive contains test`() {
         val queue = OneStackQueue<Int>()
         for (i in 0..10) {
             queue.add(i)
@@ -78,14 +78,13 @@ class OneStackQueueTest {
     }
 
     @Test
-    fun `naive contains all test`() {
+    internal fun `naive contains all test`() {
         val queue = OneStackQueue<Int>()
         for (i in 0..10) {
             queue.add(i)
         }
         val list = listOf(0, 1, 2, 3, 4, 5, 6, 7, 7)
         assertTrue(queue.containsAll(list))
-
         assertFalse(queue.containsAll(listOf(23, 42)))
     }
 }

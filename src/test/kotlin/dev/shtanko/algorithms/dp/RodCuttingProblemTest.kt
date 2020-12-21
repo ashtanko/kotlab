@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package dev.shtanko.dynamicprogramming
+package dev.shtanko.algorithms.dp
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import dev.shtanko.dp.cutRod
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
@@ -27,7 +29,7 @@ internal class RodCuttingProblemTest {
         fun dataProvider(): List<Pair<Pair<IntArray, Int>, Int>> {
             return listOf(
                 intArrayOf(2, 5, 7, 8) to 5 to 12,
-                intArrayOf(1, 5, 8, 9, 10, 17, 17, 20) to 4 to 10
+                intArrayOf(1, 5, 8, 9, 10, 17, 17, 20) to 4 to 10,
             )
         }
     }
@@ -35,8 +37,9 @@ internal class RodCuttingProblemTest {
     @ParameterizedTest
     @MethodSource("dataProvider")
     internal fun `cut rod test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
-        val expected = testCase.second
-        val actual = cutRod(testCase.first.first, testCase.first.second)
-        assertEquals(expected, actual)
+        val (data, expected) = testCase
+        val (price, n) = data
+        val actual = cutRod(price, n)
+        assertThat(actual, equalTo(expected))
     }
 }

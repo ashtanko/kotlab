@@ -16,8 +16,9 @@
 
 package dev.shtanko.algorithms.exercises
 
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -65,13 +66,13 @@ internal class MaxPowerOfTwoTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max power of two test`(i: Int, expected: Int) {
         val actual = MaxPowerOfTwo().perform(i)
-        MatcherAssert.assertThat(actual, CoreMatchers.equalTo(expected))
+        assertThat(actual, equalTo(expected))
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputDecomposeArgumentsProvider::class)
     fun `decompose into the sum powers of two test`(n: Int, expected: List<Int>) {
         val actual = MaxPowerOfTwo().decompose(n)
-        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
+        assertThat(actual, `is`(expected))
     }
 }
