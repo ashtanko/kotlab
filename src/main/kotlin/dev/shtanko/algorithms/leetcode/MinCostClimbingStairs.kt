@@ -39,7 +39,11 @@ class MinCostClimbingStairsRecursive : MinCostClimbingStairs {
 
     private fun recurse(cost: IntArray, i: Int): Int {
         if (i < 0) return 0
-        return if (i == 0 || i == 1) cost[i] else min(recurse(cost, i - 1), recurse(cost, i - 2)) + cost[i]
+        return if (i == 0 || i == 1) {
+            cost[i]
+        } else {
+            min(recurse(cost, i - 1), recurse(cost, i - 2)) + cost[i]
+        }
     }
 }
 
@@ -75,7 +79,11 @@ class MinCostClimbingStairsDPBottomUp : MinCostClimbingStairs {
         val length: Int = cost.size
         val dp = IntArray(length + 1)
         for (i in 0 until length) {
-            if (i == 0 || i == 1) dp[i] = cost[i] else dp[i] = min(dp[i - 1], dp[i - 2]) + cost[i]
+            if (i == 0 || i == 1) {
+                dp[i] = cost[i]
+            } else {
+                dp[i] = min(dp[i - 1], dp[i - 2]) + cost[i]
+            }
         }
         return min(dp[length - 1], dp[length - 2])
     }
