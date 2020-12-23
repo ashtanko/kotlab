@@ -18,6 +18,10 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.min
 
+/**
+ * Count Square Submatrices with All Ones.
+ * @link https://leetcode.com/problems/count-square-submatrices-with-all-ones/
+ */
 object CountSquares {
     fun perform(matrix: Array<IntArray>): Int {
         var res = 0
