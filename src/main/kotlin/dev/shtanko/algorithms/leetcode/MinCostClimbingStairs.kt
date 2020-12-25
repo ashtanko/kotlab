@@ -76,6 +76,7 @@ class MinCostClimbingStairsMemoization : MinCostClimbingStairs {
  */
 class MinCostClimbingStairsDPBottomUp : MinCostClimbingStairs {
     override fun perform(cost: IntArray): Int {
+        if (cost.isEmpty()) return 0
         val length: Int = cost.size
         val dp = IntArray(length + 1)
         for (i in 0 until length) {
