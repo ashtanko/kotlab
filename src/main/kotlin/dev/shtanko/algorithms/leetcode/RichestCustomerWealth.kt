@@ -23,6 +23,6 @@ package dev.shtanko.algorithms.leetcode
 object RichestCustomerWealth {
     fun maximumWealth(accounts: Array<IntArray>): Int {
         val a = accounts.map { it.sum() }
-        return a.max() ?: 0
+        return a.maxOrNull() ?: 0
     }
 }
