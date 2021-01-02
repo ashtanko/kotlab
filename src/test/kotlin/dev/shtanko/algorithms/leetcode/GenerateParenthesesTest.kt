@@ -16,8 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.containsInAnyOrder
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -43,7 +43,7 @@ internal abstract class GenerateParenthesesTest<out T : GenerateParentheses>(pri
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `generate parenthesis test`(n: Int, expected: List<String>) {
         val actual = strategy.perform(n)
-        assertThat(actual, equalTo(expected))
+        assertThat(actual, containsInAnyOrder(*expected.toTypedArray()))
     }
 }
 
