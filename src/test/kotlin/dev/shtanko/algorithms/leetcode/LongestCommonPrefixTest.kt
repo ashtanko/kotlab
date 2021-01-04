@@ -29,7 +29,7 @@ internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(pri
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                arrayOf<String>(),
+                emptyArray<String>(),
                 ""
             ),
             Arguments.of(
@@ -39,6 +39,14 @@ internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(pri
             Arguments.of(
                 arrayOf("dog", "racecar", "car"),
                 ""
+            ),
+            Arguments.of(
+                arrayOf("alsad", "alrty"),
+                "al"
+            ),
+            Arguments.of(
+                arrayOf("leets", "leetcode", "leet", "leeds"),
+                "lee"
             ),
         )
     }
@@ -52,3 +60,4 @@ internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(pri
 }
 
 internal class LCPHorizontalScanningTest : LongestCommonPrefixTest<LCPHorizontalScanning>(LCPHorizontalScanning())
+internal class LCPVerticalScanningTest : LongestCommonPrefixTest<LCPVerticalScanning>(LCPVerticalScanning())
