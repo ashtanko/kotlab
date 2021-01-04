@@ -35,7 +35,7 @@ internal abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(priva
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `simple test`(testCase: Pair<Int, Int>) {
+    internal fun `arrange coins test`(testCase: Pair<Int, Int>) {
         val (coins, expected) = testCase
         val actual = strategy.arrangeCoins(coins)
         assertThat(actual, equalTo(expected))

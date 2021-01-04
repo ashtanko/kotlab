@@ -18,6 +18,10 @@ package dev.shtanko.algorithms.leetcode
 
 private const val MAX = 9
 
+/**
+ * Add Digits
+ * @link https://leetcode.com/problems/add-digits/
+ */
 interface AddDigitsStrategy {
     fun perform(digits: Int): Int
 }

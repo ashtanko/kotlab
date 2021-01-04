@@ -35,7 +35,7 @@ internal abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val st
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `simple test`(data: Pair<IntArray, Int>) {
+    internal fun `array pair sum test`(data: Pair<IntArray, Int>) {
         val (arr, expected) = data
         val actual = strategy.perform(arr)
         assertThat(actual, equalTo(expected))

@@ -46,7 +46,7 @@ internal abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val str
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `simple test`(testCase: Pair<Int, Int>) {
+    internal fun `binary gap test`(testCase: Pair<Int, Int>) {
         val (n, expected) = testCase
         val actual = strategy.binaryGap(n)
         assertEquals(expected, actual)

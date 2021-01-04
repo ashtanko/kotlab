@@ -16,16 +16,15 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 internal abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWithMostWaterStrategy>(private val strategy: T) {
 
     companion object {
-
         @JvmStatic
         private fun provideData(): Stream<Arguments?>? {
             return Stream.of(
@@ -34,14 +33,14 @@ internal abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWith
                 Arguments.of(intArrayOf(), 0),
                 Arguments.of(intArrayOf(1), 0),
                 Arguments.of(intArrayOf(1, 1), 1),
-                Arguments.of(intArrayOf(1, 1, 3), 2)
+                Arguments.of(intArrayOf(1, 1, 3), 2),
             )
         }
     }
 
     @ParameterizedTest
     @MethodSource("provideData")
-    fun `simple test`(arr: IntArray, expected: Int) {
+    fun `container with most water strategy test`(arr: IntArray, expected: Int) {
         val actual = strategy.maxArea(arr)
         assertEquals(expected, actual)
     }

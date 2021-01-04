@@ -42,7 +42,7 @@ internal abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `simple test`(testCase: Pair<Int, Int>) {
+    internal fun `count primes test`(testCase: Pair<Int, Int>) {
         val (n, expected) = testCase
         val actual = strategy.perform(n)
         assertEquals(expected, actual)

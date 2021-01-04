@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test
 
 internal class ConstantsTest {
     @Test
-    internal fun `simple test`() {
+    internal fun `constants test`() {
         assertEquals(10, DECIMAL)
         assertEquals(8, OCTAL)
         assertEquals(16, HEXADECIMAL)

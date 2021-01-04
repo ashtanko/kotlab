@@ -18,25 +18,29 @@ package dev.shtanko.algorithms.leetcode
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 internal abstract class AddDigitsTest<out T : AddDigitsStrategy>(private val strategy: T) {
 
-    companion object {
-
-        @JvmStatic
-        private fun provideData(): Stream<Arguments?>? {
-            return Stream.of(
-                Arguments.of(38, 2),
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(38, 2),
+            Arguments.of(0, 0),
+            Arguments.of(2, 2),
+            Arguments.of(10, 1),
+            Arguments.of(111, 3),
+            Arguments.of(1111, 4),
+            Arguments.of(11112, 6),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("provideData")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `add digits test`(digits: Int, expected: Int) {
         val actual = strategy.perform(digits)
         assertThat(actual, equalTo(expected))
