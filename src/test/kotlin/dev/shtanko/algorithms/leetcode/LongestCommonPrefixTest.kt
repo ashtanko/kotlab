@@ -33,7 +33,7 @@ internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(pri
                 ""
             ),
             Arguments.of(
-                arrayOf("flower", "flow", "flight"),
+                arrayOf("flower", "flow", "flight", "flstudio"),
                 "fl"
             ),
             Arguments.of(
@@ -48,6 +48,10 @@ internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(pri
                 arrayOf("leets", "leetcode", "leet", "leeds"),
                 "lee"
             ),
+            Arguments.of(
+                arrayOf("leetcode", "leet", "le"),
+                "le"
+            ),
         )
     }
 
@@ -61,3 +65,4 @@ internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(pri
 
 internal class LCPHorizontalScanningTest : LongestCommonPrefixTest<LCPHorizontalScanning>(LCPHorizontalScanning())
 internal class LCPVerticalScanningTest : LongestCommonPrefixTest<LCPVerticalScanning>(LCPVerticalScanning())
+internal class LCPDivideAndConquerTest : LongestCommonPrefixTest<LCPDivideAndConquer>(LCPDivideAndConquer())

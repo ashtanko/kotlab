@@ -16,8 +16,8 @@
 
 package dev.shtanko.algorithms.extensions
 
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -42,10 +42,42 @@ internal class StringExtTest {
         )
     }
 
+    internal class InputPrefixArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "",
+                "",
+                ""
+            ),
+            Arguments.of(
+                "a",
+                "a",
+                "a"
+            ),
+            Arguments.of(
+                "abc",
+                "ab",
+                "ab"
+            ),
+            Arguments.of(
+                "qwertyuiop",
+                "qweryuiop",
+                "qwer"
+            ),
+        )
+    }
+
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `is binary test`(str: String, expected: Boolean) {
         val actual = str.isBinary()
-        MatcherAssert.assertThat(actual, CoreMatchers.equalTo(expected))
+        assertThat(actual, equalTo(expected))
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputPrefixArgumentsProvider::class)
+    internal fun `common prefix test`(left: String, right: String, expected: String) {
+        val actual = (left to right).commonPrefix()
+        assertThat(actual, equalTo(expected))
     }
 }

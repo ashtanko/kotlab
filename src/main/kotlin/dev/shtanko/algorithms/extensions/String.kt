@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.extensions
 
+import kotlin.math.min
+
 /**
  * Check is a string binary.
  */
@@ -25,4 +27,16 @@ fun String.isBinary(): Boolean {
         removeAll(listOf('0', '1'))
     }
     return set.isEmpty()
+}
+
+/**
+ * @return common prefix of two strings
+ */
+fun Pair<String, String>.commonPrefix(): String {
+    val (left, right) = this
+    val min = min(left.length, right.length)
+    for (i in 0 until min) {
+        if (left[i] != right[i]) return left.substring(0, i)
+    }
+    return left.substring(0, min)
 }

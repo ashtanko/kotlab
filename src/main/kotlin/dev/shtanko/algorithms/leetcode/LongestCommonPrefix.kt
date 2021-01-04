@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.extensions.commonPrefix
+
 /**
  * Longest Common Prefix.
  * @link https://leetcode.com/problems/longest-common-prefix/
@@ -54,5 +56,26 @@ class LCPVerticalScanning : LongestCommonPrefix {
             }
         }
         return strs[0]
+    }
+}
+
+/**
+ * Approach 3: Divide and conquer
+ */
+class LCPDivideAndConquer : LongestCommonPrefix {
+    override fun perform(strs: Array<String>): String {
+        if (strs.isEmpty()) return ""
+        return longestCommonPrefix(strs, 0, strs.size - 1)
+    }
+
+    private fun longestCommonPrefix(strs: Array<String>, l: Int, r: Int): String {
+        return if (l == r) {
+            strs[l]
+        } else {
+            val mid = l.plus(r).div(2)
+            val lcpLeft = longestCommonPrefix(strs, l, mid)
+            val lcpRight = longestCommonPrefix(strs, mid + 1, r)
+            (lcpLeft to lcpRight).commonPrefix()
+        }
     }
 }
