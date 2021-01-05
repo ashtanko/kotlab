@@ -51,24 +51,10 @@ class RotatedDigitsDP : RotatedDigits {
     override fun perform(n: Int): Int {
         val a = n.toString().toCharArray()
         val k = a.size
-
-        val memo = Array(k + 1) {
-            Array(2) {
-                IntArray(
-                    2
-                )
-            }
-        }
+        val memo = Array(k + 1) { Array(2) { IntArray(2) } }
         memo[k][0][1] = 1.also { memo[k][1][1] = it }
         for (i in k - 1 downTo 0) {
             for (eqf in 0..1) for (invf in 0..1) {
-                // We will compute ans = memo[i][eqf][invf],
-                // the number of good numbers with respect to N = A[i:].
-                // If eqf is true, we must stay below N, otherwise
-                // we can use any digits.
-                // Invf becomes true when we write a 2569, and it
-                // must be true by the end of our writing as all
-                // good numbers have a digit in 2569.
                 var ans = 0
                 var d = '0'
                 while (d <= if (eqf == 1) a[i] else '9') {
@@ -83,7 +69,6 @@ class RotatedDigitsDP : RotatedDigits {
                 memo[i][eqf][invf] = ans
             }
         }
-
         return memo[0][1][0]
     }
 }
