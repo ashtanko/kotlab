@@ -101,16 +101,21 @@ class OptimalDivisionMemorization : OptimalDivisionStrategy {
                     left.maxStr + "/" + (if (i + 1 != end) "(" else "") + right.minStr + if (i + 1 != end) ")" else ""
             }
         }
-        memo[start][end] = division
+        try {
+            memo[start][end] = division
+        } catch (ignore: ArrayIndexOutOfBoundsException) {
+            return division
+        }
         return division
     }
 }
 
 class MathOptimalDivision : OptimalDivisionStrategy {
     override fun perform(nums: IntArray): String {
-        if (nums.size == 1) return nums[0].toString() + ""
-        if (nums.size == 2) return nums[0].toString() + "/" + nums[1]
-        val res = StringBuilder(nums[0].toString() + "/(" + nums[1])
+        if (nums.isEmpty()) return ""
+        if (nums.size == 1) return nums.first().toString() + ""
+        if (nums.size == 2) return nums.first().toString() + "/" + nums[1]
+        val res = StringBuilder(nums.first().toString() + "/(" + nums[1])
         for (i in 2 until nums.size) {
             res.append("/" + nums[i])
         }

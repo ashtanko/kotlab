@@ -47,4 +47,5 @@ internal abstract class WiggleSortTest<out T : WiggleSort>(private val strategy:
     }
 }
 
+internal class WiggleSortBruteForceTest : WiggleSortTest<WiggleSortBruteForce>(WiggleSortBruteForce())
 internal class WiggleSortOnePassSwapTest : WiggleSortTest<WiggleSortOnePassSwap>(WiggleSortOnePassSwap())

@@ -16,30 +16,63 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class BasicCalculatorTest<out T : CalculationStrategy>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Any> {
-            return listOf(
-                "1 + 1" to 2,
-                " 2-1 + 2 " to 3,
-                "(1+(4+5+2)-3)+(6+8)" to 23,
-                "2   +2" to 4,
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "",
+                0
+            ),
+            Arguments.of(
+                "1",
+                1
+            ),
+            Arguments.of(
+                "1-1+0",
+                0
+            ),
+            Arguments.of(
+                "0-1",
+                -1
+            ),
+            Arguments.of(
+                "${Int.MAX_VALUE}",
+                Int.MAX_VALUE
+            ),
+            Arguments.of(
+                "1 + 1",
+                2
+            ),
+            Arguments.of(
+                " 2-1 + 2 ",
+                3
+            ),
+            Arguments.of(
+                "(1+(4+5+2)-3)+(6+8)",
+                23
+            ),
+            Arguments.of(
+                "2   +2",
+                4
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `calculator test`(testCase: Pair<String, Int>) {
-        val (s, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `calculator test`(s: String, expected: Int) {
         val actual = strategy.calculate(s)
-        assertEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }
 

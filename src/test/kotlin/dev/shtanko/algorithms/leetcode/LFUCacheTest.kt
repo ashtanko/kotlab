@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -33,6 +35,14 @@ internal abstract class LFUCacheTest<out T : LFUCache>(private val cache: T) {
         assertEquals(-1, cache.get(1))
         assertEquals(3, cache.get(3))
         assertEquals(4, cache.get(4))
+    }
+
+    @Test
+    fun `LFU cache put test`() {
+        cache.put(1, 1)
+        cache.put(2, 2)
+        cache.put(1, 2)
+        assertThat(cache.get(1), equalTo(2))
     }
 }
 

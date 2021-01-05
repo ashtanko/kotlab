@@ -16,31 +16,56 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import dev.shtanko.algorithms.leetcode.EmployeeImportance.Employee
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class EmployeeImportanceTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<Int, List<EmployeeImportance.Employee>>, Int>> {
-            return listOf(
-                1 to listOf(
-                    EmployeeImportance.Employee(1, 5, listOf(2, 3)),
-                    EmployeeImportance.Employee(2, 3, listOf()),
-                    EmployeeImportance.Employee(3, 3, listOf()),
-                ) to 11,
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                1,
+                listOf(
+                    Employee(1, 5, listOf(2, 3)),
+                    Employee(2, 3, listOf()),
+                    Employee(3, 3, listOf()),
+                ),
+                11
+            ),
+            Arguments.of(
+                0,
+                emptyList<Employee>(),
+                0
+            ),
+            Arguments.of(
+                0,
+                listOf(
+                    Employee(),
+                ),
+                0
+            ),
+            Arguments.of(
+                1,
+                listOf(
+                    Employee(1),
+                    Employee(1),
+                ),
+                0
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `employee importance test`(testCase: Pair<Pair<Int, List<EmployeeImportance.Employee>>, Int>) {
-        val (data, expected) = testCase
-        val (id, employees) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `employee importance test`(id: Int, employees: List<Employee>, expected: Int) {
         val actual = EmployeeImportance.getImportance(employees, id)
-        assertEquals(expected, actual)
+        assertThat(actual, equalTo(expected))
     }
 }

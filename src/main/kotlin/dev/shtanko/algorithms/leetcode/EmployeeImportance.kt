@@ -26,11 +26,9 @@ object EmployeeImportance {
         var subordinates: List<Int> = listOf()
     )
 
-    fun getImportance(employees: List<Employee?>, id: Int): Int {
+    fun getImportance(employees: List<Employee>, id: Int): Int {
         for (e in employees) {
-            e?.let {
-                employeeMap[it.id] = it
-            }
+            employeeMap[e.id] = e
         }
         return dfs(id)
     }

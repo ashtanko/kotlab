@@ -27,11 +27,12 @@ interface WiggleSort {
  */
 class WiggleSortBruteForce : WiggleSort {
     override fun perform(nums: IntArray) {
-        nums.sort()
-        var i = 1
-        while (i < nums.size - 1) {
-            nums.swap(i, i + 1)
-            i += 2
+        for (i in 1 until nums.size) {
+            val a = nums[i - 1]
+            if (i % 2 == 1 == a > nums[i]) {
+                nums[i - 1] = nums[i]
+                nums[i] = a
+            }
         }
     }
 }
