@@ -25,13 +25,13 @@ internal class BoxTest {
     fun `int test`() {
         val b1 = Box<Int>(1)
         val b2 = Box(1)
-        assertThat(b1.value).isInstanceOf(Int::class.java)
-        assertThat(b2.value).isInstanceOf(Int::class.java)
+        assertThat(b1.value).isSameAs(1)
+        assertThat(b2.value).isSameAs(1)
     }
 
     @Test
     fun `string test`() {
         val b = Box("")
-        assertThat(b.value).isInstanceOf(Int::class.java)
+        assertThat(b.value).isSameAs("")
     }
 }
