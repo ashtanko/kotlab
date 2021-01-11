@@ -3,3 +3,10 @@ codecov:
   disable_default_path_fixes: true
   notify:
     require_ci_to_pass: yes
+
+coverage:
+  status:
+    project:
+      default:
+        target: 88%
+        threshold: 1%
