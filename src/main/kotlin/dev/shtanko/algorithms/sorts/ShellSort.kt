@@ -21,10 +21,10 @@ import dev.shtanko.algorithms.extensions.swap
 /**
  * Implementation of Shell Sort
  * @link https://en.wikipedia.org/wiki/Shellsort
- * Best complexity: n log n
- * Average complexity: n^4/3
- * Worst complexity: n^4/3
- * Space Complexity: 1
+ * Best complexity: O(n log n)
+ * Average complexity: O(n^4/3)
+ * Worst complexity: O(n^4/3)
+ * Space Complexity: O(1)
  * Stable: No
  */
 class ShellSort : AbstractSortStrategy {
