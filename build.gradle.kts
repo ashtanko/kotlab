@@ -17,7 +17,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
     id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
-    id("org.jetbrains.dokka") version "1.4.10.2"
+    id("org.jetbrains.dokka") version "1.4.20"
     id("com.diffplug.gradle.spotless") version "3.26.1"
     id("com.autonomousapps.dependency-analysis") version "0.58.0"
     id("info.solidsoft.pitest") version "1.5.1"
