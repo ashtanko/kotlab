@@ -30,39 +30,57 @@ internal class RangeSumQueryTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 RangeSumQueryBruteForce(arr),
-                0, 2, 1
+                0,
+                2,
+                1
             ),
             Arguments.of(
                 RangeSumQueryBruteForce(arr),
-                2, 5, -1
+                2,
+                5,
+                -1
             ),
             Arguments.of(
                 RangeSumQueryBruteForce(arr),
-                0, 5, -3
+                0,
+                5,
+                -3
             ),
             Arguments.of(
                 RangeSumQueryCaching(arr),
-                0, 2, 1
+                0,
+                2,
+                1
             ),
             Arguments.of(
                 RangeSumQueryCaching(arr),
-                2, 5, -1
+                2,
+                5,
+                -1
             ),
             Arguments.of(
                 RangeSumQueryCaching(arr),
-                0, 5, -3
+                0,
+                5,
+                -3
             ),
             Arguments.of(
                 RangeSumQueryCachingOptimized(arr),
-                0, 2, 1
+                0,
+                2,
+                1
             ),
             Arguments.of(
                 RangeSumQueryCachingOptimized(arr),
-                2, 5, -1
+                2,
+                5,
+                -1
             ),
             Arguments.of(
                 RangeSumQueryCachingOptimized(arr),
-                0, 5, -3
+                0,
+                5,
+                -3
             ),
         )
     }
