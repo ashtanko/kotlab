@@ -16,30 +16,40 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<IntArray, Int>, IntArray>> {
-            return listOf(
-                intArrayOf(4, 8, 15, 16, 23) to 9 to intArrayOf(),
-                intArrayOf(4, 8, 15, 16, 23) to 12 to intArrayOf(0, 1),
-                intArrayOf(4, 8, 15, 16, 23) to 39 to intArrayOf(3, 4)
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(), 0, intArrayOf()
+            ),
+            Arguments.of(
+                intArrayOf(4, 8, 15, 16, 23), 9, intArrayOf()
+            ),
+            Arguments.of(
+                intArrayOf(4, 8, 15, 16, 23), 12, intArrayOf(0, 1)
+            ),
+            Arguments.of(
+                intArrayOf(4, 8, 15, 16, 23), 39, intArrayOf(3, 4)
+            ),
+            Arguments.of(
+                intArrayOf(2, 7, 11, 15), 9, intArrayOf(0, 1)
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `two sum test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
-        val (data, expected) = testCase
-        val (array, target) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `two sum test`(array: IntArray, target: Int, expected: IntArray) {
         val actual = strategy.perform(array, target)
-        assertArrayEquals(expected, actual)
+        assertThat(actual).isEqualTo(expected)
     }
 }
 
