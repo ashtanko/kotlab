@@ -28,8 +28,21 @@ internal class CountCharactersTest {
         @JvmStatic
         private fun provideData(): Stream<Arguments?>? {
             return Stream.of(
-                Arguments.of(arrayOf("cat", "bt", "hat", "tree"), "atach", 6),
-                Arguments.of(arrayOf("hello", "world", "leetcode"), "welldonehoneyr", 10)
+                Arguments.of(
+                    arrayOf<String>(),
+                    "",
+                    0
+                ),
+                Arguments.of(
+                    arrayOf("cat", "bt", "hat", "tree"),
+                    "atach",
+                    6
+                ),
+                Arguments.of(
+                    arrayOf("hello", "world", "leetcode"),
+                    "welldonehoneyr",
+                    10
+                )
             )
         }
     }

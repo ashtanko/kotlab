@@ -43,6 +43,9 @@ internal abstract class AbstractCountNegativesTest<out T : AbstractCountNegative
                 1 to arrayOf(
                     intArrayOf(-1)
                 ),
+                0 to arrayOf(
+                    intArrayOf()
+                ),
             )
         }
     }

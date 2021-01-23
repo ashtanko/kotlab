@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.utils.measureTime
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -37,8 +38,10 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `add binary test`(a: String, b: String, expected: String) {
-        val actual = strategy.perform(a, b)
-        assertThat(actual, equalTo(expected))
+        measureTime("Add binary a: $a b: $b") {
+            val actual = strategy.perform(a, b)
+            assertThat(actual, equalTo(expected))
+        }
     }
 }
 

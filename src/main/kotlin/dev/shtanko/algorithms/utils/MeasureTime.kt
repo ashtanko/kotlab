@@ -17,11 +17,13 @@
 package dev.shtanko.algorithms.utils
 
 import dev.shtanko.algorithms.sorts.AbstractSortStrategy
+import kotlin.system.measureNanoTime
+import kotlin.time.DurationUnit
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Unit) {
-    val startTime = System.currentTimeMillis()
-    task()
-    val elapsed = System.currentTimeMillis() - startTime
+    val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
     println(
         String.format(
             "Arrays of length %d Strategy %s Consumed time: %d ms",
@@ -30,4 +32,15 @@ fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Uni
             elapsed
         )
     )
+}
+
+@OptIn(ExperimentalTime::class)
+fun measureTime(taskName: String, task: () -> Unit) {
+    val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
+    println(String.format("Task %s Consumed time: %d ms", taskName, elapsed))
+}
+
+@ExperimentalTime
+fun measureTime(unit: DurationUnit, task: () -> Unit): Long {
+    return unit.convert(measureNanoTime(task), DurationUnit.NANOSECONDS)
 }

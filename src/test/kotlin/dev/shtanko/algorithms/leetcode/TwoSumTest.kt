@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.utils.measureTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -68,8 +69,10 @@ internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy:
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `two sum test`(array: IntArray, target: Int, expected: IntArray) {
-        val actual = strategy.perform(array, target)
-        assertThat(actual).isEqualTo(expected)
+        measureTime("Two sum array ${array.toList()}") {
+            val actual = strategy.perform(array, target)
+            assertThat(actual).isEqualTo(expected)
+        }
     }
 }
 

@@ -56,7 +56,7 @@ internal class PerformanceTest {
             Arguments.of(SelectionSort(), eightHundred),
             Arguments.of(StableSelectionSort(), hundred),
             Arguments.of(StableSelectionSort(), fiveHundred),
-            Arguments.of(StableSelectionSort(), eightHundred)
+            Arguments.of(StableSelectionSort(), eightHundred),
         )
 
         private val hundred = 100.generateRandomArray()
