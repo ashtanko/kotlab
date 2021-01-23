@@ -21,6 +21,7 @@ plugins {
     id("com.diffplug.gradle.spotless") version "3.26.1"
     id("com.autonomousapps.dependency-analysis") version "0.58.0"
     id("info.solidsoft.pitest") version "1.5.1"
+    kotlin("plugin.serialization") version "1.4.21"
 }
 
 buildscript {
@@ -39,14 +40,13 @@ buildscript {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.KOTLIN_VERSION}")
     implementation(kotlin("reflect"))
-
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
-
     implementation("org.slf4j:slf4j-api:1.7.30")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
@@ -62,7 +62,6 @@ dependencies {
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.0")
     testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("io.mockk:mockk:1.10.0")
-
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.SPEK}") {
         exclude(group = "org.jetbrains.kotlin")
     }

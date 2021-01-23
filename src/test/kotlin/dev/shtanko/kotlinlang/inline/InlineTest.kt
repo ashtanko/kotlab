@@ -16,15 +16,24 @@
 
 package dev.shtanko.kotlinlang.inline
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class InlineTest {
 
+    data class TestData(var d: Int = 0)
+
     @Test
-    internal fun `each test`() {
-        val list = listOf("A", "B", "C")
+    internal fun `has zeros test`() {
+        val list = listOf(1, 2, 3)
         list.each {
-            println(it)
+            assertThat(it).isNotEqualTo(0)
         }
+    }
+
+    @Test
+    internal fun `members of test`() {
+        val actual = membersOf<TestData>()
+        assertThat(actual).containsAll(listOf("d", "equals", "hashCode", "toString"))
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Alexey Shtanko
+ * Copyright 2021 Alexey Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,26 @@
 
 package dev.shtanko.kotlinlang.delegates
 
-import kotlin.properties.Delegates.vetoable
-import kotlin.reflect.KProperty
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-var name by vetoable("Jack") { _: KProperty<*>, _, newValue ->
-    newValue.startsWith("J")
-}
+internal class VetoableTest {
 
-var max: Int by vetoable(0) { _, oldValue, newValue ->
-    newValue > oldValue
+    @Test
+    fun `max test`() {
+        assertThat(max).isEqualTo(0)
+        max = 10
+        assertThat(max).isEqualTo(10)
+        max = 5
+        assertThat(max).isEqualTo(10)
+    }
+
+    @Test
+    fun `name test`() {
+        assertThat(name).isEqualTo("Jack")
+        name = "Adam"
+        assertThat(name).isEqualTo("Jack")
+        name = "Jame"
+        assertThat(name).isEqualTo("Jame")
+    }
 }

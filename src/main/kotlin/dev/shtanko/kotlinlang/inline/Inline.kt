@@ -19,3 +19,5 @@ package dev.shtanko.kotlinlang.inline
 inline fun <T> Collection<T>.each(block: (T) -> Unit) {
     for (e in this) block(e)
 }
+
+inline fun <reified T> membersOf() = T::class.members.map { it.name }
