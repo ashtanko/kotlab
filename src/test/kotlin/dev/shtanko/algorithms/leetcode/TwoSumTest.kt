@@ -28,19 +28,39 @@ internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy:
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(), 0, intArrayOf()
+                intArrayOf(),
+                0,
+                intArrayOf()
             ),
             Arguments.of(
-                intArrayOf(4, 8, 15, 16, 23), 9, intArrayOf()
+                intArrayOf(4, 8, 15, 16, 23),
+                9,
+                intArrayOf()
             ),
             Arguments.of(
-                intArrayOf(4, 8, 15, 16, 23), 12, intArrayOf(0, 1)
+                intArrayOf(4, 8, 15, 16, 23),
+                12,
+                intArrayOf(0, 1)
             ),
             Arguments.of(
-                intArrayOf(4, 8, 15, 16, 23), 39, intArrayOf(3, 4)
+                intArrayOf(4, 8, 15, 16, 23),
+                39,
+                intArrayOf(3, 4)
             ),
             Arguments.of(
-                intArrayOf(2, 7, 11, 15), 9, intArrayOf(0, 1)
+                intArrayOf(2, 7, 11, 15),
+                9,
+                intArrayOf(0, 1)
+            ),
+            Arguments.of(
+                intArrayOf(3, 2, 4),
+                6,
+                intArrayOf(1, 2)
+            ),
+            Arguments.of(
+                intArrayOf(3, 3),
+                6,
+                intArrayOf(0, 1)
             ),
         )
     }
@@ -56,3 +76,4 @@ internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy:
 internal class TwoSumBruteForceTest : TwoSumTest<TwoSumBruteForce>(TwoSumBruteForce())
 internal class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumTwoPassHashTable>(TwoSumTwoPassHashTable())
 internal class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumOnePassHashTable>(TwoSumOnePassHashTable())
+internal class TwoSumOneHashMapTest : TwoSumTest<TwoSumOneHashMap>(TwoSumOneHashMap())

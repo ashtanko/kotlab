@@ -16,10 +16,19 @@
 
 package dev.shtanko.algorithms.leetcode
 
+/**
+ * 1. Two Sum
+ * @link https://leetcode.com/problems/two-sum/
+ */
 interface TwoSumStrategy {
     fun perform(nums: IntArray, target: Int): IntArray
 }
 
+/**
+ * Approach 1: Brute Force
+ * Time complexity : O(n^2).
+ * Space complexity : O(1).
+ */
 class TwoSumBruteForce : TwoSumStrategy {
     override fun perform(nums: IntArray, target: Int): IntArray {
         for (i in nums.indices) {
@@ -34,6 +43,11 @@ class TwoSumBruteForce : TwoSumStrategy {
     }
 }
 
+/**
+ * Approach 2: Two-pass Hash Table
+ * Time complexity : O(n).
+ * Space complexity : O(n).
+ */
 class TwoSumTwoPassHashTable : TwoSumStrategy {
     override fun perform(nums: IntArray, target: Int): IntArray {
         val map: MutableMap<Int, Int> = HashMap()
@@ -51,6 +65,11 @@ class TwoSumTwoPassHashTable : TwoSumStrategy {
     }
 }
 
+/**
+ * Approach 3: One-pass Hash Table
+ * Time complexity : O(n).
+ * Space complexity : O(n).
+ */
 class TwoSumOnePassHashTable : TwoSumStrategy {
     override fun perform(nums: IntArray, target: Int): IntArray {
         val map: MutableMap<Int, Int> = HashMap()
@@ -62,6 +81,21 @@ class TwoSumOnePassHashTable : TwoSumStrategy {
             map[nums[i]] = i
         }
         return intArrayOf()
-        // or throw IllegalArgumentException("No two sum solution")
+    }
+}
+
+/**
+ * Approach 4: Kotlin style One-pass Hash Table
+ * Time complexity : O(n).
+ * Space complexity : O(n).
+ */
+class TwoSumOneHashMap : TwoSumStrategy {
+    override fun perform(nums: IntArray, target: Int): IntArray {
+        val map: MutableMap<Int, Int> = HashMap()
+        nums.forEachIndexed { index, i ->
+            map[i]?.let { return intArrayOf(it, index) }
+            map[target - i] = index
+        }
+        return intArrayOf()
     }
 }
