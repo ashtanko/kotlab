@@ -17,8 +17,9 @@
 package dev.shtanko.kotlinlang.serialization
 
 import dev.shtanko.algorithms.utils.measureTime
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -28,20 +29,19 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-internal class DecodeFromStringTest {
+@OptIn(ExperimentalSerializationApi::class)
+internal class EncodeToStringTest {
+
+    private val json = Json.Default
 
     @Serializable
-    internal data class Data(val a: Int, val b: String)
+    internal data class Data(val name: String, val lang: String)
 
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                """{"a":42, "b": "str"}""",
-                Data(42, "str")
-            ),
-            Arguments.of(
-                """{"a":481516234, "b": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}""",
-                Data(481516234, "Lorem Ipsum is simply dummy text of the printing and typesetting industry.")
+                Data(name = "kotlinx.serialization", lang = "Kotlin"),
+                """{"name":"kotlinx.serialization","lang":"Kotlin"}"""
             ),
         )
     }
@@ -49,38 +49,39 @@ internal class DecodeFromStringTest {
     internal class InputListArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                """[]""",
-                emptyList<Data>()
+                emptyList<Data>(),
+                """[]"""
             ),
             Arguments.of(
-                """[{"a":42, "b": "str"}]""",
-                listOf(Data(42, "str"))
+                listOf(Data(name = "kotlinx.serialization", lang = "Kotlin")),
+                """[{"name":"kotlinx.serialization","lang":"Kotlin"}]"""
             ),
             Arguments.of(
-                """[{"a":42, "b": "str"},{"a":1, "b": "q"}]""",
                 listOf(
-                    Data(42, "str"),
-                    Data(1, "q"),
-                )
+                    Data(name = "kotlinx.serialization", lang = "Kotlin"),
+                    Data(name = "go", lang = "Go"),
+                    Data(name = "Vec", lang = "Rust"),
+                ),
+                """
+                    [{"name":"kotlinx.serialization","lang":"Kotlin"},{"name":"go","lang":"Go"},{"name":"Vec","lang":"Rust"}]
+                """.trimIndent()
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `decode single item from json string test`(str: String, expected: Data) {
-        measureTime("decode item from string") {
-            val actual = Json.decodeFromString<Data>(str)
+    internal fun `encode single item to string test`(data: Data, expected: String) =
+        measureTime("encode item to string") {
+            val actual = json.encodeToString(data)
             assertThat(actual).isEqualTo(expected)
         }
-    }
 
     @ParameterizedTest
     @ArgumentsSource(InputListArgumentsProvider::class)
-    internal fun `decode list of items from json string test`(str: String, expected: List<Data>) {
-        measureTime("decode items from string") {
-            val actual = Json.decodeFromString<List<Data>>(str)
+    internal fun `encode items to string test`(data: List<Data>, expected: String) =
+        measureTime("encode items to string") {
+            val actual = json.encodeToString(data)
             assertThat(actual).isEqualTo(expected)
         }
-    }
 }
