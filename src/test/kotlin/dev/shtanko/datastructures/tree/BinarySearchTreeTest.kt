@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class BinarySearchTreeTest {
 
@@ -237,5 +238,36 @@ internal class BinarySearchTreeTest {
         assertEquals("529", tree[23])
         assertEquals("576", tree[24])
         assertEquals("625", tree[25])
+    }
+
+    @Test
+    internal fun `remove in empty tree test`() {
+        val tree = BinarySearchTree<Int, String>()
+        assertThrows<NoSuchElementException> {
+            tree.remove(2)
+        }
+    }
+
+    /**
+     *        [A]
+     *       /   \
+     *     [B]    [C]
+     *     / \    /  \
+     *  [D]  [E] [F] [G]
+     *               / \
+     *             [H] [I]
+     */
+    @Test
+    internal fun `remove left test`() {
+        val tree = BinarySearchTree<String, Int>()
+        tree.add("A", 100)
+        tree.add("B", 90)
+        tree.add("C", 110)
+        tree.add("D", 85)
+        tree.add("E", 89)
+        tree.add("F", 105)
+        tree.add("G", 115)
+        tree.add("H", 112)
+        tree.add("I", 117)
     }
 }
