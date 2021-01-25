@@ -43,9 +43,21 @@ internal class BinaryNode<T>(val value: T) {
             if (node.leftChild == null && node.rightChild == null) {
                 "$root${node.value}\n"
             } else {
-                diagram(node.rightChild, "$top ", "$top┌──", "$top│ ") + root +
-                        "${node.value}\n" +
-                        diagram(node.leftChild, "$bottom│ ", "$bottom└──", "$bottom ")
+                val dr = diagram(
+                    node.rightChild,
+                    "$top ",
+                    "$top┌──",
+                    "$top│ "
+                )
+
+                val dl = diagram(
+                    node.leftChild,
+                    "$bottom│ ",
+                    "$bottom└──",
+                    "$bottom "
+                )
+
+                dr.plus(root).plus("${node.value}\n").plus(dl)
             }
         } ?: "${root}null\n"
     }

@@ -16,7 +16,6 @@
 
 package dev.shtanko.datastructures.tree.btree
 
-import dev.shtanko.algorithms.extensions.generateRandomArray
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
