@@ -16,40 +16,77 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Int, Int>> {
-            return listOf(
-                22 to 2,
-                5 to 2,
-                6 to 1,
-                8 to 0,
-                4 to 0,
-                15 to 1,
-                7 to 1,
-                16 to 0,
-                23 to 2,
-                42 to 2,
-                56 to 1,
-                114 to 3,
-                2345 to 3,
-                Int.MAX_VALUE to 1,
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                22,
+                2
+            ),
+            Arguments.of(
+                5,
+                2
+            ),
+            Arguments.of(
+                6,
+                1
+            ),
+            Arguments.of(
+                8,
+                0
+            ),
+            Arguments.of(
+                4,
+                0
+            ),
+            Arguments.of(
+                15,
+                1
+            ),
+            Arguments.of(
+                7,
+                1
+            ),
+            Arguments.of(
+                16,
+                0
+            ),
+            Arguments.of(
+                23,
+                2
+            ),
+            Arguments.of(
+                42,
+                2
+            ),
+            Arguments.of(
+                56,
+                1
+            ),
+            Arguments.of(
+                114,
+                3
+            ),
+            Arguments.of(
+                2345,
+                3
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `binary gap test`(testCase: Pair<Int, Int>) {
-        val (n, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `binary gap test`(n: Int, expected: Int) {
         val actual = strategy.binaryGap(n)
-        assertEquals(expected, actual)
+        assertThat(actual).isEqualTo(expected)
     }
 }
 
