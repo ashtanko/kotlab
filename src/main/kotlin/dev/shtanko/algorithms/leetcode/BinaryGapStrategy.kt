@@ -18,10 +18,19 @@ package dev.shtanko.algorithms.leetcode
 
 private const val MAX_SIZE = 32
 
+/**
+ * 868. Binary Gap
+ * @link https://leetcode.com/problems/binary-gap/
+ */
 interface BinaryGapStrategy {
     fun binaryGap(n: Int): Int
 }
 
+/**
+ * Approach 1: Store Indexes
+ * Time Complexity: O(log N).
+ * Space Complexity: O(log N).
+ */
 class BGStoreIndexes : BinaryGapStrategy {
 
     override fun binaryGap(n: Int): Int {
@@ -34,6 +43,11 @@ class BGStoreIndexes : BinaryGapStrategy {
     }
 }
 
+/**
+ * Approach 2: One Pass
+ * Time Complexity: O(log N).
+ * Space Complexity: O(1).
+ */
 class BGOnePass : BinaryGapStrategy {
     override fun binaryGap(n: Int): Int {
         var last = -1
