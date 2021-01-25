@@ -1,2 +1,2 @@
 #!/bin/bash
-sh gradlew detekt ktlintCheck spotlessCheck spotlessApply --profile
+sh ./scripts/git-hooks/pre-commit.sh
