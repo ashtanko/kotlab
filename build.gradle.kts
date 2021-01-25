@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 import org.jlleitschuh.gradle.ktlint.KtlintPlugin
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+import java.util.Locale
 
 val projectJvmTarget = "1.8"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
@@ -155,7 +156,48 @@ subprojects {
     apply<SpotlessPlugin>()
 }
 
+fun isLinux(): Boolean {
+    val osName = System.getProperty("os.name").toLowerCase(Locale.ROOT)
+    return listOf("linux", "mac os", "macos").contains(osName)
+}
+
 tasks {
+
+    register<Copy>("copyGitHooks") {
+        description = "Copies the git hooks from scripts/git-hooks to the .git folder."
+        group = "git hooks"
+        from("$rootDir/scripts/git-hooks/") {
+            include("**/*.sh")
+            rename("(.*).sh", "$1")
+        }
+        into("$rootDir/.git/hooks")
+    }
+
+    register<Exec>("installGitHooks") {
+        description = "Installs the pre-commit git hooks from scripts/git-hooks."
+        group = "git hooks"
+        workingDir(rootDir)
+        commandLine("chmod")
+        args("-R", "+x", ".git/hooks/")
+        dependsOn(named("copyGitHooks"))
+        onlyIf {
+            isLinux()
+        }
+        doLast {
+            logger.info("Git hooks installed successfully.")
+        }
+    }
+
+    register<Delete>("deleteGitHooks") {
+        description = "Delete the pre-commit git hooks."
+        group = "git hooks"
+        delete(fileTree(".git/hooks/"))
+    }
+
+    afterEvaluate {
+        tasks["clean"].dependsOn(tasks.named("installGitHooks"))
+    }
+
     jacocoTestReport {
         reports {
             html.isEnabled = true
