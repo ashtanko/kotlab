@@ -16,6 +16,7 @@
 
 package dev.shtanko.datastructures.tree
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -248,26 +249,80 @@ internal class BinarySearchTreeTest {
         }
     }
 
-    /**
-     *        [A]
-     *       /   \
-     *     [B]    [C]
-     *     / \    /  \
-     *  [D]  [E] [F] [G]
-     *               / \
-     *             [H] [I]
-     */
+    @Test
+    internal fun `contains key test`() {
+        val tree = BinarySearchTree<Int, String>()
+        assertThat(tree.containsKey(0)).isFalse
+        tree.add(23, "w")
+        assertThat(tree.containsKey(23)).isTrue
+    }
+
+    @Test
+    internal fun `contains value test`() {
+        val tree = BinarySearchTree<Int, String>()
+        assertThat(tree.containsValue("")).isFalse
+        tree.add(1, "q")
+        assertThat(tree.containsValue("q")).isTrue
+    }
+
+    @Test
+    internal fun `poll min test`() {
+        assertThrows<NoSuchElementException> {
+            val tree = BinarySearchTree<Int, String>()
+            tree.pollMin()
+        }
+    }
+
+    @Test
+    internal fun `poll max test`() {
+        assertThrows<NoSuchElementException> {
+            val tree = BinarySearchTree<Int, String>()
+            tree.pollMax()
+        }
+    }
+
+    @Test
+    internal fun `get min test`() {
+        assertThrows<NoSuchElementException> {
+            val tree = BinarySearchTree<Int, String>()
+            tree.min()
+        }
+    }
+
+    @Test
+    internal fun `get max test`() {
+        assertThrows<NoSuchElementException> {
+            val tree = BinarySearchTree<Int, String>()
+            tree.max()
+        }
+    }
+
+    @Test
+    internal fun `get value test`() {
+        val tree = BinarySearchTree<Int, String>()
+        assertThat(tree[0]).isNull()
+    }
+
     @Test
     internal fun `remove left test`() {
-        val tree = BinarySearchTree<String, Int>()
-        tree.add("A", 100)
-        tree.add("B", 90)
-        tree.add("C", 110)
-        tree.add("D", 85)
-        tree.add("E", 89)
-        tree.add("F", 105)
-        tree.add("G", 115)
-        tree.add("H", 112)
-        tree.add("I", 117)
+        val tree = BinarySearchTree<Int, TestData>()
+        tree.add(1, TestData("q"))
+        tree.add(4, TestData("q"))
+        tree.add(18, TestData("q"))
+        tree.add(20, TestData("q"))
+        tree.add(25, TestData("q"))
+        tree.add(40, TestData("q"))
+        tree.add(45, TestData("q"))
+        tree.add(70, TestData("q"))
+        tree.add(77, TestData("q"))
+        tree.add(88, TestData("q"))
+        tree.add(105, TestData("q"))
+        tree.remove(25)
+        tree.remove(1)
+        tree.remove(20)
+        tree.remove(77)
+        assertThat(tree[25]).isNull()
     }
+
+    private data class TestData(val name: String)
 }

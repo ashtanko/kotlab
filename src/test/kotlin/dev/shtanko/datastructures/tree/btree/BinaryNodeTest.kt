@@ -118,9 +118,23 @@ internal class BinaryNodeTest {
     }
 
     @Test
+    internal fun `print tree test`() {
+        val root = BinaryNode(7)
+        assertThat(root.toString()).isEqualTo("7\n")
+    }
+
+    @Test
     internal fun `list to tree test`() {
         val list = listOf(1, 2, 3, 4, 5, 6, 6, 6, 6, 6)
         val root = list.toTree()
         println(root)
+        assertThat(root?.value).isEqualTo(1)
+    }
+
+    @Test
+    internal fun `to tree test`() {
+        val list = listOf<String>()
+        val root = list.toTree()
+        assertThat(root).isNull()
     }
 }
