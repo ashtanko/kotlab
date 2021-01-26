@@ -502,7 +502,7 @@ style:
     maxJumpCount: 3
   MagicNumber:
     active: true
-    excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"
+    excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt,**/coroutines/flow/Data.kt"
     ignoreNumbers: '-1,0,1,2,3,4,9'
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: true
