@@ -18,28 +18,26 @@ package dev.shtanko.kotlinlang.collections
 
 import dev.shtanko.algorithms.extensions.isEven
 
-fun main() {
-
-    val smallList = 0..2
-    val smallSequence = smallList.asSequence()
-
-    getFirstFromList(smallList)
-    println()
-    getFirstFromSequence(smallSequence)
-}
-
-fun getFirstFromList(list: IntRange) {
+fun getFirstFromList(list: IntRange): Triple<Int, Int, Int> {
+    var mapCount = 0
+    var filterCount = 0
+    var forEachCount = 0
     list
-        .map { println("map $it"); it * 2 }
-        .filter { println("filter $it"); it.isEven }
+        .map { mapCount++; println("map $it"); it * 2 }
+        .filter { filterCount++; println("filter $it"); it.isEven }
         .take(1)
-        .forEach { println("list $it") }
+        .forEach { forEachCount++; println("list $it") }
+    return Triple(mapCount, filterCount, forEachCount)
 }
 
-fun getFirstFromSequence(sequence: Sequence<Int>) {
+fun getFirstFromSequence(sequence: Sequence<Int>): Triple<Int, Int, Int> {
+    var mapCount = 0
+    var filterCount = 0
+    var forEachCount = 0
     sequence
-        .map { println("map $it"); it * 2 }
-        .filter { println("filter $it"); it.isEven }
+        .map { mapCount++; println("map $it"); it * 2 }
+        .filter { filterCount++; println("filter $it"); it.isEven }
         .take(1)
-        .forEach { println("sequence $it") }
+        .forEach { forEachCount++; println("sequence $it") }
+    return Triple(mapCount, filterCount, forEachCount)
 }

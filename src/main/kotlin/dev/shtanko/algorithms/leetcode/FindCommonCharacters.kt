@@ -23,7 +23,8 @@ fun Array<String>.commonChars(): List<String> {
     val map1: MutableMap<Char, Int?> = HashMap()
     val map2: MutableMap<Char, Int?> = HashMap()
     val arr = ArrayList<Char>()
-    for (i in this[0].toCharArray()) { // get the frequency of the string to use to compare against
+    if (isEmpty()) return emptyList()
+    for (i in this.first().toCharArray()) { // get the frequency of the string to use to compare against
         if (map1.containsKey(i)) map1[i] = map1[i]?.plus(1) else map1[i] = 1
     }
     for (h in 1 until this.size) {

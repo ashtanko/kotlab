@@ -17,24 +17,34 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class KeyboardRowTest {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Array<String>, Array<String>>> {
-            return listOf(
-                arrayOf("Hello", "Alaska", "Dad", "Peace") to arrayOf("Alaska", "Dad"),
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf<String>(),
+                arrayOf<String>(),
+            ),
+            Arguments.of(
+                arrayOf("Hello"),
+                arrayOf<String>(),
+            ),
+            Arguments.of(
+                arrayOf("Hello", "Alaska", "Dad", "Peace"),
+                arrayOf("Alaska", "Dad"),
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `keyboard row test`(testCase: Pair<Array<String>, Array<String>>) {
-        val (words, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `keyboard row test`(words: Array<String>, expected: Array<String>) {
         val actual = words.findWords()
         assertArrayEquals(expected, actual)
     }
