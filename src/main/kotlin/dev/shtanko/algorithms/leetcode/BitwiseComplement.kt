@@ -18,7 +18,6 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.ln
 
-
 /**
  * 1009. Complement of Base 10 Integer
  * @link https://leetcode.com/problems/complement-of-base-10-integer/
