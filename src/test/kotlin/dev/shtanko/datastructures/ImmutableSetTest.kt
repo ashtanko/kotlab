@@ -49,6 +49,33 @@ internal class ImmutableSetTest {
     }
 
     @Test
+    internal fun `contains all test`() {
+        val set = immutableSetOf(*(10 downTo 1).toList().toTypedArray())
+        assertTrue(set.containsAll(listOf(9, 8)))
+        assertTrue(set.containsAll(listOf(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)))
+        assertFalse(set.containsAll(listOf(11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)))
+        assertFalse(set.containsAll(listOf(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)))
+    }
+
+    @Test
+    internal fun `is empty test`() {
+        val set = ImmutableSet(arrayOf<Int>())
+        assertTrue(set.isEmpty())
+    }
+
+    @Test
+    internal fun `is not empty test`() {
+        val set = ImmutableSet(arrayOf(3))
+        assertFalse(set.isEmpty())
+    }
+
+    @Test
+    internal fun `same elements test`() {
+        val set = ImmutableSet(arrayOf(3, 3, 3, 3))
+        assertEquals(set.toList(), listOf(3, 3, 3, 3))
+    }
+
+    @Test
     internal fun `contains test 2`() {
         val set = immutableSetOf(*(10 downTo 1).toList().toTypedArray())
         for (v in set) {
