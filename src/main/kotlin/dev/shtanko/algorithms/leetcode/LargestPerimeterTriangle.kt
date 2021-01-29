@@ -24,8 +24,9 @@ fun largestPerimeter(arr: IntArray): Int {
     if (arr.isEmpty()) return 0
     arr.sort()
     for (i in arr.size - 3 downTo 0) {
-        if (arr[i] + arr[i + 1] > arr[i + 2]) {
-            return arr[i].plus(arr[i + 1]).plus(arr[i + 2])
+        val sum = arr[i].plus(arr[i + 1])
+        if (sum > arr[i + 2]) {
+            return sum.plus(arr[i + 2])
         }
     }
     return 0
