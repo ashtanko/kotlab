@@ -103,4 +103,20 @@ internal class StackTest {
         assertTrue(stack.containsAll(list))
         assertFalse(stack.containsAll(listOf(23, 42)))
     }
+
+    @Test
+    internal fun `poll error test`() {
+        val stack = Stack<Int>()
+        assertThrows<NoSuchElementException> {
+            stack.poll()
+        }
+    }
+
+    @Test
+    internal fun `iterator next error test`() {
+        val stack = Stack<Int>()
+        assertThrows<NoSuchElementException> {
+            stack.iterator().next()
+        }
+    }
 }
