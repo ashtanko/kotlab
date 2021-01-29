@@ -16,10 +16,12 @@
 
 package dev.shtanko.datastructures
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class ArrayMapTest {
 
@@ -99,5 +101,67 @@ internal class ArrayMapTest {
         map.remove("A")
         assertFalse(map.containsKey("A"))
         assertTrue(map.containsKey("B"))
+    }
+
+    @Test
+    internal fun `negative capacity test`() {
+        val map = ArrayMap<String?, String>(-1)
+        assertThat(map.isEmpty()).isTrue
+    }
+
+    @Test
+    internal fun `capacity test`() {
+        val map = ArrayMap<String?, String>(10_000)
+        assertThat(map.isEmpty()).isTrue
+        map.put(null, "")
+        assertThat(map.isEmpty()).isFalse
+        map.remove(null)
+        assertThat(map.isEmpty()).isTrue
+        assertThat(map.remove(null)).isNull()
+        assertThat(map.containsKey(null)).isFalse
+    }
+
+    @Test
+    internal fun `put int test`() {
+        val map = ArrayMap<Int?, Int>(1000)
+        map.put(null, -1)
+        map.put(null, -2)
+        assertThat(map.containsKey(null)).isTrue
+        assertThat(map[null]).isEqualTo(-2)
+        map.put(-100, 20_000)
+        assertThat(map.containsKey(-100)).isTrue
+        map.put(999, 200_000)
+        assertThat(map[999]).isEqualTo(200_000)
+        map.put(100_000, 50_000_000)
+        assertThat(map[100_000]).isEqualTo(50_000_000)
+        map.put(-100_000, -50_000_000)
+        assertThat(map[-100_000]).isEqualTo(-50_000_000)
+        assertThat(map[-100_00]).isNull()
+        assertThat(map[400_00]).isNull()
+        assertThat(map[400_000_000]).isNull()
+        assertThat(map[-400_000_000]).isNull()
+        map.setValueAt(0, 12)
+        assertThat(map.valueAt(0)).isEqualTo(12)
+        map.setValueAt(2, 1234567890)
+        assertThat(map.valueAt(2)).isEqualTo(1234567890)
+        assertThat(map.indexOfKey(1234567890)).isEqualTo(-6)
+    }
+
+    @Test
+    internal fun `put error test`() {
+        val map = ArrayMap<Int?, Int>(1000)
+        assertThrows<ArrayIndexOutOfBoundsException> {
+            map.valueAt(-2355)
+        }
+    }
+
+    @Test
+    internal fun `put string test`() {
+        val map = ArrayMap<String?, List<String>>(1)
+        map.put(null, listOf("A"))
+        assertThat(map[null]).isEqualTo(listOf("A"))
+        map.put("A", listOf("A", "B"))
+        map.put("B", listOf("A", "B", "C"))
+        assertThat(map["B"]).isEqualTo(listOf("A", "B", "C"))
     }
 }

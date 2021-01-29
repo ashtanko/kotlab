@@ -26,8 +26,7 @@ class ArrayMap<K, V> constructor(capacity: Int = 0) {
     private lateinit var hashes: IntArray
     private lateinit var array: Array<Any?>
 
-    var size = 0
-        private set
+    private var size = 0
 
     init {
         if (capacity <= 0) {
