@@ -16,8 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
-internal fun TreeNode?.isSymmetric(): Boolean {
-    return this == null || (left to right).isSymmetric()
+internal fun TreeNode.isSymmetric(): Boolean {
+    return (left to right).isSymmetric()
 }
 
 internal fun Pair<TreeNode?, TreeNode?>.isSymmetric(): Boolean {

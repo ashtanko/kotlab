@@ -26,6 +26,17 @@ internal class SymmetricTreeTest {
         @JvmStatic
         fun dataProvider(): List<Pair<TreeNode, Boolean>> {
             return listOf(
+                TreeNode(2) to true,
+                TreeNode(2).apply {
+                    left = TreeNode(1)
+                } to false,
+                TreeNode(5).apply {
+                    right = TreeNode(6)
+                } to false,
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(2)
+                } to true,
                 symmetricTree to true,
                 asymmetricTree to false
             )
