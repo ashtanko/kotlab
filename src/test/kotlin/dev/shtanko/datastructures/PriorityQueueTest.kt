@@ -16,6 +16,7 @@
 
 package dev.shtanko.datastructures
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -65,5 +66,43 @@ internal class PriorityQueueTest {
             expectedOrder.add(pq.poll())
         }
         assertEquals(expectedOrder, listOf("Angelina", "Chris", "Joe", "John", "Lisa", "Robert"))
+    }
+
+    @Test
+    internal fun `poll error test`() {
+        val pq = PriorityQueue<String>(0)
+        assertThrows<NoSuchElementException> {
+            pq.poll()
+        }
+    }
+
+    @Test
+    internal fun `contains test`() {
+        val pq = PriorityQueue<String>(10)
+        pq.add("A")
+        assertThat(pq.contains("A")).isTrue
+        assertThat(pq.contains("B")).isFalse
+    }
+
+    @Test
+    internal fun `contains all test`() {
+        val pq = PriorityQueue<String>(10)
+        pq.add("A")
+        pq.add("B")
+        assertThat(pq.containsAll(listOf("A"))).isTrue
+        assertThat(pq.containsAll(listOf("A", "B", "C"))).isFalse
+    }
+
+    @Test
+    internal fun `add test`() {
+        val pq = PriorityQueue<Int>(10_001)
+        repeat(10_000) {
+            pq.add(it)
+        }
+        assertThat(pq.size).isEqualTo(10_000)
+        repeat(10_000) {
+            pq.poll()
+        }
+        assertThat(pq.size).isEqualTo(0)
     }
 }
