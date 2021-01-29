@@ -16,6 +16,7 @@
 
 package dev.shtanko.datastructures
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -27,6 +28,8 @@ internal class IntMapTest {
     internal fun `empty test`() {
         val map = IntMap<String>()
         assertTrue(map.isEmpty())
+        map.put(1, "Apple")
+        assertFalse(map.isEmpty())
     }
 
     @Test
@@ -93,6 +96,8 @@ internal class IntMapTest {
     @Test
     internal fun `delete test`() {
         val map = IntMap<String>()
+        map.delete(1)
+        assertTrue(map.isEmpty())
         map.put(1, "Apple")
         map.put(2, "Banana")
         map.delete(1)
@@ -100,5 +105,51 @@ internal class IntMapTest {
         map.setValueAt(0, "Array")
         assertFalse(map.containsKey(1))
         assertTrue(map.containsKey(2))
+    }
+
+    @Test
+    internal fun `negative capacity test`() {
+        val map = IntMap<String>(-1)
+        assertThat(map.isEmpty()).isTrue
+    }
+
+    @Test
+    internal fun `negative capacity put test`() {
+        val map = IntMap<String>(-1)
+        map.put(-2, "")
+        map.put(-1, "")
+        map.put(0, "")
+        map.put(1, "")
+        assertThat(map.isEmpty()).isFalse
+    }
+
+    @Test
+    internal fun `put test`() {
+        val map = IntMap<String>(-1)
+        map.put(-1, "-1")
+        assertTrue(map.containsKey(-1))
+    }
+
+    @Test
+    internal fun `put 2 test`() {
+        val arr = (0..12).sorted()
+        val map = IntMap<String>()
+        for (i in arr) {
+            map.put(i, "$i")
+        }
+        val arr2 = (13..50).sorted()
+        for (i in arr2) {
+            map.put(i, "$i")
+        }
+        assertTrue(map.containsKey(1))
+    }
+
+    @Test
+    internal fun `remove at test`() {
+        val map = IntMap<String>(10)
+        map.put(-1, "-1")
+        map.put(1, "1")
+        map.removeAt(1)
+        assertFalse(map.containsKey(1))
     }
 }

@@ -24,16 +24,10 @@ private const val ARRAY_MAP_SIZE_INDEX = 4
 @Suppress("UNCHECKED_CAST")
 class IntMap<V> constructor(capacity: Int = INT_MAP_CAPACITY) {
 
-    private var hashes: IntArray
-    private var array: Array<Any?>
+    private var hashes: IntArray = IntArray(if (capacity < 0) 0 else capacity)
+    private var array: Array<Any?> = arrayOfNulls(if (capacity < 0) 0 else capacity)
 
-    var size = 0
-        private set
-
-    init {
-        hashes = IntArray(if (capacity < 0) 0 else capacity)
-        array = arrayOfNulls(if (capacity < 0) 0 else capacity)
-    }
+    private var size = 0
 
     fun isEmpty() = size <= 0
 
