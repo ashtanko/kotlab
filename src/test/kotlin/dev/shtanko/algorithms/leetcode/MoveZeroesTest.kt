@@ -17,25 +17,42 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class MoveZeroesTest {
-
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<IntArray, IntArray>> {
-            return listOf(
-                intArrayOf(0, 1, 0, 3, 12) to intArrayOf(1, 3, 12, 0, 0),
-                intArrayOf(0, 0, 1, 3, 0) to intArrayOf(1, 3, 0, 0, 0)
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(),
+                intArrayOf()
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                intArrayOf(0)
+            ),
+            Arguments.of(
+                intArrayOf(0, 0),
+                intArrayOf(0, 0)
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 0, 3, 12),
+                intArrayOf(1, 3, 12, 0, 0)
+            ),
+            Arguments.of(
+                intArrayOf(0, 0, 1, 3, 0),
+                intArrayOf(1, 3, 0, 0, 0)
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("casesProvider")
-    internal fun `move zeroes test`(testCase: Pair<IntArray, IntArray>) {
-        val (arr, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `move zeroes test`(arr: IntArray, expected: IntArray) {
         arr.moveZeroes()
         assertArrayEquals(expected, arr)
     }
