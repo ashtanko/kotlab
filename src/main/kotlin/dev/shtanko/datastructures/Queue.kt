@@ -66,9 +66,9 @@ class Queue<T> : Collection<T> {
         }
     }
 
-    fun peek(): T {
+    fun peek(): T? {
         if (size == 0) throw NoSuchElementException()
-        return head?.value!!
+        return head?.value
     }
 
     fun poll(): T {

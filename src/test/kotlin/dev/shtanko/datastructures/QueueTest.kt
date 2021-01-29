@@ -16,6 +16,7 @@
 
 package dev.shtanko.datastructures
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -87,7 +88,50 @@ internal class QueueTest {
         }
         val list = listOf(0, 1, 2, 3, 4, 5, 6, 7, 7)
         assertTrue(queue.containsAll(list))
-
         assertFalse(queue.containsAll(listOf(23, 42)))
+    }
+
+    @Test
+    internal fun `poll error test`() {
+        val queue = Queue<Int>()
+        assertThrows<NoSuchElementException> {
+            queue.poll()
+        }
+    }
+
+    @Test
+    internal fun `is empty test`() {
+        val queue = Queue<Int>()
+        assertThat(queue.isEmpty()).isTrue
+        queue.add(0)
+        assertThat(queue.isEmpty()).isFalse
+    }
+
+    @Test
+    internal fun `iterator error test`() {
+        val queue = Queue<Int>()
+        queue.add(0)
+        queue.add(1)
+        val iterator = queue.iterator()
+        assertThrows<NoSuchElementException> {
+            repeat(3) {
+                iterator.next()
+            }
+        }
+    }
+
+    @Test
+    internal fun `peek null test`() {
+        val queue = Queue<Int?>()
+        queue.add(null)
+        assertThat(queue.peek()).isNull()
+    }
+
+    @Test
+    internal fun `peek test`() {
+        val queue = Queue<Int?>()
+        queue.add(1)
+        queue.add(2)
+        assertThat(queue.peek()).isEqualTo(1)
     }
 }
