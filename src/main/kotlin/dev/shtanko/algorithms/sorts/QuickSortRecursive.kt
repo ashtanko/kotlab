@@ -16,6 +16,15 @@
 
 package dev.shtanko.algorithms.sorts
 
+class QuickSortRecursive : AbstractSortStrategy {
+    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+        val sorted = arr.toList().quickSort()
+        for (i in sorted.indices) {
+            arr[i] = sorted[i]
+        }
+    }
+}
+
 fun <T : Comparable<T>> List<T>.quickSort(): List<T> = when {
     size < 2 -> this
     else -> {

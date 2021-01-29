@@ -41,3 +41,5 @@ internal class ArraySortTest : AbstractSortTest<ArraySort>(ArraySort())
 internal class PancakeSortTest : AbstractSortTest<PancakeSort>(PancakeSort())
 
 internal class GnomeSortTest : AbstractSortTest<GnomeSort>(GnomeSort())
+
+internal class QuickSortRecursiveTest2 : AbstractSortTest<QuickSortRecursive>(QuickSortRecursive())
