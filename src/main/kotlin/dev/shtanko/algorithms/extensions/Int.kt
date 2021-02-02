@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.extensions
 
+import kotlin.math.sqrt
 import kotlin.random.Random
 
 fun interface IntPredicate {
@@ -37,4 +38,11 @@ fun Int.generateRandomArray(): IntArray {
 
 fun Int.lessThanZero(): Boolean {
     return this < 0
+}
+
+fun Int.isPrime(): Boolean {
+    if (this < 2) return false
+    val r = sqrt(this.toDouble()).toInt()
+    for (d in 2..r) if (this % d == 0) return false
+    return true
 }

@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.extensions
 
+import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -43,6 +44,38 @@ internal class IntExtensionTest {
             Arguments.of(100, true),
             Arguments.of(Int.MAX_VALUE, false),
         )
+    }
+
+    internal class InputPrimeArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                0,
+                false
+            ),
+            Arguments.of(
+                2,
+                true
+            ),
+            Arguments.of(
+                3,
+                true
+            ),
+            Arguments.of(
+                4,
+                false
+            ),
+            Arguments.of(
+                5,
+                true
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputPrimeArgumentsProvider::class)
+    internal fun `is prime test`(num: Int, expected: Boolean) {
+        val actual = num.isPrime()
+        assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
