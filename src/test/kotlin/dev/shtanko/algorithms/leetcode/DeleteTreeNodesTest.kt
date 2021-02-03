@@ -24,32 +24,45 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-internal abstract class ArithmeticSlicesTest<out T : ArithmeticSlices>(private val strategy: T) {
-
+internal abstract class DeleteTreeNodesTest<out T : DeleteTreeNodes>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(1, 2, 3, 4),
-                3
+                7,
+                intArrayOf(-1, 0, 0, 1, 2, 2, 2),
+                intArrayOf(1, -2, 4, 0, -2, -1, -1),
+                2
             ),
             Arguments.of(
-                intArrayOf(1, 2),
-                0
+                7,
+                intArrayOf(-1, 0, 0, 1, 2, 2, 2),
+                intArrayOf(1, -2, 4, 0, -2, -1, -2),
+                6
+            ),
+            Arguments.of(
+                5,
+                intArrayOf(-1, 0, 1, 0, 0),
+                intArrayOf(-672, 441, 18, 728, 378),
+                5
+            ),
+            Arguments.of(
+                5,
+                intArrayOf(-1, 0, 0, 1, 1),
+                intArrayOf(-686, -842, 616, -739, -746),
+                5
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `number of arithmetic slices test`(arr: IntArray, expected: Int) {
-        val actual = strategy.numberOfArithmeticSlices(arr)
+    internal fun `delete tree nodes test`(nodes: Int, parent: IntArray, value: IntArray, expected: Int) {
+        val actual = strategy.perform(nodes, parent, value)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class ArSlicesBruteForceTest : ArithmeticSlicesTest<ArSlicesBruteForce>(ArSlicesBruteForce())
-internal class ArSlicesBetterBruteForceTest : ArithmeticSlicesTest<ArSlicesBetterBruteForce>(ArSlicesBetterBruteForce())
-internal class ArSlicesRecursionTest : ArithmeticSlicesTest<ArSlicesRecursion>(ArSlicesRecursion())
-internal class ArSlicesDPTest : ArithmeticSlicesTest<ArSlicesDP>(ArSlicesDP())
-internal class ArSlicesConstantSpaceDPTest : ArithmeticSlicesTest<ArSlicesConstantSpaceDP>(ArSlicesConstantSpaceDP())
-internal class ArSlicesFormulaTest : ArithmeticSlicesTest<ArSlicesFormula>(ArSlicesFormula())
+internal class DeleteTreeNodesBruteForceTest :
+    DeleteTreeNodesTest<DeleteTreeNodesBruteForce>(DeleteTreeNodesBruteForce())
+
+internal class DeleteTreeNodesDFSTest : DeleteTreeNodesTest<DeleteTreeNodesDFS>(DeleteTreeNodesDFS())
