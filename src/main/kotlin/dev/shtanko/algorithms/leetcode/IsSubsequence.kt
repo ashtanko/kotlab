@@ -16,18 +16,37 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun isSubsequence(s: String, t: String): Boolean {
-    val n = t.length
-    val m = s.length
-    var i = 0
-    var j = 0
-    while (i != n && j != m) {
-        if (t[i] == s[j]) {
-            i++
-            j++
-        } else {
-            i++
+import kotlin.math.max
+
+interface IsSubsequence {
+    fun perform(source: String, target: String): Boolean
+}
+
+class IsSubsequenceDP : IsSubsequence {
+    override fun perform(source: String, target: String): Boolean {
+        val rows: Int = source.length
+        val cols: Int = target.length
+        // the source string is empty
+        if (rows == 0) return true
+
+        val matrix = Array(rows + 1) { IntArray(cols + 1) }
+        // DP calculation, we fill the matrix column by column, bottom up
+        for (col in 1..cols) {
+            for (row in 1..rows) {
+                // find another match
+                if (source[row - 1] == target[col - 1]) {
+                    matrix[row][col] =
+                        matrix[row - 1][col - 1] + 1
+                } else {
+                    // retrieve the maximal result from previous prefixes
+                    matrix[row][col] = max(matrix[row][col - 1], matrix[row - 1][col])
+                }
+            }
+            // check if we can consume the entire source string,
+            // with the current prefix of the target string.
+            if (matrix[rows][col] == rows) return true
         }
+        // matching failure
+        return false
     }
-    return j == m
 }

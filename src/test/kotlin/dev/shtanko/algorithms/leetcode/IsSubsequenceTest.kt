@@ -16,27 +16,36 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
-internal class IsSubsequenceTest {
-
-    companion object {
-
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> = listOf(
-            "abc" to "ahbgdc" to true,
-            "axc" to "ahbgdc" to false,
+internal abstract class IsSubsequenceTest<out T : IsSubsequence>(private val strategy: T) {
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "abc",
+                "ahbgdc",
+                true
+            ),
+            Arguments.of(
+                "axc",
+                "ahbgdc",
+                false
+            ),
         )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `is subsequence test`(testCase: Pair<Pair<String, String>, Boolean>) {
-        val (data, expected) = testCase
-        val (s, t) = data
-        val actual = isSubsequence(s, t)
-        assertEquals(expected, actual)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `is subsequence test`(source: String, target: String, expected: Boolean) {
+        val actual = strategy.perform(source, target)
+        assertThat(actual).isEqualTo(expected)
     }
 }
+
+internal class IsSubsequenceDPTest : IsSubsequenceTest<IsSubsequenceDP>(IsSubsequenceDP())
