@@ -17,71 +17,96 @@
 package dev.shtanko.algorithms.dp
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class FibonacciSequenceTest {
 
-    companion object {
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                0, 0L
+            ),
+            Arguments.of(
+                1, 1L
+            ),
+            Arguments.of(
+                2, 1L
+            ),
+            Arguments.of(
+                3, 2L
+            ),
 
-        @JvmStatic
-        fun numberProvider(): List<Pair<Int, Long>> = listOf(
-            0 to 0L,
-            1 to 1L,
-            2 to 1L,
-            3 to 2L,
-            4 to 3L,
-            5 to 5L,
-            6 to 8L,
-            7 to 13L,
-            8 to 21L
+            Arguments.of(
+                4, 3L
+            ),
+            Arguments.of(
+                5, 5L
+            ),
+            Arguments.of(
+                6, 8L
+            ),
+            Arguments.of(
+                7, 13L
+            ),
+            Arguments.of(
+                8, 21L
+            ),
         )
+    }
 
-        @JvmStatic
-        fun sequenceProvider() = listOf(
-            1 to listOf(0),
-            10 to listOf(0, 1, 1, 2, 3, 5, 8, 13, 21, 34),
-            22 to listOf(
-                0,
-                1,
-                1,
-                2,
-                3,
-                5,
-                8,
-                13,
-                21,
-                34,
-                55,
-                89,
-                144,
-                233,
-                377,
-                610,
-                987,
-                1597,
-                2584,
-                4181,
-                6765,
-                10946
-            )
+    internal class SequenceArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                1, listOf(0)
+            ),
+            Arguments.of(
+                10, listOf(0, 1, 1, 2, 3, 5, 8, 13, 21, 34)
+            ),
+            Arguments.of(
+                22, listOf(
+                    0,
+                    1,
+                    1,
+                    2,
+                    3,
+                    5,
+                    8,
+                    13,
+                    21,
+                    34,
+                    55,
+                    89,
+                    144,
+                    233,
+                    377,
+                    610,
+                    987,
+                    1597,
+                    2584,
+                    4181,
+                    6765,
+                    10946
+                )
+            ),
         )
     }
 
     @ParameterizedTest
-    @MethodSource("numberProvider")
-    internal fun `fibonacci number test`(testCase: Pair<Int, Long>) {
-        val actual = fibonacciAt(testCase.first)
-        val expected = testCase.second
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `fibonacci number test`(n: Int, expected: Long) {
+        val actual = fibonacciAt(n)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @MethodSource("sequenceProvider")
-    internal fun `fibonacci sequence test`(testCase: Pair<Int, List<Int>>) {
-        val n = testCase.first
+    @ArgumentsSource(SequenceArgumentsProvider::class)
+    internal fun `fibonacci sequence test`(n: Int, expected: List<Int>) {
         val actual = fibonacci().take(n).toList()
-        val expected = testCase.second
         assertEquals(expected, actual)
     }
 }
