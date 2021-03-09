@@ -1,0 +1,124 @@
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+import java.util.Stack
+
+/**
+ * 623. Add One Row to Tree
+ * @link https://leetcode.com/problems/add-one-row-to-tree/
+ */
+interface AddOneRowToTree {
+    fun perform(root: TreeNode?, v: Int, d: Int): TreeNode?
+}
+
+/**
+ * Approach #1 Using Recursion(DFS)
+ */
+class AddOneRowToTreeRec : AddOneRowToTree {
+    override fun perform(root: TreeNode?, v: Int, d: Int): TreeNode? {
+        if (d == 1) {
+            return TreeNode(v).apply {
+                left = root
+                right = null
+            }
+        }
+        return insert(root, v, d - 1, 1)
+    }
+
+    private fun insert(node: TreeNode?, value: Int, depth: Int, n: Int): TreeNode? {
+        if (node == null) {
+            return node
+        }
+        if (depth == n) {
+            node.left = TreeNode(value).apply {
+                left = node.left
+                right = null
+            }
+            node.right = TreeNode(value).apply {
+                left = null
+                right = node.right
+            }
+        }
+        node.left = insert(node.left, value, depth, n + 1)
+        node.right = insert(node.right, value, depth, n + 1)
+        return node
+    }
+}
+
+/**
+ * Approach #2 Using stack(DFS)
+ */
+class AddOneRowToTreeStack : AddOneRowToTree {
+
+    data class Node(val node: TreeNode?, val depth: Int)
+
+    override fun perform(root: TreeNode?, v: Int, d: Int): TreeNode? {
+        if (d == 1) {
+            return TreeNode(v).apply {
+                left = root
+            }
+        }
+        val stack = Stack<Node>()
+        stack.push(Node(root, 1))
+        while (!stack.isEmpty()) {
+            val n = stack.pop()
+            if (n.node == null) {
+                continue
+            }
+            if (n.depth == d - 1) {
+                var tmp = n.node.left
+                n.node.left = TreeNode(v)
+                n.node.left?.left = tmp
+                tmp = n.node.right
+                n.node.right = TreeNode(v)
+                n.node.right?.right = tmp
+            } else {
+                stack.push(Node(n.node.left, n.depth + 1))
+                stack.push(Node(n.node.right, n.depth + 1))
+            }
+        }
+        return root
+    }
+}
+
+/**
+ * Approach #3 Using queue(BFS)
+ */
+class AddOneRowToTreeQueue : AddOneRowToTree {
+    override fun perform(root: TreeNode?, v: Int, d: Int): TreeNode? {
+        if (d == 1) {
+            return TreeNode(v).apply {
+                left = root
+            }
+        }
+        var queue: Queue<TreeNode?> = LinkedList()
+        queue.add(root)
+        var depth = 1
+        while (depth < d - 1) {
+            val temp: Queue<TreeNode?> = LinkedList()
+            while (!queue.isEmpty()) {
+                val node = queue.remove()
+                if (node?.left != null) {
+                    temp.add(node.left)
+                }
+                if (node?.right != null) {
+                    temp.add(node.right)
+                }
+            }
+            queue = temp
+            depth++
+        }
+
+        while (!queue.isEmpty()) {
+            val node = queue.remove()
+            var tmp = node?.left
+            node?.left = TreeNode(v)
+            node?.left?.left = tmp
+            tmp = node?.right
+            node?.right = TreeNode(v)
+            node?.right?.right = tmp
+        }
+        return root
+    }
+}
