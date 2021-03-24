@@ -19,6 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Deque
 import java.util.LinkedList
 
+/**
+ * Approach 1: Greedy
+ * Time Complexity: O(N log N), where N is the length of a and b.
+ * Space Complexity: O(N).
+ */
 fun advantageCount(a: IntArray, b: IntArray): IntArray {
     val sortedA: IntArray = a.clone(); sortedA.sort()
     val sortedB: IntArray = b.clone(); sortedB.sort()
