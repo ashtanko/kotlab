@@ -78,7 +78,7 @@ class TSMCountingCases : ThreeSumMulti {
         var ans: Long = 0
         for (x in 0..LIMIT) for (y in x + 1..LIMIT) {
             val z: Int = target - x - y
-            if (z in (y + 1)..LIMIT) {
+            if (z in y.plus(1)..LIMIT) {
                 ans += count[x] * count[y] * count[z]
                 ans %= MOD.toLong()
             }
@@ -86,7 +86,7 @@ class TSMCountingCases : ThreeSumMulti {
 
         for (x in 0..LIMIT) {
             val z: Int = target - 2 * x
-            if (z in (x + 1)..LIMIT) {
+            if (z in x.plus(1)..LIMIT) {
                 ans += count[x] * (count[x] - 1) / 2 * count[z]
                 ans %= MOD.toLong()
             }
@@ -95,8 +95,8 @@ class TSMCountingCases : ThreeSumMulti {
         for (x in 0..LIMIT) {
             if (target % 2 == x % 2) {
                 val y: Int = (target - x) / 2
-                if (y in (x + 1)..LIMIT) {
-                    ans += count[x] * count[y] * (count[y] - 1) / 2
+                if (y in x.plus(1)..LIMIT) {
+                    ans += count[x] * count[y] * count[y].minus(1) / 2
                     ans %= MOD.toLong()
                 }
             }
@@ -149,7 +149,7 @@ class TSMAdapt : ThreeSumMulti {
                         k--
                     }
                     else -> {
-                        ans += if (j in (i + 1) until k) {
+                        ans += if (j in i.plus(1) until k) {
                             count[x] * count[y] * count[z]
                         } else if (i == j && j < k) {
                             count[x] * (count[x] - 1) / 2 * count[z]
