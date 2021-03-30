@@ -32,6 +32,13 @@ open class TestBase {
         check(index == wasIndex) { "Expecting action index $index but it is actually $wasIndex" }
     }
 
+    fun finish(index: Int) {
+        expect(index)
+        check(!finished.getAndSet(true)) {
+            "Should call 'finish(...) at most once'"
+        }
+    }
+
     fun runTest(
         block: suspend CoroutineScope.() -> Unit
     ) {
