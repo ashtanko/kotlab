@@ -17,10 +17,9 @@
 package dev.shtanko.concurrency.coroutines.async
 
 import dev.shtanko.concurrency.TestBase
-import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
+import dev.shtanko.concurrency.TestCancellationException
+import dev.shtanko.concurrency.TestException
+import kotlinx.coroutines.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -56,6 +55,89 @@ class AsyncTest : TestBase() {
         assertTrue(!d.isActive)
         assertEquals(d.await(), 42)
         finish(4)
+    }
+
+    @Test
+    fun `test simple exception`() = runTest(expected = { it is TestException }) {
+        expect(1)
+        val d = async {
+            finish(3)
+            throw TestException()
+        }
+        expect(2)
+        d.await() // will throw TestException
+    }
+
+    @Test
+    fun `test cancellation with cause`() = runTest {
+        expect(1)
+        val d = async(NonCancellable, start = CoroutineStart.ATOMIC) {
+            expect(3)
+            yield()
+        }
+        expect(2)
+        d.cancel(TestCancellationException("TEST"))
+        try {
+            d.await()
+        } catch (e: TestCancellationException) {
+            finish(4)
+            assertEquals("TEST", e.message)
+        }
+    }
+
+    @Test
+    fun `test lost exception`() = runTest {
+        expect(1)
+        val deferred: Deferred<Nothing> = async(Job()) {
+            expect(2)
+            throw Exception()
+        }
+
+        // Exception is not consumed -> nothing is reported
+        deferred.join()
+        finish(3)
+    }
+
+    @Test
+    fun `test parallel decomposition caught exception`() = runTest {
+        val deferred = async(NonCancellable) {
+            val decomposed = async(NonCancellable) {
+                throw TestException()
+                1
+            }
+            try {
+                decomposed.await()
+            } catch (e: TestException) {
+                42
+            }
+        }
+        assertEquals(42, deferred.await())
+    }
+
+
+    @Test
+    fun `test parallel decomposition caught exception with inherited parent`() = runTest {
+        expect(1)
+        val deferred = async(NonCancellable) {
+            expect(2)
+            val decomposed = async { // inherits parent job!
+                expect(3)
+                throw TestException()
+                1
+            }
+            try {
+                decomposed.await()
+            } catch (e: TestException) {
+                expect(4) // Should catch this exception, but parent is already cancelled
+                42
+            }
+        }
+        try {
+            // This will fail
+            assertEquals(42, deferred.await())
+        } catch (e: TestException) {
+            finish(5)
+        }
     }
 
     @Test

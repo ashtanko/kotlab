@@ -16,6 +16,8 @@
 
 package dev.shtanko.concurrency
 
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.atomic.AtomicBoolean
@@ -40,9 +42,41 @@ open class TestBase {
     }
 
     fun runTest(
+        expected: ((Throwable) -> Boolean)? = null,
+        unhandled: List<(Throwable) -> Boolean> = emptyList(),
         block: suspend CoroutineScope.() -> Unit
     ) {
-        runBlocking(block = block)
+        var exCount = 0
+        var ex: Throwable? = null
+        try {
+            runBlocking(block = block, context = CoroutineExceptionHandler { _, e ->
+                if (e is CancellationException) return@CoroutineExceptionHandler // are ignored
+                exCount++
+                when {
+                    exCount > unhandled.size ->
+                        printError("Too many unhandled exceptions $exCount, expected ${unhandled.size}, got: $e", e)
+                    !unhandled[exCount - 1](e) ->
+                        printError("Unhandled exception was unexpected: $e", e)
+                }
+            })
+        } catch (e: Throwable) {
+            ex = e
+            if (expected != null) {
+                if (!expected(e))
+                    error("Unexpected exception: $e", e)
+            } else
+                throw e
+        } finally {
+            if (ex == null && expected != null) error("Exception was expected but none produced")
+        }
+    }
+
+    private fun printError(message: String, cause: Throwable) {
+        setError(cause)
+        println("$message: $cause")
+        cause.printStackTrace(System.out)
+        println("--- Detected at ---")
+        Throwable().printStackTrace(System.out)
     }
 
     private inline fun check(value: Boolean, lazyMessage: () -> Any) {
@@ -62,3 +96,6 @@ open class TestBase {
             setError(it)
         }
 }
+
+class TestException(message: String? = null, private val data: Any? = null) : Throwable(message)
+class TestCancellationException(message: String? = null, private val data: Any? = null) : CancellationException(message)
