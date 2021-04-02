@@ -40,3 +40,15 @@ fun Pair<String, String>.commonPrefix(): String {
     }
     return left.substring(0, min)
 }
+
+/**
+ * Count zeroes in binary string
+ * @return int array of zeroes
+ */
+fun String.countZeroesOnes(): IntArray {
+    val c = IntArray(2)
+    for (element in this) {
+        c[element - '0']++
+    }
+    return c
+}

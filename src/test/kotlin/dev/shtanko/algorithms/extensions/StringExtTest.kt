@@ -18,6 +18,7 @@ package dev.shtanko.algorithms.extensions
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -65,6 +66,47 @@ internal class StringExtTest {
                 "qwer"
             ),
         )
+    }
+
+    internal class CountZeroesArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "",
+                intArrayOf(0, 0)
+            ),
+            Arguments.of(
+                "0",
+                intArrayOf(1, 0)
+            ),
+            Arguments.of(
+                "1",
+                intArrayOf(0, 1)
+            ),
+            Arguments.of(
+                "100",
+                intArrayOf(2, 1)
+            ),
+            Arguments.of(
+                "11",
+                intArrayOf(0, 2)
+            ),
+            Arguments.of(
+                "000000000000001",
+                intArrayOf(14, 1)
+            ),
+            Arguments.of(
+                "000000000000001111111111111111111111111111111111111111000",
+                intArrayOf(17, 40)
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(CountZeroesArgumentsProvider::class)
+    internal fun `count zeroes ones test`(str: String, expected: IntArray) {
+        val actual = str.countZeroesOnes()
+        Assert.assertArrayEquals(actual, expected)
+        assertThat(actual, equalTo(expected))
     }
 
     @ParameterizedTest
