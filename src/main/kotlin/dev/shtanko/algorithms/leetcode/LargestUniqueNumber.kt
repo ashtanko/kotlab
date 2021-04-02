@@ -47,7 +47,8 @@ class LargestUniqueNumberBruteForce : LargestUniqueNumber {
 }
 
 /**
- *
+ * Time complexity: O(n).
+ * Space complexity: O(n).
  */
 class LargestUniqueNumberHashMap : LargestUniqueNumber {
     override fun perform(arr: IntArray): Int {
