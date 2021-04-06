@@ -16,31 +16,51 @@
 
 package dev.shtanko.algorithms.leetcode
 
-class CircularQueue(val size: Int) {
+class CircularQueue(val k: Int) {
 
-    var first: Node? = null
+    private var head: Node? = null
+    private var tail: Node? = null
+    private var count = 0
+    private val capacity = k
 
     fun enQueue(value: Int): Boolean {
-
-        if (first == null) {
-            first = Node(value)
-            return true
+        if (count == capacity) return false
+        val newNode = Node(value)
+        if (count == 0) {
+            tail = newNode
+            head = tail
         } else {
+            tail?.nextNode = newNode
+            tail = newNode
+        }
+        count += 1
+        return true
+    }
+
+    fun deQueue(): Boolean {
+        if (this.count == 0) {
             return false
         }
+        this.head = this.head?.nextNode
+        this.count -= 1
+        return true
     }
 
-    private fun isFull() = size() > size
-
-    private fun size(): Int {
-        var count = 0
-        var curr: Node? = first
-        while (curr != null) {
-            curr = curr.next
-            count++
+    fun rear(): Int {
+        return if (this.count == 0) {
+            -1
+        } else {
+            this.tail?.value ?: -1
         }
-        return count
     }
 
-    data class Node(var value: Int, var next: Node? = null)
+    fun isEmpty(): Boolean {
+        return (this.count == 0)
+    }
+
+    fun isFull(): Boolean {
+        return (this.count == this.capacity)
+    }
+
+    internal data class Node(var value: Int, var nextNode: Node? = null)
 }

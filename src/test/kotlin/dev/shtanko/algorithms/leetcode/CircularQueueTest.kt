@@ -16,13 +16,22 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class CircularQueueTest {
 
     @Test
-    fun `insert test`() {
-        val queue = CircularQueue(3)
-
+    fun `simple test`() {
+        val circularQueue = CircularQueue(3)
+        assertThat(circularQueue.enQueue(1)).isTrue
+        assertThat(circularQueue.enQueue(2)).isTrue
+        assertThat(circularQueue.enQueue(3)).isTrue
+        assertThat(circularQueue.enQueue(4)).isFalse
+        assertThat(circularQueue.rear()).isEqualTo(3)
+        assertThat(circularQueue.isFull()).isTrue
+        assertThat(circularQueue.deQueue()).isTrue
+        assertThat(circularQueue.enQueue(4)).isTrue
+        assertThat(circularQueue.rear()).isEqualTo(4)
     }
 }
