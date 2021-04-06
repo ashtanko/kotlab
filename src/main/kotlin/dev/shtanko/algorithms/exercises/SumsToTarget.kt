@@ -52,8 +52,8 @@ class SumsToTargetSort : SumsToTarget {
         for (i in arr.indices) {
             val siblingIndex = arr.binarySearch(k - arr[i])
             if (siblingIndex >= 0) {
-                val left = siblingIndex != i || (i > 0) && i - 1 == arr[i]
-                val right = (i < arr.size - 1 && arr[i + 1] == arr[i])
+                val left = siblingIndex != i || i > 0 && i - 1 == arr[i]
+                val right = i < arr.size - 1 && arr[i + 1] == arr[i]
                 if (left || right) {
                     return true
                 }
