@@ -55,11 +55,11 @@ class CircularQueue(val k: Int) {
     }
 
     fun isEmpty(): Boolean {
-        return (this.count == 0)
+        return this.count == 0
     }
 
     fun isFull(): Boolean {
-        return (this.count == this.capacity)
+        return this.count == this.capacity
     }
 
     internal data class Node(var value: Int, var nextNode: Node? = null)
