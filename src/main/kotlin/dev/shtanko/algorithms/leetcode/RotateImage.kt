@@ -16,25 +16,60 @@
 
 package dev.shtanko.algorithms.leetcode
 
-/**
- * You are given an n x n 2D matrix representing an image.
- * Rotate the image by 90 degrees (clockwise).
- */
-fun Array<IntArray>.rotateImage() {
+interface RotateImage {
+    fun rotate(matrix: Array<IntArray>)
+}
 
-    for (i in this.indices) {
-        for (j in i until this[0].size) {
-            val tmp = this[i][j]
-            this[i][j] = this[j][i]
-            this[j][i] = tmp
+/**
+ * Approach 1: Rotate Groups of Four Cells
+ * Time complexity : O(M)
+ * Space complexity : O(1)
+ */
+class RotateGroups : RotateImage {
+    override fun rotate(matrix: Array<IntArray>) {
+        val n: Int = matrix.size
+        for (i in 0 until (n + 1) / 2) {
+            for (j in 0 until n / 2) {
+                val temp = matrix[n - 1 - j][i]
+                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - j - 1]
+                matrix[n - 1 - i][n - j - 1] = matrix[j][n - 1 - i]
+                matrix[j][n - 1 - i] = matrix[i][j]
+                matrix[i][j] = temp
+            }
+        }
+    }
+}
+
+/**
+ * Approach 2: Reverse on Diagonal and then Reverse Left to Right
+ * Time complexity : O(M)
+ * Space complexity : O(1)
+ */
+class ReverseLeftToRight : RotateImage {
+    override fun rotate(matrix: Array<IntArray>) {
+        transpose(matrix)
+        reflect(matrix)
+    }
+
+    private fun transpose(matrix: Array<IntArray>) {
+        val n = matrix.size
+        for (i in 0 until n) {
+            for (j in i until n) {
+                val tmp = matrix[j][i]
+                matrix[j][i] = matrix[i][j]
+                matrix[i][j] = tmp
+            }
         }
     }
 
-    for (i in this.indices) {
-        for (j in 0 until this.size / 2) {
-            val tmp = this[i][j]
-            this[i][j] = this[i][this.size - 1 - j]
-            this[i][this.size - 1 - j] = tmp
+    private fun reflect(matrix: Array<IntArray>) {
+        val n = matrix.size
+        for (i in 0 until n) {
+            for (j in 0 until n / 2) {
+                val tmp = matrix[i][j]
+                matrix[i][j] = matrix[i][n - j - 1]
+                matrix[i][n - j - 1] = tmp
+            }
         }
     }
 }

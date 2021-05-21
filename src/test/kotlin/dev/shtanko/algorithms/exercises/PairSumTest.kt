@@ -30,8 +30,8 @@ internal class PairSumTest {
             Arguments.of(getArray(1000), 0),
         )
 
-        private fun getArray(n:Int): IntArray {
-            val arr = IntArray(n){0}
+        private fun getArray(n: Int): IntArray {
+            val arr = IntArray(n) { 0 }
             for (i in 0 until n) {
                 arr[i] = i
             }

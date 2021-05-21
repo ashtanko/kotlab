@@ -43,8 +43,7 @@ class AVLTree {
         if (node == null) return Node(key)
         when {
             key < node.key -> node.left = insert(node.left, key)
-            key > node.key -> node.right =
-                insert(node.right, key)
+            key > node.key -> node.right = insert(node.right, key)
             // Duplicate keys not allowed
             else -> return node
         }

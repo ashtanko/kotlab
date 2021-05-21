@@ -16,45 +16,53 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
-internal class RotateImageTest {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Array<IntArray>, Array<IntArray>>> {
-            return listOf(
+internal abstract class RotateImageTest<out T : RotateImage>(private val strategy: T) {
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
                 arrayOf(
                     intArrayOf(1, 2, 3),
                     intArrayOf(4, 5, 6),
                     intArrayOf(7, 8, 9)
-                ) to arrayOf(
+                ),
+                arrayOf(
                     intArrayOf(7, 4, 1),
                     intArrayOf(8, 5, 2),
                     intArrayOf(9, 6, 3)
-                ),
+                )
+            ),
+            Arguments.of(
                 arrayOf(
                     intArrayOf(5, 1, 9, 11),
                     intArrayOf(2, 4, 8, 10),
                     intArrayOf(13, 3, 6, 7),
                     intArrayOf(15, 14, 12, 16)
-                ) to arrayOf(
+                ),
+                arrayOf(
                     intArrayOf(15, 13, 2, 5),
                     intArrayOf(14, 3, 4, 1),
                     intArrayOf(12, 6, 8, 9),
                     intArrayOf(16, 7, 10, 11)
                 )
-            )
-        }
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `rotate image test`(testCase: Pair<Array<IntArray>, Array<IntArray>>) {
-        val (arr, expected) = testCase
-        arr.rotateImage()
-        assertArrayEquals(expected, arr)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `rotate image test`(matrix: Array<IntArray>, expected: Array<IntArray>) {
+        strategy.rotate(matrix)
+        assertThat(matrix).isEqualTo(expected)
     }
 }
+
+internal class RotateGroupsTest : RotateImageTest<RotateGroups>(RotateGroups())
+internal class ReverseLeftToRightTest : RotateImageTest<ReverseLeftToRight>(ReverseLeftToRight())

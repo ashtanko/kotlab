@@ -20,14 +20,20 @@ import dev.shtanko.patterns.utils.InMemoryAppender
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.MethodSource
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import java.util.function.Supplier
+import java.util.stream.Stream
 
 class PartyMemberTest {
-
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
+    }
     companion object {
         @JvmStatic
         fun dataProvider(): List<Any> {

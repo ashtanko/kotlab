@@ -16,28 +16,26 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class InterleavingStringTest<out T : InterleavingStringStrategy>(private val strategy: T) {
 
-    companion object {
-
-        @JvmStatic
-        private fun provideData(): Stream<Arguments?>? {
-            return Stream.of(
-                Arguments.of("aabcc", "dbbca", "aadbbcbcac", true),
-                Arguments.of("aabcc", "dbbca", "aadbbbaccc", false),
-                Arguments.of("", "", "", true)
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of("aabcc", "dbbca", "aadbbcbcac", true),
+            Arguments.of("aabcc", "dbbca", "aadbbbaccc", false),
+            Arguments.of("", "", "", true)
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("provideData")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `interleaving string test`(s1: String, s2: String, s3: String, expected: Boolean) {
         val actual = strategy.perform(s1, s2, s3)
         assertEquals(expected, actual)

@@ -16,33 +16,30 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(private val strategy: T) {
-
-    companion object {
-
-        @JvmStatic
-        private fun provideData(): Stream<Arguments?>? {
-            return Stream.of(
-                Arguments.of(
-                    TreeNode(1).apply {
-                        left = TreeNode(2)
-                        right = TreeNode(3)
-                        left?.right = TreeNode(5)
-                    },
-                    listOf("1->2->5", "1->3")
-                ),
-                Arguments.of(
-                    t2(),
-                    listOf("1->2->4", "1->2->5", "1->3->6", "1->3->7")
-                ),
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                    left?.right = TreeNode(5)
+                },
+                listOf("1->2->5", "1->3")
+            ),
+            Arguments.of(
+                t2(),
+                listOf("1->2->4", "1->2->5", "1->3->6", "1->3->7")
+            ),
+        )
 
         private fun t2(): TreeNode? {
             val arr = intArrayOf(1, 2, 3, 4, 5, 6, 7)
@@ -52,7 +49,7 @@ internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(pri
     }
 
     @ParameterizedTest
-    @MethodSource("provideData")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `binary tree paths test`(tree: TreeNode, expected: List<String>) {
         val actual = strategy.binaryTreePaths(tree).sorted()
         assertEquals(expected, actual)

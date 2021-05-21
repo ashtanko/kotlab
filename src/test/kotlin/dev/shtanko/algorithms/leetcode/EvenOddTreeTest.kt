@@ -16,11 +16,11 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 internal abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val strategy: T) {
 

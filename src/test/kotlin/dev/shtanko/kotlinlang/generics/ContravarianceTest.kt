@@ -22,7 +22,7 @@ internal class ContravarianceTest {
 
     @Test
     internal fun `simple test`() {
-        //useConsumer(Case<SniperRifle>()) // Error
+        // useConsumer(Case<SniperRifle>()) // Error
         useConsumer(Case<Rifle>())
         useConsumer(Case<Weapon>())
     }

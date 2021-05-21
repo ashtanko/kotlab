@@ -17,26 +17,25 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class ThirdMaximumNumberTest {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, Int>> {
-            return listOf(
-                intArrayOf(3, 2, 1) to 1,
-                intArrayOf(1, 2) to 2,
-                intArrayOf(2, 2, 3, 1) to 1
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(intArrayOf(3, 2, 1), 1),
+            Arguments.of(intArrayOf(1, 2), 2),
+            Arguments.of(intArrayOf(2, 2, 3, 1), 1),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `third max test`(testCase: Pair<IntArray, Int>) {
-        val (nums, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `third max test`(nums: IntArray, expected: Int) {
         val actual = thirdMax(nums)
         assertEquals(expected, actual)
     }

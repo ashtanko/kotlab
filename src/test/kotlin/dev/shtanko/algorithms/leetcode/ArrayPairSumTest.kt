@@ -18,25 +18,24 @@ package dev.shtanko.algorithms.leetcode
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<IntArray, Int>> {
-            return listOf(
-                intArrayOf() to 0,
-                intArrayOf(1, 4, 3, 2) to 4,
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(intArrayOf(), 0),
+            Arguments.of(intArrayOf(1, 4, 3, 2), 4)
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("casesProvider")
-    internal fun `array pair sum test`(data: Pair<IntArray, Int>) {
-        val (arr, expected) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `array pair sum test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertThat(actual, equalTo(expected))
     }

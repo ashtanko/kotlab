@@ -68,7 +68,8 @@ internal class FibonacciSequenceTest {
                 10, listOf(0, 1, 1, 2, 3, 5, 8, 13, 21, 34)
             ),
             Arguments.of(
-                22, listOf(
+                22,
+                listOf(
                     0,
                     1,
                     1,

@@ -17,23 +17,22 @@
 package dev.shtanko.algorithms.interview.traversals
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 internal abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private val strategy: T) {
-    companion object {
 
-        @JvmStatic
-        private fun provideData(): Stream<Arguments?>? {
-            return Stream.of(
-                Arguments.of(
-                    bstRoot,
-                    listOf(1, 3, 4, 6, 7, 8, 10, 13, 14)
-                )
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                bstRoot,
+                listOf(1, 3, 4, 6, 7, 8, 10, 13, 14)
             )
-        }
+        )
 
         //          8
         //         / \
@@ -64,14 +63,14 @@ internal abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private
     }
 
     @ParameterizedTest
-    @MethodSource("provideData")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `in order iterative test`(root: BinaryTreeNode, expected: List<Int>) {
         val actual = strategy.inOrderIterative(root)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @MethodSource("provideData")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `in order iterative using stack test`(root: BinaryTreeNode, expected: List<Int>) {
         val actual = strategy.inOrderIterativeStack(root)
         assertEquals(expected, actual)

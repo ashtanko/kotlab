@@ -17,29 +17,27 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<IntArray, IntArray>, Boolean>> {
-            return listOf(
-                intArrayOf(1, 2, 3, 4) to intArrayOf(2, 4, 1, 3) to true,
-                intArrayOf(7) to intArrayOf(7) to true,
-                intArrayOf(1, 12) to intArrayOf(12, 1) to true,
-                intArrayOf(3, 7, 9) to intArrayOf(3, 7, 11) to false,
-                intArrayOf(1, 1, 1, 1, 1) to intArrayOf(1, 1, 1, 1, 1) to true
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(intArrayOf(1, 2, 3, 4), intArrayOf(2, 4, 1, 3), true),
+            Arguments.of(intArrayOf(7), intArrayOf(7), true),
+            Arguments.of(intArrayOf(1, 12), intArrayOf(12, 1), true),
+            Arguments.of(intArrayOf(3, 7, 9), intArrayOf(3, 7, 11), false),
+            Arguments.of(intArrayOf(1, 1, 1, 1, 1), intArrayOf(1, 1, 1, 1, 1), true)
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `can be equal test`(testCase: Pair<Pair<IntArray, IntArray>, Boolean>) {
-        val (data, expected) = testCase
-        val (target, arr) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `can be equal test`(arr: IntArray, target: IntArray, expected: Boolean) {
         val actual = strategy.perform(target, arr)
         assertEquals(expected, actual)
     }

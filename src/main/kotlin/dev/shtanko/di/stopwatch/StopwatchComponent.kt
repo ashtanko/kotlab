@@ -20,5 +20,5 @@ import dagger.Component
 
 @Component
 interface StopwatchComponent {
- // TODO
+    // TODO
 }

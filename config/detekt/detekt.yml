@@ -77,13 +77,14 @@ complexity:
   LongMethod:
     active: true
     threshold: 60
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
   LongParameterList:
     active: true
     functionThreshold: 6
     constructorThreshold: 7
     ignoreDefaultParameters: false
     ignoreDataClasses: true
-    ignoreAnnotated: []
+    ignoreAnnotated: [ ]
   MethodOverloading:
     active: false
     threshold: 6
@@ -196,6 +197,7 @@ exceptions:
     allowedExceptionNameRegex: "^(_|(ignore|expected).*)"
   TooGenericExceptionThrown:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     exceptionNames:
       - Error
       - Exception
@@ -211,9 +213,11 @@ formatting:
     autoCorrect: true
   ChainWrapping:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     autoCorrect: true
   CommentSpacing:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     autoCorrect: true
   EnumEntryNameCase:
     active: false
@@ -234,17 +238,21 @@ formatting:
     continuationIndentSize: 4
   MaximumLineLength:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     maxLineLength: 160
   ModifierOrdering:
     active: true
     autoCorrect: true
   MultiLineIfElse:
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     active: true
     autoCorrect: true
   NoBlankLineBeforeRbrace:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     autoCorrect: true
   NoConsecutiveBlankLines:
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     active: true
     autoCorrect: true
   NoEmptyClassBody:
@@ -281,16 +289,19 @@ formatting:
     autoCorrect: true
   ParameterListWrapping:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     autoCorrect: true
     indentSize: 4
   SpacingAroundColon:
     active: true
     autoCorrect: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
   SpacingAroundComma:
     active: true
     autoCorrect: true
   SpacingAroundCurly:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     autoCorrect: true
   SpacingAroundDot:
     active: true
@@ -396,6 +407,7 @@ naming:
 performance:
   active: true
   ArrayPrimitive:
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     active: true
   ForEachOnRange:
     active: true
@@ -517,6 +529,7 @@ style:
     active: false
   MaxLineLength:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     maxLineLength: 160
     excludePackageStatements: true
     excludeImportStatements: true
@@ -568,6 +581,7 @@ style:
     acceptableDecimalLength: 5
   UnnecessaryAbstractClass:
     active: true
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     excludeAnnotatedClasses: "dagger.Module"
   UnnecessaryAnnotationUseSiteTarget:
     active: false

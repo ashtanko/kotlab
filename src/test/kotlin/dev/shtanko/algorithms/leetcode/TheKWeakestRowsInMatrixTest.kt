@@ -17,37 +17,43 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class TheKWeakestRowsInMatrixTest {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<Array<IntArray>, Int>, IntArray>> {
-            return listOf(
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
                 arrayOf(
                     intArrayOf(1, 1, 0, 0, 0),
                     intArrayOf(1, 1, 1, 1, 0),
                     intArrayOf(1, 0, 0, 0, 0),
                     intArrayOf(1, 1, 0, 0, 0),
                     intArrayOf(1, 1, 1, 1, 1)
-                ) to 3 to intArrayOf(2, 0, 3),
+                ),
+                3,
+                intArrayOf(2, 0, 3)
+            ),
+            Arguments.of(
                 arrayOf(
                     intArrayOf(1, 0, 0, 0),
                     intArrayOf(1, 1, 1, 1),
                     intArrayOf(1, 0, 0, 0),
                     intArrayOf(1, 0, 0, 0)
-                ) to 2 to intArrayOf(0, 2)
+                ),
+                2,
+                intArrayOf(0, 2)
             )
-        }
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `kWeakest rows test`(testCase: Pair<Pair<Array<IntArray>, Int>, IntArray>) {
-        val (pair, expected) = testCase
-        val (matrix, k) = pair
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `kWeakest rows test`(matrix: Array<IntArray>, k: Int, expected: IntArray) {
         val data = matrix to k
         val actual = data.kWeakestRows()
         assertArrayEquals(expected, actual)

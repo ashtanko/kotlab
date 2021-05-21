@@ -16,15 +16,15 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
-internal class TriangleTest {
+internal abstract class TriangleTest<out T : Triangle>(private val solution: T) {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -36,14 +36,25 @@ internal class TriangleTest {
                     listOf(4, 1, 8, 3)
                 ),
                 11
+            ),
+            Arguments.of(
+                listOf(
+                    listOf(-10),
+                ),
+                -10
             )
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `input arguments test`(triangle: List<List<Int>>, expected: Int) {
-        val actual = minimumTotal(triangle)
+    internal fun `minimum total test`(triangle: List<List<Int>>, expected: Int) {
+        val actual = solution.perform(triangle)
         assertEquals(expected, actual)
     }
 }
+
+internal class TriangleBottomUpTest : TriangleTest<TriangleBottomUp>(TriangleBottomUp())
+internal class TriangleAuxiliarySpaceTest : TriangleTest<TriangleAuxiliarySpace>(TriangleAuxiliarySpace())
+internal class TriangleUpsideDownTest : TriangleTest<TriangleUpsideDown>(TriangleUpsideDown())
+internal class TriangleMemoizationTest : TriangleTest<TriangleMemoization>(TriangleMemoization())

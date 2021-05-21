@@ -25,10 +25,13 @@ class FoldTest {
     fun `fold add test`() {
         val items = listOf(1, 2, 3, 4, 5)
         items.map { }
-        val actual = items.fold(3, { acc: Int, i: Int ->
-            val result = acc + i
-            result
-        })
+        val actual = items.fold(
+            3,
+            { acc: Int, i: Int ->
+                val result = acc + i
+                result
+            }
+        )
         val expected = 18
         assertThat(actual).isEqualTo(expected)
     }
@@ -37,12 +40,15 @@ class FoldTest {
     fun `fold multiply test`() {
         val items = listOf(1, 2, 3, 4, 5)
         items.map { }
-        val actual = items.fold(3, { acc: Int, i: Int ->
-            print("acc = $acc, i = $i, ")
-            val result = acc * i
-            println("result = $result")
-            result
-        })
+        val actual = items.fold(
+            3,
+            { acc: Int, i: Int ->
+                print("acc = $acc, i = $i, ")
+                val result = acc * i
+                println("result = $result")
+                result
+            }
+        )
         val expected = 360
         assertThat(actual).isEqualTo(expected)
     }
