@@ -16,30 +16,27 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        private fun provideData(): Stream<Arguments?>? {
-            return Stream.of(
-                Arguments.of(intArrayOf() to false),
-                Arguments.of(intArrayOf(1, 2, 3, 1) to true),
-                Arguments.of(intArrayOf(1, 1, 1, 3, 3, 4, 3, 2, 4, 2) to true),
-                Arguments.of(intArrayOf(1, 2, 3, 4) to false)
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(intArrayOf(), false),
+            Arguments.of(intArrayOf(1, 2, 3, 1), true),
+            Arguments.of(intArrayOf(1, 1, 1, 3, 3, 4, 3, 2, 4, 2), true),
+            Arguments.of(intArrayOf(1, 2, 3, 4), false)
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("provideData")
-    internal fun `duplicate items test`(testCase: Pair<IntArray, Boolean>) {
-        val (arr, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `duplicate items test`(arr: IntArray, expected: Boolean) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }

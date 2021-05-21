@@ -31,7 +31,7 @@ internal abstract class ScheduleCourse3Test<out T : ScheduleCourse3>(private val
                 arrayOf(
                     intArrayOf(100, 200),
                     intArrayOf(200, 1300),
-                    intArrayOf(1000,1250),
+                    intArrayOf(1000, 1250),
                     intArrayOf(2000, 3200),
                 ),
                 3
@@ -64,7 +64,9 @@ internal class ScheduleCourse3RecursionTest : ScheduleCourse3Test<ScheduleCourse
 internal class ScheduleCourse3IterativeTest : ScheduleCourse3Test<ScheduleCourse3Iterative>(ScheduleCourse3Iterative())
 internal class ScheduleCourse3OptimizedIterativeTest :
     ScheduleCourse3Test<ScheduleCourse3OptimizedIterative>(ScheduleCourse3OptimizedIterative())
+
 internal class ScheduleCourse3ExtraListTest :
     ScheduleCourse3Test<ScheduleCourse3ExtraList>(ScheduleCourse3ExtraList())
+
 internal class ScheduleCourse3PriorityQueueTest :
     ScheduleCourse3Test<ScheduleCourse3PriorityQueue>(ScheduleCourse3PriorityQueue())

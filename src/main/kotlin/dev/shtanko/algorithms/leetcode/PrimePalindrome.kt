@@ -36,8 +36,8 @@ class IteratePalindromes : PrimePalindrome {
     override fun perform(n: Int): Int {
         for (L in 1..MAX) {
             // Check for odd-length palindromes
-            for (root in DECIMAL.toDouble().pow((L - 1).toDouble()).toInt() until DECIMAL.toDouble().pow(L.toDouble())
-                .toInt()) {
+            val local = DECIMAL.toDouble().pow((L - 1).toDouble()).toInt()
+            for (root in local until DECIMAL.toDouble().pow(L.toDouble()).toInt()) {
                 val sb = StringBuilder(root.toString())
                 for (k in L - 2 downTo 0) sb.append(sb[k])
                 val x = Integer.valueOf(sb.toString())
@@ -45,8 +45,8 @@ class IteratePalindromes : PrimePalindrome {
             }
 
             // Check for even-length palindromes
-            for (root in DECIMAL.toDouble().pow((L - 1).toDouble()).toInt() until DECIMAL.toDouble().pow(L.toDouble())
-                .toInt()) {
+            val start = DECIMAL.toDouble().pow((L - 1).toDouble()).toInt()
+            for (root in start until DECIMAL.toDouble().pow(L.toDouble()).toInt()) {
                 val sb = StringBuilder(root.toString())
                 for (k in L - 1 downTo 0) sb.append(sb[k])
                 val x = Integer.valueOf(sb.toString())
@@ -91,8 +91,8 @@ class PrimePalindromeBruteForce : PrimePalindrome {
     }
 
     companion object {
-        private const val RANGE_START = 10000001
-        private const val RANGE_END = 99999999
+        private const val RANGE_START = 10_000_001
+        private const val RANGE_END = 99_999_999
         private const val MAX = 100_000_000
     }
 }

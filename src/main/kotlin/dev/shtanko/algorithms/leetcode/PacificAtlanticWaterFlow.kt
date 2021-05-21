@@ -51,9 +51,8 @@ class PacificAtlanticDFS : PacificAtlanticWaterFlow {
     private fun dfs(matrix: Array<IntArray>, visited: Array<BooleanArray>, height: Int, x: Int, y: Int) {
         val n = matrix.size
         val m: Int = matrix[0].size
-        if (x.lessThanZero().or(x >= n).or(y.lessThanZero())
-                .or(y >= m) || visited[x][y] || matrix[x][y] < height
-        ) return
+        val left = x.lessThanZero().or(x >= n).or(y.lessThanZero()).or(y >= m)
+        if (left || visited[x][y] || matrix[x][y] < height) return
         visited[x][y] = true
         for (d in DIRECTIONS) {
             dfs(matrix, visited, matrix[x][y], x + d[0], y + d[1])
@@ -104,10 +103,8 @@ class PacificAtlanticBFS : PacificAtlanticWaterFlow {
             for (d in DIRECTIONS) {
                 val x = cur[0] + d[0]
                 val y = cur[1] + d[1]
-
-                if (x.lessThanZero().or(x >= n).or(y.lessThanZero())
-                        .or(y >= m) || visited[x][y] || matrix[x][y] < matrix[cur[0]][cur[1]]
-                ) {
+                val start = x.lessThanZero().or(x >= n).or(y.lessThanZero()).or(y >= m)
+                if (start || visited[x][y] || matrix[x][y] < matrix[cur[0]][cur[1]]) {
                     continue
                 }
                 visited[x][y] = true

@@ -17,45 +17,42 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 internal class CountGoodTripletsTest {
-
-    companion object {
-
-        @JvmStatic
-        private fun provideNumbers(): Stream<Arguments?>? {
-            return Stream.of(
-                Arguments.of(
-                    intArrayOf(),
-                    0,
-                    0,
-                    0,
-                    0
-                ),
-                Arguments.of(
-                    intArrayOf(3, 0, 1, 1, 9, 7),
-                    7,
-                    2,
-                    3,
-                    4
-                ),
-                Arguments.of(
-                    intArrayOf(1, 1, 2, 2, 3),
-                    0,
-                    0,
-                    1,
-                    0
-                ),
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+                0,
+                0
+            ),
+            Arguments.of(
+                intArrayOf(3, 0, 1, 1, 9, 7),
+                7,
+                2,
+                3,
+                4
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3),
+                0,
+                0,
+                1,
+                0
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("provideNumbers")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `count good triplets test`(arr: IntArray, a: Int, b: Int, c: Int, expected: Int) {
         val actual = countGoodTriplets(arr, a, b, c)
         assertEquals(expected, actual)

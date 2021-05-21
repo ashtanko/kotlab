@@ -16,9 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import org.junit.jupiter.api.Test
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
-import org.junit.jupiter.api.Test
 
 internal class PrintInOrderTest {
 

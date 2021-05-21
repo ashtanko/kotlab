@@ -17,27 +17,26 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class BalancedStringSplitTest {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Any> {
-            return listOf(
-                "RLRRLLRLRL" to 4,
-                "RLLLLRRRLR" to 3,
-                "LLLLRRRR" to 1,
-                "RLRRRLLRLL" to 2,
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of("RLRRLLRLRL", 4),
+            Arguments.of("RLLLLRRRLR", 3),
+            Arguments.of("LLLLRRRR", 1),
+            Arguments.of("RLRRRLLRLL", 2),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `balanced string split test`(param: Pair<String, Int>) {
-        val (str, expected) = param
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `balanced string split test`(str: String, expected: Int) {
         val actual = str.balancedStringSplit()
         assertEquals(expected, actual)
     }

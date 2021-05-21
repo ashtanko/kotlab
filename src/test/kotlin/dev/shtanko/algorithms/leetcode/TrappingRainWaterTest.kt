@@ -17,28 +17,27 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class TrappingRainWaterTest<out T : RainWaterStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, Int>> {
-            return listOf(
-                intArrayOf(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1) to 6,
-                intArrayOf() to 0,
-                intArrayOf(1) to 0,
-                intArrayOf(0, 1) to 0,
-                intArrayOf(0, 1, 2, 1, 0, 3, 2) to 3
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(intArrayOf(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1), 6),
+            Arguments.of(intArrayOf(), 0),
+            Arguments.of(intArrayOf(1), 0),
+            Arguments.of(intArrayOf(0, 1), 0),
+            Arguments.of(intArrayOf(0, 1, 2, 1, 0, 3, 2), 3)
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `trapping rain water test`(testCase: Pair<IntArray, Int>) {
-        val (arr, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `trapping rain water test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }

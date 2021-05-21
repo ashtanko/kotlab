@@ -18,25 +18,25 @@ package dev.shtanko.algorithms.interview
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class UniqueCharactersTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<String, Boolean>> {
-            return listOf(
-                "abc" to true,
-                "ccc" to false,
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of("abc", true),
+            Arguments.of("ccc", false)
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `unique characters test`(testCase: Pair<String, Boolean>) {
-        val (s, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `unique characters test`(s: String, expected: Boolean) {
         val actual = uniqueCharacters(s)
         assertThat(actual, equalTo(expected))
     }

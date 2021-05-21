@@ -18,25 +18,26 @@ package dev.shtanko.algorithms.leetcode
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(private val strategy: T) {
-
-    companion object {
-
-        @JvmStatic
-        fun dataProvider() = listOf(
-            intArrayOf(1, 2, 3, 4) to intArrayOf(-1, -1, -1, -1),
-            intArrayOf(1, 2, 0, 0, 2, 1) to intArrayOf(-1, -1, 2, 1, -1, -1),
-            intArrayOf(1, 2, 0, 1, 2) to intArrayOf(),
-            intArrayOf(69, 0, 0, 0, 69) to intArrayOf(-1, 69, 1, 1, -1),
-            intArrayOf(10, 20, 20) to intArrayOf(),
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(intArrayOf(1, 2, 3, 4) to intArrayOf(-1, -1, -1, -1)),
+            Arguments.of(intArrayOf(1, 2, 0, 0, 2, 1) to intArrayOf(-1, -1, 2, 1, -1, -1)),
+            Arguments.of(intArrayOf(1, 2, 0, 1, 2) to intArrayOf()),
+            Arguments.of(intArrayOf(69, 0, 0, 0, 69) to intArrayOf(-1, 69, 1, 1, -1)),
+            Arguments.of(intArrayOf(10, 20, 20) to intArrayOf()),
         )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `avoid flood test`(testCase: Pair<IntArray, IntArray>) {
         val (rains, expected) = testCase
         val actual = strategy.perform(rains)

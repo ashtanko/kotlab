@@ -17,27 +17,26 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class ToLowerCaseTest {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<String, String>> {
-            return listOf(
-                "Hello" to "hello",
-                "here" to "here",
-                "LOVELY" to "lovely",
-                "QWERTYUIOPASDFGHJKLZXCVBNM" to "qwertyuiopasdfghjklzxcvbnm"
-            )
-        }
+    internal class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of("Hello", "hello"),
+            Arguments.of("here", "here"),
+            Arguments.of("LOVELY", "lovely"),
+            Arguments.of("QWERTYUIOPASDFGHJKLZXCVBNM", "qwertyuiopasdfghjklzxcvbnm"),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `to lower case test`(testCase: Pair<String, String>) {
-        val (str, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `to lower case test`(str: String, expected: String) {
         val actual = toLowerCase(str)
         assertEquals(expected, actual)
     }

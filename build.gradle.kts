@@ -1,29 +1,25 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jlleitschuh.gradle.ktlint.KtlintExtension
-import org.jlleitschuh.gradle.ktlint.KtlintPlugin
-import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 import java.util.Locale
 
 val projectJvmTarget = "1.8"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
+val ktlint by configurations.creating
 
 plugins {
-    kotlin("jvm")
+    kotlin("jvm") version "1.5.0"
     java
     jacoco
     idea
-    // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
-    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
     id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
-    id("org.jetbrains.dokka") version "1.4.20"
+    id("org.jetbrains.dokka") version "1.4.32"
     id("com.diffplug.gradle.spotless") version "3.26.1"
     id("com.autonomousapps.dependency-analysis") version "0.58.0"
     id("info.solidsoft.pitest") version "1.5.1"
-    kotlin("plugin.serialization") version "1.4.21"
-    id("kotlin-kapt")
+    kotlin("plugin.serialization") version "1.5.0"
+    kotlin("kapt") version "1.5.0"
 }
 
 buildscript {
@@ -33,14 +29,10 @@ buildscript {
         gradlePluginPortal()
         maven("https://plugins.gradle.org/m2/")
     }
-
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN_VERSION}")
-    }
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.KOTLIN_VERSION}")
+    // implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
@@ -48,7 +40,8 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+    ktlint("com.pinterest:ktlint:0.41.0")
 
     implementation("com.google.dagger:dagger:2.33")
     kapt("com.google.dagger:dagger-compiler:2.33")
@@ -92,31 +85,27 @@ allprojects {
     }
 }
 
-// Configuration documentation: https://github.com/JLLeitschuh/ktlint-gradle#configuration
-configure<KtlintExtension> {
-    // Prints the name of failed rules.
-    verbose.set(true)
-    android.set(false)
-    outputToConsole.set(true)
-    outputColorName.set("RED")
-    ignoreFailures.set(true)
-    enableExperimentalRules.set(false)
-    reporters {
-        // Default "plain" reporter is actually harder to read.
-        reporter(ReporterType.JSON)
-    }
+val outputDir = "${project.buildDir}/reports/ktlint/"
+val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
 
-    disabledRules.set(
-        setOf(
-            // IntelliJ refuses to sort imports correctly.
-            // This is a known issue: https://github.com/pinterest/ktlint/issues/527
-            "import-ordering"
-        )
-    )
-    filter {
-        exclude("**/generated/**")
-        include("**/kotlin/**")
-    }
+val ktlintCheck by tasks.creating(JavaExec::class) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
+
+    description = "Check Kotlin code style."
+    classpath = ktlint
+    main = "com.pinterest.ktlint.Main"
+    args = listOf("src/**/*.kt")
+}
+
+val ktlintFormat by tasks.creating(JavaExec::class) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
+
+    description = "Fix Kotlin code style deviations."
+    classpath = ktlint
+    main = "com.pinterest.ktlint.Main"
+    args = listOf("-F", "src/**/*.kt")
 }
 
 plugins.withId("info.solidsoft.pitest") {
@@ -156,7 +145,7 @@ spotless {
 }
 
 subprojects {
-    apply<KtlintPlugin>()
+    //apply<KtlintPlugin>()
     apply<SpotlessPlugin>()
 }
 

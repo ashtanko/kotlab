@@ -19,7 +19,13 @@ package dev.shtanko.concurrency.coroutines.async
 import dev.shtanko.concurrency.TestBase
 import dev.shtanko.concurrency.TestCancellationException
 import dev.shtanko.concurrency.TestException
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.async
+import kotlinx.coroutines.yield
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -113,7 +119,6 @@ class AsyncTest : TestBase() {
         }
         assertEquals(42, deferred.await())
     }
-
 
     @Test
     fun `test parallel decomposition caught exception with inherited parent`() = runTest {
