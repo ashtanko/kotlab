@@ -22,6 +22,10 @@ plugins {
     kotlin("kapt") version "1.5.0"
 }
 
+jacoco {
+    toolVersion = "0.8.7"
+}
+
 buildscript {
     repositories {
         mavenCentral()

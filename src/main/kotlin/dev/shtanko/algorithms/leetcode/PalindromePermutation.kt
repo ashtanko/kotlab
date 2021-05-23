@@ -91,8 +91,8 @@ class PalindromePermutationSinglePass : PalindromePermutationBehavior {
         val map = IntArray(MAX_VALUE)
         var count = 0
         for (i in s.indices) {
-            map[s[i].toInt()]++
-            if (map[s[i].toInt()] % 2 == 0) count-- else count++
+            map[s[i].code]++
+            if (map[s[i].code] % 2 == 0) count-- else count++
         }
         return count <= 1
     }
