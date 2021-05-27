@@ -64,6 +64,7 @@ complexity:
   ComplexMethod:
     active: true
     threshold: 19
+    excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     ignoreSingleWhenExpression: false
     ignoreSimpleWhenEntries: false
     ignoreNestingFunctions: false

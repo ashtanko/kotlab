@@ -29,9 +29,9 @@ interface WordFilter {
  */
 class WordFilterTrie(words: Array<String>) : WordFilter {
 
-    var trie1: WFTrieNode = WFTrieNode()
-    var trie2: WFTrieNode = WFTrieNode()
-    var wt = 0
+    private var trie1: WFTrieNode = WFTrieNode()
+    private var trie2: WFTrieNode = WFTrieNode()
+    private var wt = 0
 
     init {
         for (word in words) {

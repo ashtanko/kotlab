@@ -73,6 +73,23 @@ internal abstract class AddOneRowToTreeTest<out T : AddOneRowToTree>(private val
                     }
                 }
             ),
+            Arguments.of(
+                TreeNode(4).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(1)
+                    }
+                },
+                1,
+                1,
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(1)
+                    }
+                    right = TreeNode(4)
+                }
+            ),
         )
     }
 

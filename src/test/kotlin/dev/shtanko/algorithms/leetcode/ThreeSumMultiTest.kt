@@ -37,6 +37,16 @@ internal abstract class ThreeSumMultiTest<out T : ThreeSumMulti>(private val str
                 5,
                 12
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                3,
+                0
+            ),
         )
     }
 

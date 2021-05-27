@@ -36,7 +36,19 @@ internal abstract class AbstractDecodeWays2StrategyTest<out T : DecodeWays2Strat
             Arguments.of("10", 1),
             Arguments.of("11", 2),
             Arguments.of("*", 9),
-            Arguments.of("1*", 18)
+            Arguments.of("1*", 18),
+            Arguments.of("12*", 24),
+            Arguments.of("22", 2),
+            Arguments.of("**", 96),
+            Arguments.of("62", 1),
+            Arguments.of("26", 2),
+            Arguments.of("27", 1),
+            Arguments.of("266", 2),
+            Arguments.of("2266", 3),
+            Arguments.of("2*", 15),
+            Arguments.of("*6", 11),
+            Arguments.of("*7", 10),
+            Arguments.of("3*7", 10),
         )
     }
 
