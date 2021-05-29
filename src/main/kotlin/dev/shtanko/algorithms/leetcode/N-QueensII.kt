@@ -16,10 +16,19 @@
 
 package dev.shtanko.algorithms.leetcode
 
+/**
+ * 52. N-Queens II
+ * @link https://leetcode.com/problems/n-queens-ii/
+ */
 interface TotalNQueensStrategy {
     fun perform(n: Int): Int
 }
 
+/**
+ * Approach: Backtracking
+ * Time complexity: O(N!)
+ * Space complexity: O(N)
+ */
 class TotalNQueensStraightForward : TotalNQueensStrategy {
     private val occupiedCols = hashSetOf<Int>()
     private val occupiedDiag1s = hashSetOf<Int>()
