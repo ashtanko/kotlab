@@ -16,10 +16,19 @@
 
 package dev.shtanko.di.stopwatch
 
-import javax.inject.Inject
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-class Stopwatch @Inject constructor(val source: TimeSource) {
-    fun start(): String {
-        return "Measure: ${source.measure()}"
+// TODO tmp solution
+class StopwatchTest {
+
+    @Test
+    fun `start test`() {
+        val s = Stopwatch(MockTimeSource())
+        assertThat(s.start()).isEqualTo("Measure: 5")
+    }
+
+    private class MockTimeSource : TimeSource {
+        override fun measure(): Int = 5
     }
 }

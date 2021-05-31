@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package dev.shtanko.di.stopwatch
+package dev.shtanko.kotlinlang.inline
 
-import javax.inject.Inject
+interface Printable {
+    fun prettyPrint(): String
+}
 
-class Stopwatch @Inject constructor(val source: TimeSource) {
-    fun start(): String {
-        return "Measure: ${source.measure()}"
-    }
+@JvmInline
+value class Surname(val s: String) : Printable {
+    override fun prettyPrint(): String = "Let's $s!"
 }

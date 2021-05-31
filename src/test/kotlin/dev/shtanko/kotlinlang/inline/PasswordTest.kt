@@ -16,6 +16,16 @@
 
 package dev.shtanko.kotlinlang.inline
 
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
 class PasswordTest {
-    // TODO
+
+    private val securePassword = Password("Don't try this in production")
+
+    // TODO tmp
+    @Test
+    fun `password test`() {
+        assertThat(securePassword.s).isEqualTo("Don't try this in production")
+    }
 }

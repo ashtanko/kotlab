@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package dev.shtanko.di.stopwatch
+package dev.shtanko.kotlinlang.inline
 
-import javax.inject.Inject
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-class Stopwatch @Inject constructor(val source: TimeSource) {
-    fun start(): String {
-        return "Measure: ${source.measure()}"
+class NameTest {
+
+    @Test
+    fun `name test`() {
+        val name = Name("Kotlin")
+        name.greet() // method `greet` is called as a static method
+        assertThat(name.length).isEqualTo(6)
+        println(name.length) // property getter is called as a static method
     }
 }

@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
-package dev.shtanko.di.stopwatch
+package dev.shtanko.kotlinlang.inline
 
-import javax.inject.Inject
+@JvmInline
+value class Name(val s: String) {
 
-class Stopwatch @Inject constructor(val source: TimeSource) {
-    fun start(): String {
-        return "Measure: ${source.measure()}"
+    init {
+        require(s.isNotEmpty()) { }
+    }
+
+    internal val length: Int
+        get() = s.length
+
+    internal fun greet() {
+        println("Hello, $s")
     }
 }
