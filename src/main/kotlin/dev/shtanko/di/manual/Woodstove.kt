@@ -16,4 +16,7 @@
 
 package dev.shtanko.di.manual
 
+/**
+ *
+ */
 internal class Woodstove : Pump

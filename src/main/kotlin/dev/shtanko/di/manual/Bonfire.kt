@@ -17,7 +17,14 @@
 package dev.shtanko.di.manual
 
 internal class Bonfire : Heater {
+
+    private var currentState = 0f
+
     override fun temperature(): Float {
+        TODO("Not yet implemented")
+    }
+
+    fun make() {
         TODO("Not yet implemented")
     }
 }

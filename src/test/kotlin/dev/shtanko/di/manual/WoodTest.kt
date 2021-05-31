@@ -16,12 +16,24 @@
 
 package dev.shtanko.di.manual
 
-internal class ElectricHeater(val power: Watt) : Heater {
-    override fun temperature(): Float {
-        return ELECTRIC_HEATER_TEMPERATURE
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+class WoodTest {
+
+    @Test
+    fun `green wood combustion energy test`() {
+        val wood: Wood = GreenWood()
+        val actual = wood.combustionEnergy().joule
+        val expected = 9_500_000.0
+        assertThat(actual).isEqualTo(expected)
     }
 
-    companion object {
-        private const val ELECTRIC_HEATER_TEMPERATURE = 100.0.toFloat()
+    @Test
+    fun `wood pallet combustion energy test`() {
+        val wood: Wood = WoodPallet()
+        val actual = wood.combustionEnergy().joule
+        val expected = 16_800_000.0
+        assertThat(actual).isEqualTo(expected)
     }
 }
