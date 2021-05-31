@@ -63,13 +63,13 @@ class MaximumGapRadixSort : MaximumGap {
             val count = IntArray(RADIX)
 
             for (i in nums.indices) {
-                count[(nums[i] / exp) % DECIMAL]++
+                count[nums[i].div(exp) % DECIMAL]++
             }
             for (i in 1 until count.size) {
                 count[i] += count[i - 1]
             }
             for (i in nums.size - 1 downTo 0) {
-                aux[--count[(nums[i] / exp) % DECIMAL]] = nums[i]
+                aux[--count[nums[i].div(exp) % DECIMAL]] = nums[i]
             }
             for (i in nums.indices) {
                 nums[i] = aux[i]
@@ -101,7 +101,7 @@ class MaximumGapBuckets : MaximumGap {
         val maxi = nums.maxOrNull() ?: 0
         val bucketSize = kotlin.math.max(1, (maxi - mini) / (nums.size - 1))
         val bucketNum = (maxi - mini) / bucketSize + 1
-        val buckets = Array<Bucket>(bucketNum) { Bucket() }
+        val buckets = Array(bucketNum) { Bucket() }
 
         for (num in nums) {
             val bucketIdx = (num - mini) / bucketSize
