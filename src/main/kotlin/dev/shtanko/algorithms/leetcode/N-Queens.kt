@@ -64,7 +64,7 @@ fun Int.genBoard(vararg locations: Pair<Int, Char>): String {
     unique.assertLocations(this, abc)
 
     val trueLocations = unique.map {
-        it.first - 1 to abc.indexOf(it.second.toLowerCase())
+        it.first - 1 to abc.indexOf(it.second.lowercaseChar())
     }
 
     val board = Array(this) { IntArray(this) { 0 } }

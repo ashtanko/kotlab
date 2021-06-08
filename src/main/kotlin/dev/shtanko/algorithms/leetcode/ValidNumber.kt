@@ -24,7 +24,7 @@ fun String.isNumberRegex(): Boolean {
 
 fun String.isNumber(): Boolean {
     var s = this
-    s = s.toLowerCase(Locale.ROOT).trim { it <= ' ' }
+    s = s.lowercase(Locale.ROOT).trim { it <= ' ' }
     var dotSeen = false
     var eSeen = false
     var numberBeforeE = false

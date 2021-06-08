@@ -20,7 +20,7 @@ fun toLowerCase(str: String): String {
     val arr = str.toCharArray()
     for (i in arr.indices) {
         if (arr[i] in 'A'..'Z') {
-            val local = arr[i] - 'A' + 'a'.toInt()
+            val local = arr[i] - 'A' + 'a'.code
             arr[i] = local.toChar()
         }
     }

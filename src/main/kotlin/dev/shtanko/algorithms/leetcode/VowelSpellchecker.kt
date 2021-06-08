@@ -29,7 +29,7 @@ class VowelSpellcheckerImpl : VowelSpellchecker {
     override fun perform(wordlist: Array<String>, queries: Array<String>): Array<String> {
         for (word in wordlist) {
             wordsPerfect.add(word)
-            val wordlow = word.toLowerCase()
+            val wordlow = word.lowercase()
             wordsCap.putIfAbsent(wordlow, word)
             val wordlowDV = devowel(wordlow)
             wordsVow.putIfAbsent(wordlowDV, word)
@@ -43,7 +43,7 @@ class VowelSpellcheckerImpl : VowelSpellchecker {
 
     private fun solve(query: String): String? {
         if (wordsPerfect.contains(query)) return query
-        val queryL = query.toLowerCase()
+        val queryL = query.lowercase()
         if (wordsCap.containsKey(queryL)) return wordsCap[queryL]
         val queryLV = devowel(queryL)
         return if (wordsVow.containsKey(queryLV)) wordsVow[queryLV] else ""

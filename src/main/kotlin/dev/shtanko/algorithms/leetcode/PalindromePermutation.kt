@@ -32,7 +32,7 @@ class PalindromePermutationBruteForce : PalindromePermutationBehavior {
     override fun canPermutePalindrome(s: String): Boolean {
         var count = 0
         var i = 0.toChar()
-        while (i.toInt() < MAX_VALUE && count <= 1) {
+        while (i.code < MAX_VALUE && count <= 1) {
             var ct = 0
             for (j in s.indices) {
                 if (s[j] == i) ct++
@@ -70,7 +70,7 @@ class PalindromePermutationArray : PalindromePermutationBehavior {
     override fun canPermutePalindrome(s: String): Boolean {
         val map = IntArray(MAX_VALUE)
         for (element in s) {
-            map[element.toInt()]++
+            map[element.code]++
         }
         var count = 0
         var key = 0

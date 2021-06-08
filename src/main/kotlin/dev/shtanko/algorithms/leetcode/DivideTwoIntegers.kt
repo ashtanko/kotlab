@@ -38,7 +38,7 @@ class DivideIntegersBitShifting : DivideTwoIntegers {
         var a: Int = abs(dividend)
         val b: Int = abs(divisor)
         var res = 0
-        var x = 0
+        var x: Int
         while (a - b >= 0) {
             x = 0
             while (a - (b shl x shl 1) >= 0) {

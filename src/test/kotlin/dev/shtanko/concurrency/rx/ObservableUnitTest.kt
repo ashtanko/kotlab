@@ -83,7 +83,7 @@ internal class ObservableUnitTest {
     internal fun `given array when map and subscribe then return capital letters`() {
         val letters = listOf("a", "b", "c", "d", "e", "f", "g")
         Observable.fromIterable(letters).map {
-            it.toUpperCase()
+            it.uppercase()
         }.subscribe { letter ->
             result += letter
         }

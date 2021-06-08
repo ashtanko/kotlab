@@ -54,7 +54,7 @@ internal class ChanelLinearizabilityTest : VerifierState() {
     override fun extractState(): Any {
         val elements = mutableListOf<Int>()
         while (!ch.isEmpty) {
-            elements.add(ch.poll()!!)
+            elements.add(ch.tryReceive().getOrNull()!!)
         }
         val closed = ch.isClosedForSend
         return elements to closed

@@ -243,7 +243,7 @@ class BSThreshold : FurthestBuilding {
         while (lo <= hi) {
             val mid = lo + (hi - lo) / 2
             val result = solveWithGivenThreshold(heights, bricks, ladders, mid)
-            val indexReached = result!![0]
+            val indexReached = result[0]
             val laddersRemaining = result[1]
             val bricksRemaining = result[2]
             if (indexReached == heights.size - 1) {

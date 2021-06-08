@@ -34,7 +34,6 @@ interface BrickWall {
 class BrickWallBruteForce : BrickWall {
     override fun perform(wall: List<List<Int>>): Int {
         val pos = IntArray(wall.size)
-        val c = 0
         var sum = 0
         var res = Int.MAX_VALUE
         for (el in wall[0]) sum += el

@@ -20,21 +20,21 @@ private const val COUNT_ARRAY_SIZE = 26
 private const val OUT_ARRAY_SIZE = 10
 
 fun originalDigits(s: String): String {
-    val count = CharArray(COUNT_ARRAY_SIZE + 'a'.toInt())
+    val count = CharArray(COUNT_ARRAY_SIZE + 'a'.code)
     for (letter in s.toCharArray()) {
-        count[letter.toInt()]++
+        count[letter.code]++
     }
     val out = IntArray(OUT_ARRAY_SIZE)
-    out[0] = count['z'.toInt()].toInt()
-    out[2] = count['w'.toInt()].toInt()
-    out[4] = count['u'.toInt()].toInt()
-    out[6] = count['x'.toInt()].toInt()
-    out[8] = count['g'.toInt()].toInt()
-    out[3] = (count['h'.toInt()] - out[8]).toInt()
-    out[5] = (count['f'.toInt()] - out[4]).toInt()
-    out[7] = (count['s'.toInt()] - out[6]).toInt()
-    out[9] = (count['i'.toInt()] - out[5] - out[6] - out[8]).toInt()
-    out[1] = (count['n'.toInt()] - out[7] - 2 * out[9]).toInt()
+    out[0] = count['z'.code].code
+    out[2] = count['w'.code].code
+    out[4] = count['u'.code].code
+    out[6] = count['x'.code].code
+    out[8] = count['g'.code].code
+    out[3] = (count['h'.code] - out[8]).code
+    out[5] = (count['f'.code] - out[4]).code
+    out[7] = (count['s'.code] - out[6]).code
+    out[9] = (count['i'.code] - out[5] - out[6] - out[8]).code
+    out[1] = (count['n'.code] - out[7] - 2 * out[9]).code
 
     // building output string
 

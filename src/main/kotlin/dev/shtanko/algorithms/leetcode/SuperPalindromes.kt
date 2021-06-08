@@ -34,16 +34,16 @@ object SuperPalindromes {
         val l = left.toLong()
         val r = right.toLong()
         var ans = 0
-        countLen(l, r, ans, SPNumType.ODD) {
+        countLen(l, r, SPNumType.ODD) {
             ans++
         }
-        countLen(l, r, ans, SPNumType.EVEN) {
+        countLen(l, r, SPNumType.EVEN) {
             ans++
         }
         return ans
     }
 
-    private fun countLen(l: Long, r: Long, a: Int, numType: SPNumType, increase: () -> Unit) {
+    private fun countLen(l: Long, r: Long, numType: SPNumType, increase: () -> Unit) {
         for (k in 1 until MAGIC) {
             val sb = StringBuilder(k.toString())
             for (i in sb.length - numType.value downTo 0) {

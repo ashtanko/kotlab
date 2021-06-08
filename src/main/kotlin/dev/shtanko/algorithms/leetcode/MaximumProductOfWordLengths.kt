@@ -66,8 +66,7 @@ class MaxProductHashmap : MaximumProductOfWordLengths {
     override fun maxProduct(words: Array<String>): Int {
         val hashmap: MutableMap<Int, Int> = HashMap()
 
-        var bitmask = 0
-        val bitNum = 0
+        var bitmask: Int
         for (word in words) {
             bitmask = 0
             for (ch in word.toCharArray()) {
