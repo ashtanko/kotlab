@@ -24,42 +24,42 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-internal abstract class SortedListToBSTTest<out T : SortedListToBST>(private val strategy: T) {
+internal abstract class SumOfUniqueTest<out T : SumOfUnique>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                ListNode(-10).apply {
-                    next = ListNode(-3).apply {
-                        next = ListNode(0).apply {
-                            next = ListNode(5).apply {
-                                next = ListNode(9)
-                            }
-                        }
-                    }
-                },
-                listOf(0, -3, 9, -10, 5),
+                intArrayOf(
+                    1, 2, 3, 2
+                ),
+                4
             ),
             Arguments.of(
-                ListNode(0),
-                listOf(0),
+                intArrayOf(1, 1, 1, 1, 1),
+                0
             ),
             Arguments.of(
-                ListNode(1).apply {
-                    next = ListNode(3)
-                },
-                listOf(3, 1)
+                intArrayOf(1, 2, 3, 4, 5),
+                15
             ),
+            Arguments.of(
+                intArrayOf(10),
+                10
+            ),
+            Arguments.of(
+                intArrayOf(10, 6, 9, 6, 9, 6, 8, 7),
+                25
+            )
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sorted list to BST test`(head: ListNode, expected: List<Int>) {
-        val actual = strategy.perform(head).postOrderTraversal()
-        assertThat(actual).containsAll(expected)
+    internal fun `unique elements test`(elems: IntArray, expected: Int) {
+        val actual = strategy.perform(elems)
+        assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class SortedListToBSTRecursionTest : SortedListToBSTTest<SortedListToBSTRecursion>(SortedListToBSTRecursion())
-internal class SortedListToBSTInorderTest : SortedListToBSTTest<SortedListToBSTInorder>(SortedListToBSTInorder())
-internal class SortedListToBSTArrayTest : SortedListToBSTTest<SortedListToBSTArray>(SortedListToBSTArray())
+internal class SumOfUniqueBruteForceTest : SumOfUniqueTest<SumOfUniqueBruteForce>(SumOfUniqueBruteForce())
+internal class SumOfUniqueHashMapTest : SumOfUniqueTest<SumOfUniqueHashMap>(SumOfUniqueHashMap())
+internal class SumOfUniqueFilterTest : SumOfUniqueTest<SumOfUniqueFilter>(SumOfUniqueFilter())
