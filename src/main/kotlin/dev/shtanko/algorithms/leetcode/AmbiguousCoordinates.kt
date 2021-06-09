@@ -21,9 +21,9 @@ class AmbiguousCoordinates {
         val ans: MutableList<String> = ArrayList()
         for (i in 2 until s.length - 1) {
             for (left in make(s, 1, i)) {
-                for (right in make(s, i, s.length - 1)) ans.add(
-                    "($left, $right)"
-                )
+                for (right in make(s, i, s.length - 1)) {
+                    ans.add("($left, $right)")
+                }
             }
         }
         return ans

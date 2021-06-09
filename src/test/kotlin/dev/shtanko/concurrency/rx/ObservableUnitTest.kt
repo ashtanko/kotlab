@@ -196,11 +196,10 @@ internal class ObservableUnitTest {
         Observable
             .combineLatest(
                 numbers,
-                letters,
-                { n: Int, c: String ->
-                    "$n$c"
-                }
-            ).subscribe {
+                letters
+            ) { n: Int, c: String ->
+                "$n$c"
+            }.subscribe {
                 result += it
             }
         assertTrue(result == "5a5b5c5d5e")
@@ -218,24 +217,26 @@ internal class ObservableUnitTest {
         assertTrue(result == "0136")
     }
 
-    @Test
-    internal fun `task test`() {
-        val numbers = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-        Observable
-            .fromIterable(numbers)
-            .map {
-                it * 2
-            }.map {
-                print("square: $it")
-                it * 3
-            }
-            .subscribe(
-                ::println,
-                Throwable::printStackTrace
-            ) {
-                println("Done!")
-            }
-    }
+    // TODO
+//    @Test
+//    internal fun `task test`() {
+//        val numbers = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+//        Observable
+//            .fromIterable(numbers)
+//            .map {
+//                it * 2
+//            }.map {
+//                print("square: $it")
+//                it * 3
+//                "$it"
+//            }
+//            .subscribe(
+//                ::println,
+//                Throwable::printStackTrace
+//            ) {
+//                println("Done!")
+//            }
+//    }
 
     @Test
     internal fun `do on error`() {
