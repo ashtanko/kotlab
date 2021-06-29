@@ -94,3 +94,35 @@ class LLSSlidingWindow : LengthOfLongestSubstring {
         private const val MAXIMUM_VALUE = 128
     }
 }
+
+/**
+ * Approach 3: Sliding Window Optimized
+ * Time complexity : O(n).
+ * Space complexity : O(min(m,n)).
+ */
+class LLSSlidingWindowOpt : LengthOfLongestSubstring {
+    override fun perform(s: String): Int {
+        val chars = arrayOfNulls<Int>(MAXIMUM_VALUE)
+
+        var left = 0
+        var right = 0
+
+        var res = 0
+        while (right < s.length) {
+            val r: Char = s[right]
+            val index = chars[r.toInt()]
+            if (index != null && index >= left && index < right) {
+                left = index + 1
+            }
+            res = Math.max(res, right - left + 1)
+            chars[r.toInt()] = right
+            right++
+        }
+
+        return res
+    }
+
+    companion object {
+        private const val MAXIMUM_VALUE = 128
+    }
+}

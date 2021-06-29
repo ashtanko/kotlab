@@ -55,3 +55,5 @@ internal class LengthOfLongestSubstringBFTest :
     LengthOfLongestSubstringTest<LengthOfLongestSubstringBF>(LengthOfLongestSubstringBF())
 
 internal class LLSSlidingWindowTest : LengthOfLongestSubstringTest<LLSSlidingWindow>(LLSSlidingWindow())
+
+internal class LLSSlidingWindowOptTest : LengthOfLongestSubstringTest<LLSSlidingWindowOpt>(LLSSlidingWindowOpt())
