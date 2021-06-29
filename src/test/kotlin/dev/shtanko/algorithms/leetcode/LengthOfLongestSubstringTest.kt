@@ -53,3 +53,5 @@ internal abstract class LengthOfLongestSubstringTest<out T : LengthOfLongestSubs
 
 internal class LengthOfLongestSubstringBFTest :
     LengthOfLongestSubstringTest<LengthOfLongestSubstringBF>(LengthOfLongestSubstringBF())
+
+internal class LLSSlidingWindowTest : LengthOfLongestSubstringTest<LLSSlidingWindow>(LLSSlidingWindow())

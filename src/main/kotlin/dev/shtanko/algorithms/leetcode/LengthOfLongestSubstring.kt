@@ -62,3 +62,35 @@ class LengthOfLongestSubstringBF : LengthOfLongestSubstring {
         private const val MAXIMUM_VALUE = 128
     }
 }
+
+/**
+ * Approach 2: Sliding Window
+ * Time complexity : O(2n) = O(n).
+ * Space complexity : O(min(m,n)).
+ */
+class LLSSlidingWindow : LengthOfLongestSubstring {
+    override fun perform(s: String): Int {
+        val chars = IntArray(MAXIMUM_VALUE)
+
+        var left = 0
+        var right = 0
+
+        var res = 0
+        while (right < s.length) {
+            val r: Char = s[right]
+            chars[r.toInt()]++
+            while (chars[r.toInt()] > 1) {
+                val l: Char = s[left]
+                chars[l.toInt()]--
+                left++
+            }
+            res = Math.max(res, right - left + 1)
+            right++
+        }
+        return res
+    }
+
+    companion object {
+        private const val MAXIMUM_VALUE = 128
+    }
+}
