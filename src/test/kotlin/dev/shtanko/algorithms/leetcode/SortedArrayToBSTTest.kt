@@ -56,3 +56,8 @@ abstract class SortedArrayToBSTTest<out T : SortedArrayToBST>(private val strate
 }
 
 internal class SortedArrayToBSTPreorderTest : SortedArrayToBSTTest<SortedArrayToBSTPreorder>(SortedArrayToBSTPreorder())
+internal class RightMiddleSortedArrayToBSTTest :
+    SortedArrayToBSTTest<RightMiddleSortedArrayToBST>(RightMiddleSortedArrayToBST())
+
+internal class RandomMiddleSortedArrayToBSTTest :
+    SortedArrayToBSTTest<RandomMiddleSortedArrayToBST>(RandomMiddleSortedArrayToBST())

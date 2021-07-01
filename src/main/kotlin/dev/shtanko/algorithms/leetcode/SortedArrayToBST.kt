@@ -43,3 +43,49 @@ class SortedArrayToBSTPreorder : SortedArrayToBST {
         return root
     }
 }
+
+/**
+ * Approach 2: Preorder Traversal: Always Choose Right Middle Node as a Root
+ * Time complexity: O(N).
+ * Space complexity: O(N).
+ */
+class RightMiddleSortedArrayToBST : SortedArrayToBST {
+    override fun perform(nums: IntArray): TreeNode? {
+        return helper(nums = nums, right = nums.size - 1)
+    }
+
+    private fun helper(nums: IntArray, left: Int = 0, right: Int): TreeNode? {
+        if (left > right) return null
+        var middle = left.plus(right).div(2)
+        if ((left + right) % 2 == 1) {
+            ++middle
+        }
+        val root = TreeNode(nums[middle])
+        root.left = helper(nums, left, middle - 1)
+        root.right = helper(nums, middle + 1, right)
+        return root
+    }
+}
+
+/**
+ * Approach 3: Preorder Traversal: Choose Random Middle Node as a Root
+ * Time complexity: O(N).
+ * Space complexity: O(N).
+ */
+class RandomMiddleSortedArrayToBST : SortedArrayToBST {
+    override fun perform(nums: IntArray): TreeNode? {
+        return helper(nums = nums, right = nums.size - 1)
+    }
+
+    private fun helper(nums: IntArray, left: Int = 0, right: Int): TreeNode? {
+        if (left > right) return null
+        var middle = left.plus(right).div(2)
+        if ((left + right) % 2 == 1) {
+            middle += (0 until 2).random()
+        }
+        val root = TreeNode(nums[middle])
+        root.left = helper(nums, left, middle - 1)
+        root.right = helper(nums, middle + 1, right)
+        return root
+    }
+}
