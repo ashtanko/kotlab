@@ -16,42 +16,29 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.extension.ExtensionContext
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.TestFactory
 
 internal abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val strategy: T) {
-    internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
-    }
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Int, Int>> {
-            return listOf(
-                0 to 0,
-                1 to 0,
-                3 to 1,
-                4 to 2,
-                5 to 2,
-                7 to 3,
-                11 to 4,
-                10 to 4,
-                13 to 5,
-                1_000_000 to 78498,
-            )
-        }
-    }
 
-    @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `count primes test`(testCase: Pair<Int, Int>) {
-        val (n, expected) = testCase
-        val actual = strategy.perform(n)
-        assertEquals(expected, actual)
+    @TestFactory
+    internal fun `count primes test`() = listOf(
+        0 to 0,
+        1 to 0,
+        3 to 1,
+        4 to 2,
+        5 to 2,
+        7 to 3,
+        11 to 4,
+        10 to 4,
+        13 to 5,
+        1_000_000 to 78498,
+    ).map { (input, expected) ->
+        DynamicTest.dynamicTest("count primes of $input then get $expected") {
+            val actual = strategy.perform(input)
+            Assertions.assertThat(actual).isEqualTo(expected)
+        }
     }
 }
 
