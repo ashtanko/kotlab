@@ -25,7 +25,7 @@ jobs:
 
       ## Caching
       - name: Cache gradle dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.6
         with:
           path: ${{ env.GRADLE_HOME }}/caches
           # Include the SHA in the hash so this step always adds a cache entry. If we didn't use the SHA, the artifacts
@@ -74,7 +74,7 @@ jobs:
       - name: Generate cache key
         run: ./checksum.sh checksum.txt
 
-      - uses: actions/cache@v1.1.2
+      - uses: actions/cache@v2.1.6
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('checksum.txt') }}
