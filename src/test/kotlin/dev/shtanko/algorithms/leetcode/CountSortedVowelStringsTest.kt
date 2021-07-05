@@ -16,29 +16,22 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.jupiter.api.extension.ExtensionContext
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.TestFactory
 
 internal abstract class CountSortedVowelStringsTest<out T : CountSortedVowelStrings>(private val strategy: T) {
-    internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(1, 5),
-            Arguments.of(2, 15),
-            Arguments.of(33, 66045),
-        )
-    }
 
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `count vowel strings`(n: Int, expected: Int) {
-        val actual = strategy.perform(n)
-        assertThat(actual, equalTo(expected))
+    @TestFactory
+    internal fun `count vowel strings`() = listOf(
+        1 to 5,
+        2 to 15,
+        33 to 66045
+    ).map { (input, expected) ->
+        DynamicTest.dynamicTest("count vowel strings of $input then get $expected") {
+            val actual = strategy.perform(input)
+            assertThat(actual).isEqualTo(expected)
+        }
     }
 }
 
