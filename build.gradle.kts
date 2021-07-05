@@ -5,7 +5,7 @@ import java.util.Locale
 
 val projectJvmTarget = "1.8"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
-val ktlint by configurations.creating
+val ktlint: Configuration by configurations.creating
 
 plugins {
     kotlin("jvm") version "1.5.10"
@@ -36,7 +36,6 @@ buildscript {
 }
 
 dependencies {
-    // implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
@@ -47,13 +46,18 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
     ktlint("com.pinterest:ktlint:0.41.0")
 
-    implementation("com.google.dagger:dagger:2.33")
-    kapt("com.google.dagger:dagger-compiler:2.33")
+    implementation("com.google.dagger:dagger:${Versions.DAGGER}")
+    kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
 
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+    //testImplementation("io.kotest:kotest-runner-junit5:4.6.0")
+    testImplementation("io.kotlintest:kotlintest-core:3.4.2")
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
+    testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
+    testImplementation("io.arrow-kt:arrow-core-test:0.13.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.assertj:assertj-core:3.18.1")
     testImplementation("org.mockito:mockito-core:3.6.0")
@@ -87,6 +91,10 @@ allprojects {
         google()
         jcenter()
     }
+}
+
+jacoco {
+
 }
 
 val outputDir = "${project.buildDir}/reports/ktlint/"
@@ -141,10 +149,9 @@ spotless {
         trimTrailingWhitespace()
         indentWithSpaces()
         endWithNewline()
-        licenseHeaderFile(
-            rootProject.file("spotless/copyright.kt"),
-            "^(package|object|import|interface|internal|@file|//startfile)"
-        )
+        val delimiter = "^(package|object|import|interface|internal|@file|//startfile)"
+        val licenseHeaderFile = rootProject.file("spotless/copyright.kt")
+        licenseHeaderFile(licenseHeaderFile, delimiter)
     }
 }
 
@@ -213,6 +220,9 @@ tasks {
     }
 
     withType<Test>().configureEach {
+        jvmArgs = listOf(
+            "-Dkotlintest.tags.exclude=Integration,EndToEnd,Performance",
+        )
         useJUnitPlatform {
             includeEngines("spek2", "junit-jupiter")
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Alexey Shtanko
+ * Copyright 2021 Alexey Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,14 @@
  * limitations under the License.
  */
 
-object Versions {
-    const val KOTLIN_VERSION = "1.5.10"
-    const val LINCHECK = "2.10"
-    const val RX_JAVA = "3.0.13"
-    const val DETEKT = "1.17.1"
-    const val COROUTINES = "1.5.0"
-    const val SPEK = "2.0.15"
-    const val TEST = "1.2.0"
-    const val EXT = "1.1.1"
-    const val ARCH_CORE = "2.1.0"
-    const val JUNIT = "4.12"
-    const val MOCKITO = "2.2.0"
-    const val MOCKK = "1.9.3"
-    const val ASSERTJ = "3.16.1"
-    const val MOCK_WEB_SERVER = "4.2.2"
-    const val DAGGER = "2.37"
-}
+package dev.shtanko.utils
+
+import io.kotlintest.shouldBe
+import io.kotlintest.specs.ShouldSpec
+
+class ExampleShouldSpecTest : ShouldSpec({
+    should("return the length of the string") {
+        "sammy".length shouldBe 5
+        "".length shouldBe 0
+    }
+})
