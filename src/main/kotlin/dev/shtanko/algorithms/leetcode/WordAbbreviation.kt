@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
 import kotlin.math.max
 
 /**
@@ -37,23 +36,74 @@ interface WordAbbreviation {
  */
 class WordAbbreviationGreedy : WordAbbreviation {
     override fun perform(dict: List<String>): List<String> {
-        val n: Int = dict.size
-        val ans = Array(n) { "" }
-        val prefix = IntArray(n)
+        val wordToAbbr: MutableMap<String?, String?> = HashMap()
+        val groups: MutableMap<Int, MutableList<String>> = HashMap()
 
-        for (i in 0 until n) ans[i] = abbrev(dict[i], 0)
-
-        for (i in 0 until n) {
-            while (true) {
-                val dupes: MutableSet<Int> = HashSet()
-                for (j in i + 1 until n) if (ans[i] == ans[j]) dupes.add(j)
-                if (dupes.isEmpty()) break
-                dupes.add(i)
-                for (k in dupes) ans[k] = abbrev(dict[k], ++prefix[k])
+        // Try to group words by their length. Because no point to compare words with different length.
+        // Also no point to look at words with length < 4.
+        for (word in dict) {
+            val len = word.length
+            if (len < 4) {
+                wordToAbbr[word] = word
+            } else {
+                val g = groups.getOrDefault(len, ArrayList())
+                g.add(word)
+                groups[len] = g
             }
         }
 
-        return ans.toList()
+        // For each group of words with same length, generate a result HashMap.
+        for (len in groups.keys) {
+            val res = getAbbr(groups[len]!!)
+            for (word in res.keys) {
+                wordToAbbr[word] = res[word]
+            }
+        }
+
+        // Generate the result list
+        val result: MutableList<String> = ArrayList()
+        for (word in dict) {
+            wordToAbbr[word]?.let { result.add(it) }
+        }
+
+        return result
+    }
+
+    private fun getAbbr(words: List<String>): Map<String?, String> {
+        val res: MutableMap<String?, String> = HashMap()
+        val len = words[0].length
+
+        // Try to abbreviate a word from index 1 to len - 2
+        for (i in 1 until len - 2) {
+            val abbrToWord: MutableMap<String, String> = HashMap()
+            for (s in words) {
+                if (res.containsKey(s)) continue
+                // Generate the current abbreviation
+                val abbr = s.substring(0, i) + (len - 1 - i) + s[len - 1]
+                // Tick: use reversed abbreviation to word map to check if there is any duplicated abbreviation
+                if (!abbrToWord.containsKey(abbr)) {
+                    abbrToWord[abbr] = s
+                } else {
+                    abbrToWord[abbr] = ""
+                }
+            }
+
+            // Add unique abbreviations find during this round to result HashMap
+            for (abbr in abbrToWord.keys) {
+                val s = abbrToWord[abbr]
+                // Not a unique abbreviation
+                if (s!!.isEmpty()) continue
+                res[s] = abbr
+            }
+        }
+
+        // Add all words that can't be shortened.
+        for (s in words) {
+            if (!res.containsKey(s)) {
+                res[s] = s
+            }
+        }
+        return res
     }
 }
 
@@ -120,19 +170,23 @@ class WordAbbreviationTrie : WordAbbreviation {
             val trie = WordTrieNode()
             for (iw in group) {
                 var cur = trie
-                for (letter in iw!!.word.substring(1).toCharArray()) {
-                    if (cur.children[letter - 'a'] == null) cur.children[letter - 'a'] = WordTrieNode()
-                    cur.count++
-                    cur = cur.children[letter - 'a']!!
+                if (iw!!.word.isNotBlank()) {
+                    for (letter in iw.word.substring(1).toCharArray()) {
+                        if (cur.children[letter - 'a'] == null) cur.children[letter - 'a'] = WordTrieNode()
+                        cur.count++
+                        cur = cur.children[letter - 'a']!!
+                    }
                 }
             }
             for (iw in group) {
                 var cur = trie
                 var i = 1
-                for (letter in iw!!.word.substring(1).toCharArray()) {
-                    if (cur.count == 1) break
-                    cur = cur.children[letter - 'a']!!
-                    i++
+                if (iw!!.word.isNotBlank()) {
+                    for (letter in iw.word.substring(1).toCharArray()) {
+                        if (cur.count == 1) break
+                        cur = cur.children[letter - 'a']!!
+                        i++
+                    }
                 }
                 ans[iw.index] = abbrev(iw.word, i - 1)
             }

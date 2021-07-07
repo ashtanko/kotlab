@@ -40,7 +40,86 @@ internal abstract class WordAbbreviationTest<out T : WordAbbreviation>(private v
                     "l2e", "god", "internal", "me", "i6t", "interval", "inte4n", "f2e", "intr4n"
                 )
             ),
+            Arguments.of(
+                listOf("applicable", "law", "language", "distributed"),
+                listOf("a8e", "law", "l6e", "d9d"),
+            ),
+            Arguments.of(
+                listOf(""),
+                listOf(""),
+            ),
+            Arguments.of(
+                listOf("a", "b", "c", "D", "E"),
+                listOf("a", "b", "c", "D", "E"),
+            ),
+            Arguments.of(
+                listOf("aa", "aaa"),
+                listOf("aa", "aaa"),
+            ),
+            Arguments.of(
+                listOf("a", "aa", "aaa"),
+                listOf("a", "aa", "aaa"),
+            ),
+            Arguments.of(
+                listOf("a", "aa", "aaa", "aaaa"),
+                listOf("a", "aa", "aaa", "a2a"),
+            ),
+            Arguments.of(
+                listOf("a", "aa", "aaa", "aaaaa"),
+                listOf("a", "aa", "aaa", "a3a"),
+            ),
+            Arguments.of(
+                listOf("a", "aa", "aaa", "aaaaaa"),
+                listOf("a", "aa", "aaa", "a4a"),
+            ),
+            Arguments.of(
+                listOf("", ""),
+                listOf("", ""),
+            ),
+            Arguments.of(
+                listOf("", "", "a", "", " "),
+                listOf("", "", "a", "", " ")
+            ),
+            Arguments.of(
+                listOf("", "aaa"),
+                listOf("", "aaa"),
+            ),
+            Arguments.of(
+                listOf("a", "", "human"),
+                listOf("a", "", "h3n"),
+            ),
+            Arguments.of(
+                listOf("consanguineous"),
+                listOf("c12s"),
+            ),
+            Arguments.of(
+                listOf("Pneumonoultramicroscopicsilicovolcanoconiosis"),
+                listOf("P43s"),
+            ),
+            Arguments.of(
+                listOf("Supercalifragilisticexpialidocious"),
+                listOf("S32s"),
+            ),
+            Arguments.of(
+                listOf("Alex", "Max", "Oleksii", "Vitalii", "Ival"),
+                listOf("A2x", "Max", "O5i", "V5i", "I2l"),
+            ),
+            Arguments.of(
+                listOf("Alastair", "Atticus", "Augustine", "Benjamin", "Cameron", "Constantine"),
+                listOf("A6r", "A5s", "A7e", "B6n", "C5n", "C9e"),
+            ),
+            Arguments.of(
+                getList(),
+                listOf("l3m", "I3m", "is", "s4y", "d3y", "t2t", "of", "the", "and", "w2n", "an", "u5n", "p5r", "t2k"),
+            ),
         )
+
+        private fun getList() =
+            "lorem Ipsum is simply dummy text of the and when an unknown printer took"
+                .trim()
+                .splitToSequence(' ')
+                .filter { it.isNotEmpty() }
+                .toList()
     }
 
     @ParameterizedTest

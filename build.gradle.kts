@@ -48,6 +48,8 @@ dependencies {
 
     implementation("com.google.dagger:dagger:${Versions.DAGGER}")
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
+    kapt("com.google.auto.value:auto-value:1.8.1")
+    implementation("com.google.auto.value:auto-value-annotations:1.8.1")
 
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")

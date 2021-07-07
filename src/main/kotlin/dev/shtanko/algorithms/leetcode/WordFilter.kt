@@ -17,8 +17,8 @@
 package dev.shtanko.algorithms.leetcode
 
 /**
- * 139. Word Break
- * @link https://leetcode.com/problems/word-break/
+ * Prefix and Suffix Search
+ * @link https://leetcode.com/problems/prefix-and-suffix-search/
  */
 interface WordFilter {
     fun perform(prefix: String, suffix: String): Int

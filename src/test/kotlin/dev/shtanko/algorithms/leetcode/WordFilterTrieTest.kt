@@ -28,9 +28,75 @@ internal class WordFilterTrieTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                WordFilterTrie(arrayOf()),
+                "",
+                "",
+                -1
+            ),
+            Arguments.of(
+                WordFilterTrie(arrayOf()),
+                "c",
+                "d",
+                -1
+            ),
+            Arguments.of(
+                WordFilterTrie(arrayOf("")),
+                "",
+                "",
+                -1
+            ),
+            Arguments.of(
+                WordFilterTrie(arrayOf("can")),
+                "a",
+                "n",
+                -1
+            ),
+            Arguments.of(
+                WordFilterTrie(arrayOf("apple")),
+                "app",
+                "le",
+                0
+            ),
+            Arguments.of(
+                WordFilterTrie(arrayOf("ae")),
+                "a",
+                "e",
+                0
+            ),
+            Arguments.of(
+                WordFilterTrie(arrayOf("aaaaaaaaaaaaaeeeeeee")),
+                "a",
+                "e",
+                0
+            ),
+            Arguments.of(
+                WordFilterTrie(arrayOf("better")),
+                "a",
+                "e",
+                -1
+            ),
+            Arguments.of(
                 WordFilterTrie(arrayOf("apple")),
                 "a",
                 "e",
+                0
+            ),
+            Arguments.of(
+                WordFilterTrie(arrayOf("applies")),
+                "a",
+                "e",
+                -1
+            ),
+            Arguments.of(
+                WordFilterWrappedWords(arrayOf()),
+                "",
+                "",
+                -1
+            ),
+            Arguments.of(
+                WordFilterWrappedWords(arrayOf("")),
+                "",
+                "",
                 0
             ),
             Arguments.of(
@@ -38,6 +104,12 @@ internal class WordFilterTrieTest {
                 "a",
                 "e",
                 0
+            ),
+            Arguments.of(
+                WordFilterWrappedWords(arrayOf("applies")),
+                "a",
+                "e",
+                -1
             ),
         )
     }
