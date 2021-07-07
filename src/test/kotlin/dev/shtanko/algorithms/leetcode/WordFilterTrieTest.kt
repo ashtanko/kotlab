@@ -43,7 +43,7 @@ internal class WordFilterTrieTest {
                 WordFilterTrie(arrayOf("")),
                 "",
                 "",
-                -1
+                0
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("can")),

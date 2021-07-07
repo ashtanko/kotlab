@@ -29,6 +29,6 @@ internal class MeasureTimeTest {
         val time = measureTime(DurationUnit.MILLISECONDS) {
             repeat(10_000_000) {}
         }
-        assertThat(time).isLessThan(327)
+        assertThat(time).isLessThan(333)
     }
 }
