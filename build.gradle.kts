@@ -19,7 +19,7 @@ plugins {
     id("com.autonomousapps.dependency-analysis") version "0.58.0"
     id("info.solidsoft.pitest") version "1.5.1"
     kotlin("plugin.serialization") version "1.5.0"
-    kotlin("kapt") version "1.5.0"
+    kotlin("kapt") version "1.5.20"
 }
 
 jacoco {
