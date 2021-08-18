@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.utils.reverse
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -75,7 +76,7 @@ internal class ReverseWordsString2Test {
     @ParameterizedTest
     @ArgumentsSource(InputToReverseArgumentsProvider::class)
     internal fun `reverse whole string test`(s: CharArray, left: Int, right: Int, expected: CharArray) {
-        ReverseWordsInString2().reverse(s, left, right)
+        s.reverse(left, right)
         assertArrayEquals(expected, s)
     }
 

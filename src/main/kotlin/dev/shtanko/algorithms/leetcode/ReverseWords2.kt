@@ -15,6 +15,7 @@
  */
 
 package dev.shtanko.algorithms.leetcode
+import dev.shtanko.algorithms.utils.reverse
 
 /**
  * 186. Reverse Words in a String II
@@ -22,20 +23,10 @@ package dev.shtanko.algorithms.leetcode
  */
 fun reverseWords2(s: CharArray) {
     // reverse the whole string
-    reverse(s, 0, s.size - 1)
+    s.reverse(0, s.size - 1)
 
     // reverse each word
     reverseEachWord(s)
-}
-
-private fun reverse(s: CharArray, left: Int, right: Int) {
-    var l = left
-    var r = right
-    while (l < r) {
-        val tmp = s[l]
-        s[l++] = s[r]
-        s[r--] = tmp
-    }
 }
 
 private fun reverseEachWord(s: CharArray) {
@@ -46,7 +37,7 @@ private fun reverseEachWord(s: CharArray) {
         // go to the end of the word
         while (end < n && s[end] != ' ') ++end
         // reverse the word
-        reverse(s, start, end - 1)
+        s.reverse(start, end - 1)
         // move to the next word
         start = end + 1
         ++end

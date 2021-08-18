@@ -15,6 +15,7 @@
  */
 
 package dev.shtanko.algorithms.leetcode
+import dev.shtanko.algorithms.utils.reverse
 
 /**
  * Time complexity: O(N).
@@ -23,20 +24,10 @@ package dev.shtanko.algorithms.leetcode
 class ReverseWordsInString2 {
     fun perform(s: CharArray) {
         // reverse the whole string
-        reverse(s, 0, s.size - 1)
+        s.reverse(0, s.size - 1)
 
         // reverse each word
         reverseEachWord(s)
-    }
-
-    fun reverse(s: CharArray, left: Int, right: Int) {
-        var l = left
-        var r = right
-        while (l < r) {
-            val tmp = s[l]
-            s[l++] = s[r]
-            s[r--] = tmp
-        }
     }
 
     fun reverseEachWord(s: CharArray) {
@@ -49,7 +40,7 @@ class ReverseWordsInString2 {
                 end++
             }
             // reverse the word
-            reverse(s, start, end - 1)
+            s.reverse(start, end - 1)
             // move to the next word
             start = end + 1
             end++
