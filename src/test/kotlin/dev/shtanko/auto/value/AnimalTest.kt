@@ -33,6 +33,16 @@ class AnimalTest {
         assertFalse(Animal.create("cat", 4)!! == dog)
         assertFalse(Animal.create("dog", 2)!! == dog)
 
+        val autoDog = AutoValue_Animal("Dog", 4)
+        val autoDog2 = AutoValue_Animal("Dog2", 40)
+        val autoDog3 = AutoValue_Animal("Dog", 4)
+
+        assertEquals("Dog", autoDog.name())
+        assertEquals(4, autoDog.numberOfLegs())
+        assertEquals("Animal{name=Dog, numberOfLegs=4}", autoDog.toString())
+        assertFalse(autoDog == autoDog2)
+        assertTrue(autoDog == autoDog3)
+
         assertEquals("Animal{name=dog, numberOfLegs=4}", dog.toString())
     }
 }
