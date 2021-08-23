@@ -46,8 +46,14 @@ jobs:
       - name: Spotless
         run: ./gradlew spotlessCheck --stacktrace
 
+      - name: Detekt
+        run: ./gradlew detekt --stacktrace
+
+      - name: Ktlint
+        run: ./gradlew ktlintCheck --stacktrace
+
       - name: Unit Tests
-        run: ./gradlew testDebugUnitTest --stacktrace
+        run: ./gradlew test --build-cache --stacktrace
 
       - name: (Fail-only) Bundle the Unit Test report
         if: failure()
