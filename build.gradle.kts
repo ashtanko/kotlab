@@ -44,7 +44,7 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
-    ktlint("com.pinterest:ktlint:0.42.1")
+    ktlint("com.pinterest:ktlint:0.41.0")
 
     implementation("com.google.dagger:dagger:${Versions.DAGGER}")
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
