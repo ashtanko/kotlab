@@ -58,18 +58,6 @@ class DetectCapitalCharacter : DetectCapital {
 }
 
 /**
- * Use kotlin api
- */
-class DetectCapitalKotlinApi : DetectCapital {
-    override fun detectCapitalUse(word: String): Boolean {
-        if (word.isEmpty()) return false
-        return word.count {
-            it.isUpperCase()
-        } == word.length
-    }
-}
-
-/**
  * Approach 2: Regex
  */
 class DetectCapitalRegex : DetectCapital {
