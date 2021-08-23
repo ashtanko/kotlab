@@ -18,7 +18,7 @@ object Versions {
     const val KOTLIN_VERSION = "1.5.20"
     const val LINCHECK = "2.14.1"
     const val RX_JAVA = "3.1.0"
-    const val DETEKT = "1.18.0"
+    const val DETEKT = "1.17.1"
     const val COROUTINES = "1.5.1-native-mt"
     const val SPEK = "2.0.17"
     const val TEST = "1.2.0"
