@@ -5,5 +5,3 @@
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.5.20-blue.svg)](http://kotlinlang.org/)
 [![codecov](https://codecov.io/gh/ashtanko/algorithms-in-depth/branch/master/graph/badge.svg?token=JEU9EIJMHA)](https://codecov.io/gh/ashtanko/algorithms-in-depth)
-
-https://codecov.io/gh/ashtanko/algorithms-in-depth/commit/ca5b301bf01f68d6e342608008e8345a876e036b/graphs/tree.svg?token=JEU9EIJMHA
