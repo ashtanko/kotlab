@@ -30,13 +30,6 @@ class DetectCapitalTest {
     }
 
     @TestFactory
-    fun `detect capital kotlin api test`() = testData.map { (input, expected) ->
-        DynamicTest.dynamicTest("When $input we get $expected") {
-            assertDetectCapitalUse(input, expected, DetectCapitalKotlinApi())
-        }
-    }
-
-    @TestFactory
     fun `detect capital use regex test`() = testData.map { (input, expected) ->
         DynamicTest.dynamicTest("When $input we get $expected") {
             assertDetectCapitalUse(input, expected, DetectCapitalRegex())
@@ -52,6 +45,9 @@ class DetectCapitalTest {
             "" to false,
             "USA" to true,
             "FlaG" to false,
+            "g" to true,
+            "Google" to true,
+            "leetcode" to true,
             "SDKJFGHSDUGFUIESGFIUESGFIUSGEFUISDGFUISDGFUIGEIUSGEYFGDSIUFGSDUIFGHUIDSGFUIDSGFUISDGFUIDSGFIUSD" to true,
             "SDKJFGHSDUGFUIESGFIUESGFIUSGEFUISDGFUISDGFUIGEIUSGEYFGDSIUFGSDUIfGHUIDSGFUIDSGFUISDGFUIDSGFIUSD" to false,
         )
