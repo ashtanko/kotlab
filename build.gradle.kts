@@ -8,7 +8,7 @@ val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).
 val ktlint: Configuration by configurations.creating
 
 plugins {
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.5.30"
     java
     jacoco
     idea
@@ -19,7 +19,7 @@ plugins {
     id("com.autonomousapps.dependency-analysis") version "0.58.0"
     id("info.solidsoft.pitest") version "1.5.1"
     kotlin("plugin.serialization") version "1.5.0"
-    kotlin("kapt") version "1.5.21"
+    kotlin("kapt") version "1.5.30"
 }
 
 jacoco {
