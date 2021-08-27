@@ -41,5 +41,6 @@ class SortingSentenceTest {
     private fun testData() = listOf(
         "is2 sentence4 This1 a3" to "This is a sentence",
         "Myself2 Me1 I4 and3" to "Me Myself and I",
+        "Me1" to "Me",
     )
 }
