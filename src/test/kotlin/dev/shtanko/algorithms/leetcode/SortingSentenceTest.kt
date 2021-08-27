@@ -21,15 +21,25 @@ import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
 class SortingSentenceTest {
+
     @TestFactory
-    fun `sort sentence test`() = listOf(
+    fun `sort sentence test`() = testData().map { (input, expected) ->
+        DynamicTest.dynamicTest("when sort $input output is: $expected") {
+            assertSortSentence(::sortSentence, input, expected)
+        }
+
+        DynamicTest.dynamicTest("when sort using tree $input output is: $expected") {
+            assertSortSentence(::sortSentenceTree, input, expected)
+        }
+    }
+
+    private fun assertSortSentence(strategy: (s: String) -> String, sentence: String, expected: String) {
+        val actual = strategy.invoke(sentence)
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    private fun testData() = listOf(
         "is2 sentence4 This1 a3" to "This is a sentence",
         "Myself2 Me1 I4 and3" to "Me Myself and I",
     )
-        .map { (input, expected) ->
-            DynamicTest.dynamicTest("when sort $input output is: $expected") {
-                val actual = sortSentence(input)
-                assertThat(actual).isEqualTo(expected)
-            }
-        }
 }

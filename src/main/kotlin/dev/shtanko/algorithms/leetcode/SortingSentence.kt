@@ -22,7 +22,7 @@ import java.util.TreeMap
  * 1859. Sorting the Sentence
  * https://leetcode.com/problems/sorting-the-sentence/
  */
-fun sortSentence(s: String): String {
+fun sortSentenceTree(s: String): String {
     val map = TreeMap<Int, String>()
     val str = s.split(" ").toTypedArray()
     for (st in str) {
@@ -41,4 +41,27 @@ fun sortSentence(s: String): String {
     val i = string.length
     string.deleteCharAt(i - 1)
     return string.toString()
+}
+
+fun sortSentence(s: String): String {
+    val list = ArrayList<String>()
+    val sb = StringBuilder()
+    for (c in s.toCharArray()) {
+        if (c != ' ') sb.append(c) else {
+            list.add(sb.toString())
+            sb.setLength(0)
+        }
+    }
+    list.add(sb.toString())
+    sb.setLength(0)
+    val temp = arrayOfNulls<String>(list.size)
+    for (str in list) {
+        temp[str[str.length - 1] - '0' - 1] = str.substring(0, str.length - 1)
+    }
+    for (str in temp) {
+        sb.append(str)
+        sb.append(' ')
+    }
+    sb.deleteCharAt(sb.length - 1)
+    return sb.toString()
 }
