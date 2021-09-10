@@ -24,12 +24,12 @@ class OrTest {
 
     @TestFactory
     fun `given two integers when or operator then new decimal number`() = listOf(
-        (1 to 1) to 1,
-        (1 to 0) to 1,
-        (0 to 1) to 1,
-        (0 to 0) to 0,
-        (2 to 2) to 2,
-        (12 to 25) to 29,
+        1 to 1 to 1,
+        1 to 0 to 1,
+        0 to 1 to 1,
+        0 to 0 to 0,
+        2 to 2 to 2,
+        12 to 25 to 29,
     ).map { (input, expected) ->
         val (x, y) = input
         DynamicTest.dynamicTest("$x or $y = $expected") {
