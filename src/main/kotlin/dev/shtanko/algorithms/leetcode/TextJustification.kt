@@ -114,7 +114,7 @@ class TextJustificationImpl2 : TextJustification {
         }
     }
 
-    private fun whitespace(numSpacesBetween: Int): String? {
+    private fun whitespace(numSpacesBetween: Int): String {
         val sb = java.lang.StringBuilder()
         for (i in 0 until numSpacesBetween) {
             sb.append(" ")
