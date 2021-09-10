@@ -24,21 +24,43 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-internal class MaximumSubArrayTest {
+internal abstract class MaximumSubArrayTest<out T : MaximumSubarray>(private val strategy: T) {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(-2, 1, -3, 4, -1, 2, 1, -5, 4),
                 6
-            )
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1
+            ),
+            Arguments.of(
+                intArrayOf(5, 4, -1, 7, 8),
+                23
+            ),
+            Arguments.of(
+                intArrayOf(),
+                Int.MIN_VALUE
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                6
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `maximum sub array test`(arr: IntArray, expected: Int) {
-        val actual = arr.maxSubArray()
+        val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
+
+internal class MaximumSubarrayBruteForceTest :
+    MaximumSubArrayTest<MaximumSubarrayBruteForce>(MaximumSubarrayBruteForce())
+
+internal class DPKadanesAlgorithmTest : MaximumSubArrayTest<DPKadanesAlgorithm>(DPKadanesAlgorithm())
+internal class MSDivideAndConquerTest : MaximumSubArrayTest<MSDivideAndConquer>(MSDivideAndConquer())
