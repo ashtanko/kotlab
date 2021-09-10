@@ -1,7 +1,7 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.util.Locale
+import java.util.*
 
 val projectJvmTarget = "1.8"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
@@ -36,7 +36,7 @@ buildscript {
 }
 
 dependencies {
-    implementation(kotlin("reflect"))
+    implementation(kotlin("reflect", "1.5.21"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.slf4j:slf4j-api:1.7.32")
