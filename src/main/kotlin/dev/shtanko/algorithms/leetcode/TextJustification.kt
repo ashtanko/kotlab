@@ -1,3 +1,19 @@
+/*
+ * Copyright 2021 Alexey Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.max
@@ -56,5 +72,68 @@ class TextJustificationImpl : TextJustification {
             curr = end
         }
         return out
+    }
+}
+
+class TextJustificationImpl2 : TextJustification {
+    override fun perform(words: Array<String>, maxWidth: Int): List<String> {
+        var left = 0
+        val result: MutableList<String> = ArrayList()
+        while (left < words.size) {
+            val right = findRight(left, words, maxWidth)
+            result.add(justify(left, right, words, maxWidth))
+            left = right + 1
+        }
+        return result
+    }
+
+    private fun justify(left: Int, right: Int, words: Array<String>, maxWidth: Int): String {
+        if (left == right) {
+            return padRight(words[left], maxWidth)
+        }
+        var sum = words[left].length
+        for (i in left + 1..right) {
+            sum += words[i].length
+        }
+        val isLastLine = right == words.size - 1
+        val numWords = right - left
+        val numWhitespace = maxWidth - sum
+        val numSpacesBetween = if (isLastLine) 1 else numWhitespace / numWords
+        var remainder = if (isLastLine) 0 else numWhitespace % numWords
+        val result = java.lang.StringBuilder()
+        for (i in left until right) {
+            result.append(words[i])
+            result.append(whitespace(numSpacesBetween))
+            result.append(if (remainder-- > 0) " " else "")
+        }
+        result.append(words[right])
+        return if (isLastLine) {
+            padRight(result.toString(), maxWidth)
+        } else {
+            result.toString()
+        }
+    }
+
+    private fun whitespace(numSpacesBetween: Int): String? {
+        val sb = java.lang.StringBuilder()
+        for (i in 0 until numSpacesBetween) {
+            sb.append(" ")
+        }
+        return sb.toString()
+    }
+
+    private fun padRight(s: String, maxWidth: Int): String {
+        val sb = java.lang.StringBuilder(s)
+        sb.append(whitespace(maxWidth - s.length))
+        return sb.toString()
+    }
+
+    private fun findRight(left: Int, words: Array<String>, maxWidth: Int): Int {
+        var right = left
+        var sum = words[right++].length
+        while (right < words.size && sum + 1 + words[right].length <= maxWidth) {
+            sum += 1 + words[right++].length
+        }
+        return right - 1
     }
 }
