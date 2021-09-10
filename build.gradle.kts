@@ -14,11 +14,11 @@ plugins {
     idea
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
     id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
-    id("org.jetbrains.dokka") version "1.4.32"
+    id("org.jetbrains.dokka") version "1.5.0"
     id("com.diffplug.gradle.spotless") version "3.26.1"
-    id("com.autonomousapps.dependency-analysis") version "0.58.0"
-    id("info.solidsoft.pitest") version "1.5.1"
-    kotlin("plugin.serialization") version "1.5.0"
+    id("com.autonomousapps.dependency-analysis") version "0.77.0"
+    id("info.solidsoft.pitest") version "1.6.0"
+    kotlin("plugin.serialization") version "1.5.30"
     kotlin("kapt") version "1.5.30"
 }
 
@@ -53,16 +53,16 @@ dependencies {
 
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt")
+
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
-    //testImplementation("io.kotest:kotest-runner-junit5:4.6.0")
     testImplementation("io.kotlintest:kotlintest-core:3.4.2")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
     testImplementation("io.arrow-kt:arrow-core-test:0.13.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.assertj:assertj-core:3.20.2")
-    testImplementation("org.mockito:mockito-core:3.11.2")
+    testImplementation("org.mockito:mockito-core:3.12.4")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("ch.qos.logback:logback-core:1.2.5")
     testImplementation("ch.qos.logback:logback-classic:1.2.5")
