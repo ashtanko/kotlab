@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -57,10 +58,44 @@ internal class ListNodeTest {
         }
     }
 
+    internal class InputArgumentsProvider2 : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                ListNode(
+                    1
+                ),
+                listOf(1)
+            ),
+            Arguments.of(
+                ListNode(1).apply {
+                    next = ListNode(2)
+                },
+                listOf(1, 2)
+            ),
+            Arguments.of(
+                ListNode(4).apply {
+                    next = ListNode(2).apply {
+                        next = ListNode(1).apply {
+                            next = ListNode(3)
+                        }
+                    }
+                },
+                listOf(4, 2, 1, 3)
+            ),
+        )
+    }
+
     @ArgumentsSource(InputArgumentsProvider::class)
     @ParameterizedTest
     internal fun `print list node test`(node: ListNode, expected: String) {
         val actual = node.prettyPrinted()
         assertEquals(expected, actual)
+    }
+
+    @ArgumentsSource(InputArgumentsProvider2::class)
+    @ParameterizedTest
+    internal fun `list node to list test`(head: ListNode, expected: List<Int>) {
+        val actual = head.toList()
+        assertThat(actual).containsAll(expected)
     }
 }

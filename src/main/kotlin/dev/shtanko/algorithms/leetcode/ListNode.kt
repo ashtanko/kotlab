@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 data class ListNode(
-    val value: Int,
+    val value: Int = 0,
     var next: ListNode? = null
 ) {
     fun prettyPrinted(): String {
@@ -38,4 +38,18 @@ data class ListNode(
     fun prettyPrint() {
         println(prettyPrinted())
     }
+}
+
+fun ListNode.toList(): MutableList<Int> {
+    val result = mutableListOf<Int>()
+    var node: ListNode? = this
+    if (next == null) {
+        result.add(value)
+        return result
+    }
+    while (node != null) {
+        result.add(node.value)
+        node = node.next
+    }
+    return result
 }
