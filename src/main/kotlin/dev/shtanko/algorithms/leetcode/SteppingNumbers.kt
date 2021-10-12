@@ -16,9 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.LinkedList
-import java.util.Queue
-
 /**
  * 1215. Stepping Numbers
  * https://leetcode.com/problems/stepping-numbers/
@@ -29,24 +26,28 @@ interface SteppingNumbers {
 
 class SteppingNumbersBFS : SteppingNumbers {
     override fun countSteppingNumbers(low: Int, high: Int): List<Int> {
-        val res = ArrayList<Int>()
-        if (low > high) return res
+        val list: MutableList<Int> = ArrayList()
 
-        val queue: Queue<Int> = LinkedList()
-        for (i in 1..9) queue.add(i)
+        for (i in 0..9) {
+            dfs(low, high, i.toLong(), list)
+        }
+        list.sort()
+        return list
+    }
 
-        if (low == 0) res.add(0)
-        while (!queue.isEmpty()) {
-            val p: Int = queue.poll()
-            if (p < high) {
-                val last = p % 10
-                if (last > 0) queue.add(p * 10 + last - 1)
-                if (last < 9) queue.add(p * 10 + last + 1)
-            }
-            if (p in low..high) {
-                res.add(p)
+    private fun dfs(low: Int, high: Int, cur: Long, list: MutableList<Int>) {
+        if (cur in low..high) list.add(cur.toInt())
+        if (cur == 0L || cur > high) return
+        val last = cur % 10
+        val inc = cur * 10 + last + 1
+        val dec = cur * 10 + last - 1
+        when (last) {
+            0L -> dfs(low, high, inc, list)
+            9L -> dfs(low, high, dec, list)
+            else -> {
+                dfs(low, high, inc, list)
+                dfs(low, high, dec, list)
             }
         }
-        return res
     }
 }
