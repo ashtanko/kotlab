@@ -50,8 +50,8 @@ class LengthOfLongestSubstringBF : LengthOfLongestSubstring {
         val chars = IntArray(MAXIMUM_VALUE)
         for (i in start..end) {
             val c = s[i]
-            chars[c.toInt()]++
-            if (chars[c.toInt()] > 1) {
+            chars[c.code]++
+            if (chars[c.code] > 1) {
                 return false
             }
         }
@@ -78,13 +78,13 @@ class LLSSlidingWindow : LengthOfLongestSubstring {
         var res = 0
         while (right < s.length) {
             val r: Char = s[right]
-            chars[r.toInt()]++
-            while (chars[r.toInt()] > 1) {
+            chars[r.code]++
+            while (chars[r.code] > 1) {
                 val l: Char = s[left]
-                chars[l.toInt()]--
+                chars[l.code]--
                 left++
             }
-            res = Math.max(res, right - left + 1)
+            res = max(res, right - left + 1)
             right++
         }
         return res
@@ -110,12 +110,12 @@ class LLSSlidingWindowOpt : LengthOfLongestSubstring {
         var res = 0
         while (right < s.length) {
             val r: Char = s[right]
-            val index = chars[r.toInt()]
+            val index = chars[r.code]
             if (index != null && index >= left && index < right) {
                 left = index + 1
             }
-            res = Math.max(res, right - left + 1)
-            chars[r.toInt()] = right
+            res = max(res, right - left + 1)
+            chars[r.code] = right
             right++
         }
 
