@@ -161,6 +161,41 @@ class GraphTest {
                 ),
                 9,
                 listOf(9, 8, 7)
+            ),
+            Arguments.of(
+                13,
+                listOf(
+                    0 to 7,
+                    0 to 9,
+                    0 to 11,
+                    1 to 8,
+                    1 to 10,
+                    2 to 3,
+                    2 to 12,
+                    3 to 2,
+                    3 to 4,
+                    4 to 3,
+                    5 to 6,
+                    6 to 7,
+                    6 to 5,
+                    7 to 0,
+                    7 to 3,
+                    7 to 6,
+                    7 to 11,
+                    8 to 1,
+                    8 to 9,
+                    8 to 12,
+                    9 to 8,
+                    9 to 10,
+                    10 to 1,
+                    10 to 9,
+                    11 to 0,
+                    11 to 7,
+                    12 to 2,
+                    12 to 8,
+                ),
+                0,
+                listOf(0, 7, 9, 11, 3, 6, 8, 10, 2, 4, 5, 1, 12)
             )
         )
     }
