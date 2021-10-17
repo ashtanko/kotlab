@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.bfs
+package dev.shtanko.algorithms.graph.bfs
 
 import java.util.LinkedList
 
-class Graph(private val vertices: Int) {
+class GraphBFS(private val vertices: Int) {
     private val adj: Array<LinkedList<Int>> = Array(vertices) { LinkedList() }
 
     // Function to add an edge into the graph

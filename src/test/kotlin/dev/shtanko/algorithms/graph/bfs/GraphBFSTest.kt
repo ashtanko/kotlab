@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.bfs
+package dev.shtanko.algorithms.graph.bfs
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-class GraphTest {
+class GraphBFSTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -203,7 +203,7 @@ class GraphTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `BFS traversal test`(vertex: Int, edges: List<Pair<Int, Int>>, start: Int, expected: List<Int>) {
-        val graph = Graph(vertex)
+        val graph = GraphBFS(vertex)
         edges.forEach {
             val (v, w) = it
             graph.addEdge(v, w)
