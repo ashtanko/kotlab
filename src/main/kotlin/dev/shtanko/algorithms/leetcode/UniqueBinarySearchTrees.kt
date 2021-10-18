@@ -52,7 +52,7 @@ class UniqueBSTDP : UniqueBinarySearchTrees {
 class UniqueBSTDeduction : UniqueBinarySearchTrees {
     override fun numTrees(n: Int): Int {
         // Note: we should use long here instead of int, otherwise overflow
-        var c:Long = 1
+        var c: Long = 1
         for (i in 0 until n) {
             c = c * 2 * (2 * i + 1) / (i + 2)
         }
