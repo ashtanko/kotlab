@@ -20,11 +20,11 @@ package dev.shtanko.algorithms.leetcode
  * Verifying an Alien Dictionary
  * @link https://leetcode.com/problems/verifying-an-alien-dictionary/
  */
-interface AlienDictionary {
+interface VerifyingAlienDictionary {
     fun isAlienSorted(words: Array<String>, order: String): Boolean
 }
 
-class AlienDictionaryCompare : AlienDictionary {
+class VerifyingAlienDictionaryCompare : VerifyingAlienDictionary {
     override fun isAlienSorted(words: Array<String>, order: String): Boolean {
         val orderMap = IntArray(SIZE)
         for (i in order.indices) {

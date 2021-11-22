@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-internal abstract class AlienDictionaryTest<out T : AlienDictionary>(private val strategy: T) {
+internal abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDictionary>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -53,4 +53,4 @@ internal abstract class AlienDictionaryTest<out T : AlienDictionary>(private val
     }
 }
 
-internal class AlienDictionaryCompareTest : AlienDictionaryTest<AlienDictionaryCompare>(AlienDictionaryCompare())
+internal class VerifyingAlienDictionaryCompareTest : VerifyingAlienDictionaryTest<VerifyingAlienDictionaryCompare>(VerifyingAlienDictionaryCompare())
