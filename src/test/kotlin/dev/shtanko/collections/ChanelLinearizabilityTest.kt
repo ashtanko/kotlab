@@ -50,7 +50,7 @@ internal class ChanelLinearizabilityTest : VerifierState() {
     internal fun close() = ch.close()
 
     // state = elements in the channel + closed flag
-    @ExperimentalCoroutinesApi
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun extractState(): Any {
         val elements = mutableListOf<Int>()
         while (!ch.isEmpty) {

@@ -17,9 +17,11 @@
 package dev.shtanko.algorithms.utils
 
 import dev.shtanko.algorithms.sorts.AbstractSortStrategy
+import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime
 import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
+import kotlin.time.toTimeUnit
 
 @OptIn(ExperimentalTime::class)
 fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Unit) {
@@ -40,7 +42,7 @@ fun measureTime(taskName: String, task: () -> Unit) {
     println(String.format("Task %s Consumed time: %d ms", taskName, elapsed))
 }
 
-@ExperimentalTime
+@OptIn(ExperimentalTime::class)
 fun measureTime(unit: DurationUnit, task: () -> Unit): Long {
-    return unit.convert(measureNanoTime(task), DurationUnit.NANOSECONDS)
+    return unit.toTimeUnit().convert(measureNanoTime(task), TimeUnit.NANOSECONDS)
 }

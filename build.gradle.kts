@@ -8,7 +8,7 @@ val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).
 val ktlint: Configuration by configurations.creating
 
 plugins {
-    kotlin("jvm") version "1.5.30"
+    kotlin("jvm") version "1.6.0"
     java
     jacoco
     idea
@@ -19,7 +19,7 @@ plugins {
     id("com.autonomousapps.dependency-analysis") version "0.77.0"
     id("info.solidsoft.pitest") version "1.6.0"
     kotlin("plugin.serialization") version "1.5.30"
-    kotlin("kapt") version "1.5.30"
+    kotlin("kapt") version "1.6.0"
 }
 
 jacoco {
@@ -36,15 +36,15 @@ buildscript {
 }
 
 dependencies {
-    implementation(kotlin("reflect", "1.5.21"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
+    implementation(kotlin("reflect", "1.6.0"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.slf4j:slf4j-api:1.7.32")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
-    ktlint("com.pinterest:ktlint:0.41.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+    ktlint("com.pinterest:ktlint:0.43.0")
 
     implementation("com.google.dagger:dagger:${Versions.DAGGER}")
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
@@ -52,20 +52,20 @@ dependencies {
     implementation("com.google.auto.value:auto-value-annotations:1.8.2")
 
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt")
+    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("io.kotlintest:kotlintest-core:3.4.2")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
     testImplementation("io.arrow-kt:arrow-core-test:0.13.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("org.assertj:assertj-core:3.20.2")
+    testImplementation("org.assertj:assertj-core:3.21.0")
     testImplementation("org.mockito:mockito-core:3.12.4")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
-    testImplementation("ch.qos.logback:logback-core:1.2.5")
-    testImplementation("ch.qos.logback:logback-classic:1.2.5")
+    testImplementation("ch.qos.logback:logback-core:1.2.7")
+    testImplementation("ch.qos.logback:logback-classic:1.2.7")
     testImplementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.2")
     testImplementation("org.hamcrest:hamcrest:2.2")
@@ -77,7 +77,7 @@ dependencies {
         exclude(group = "org.jetbrains.kotlin")
     }
     // spek requires kotlin-reflect, can be omitted if already in the classpath
-    testRuntimeOnly(kotlin("reflect"))
+    testRuntimeOnly(kotlin("reflect", "1.6.0"))
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }
