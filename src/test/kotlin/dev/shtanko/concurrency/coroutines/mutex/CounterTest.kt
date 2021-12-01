@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test
 
 class CounterTest : TestBase() {
 
-    private var counter: Counter = Counter()
+    private val counter: Counter = Counter()
 
     @Test
     fun test() = runTest {
