@@ -70,14 +70,6 @@ dependencies {
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.2")
     testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("io.mockk:mockk:1.12.0")
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.SPEK}") {
-        exclude(group = "org.jetbrains.kotlin")
-    }
-    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:${Versions.SPEK}") {
-        exclude(group = "org.jetbrains.kotlin")
-    }
-    // spek requires kotlin-reflect, can be omitted if already in the classpath
-    testRuntimeOnly(kotlin("reflect", "1.6.0"))
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }

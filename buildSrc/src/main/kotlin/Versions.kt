@@ -20,7 +20,6 @@ object Versions {
     const val RX_JAVA = "3.1.2"
     const val DETEKT = "1.17.1"
     const val COROUTINES = "1.5.2-native-mt"
-    const val SPEK = "2.0.17"
     const val TEST = "1.2.0"
     const val EXT = "1.1.1"
     const val ARCH_CORE = "2.1.0"
