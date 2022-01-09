@@ -51,18 +51,7 @@ class CatAndMouseMinimax : CatAndMouse {
         }
 
         // enqueued : all nodes that we know who wins in the end. Nodes with DRAW status is not in this queue.
-        val queue: Queue<IntArray> = LinkedList()
-        for (i in 0 until n) {
-            // turn
-            for (t in 1..2) {
-                status[0][i][t] = MOUSE_WIN // The mouse wins if it is at the hole (position 0).
-                queue.add(intArrayOf(0, i, t, MOUSE_WIN))
-                if (i > 0) {
-                    status[i][i][t] = CAT_WIN // The cat wins if mouse and cat are at the same location.
-                    queue.add(intArrayOf(i, i, t, CAT_WIN))
-                }
-            }
-        }
+        val queue = enqueuedAllNodes(n, status)
 
         // percolate nodes that we know who wins in the end
         while (!queue.isEmpty()) {
@@ -96,6 +85,23 @@ class CatAndMouseMinimax : CatAndMouse {
         }
 
         return status[1][2][MOUSE_TURN] // The mouse is at location 1. The cat is at location 2. The mouse moves first.
+    }
+
+    private fun enqueuedAllNodes(n:Int,status:Array<Array<IntArray>>): Queue<IntArray> {
+        // enqueued : all nodes that we know who wins in the end. Nodes with DRAW status is not in this queue.
+        val queue: Queue<IntArray> = LinkedList()
+        for (i in 0 until n) {
+            // turn
+            for (t in 1..2) {
+                status[0][i][t] = MOUSE_WIN // The mouse wins if it is at the hole (position 0).
+                queue.add(intArrayOf(0, i, t, MOUSE_WIN))
+                if (i > 0) {
+                    status[i][i][t] = CAT_WIN // The cat wins if mouse and cat are at the same location.
+                    queue.add(intArrayOf(i, i, t, CAT_WIN))
+                }
+            }
+        }
+        return queue
     }
 
     // What nodes could play their turn to arrive at node (m, c, t) ?
