@@ -25,9 +25,6 @@ jobs:
       - name: Detekt
         run: ./gradlew detekt --stacktrace
 
-      - name: Ktlint
-        run: ./gradlew ktlintCheck --stacktrace
-
       - name: Unit Tests
         run: ./gradlew test --build-cache --stacktrace
 
