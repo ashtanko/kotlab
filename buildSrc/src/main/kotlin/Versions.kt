@@ -29,4 +29,5 @@ object Versions {
     const val ASSERTJ = "3.16.1"
     const val MOCK_WEB_SERVER = "4.2.2"
     const val DAGGER = "2.40.5"
+    const val ATOMICFU = "0.17.0"
 }

@@ -22,6 +22,8 @@ plugins {
     kotlin("kapt") version "1.6.0"
 }
 
+apply<kotlinx.atomicfu.plugin.gradle.AtomicFUGradlePlugin>()
+
 jacoco {
     toolVersion = "0.8.7"
 }
@@ -33,6 +35,7 @@ buildscript {
         gradlePluginPortal()
         maven("https://plugins.gradle.org/m2/")
     }
+    dependencies.classpath("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${Versions.ATOMICFU}")
 }
 
 dependencies {
