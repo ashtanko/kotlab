@@ -16,8 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.LinkedList
-import java.util.Queue
+import java.util.*
 
 /**
  * 913. Cat and Mouse
@@ -87,7 +86,7 @@ class CatAndMouseMinimax : CatAndMouse {
         return status[1][2][MOUSE_TURN] // The mouse is at location 1. The cat is at location 2. The mouse moves first.
     }
 
-    private fun enqueuedAllNodes(n:Int,status:Array<Array<IntArray>>): Queue<IntArray> {
+    private fun enqueuedAllNodes(n: Int, status: Array<Array<IntArray>>): Queue<IntArray> {
         // enqueued : all nodes that we know who wins in the end. Nodes with DRAW status is not in this queue.
         val queue: Queue<IntArray> = LinkedList()
         for (i in 0 until n) {
