@@ -8,7 +8,7 @@ val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).
 val ktlint: Configuration by configurations.creating
 
 plugins {
-    kotlin("jvm") version "1.6.0"
+    kotlin("jvm") version "1.6.10"
     java
     jacoco
     idea
@@ -37,14 +37,14 @@ buildscript {
 
 dependencies {
     implementation(kotlin("reflect", "1.6.0"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.slf4j:slf4j-api:1.7.32")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
-    ktlint("com.pinterest:ktlint:0.43.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+    ktlint("com.pinterest:ktlint:0.43.2")
 
     implementation("com.google.dagger:dagger:${Versions.DAGGER}")
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
@@ -52,10 +52,10 @@ dependencies {
     implementation("com.google.auto.value:auto-value-annotations:1.8.2")
 
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
+    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("io.kotlintest:kotlintest-core:3.4.2")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
@@ -69,7 +69,7 @@ dependencies {
     testImplementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.2")
     testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation("io.mockk:mockk:1.12.1")
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }
