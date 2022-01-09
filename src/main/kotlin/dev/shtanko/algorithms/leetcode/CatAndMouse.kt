@@ -16,7 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.*
+import java.util.LinkedList
+import java.util.Queue
 
 /**
  * 913. Cat and Mouse
