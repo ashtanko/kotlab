@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.util
+package dev.shtanko.utils
 
 fun <T : Comparable<T>> assertListEquals(expected: List<T>, actual: List<T>): Boolean {
     if (expected.size != actual.size) return false
