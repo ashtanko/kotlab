@@ -50,7 +50,11 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
     kapt("com.google.auto.value:auto-value:1.8.2")
     implementation("com.google.auto.value:auto-value-annotations:1.8.2")
+    implementation("org.openjdk.jmh:jmh-core:1.34")
 
+    kapt("org.openjdk.jmh:jmh-generator-annprocess:1.34")
+    testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.34")
+    testImplementation("org.openjdk.jmh:jmh-core-benchmarks:1.34")
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt")
 
