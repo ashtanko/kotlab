@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.util
+package dev.shtanko.utils
 
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue

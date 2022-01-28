@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Alexey Shtanko
+ * Copyright 2022 Alexey Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,52 +14,48 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.concurrency.coroutines.sort
 
-import dev.shtanko.utils.assertListEquals
+import dev.shtanko.concurrency.TestBase
+import dev.shtanko.utils.toRandomArray
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SubdomainVisitCountTest {
+class CoroutinesMergeSortTest : TestBase() {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                arrayOf("9001 discuss.leetcode.com"),
-                listOf(
-                    "9001 com",
-                    "9001 leetcode.com",
-                    "9001 discuss.leetcode.com"
-                )
+                1000.genData()
             ),
             Arguments.of(
-                arrayOf("900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"),
-                listOf(
-                    "951 com",
-                    "900 google.mail.com",
-                    "1 intel.mail.com",
-                    "5 org",
-                    "5 wiki.org",
-                    "901 mail.com",
-                    "50 yahoo.com"
-                )
+                5000.genData()
+            ),
+            Arguments.of(
+                10_000.genData()
+            ),
+            Arguments.of(
+                100_000.genData()
             )
         )
+
+        private fun Int.genData(): Pair<IntArray, IntArray> {
+            val arr = this.toRandomArray()
+            val expected = arr.sorted().toIntArray()
+            return arr to expected
+        }
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `subdomain visits test`(cpDomains: Array<String>, expected: List<String>) {
-        val actual = cpDomains.subdomainVisits()
-        assertEquals(expected, actual)
-        assertTrue(assertListEquals(expected, actual))
+    fun `test merge sort`(data: Pair<IntArray, IntArray>) = runTest {
+        val (array, expected) = data
+        val actual = CoroutinesMergeSort().perform(array)
         assertThat(actual).isEqualTo(expected)
     }
 }
