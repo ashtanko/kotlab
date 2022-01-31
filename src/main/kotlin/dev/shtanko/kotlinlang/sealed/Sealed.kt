@@ -16,6 +16,8 @@
 
 package dev.shtanko.kotlinlang.sealed
 
+import java.io.File
+
 sealed class Result<out S, out F> {
     abstract fun <R> map(func: (S) -> R): Result<R, F>
     abstract fun <R> mapFailure(func: (F) -> R): Result<S, R>
@@ -33,3 +35,8 @@ data class Failure<out S, out F>(val failure: F) : Result<S, F>() {
     override fun <R> mapFailure(func: (F) -> R): Result<S, R> = Failure(func(failure))
     override fun get(): S? = null
 }
+
+sealed interface Error
+sealed class IOError : Error
+class FileReadError(val f: File) : IOError()
+object RuntimeError : Error

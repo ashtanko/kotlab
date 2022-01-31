@@ -16,6 +16,8 @@
 
 package dev.shtanko.kotlinlang.sealed
 
+import java.io.File
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.fail
@@ -94,6 +96,25 @@ internal class SealedTest {
         val result = divide(10, 0)
             .mapFailure { "Failure: $it" }
         assertEquals(Failure<Float, String>("Failure: Division by zero"), result)
+    }
+
+    @Test
+    internal fun `runtime error test`() {
+        val result = saveFile(File.createTempFile("lol", "js"))
+        assertThat(result).isEqualTo(RuntimeError)
+    }
+
+    @Test
+    internal fun `file read error test`() {
+        val file = File.createTempFile("lol", "js")
+        file.delete()
+        val result = saveFile(file)
+        assertThat(result).isInstanceOf(IOError::class.java)
+    }
+
+    private fun saveFile(f: File): Error {
+        return if (f.exists().not()) FileReadError(f)
+        else RuntimeError
     }
 
     private fun divide(a: Int, b: Int): Result<Float, String> = when (b) {
