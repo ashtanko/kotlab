@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.extensions
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert
@@ -24,7 +25,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class StringExtTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -101,6 +101,64 @@ internal class StringExtTest {
         )
     }
 
+    internal class IntArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "b",
+                1
+            ),
+            Arguments.of(
+                "a",
+                0
+            ),
+            Arguments.of(
+                "ba",
+                10
+            ),
+            Arguments.of(
+                "acb",
+                21
+            ),
+            Arguments.of(
+                "cba",
+                210
+            ),
+            Arguments.of(
+                "cdb",
+                231
+            ),
+        )
+    }
+
+    internal class RemoveZeroesArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "0",
+                "0"
+            ),
+            Arguments.of(
+                "00",
+                "0"
+            ),
+            Arguments.of(
+                "01",
+                "1"
+            ),
+            Arguments.of(
+                "001",
+                "1"
+            ),
+            Arguments.of(
+                "",
+                ""
+            ),
+            Arguments.of(
+                "1",
+                "1"
+            ),
+        )
+    }
+
     @ParameterizedTest
     @ArgumentsSource(CountZeroesArgumentsProvider::class)
     internal fun `count zeroes ones test`(str: String, expected: IntArray) {
@@ -120,6 +178,20 @@ internal class StringExtTest {
     @ArgumentsSource(InputPrefixArgumentsProvider::class)
     internal fun `common prefix test`(left: String, right: String, expected: String) {
         val actual = (left to right).commonPrefix()
+        assertThat(actual, equalTo(expected))
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(IntArgumentsProvider::class)
+    internal fun `int or string test`(s: String, expected: Int) {
+        val actual = s.getNumberOfLetter()
+        assertThat(actual, equalTo(expected))
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(RemoveZeroesArgumentsProvider::class)
+    internal fun `remove zeroes in begin test`(s: String, expected: String) {
+        val actual = s.removeZeroesInBegin()
         assertThat(actual, equalTo(expected))
     }
 }

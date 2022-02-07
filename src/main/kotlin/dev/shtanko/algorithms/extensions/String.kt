@@ -18,6 +18,35 @@ package dev.shtanko.algorithms.extensions
 
 import kotlin.math.min
 
+private val alphabet = charArrayOf(
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z'
+)
+
 /**
  * Check is a string binary.
  */
@@ -51,4 +80,36 @@ fun String.countZeroesOnes(): IntArray {
         c[element - '0']++
     }
     return c
+}
+
+fun String.getNumberOfLetter(): Int {
+    val sb = StringBuilder()
+    for (c in this) {
+        sb.append("${alphabet.indexOf(c)}")
+    }
+    return sb.toString().removeZeroesInBegin().toInt()
+}
+
+fun String.removeZeroesInBegin(): String {
+    if (this.isEmpty()) {
+        return ""
+    }
+    if (this.length == 1 && this == "0") {
+        return this
+    }
+    if (this.toCharArray().first().isZero().not()) {
+        return this
+    }
+    if (this.isAllZeroes()) {
+        return "0"
+    }
+    return this.toInt().toString()
+}
+
+fun String.isAllZeroes(): Boolean {
+    return this.none { it.isZero().not() }
+}
+
+fun Char.isZero(): Boolean {
+    return this == '0'
 }
