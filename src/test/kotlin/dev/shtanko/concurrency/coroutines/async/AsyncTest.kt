@@ -19,6 +19,11 @@ package dev.shtanko.concurrency.coroutines.async
 import dev.shtanko.concurrency.TestBase
 import dev.shtanko.concurrency.TestCancellationException
 import dev.shtanko.concurrency.TestException
+import dev.shtanko.utils.BadClass
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertSame
+import kotlin.test.assertTrue
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,9 +33,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.yield
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class AsyncTest : TestBase() {
 
@@ -204,5 +206,16 @@ class AsyncTest : TestBase() {
         assertTrue(job.isCompleted)
         assertEquals(job.await(), 42)
         expect(4)
+    }
+
+    @Test
+    fun `defer bad class test`() = runTest {
+        val bad = BadClass()
+        val d = async {
+            expect(1)
+            bad
+        }
+        assertSame(d.await(), bad)
+        finish(2)
     }
 }
