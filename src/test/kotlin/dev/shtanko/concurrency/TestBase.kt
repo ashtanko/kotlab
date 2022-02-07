@@ -16,13 +16,13 @@
 
 package dev.shtanko.concurrency
 
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicInteger
-import java.util.concurrent.atomic.AtomicReference
 
 open class TestBase {
     private var actionIndex = AtomicInteger()
@@ -72,6 +72,10 @@ open class TestBase {
         } finally {
             if (ex == null && expected != null) error("Exception was expected but none produced")
         }
+    }
+
+    fun expectUnreached() {
+        error("Should not be reached, current action index is ${actionIndex.get()}")
     }
 
     private fun printError(message: String, cause: Throwable) {
