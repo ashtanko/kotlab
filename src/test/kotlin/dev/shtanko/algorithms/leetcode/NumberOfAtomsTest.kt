@@ -28,6 +28,14 @@ abstract class NumberOfAtomsTest<out T : NumberOfAtoms>(private val strategy: T)
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                "",
+                ""
+            ),
+            Arguments.of(
+                "H",
+                "H"
+            ),
+            Arguments.of(
                 "H2O",
                 "H2O"
             ),

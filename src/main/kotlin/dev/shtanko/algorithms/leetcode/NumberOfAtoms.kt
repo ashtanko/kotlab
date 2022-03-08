@@ -125,7 +125,10 @@ class NumberOfAtomsStack : NumberOfAtoms {
                 stack.peek()[name] = stack.peek().getOrDefault(name, 0) + multiplicity
             }
         }
+        return format(stack)
+    }
 
+    fun format(stack: Stack<MutableMap<String, Int>>): String {
         val ans = StringBuilder()
         for (name in stack.peek().keys) {
             ans.append(name)
