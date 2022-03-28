@@ -17,7 +17,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.6.10"
     id("com.diffplug.gradle.spotless") version "3.26.1"
     id("com.autonomousapps.dependency-analysis") version "0.77.0"
-    id("info.solidsoft.pitest") version "1.6.0"
+    id("info.solidsoft.pitest") version "1.7.4"
     kotlin("plugin.serialization") version "1.6.10"
     kotlin("kapt") version "1.6.10"
 }
@@ -31,7 +31,6 @@ jacoco {
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
         gradlePluginPortal()
         maven("https://plugins.gradle.org/m2/")
     }
@@ -81,16 +80,19 @@ dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }
 
+tasks.getByName<Test>("test") {
+    useJUnitPlatform()
+}
+
 repositories {
     google()
-    jcenter()
+    mavenCentral()
 }
 
 allprojects {
     repositories {
         mavenCentral()
         google()
-        jcenter()
     }
 }
 
@@ -107,7 +109,7 @@ val ktlintCheck by tasks.creating(JavaExec::class) {
 
     description = "Check Kotlin code style."
     classpath = ktlint
-    main = "com.pinterest.ktlint.Main"
+    mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("src/**/*.kt")
 }
 
@@ -117,7 +119,7 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
 
     description = "Fix Kotlin code style deviations."
     classpath = ktlint
-    main = "com.pinterest.ktlint.Main"
+    mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("-F", "src/**/*.kt")
 }
 
@@ -251,10 +253,10 @@ tasks {
         exclude("buildSrc/settings.gradle.kts")
 
         reports {
-            xml.enabled = true
-            xml.destination = file("build/reports/detekt/detekt.xml")
-            html.enabled = true
-            txt.enabled = true
+            xml.required.set(true)
+            xml.outputLocation.set(file("build/reports/detekt/detekt.xml"))
+            html.required.set(true)
+            txt.required.set(true)
         }
     }
 
