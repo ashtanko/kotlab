@@ -14,12 +14,12 @@ plugins {
     idea
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
     id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
-    id("org.jetbrains.dokka") version "1.5.0"
+    id("org.jetbrains.dokka") version "1.6.10"
     id("com.diffplug.gradle.spotless") version "3.26.1"
     id("com.autonomousapps.dependency-analysis") version "0.77.0"
     id("info.solidsoft.pitest") version "1.6.0"
-    kotlin("plugin.serialization") version "1.5.30"
-    kotlin("kapt") version "1.6.0"
+    kotlin("plugin.serialization") version "1.6.10"
+    kotlin("kapt") version "1.6.10"
 }
 
 apply<kotlinx.atomicfu.plugin.gradle.AtomicFUGradlePlugin>()
@@ -42,17 +42,17 @@ dependencies {
     implementation(kotlin("reflect", "1.6.0"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
-    implementation("org.slf4j:slf4j-api:1.7.32")
+    implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    ktlint("com.pinterest:ktlint:0.43.2")
+    ktlint("com.pinterest:ktlint:0.45.1")
 
     implementation("com.google.dagger:dagger:${Versions.DAGGER}")
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
-    kapt("com.google.auto.value:auto-value:1.8.2")
-    implementation("com.google.auto.value:auto-value-annotations:1.8.2")
+    kapt("com.google.auto.value:auto-value:1.9")
+    implementation("com.google.auto.value:auto-value-annotations:1.9")
     implementation("org.openjdk.jmh:jmh-core:1.34")
 
     kapt("org.openjdk.jmh:jmh-generator-annprocess:1.34")
@@ -68,7 +68,7 @@ dependencies {
     testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
     testImplementation("io.arrow-kt:arrow-core-test:0.13.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("org.assertj:assertj-core:3.21.0")
+    testImplementation("org.assertj:assertj-core:3.22.0")
     testImplementation("org.mockito:mockito-core:3.12.4")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("ch.qos.logback:logback-core:1.2.7")

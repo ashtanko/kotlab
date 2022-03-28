@@ -17,8 +17,8 @@
 object Versions {
     const val KOTLIN_VERSION = "1.5.20"
     const val LINCHECK = "2.14.1"
-    const val RX_JAVA = "3.1.3"
-    const val DETEKT = "1.17.1"
+    const val RX_JAVA = "3.1.4"
+    const val DETEKT = "1.20.0-RC1"
     const val COROUTINES = "1.6.0"
     const val TEST = "1.2.0"
     const val EXT = "1.1.1"
@@ -28,6 +28,6 @@ object Versions {
     const val MOCKK = "1.9.3"
     const val ASSERTJ = "3.16.1"
     const val MOCK_WEB_SERVER = "4.2.2"
-    const val DAGGER = "2.40.5"
+    const val DAGGER = "2.41"
     const val ATOMICFU = "0.17.0"
 }
