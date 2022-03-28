@@ -34,6 +34,7 @@ import kotlinx.coroutines.yield
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class AsyncTest : TestBase() {
 
     @Test
@@ -111,7 +112,6 @@ class AsyncTest : TestBase() {
         val deferred = async(NonCancellable) {
             val decomposed = async(NonCancellable) {
                 throw TestException()
-                1
             }
             try {
                 decomposed.await()

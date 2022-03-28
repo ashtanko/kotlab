@@ -25,6 +25,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -87,7 +88,7 @@ class GeneratorTest {
     fun `petrol ensure capacity test`(hours: Int, expected: Double) {
         val petrol = PremiumUnleadedPetrol()
         val generator = PetrolGenerator1(petrol)
-        generator.ensureCapacity(Duration.Companion.hours(hours))
+        generator.ensureCapacity(hours.hours)
         val actual = generator.tankCapacity()
         assertThat(actual).isEqualTo(expected)
     }

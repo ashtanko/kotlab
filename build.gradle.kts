@@ -1,9 +1,9 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import io.gitlab.arturbosch.detekt.Detekt
+import java.util.Locale
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.util.*
 
-val projectJvmTarget = "1.8"
+val projectJvmTarget = "11"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktlint: Configuration by configurations.creating
 
@@ -15,8 +15,8 @@ plugins {
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
     id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
     id("org.jetbrains.dokka") version "1.6.10"
-    id("com.diffplug.gradle.spotless") version "3.26.1"
-    id("com.autonomousapps.dependency-analysis") version "0.77.0"
+    id("com.diffplug.spotless") version "6.3.0"
+    id("com.autonomousapps.dependency-analysis") version "1.0.0-rc01"
     id("info.solidsoft.pitest") version "1.7.4"
     kotlin("plugin.serialization") version "1.6.10"
     kotlin("kapt") version "1.6.10"
@@ -264,7 +264,7 @@ tasks {
         maxParallelForks = satisfyingNumberOfCores
     }
 
-    // config JVM target to 1.8 for kotlin compilation tasks
+    // config JVM target to 11 for kotlin compilation tasks
     withType<KotlinCompile>().configureEach {
         kotlinOptions.jvmTarget = projectJvmTarget
     }

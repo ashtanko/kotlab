@@ -33,6 +33,9 @@ jobs:
       - name: Ktlint
         run: ./gradlew ktlintCheck --stacktrace
 
+      - name: Build Health
+        run: ./gradlew buildHealth --build-cache --stacktrace
+
       - name: Unit Tests
         run: ./gradlew test --build-cache --stacktrace
 
