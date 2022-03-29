@@ -18,7 +18,7 @@ package dev.shtanko.concurrency.coroutines.flow
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -26,14 +26,14 @@ internal class EmployeeManagerTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `get not exist employee test`() = runBlockingTest {
+    fun `get not exist employee test`() = runTest {
         val actual = EmployeeManager.getEmployee(199).toList()
         assertThat(actual).isEmpty()
     }
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `get employee test`() = runBlockingTest {
+    fun `get employee test`() = runTest {
         val actual = EmployeeManager.getEmployee(0).toList().first()
         assertThat(actual).isEqualTo("Jack 75000 C")
     }

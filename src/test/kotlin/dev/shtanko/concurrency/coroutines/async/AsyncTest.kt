@@ -130,7 +130,6 @@ class AsyncTest : TestBase() {
             val decomposed = async { // inherits parent job!
                 expect(3)
                 throw TestException()
-                1
             }
             try {
                 decomposed.await()

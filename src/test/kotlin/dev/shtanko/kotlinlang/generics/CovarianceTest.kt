@@ -29,8 +29,8 @@ internal class CovarianceTest {
         var bank1: Bank<Account> = AccountBank()
         val bank2: Bank<Deposit> = DepositBank()
 
-        val dep: Deposit = bank2.produce(200)
-        val acc: Account = bank1.produce(100)
+        // val dep: Deposit = bank2.produce(200) // TODO
+        // val acc: Account = bank1.produce(100) // TODO
 
         bank1 = bank2
         assertThat(bank1).isExactlyInstanceOf(DepositBank::class.java)
@@ -39,7 +39,7 @@ internal class CovarianceTest {
         val any = Array<Any>(3) {}
         copy(ints, any)
 
-        val doubleList: List<Double> = listOf(1.0, 2.0)
-        val numberList: List<Number> = doubleList
+        // val doubleList: List<Double> = listOf(1.0, 2.0) // TODO
+        // val numberList: List<Number> = doubleList // TODO
     }
 }

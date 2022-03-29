@@ -16,6 +16,9 @@
 
 package dev.shtanko.di.manual
 
+import java.util.stream.Stream
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.ExperimentalTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,10 +26,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
 class GeneratorTest {
@@ -116,21 +115,23 @@ class GeneratorTest {
     @ParameterizedTest
     @ArgumentsSource(InputHoursArgumentsProvider::class)
     fun `petrol generator v1 9 hours test`(hours: Int, expected: Boolean) {
-        val actual = PetrolGenerator1.isNeedMoreFuel(Duration.Companion.hours(hours))
+        val actual = PetrolGenerator1.isNeedMoreFuel(hours.hours)
         assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `petrol generator v1 11 hours test`() {
-        val actual = PetrolGenerator1.isNeedMoreFuel(Duration.Companion.hours(11))
+        val h = 11
+        val actual = PetrolGenerator1.isNeedMoreFuel(h.hours)
         assertThat(actual).isEqualTo(true)
     }
 
     @Test
     fun `petrol generator v1 premium petrol for 2 hours`() {
+        val h = 2
         val petrol = PremiumUnleadedPetrol()
         val generator: PetrolGenerator = PetrolGenerator1(petrol)
-        val actual = generator.generate(Duration.Companion.hours(2)).power
+        val actual = generator.generate(h.hours).power
         assertThat(actual).isEqualTo(1277.7777777777778)
     }
 }

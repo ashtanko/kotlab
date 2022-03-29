@@ -47,5 +47,6 @@ abstract class WeatherObserverTest<T : WeatherObserver>(private val factory: Sup
         val observer: T = this.factory.get()
         assertThat(appender.logSize).isEqualTo(0)
         observer.update(weather)
+        println(response)
     }
 }
