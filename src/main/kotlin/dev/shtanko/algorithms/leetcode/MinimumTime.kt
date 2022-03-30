@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import kotlin.math.min
+
 /**
  * 2167. Minimum Time to Remove All Cars Containing Illegal Goods
  * @link https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/
@@ -30,8 +32,8 @@ class MinimumTimeOnePass : MinimumTime {
         var left = 0
         var res = n
         for (i in 0 until n) {
-            left = Math.min(left + (s[i] - '0') * 2, i + 1)
-            res = Math.min(res, left + n - 1 - i)
+            left = min(left + (s[i] - '0') * 2, i + 1)
+            res = min(res, left + n - 1 - i)
         }
         return res
     }
@@ -48,7 +50,7 @@ class MinimumTimePrefixSuffix : MinimumTime {
 
         for (i in s.indices) {
             if (s[i] == '1') {
-                left[i] = if (i == 0) 1 else Math.min(left[i - 1] + 2, i + 1)
+                left[i] = if (i == 0) 1 else min(left[i - 1] + 2, i + 1)
             } else {
                 left[i] = if (i == 0) 0 else left[i - 1]
             }
@@ -56,7 +58,7 @@ class MinimumTimePrefixSuffix : MinimumTime {
 
         for (i in s.length - 1 downTo 0) {
             if (s[i] == '1') {
-                right[i] = if (i == s.length - 1) 1 else Math.min(right[i + 1] + 2, s.length - i)
+                right[i] = if (i == s.length - 1) 1 else min(right[i + 1] + 2, s.length - i)
             } else {
                 right[i] = if (i == s.length - 1) 0 else right[i + 1]
             }
