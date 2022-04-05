@@ -24,36 +24,51 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class ShoppingOffersTest<out T : ShoppingOffers>(private val strategy: T) {
+abstract class ValidParenthesisStringTest<out T : ValidParenthesisString>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                listOf(2, 5),
-                listOf(
-                    listOf(3, 0, 5),
-                    listOf(1, 2, 10)
-                ),
-                listOf(3, 2),
-                14
+                "()",
+                true
             ),
             Arguments.of(
-                listOf(2, 3, 4),
-                listOf(
-                    listOf(1, 1, 0, 4),
-                    listOf(2, 2, 1, 9)
-                ),
-                listOf(1, 2, 1),
-                11
+                "(*)",
+                true
+            ),
+            Arguments.of(
+                "(*))",
+                true
+            ),
+            Arguments.of(
+                "",
+                true
+            ),
+            Arguments.of(
+                "(",
+                false
+            ),
+            Arguments.of(
+                ")",
+                false
+            ),
+            Arguments.of(
+                "((",
+                false
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `shopping offers test`(price: List<Int>, special: List<List<Int>>, needs: List<Int>, expected: Int) {
-        val actual = strategy.perform(price, special, needs)
+    fun `check valid string test`(s: String, expected: Boolean) {
+        val actual = strategy.checkValidString(s)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-class ShoppingOffersRecursiveTest : ShoppingOffersTest<ShoppingOffers>(ShoppingOffersRecursive())
+class ValidParenthesisStringBruteForceTest :
+    ValidParenthesisStringTest<ValidParenthesisString>(ValidParenthesisStringBruteForce())
+
+class ValidParenthesisStringDPTest : ValidParenthesisStringTest<ValidParenthesisString>(ValidParenthesisStringDP())
+class ValidParenthesisStringGreedyTest :
+    ValidParenthesisStringTest<ValidParenthesisString>(ValidParenthesisStringGreedy())
