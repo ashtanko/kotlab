@@ -181,7 +181,7 @@ class DeleteAndEarnBest : DeleteAndEarn {
             }
         } else {
             val elements: List<Int> = ArrayList(points.keys).sorted()
-            oneBack = points[elements[0]] ?: 0
+            oneBack = points[elements.firstOrNull()] ?: 0
             for (i in 1 until elements.size) {
                 val currentElement = elements[i]
                 val temp = oneBack
