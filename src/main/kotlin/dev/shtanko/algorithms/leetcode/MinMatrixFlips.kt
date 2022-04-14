@@ -16,9 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Deque
-import java.util.LinkedList
-import java.util.Queue
+import kotlin.math.min
 
 /**
  * 1284. Minimum Number of Flips to Convert Binary Matrix to Zero Matrix
@@ -30,107 +28,53 @@ interface MinMatrixFlips {
 
 class MinMatrixFlipsBFS : MinMatrixFlips {
 
-    private val dirs =
-        arrayOf(intArrayOf(0, 0), intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, -1))
-
     override fun perform(mat: Array<IntArray>): Int {
-        return bfs(mat)
+        val n = mat.size
+        val m = mat[0].size
+        val dp: HashMap<String, Int> = HashMap()
+        val ans = func(mat, n, m, HashSet(), dp)
+        return if (ans == Int.MAX_VALUE) -1 else ans
     }
 
-    private fun bfs(mat: Array<IntArray>): Int {
-        val m = mat.size
-        val n = mat[0].size
-        var steps = 0
-        val initialState = getInitialState(mat, m, n) // create initial state of matrix based on input
-        val queue: Queue<Int> = LinkedList()
-        val visited: MutableSet<Int> = HashSet()
-        queue.add(initialState)
-        while (!queue.isEmpty()) {
-            val size = queue.size
-            for (i in 0 until size) {
-                val currState = queue.poll()
-                if (currState == 0) { // reached final state
-                    return steps
-                }
-                val nextStates = getNextStates(currState, m, n) // find next states based on current state
-                for (nextState in nextStates) {
-                    if (!visited.contains(nextState)) {
-                        queue.add(nextState)
-                        visited.add(nextState)
-                    }
-                }
-            }
-            steps++
-        }
-        return -1
-    }
-
-    private fun getNextStates(currStates: Int, m: Int, n: Int): List<Int> {
-        val nextStates: MutableList<Int> = ArrayList()
-        for (i in 0 until m) {
-            for (j in 0 until n) {
-                var nextState = currStates
-                for (dir in dirs) {
-                    val nextRow = i + dir[0]
-                    val nextCol = j + dir[1]
-                    if (isInBoundary(nextRow, nextCol, m, n)) { // flip all neighbors
-                        nextState = nextState xor (1 shl nextRow * n) + nextCol
-                    }
-                }
-                nextStates.add(nextState)
+    fun check(mat: Array<IntArray>, n: Int, m: Int): Boolean {
+        for (i in 0 until n) {
+            for (j in 0 until m) {
+                if (mat[i][j] == 1) return false
             }
         }
-        return nextStates
+        return true
     }
 
-    private fun isInBoundary(row: Int, col: Int, m: Int, n: Int): Boolean {
-        return row in 0 until m && col >= 0 && col < n
+    private fun flip(mat: Array<IntArray>, n: Int, m: Int, i: Int, j: Int) {
+        mat[i][j] = mat[i][j] xor 1
+        if (i - 1 >= 0) mat[i - 1][j] = mat[i - 1][j] xor 1
+        if (j - 1 >= 0) mat[i][j - 1] = mat[i][j - 1] xor 1
+        if (i + 1 < n) mat[i + 1][j] = mat[i + 1][j] xor 1
+        if (j + 1 < m) mat[i][j + 1] = mat[i][j + 1] xor 1
     }
 
-    private fun getInitialState(mat: Array<IntArray>, m: Int, n: Int): Int {
-        var initialState = 0
-        for (i in 0 until m) {
-            for (j in 0 until n) {
-                initialState = initialState or (mat[i][j] shl i * n) + j
+    private fun func(mat: Array<IntArray>, n: Int, m: Int, set: HashSet<String>, dp: HashMap<String, Int>): Int {
+        if (check(mat, n, m)) return 0
+        var t: String = ""
+        for (i in 0 until n) {
+            for (j in 0 until m) {
+                t += mat[i][j].toString()
             }
         }
-        return initialState
-    }
-}
-
-class MinMatrixFlipsDFS : MinMatrixFlips {
-    private val d = intArrayOf(0, 0, 1, 0, -1, 0)
-
-    override fun perform(mat: Array<IntArray>): Int {
-        var start = 0
-        val m: Int = mat.size
-        val n: Int = mat[0].size
-        for (i in 0 until m) for (j in 0 until n) start = start or (mat[i][j] shl i * n) + j
-        val stk: Deque<IntArray> = LinkedList()
-        stk.push(intArrayOf(start, 0))
-        val seenSteps: MutableMap<Int, Int> = HashMap()
-        seenSteps[start] = 0
-        while (!stk.isEmpty()) {
-            val a = stk.pop()
-            val cur = a[0]
-            val step = a[1]
-            for (i in 0 until m) {
-                for (j in 0 until n) {
-                    var next = cur
-                    for (k in 0..4) {
-                        val r = i + d[k]
-                        val c = j + d[k + 1]
-                        if (r in 0 until m && c >= 0 && c < n) {
-                            next = next xor (1 shl r * n) + c
-                        }
-                    }
-                    if (seenSteps.getOrDefault(next, Int.MAX_VALUE) > step + 1) {
-                        seenSteps[next] = step + 1
-                        stk.push(intArrayOf(next, step + 1))
-                    }
-                }
+        if (dp.containsKey(t)) return dp[t]!!
+        if (set.contains(t)) return Int.MAX_VALUE
+        set.add(t)
+        var min = Int.MAX_VALUE
+        for (i in 0 until n) {
+            for (j in 0 until m) {
+                flip(mat, n, m, i, j)
+                val small = func(mat, n, m, set, dp)
+                if (small != Int.MAX_VALUE) min = min(min, 1 + small)
+                flip(mat, n, m, i, j)
             }
         }
-        return seenSteps.getOrDefault(0, -1)
+        set.remove(t)
+        dp[t] = min
+        return min
     }
 }

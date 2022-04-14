@@ -24,38 +24,42 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class MinMatrixFlipsTest<out T : MinMatrixFlips>(private val strategy: T) {
+abstract class PalindromePairsTest<out T : PalindromePairs>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                arrayOf(
-                    intArrayOf(0, 0),
-                    intArrayOf(0, 1),
-                ),
-                3
+                arrayOf("abcd", "dcba", "lls", "s", "sssll"),
+                listOf(
+                    listOf(0, 1),
+                    listOf(1, 0),
+                    listOf(3, 2),
+                    listOf(2, 4)
+                )
             ),
             Arguments.of(
-                arrayOf(
-                    intArrayOf(0),
-                ),
-                0
+                arrayOf("bat", "tab", "cat"),
+                listOf(
+                    listOf(0, 1),
+                    listOf(1, 0),
+                )
             ),
             Arguments.of(
-                arrayOf(
-                    intArrayOf(1, 0, 0),
-                    intArrayOf(1, 0, 0),
-                ),
-                -1
+                arrayOf("a", ""),
+                listOf(
+                    listOf(0, 1),
+                    listOf(1, 0),
+                )
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min flips test`(mat: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(mat)
-        assertThat(actual).isEqualTo(expected)
+    fun `palindrome pairs test`(words: Array<String>, expected: List<List<Int>>) {
+        val actual = strategy.palindromePairs(words)
+        assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }
 
-class MinMatrixFlipsBFSTest : MinMatrixFlipsTest<MinMatrixFlips>(MinMatrixFlipsBFS())
+class PalindromePairsTrieTest : PalindromePairsTest<PalindromePairs>(PalindromePairsTrie())
+class PalindromePairsImplTest : PalindromePairsTest<PalindromePairs>(PalindromePairsImpl())
