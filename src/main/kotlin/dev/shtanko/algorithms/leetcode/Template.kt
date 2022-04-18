@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Alexey Shtanko
+ * Copyright 2022 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.hr
+package dev.shtanko.algorithms.leetcode
 
-object MarkAndToys {
-    fun perform(money: Int, prices: IntArray): Int {
-        var k = money
-        return prices.sorted()
-            .asSequence()
-            .takeWhile { k - it >= 0 }
-            .onEach { k -= it }
-            .count()
+/**
+ * TODO
+ */
+interface Template {
+    fun perform()
+}
+
+class TemplateImpl : Template {
+    override fun perform() {
+        TODO("Not yet implemented")
     }
 }

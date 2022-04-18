@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Alexey Shtanko
+ * Copyright 2021 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.hr
+package dev.shtanko.algorithms.hackerrank
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -24,26 +24,52 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-internal class CuttingBoardsTest {
+internal class MarkAndToysTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(2),
-                intArrayOf(1),
+                0,
+                intArrayOf(),
+                0
+            ),
+            Arguments.of(
+                50,
+                intArrayOf(1, 12, 5, 111, 200, 1000, 10),
                 4
             ),
             Arguments.of(
-                intArrayOf(2, 1, 3, 1, 4),
-                intArrayOf(4, 1, 2),
-                42
+                100000,
+                intArrayOf(
+                    33324560,
+                    77661073,
+                    31948330,
+                    21522343,
+                    97176507,
+                    5724692,
+                    24699815,
+                    12079402,
+                    6479353,
+                    28430129,
+                    42427721,
+                    57127004,
+                    26256001,
+                    29446837,
+                    65107604,
+                    9809008,
+                    65846182,
+                    8470661,
+                    13597655,
+                    360
+                ),
+                1
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `cutting boards test`(x: IntArray, y: IntArray, expected: Long) {
-        val actual = CuttingBoards.perform(x, y)
+    internal fun `perform test`(money: Int, prices: IntArray, expected: Int) {
+        val actual = MarkAndToys.perform(money, prices)
         assertThat(actual).isEqualTo(expected)
     }
 }
