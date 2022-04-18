@@ -39,14 +39,14 @@ buildscript {
 
 dependencies {
     implementation(kotlin("reflect", "1.6.0"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    ktlint("com.pinterest:ktlint:0.45.1")
+    ktlint("com.pinterest:ktlint:0.45.2")
 
     implementation("com.google.dagger:dagger:${Versions.DAGGER}")
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
@@ -65,17 +65,17 @@ dependencies {
     testImplementation("io.kotlintest:kotlintest-core:3.4.2")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
-    testImplementation("io.arrow-kt:arrow-core-test:0.13.2")
+    testImplementation("io.arrow-kt:arrow-core-test:1.0.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.assertj:assertj-core:3.22.0")
     testImplementation("org.mockito:mockito-core:3.12.4")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
-    testImplementation("ch.qos.logback:logback-core:1.2.7")
-    testImplementation("ch.qos.logback:logback-classic:1.2.7")
+    testImplementation("ch.qos.logback:logback-core:1.2.11")
+    testImplementation("ch.qos.logback:logback-classic:1.2.11")
     testImplementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.2")
     testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("io.mockk:mockk:1.12.1")
+    testImplementation("io.mockk:mockk:1.12.3")
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }
