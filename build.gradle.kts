@@ -8,7 +8,7 @@ val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).
 val ktlint: Configuration by configurations.creating
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.20"
     java
     jacoco
     idea
@@ -38,7 +38,7 @@ buildscript {
 }
 
 dependencies {
-    implementation(kotlin("reflect", "1.6.0"))
+    implementation(kotlin("reflect", "1.6.20"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.slf4j:slf4j-api:1.7.36")
@@ -64,8 +64,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("io.kotlintest:kotlintest-core:3.4.2")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
-    testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
-    testImplementation("io.arrow-kt:arrow-core-test:1.0.1")
+    //testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
+    //testImplementation("io.arrow-kt:arrow-core-test:1.0.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.assertj:assertj-core:3.22.0")
     testImplementation("org.mockito:mockito-core:3.12.4")

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oleksii Shtanko
+ * Copyright 2022 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
-package dev.shtanko.generators
+package dev.shtanko.algorithms.hackerrank
 
-import io.kotlintest.properties.Gen
-
-fun <A> Gen.Companion.nonEmptyList(gen: Gen<A>): Gen<arrow.core.NonEmptyList<A>> =
-    Gen.list(gen).filter(List<A>::isNotEmpty).map(arrow.core.NonEmptyList.Companion::fromListUnsafe)
+object GreedyFlorist {
+    fun solution(n: Int, k: Int, c: IntArray): Int {
+        return (0 until n).map {
+            c[it]
+        }.sortedDescending()
+            .foldIndexed(0) { i, totalCost, cost ->
+                totalCost + cost * (i / k + 1)
+            }
+            .also { print(it) }
+    }
+}

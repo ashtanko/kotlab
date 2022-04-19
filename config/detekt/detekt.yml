@@ -81,11 +81,11 @@ complexity:
     excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
   LongParameterList:
     active: true
-    functionThreshold: 8
+    functionThreshold: 11
     constructorThreshold: 7
     ignoreDefaultParameters: false
     ignoreDataClasses: true
-    ignoreAnnotated: [ ]
+    ignoreAnnotatedParameter: []
   MethodOverloading:
     active: false
     threshold: 6
