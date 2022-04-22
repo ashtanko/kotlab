@@ -20,8 +20,6 @@ import dev.shtanko.algorithms.math.gcd
 import kotlin.math.ceil
 import kotlin.math.min
 
-private const val MOD = 1_000_000_007
-
 interface NthMagicalNumberStrategy {
     fun perform(n: Int, a: Int, b: Int): Int
 }

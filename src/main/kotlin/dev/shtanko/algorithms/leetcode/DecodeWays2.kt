@@ -22,7 +22,6 @@ import dev.shtanko.algorithms.extensions.lessThanZero
 private const val NINE = 9
 private const val SIX = 6
 private const val FIFTEEN = 15
-private const val M = 1000000007L
 
 interface DecodeWays2Strategy {
     fun perform(s: String): Int
@@ -83,12 +82,12 @@ class DecodeWays2RecursionWithMemoization : DecodeWays2Strategy {
 
     private fun calculateRes(s: String, i: Int, memo: Array<Int?>, res: Long, value: Int): Long {
         val local = res + value * ways(s, i - 2, memo)
-        return local % M
+        return local % MOD
     }
 
     private fun justCalculateRes(s: String, i: Int, memo: Array<Int?>, res: Long): Long {
         val local = res + ways(s, i - 2, memo)
-        return local % M
+        return local % MOD
     }
 }
 
@@ -119,7 +118,7 @@ class DecodeWays2DynamicProgramming : DecodeWays2Strategy {
                     '*' -> {
                         val local = if (s[i] <= '6') 2 else 1
                         val calculated = dp[i + 1] + local * dp[i - 1]
-                        calculated % M
+                        calculated % MOD
                     }
                     else -> {
                         dp[i + 1]
@@ -132,7 +131,7 @@ class DecodeWays2DynamicProgramming : DecodeWays2Strategy {
 
     private fun getDp(dp: LongArray, i: Int): Long {
         val local = dp[i + 1].plus(dp[i - 1])
-        return local % M
+        return local % MOD
     }
 
     private fun calculateDP(dp: LongArray, i: Int, s: String) {
@@ -144,7 +143,7 @@ class DecodeWays2DynamicProgramming : DecodeWays2Strategy {
     }
 
     private fun justCalculateDP(dp: LongArray, i: Int, value: Int) {
-        dp[i + 1] = (dp[i + 1] + value * dp[i - 1]) % M
+        dp[i + 1] = (dp[i + 1] + value * dp[i - 1]) % MOD
     }
 }
 
@@ -184,7 +183,7 @@ class DecodeWays2ConstantSpaceDynamicProgramming : DecodeWays2Strategy {
 
     private fun sumM(first: Long, second: Long): Long {
         val sum = second.plus(first)
-        return sum % M
+        return sum % MOD
     }
 
     private fun calculateSecond(s: String, i: Int, first: Long, second: Long): Long {
@@ -198,6 +197,6 @@ class DecodeWays2ConstantSpaceDynamicProgramming : DecodeWays2Strategy {
 
     private fun justCalculate(first: Long, second: Long, value: Int): Long {
         val local = second + value * first
-        return local % M
+        return local % MOD
     }
 }

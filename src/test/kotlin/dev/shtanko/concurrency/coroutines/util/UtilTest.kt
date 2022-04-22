@@ -17,12 +17,12 @@
 package dev.shtanko.concurrency.coroutines.util
 
 import dev.shtanko.concurrency.coroutines.util.CoroutinesUtils.log
-import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class UtilTest {
 

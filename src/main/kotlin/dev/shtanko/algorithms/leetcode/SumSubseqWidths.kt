@@ -22,8 +22,6 @@ package dev.shtanko.algorithms.leetcode
  */
 object SumSubseqWidths {
 
-    private const val MOD = 1000000007
-
     fun perform(a: IntArray): Int {
         val n: Int = a.size
         a.sort()

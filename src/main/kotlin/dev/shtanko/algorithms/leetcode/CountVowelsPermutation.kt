@@ -26,10 +26,6 @@ internal interface CountVowelsPermutationStrategy {
 
 internal sealed class CountVowelsPermutation {
 
-    companion object {
-        private const val MOD = 1000000007
-    }
-
     /**
      * Approach 1: Dynamic Programming (Bottom-up)
      */

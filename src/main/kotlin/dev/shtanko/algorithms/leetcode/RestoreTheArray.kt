@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.RestoreTheArray.Companion.MODULO
 import kotlin.math.min
 
 /**
@@ -25,10 +24,6 @@ import kotlin.math.min
  */
 interface RestoreTheArray {
     fun numberOfArrays(s: String, k: Int): Int
-
-    companion object {
-        const val MODULO = 1000000007
-    }
 }
 
 class RestoreTheArrayMemoization : RestoreTheArray {
@@ -48,7 +43,7 @@ class RestoreTheArrayMemoization : RestoreTheArray {
             num = num * 10 + s[j].code.toLong() - '0'.code.toLong() // num is the value of the substring s[i..j]
             if (num > k) break // num must be in range [1, k]
             ans += dfs(s, k, j + 1, dp)
-            ans %= MODULO
+            ans %= MOD
         }
         return ans.also { dp[i] = it }
     }
@@ -56,7 +51,7 @@ class RestoreTheArrayMemoization : RestoreTheArray {
 
 class RestoreTheArrayDP : RestoreTheArray {
     override fun numberOfArrays(s: String, k: Int): Int {
-        val mod = MODULO
+        val mod = MOD
         val n: Int = s.length
         val dp = IntArray(n + 1)
         dp[0] = 1

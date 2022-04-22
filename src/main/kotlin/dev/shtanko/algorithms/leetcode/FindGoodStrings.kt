@@ -101,7 +101,6 @@ class FindGoodStringsDFS : FindGoodStrings {
     }
 
     companion object {
-        private const val MOD = 1000000007
         private const val BITS = 17
     }
 }

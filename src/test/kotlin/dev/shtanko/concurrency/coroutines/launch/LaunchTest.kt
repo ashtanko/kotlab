@@ -17,11 +17,11 @@
 package dev.shtanko.concurrency.coroutines.launch
 
 import dev.shtanko.concurrency.TestBase
+import kotlin.test.assertTrue
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.yield
 import org.junit.jupiter.api.Test
-import kotlin.test.assertTrue
 
 class LaunchTest : TestBase() {
     @Test

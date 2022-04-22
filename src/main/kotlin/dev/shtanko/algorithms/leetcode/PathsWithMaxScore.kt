@@ -49,16 +49,12 @@ class PathsWithMaxScoreDP : PathsWithMaxScore {
                             dpCnt[nr][nc] = dpCnt[r][c]
                             dpSum[nr][nc] = nsum
                         } else if (nsum == dpSum[nr][nc]) {
-                            dpCnt[nr][nc] = (dpCnt[nr][nc] + dpCnt[r][c]) % MODULO
+                            dpCnt[nr][nc] = (dpCnt[nr][nc] + dpCnt[r][c]) % MOD
                         }
                     }
                 }
             }
         }
         return intArrayOf(dpSum[0][0], dpCnt[0][0])
-    }
-
-    companion object {
-        private const val MODULO = 1000000007
     }
 }

@@ -115,10 +115,9 @@ sealed class MaximumLengthRepeatedSubarrayStrategy {
 
         companion object {
             const val P = 113L
-            const val MOD = 1000000007L
         }
 
-        var pinv: Int = BigInteger.valueOf(P).modInverse(BigInteger.valueOf(MOD)).intValueExact()
+        var pinv: Int = BigInteger.valueOf(P).modInverse(BigInteger.valueOf(MOD.toLong())).intValueExact()
 
         override fun findLength(nums1: IntArray, nums2: IntArray): Int {
             var lo = 0

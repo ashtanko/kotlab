@@ -18,6 +18,8 @@ package dev.shtanko.concurrency.rx
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.TestObserver
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicReference
 import org.hamcrest.CoreMatchers.hasItems
 import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.MatcherAssert.assertThat
@@ -26,8 +28,6 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicReference
 
 internal class ObservableUnitTest {
 
@@ -159,11 +159,10 @@ internal class ObservableUnitTest {
         val letters = Observable.just("a", "b", "c", "d", "e")
         Observable.zip(
             numbers,
-            letters,
-            { n: Int, c: String ->
-                "$n$c"
-            }
-        ).subscribe {
+            letters
+        ) { n: Int, c: String ->
+            "$n$c"
+        }.subscribe {
             result += it
         }
         assertTrue(result == "1a2b3c4d5e")
@@ -278,11 +277,10 @@ internal class ObservableUnitTest {
                     Observable.range(
                         1,
                         Int.MAX_VALUE
-                    ),
-                    { str: String, idx: Int ->
-                        "$idx-$str"
-                    }
-                )
+                    )
+                ) { str: String, idx: Int ->
+                    "$idx-$str"
+                }
 
         observable.subscribe(results::add)
         assertThat(results, notNullValue())
@@ -298,11 +296,10 @@ internal class ObservableUnitTest {
                 Observable.range(
                     1,
                     Int.MAX_VALUE
-                ),
-                { a: Int, b: Int ->
-                    a * b
-                }
-            )
+                )
+            ) { a: Int, b: Int ->
+                a * b
+            }
         observable.subscribeWith(subscriber)
         subscriber.apply {
             assertComplete()
@@ -321,11 +318,10 @@ internal class ObservableUnitTest {
                 Observable.range(
                     1,
                     2
-                ),
-                { a: Int, b: Int ->
-                    a * b
-                }
-            )
+                )
+            ) { a: Int, b: Int ->
+                a * b
+            }
             .concatWith(Observable.error(RuntimeException("error in Observable")))
         observable.subscribeWith(subscriber)
         subscriber.assertError(RuntimeException::class.java)
