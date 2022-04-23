@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.leetcode.MaxNumOfSubstrings.Companion.ARR_SIZE
+import java.util.Stack
 import kotlin.math.max
 import kotlin.math.min
 
@@ -34,31 +35,36 @@ interface MaxNumOfSubstrings {
 
 class MaxNumOfSubstringsGreedy : MaxNumOfSubstrings {
     override fun perform(s: String): List<String> {
-        val l = IntArray(ARR_SIZE) { s.length }
-        val r = IntArray(ARR_SIZE)
-        val res = ArrayList<String>()
-        for (i in s.indices) {
-            val ch = s[i] - 'a'
-            l[ch] = min(l[ch], i)
-            r[ch] = i
+        val len: Int = s.length
+        val range = Array(ARR_SIZE) { IntArray(2) }
+        for (i in 0 until ARR_SIZE) range[i] = intArrayOf(len, 0)
+        val st: Stack<IntArray> = Stack()
+        val res: MutableList<String> = ArrayList()
+        for (i in 0 until len) {
+            val idx: Int = s[i] - 'a'
+            range[idx][0] = min(i, range[idx][0])
+            range[idx][1] = max(i, range[idx][1])
         }
-        var right = -1
-        for (i in s.indices) if (i == l[s[i] - 'a']) {
-            val newRight = checkSubstr(s, i, l, r)
-            if (newRight != -1) {
-                if (i > right) res.add("")
-                right = newRight
-                res[res.size - 1] = s.substring(i, right + 1)
-            }
+        for (i in 0 until len) {
+            val idx: Int = s[i] - 'a'
+            if (range[idx][0] != i) continue
+            val l = range[idx][0]
+            val tail = range[idx][1]
+            val r = getRightMost(l, tail, range, s)
+            if (r < 0) continue
+            while (!st.isEmpty() && l >= st.peek()[0] && r <= st.peek()[1]) st.pop()
+            st.push(intArrayOf(l, r))
         }
+        while (!st.isEmpty()) res.add(s.substring(st.peek()[0], st.pop()[1] + 1))
         return res
     }
 
-    private fun checkSubstr(s: String, i: Int, l: IntArray, r: IntArray): Int {
-        var right = r[s[i].code - 'a'.code]
-        for (j in i..right) {
-            if (l[s[j].code - 'a'.code] < i) return -1
-            right = max(right, r[s[j].code - 'a'.code])
+    private fun getRightMost(l: Int, r: Int, range: Array<IntArray>, s: String): Int {
+        var right = r
+        for (i in l + 1 until right) {
+            val idx = s[i].code - 'a'.code
+            if (range[idx][0] < l) return -1
+            right = max(right, range[idx][1])
         }
         return right
     }

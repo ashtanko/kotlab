@@ -24,27 +24,33 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class MaxNumOfSubstringsTest<out T : MaxNumOfSubstrings>(private val strategy: T) {
+abstract class ScrambleStringTest<out T : ScrambleString>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "adefaddaccc",
-                listOf("e", "f", "ccc")
+                "great",
+                "rgeat",
+                true
             ),
             Arguments.of(
-                "abbaccd",
-                listOf("d", "bb", "cc")
+                "abcde",
+                "caebd",
+                false
+            ),
+            Arguments.of(
+                "a",
+                "a",
+                true
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `max num of substrings test`(s: String, expected: List<String>) {
-        val actual = strategy.perform(s)
-        assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
+    fun `is scramble test`(s1: String, s2: String, expected: Boolean) {
+        val actual = strategy.isScramble(s1, s2)
+        assertThat(actual).isEqualTo(expected)
     }
 }
 
-class MaxNumOfSubstringsGreedyTest : MaxNumOfSubstringsTest<MaxNumOfSubstrings>(MaxNumOfSubstringsGreedy())
-class MaxNumOfSubstringsKosarajuTest : MaxNumOfSubstringsTest<MaxNumOfSubstrings>(MaxNumOfSubstringsKosaraju())
+class ScrambleStringDPTest : ScrambleStringTest<ScrambleString>(ScrambleStringDP())
