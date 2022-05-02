@@ -16,17 +16,17 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
-internal class SortArrayByParityTest {
+abstract class SortArrayByParityTest<out T : SortArrayByParity>(private val strategy: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(),
@@ -35,14 +35,23 @@ internal class SortArrayByParityTest {
             Arguments.of(
                 intArrayOf(3, 1, 2, 4),
                 intArrayOf(4, 2, 1, 3)
-            )
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                intArrayOf(0)
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `sort array by parity test`(arr: IntArray, expected: IntArray) {
-        val actual = arr.sortArrayByParity()
-        assertArrayEquals(expected, actual)
+        val actual = strategy.perform(arr)
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }
+
+class SortArrayByParityStreamTest : SortArrayByParityTest<SortArrayByParity>(SortArrayByParityStream())
+class SortArrayByParityKotlinTest : SortArrayByParityTest<SortArrayByParity>(SortArrayByParityKotlin())
+class SortArrayByParityTwoPassTest : SortArrayByParityTest<SortArrayByParity>(SortArrayByParityTwoPass())
+class SortArrayByParityInPlaceTest : SortArrayByParityTest<SortArrayByParity>(SortArrayByParityInPlace())

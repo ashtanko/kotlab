@@ -18,11 +18,59 @@ package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.isEven
 import dev.shtanko.algorithms.extensions.swap
+import java.util.Arrays
 
 /**
  * Given an array A of non-negative integers, return an array consisting of all the even elements of A,
  * followed by all the odd elements of A.
  */
+interface SortArrayByParity {
+    fun perform(nums: IntArray): IntArray
+}
+
+/**
+ * Approach 1: Stream
+ */
+class SortArrayByParityStream : SortArrayByParity {
+    override fun perform(nums: IntArray): IntArray {
+        return Arrays.stream(nums)
+            .boxed()
+            .sorted { a, b -> (a % 2).compareTo(b % 2) }
+            .mapToInt { i -> i }
+            .toArray()
+    }
+}
+
+/**
+ * Approach 1: Kotlin
+ */
+class SortArrayByParityKotlin : SortArrayByParity {
+    override fun perform(nums: IntArray): IntArray = nums
+        .sortedWith { a, b -> (a % 2).compareTo(b % 2) }
+        .toIntArray()
+}
+
+class SortArrayByParityTwoPass : SortArrayByParity {
+    override fun perform(nums: IntArray): IntArray {
+        val ans = IntArray(nums.size)
+        var t = 0
+
+        for (i in nums.indices) {
+            if (nums[i] % 2 == 0) ans[t++] = nums[i]
+        }
+
+        for (i in nums.indices) {
+            if (nums[i] % 2 == 1) ans[t++] = nums[i]
+        }
+
+        return ans
+    }
+}
+
+class SortArrayByParityInPlace : SortArrayByParity {
+    override fun perform(nums: IntArray): IntArray = nums.sortArrayByParity()
+}
+
 fun IntArray.sortArrayByParity(): IntArray {
     var i = 0
     var j = size - 1
