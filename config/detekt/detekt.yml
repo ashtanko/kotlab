@@ -85,7 +85,7 @@ complexity:
     constructorThreshold: 7
     ignoreDefaultParameters: false
     ignoreDataClasses: true
-    ignoreAnnotatedParameter: []
+    ignoreAnnotatedParameter: [ ]
   MethodOverloading:
     active: false
     threshold: 6
@@ -446,7 +446,6 @@ potential-bugs:
   LateinitUsage:
     active: false
     excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"
-    excludeAnnotatedProperties: ""
     ignoreOnClassesPattern: ""
   MapGetWithNotNullAssertionOperator:
     active: false
@@ -509,7 +508,7 @@ style:
     active: true
     ignoreOverridableFunction: true
     excludedFunctions: 'describeContents'
-    excludeAnnotatedFunction: "dagger.Provides"
+    ignoreAnnotated: [ "dagger.Provides" ]
   LibraryCodeMustSpecifyReturnType:
     active: true
   LoopWithTooManyJumpStatements:
@@ -517,8 +516,8 @@ style:
     maxJumpCount: 3
   MagicNumber:
     active: true
-    excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt,**/coroutines/flow/Data.kt"
-    ignoreNumbers: '-2,-1,0,1,2,3,4,5,6,7,8,9,10'
+    excludes: [ "**/test/**","**/androidTest/**","**/*.Test.kt","**/*.Spec.kt","**/*.Spek.kt","**/coroutines/flow/Data.kt" ]
+    ignoreNumbers: [ "-2","-1", "0", "1", "2","3","4","5","6","7","8","9","10" ]
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: true
     ignoreLocalVariableDeclaration: false
@@ -581,11 +580,11 @@ style:
     active: false
   UnderscoresInNumericLiterals:
     active: false
-    acceptableDecimalLength: 5
+    acceptableLength: 5
   UnnecessaryAbstractClass:
     active: true
     excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
-    excludeAnnotatedClasses: ["dagger.Module", 'com.google.auto.value.AutoValue']
+    ignoreAnnotated: [ "dagger.Module", 'com.google.auto.value.AutoValue' ]
   UnnecessaryAnnotationUseSiteTarget:
     active: false
   UnnecessaryApply:
@@ -611,7 +610,6 @@ style:
     active: false
   UseDataClass:
     active: false
-    excludeAnnotatedClasses: ""
     allowVars: false
   UseIfInsteadOfWhen:
     active: false
