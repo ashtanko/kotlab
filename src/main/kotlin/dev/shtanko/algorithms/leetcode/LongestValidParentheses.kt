@@ -19,6 +19,10 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 import kotlin.math.max
 
+/**
+ * 32. Longest Valid Parentheses
+ * https://leetcode.com/problems/longest-valid-parentheses/
+ */
 interface LongestValidParenthesesStrategy {
     fun perform(s: String): Int
 }

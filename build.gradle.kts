@@ -14,7 +14,7 @@ plugins {
     idea
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
     id("io.gitlab.arturbosch.detekt") version Versions.DETEKT
-    id("org.jetbrains.dokka") version "1.6.10"
+    id("org.jetbrains.dokka") version "1.6.21"
     id("com.diffplug.spotless") version "6.3.0"
     id("com.autonomousapps.dependency-analysis") version "1.0.0-rc01"
     id("info.solidsoft.pitest") version "1.7.4"
@@ -38,7 +38,7 @@ buildscript {
 }
 
 dependencies {
-    implementation(kotlin("reflect", "1.6.20"))
+    implementation(kotlin("reflect", "1.6.21"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.slf4j:slf4j-api:1.7.36")
@@ -52,11 +52,11 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
     kapt("com.google.auto.value:auto-value:1.9")
     implementation("com.google.auto.value:auto-value-annotations:1.9")
-    implementation("org.openjdk.jmh:jmh-core:1.34")
+    implementation("org.openjdk.jmh:jmh-core:1.35")
 
-    kapt("org.openjdk.jmh:jmh-generator-annprocess:1.34")
+    kapt("org.openjdk.jmh:jmh-generator-annprocess:1.35")
     testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.34")
-    testImplementation("org.openjdk.jmh:jmh-core-benchmarks:1.34")
+    testImplementation("org.openjdk.jmh:jmh-core-benchmarks:1.35")
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
     testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt")
 
@@ -75,7 +75,7 @@ dependencies {
     testImplementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     testImplementation("com.carrotsearch:junit-benchmarks:0.7.2")
     testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("io.mockk:mockk:1.12.3")
+    testImplementation("io.mockk:mockk:1.12.4")
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.DETEKT}")
 }
