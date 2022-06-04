@@ -18,13 +18,15 @@ package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.generateRandomArray
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.stream.Stream
+import kotlin.system.measureTimeMillis
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class PerformanceTest {
 
@@ -87,12 +89,30 @@ internal class PerformanceTest {
         private val mergeSortStrategy = MergeSort()
         private val quickSortStrategy = QuickSort()
         private val shellSortStrategy = ShellSort()
-        private val heapSortStrategy = HeapSort()
+        private val heapSortStrategy = ShellSort()
 
         private val thirtyK = 30_000.generateRandomArray()
         private val fiftyK = 50_000.generateRandomArray()
         private val hundredK = 100_000.generateRandomArray()
         private val fiveHundredK = 500_000.generateRandomArray()
+    }
+
+    private class FastScopeStrategiesInputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(10_000, true),
+            Arguments.of(100_000, true),
+            Arguments.of(500_000, true),
+            Arguments.of(1000_000, true),
+        )
+    }
+
+    private class SlowScopeStrategiesInputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(5000, true),
+            Arguments.of(1000, true),
+            Arguments.of(10_000, true),
+            Arguments.of(20_000, true),
+        )
     }
 
     @ParameterizedTest
@@ -105,6 +125,51 @@ internal class PerformanceTest {
     @ArgumentsSource(FastSortsArgumentsProvider::class)
     internal fun `fast sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
         executionTimeReport(strategy, arr)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(SlowScopeStrategiesInputArgumentsProvider::class)
+    internal fun `slow strategies performance test`(n: Int, expected: Boolean) {
+        val arr = n.generateRandomArray().toTypedArray()
+        val fastStrategies = listOf(
+            BubbleSort(),
+            SimpleBubbleSort(),
+            ArraySort(),
+            PancakeSort(),
+            GnomeSort(),
+            InsertionSort(),
+            InsertionSort2(),
+            SelectionSort(),
+            StableSelectionSort()
+        )
+        strategiesPerformanceTest(arr, fastStrategies, expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(FastScopeStrategiesInputArgumentsProvider::class)
+    internal fun `fast strategies performance test`(n: Int, expected: Boolean) {
+        val arr = n.generateRandomArray().toTypedArray()
+        val fastStrategies = listOf(
+            MergeSort(), QuickSort(), ShellSort(), ShellSort()
+        )
+        strategiesPerformanceTest(arr, fastStrategies, expected)
+    }
+
+    private fun strategiesPerformanceTest(arr: Array<Int>, strategies: List<AbstractSortStrategy>, expected: Boolean) {
+        val totalTime = measureTimeMillis {
+            strategies.map {
+                it.perform(arr)
+            }
+        }
+        println(
+            String.format(
+                "Given arrays of length %d %s Consumed time: %d ms",
+                arr.size,
+                "Fast strategies",
+                totalTime
+            )
+        )
+        assertThat(arr.isSorted()).isEqualTo(expected)
     }
 
     private fun executionTimeReport(strategy: AbstractSortStrategy, array: IntArray) {

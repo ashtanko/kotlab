@@ -7,8 +7,11 @@ val projectJvmTarget = "11"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktlint: Configuration by configurations.creating
 
+group = "dev.shtanko"
+version = "1.0-SNAPSHOT"
+
 plugins {
-    kotlin("jvm") version "1.6.20"
+    kotlin("jvm") version "1.6.21"
     java
     jacoco
     idea
@@ -18,11 +21,17 @@ plugins {
     id("com.diffplug.spotless") version "6.3.0"
     id("com.autonomousapps.dependency-analysis") version "1.0.0-rc01"
     id("info.solidsoft.pitest") version "1.7.4"
-    kotlin("plugin.serialization") version "1.6.10"
-    kotlin("kapt") version "1.6.10"
+    kotlin("plugin.serialization") version "1.6.21"
+    kotlin("kapt") version "1.6.21"
+    application
 }
 
 apply<kotlinx.atomicfu.plugin.gradle.AtomicFUGradlePlugin>()
+
+application {
+    mainClass.set("dev.shtanko.concurrency.jvm.DeadLockSampleKt")
+    mainClass.set("dev.shtanko.di.dagger.ModulesKt")
+}
 
 jacoco {
     toolVersion = "0.8.7"
@@ -39,14 +48,23 @@ buildscript {
 
 dependencies {
     implementation(kotlin("reflect", "1.6.21"))
+    implementation(kotlin("stdlib-jdk8", "1.6.21"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.COROUTINES}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:${Versions.COROUTINES}")
+
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
     ktlint("com.pinterest:ktlint:0.45.2")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit-mock:2.9.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
     implementation("com.google.dagger:dagger:${Versions.DAGGER}")
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
@@ -58,7 +76,7 @@ dependencies {
     testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.34")
     testImplementation("org.openjdk.jmh:jmh-core-benchmarks:1.35")
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt")
+    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")

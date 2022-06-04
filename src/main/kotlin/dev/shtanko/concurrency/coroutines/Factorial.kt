@@ -16,10 +16,17 @@
 
 package dev.shtanko.concurrency.coroutines
 
+import java.math.BigInteger
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.withContext
-import java.math.BigInteger
 
 suspend fun calculateFactorial(number: Int, dispatcher: CoroutineDispatcher = Dispatchers.Default): BigInteger {
     return withContext(dispatcher) {
@@ -29,4 +36,16 @@ suspend fun calculateFactorial(number: Int, dispatcher: CoroutineDispatcher = Di
         }
         factorial
     }
+}
+
+suspend fun flowFactorial(number: Int, dispatcher: CoroutineDispatcher = Dispatchers.Default): BigInteger {
+    var factorial = BigInteger.ONE
+    return (1L..number).asFlow().map {
+        coroutineScope {
+            return@coroutineScope async {
+                factorial = factorial.multiply(BigInteger.valueOf(it))
+                factorial
+            }
+        }
+    }.flowOn(dispatcher).toList().awaitAll().last()
 }

@@ -23,7 +23,6 @@ import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
 import kotlin.time.toTimeUnit
 
-@OptIn(ExperimentalTime::class)
 fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Unit) {
     val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
     println(
@@ -36,7 +35,6 @@ fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Uni
     )
 }
 
-@OptIn(ExperimentalTime::class)
 fun measureTime(taskName: String, task: () -> Unit) {
     val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
     println(String.format("Task %s Consumed time: %d ms", taskName, elapsed))

@@ -23,7 +23,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 
 class CoroutinesMergeSort {
-    private val scope = CoroutineScope(Job() + Dispatchers.IO)
+    private val scope = CoroutineScope(Job() + Dispatchers.Default)
 
     /**
      * @param array The array to sort.  A copy is made, so it's content is not destroyed.
