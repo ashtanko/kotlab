@@ -16,9 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.LinkedList
-import java.util.Queue
-
 /**
  * 1091. Shortest Path in Binary Matrix
  * @link https://leetcode.com/problems/shortest-path-in-binary-matrix/
@@ -29,49 +26,31 @@ interface ShortestPathInBinaryMatrix {
 
 class ShortestPathInBinaryMatrixBFS : ShortestPathInBinaryMatrix {
 
-    private val dir = arrayOf(
-        intArrayOf(0, 1),
-        intArrayOf(0, -1),
-        intArrayOf(1, 0),
-        intArrayOf(-1, 0),
-        intArrayOf(1, -1),
-        intArrayOf(-1, 1),
-        intArrayOf(-1, -1),
-        intArrayOf(1, 1)
-    )
-
     override fun perform(grid: Array<IntArray>): Int {
-        val m: Int = grid.size
-        val n: Int = grid[0].size
+        val queue: java.util.ArrayDeque<Pair<Int, Int>> = java.util.ArrayDeque()
+        queue.addLast(Pair(0, 0))
 
-        if (grid[0][0] == 1 || grid[m - 1][n - 1] == 1) {
-            return -1
-        }
+        val n: Int = grid.size
 
-        val visited = Array(m) { BooleanArray(n) }
-        visited[0][0] = true
-        val queue: Queue<IntArray> = LinkedList()
-        queue.add(intArrayOf(0, 0))
+        val done: Array<IntArray> = Array(n) { _ -> IntArray(n) { _ -> -1 } }
 
-        var ans = 0
-        while (!queue.isEmpty()) {
-            val size: Int = queue.size
-            for (i in 0 until size) {
-                val pop: IntArray = queue.remove()
-                if (pop[0] == m - 1 && pop[1] == n - 1) {
-                    return ans + 1
-                }
-                for (k in 0..7) {
-                    val nextX = dir[k][0] + pop[0]
-                    val nextY = dir[k][1] + pop[1]
-                    val local = nextY in 0 until n && !visited[nextX][nextY] && grid[nextX][nextY] == 0
-                    if (nextX in 0 until m && local) {
-                        queue.add(intArrayOf(nextX, nextY))
-                        visited[nextX][nextY] = true
-                    }
-                }
+        if (grid[0][0] == 1) return -1
+        done[0][0] = 1
+
+        val x: IntArray = intArrayOf(-1, -1, -1, 0, 0, 1, 1, 1)
+        val y: IntArray = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)
+
+        while (queue.isNotEmpty()) {
+            val cur: Pair<Int, Int> = queue.pollFirst()
+            if (cur.first == n - 1 && cur.second == n - 1) return done[cur.first][cur.second]
+            for (i: Int in 0..7) {
+                val nx: Int = cur.first + x[i]
+                val ny: Int = cur.second + y[i]
+                if (nx < 0 || ny < 0 || nx >= n || ny >= n || grid[nx][ny] == 1 || done[nx][ny] != -1)
+                    continue
+                done[nx][ny] = done[cur.first][cur.second] + 1
+                queue.addLast(Pair(nx, ny))
             }
-            ans++
         }
 
         return -1
