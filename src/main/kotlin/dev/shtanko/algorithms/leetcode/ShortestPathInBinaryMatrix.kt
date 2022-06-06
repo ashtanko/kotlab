@@ -46,8 +46,10 @@ class ShortestPathInBinaryMatrixBFS : ShortestPathInBinaryMatrix {
             for (i: Int in 0..7) {
                 val nx: Int = cur.first + x[i]
                 val ny: Int = cur.second + y[i]
-                if (nx < 0 || ny < 0 || nx >= n || ny >= n || grid[nx][ny] == 1 || done[nx][ny] != -1)
+                val local = nx < 0 || ny < 0 || nx >= n || ny >= n
+                if (local || grid[nx][ny] == 1 || done[nx][ny] != -1) {
                     continue
+                }
                 done[nx][ny] = done[cur.first][cur.second] + 1
                 queue.addLast(Pair(nx, ny))
             }

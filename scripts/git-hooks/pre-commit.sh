@@ -1,11 +1,11 @@
 #!/bin/sh
 echo "Running static analysis..."
 
-JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+JAVA_HOME=$(/usr/libexec/java_home -v 11)
 export JAVA_HOME
 
 OUTPUT="/tmp/analysis-result"
-./gradlew detekt ktlintCheck spotlessCheck spotlessApply --profile --daemon > ${OUTPUT}
+./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon > ${OUTPUT}
 EXIT_CODE=$?
 if [ ${EXIT_CODE} -ne 0 ]; then
     cat ${OUTPUT}
