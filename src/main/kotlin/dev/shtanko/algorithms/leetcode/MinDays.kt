@@ -41,11 +41,7 @@ class MinDaysSimple : MinDays {
 }
 
 class MinDaysDP : MinDays {
-    private var dp: MutableMap<Int, Int> = HashMap<Int, Int>().apply {
-        put(0, 0)
-        put(1, 1)
-        put(2, 2)
-    }
+    private var dp = mutableMapOf(0 to 0, 1 to 1, 2 to 2)
 
     override fun perform(n: Int): Int {
         return solve(n)

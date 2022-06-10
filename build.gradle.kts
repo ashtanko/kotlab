@@ -11,7 +11,7 @@ group = "dev.shtanko"
 version = "1.0-SNAPSHOT"
 
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.7.0"
     java
     jacoco
     idea
@@ -47,8 +47,8 @@ buildscript {
 }
 
 dependencies {
-    implementation(kotlin("reflect", "1.6.21"))
-    implementation(kotlin("stdlib-jdk8", "1.6.21"))
+    implementation(kotlin("reflect", "1.7.0"))
+    implementation(kotlin("stdlib-jdk8", "1.7.0"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.COROUTINES}")
@@ -76,7 +76,7 @@ dependencies {
     testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.34")
     testImplementation("org.openjdk.jmh:jmh-core-benchmarks:1.35")
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}")
+    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
