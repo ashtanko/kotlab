@@ -20,4 +20,4 @@ internal const val DECIMAL = 10
 internal const val OCTAL = 8
 internal const val HEXADECIMAL = 16
 internal const val SHUFFLE_CONST = 0xFFFF
-internal const val MOD = 1_000_000_007
+internal const val MOD = 1_000_000_007 // 1000000007
