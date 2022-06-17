@@ -121,10 +121,10 @@ class KInversePairsArrayMemoization : KInversePairsArray {
     private fun inv(n: Int, k: Int): Int {
         if (n == 0) return 0
         if (k == 0) return 1
-        if (memo[n][k] != null) return memo[n][k]!!
+        if (memo[n][k] != null) return memo[n][k] ?: -1
         val value: Int = (inv(n - 1, k) + MOD - if (k - n >= 0) inv(n - 1, k - n) else 0) % MOD
         memo[n][k] = (inv(n, k - 1) + value) % MOD
-        return memo[n][k]!!
+        return memo[n][k] ?: -1
     }
 }
 
