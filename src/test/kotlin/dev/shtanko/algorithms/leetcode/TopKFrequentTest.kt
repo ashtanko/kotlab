@@ -37,6 +37,16 @@ abstract class TopKFrequentTest<out T : TopKFrequent>(private val strategy: T) {
                 4,
                 listOf("the", "is", "sunny", "day")
             ),
+            Arguments.of(
+                arrayOf<String>(),
+                0,
+                emptyList<String>()
+            ),
+            Arguments.of(
+                arrayOf("a", "b"),
+                0,
+                emptyList<String>()
+            ),
         )
     }
 

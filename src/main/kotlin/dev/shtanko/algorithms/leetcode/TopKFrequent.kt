@@ -89,7 +89,7 @@ class TopKFrequentMinHeap : TopKFrequent {
             if (pq.size < k) {
                 pq.offer(e)
             } else {
-                if (comparator.compare(e, pq.peek()) > 0) {
+                if (pq.peek() != null && comparator.compare(e, pq.peek()) > 0) {
                     pq.poll()
                     pq.offer(e)
                 }
