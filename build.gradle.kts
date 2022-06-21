@@ -6,6 +6,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val projectJvmTarget = "11"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktlint: Configuration by configurations.creating
+val isK2Enabled = false
+val k2CompilerArg = if(isK2Enabled) listOf("-Xuse-k2") else emptyList()
 
 group = "dev.shtanko"
 version = "1.0-SNAPSHOT"
@@ -22,7 +24,7 @@ plugins {
     id("com.autonomousapps.dependency-analysis") version "1.0.0-rc01"
     id("info.solidsoft.pitest") version "1.7.4"
     kotlin("plugin.serialization") version "1.6.21"
-    kotlin("kapt") version "1.6.21"
+    kotlin("kapt") version "1.7.0"
     application
 }
 
@@ -34,7 +36,7 @@ application {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.8"
 }
 
 buildscript {
@@ -49,7 +51,7 @@ buildscript {
 dependencies {
     implementation(kotlin("reflect", "1.7.0"))
     implementation(kotlin("stdlib-jdk8", "1.7.0"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:${Versions.COROUTINES}")
@@ -64,7 +66,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:retrofit-mock:2.9.0")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
-    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
     implementation("com.google.dagger:dagger:${Versions.DAGGER}")
     kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
@@ -76,16 +78,14 @@ dependencies {
     testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.34")
     testImplementation("org.openjdk.jmh:jmh-core-benchmarks:1.35")
     testImplementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
-    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("io.kotlintest:kotlintest-core:3.4.2")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
-    //testImplementation("io.kotlintest:kotlintest-assertions-arrow:3.4.2")
-    //testImplementation("io.arrow-kt:arrow-core-test:1.0.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("org.assertj:assertj-core:3.22.0")
+    testImplementation("org.assertj:assertj-core:3.23.1")
     testImplementation("org.mockito:mockito-core:3.12.4")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("ch.qos.logback:logback-core:1.2.11")
@@ -235,7 +235,7 @@ tasks {
     withType<KotlinCompile>().configureEach {
         kotlinOptions {
             jvmTarget = projectJvmTarget
-            freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.Experimental"
+            freeCompilerArgs = freeCompilerArgs + "-Xuse-experimental=kotlin.Experimental" + k2CompilerArg
         }
     }
 
