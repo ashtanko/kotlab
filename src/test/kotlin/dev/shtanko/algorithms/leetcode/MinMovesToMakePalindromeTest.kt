@@ -36,6 +36,18 @@ abstract class MinMovesToMakePalindromeTest<out T : MinMovesToMakePalindrome>(pr
                 "letelt",
                 2
             ),
+            Arguments.of(
+                "",
+                0
+            ),
+            Arguments.of(
+                "q",
+                0
+            ),
+            Arguments.of(
+                "qq",
+                0
+            ),
         )
     }
 
