@@ -16,6 +16,7 @@
 
 package dev.shtanko.auto.value
 
+/*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -46,3 +47,4 @@ class AnimalTest {
         assertEquals("Animal{name=dog, numberOfLegs=4}", dog.toString())
     }
 }
+*/

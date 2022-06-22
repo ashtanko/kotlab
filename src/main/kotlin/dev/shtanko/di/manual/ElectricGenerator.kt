@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.manual
 
+/*
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
@@ -96,3 +97,4 @@ internal class PetrolGenerator2(private val fuel: Petrol) : PetrolGenerator {
         private const val CONSUMPTION_LITER_PER_HOUR = 1
     }
 }
+*/

@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.manual
 
-/**
- *
- */
+/*
 internal class Thermosiphon : Pump
+*/

@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.multibindings
 
+/*
 import dagger.Component
 import dagger.MapKey
 import dagger.Module
@@ -44,3 +45,4 @@ object ComplexModuleA {
 interface ComplexMapKeysMultibindingsComponent {
     fun myKeyStringMap(): Map<MyComplexKey?, String?>
 }
+*/

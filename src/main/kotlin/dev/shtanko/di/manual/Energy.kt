@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.manual
 
+/*
 internal const val CALORIE = 10
 
 internal const val JOULE = 1
@@ -24,3 +25,4 @@ internal const val MEGAJOULE = 1000_000
 internal const val GIGAJOULE = 1000_000_000
 
 internal data class Energy(val joule: Double)
+*/

@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.multibindings
 
+/*
 import com.google.auto.value.AutoAnnotation
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -35,3 +36,4 @@ class ComplexMapKeysMultibindingsTest {
         return AutoAnnotation_MyComplexKeyCreator_createMyComplexKey(name, implementingClass, thresholds)
     }
 }
+*/

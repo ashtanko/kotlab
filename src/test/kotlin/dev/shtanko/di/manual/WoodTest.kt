@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.manual
 
+/*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -37,3 +38,4 @@ class WoodTest {
         assertThat(actual).isEqualTo(expected)
     }
 }
+*/

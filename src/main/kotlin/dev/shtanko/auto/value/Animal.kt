@@ -16,6 +16,7 @@
 
 package dev.shtanko.auto.value
 
+/*
 import com.google.auto.value.AutoValue
 
 @AutoValue
@@ -30,3 +31,4 @@ abstract class Animal {
     abstract fun name(): String?
     abstract fun numberOfLegs(): Int
 }
+*/

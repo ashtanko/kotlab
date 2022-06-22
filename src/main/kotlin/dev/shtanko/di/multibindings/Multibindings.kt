@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.multibindings
 
+/*
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -26,10 +27,12 @@ private const val ONE_STRING = "ABC"
 private const val DEF = "DEF"
 private const val GHI = "GHI"
 
+*/
 /**
  * Multibindings
  * @link https://dagger.dev/dev-guide/multibindings
- */
+ *//*
+
 @Component(modules = [ModuleA::class, ModuleB::class])
 interface MComponent {
     fun strings(): Set<String>
@@ -52,3 +55,4 @@ class ModuleB {
         return setOf(DEF, GHI)
     }
 }
+*/

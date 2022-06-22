@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.dagger
 
+/*
 import javax.inject.Inject
 
 class ThingGetter
@@ -30,3 +31,4 @@ class ThingDoer @Inject constructor(private val getter: ThingGetter, private val
         return "done"
     }
 }
+*/

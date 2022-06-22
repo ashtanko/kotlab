@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.multibindings
 
+/*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
@@ -41,3 +42,4 @@ class MapKeyMultibindingsTest {
         return tests
     }
 }
+*/

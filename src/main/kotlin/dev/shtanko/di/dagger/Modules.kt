@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.dagger
 
+/*
 import dagger.Provides
 
 class Context
@@ -30,3 +31,4 @@ object AppModule {
 fun main(args: Array<String>) {
     println("Hello!")
 }
+*/

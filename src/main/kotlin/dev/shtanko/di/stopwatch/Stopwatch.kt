@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.stopwatch
 
+/*
 import javax.inject.Inject
 
 class Stopwatch @Inject constructor(val source: TimeSource) {
@@ -23,3 +24,4 @@ class Stopwatch @Inject constructor(val source: TimeSource) {
         return "Measure: ${source.measure()}"
     }
 }
+*/

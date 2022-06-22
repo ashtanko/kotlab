@@ -16,6 +16,7 @@
 
 package dev.shtanko.di.manual
 
+/*
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 
@@ -31,3 +32,4 @@ internal fun main() {
     val coffee = CoffeeMaker(heater, pump).makeCoffee()
     println(coffee)
 }
+*/

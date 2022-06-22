@@ -16,6 +16,8 @@
 
 package dev.shtanko.di.manual
 
+/*
 internal const val SECOND = 1.0
 internal const val MINUTE = 60 * SECOND
 internal const val HOUR = 60 * MINUTE
+*/

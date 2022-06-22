@@ -16,6 +16,8 @@
 
 package dev.shtanko.di.stopwatch
 
+/*
 fun main() {
     DaggerStopwatchComponent.builder().build()
 }
+*/

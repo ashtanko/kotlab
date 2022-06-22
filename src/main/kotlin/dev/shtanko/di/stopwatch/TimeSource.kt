@@ -16,6 +16,8 @@
 
 package dev.shtanko.di.stopwatch
 
+/*
 interface TimeSource {
     fun measure(): Int
 }
+*/

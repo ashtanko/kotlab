@@ -16,8 +16,10 @@
 
 package dev.shtanko.di.stopwatch
 
+/*
 class TimeSourceImpl : TimeSource {
     override fun measure(): Int {
         return 0
     }
 }
+*/
