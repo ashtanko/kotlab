@@ -30,10 +30,12 @@ plugins {
 
 apply<kotlinx.atomicfu.plugin.gradle.AtomicFUGradlePlugin>()
 
+/*
 application {
     mainClass.set("dev.shtanko.concurrency.jvm.DeadLockSampleKt")
     mainClass.set("dev.shtanko.di.dagger.ModulesKt")
 }
+*/
 
 jacoco {
     toolVersion = "0.8.8"
@@ -68,8 +70,8 @@ dependencies {
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
-    implementation("com.google.dagger:dagger:${Versions.DAGGER}")
-    kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
+    // implementation("com.google.dagger:dagger:${Versions.DAGGER}")
+    // kapt("com.google.dagger:dagger-compiler:${Versions.DAGGER}")
     kapt("com.google.auto.value:auto-value:1.9")
     implementation("com.google.auto.value:auto-value-annotations:1.9")
     implementation("org.openjdk.jmh:jmh-core:1.35")

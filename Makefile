@@ -1,8 +1,11 @@
-.PHONY: check run
+.PHONY: check run test
 check:
-		./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
+	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
 
 run:
-		./gradlew build
+	./gradlew build
+
+test:
+	./gradlew test
 
 .DEFAULT_GOAL := check
