@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oleksii Shtanko
+ * Copyright 2022 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.gfg
+package dev.shtanko.algorithms.extensions
 
-import dev.shtanko.algorithms.extensions.isEven
-import kotlin.math.floor
-import kotlin.math.sqrt
-
-object SquareRoot {
-    fun perform(n: Long): Long {
-        val s = sqrt(n.toDouble())
-        return if (s.isEven) {
-            s.toLong()
-        } else {
-            floor(s).toLong()
-        }
-    }
-}
+val Double.isEven: Boolean
+    get() = this % 2 == 0.0
