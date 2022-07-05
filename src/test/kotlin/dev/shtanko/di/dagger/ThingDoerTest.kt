@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.dagger
 
-/*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -30,4 +29,3 @@ class ThingDoerTest {
         assertEquals("done", doer.doTheThing(5))
     }
 }
-*/

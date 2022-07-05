@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.multibindings
 
-/*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -28,4 +27,3 @@ class MultibindingsTest {
         assertThat(component.strings()).containsExactly("ABC", "DEF", "GHI")
     }
 }
-*/

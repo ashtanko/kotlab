@@ -16,11 +16,9 @@
 
 package dev.shtanko.di.manual
 
-/*
 internal typealias Watt = Double
 internal typealias Volt = Float
 
 internal const val KOLOWATT: Watt = 1000.0
 
 internal class Electricity(val power: Watt)
-*/

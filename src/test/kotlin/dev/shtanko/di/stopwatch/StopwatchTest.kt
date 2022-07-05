@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.stopwatch
 
-/*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -33,4 +32,3 @@ class StopwatchTest {
         override fun measure(): Int = 5
     }
 }
-*/

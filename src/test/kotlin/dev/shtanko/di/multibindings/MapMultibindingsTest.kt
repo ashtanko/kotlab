@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.multibindings
 
-/*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -29,4 +28,3 @@ class MapMultibindingsTest {
         assertThat(component.stringsByClass()[Thing::class.java]).isEqualTo("value for Thing")
     }
 }
-*/

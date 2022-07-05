@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oleksii Shtanko
+ * Copyright 2022 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,4 @@
  * limitations under the License.
  */
 
-package dev.shtanko.di.manual
-
-internal const val SECOND = 1.0
-internal const val MINUTE = 60 * SECOND
-internal const val HOUR = 60 * MINUTE
+package dev.shtanko.algorithms.gfg

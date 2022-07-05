@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.manual
 
-/*
 internal class ElectricHeater(val power: Watt) : Heater {
     override fun temperature(): Float {
         return ELECTRIC_HEATER_TEMPERATURE
@@ -26,4 +25,3 @@ internal class ElectricHeater(val power: Watt) : Heater {
         private const val ELECTRIC_HEATER_TEMPERATURE = 100.0.toFloat()
     }
 }
-*/

@@ -16,11 +16,9 @@
 
 package dev.shtanko.di.stopwatch
 
-/*
 import dagger.Component
 
 @Component
 interface StopwatchComponent {
     // TODO
 }
-*/

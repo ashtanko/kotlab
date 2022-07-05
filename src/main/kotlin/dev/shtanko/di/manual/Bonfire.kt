@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.manual
 
-/*
 internal class Bonfire : Heater {
 
     private var currentState = 0f
@@ -29,4 +28,3 @@ internal class Bonfire : Heater {
         TODO("Not yet implemented")
     }
 }
-*/

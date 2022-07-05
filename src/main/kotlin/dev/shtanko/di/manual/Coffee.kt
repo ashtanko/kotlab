@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.manual
 
-/*
 private const val ESPRESSO_TMP = 3L // 30 * 1000
 private const val AMERICANO_TMP = 3L // 30 * 1000
 private const val LATTE_TMP = 3L // 75 * 1000
@@ -42,4 +41,3 @@ internal class Latte : Coffee {
         return LATTE_TMP
     }
 }
-*/

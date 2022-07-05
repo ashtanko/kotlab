@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.manual
 
-/*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -40,4 +39,3 @@ class PetrolTest {
         assertThat(fuel.combustionEnergy().joule).isEqualTo(1.68E7)
     }
 }
-*/

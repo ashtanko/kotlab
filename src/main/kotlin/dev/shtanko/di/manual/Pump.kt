@@ -16,6 +16,4 @@
 
 package dev.shtanko.di.manual
 
-/*
 internal interface Pump
-*/

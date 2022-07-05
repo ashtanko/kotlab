@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.manual
 
-/*
 internal interface Fuel {
     fun combustionEnergy(): Energy
 }
@@ -60,4 +59,3 @@ internal class WoodPallet : Wood {
         private const val WOOD_CALORIFIC_VALUE = 16.8
     }
 }
-*/

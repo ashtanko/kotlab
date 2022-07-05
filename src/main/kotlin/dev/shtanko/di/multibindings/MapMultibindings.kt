@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.multibindings
 
-/*
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -47,4 +46,3 @@ class MapMModuleA {
     @ClassKey(Thing::class)
     fun provideThingValue(): String = THING_VALUE
 }
-*/

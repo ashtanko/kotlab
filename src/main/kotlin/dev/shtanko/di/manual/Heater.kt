@@ -16,8 +16,6 @@
 
 package dev.shtanko.di.manual
 
-/*
 internal interface Heater {
     fun temperature(): Float
 }
-*/

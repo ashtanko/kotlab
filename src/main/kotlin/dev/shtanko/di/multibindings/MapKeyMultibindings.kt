@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.multibindings
 
-/*
 import dagger.Component
 import dagger.MapKey
 import dagger.Module
@@ -63,4 +62,3 @@ class MapKeyModuleA {
     @MyNumberClassKey(BigDecimal::class)
     fun provideBigDecimalValue() = BD_VALUE
 }
-*/

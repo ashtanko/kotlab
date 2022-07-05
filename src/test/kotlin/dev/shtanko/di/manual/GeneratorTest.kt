@@ -16,7 +16,6 @@
 
 package dev.shtanko.di.manual
 
-/*
 import java.util.stream.Stream
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.ExperimentalTime
@@ -136,4 +135,3 @@ class GeneratorTest {
         assertThat(actual).isEqualTo(1277.7777777777778)
     }
 }
-*/

@@ -16,11 +16,9 @@
 
 package dev.shtanko.di.manual
 
-/*
 internal class CoffeeMaker(private val heater: Heater, val pump: Pump) {
     private var currentState = 0
     fun makeCoffee(): Coffee {
         return Americano()
     }
 }
-*/
