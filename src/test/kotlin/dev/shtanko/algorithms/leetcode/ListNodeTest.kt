@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class ListNodeTest {
 
@@ -83,6 +83,50 @@ internal class ListNodeTest {
                 listOf(4, 2, 1, 3)
             ),
         )
+    }
+
+    class ToListArgs : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                listOf<Int>(),
+                ListNode()
+            ),
+            Arguments.of(
+                listOf(1),
+                ListNode(1)
+            ),
+            Arguments.of(
+                listOf(1, 2),
+                ListNode(1).apply {
+                    next = ListNode(2)
+                }
+            ),
+            Arguments.of(
+                listOf(1, 2, 3),
+                ListNode(1).apply {
+                    next = ListNode(2).apply {
+                        next = ListNode(3)
+                    }
+                }
+            ),
+            Arguments.of(
+                listOf(1, 2, 3, 4),
+                ListNode(1).apply {
+                    next = ListNode(2).apply {
+                        next = ListNode(3).apply {
+                            next = ListNode(4)
+                        }
+                    }
+                }
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ToListArgs::class)
+    internal fun `to list node test`(list: List<Int>, expected: ListNode) {
+        val actual = list.toListNode().toList()
+        assertThat(actual).isEqualTo(expected.toList())
     }
 
     @ArgumentsSource(InputArgumentsProvider::class)

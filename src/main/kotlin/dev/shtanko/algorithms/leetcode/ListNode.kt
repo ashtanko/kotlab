@@ -40,7 +40,23 @@ data class ListNode(
     }
 }
 
-fun ListNode.toList(): MutableList<Int> {
+fun List<Int>.toListNode(): ListNode {
+    if (isEmpty()) return ListNode()
+    var current = ListNode()
+    var startNode = ListNode()
+    for (i in 0 until this.size) {
+        val node = ListNode(this[i])
+        if (i > 0) {
+            current.next = node
+        } else {
+            startNode = node
+        }
+        current = node
+    }
+    return startNode
+}
+
+fun ListNode.toList(): List<Int> {
     val result = mutableListOf<Int>()
     var node: ListNode? = this
     if (next == null) {
