@@ -38,9 +38,9 @@ class SteppingNumbersBFS : SteppingNumbers {
     private fun dfs(low: Int, high: Int, cur: Long, list: MutableList<Int>) {
         if (cur in low..high) list.add(cur.toInt())
         if (cur == 0L || cur > high) return
-        val last = cur % 10
-        val inc = cur * 10 + last + 1
-        val dec = cur * 10 + last - 1
+        val last = cur % DECIMAL
+        val inc = cur * DECIMAL + last + 1
+        val dec = cur * DECIMAL + last - 1
         when (last) {
             0L -> dfs(low, high, inc, list)
             9L -> dfs(low, high, dec, list)

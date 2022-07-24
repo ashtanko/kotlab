@@ -40,7 +40,7 @@ class RestoreTheArrayMemoization : RestoreTheArray {
         var ans = 0
         var num: Long = 0
         for (j in i until s.length) {
-            num = num * 10 + s[j].code.toLong() - '0'.code.toLong() // num is the value of the substring s[i..j]
+            num = num * DECIMAL + s[j].code.toLong() - '0'.code.toLong() // num is the value of the substring s[i..j]
             if (num > k) break // num must be in range [1, k]
             ans += dfs(s, k, j + 1, dp)
             ans %= MOD

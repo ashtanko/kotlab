@@ -41,7 +41,7 @@ class RecoverFromPreorderIterative : RecoverFromPreorder {
             }
             value = 0
             while (i < traversal.length && traversal[i] != '-') {
-                value = value * 10 + (traversal[i] - '0')
+                value = value * DECIMAL + (traversal[i] - '0')
                 i++
             }
             while (stack.size > level) {

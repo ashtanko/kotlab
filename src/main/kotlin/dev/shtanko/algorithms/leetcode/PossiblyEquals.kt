@@ -72,7 +72,7 @@ class PossiblyEqualsDFS : PossiblyEquals {
             var k = i
             var value = 0
             while (k < s1.size && isDigit(s1[k])) {
-                value = value * 10 + (s1[k].code - '0'.code)
+                value = value * DECIMAL + (s1[k].code - '0'.code)
                 if (dfs(k + 1, j, diff - value, s1, s2, dp)) {
                     dp[i][j][diff + LIMIT1] = true
                     return true
@@ -84,7 +84,7 @@ class PossiblyEqualsDFS : PossiblyEquals {
         var k = j
         var value = 0
         while (k < s2.size && isDigit(s2[k])) {
-            value = value * 10 + (s2[k].code - '0'.code)
+            value = value * DECIMAL + (s2[k].code - '0'.code)
             if (dfs(i, k + 1, diff + value, s1, s2, dp)) {
                 dp[i][j][diff + LIMIT1] = true
                 return true
