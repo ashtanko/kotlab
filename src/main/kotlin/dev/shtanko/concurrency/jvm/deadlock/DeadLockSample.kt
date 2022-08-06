@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency.jvm
+package dev.shtanko.concurrency.jvm.deadlock
 
 import kotlin.concurrent.thread
 
