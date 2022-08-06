@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.gfg
 
+import kotlin.math.min
+
 /**
  * Ugly Numbers
  * https://www.geeksforgeeks.org/ugly-numbers/
@@ -29,6 +31,40 @@ interface UglyNumbers {
 
 class UglyNumbersBruteForce : UglyNumbers {
     override fun perform(n: Int): Int {
-        TODO("Not yet implemented")
+        val ugly = IntArray(n)
+        var i2 = 0
+        var i3 = 0
+        var i5 = 0
+        var nextMultipleOf2 = 2
+        var nextMultipleOf3 = 3
+        var nextMultipleOf5 = 5
+        var nextUglyNo = 1
+
+        ugly[0] = 1
+
+        for (i in 1 until n) {
+            nextUglyNo = min(
+                nextMultipleOf2,
+                min(
+                    nextMultipleOf3,
+                    nextMultipleOf5
+                )
+            )
+            ugly[i] = nextUglyNo
+            if (nextUglyNo == nextMultipleOf2) {
+                i2 += 1
+                nextMultipleOf2 = ugly[i2] * 2
+            }
+            if (nextUglyNo == nextMultipleOf3) {
+                i3 += 1
+                nextMultipleOf3 = ugly[i3] * 3
+            }
+            if (nextUglyNo == nextMultipleOf5) {
+                i5 += 1
+                nextMultipleOf5 = ugly[i5] * 5
+            }
+        }
+
+        return nextUglyNo
     }
 }
