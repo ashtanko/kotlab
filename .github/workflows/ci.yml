@@ -48,13 +48,13 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload jacoco report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
           path: "${{ github.workspace }}/**/build/reports/jacoco"
 
       - name: Upload detekt report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: detekt-report
           path: "${{ github.workspace }}/**/build/reports/detekt/detekt.html"
