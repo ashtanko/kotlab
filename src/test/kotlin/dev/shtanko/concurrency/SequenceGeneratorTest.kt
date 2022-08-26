@@ -26,11 +26,13 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class SequenceGeneratorTest : TestBase() {
 
     @Test
+    @Disabled
     @Throws(Exception::class)
     fun givenUnsafeSequenceGenerator_whenRaceCondition_thenUnexpectedBehavior() {
         val count = 1000
