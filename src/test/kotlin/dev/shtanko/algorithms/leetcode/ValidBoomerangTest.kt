@@ -29,13 +29,13 @@ internal class ValidBoomerangTest {
                 true to arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(2, 3),
-                    intArrayOf(3, 2)
+                    intArrayOf(3, 2),
                 ),
                 false to arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(2, 2),
-                    intArrayOf(3, 3)
-                )
+                    intArrayOf(3, 3),
+                ),
             )
         }
     }

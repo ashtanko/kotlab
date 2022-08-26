@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class MaxPathSumTest<out T : MaxPathSum>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -32,7 +32,7 @@ abstract class MaxPathSumTest<out T : MaxPathSum>(private val strategy: T) {
                     left = TreeNode(2)
                     right = TreeNode(3)
                 },
-                6
+                6,
             ),
             Arguments.of(
                 TreeNode(-10).apply {
@@ -42,8 +42,8 @@ abstract class MaxPathSumTest<out T : MaxPathSum>(private val strategy: T) {
                         right = TreeNode(7)
                     }
                 },
-                42
-            )
+                42,
+            ),
         )
     }
 

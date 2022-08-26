@@ -81,7 +81,7 @@ class ScrambleStringDP : ScrambleString {
         val f = Array(len) {
             Array(len) {
                 BooleanArray(
-                    len + 1
+                    len + 1,
                 )
             }
         }

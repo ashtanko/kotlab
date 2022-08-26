@@ -27,7 +27,7 @@ internal class ReachNumberTest {
         fun dataProvider(): List<Any> {
             return listOf(
                 3 to 2,
-                2 to 3
+                2 to 3,
             )
         }
     }

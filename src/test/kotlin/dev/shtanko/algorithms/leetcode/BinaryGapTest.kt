@@ -16,68 +16,68 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 22,
-                2
+                2,
             ),
             Arguments.of(
                 5,
-                2
+                2,
             ),
             Arguments.of(
                 6,
-                1
+                1,
             ),
             Arguments.of(
                 8,
-                0
+                0,
             ),
             Arguments.of(
                 4,
-                0
+                0,
             ),
             Arguments.of(
                 15,
-                1
+                1,
             ),
             Arguments.of(
                 7,
-                1
+                1,
             ),
             Arguments.of(
                 16,
-                0
+                0,
             ),
             Arguments.of(
                 23,
-                2
+                2,
             ),
             Arguments.of(
                 42,
-                2
+                2,
             ),
             Arguments.of(
                 56,
-                1
+                1,
             ),
             Arguments.of(
                 114,
-                3
+                3,
             ),
             Arguments.of(
                 2345,
-                3
+                3,
             ),
         )
     }

@@ -144,9 +144,11 @@ class TSMAdapt : ThreeSumMulti {
                     y + z < a -> {
                         j++
                     }
+
                     y + z > a -> {
                         k--
                     }
+
                     else -> {
                         ans += if (j in i.plus(1) until k) {
                             count[x] * count[y] * count[z]

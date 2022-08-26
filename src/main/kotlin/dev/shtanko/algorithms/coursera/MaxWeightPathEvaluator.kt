@@ -62,6 +62,7 @@ class MaxWeightPathEvaluator(private val weights: LongArray) {
                     path.add(i + 1)
                     i -= 2
                 }
+
                 d[i] == d[i - 1] -> --i
                 else -> throw IllegalStateException("invalid state at $i")
             }

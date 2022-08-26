@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class ThreeSumTest<out T : ThreeSum>(private val strategy: T) {
 
@@ -39,7 +39,7 @@ internal abstract class ThreeSumTest<out T : ThreeSum>(private val strategy: T) 
             ),
             Arguments.of(
                 intArrayOf(-1, 0, 1, 2, -1, -4),
-                listOf(listOf(-1, -1, 2), listOf(-1, 0, 1))
+                listOf(listOf(-1, -1, 2), listOf(-1, 0, 1)),
             ),
         )
     }

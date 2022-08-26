@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.hackerrank
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class MarkAndToysTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -30,12 +30,12 @@ internal class MarkAndToysTest {
             Arguments.of(
                 0,
                 intArrayOf(),
-                0
+                0,
             ),
             Arguments.of(
                 50,
                 intArrayOf(1, 12, 5, 111, 200, 1000, 10),
-                4
+                4,
             ),
             Arguments.of(
                 100000,
@@ -59,9 +59,9 @@ internal class MarkAndToysTest {
                     65846182,
                     8470661,
                     13597655,
-                    360
+                    360,
                 ),
-                1
+                1,
             ),
         )
     }

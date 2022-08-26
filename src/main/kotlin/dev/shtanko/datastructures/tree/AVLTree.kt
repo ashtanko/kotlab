@@ -32,13 +32,12 @@ class AVLTree {
         val key: Int,
         var height: Int = 1,
         var left: Node? = null,
-        var right: Node? = null
+        var right: Node? = null,
     )
 
     var root: Node? = null
 
     fun insert(node: Node?, key: Int): Node? {
-
         /* 1.  Perform the normal BST insertion */
         if (node == null) return Node(key)
         when {
@@ -50,7 +49,7 @@ class AVLTree {
 
         /* 2. Update height of this ancestor node */node.height = 1 + max(
             height(node.left),
-            height(node.right)
+            height(node.right),
         )
 
         /* 3. Get the balance factor of this ancestor

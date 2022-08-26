@@ -30,12 +30,12 @@ abstract class DistinctSubsequencesTest<out T : DistinctSubsequences>(private va
             Arguments.of(
                 "rabbbit",
                 "rabbit",
-                3
+                3,
             ),
             Arguments.of(
                 "babgbag",
                 "bag",
-                5
+                5,
             ),
         )
     }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class FurthestBuildingTest<out T : FurthestBuilding>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -31,20 +31,20 @@ internal abstract class FurthestBuildingTest<out T : FurthestBuilding>(private v
                 intArrayOf(4, 2, 7, 6, 9, 14, 12),
                 5,
                 1,
-                4
+                4,
             ),
             Arguments.of(
                 intArrayOf(4, 12, 2, 7, 3, 18, 20, 3, 19),
                 10,
                 2,
-                7
+                7,
             ),
             Arguments.of(
                 intArrayOf(14, 3, 19, 3),
                 17,
                 0,
-                3
-            )
+                3,
+            ),
         )
     }
 

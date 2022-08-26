@@ -17,13 +17,13 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -31,37 +31,37 @@ internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy:
             Arguments.of(
                 intArrayOf(),
                 0,
-                intArrayOf()
+                intArrayOf(),
             ),
             Arguments.of(
                 intArrayOf(4, 8, 15, 16, 23),
                 9,
-                intArrayOf()
+                intArrayOf(),
             ),
             Arguments.of(
                 intArrayOf(4, 8, 15, 16, 23),
                 12,
-                intArrayOf(0, 1)
+                intArrayOf(0, 1),
             ),
             Arguments.of(
                 intArrayOf(4, 8, 15, 16, 23),
                 39,
-                intArrayOf(3, 4)
+                intArrayOf(3, 4),
             ),
             Arguments.of(
                 intArrayOf(2, 7, 11, 15),
                 9,
-                intArrayOf(0, 1)
+                intArrayOf(0, 1),
             ),
             Arguments.of(
                 intArrayOf(3, 2, 4),
                 6,
-                intArrayOf(1, 2)
+                intArrayOf(1, 2),
             ),
             Arguments.of(
                 intArrayOf(3, 3),
                 6,
-                intArrayOf(0, 1)
+                intArrayOf(0, 1),
             ),
         )
     }

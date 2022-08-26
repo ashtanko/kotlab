@@ -28,7 +28,7 @@ internal abstract class AbstractNumIdenticalPairsTest<T : AbstractNumIdenticalPa
             return listOf(
                 intArrayOf(1, 2, 3, 1, 1, 3) to 4,
                 intArrayOf(1, 1, 1, 1) to 6,
-                intArrayOf(1, 2, 3) to 0
+                intArrayOf(1, 2, 3) to 0,
             )
         }
     }

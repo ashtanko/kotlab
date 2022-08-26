@@ -30,17 +30,17 @@ class FoldTest {
             Arguments.of(
                 listOf(1, 2, 3, 4, 5),
                 0,
-                15
+                15,
             ),
             Arguments.of(
                 listOf(1, 2, 3, 4, 5),
                 1,
-                16
+                16,
             ),
             Arguments.of(
                 listOf(1, 2, 3, 4, 5),
                 2,
-                17
+                17,
             ),
         )
     }

@@ -55,7 +55,7 @@ internal class ObservableUnitTest {
             },
             {
                 result += "_Complete"
-            }
+            },
         )
         assertTrue(result == "abcdefg_Complete")
     }
@@ -74,7 +74,7 @@ internal class ObservableUnitTest {
             },
             {
                 result += "_Complete"
-            }
+            },
         )
         assertTrue(result.first().toString() == blockingObservable)
     }
@@ -159,7 +159,7 @@ internal class ObservableUnitTest {
         val letters = Observable.just("a", "b", "c", "d", "e")
         Observable.zip(
             numbers,
-            letters
+            letters,
         ) { n: Int, c: String ->
             "$n$c"
         }.subscribe {
@@ -195,7 +195,7 @@ internal class ObservableUnitTest {
         Observable
             .combineLatest(
                 numbers,
-                letters
+                letters,
             ) { n: Int, c: String ->
                 "$n$c"
             }.subscribe {
@@ -276,8 +276,8 @@ internal class ObservableUnitTest {
                 .zipWith(
                     Observable.range(
                         1,
-                        Int.MAX_VALUE
-                    )
+                        Int.MAX_VALUE,
+                    ),
                 ) { str: String, idx: Int ->
                     "$idx-$str"
                 }
@@ -295,8 +295,8 @@ internal class ObservableUnitTest {
             .zipWith(
                 Observable.range(
                     1,
-                    Int.MAX_VALUE
-                )
+                    Int.MAX_VALUE,
+                ),
             ) { a: Int, b: Int ->
                 a * b
             }
@@ -317,8 +317,8 @@ internal class ObservableUnitTest {
             .zipWith(
                 Observable.range(
                     1,
-                    2
-                )
+                    2,
+                ),
             ) { a: Int, b: Int ->
                 a * b
             }

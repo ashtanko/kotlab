@@ -16,13 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 /**
  * Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
  */
 fun Array<IntArray>.spiralOrder(): List<Int> {
-
     val res: MutableList<Int> = ArrayList()
     if (this.isEmpty()) {
         return res

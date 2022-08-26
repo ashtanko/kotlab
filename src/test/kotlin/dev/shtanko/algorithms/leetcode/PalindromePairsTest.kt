@@ -33,22 +33,22 @@ abstract class PalindromePairsTest<out T : PalindromePairs>(private val strategy
                     listOf(0, 1),
                     listOf(1, 0),
                     listOf(3, 2),
-                    listOf(2, 4)
-                )
+                    listOf(2, 4),
+                ),
             ),
             Arguments.of(
                 arrayOf("bat", "tab", "cat"),
                 listOf(
                     listOf(0, 1),
                     listOf(1, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf("a", ""),
                 listOf(
                     listOf(0, 1),
                     listOf(1, 0),
-                )
+                ),
             ),
         )
     }

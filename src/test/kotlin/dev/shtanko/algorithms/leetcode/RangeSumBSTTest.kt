@@ -27,7 +27,7 @@ internal abstract class RangeSumBSTTest<out T : RangeSumStrategy>(private val st
         fun dataProvider(): List<Pair<Triple<IntArray, Int, Int>, Int>> {
             return listOf(
                 Triple(intArrayOf(10, 5, 15, 3, 7, 18), 7, 15) to 32,
-                Triple(intArrayOf(4, 8, 15, 16, 23, 42), 8, 23) to 15
+                Triple(intArrayOf(4, 8, 15, 16, 23, 42), 8, 23) to 15,
             )
         }
     }

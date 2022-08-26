@@ -30,17 +30,17 @@ abstract class RestoreTheArrayTest<out T : RestoreTheArray>(private val strategy
             Arguments.of(
                 "1000",
                 10000,
-                1
+                1,
             ),
             Arguments.of(
                 "1000",
                 10,
-                0
+                0,
             ),
             Arguments.of(
                 "1317",
                 2000,
-                8
+                8,
             ),
         )
     }

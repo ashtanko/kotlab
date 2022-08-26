@@ -30,7 +30,7 @@ internal abstract class RegularExpressionMatchingStrategyTest<out T : RegularExp
                 "aa" to "a*" to true,
                 "ab" to ".*" to true,
                 "aab" to "c*a*b" to true,
-                "mississippi" to "mis*is*p*." to false
+                "mississippi" to "mis*is*p*." to false,
             )
         }
     }

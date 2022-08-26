@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.greedy
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class JobSequencingTest {
 
@@ -35,9 +35,9 @@ internal class JobSequencingTest {
                     Job('b', 1, 19),
                     Job('c', 2, 27),
                     Job('d', 1, 25),
-                    Job('e', 3, 15)
+                    Job('e', 3, 15),
                 ),
-                listOf('c', 'a', 'e')
+                listOf('c', 'a', 'e'),
             ),
             Arguments.of(
                 arrayOf(
@@ -46,9 +46,9 @@ internal class JobSequencingTest {
                     Job('c', 1, 2),
                     Job('d', 7, 25),
                     Job('e', 12, 5),
-                    Job('f', 12, 5)
+                    Job('f', 12, 5),
                 ),
-                listOf('c', 'f', 'a', 'e', 'b', 'd')
+                listOf('c', 'f', 'a', 'e', 'b', 'd'),
             ),
         )
     }

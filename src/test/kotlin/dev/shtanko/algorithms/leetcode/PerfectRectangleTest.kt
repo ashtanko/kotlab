@@ -35,7 +35,7 @@ abstract class PerfectRectangleTest<out T : PerfectRectangle>(private val strate
                     intArrayOf(1, 3, 2, 4),
                     intArrayOf(2, 3, 3, 4),
                 ),
-                true
+                true,
             ),
             Arguments.of(
                 arrayOf(
@@ -44,7 +44,7 @@ abstract class PerfectRectangleTest<out T : PerfectRectangle>(private val strate
                     intArrayOf(3, 1, 4, 2),
                     intArrayOf(3, 2, 4, 4),
                 ),
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf(
@@ -53,7 +53,7 @@ abstract class PerfectRectangleTest<out T : PerfectRectangle>(private val strate
                     intArrayOf(1, 3, 2, 4),
                     intArrayOf(2, 2, 4, 4),
                 ),
-                false
+                false,
             ),
         )
     }

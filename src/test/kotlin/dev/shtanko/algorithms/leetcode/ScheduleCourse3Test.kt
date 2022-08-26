@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class ScheduleCourse3Test<out T : ScheduleCourse3>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -34,20 +34,20 @@ internal abstract class ScheduleCourse3Test<out T : ScheduleCourse3>(private val
                     intArrayOf(1000, 1250),
                     intArrayOf(2000, 3200),
                 ),
-                3
+                3,
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(1, 2),
                 ),
-                1
+                1,
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(3, 2),
                     intArrayOf(4, 3),
                 ),
-                0
+                0,
             ),
         )
     }

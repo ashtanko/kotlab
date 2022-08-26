@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 abstract class TemplateTest<out T : Template>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of()
+            Arguments.of(),
         )
     }
 

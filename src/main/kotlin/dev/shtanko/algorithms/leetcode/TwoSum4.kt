@@ -105,7 +105,7 @@ class TwoSum4DFS : TwoSum4 {
         return if (cur == null) false else search(root, cur, k - cur.value) || dfs(root, cur.left, k) || dfs(
             root,
             cur.right,
-            k
+            k,
         )
     }
 
@@ -113,7 +113,7 @@ class TwoSum4DFS : TwoSum4 {
         return if (root == null) false else root.value == value && root != cur || root.value < value && search(
             root.right,
             cur,
-            value
+            value,
         ) || root.value > value && search(root.left, cur, value)
     }
 }

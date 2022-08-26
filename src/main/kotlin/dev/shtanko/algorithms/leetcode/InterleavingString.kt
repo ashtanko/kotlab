@@ -50,7 +50,7 @@ class InterleavingStringRecursionWithMemo : InterleavingStringStrategy {
         i: Int,
         j: Int,
         k: Int,
-        memo: Array<IntArray>
+        memo: Array<IntArray>,
     ): Boolean {
         if (i == first.length) {
             return second.substring(j) == third.substring(k)
@@ -86,7 +86,7 @@ class InterleavingString2D : InterleavingStringStrategy {
         }
         val dp = Array(s1.length + 1) {
             BooleanArray(
-                s2.length + 1
+                s2.length + 1,
             )
         }
         for (i in 0..s1.length) {

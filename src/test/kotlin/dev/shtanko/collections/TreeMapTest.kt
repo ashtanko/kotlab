@@ -16,6 +16,8 @@
 
 package dev.shtanko.collections
 
+import java.util.TreeMap
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Test
@@ -25,8 +27,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.TreeMap
-import java.util.stream.Stream
 
 internal class TreeMapTest {
 

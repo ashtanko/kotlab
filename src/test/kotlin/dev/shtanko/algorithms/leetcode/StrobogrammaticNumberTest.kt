@@ -16,36 +16,36 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class StrobogrammaticNumberTest<out T : StrobogrammaticNumber>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",
-                true
+                true,
             ),
             Arguments.of(
                 "1",
-                true
+                true,
             ),
             Arguments.of(
                 "69",
-                true
+                true,
             ),
             Arguments.of(
                 "88",
-                true
+                true,
             ),
             Arguments.of(
                 "962",
-                false
+                false,
             ),
         )
     }

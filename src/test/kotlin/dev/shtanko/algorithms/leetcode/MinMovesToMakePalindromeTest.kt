@@ -30,23 +30,23 @@ abstract class MinMovesToMakePalindromeTest<out T : MinMovesToMakePalindrome>(pr
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "aabb",
-                2
+                2,
             ),
             Arguments.of(
                 "letelt",
-                2
+                2,
             ),
             Arguments.of(
                 "",
-                0
+                0,
             ),
             Arguments.of(
                 "q",
-                0
+                0,
             ),
             Arguments.of(
                 "qq",
-                0
+                0,
             ),
         )
     }

@@ -29,11 +29,11 @@ abstract class MaxNumOfSubstringsTest<out T : MaxNumOfSubstrings>(private val st
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "adefaddaccc",
-                listOf("e", "f", "ccc")
+                listOf("e", "f", "ccc"),
             ),
             Arguments.of(
                 "abbaccd",
-                listOf("d", "bb", "cc")
+                listOf("d", "bb", "cc"),
             ),
         )
     }

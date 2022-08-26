@@ -16,12 +16,12 @@
 
 package dev.shtanko.patterns.structural.composite
 
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.io.ByteArrayOutputStream
-import java.io.PrintStream
 
 internal class MessengerTest {
 
@@ -44,7 +44,7 @@ internal class MessengerTest {
         val messenger = Messenger()
         testMessage(
             messenger.messageFromOrcs(),
-            "Where there is a whip there is a way."
+            "Where there is a whip there is a way.",
         )
     }
 
@@ -53,7 +53,7 @@ internal class MessengerTest {
         val messenger = Messenger()
         testMessage(
             messenger.messageFromElves(),
-            "Much wind pours from your mouth."
+            "Much wind pours from your mouth.",
         )
     }
 

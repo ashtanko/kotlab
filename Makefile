@@ -1,4 +1,4 @@
-.PHONY: check run test
+.PHONY: check run test lines
 check:
 	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
 
@@ -7,5 +7,8 @@ run:
 
 test:
 	./gradlew test
+
+lines:
+	find . -name '*.kt' | xargs wc -l
 
 .DEFAULT_GOAL := check

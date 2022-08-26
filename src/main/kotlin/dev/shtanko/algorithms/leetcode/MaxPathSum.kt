@@ -35,7 +35,6 @@ class MaxPathSumRecursion : MaxPathSum {
     }
 
     private fun maxGain(node: TreeNode?): Int {
-
         if (node == null) return 0
 
         // max sum on the left and right sub-trees of node

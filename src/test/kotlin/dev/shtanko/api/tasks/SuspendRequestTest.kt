@@ -33,8 +33,9 @@ class SuspendRequestTest {
         Assertions.assertEquals(expectedResults.users, result, "Wrong result for 'loadContributorsSuspend'")
         val totalTime = currentTime - startTime
         Assertions.assertEquals(
-            expectedResults.timeFromStart, totalTime,
-            "The calls run consequently, so the total virtual time should be 4000 ms: "
+            expectedResults.timeFromStart,
+            totalTime,
+            "The calls run consequently, so the total virtual time should be 4000 ms: ",
         )
     }
 }

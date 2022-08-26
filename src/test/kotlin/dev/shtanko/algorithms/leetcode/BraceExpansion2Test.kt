@@ -29,11 +29,11 @@ abstract class BraceExpansion2Test<out T : BraceExpansion2>(private val strategy
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "{a,b}{c,{d,e}}",
-                listOf("ac", "ad", "ae", "bc", "bd", "be")
+                listOf("ac", "ad", "ae", "bc", "bd", "be"),
             ),
             Arguments.of(
                 "{{a,z},a{b,c},{ab,z}}",
-                listOf("a", "ab", "ac", "z")
+                listOf("a", "ab", "ac", "z"),
             ),
         )
     }

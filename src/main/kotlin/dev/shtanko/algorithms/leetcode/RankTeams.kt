@@ -26,7 +26,7 @@ interface RankTeams {
 
 data class VoteRecord(
     val team: String,
-    val teamCount: Int
+    val teamCount: Int,
 ) {
     val ranks = IntArray(teamCount)
 }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 class FindKClosestElementsTest {
 
@@ -32,13 +32,13 @@ class FindKClosestElementsTest {
                 intArrayOf(1, 2, 3, 4, 5),
                 4,
                 3,
-                listOf(1, 2, 3, 4)
+                listOf(1, 2, 3, 4),
             ),
             Arguments.of(
                 intArrayOf(1, 2, 3, 4, 5),
                 4,
                 -1,
-                listOf(1, 2, 3, 4)
+                listOf(1, 2, 3, 4),
             ),
         )
     }
@@ -66,7 +66,7 @@ class FindKClosestElementsTest {
         arr: IntArray,
         k: Int,
         x: Int,
-        expected: List<Int>
+        expected: List<Int>,
     ) {
         val actual = strategy.invoke(arr, k, x)
         assertThat(actual).containsAll(expected)

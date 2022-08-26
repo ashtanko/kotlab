@@ -50,7 +50,6 @@ class CycleDetection : CriticalConnections {
     }
 
     private fun dfs(node: Int, discoveryRank: Int): Int {
-
         // That means this node is already visited. We simply return the rank.
         if (rank[node] != null) {
             return rank[node]!!
@@ -62,7 +61,6 @@ class CycleDetection : CriticalConnections {
         // This is the max we have seen till now. So we start with this instead of INT_MAX or something.
         var minRank = discoveryRank + 1
         for (neighbor in graph[node]!!) {
-
             // Skip the parent.
             val neighRank = rank[neighbor]
             if (neighRank != null && neighRank == discoveryRank - 1) {
@@ -155,7 +153,7 @@ class CriticalConnectionsGraph : CriticalConnections {
         var low: Int = Int.MAX_VALUE,
         var parent: Int = -1,
         var visited: Boolean = false,
-        var articulationPoint: Boolean = false
+        var articulationPoint: Boolean = false,
     )
 
     private class Graph(n: Int) {

@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class AdvantageShuffleTest {
 
@@ -32,17 +32,17 @@ internal class AdvantageShuffleTest {
             Arguments.of(
                 intArrayOf(),
                 intArrayOf(),
-                intArrayOf()
+                intArrayOf(),
             ),
             Arguments.of(
                 intArrayOf(2, 7, 11, 15),
                 intArrayOf(1, 10, 4, 11),
-                intArrayOf(2, 11, 7, 15)
+                intArrayOf(2, 11, 7, 15),
             ),
             Arguments.of(
                 intArrayOf(12, 24, 8, 32),
                 intArrayOf(13, 25, 32, 11),
-                intArrayOf(24, 32, 8, 12)
+                intArrayOf(24, 32, 8, 12),
             ),
         )
     }

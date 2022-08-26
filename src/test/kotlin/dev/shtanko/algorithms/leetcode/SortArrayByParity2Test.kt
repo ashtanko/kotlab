@@ -28,7 +28,7 @@ internal abstract class AbstractSortByParityStrategyTest<out T : AbstractSortByP
             return listOf(
                 intArrayOf(4, 2, 5, 7) to intArrayOf(4, 5, 2, 7),
                 intArrayOf(1, 2, 3, 4) to intArrayOf(2, 1, 4, 3),
-                intArrayOf(4, 8, 15, 16, 23, 41) to intArrayOf(4, 15, 8, 23, 16, 41)
+                intArrayOf(4, 8, 15, 16, 23, 41) to intArrayOf(4, 15, 8, 23, 16, 41),
             )
         }
     }

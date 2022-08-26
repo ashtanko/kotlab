@@ -30,15 +30,15 @@ abstract class SortArrayByParityTest<out T : SortArrayByParity>(private val stra
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(),
-                intArrayOf()
+                intArrayOf(),
             ),
             Arguments.of(
                 intArrayOf(3, 1, 2, 4),
-                intArrayOf(4, 2, 1, 3)
+                intArrayOf(4, 2, 1, 3),
             ),
             Arguments.of(
                 intArrayOf(0),
-                intArrayOf(0)
+                intArrayOf(0),
             ),
         )
     }

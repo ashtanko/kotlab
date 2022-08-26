@@ -29,7 +29,7 @@ internal class ZipTest {
             "Sara" to 4,
             "Jake" to 20,
             "Nick" to 15,
-            "John" to 22
+            "John" to 22,
         )
         val actual = names.zip(ages)
         assertEquals(expected, actual)

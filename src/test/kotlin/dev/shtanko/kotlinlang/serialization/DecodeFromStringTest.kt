@@ -17,6 +17,7 @@
 package dev.shtanko.kotlinlang.serialization
 
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.stream.Stream
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -26,7 +27,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class DecodeFromStringTest {
 
@@ -37,11 +37,11 @@ internal class DecodeFromStringTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 """{"a":42, "b": "str"}""",
-                Data(42, "str")
+                Data(42, "str"),
             ),
             Arguments.of(
                 """{"a":481516234, "b": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}""",
-                Data(481516234, "Lorem Ipsum is simply dummy text of the printing and typesetting industry.")
+                Data(481516234, "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
             ),
         )
     }
@@ -50,18 +50,18 @@ internal class DecodeFromStringTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 """[]""",
-                emptyList<Data>()
+                emptyList<Data>(),
             ),
             Arguments.of(
                 """[{"a":42, "b": "str"}]""",
-                listOf(Data(42, "str"))
+                listOf(Data(42, "str")),
             ),
             Arguments.of(
                 """[{"a":42, "b": "str"},{"a":1, "b": "q"}]""",
                 listOf(
                     Data(42, "str"),
                     Data(1, "q"),
-                )
+                ),
             ),
         )
     }

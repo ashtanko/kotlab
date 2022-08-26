@@ -29,7 +29,7 @@ internal class PancakeSortingTest {
         fun dataProvider(): List<Pair<IntArray, List<Int>>> =
             listOf(
                 intArrayOf(3, 2, 4, 1) to listOf(3, 4, 2, 3, 2),
-                intArrayOf(1, 2, 3) to emptyList()
+                intArrayOf(1, 2, 3) to emptyList(),
             )
     }
 

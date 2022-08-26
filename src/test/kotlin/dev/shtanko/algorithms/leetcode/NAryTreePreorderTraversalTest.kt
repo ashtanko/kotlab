@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal abstract class NAryTreePreorderTraversalTest<out T : NAryTreePreorderTraversalStrategy>(
-    private val strategy: T
+    private val strategy: T,
 ) {
 
     @Test

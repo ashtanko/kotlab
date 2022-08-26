@@ -32,7 +32,7 @@ abstract class ShortestPathInBinaryMatrixTest<out T : ShortestPathInBinaryMatrix
                     intArrayOf(0, 1),
                     intArrayOf(1, 0),
                 ),
-                2
+                2,
             ),
             Arguments.of(
                 arrayOf(
@@ -40,7 +40,7 @@ abstract class ShortestPathInBinaryMatrixTest<out T : ShortestPathInBinaryMatrix
                     intArrayOf(1, 1, 0),
                     intArrayOf(1, 1, 0),
                 ),
-                4
+                4,
             ),
             Arguments.of(
                 arrayOf(
@@ -48,7 +48,7 @@ abstract class ShortestPathInBinaryMatrixTest<out T : ShortestPathInBinaryMatrix
                     intArrayOf(1, 1, 0),
                     intArrayOf(1, 1, 0),
                 ),
-                -1
+                -1,
             ),
         )
     }

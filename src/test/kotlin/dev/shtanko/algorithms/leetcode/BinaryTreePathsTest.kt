@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -33,11 +33,11 @@ internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(pri
                     right = TreeNode(3)
                     left?.right = TreeNode(5)
                 },
-                listOf("1->2->5", "1->3")
+                listOf("1->2->5", "1->3"),
             ),
             Arguments.of(
                 t2(),
-                listOf("1->2->4", "1->2->5", "1->3->6", "1->3->7")
+                listOf("1->2->4", "1->2->5", "1->3->6", "1->3->7"),
             ),
         )
 

@@ -32,20 +32,20 @@ abstract class MinMatrixFlipsTest<out T : MinMatrixFlips>(private val strategy: 
                     intArrayOf(0, 0),
                     intArrayOf(0, 1),
                 ),
-                3
+                3,
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(0),
                 ),
-                0
+                0,
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(1, 0, 0),
                     intArrayOf(1, 0, 0),
                 ),
-                -1
+                -1,
             ),
         )
     }

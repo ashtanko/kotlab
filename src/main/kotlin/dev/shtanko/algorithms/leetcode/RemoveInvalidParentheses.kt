@@ -43,17 +43,14 @@ class RemoveInvalidParenthesesBacktracking : RemoveInvalidParentheses {
         index: Int,
         leftCount: Int,
         rightCount: Int,
-        removedCount: Int
+        removedCount: Int,
     ) {
         // If we have reached the end of string.
         if (index == s.length) {
-
             // If the current expression is valid.
             if (leftCount == rightCount) {
-
                 // If the current count of removed parentheses is <= the current minimum count
                 if (removedCount <= minimumRemoved) {
-
                     // Convert StringBuilder to a String. This is an expensive operation.
                     // So we only perform this when needed.
                     val possibleAnswer = expression.toString()
@@ -77,7 +74,6 @@ class RemoveInvalidParenthesesBacktracking : RemoveInvalidParentheses {
                 recurse(s, index + 1, leftCount, rightCount, removedCount)
                 expression.deleteCharAt(length)
             } else {
-
                 // Recursion where we delete the current character and move forward
                 recurse(s, index + 1, leftCount, rightCount, removedCount + 1)
                 expression.append(currentCharacter)
@@ -134,9 +130,8 @@ class RemoveInvalidParenthesesLBacktracking : RemoveInvalidParentheses {
         rightCount: Int,
         leftRem: Int,
         rightRem: Int,
-        expression: StringBuilder
+        expression: StringBuilder,
     ) {
-
         // If we reached the end of the string, just check if the resulting expression is
         // valid or not and also if we have removed the total number of left and right
         // parentheses that we should have removed.
@@ -158,7 +153,7 @@ class RemoveInvalidParenthesesLBacktracking : RemoveInvalidParentheses {
                     rightCount,
                     leftRem - if (character == '(') 1 else 0,
                     rightRem - if (character == ')') 1 else 0,
-                    expression
+                    expression,
                 )
             }
             expression.append(character)
@@ -167,11 +162,9 @@ class RemoveInvalidParenthesesLBacktracking : RemoveInvalidParentheses {
             if (character != '(' && character != ')') {
                 recurse(s, index + 1, leftCount, rightCount, leftRem, rightRem, expression)
             } else if (character == '(') {
-
                 // Consider an opening bracket.
                 recurse(s, index + 1, leftCount + 1, rightCount, leftRem, rightRem, expression)
             } else if (rightCount < leftCount) {
-
                 // Consider a closing bracket.
                 recurse(s, index + 1, leftCount, rightCount + 1, leftRem, rightRem, expression)
             }
@@ -203,9 +196,12 @@ class RemoveInvalidParenthesesFast : RemoveInvalidParentheses {
                 remove(
                     s.substring(
                         0,
-                        j
+                        j,
                     ) + s.substring(j + 1, s.length),
-                    ans, i, j, par
+                    ans,
+                    i,
+                    j,
+                    par,
                 )
             }
             ++i

@@ -31,19 +31,19 @@ class GreedyFloristTest {
                 3,
                 3,
                 intArrayOf(2, 5, 6),
-                13
+                13,
             ),
             Arguments.of(
                 3,
                 2,
                 intArrayOf(2, 5, 6),
-                15
+                15,
             ),
             Arguments.of(
                 5,
                 3,
                 intArrayOf(1, 3, 5, 7, 9),
-                29
+                29,
             ),
         )
     }

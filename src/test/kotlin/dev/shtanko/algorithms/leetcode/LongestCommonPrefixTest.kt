@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,34 +24,33 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 emptyArray<String>(),
-                ""
+                "",
             ),
             Arguments.of(
                 arrayOf("flower", "flow", "flight", "flstudio"),
-                "fl"
+                "fl",
             ),
             Arguments.of(
                 arrayOf("dog", "racecar", "car"),
-                ""
+                "",
             ),
             Arguments.of(
                 arrayOf("alsad", "alrty"),
-                "al"
+                "al",
             ),
             Arguments.of(
                 arrayOf("leets", "leetcode", "leet", "leeds"),
-                "lee"
+                "lee",
             ),
             Arguments.of(
                 arrayOf("leetcode", "leet", "le"),
-                "le"
+                "le",
             ),
         )
     }

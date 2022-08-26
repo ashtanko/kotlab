@@ -30,8 +30,9 @@ class BlockingRequestTest : TestBase() {
         val users = loadContributorsBlocking(MockGithubService, testRequestData)
         assertThat(expectedResults.users).isEqualTo(users)
         Assertions.assertEquals(
-            expectedResults.users, users,
-            "List of contributors should be sorted by the number of contributions in a descending order"
+            expectedResults.users,
+            users,
+            "List of contributors should be sorted by the number of contributions in a descending order",
         )
     }
 }

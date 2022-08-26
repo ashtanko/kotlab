@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 internal fun increasingBST(root: TreeNode?): TreeNode? {
     val vals: MutableList<Int?> = ArrayList()
     inorder(root, vals)

@@ -29,15 +29,15 @@ abstract class SubsetXORSumTest<out T : SubsetXORSum>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(1, 3),
-                6
+                6,
             ),
             Arguments.of(
                 intArrayOf(5, 1, 6),
-                28
+                28,
             ),
             Arguments.of(
                 intArrayOf(3, 4, 5, 6, 7, 8),
-                480
+                480,
             ),
         )
     }

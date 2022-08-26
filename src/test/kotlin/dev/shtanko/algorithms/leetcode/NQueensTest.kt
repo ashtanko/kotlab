@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Test
@@ -25,7 +26,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class NQueensTest {
 
@@ -34,16 +34,16 @@ internal class NQueensTest {
             Arguments.of(
                 1,
                 listOf(
-                    listOf("Q")
-                )
+                    listOf("Q"),
+                ),
             ),
             Arguments.of(
                 4,
                 listOf(
                     listOf(".Q..", "...Q", "Q...", "..Q."),
-                    listOf("..Q.", "Q...", "...Q", ".Q..")
-                )
-            )
+                    listOf("..Q.", "Q...", "...Q", ".Q.."),
+                ),
+            ),
         )
     }
 
@@ -52,18 +52,18 @@ internal class NQueensTest {
             Arguments.of(
                 2,
                 arrayOf<Pair<Int, Char>>(),
-                "2 |_||_|\n1 |_||_|\n  a  b\n"
+                "2 |_||_|\n1 |_||_|\n  a  b\n",
             ),
             Arguments.of(
                 2,
                 arrayOf(1 to 'a', 2 to 'b'),
-                "2 |_||#|\n1 |#||_|\n  a  b\n"
+                "2 |_||#|\n1 |#||_|\n  a  b\n",
             ),
             Arguments.of(
                 8,
                 arrayOf<Pair<Int, Char>>(),
-                "8 |_||_||_||_||_||_||_||_|\n7 |_||_||_||_||_||_||_||_|\n6 |_||_||_||_||_||_||_||_|\n5 |_||_||_||_||_||_||_||_|\n4 |_||_||_||_||_||_||_||_|\n3 |_||_||_||_||_||_||_||_|\n2 |_||_||_||_||_||_||_||_|\n1 |_||_||_||_||_||_||_||_|\n  a  b  c  d  e  f  g  h\n"
-            )
+                "8 |_||_||_||_||_||_||_||_|\n7 |_||_||_||_||_||_||_||_|\n6 |_||_||_||_||_||_||_||_|\n5 |_||_||_||_||_||_||_||_|\n4 |_||_||_||_||_||_||_||_|\n3 |_||_||_||_||_||_||_||_|\n2 |_||_||_||_||_||_||_||_|\n1 |_||_||_||_||_||_||_||_|\n  a  b  c  d  e  f  g  h\n",
+            ),
         )
     }
 

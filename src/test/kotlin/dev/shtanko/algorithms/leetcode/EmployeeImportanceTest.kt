@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.leetcode.EmployeeImportance.Employee
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -24,7 +25,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class EmployeeImportanceTest {
 
@@ -37,19 +37,19 @@ internal class EmployeeImportanceTest {
                     Employee(2, 3, listOf()),
                     Employee(3, 3, listOf()),
                 ),
-                11
+                11,
             ),
             Arguments.of(
                 0,
                 emptyList<Employee>(),
-                0
+                0,
             ),
             Arguments.of(
                 0,
                 listOf(
                     Employee(),
                 ),
-                0
+                0,
             ),
             Arguments.of(
                 1,
@@ -57,7 +57,7 @@ internal class EmployeeImportanceTest {
                     Employee(1),
                     Employee(1),
                 ),
-                0
+                0,
             ),
         )
     }

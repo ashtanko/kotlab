@@ -30,17 +30,17 @@ abstract class CoinChangeTest<out T : CoinChange>(private val strategy: T) {
             Arguments.of(
                 intArrayOf(1, 2, 5),
                 11,
-                3
+                3,
             ),
             Arguments.of(
                 intArrayOf(2),
                 3,
-                -1
+                -1,
             ),
             Arguments.of(
                 intArrayOf(1),
                 0,
-                0
+                0,
             ),
         )
     }

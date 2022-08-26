@@ -40,7 +40,7 @@ abstract class BalanceBSTreeTest<out T : BalanceBST>(private val strategy: T) {
                         right = TreeNode(4)
                     }
                     left = TreeNode(1)
-                }
+                },
             ),
             Arguments.of(
                 TreeNode(2).apply {

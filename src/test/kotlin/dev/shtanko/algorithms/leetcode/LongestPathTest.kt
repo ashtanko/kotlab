@@ -30,13 +30,13 @@ abstract class LongestPathTest<out T : LongestPath>(private val strategy: T) {
             Arguments.of(
                 intArrayOf(-1, 0, 0, 1, 1, 2),
                 "abacbe",
-                3
+                3,
             ),
             Arguments.of(
                 intArrayOf(-1, 0, 0, 0),
                 "aabc",
-                3
-            )
+                3,
+            ),
         )
     }
 

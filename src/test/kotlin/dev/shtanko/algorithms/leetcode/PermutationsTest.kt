@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class PermutationsTest<out T : Permutations>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -35,20 +35,20 @@ internal abstract class PermutationsTest<out T : Permutations>(private val strat
                     listOf(2, 1, 3),
                     listOf(2, 3, 1),
                     listOf(3, 1, 2),
-                    listOf(3, 2, 1)
-                )
+                    listOf(3, 2, 1),
+                ),
             ),
             Arguments.of(
                 intArrayOf(0, 1),
-                listOf(listOf(0, 1), listOf(1, 0))
+                listOf(listOf(0, 1), listOf(1, 0)),
             ),
             Arguments.of(
                 intArrayOf(1),
-                listOf(listOf(1))
+                listOf(listOf(1)),
             ),
             Arguments.of(
                 intArrayOf(),
-                listOf(listOf<Int>())
+                listOf(listOf<Int>()),
             ),
         )
     }

@@ -39,7 +39,7 @@ abstract class FrogPositionTest<out T : FrogPosition>(private val strategy: T) {
                 ),
                 2,
                 4,
-                0.16666666666666666
+                0.16666666666666666,
             ),
             Arguments.of(
                 7,
@@ -53,7 +53,7 @@ abstract class FrogPositionTest<out T : FrogPosition>(private val strategy: T) {
                 ),
                 1,
                 7,
-                0.3333333333333333
+                0.3333333333333333,
             ),
         )
     }

@@ -42,10 +42,10 @@ object EcommerceApp {
                         "1 - Mother board" + "\n" +
                         "2 - CPU" + "\n" +
                         "3 - HDD" + "\n" +
-                        "4 - Memory" + "\n"
+                        "4 - Memory" + "\n",
                 )
                 val choice = reader.readLine().toInt()
-                cost = (priceOnProducts[choice])!!
+                cost = (priceOnProducts[choice]) ?: 0
                 print("Count: ")
                 val count = reader.readLine().toInt()
                 order.totalCost = cost * count
@@ -56,7 +56,7 @@ object EcommerceApp {
                 println(
                     "Please, select a payment method:" + "\n" +
                         "1 - PalPay" + "\n" +
-                        "2 - Credit Card"
+                        "2 - Credit Card",
                 )
                 val paymentMethod = reader.readLine()
 

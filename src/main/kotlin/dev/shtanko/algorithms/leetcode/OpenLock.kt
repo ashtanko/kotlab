@@ -54,10 +54,10 @@ class OpenLockBFS : OpenLock {
                 for (i in 0 until LOCK_SIZE) {
                     val c = sb[i]
                     val s1 = sb.substring(0, i) + (if (c == '9') 0 else c - '0' + 1) + sb.substring(
-                        i + 1
+                        i + 1,
                     )
                     val s2 = sb.substring(0, i) + (if (c == '0') 9 else c - '0' - 1) + sb.substring(
-                        i + 1
+                        i + 1,
                     )
                     if (!deads.contains(s1)) {
                         temp.add(s1)

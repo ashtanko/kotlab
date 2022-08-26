@@ -30,7 +30,7 @@ internal class WildcardMatchingTest {
                 "aa" to "*" to true,
                 "cb" to "?a" to false,
                 "adceb" to "*a*b" to true,
-                "acdcb" to "a*c?b" to false
+                "acdcb" to "a*c?b" to false,
             )
         }
     }

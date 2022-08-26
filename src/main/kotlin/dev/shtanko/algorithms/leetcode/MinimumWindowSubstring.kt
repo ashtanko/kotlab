@@ -105,7 +105,6 @@ class MWSSlidingWindow : MinimumWindowSubstring {
  */
 class MWSSlidingWindowOpt : MinimumWindowSubstring {
     override fun minWindow(s: String, t: String): String {
-
         if (s.isEmpty() || t.isEmpty()) {
             return ""
         }

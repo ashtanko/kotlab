@@ -121,17 +121,21 @@ internal sealed class CountVowelsPermutation {
                         val local = vowelPermutationCount(i - 1, 1) + vowelPermutationCount(i - 1, 2)
                         memo[i][vowel] = (local + vowelPermutationCount(i - 1, 4)) % MOD
                     }
+
                     1 -> {
                         val local = vowelPermutationCount(i - 1, 0) + vowelPermutationCount(i - 1, 2)
                         memo[i][vowel] = local % MOD
                     }
+
                     2 -> {
                         val local = vowelPermutationCount(i - 1, 1) + vowelPermutationCount(i - 1, 3)
                         memo[i][vowel] = local % MOD
                     }
+
                     3 -> {
                         memo[i][vowel] = vowelPermutationCount(i - 1, 2)
                     }
+
                     4 -> {
                         val local = vowelPermutationCount(i - 1, 2) + vowelPermutationCount(i - 1, 3)
                         memo[i][vowel] = local % MOD

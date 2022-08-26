@@ -35,7 +35,7 @@ internal class RecoverBinarySearchTreeTest {
                     right = TreeNode(4).apply {
                         left = TreeNode(2)
                     }
-                } to listOf(2, 1, 4, 3)
+                } to listOf(2, 1, 4, 3),
             )
         }
     }

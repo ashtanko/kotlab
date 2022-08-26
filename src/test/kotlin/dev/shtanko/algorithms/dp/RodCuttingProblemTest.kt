@@ -32,12 +32,12 @@ internal class RodCuttingProblemTest {
             Arguments.of(
                 intArrayOf(2, 5, 7, 8),
                 5,
-                12
+                12,
             ),
             Arguments.of(
                 intArrayOf(1, 5, 8, 9, 10, 17, 17, 20),
                 4,
-                10
+                10,
             ),
         )
     }

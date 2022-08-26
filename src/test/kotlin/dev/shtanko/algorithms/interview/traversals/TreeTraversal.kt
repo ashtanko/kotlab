@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.interview.traversals
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private val strategy: T) {
 
@@ -30,8 +30,8 @@ internal abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 bstRoot,
-                listOf(1, 3, 4, 6, 7, 8, 10, 13, 14)
-            )
+                listOf(1, 3, 4, 6, 7, 8, 10, 13, 14),
+            ),
         )
 
         //          8
@@ -49,16 +49,16 @@ internal abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private
                 right = BinaryTreeNode(
                     data = 6,
                     left = BinaryTreeNode(data = 4),
-                    right = BinaryTreeNode(data = 7)
-                )
+                    right = BinaryTreeNode(data = 7),
+                ),
             ),
             right = BinaryTreeNode(
                 data = 10,
                 right = BinaryTreeNode(
                     data = 14,
-                    left = BinaryTreeNode(data = 13)
-                )
-            )
+                    left = BinaryTreeNode(data = 13),
+                ),
+            ),
         )
     }
 

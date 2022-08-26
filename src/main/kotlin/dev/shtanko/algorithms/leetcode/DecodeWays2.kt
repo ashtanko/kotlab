@@ -53,10 +53,12 @@ class DecodeWays2RecursionWithMemoization : DecodeWays2Strategy {
                         res
                     }
                 }
+
                 '*' -> {
                     val r = if (s[i] <= '6') 2 else 1
                     calculateRes(s, i, memo, res, r)
                 }
+
                 else -> res
             }
         }
@@ -108,6 +110,7 @@ class DecodeWays2DynamicProgramming : DecodeWays2Strategy {
                     '1' -> {
                         getDp(dp, i)
                     }
+
                     '2' -> {
                         if (s[i] <= '6') {
                             getDp(dp, i)
@@ -115,11 +118,13 @@ class DecodeWays2DynamicProgramming : DecodeWays2Strategy {
                             dp[i + 1]
                         }
                     }
+
                     '*' -> {
                         val local = if (s[i] <= '6') 2 else 1
                         val calculated = dp[i + 1] + local * dp[i - 1]
                         calculated % MOD
                     }
+
                     else -> {
                         dp[i + 1]
                     }
@@ -169,10 +174,12 @@ class DecodeWays2ConstantSpaceDynamicProgramming : DecodeWays2Strategy {
                             second
                         }
                     }
+
                     '*' -> {
                         val local = if (s[i] <= '6') 2 else 1
                         justCalculate(first, second, local)
                     }
+
                     else -> second
                 }
             }

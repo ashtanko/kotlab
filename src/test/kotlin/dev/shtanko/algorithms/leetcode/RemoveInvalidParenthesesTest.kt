@@ -29,19 +29,19 @@ abstract class RemoveInvalidParenthesesTest<out T : RemoveInvalidParentheses>(pr
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "()())()",
-                listOf("(())()", "()()()")
+                listOf("(())()", "()()()"),
             ),
             Arguments.of(
                 "(a)())()",
-                listOf("(a())()", "(a)()()")
+                listOf("(a())()", "(a)()()"),
             ),
             Arguments.of(
                 ")(",
-                listOf("")
+                listOf(""),
             ),
             Arguments.of(
                 "",
-                listOf("")
+                listOf(""),
             ),
         )
     }

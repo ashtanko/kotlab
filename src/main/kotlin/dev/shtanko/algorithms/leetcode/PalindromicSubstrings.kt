@@ -32,7 +32,7 @@ class PalindromicSubstringsCheckAllSubstrings : PalindromicSubstrings {
         for (start in s.indices) for (end in start until s.length) ans += if (isPalindrome(
                 s,
                 start,
-                end
+                end,
             )
         ) 1 else 0
 

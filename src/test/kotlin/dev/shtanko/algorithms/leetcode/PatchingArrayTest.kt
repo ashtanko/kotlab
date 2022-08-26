@@ -29,24 +29,29 @@ abstract class PatchingArrayTest<out T : PatchingArray>(private val strategy: T)
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(
-                    1, 3
+                    1,
+                    3,
                 ),
                 6,
-                1
+                1,
             ),
             Arguments.of(
                 intArrayOf(
-                    1, 5, 10
+                    1,
+                    5,
+                    10,
                 ),
                 20,
-                2
+                2,
             ),
             Arguments.of(
                 intArrayOf(
-                    1, 2, 2
+                    1,
+                    2,
+                    2,
                 ),
                 5,
-                0
+                0,
             ),
         )
     }

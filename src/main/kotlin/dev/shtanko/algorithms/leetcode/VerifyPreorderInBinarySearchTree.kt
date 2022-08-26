@@ -57,7 +57,7 @@ class VerifyPreorderInBinarySearchTreeRecursion : VerifyPreorderInBinarySearchTr
         return preorder.isEmpty() || check(preorder, Integer.MIN_VALUE, preorder.first()) && check(
             preorder,
             preorder.first(),
-            Integer.MAX_VALUE
+            Integer.MAX_VALUE,
         )
     }
 

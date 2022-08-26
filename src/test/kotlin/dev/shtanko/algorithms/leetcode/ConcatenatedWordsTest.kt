@@ -30,11 +30,11 @@ abstract class ConcatenatedWordsTest<out T : ConcatenatedWords>(private val stra
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 arrayOf("cat", "cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat"),
-                listOf("catsdogcats", "dogcatsdog", "ratcatdogcat")
+                listOf("catsdogcats", "dogcatsdog", "ratcatdogcat"),
             ),
             Arguments.of(
                 arrayOf("cat", "dog", "catdog"),
-                listOf("catdog")
+                listOf("catdog"),
             ),
         )
     }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class FindNearestRightNodeTest<out T : FindNearestRightNodeStrategy>(private val strategy: T) {
 
@@ -39,7 +39,7 @@ internal abstract class FindNearestRightNodeTest<out T : FindNearestRightNodeStr
                     }
                 },
                 TreeNode(4),
-                TreeNode(5)
+                TreeNode(5),
             ),
             Arguments.of(
                 TreeNode(3).apply {
@@ -48,23 +48,23 @@ internal abstract class FindNearestRightNodeTest<out T : FindNearestRightNodeStr
                     }
                 },
                 TreeNode(2),
-                null
+                null,
             ),
             Arguments.of(
                 TreeNode(1),
                 TreeNode(1),
-                null
+                null,
             ),
             Arguments.of(
                 null,
                 TreeNode(1),
-                null
+                null,
             ),
             Arguments.of(
                 null,
                 null,
-                null
-            )
+                null,
+            ),
         )
     }
 

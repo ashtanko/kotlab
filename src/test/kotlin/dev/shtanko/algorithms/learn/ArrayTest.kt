@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.learn
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 internal class ArrayTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -36,7 +36,7 @@ internal class ArrayTest {
             return listOf(
                 2 to intArrayOf(1, 3, 2, 4, 5),
                 10 to intArrayOf(12, 25, 8, 55, 10, 33, 17, 11),
-                8 to intArrayOf(4, 8, 15, 16, 23, 42)
+                8 to intArrayOf(4, 8, 15, 16, 23, 42),
             )
         }
 
@@ -44,15 +44,15 @@ internal class ArrayTest {
         fun firstUniqueProvider(): List<Any> {
             return listOf(
                 intArrayOf(1, 2, 3, 4, 5) to intArrayOf(
-                    1, 1, 2, 2, 2, 3, 3, 4, 5, 5
-                )
+                    1, 1, 2, 2, 2, 3, 3, 4, 5, 5,
+                ),
             )
         }
 
         @JvmStatic
         fun mergeArrayDataProvider(): List<Pair<Pair<IntArray, IntArray>, IntArray>> {
             return listOf(
-                intArrayOf(1, 2, 3, 4, 5, 6) to intArrayOf(7, 8, 9) to intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
+                intArrayOf(1, 2, 3, 4, 5, 6) to intArrayOf(7, 8, 9) to intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9),
             )
         }
     }

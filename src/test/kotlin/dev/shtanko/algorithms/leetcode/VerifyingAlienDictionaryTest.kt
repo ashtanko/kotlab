@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDictionary>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -30,18 +30,18 @@ internal abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDicti
             Arguments.of(
                 arrayOf("hello", "leetcode"),
                 "hlabcdefgijkmnopqrstuvwxyz",
-                true
+                true,
             ),
             Arguments.of(
                 arrayOf("word", "world", "row"),
                 "worldabcefghijkmnpqstuvxyz",
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf("apple", "app"),
                 "abcdefghijklmnopqrstuvwxyz",
-                false
-            )
+                false,
+            ),
         )
     }
 
@@ -53,4 +53,5 @@ internal abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDicti
     }
 }
 
-internal class VerifyingAlienDictionaryCompareTest : VerifyingAlienDictionaryTest<VerifyingAlienDictionaryCompare>(VerifyingAlienDictionaryCompare())
+internal class VerifyingAlienDictionaryCompareTest :
+    VerifyingAlienDictionaryTest<VerifyingAlienDictionaryCompare>(VerifyingAlienDictionaryCompare())

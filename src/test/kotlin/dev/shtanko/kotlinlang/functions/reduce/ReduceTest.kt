@@ -30,23 +30,23 @@ class ReduceTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-                300
+                300,
             ),
             Arguments.of(
                 listOf(1, 2),
-                20
+                20,
             ),
             Arguments.of(
                 listOf(2, 2),
-                40
+                40,
             ),
             Arguments.of(
                 listOf(4, 4),
-                80
+                80,
             ),
             Arguments.of(
                 listOf(400, 400),
-                8000
+                8000,
             ),
         )
     }

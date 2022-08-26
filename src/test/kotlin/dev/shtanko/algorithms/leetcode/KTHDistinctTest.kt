@@ -30,17 +30,17 @@ abstract class KTHDistinctTest<out T : KTHDistinct>(private val strategy: T) {
             Arguments.of(
                 arrayOf("d", "b", "c", "b", "c", "a"),
                 2,
-                "a"
+                "a",
             ),
             Arguments.of(
                 arrayOf("aaa", "aa", "a"),
                 1,
-                "aaa"
+                "aaa",
             ),
             Arguments.of(
                 arrayOf("a", "b", "a"),
                 3,
-                ""
+                "",
             ),
         )
     }

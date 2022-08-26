@@ -16,9 +16,9 @@
 
 package dev.shtanko.patterns.behavioral.interpreter.example1
 
-import org.junit.jupiter.params.provider.Arguments
 import java.util.function.BiFunction
 import java.util.stream.Stream
+import org.junit.jupiter.params.provider.Arguments
 
 class MultiplyExpressionTest :
     ExpressionTest<MultiplyExpression>(BiFunction { t, u -> MultiplyExpression(t, u) }, "*") {

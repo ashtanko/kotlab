@@ -33,7 +33,7 @@ abstract class MaxValueOfCoinsTest<out T : MaxValueOfCoins>(private val strategy
                     listOf(7, 8, 9),
                 ),
                 2,
-                101
+                101,
             ),
             Arguments.of(
                 listOf(
@@ -46,8 +46,8 @@ abstract class MaxValueOfCoinsTest<out T : MaxValueOfCoins>(private val strategy
                     listOf(1, 1, 1, 1, 1, 1, 700),
                 ),
                 7,
-                706
-            )
+                706,
+            ),
         )
     }
 

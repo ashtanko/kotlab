@@ -16,24 +16,24 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class SortListTest<out T : SortListStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(
-                    1
+                    1,
                 ),
                 ListNode(
-                    1
-                )
+                    1,
+                ),
             ),
             Arguments.of(
                 ListNode(1).apply {
@@ -41,7 +41,7 @@ abstract class SortListTest<out T : SortListStrategy>(private val strategy: T) {
                 },
                 ListNode(1).apply {
                     next = ListNode(2)
-                }
+                },
             ),
             Arguments.of(
                 ListNode(2).apply {
@@ -49,7 +49,7 @@ abstract class SortListTest<out T : SortListStrategy>(private val strategy: T) {
                 },
                 ListNode(1).apply {
                     next = ListNode(2)
-                }
+                },
             ),
             Arguments.of(
                 ListNode(4).apply {
@@ -85,7 +85,7 @@ abstract class SortListTest<out T : SortListStrategy>(private val strategy: T) {
                             }
                         }
                     }
-                }
+                },
             ),
         )
     }

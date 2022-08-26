@@ -79,8 +79,8 @@ internal class LinkedListTest {
         assertTrue(
             findFirstIntersection(
                 LinkedList.fromArray(intArrayOf(1, 2, 3, 4)),
-                LinkedList.fromArray(intArrayOf(1, 2, 3, 4, 5))
-            ) == null
+                LinkedList.fromArray(intArrayOf(1, 2, 3, 4, 5)),
+            ) == null,
         )
     }
 

@@ -43,7 +43,7 @@ internal class IvoryTowerTest {
             Wizard("Gandalf"),
             Wizard("Dumbledore"),
             Wizard("Oz"),
-            Wizard("Merlin")
+            Wizard("Merlin"),
         )
         val tower = IvoryTower()
         wizards.each(tower::enter)

@@ -22,7 +22,7 @@ import java.util.Stack
 class BinaryTreeNode(
     var left: BinaryTreeNode? = null,
     var right: BinaryTreeNode? = null,
-    val data: Int
+    val data: Int,
 ) {
 
     var parent: BinaryTreeNode? = null

@@ -29,23 +29,23 @@ abstract class ReverseWords3Test<out T : ReverseWords3>(private val strategy: T)
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "Let's take LeetCode contest",
-                "s'teL ekat edoCteeL tsetnoc"
+                "s'teL ekat edoCteeL tsetnoc",
             ),
             Arguments.of(
                 "God Ding",
-                "doG gniD"
+                "doG gniD",
             ),
             Arguments.of(
                 "a",
-                "a"
+                "a",
             ),
             Arguments.of(
                 "",
-                ""
+                "",
             ),
             Arguments.of(
                 "qq",
-                "qq"
+                "qq",
             ),
         )
     }

@@ -45,12 +45,13 @@ class MaxSumBSTPostOrder : MaxSumBST {
             intArrayOf(min, max, sum, maxSum)
         } else {
             intArrayOf(
-                Int.MIN_VALUE, Int.MAX_VALUE,
+                Int.MIN_VALUE,
+                Int.MAX_VALUE,
                 max(
                     left[2],
-                    right[2]
+                    right[2],
                 ),
-                max(left[3], right[3])
+                max(left[3], right[3]),
             )
         }
     }

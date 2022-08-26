@@ -31,7 +31,7 @@ internal class MaxPointsTest {
                 3 to arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(2, 2),
-                    intArrayOf(3, 3)
+                    intArrayOf(3, 3),
                 ),
                 4 to arrayOf(
                     intArrayOf(1, 1),
@@ -39,8 +39,8 @@ internal class MaxPointsTest {
                     intArrayOf(5, 3),
                     intArrayOf(4, 1),
                     intArrayOf(2, 3),
-                    intArrayOf(1, 4)
-                )
+                    intArrayOf(1, 4),
+                ),
             )
         }
     }

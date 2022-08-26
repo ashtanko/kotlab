@@ -39,7 +39,7 @@ internal abstract class PathSumTest<out T : PathSumStrategy>(private val strateg
                             right = TreeNode(1)
                         }
                     }
-                } to 22 to true
+                } to 22 to true,
             )
         }
     }

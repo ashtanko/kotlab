@@ -30,37 +30,37 @@ abstract class VerbalArithmeticPuzzleTest<out T : VerbalArithmeticPuzzle>(privat
             Arguments.of(
                 arrayOf("SEND", "MORE"),
                 "MONEY",
-                true
+                true,
             ),
             Arguments.of(
                 arrayOf("SIX", "SEVEN", "SEVEN"),
                 "TWENTY",
-                true
+                true,
             ),
             Arguments.of(
                 arrayOf("LEET", "CODE"),
                 "POINT",
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf<String>(),
                 "",
-                true
+                true,
             ),
             Arguments.of(
                 arrayOf("A"),
                 "",
-                true
+                true,
             ),
             Arguments.of(
                 arrayOf("A"),
                 "A",
-                true
+                true,
             ),
             Arguments.of(
                 arrayOf<String>(),
                 "A",
-                true
+                true,
             ),
         )
     }

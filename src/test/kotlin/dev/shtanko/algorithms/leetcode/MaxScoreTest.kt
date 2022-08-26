@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class MaxScoreTest<out T : MaxScore>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -30,27 +30,27 @@ internal abstract class MaxScoreTest<out T : MaxScore>(private val strategy: T) 
             Arguments.of(
                 intArrayOf(1, 2, 3, 4, 5, 6, 1),
                 3,
-                12
+                12,
             ),
             Arguments.of(
                 intArrayOf(2, 2, 2),
                 2,
-                4
+                4,
             ),
             Arguments.of(
                 intArrayOf(9, 7, 7, 9, 7, 7, 9),
                 7,
-                55
+                55,
             ),
             Arguments.of(
                 intArrayOf(1, 1000, 1),
                 1,
-                1
+                1,
             ),
             Arguments.of(
                 intArrayOf(1, 79, 80, 1, 1, 1, 200, 1),
                 3,
-                202
+                202,
             ),
         )
     }

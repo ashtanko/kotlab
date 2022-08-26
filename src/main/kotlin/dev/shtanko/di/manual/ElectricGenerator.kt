@@ -36,10 +36,9 @@ internal class PetrolGenerator1(private val fuel: Petrol) : PetrolGenerator {
 
     private var tankVolume = TANK_VOLUME // full tank by default
 
-    @OptIn(ExperimentalTime::class)
     override fun generate(duration: Duration): Electricity {
         val joules = fuel.combustionEnergy().joule
-        val durationMillis = CONSUMPTION_LITER_PER_HOUR.toDuration(DurationUnit.HOURS).inWholeMilliseconds
+        // val durationMillis = CONSUMPTION_LITER_PER_HOUR.toDuration(DurationUnit.HOURS).inWholeMilliseconds // TODO
         val hours = TANK_VOLUME.div(CONSUMPTION_LITER_PER_HOUR).toDuration(DurationUnit.HOURS)
         val seconds = hours.inWholeSeconds
         val power: Watt = joules / seconds

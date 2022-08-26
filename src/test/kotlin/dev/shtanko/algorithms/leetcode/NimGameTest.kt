@@ -28,7 +28,7 @@ internal class NimGameTest {
             return listOf(
                 false to 4,
                 true to 1,
-                true to 2
+                true to 2,
             )
         }
     }

@@ -73,7 +73,7 @@ class CheckWaysDFS : CheckWays {
         depth: Int,
         tree: HashMap<Int, ArrayList<Int>>,
         graph: HashMap<Int, HashSet<Int>>,
-        visited: HashSet<Int?>
+        visited: HashSet<Int?>,
     ): Int {
         if (result == 0) return -1
         if (visited.contains(root)) {
@@ -87,7 +87,7 @@ class CheckWaysDFS : CheckWays {
             depth + 1,
             tree,
             graph,
-            visited
+            visited,
         )
         if (descendantsNum + depth != graph[root]?.size) {
             result = 0

@@ -26,7 +26,7 @@ class ComplexMapKeysMultibindingsTest {
     fun `simple test`() {
         val component = DaggerComplexMapKeysMultibindingsComponent.create()
         assertThat(
-            component.myKeyStringMap()[createMyKey("abc", Abc::class.java, intArrayOf(1, 5, 10))]
+            component.myKeyStringMap()[createMyKey("abc", Abc::class.java, intArrayOf(1, 5, 10))],
         ).isEqualTo("foo")
     }
 

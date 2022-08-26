@@ -28,7 +28,7 @@ internal abstract class NumberOfStepsTest<out T : NumberOfStepsStrategy>(private
             return listOf(
                 14 to 6,
                 8 to 4,
-                123 to 12
+                123 to 12,
             )
         }
     }

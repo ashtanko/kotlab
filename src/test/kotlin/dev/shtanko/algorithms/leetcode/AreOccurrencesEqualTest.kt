@@ -29,43 +29,43 @@ abstract class AreOccurrencesEqualTest<out T : AreOccurrencesEqual>(private val 
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "abacbc",
-                true
+                true,
             ),
             Arguments.of(
                 "aaabb",
-                false
+                false,
             ),
             Arguments.of(
                 "aaabbb",
-                true
+                true,
             ),
             Arguments.of(
                 "ab",
-                true
+                true,
             ),
             Arguments.of(
                 "abababababababababababababababababababababab",
-                true
+                true,
             ),
             Arguments.of(
                 "abccbabacabc",
-                true
+                true,
             ),
             Arguments.of(
                 "vvvvvvvvvvvvvvvvvvv",
-                true
+                true,
             ),
             Arguments.of(
                 "fhojjkontbncdhwxbnexplclvjyexzsvqyyhpfpnvhdskuhkuoihiqgalklqketjikdlgrawhfo",
-                false
+                false,
             ),
             Arguments.of(
                 "tveixwaeoezcf",
-                false
+                false,
             ),
             Arguments.of(
                 "jfdntzwmzrsurunnoezrybmtm",
-                false
+                false,
             ),
         )
     }

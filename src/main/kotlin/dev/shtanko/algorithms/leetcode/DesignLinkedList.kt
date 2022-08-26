@@ -76,6 +76,6 @@ class DesignLinkedList {
     data class ListNode(
         val value: Int,
         var next: ListNode? = null,
-        var prev: ListNode? = null
+        var prev: ListNode? = null,
     )
 }

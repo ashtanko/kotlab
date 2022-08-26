@@ -16,6 +16,8 @@
 
 package dev.shtanko.collections
 
+import java.util.concurrent.ConcurrentMap
+import java.util.concurrent.ConcurrentSkipListMap
 import org.jetbrains.kotlinx.lincheck.LinChecker
 import org.jetbrains.kotlinx.lincheck.LoggingLevel
 import org.jetbrains.kotlinx.lincheck.annotations.Operation
@@ -25,8 +27,6 @@ import org.jetbrains.kotlinx.lincheck.strategy.stress.StressCTest
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
 import org.jetbrains.kotlinx.lincheck.verifier.VerifierState
 import org.junit.jupiter.api.Test
-import java.util.concurrent.ConcurrentMap
-import java.util.concurrent.ConcurrentSkipListMap
 
 @StressCTest(minimizeFailedScenario = false)
 @Param(name = "key", gen = IntGen::class, conf = "1:5")

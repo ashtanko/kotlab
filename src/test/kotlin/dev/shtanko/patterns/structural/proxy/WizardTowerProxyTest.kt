@@ -43,7 +43,7 @@ internal class WizardTowerProxyTest {
             Wizard("Gandalf"),
             Wizard("Dumbledore"),
             Wizard("Oz"),
-            Wizard("Merlin")
+            Wizard("Merlin"),
         )
         val proxy = WizardTowerProxy(IvoryTower())
         wizards.each(proxy::enter)

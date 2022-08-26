@@ -29,7 +29,7 @@ internal class NextPermutationTest {
                 intArrayOf(1, 3, 2) to intArrayOf(1, 2, 3),
                 intArrayOf(1, 2, 3) to intArrayOf(3, 2, 1),
                 intArrayOf(1, 5, 1) to intArrayOf(1, 1, 5),
-                intArrayOf(2, 1, 3) to intArrayOf(1, 3, 2)
+                intArrayOf(2, 1, 3) to intArrayOf(1, 3, 2),
             )
         }
     }

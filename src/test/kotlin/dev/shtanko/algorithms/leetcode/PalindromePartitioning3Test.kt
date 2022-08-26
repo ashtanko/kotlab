@@ -30,17 +30,17 @@ abstract class PalindromePartitioning3Test<out T : PalindromePartitioning3>(priv
             Arguments.of(
                 "abc",
                 2,
-                1
+                1,
             ),
             Arguments.of(
                 "aabbc",
                 3,
-                0
+                0,
             ),
             Arguments.of(
                 "leetcode",
                 8,
-                0
+                0,
             ),
         )
     }

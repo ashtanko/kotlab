@@ -30,7 +30,7 @@ internal abstract class ReduceArraySizeToTheHalfTest<out T : MinSetSizeStrategy>
                 intArrayOf(7, 7, 7, 7, 7, 7) to 1,
                 intArrayOf(1, 9) to 1,
                 intArrayOf(1000, 1000, 3, 7) to 1,
-                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) to 5
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) to 5,
             )
         }
     }

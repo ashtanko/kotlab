@@ -27,7 +27,7 @@ internal class NumOfSubArraysTest {
         fun dataProvider(): List<Any> {
             return listOf(
                 4 to intArrayOf(1, 3, 5),
-                0 to intArrayOf(2, 4, 6)
+                0 to intArrayOf(2, 4, 6),
             )
         }
     }

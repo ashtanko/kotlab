@@ -46,7 +46,7 @@ class PerfectRectangleSweepLine : PerfectRectangle {
             Comparator<IntArray> { rect1, rect2 ->
                 // if two y-intervals intersects, return 0
                 if (rect1[3] <= rect2[1]) -1 else if (rect2[3] <= rect1[1]) 1 else 0
-            }
+            },
         )
         var yRange = 0
         while (!pq.isEmpty()) {

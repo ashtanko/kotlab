@@ -17,7 +17,6 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.swap
-import java.util.ArrayList
 
 class SimilarStringGroups {
 

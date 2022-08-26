@@ -29,31 +29,31 @@ abstract class DigitCountTest<out T : DigitCount>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "1210",
-                true
+                true,
             ),
             Arguments.of(
                 "030",
-                false
+                false,
             ),
             Arguments.of(
                 "",
-                true
+                true,
             ),
             Arguments.of(
                 "1",
-                false
+                false,
             ),
             Arguments.of(
                 "12",
-                false
+                false,
             ),
             Arguments.of(
                 "11",
-                false
+                false,
             ),
             Arguments.of(
                 "10",
-                false
+                false,
             ),
         )
     }

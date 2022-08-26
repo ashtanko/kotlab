@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class CountSquaresTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -34,7 +34,7 @@ internal class CountSquaresTest {
                     intArrayOf(1, 1, 1, 1),
                     intArrayOf(0, 1, 1, 1),
                 ),
-                15
+                15,
             ),
             Arguments.of(
                 arrayOf(
@@ -42,7 +42,7 @@ internal class CountSquaresTest {
                     intArrayOf(1, 1, 0),
                     intArrayOf(1, 1, 0),
                 ),
-                7
+                7,
             ),
         )
     }

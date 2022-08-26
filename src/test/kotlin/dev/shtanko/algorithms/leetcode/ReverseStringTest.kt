@@ -30,7 +30,7 @@ internal class ReverseStringTest {
                 charArrayOf('h', 'e', 'l', 'l', 'o') to charArrayOf('o', 'l', 'l', 'e', 'h'),
                 charArrayOf('T', 'E', 'N', 'E', 'T') to charArrayOf('T', 'E', 'N', 'E', 'T'),
                 charArrayOf('2', '1') to charArrayOf('1', '2'),
-                charArrayOf('$', '%') to charArrayOf('%', '$')
+                charArrayOf('$', '%') to charArrayOf('%', '$'),
             )
         }
     }

@@ -78,7 +78,7 @@ class Messenger {
             Word('t', 'h', 'e', 'r', 'e'),
             Word('i', 's'),
             Word('a'),
-            Word('w', 'a', 'y')
+            Word('w', 'a', 'y'),
         )
         return Sentence(words)
     }
@@ -90,7 +90,7 @@ class Messenger {
             Word('p', 'o', 'u', 'r', 's'),
             Word('f', 'r', 'o', 'm'),
             Word('y', 'o', 'u', 'r'),
-            Word('m', 'o', 'u', 't', 'h')
+            Word('m', 'o', 'u', 't', 'h'),
         )
         return Sentence(words)
     }

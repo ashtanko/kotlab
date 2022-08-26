@@ -56,7 +56,7 @@ internal abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val s
                 134_217_728,
                 268_435_456,
                 536_870_912,
-                1_073_741_824
+                1_073_741_824,
             )
         }
 
@@ -81,7 +81,7 @@ internal abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val s
                 43_046_721,
                 129_140_163,
                 387_420_489,
-                1_162_261_467
+                1_162_261_467,
             )
         }
     }

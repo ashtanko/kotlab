@@ -23,11 +23,12 @@ class MeasureTimeTest {
 
     @Test
     fun `measure time test`() {
-        measure({
-            (1..100_000).map {
-                Random.nextInt(100_000)
-            }.sorted()
-        }
+        measureTime(
+            {
+                (1..100_000).map {
+                    Random.nextInt(100_000)
+                }.sorted()
+            },
         ) {
             println(it.second)
         }

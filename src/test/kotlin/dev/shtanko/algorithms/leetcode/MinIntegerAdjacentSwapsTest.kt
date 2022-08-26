@@ -30,17 +30,17 @@ abstract class MinIntegerAdjacentSwapsTest<out T : MinIntegerAdjacentSwaps>(priv
             Arguments.of(
                 "4321",
                 4,
-                "1342"
+                "1342",
             ),
             Arguments.of(
                 "100",
                 1,
-                "010"
+                "010",
             ),
             Arguments.of(
                 "36789",
                 1000,
-                "36789"
+                "36789",
             ),
         )
     }

@@ -48,7 +48,7 @@ class DPDayVariant : MinCostTickets {
         if (dayset.contains(i)) {
             ans = min(
                 dp(i + 1) + costs[0],
-                dp(i + 7) + costs[1]
+                dp(i + 7) + costs[1],
             )
             ans = min(ans, dp(i + THIRTY_DAYS) + costs[2])
         } else {

@@ -35,7 +35,7 @@ class SequenceGeneratorTest : TestBase() {
     fun givenUnsafeSequenceGenerator_whenRaceCondition_thenUnexpectedBehavior() {
         val count = 1000
         val uniqueSequences = getUniqueSequences(SequenceGenerator(), count)
-        assertThat(uniqueSequences.size).isEqualTo(count)
+        assertThat(uniqueSequences.size).isNotEqualTo(count)
 
         val uniqueSequences2 = getUniqueSequences(SequenceGenerator(), 1)
         assertThat(uniqueSequences2.size).isEqualTo(1)

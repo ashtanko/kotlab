@@ -44,7 +44,7 @@ open class TestBase {
     fun runTest(
         expected: ((Throwable) -> Boolean)? = null,
         unhandled: List<(Throwable) -> Boolean> = emptyList(),
-        block: suspend CoroutineScope.() -> Unit
+        block: suspend CoroutineScope.() -> Unit,
     ) {
         var exCount = 0
         var ex: Throwable? = null
@@ -57,20 +57,25 @@ open class TestBase {
                     when {
                         exCount > unhandled.size ->
                             printError("Too many unhandled exceptions $exCount, expected ${unhandled.size}, got: $e", e)
+
                         !unhandled[exCount - 1](e) ->
                             printError("Unhandled exception was unexpected: $e", e)
                     }
-                }
+                },
             )
         } catch (e: Throwable) {
             ex = e
             if (expected != null) {
-                if (!expected(e))
+                if (!expected(e)) {
                     error("Unexpected exception: $e", e)
-            } else
+                }
+            } else {
                 throw e
+            }
         } finally {
-            if (ex == null && expected != null) error("Exception was expected but none produced")
+            if (ex == null && expected != null) {
+                error("Exception was expected but none produced")
+            }
         }
     }
 

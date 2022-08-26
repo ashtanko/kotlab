@@ -16,10 +16,10 @@
 
 package dev.shtanko.algorithms.coursera
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 import java.nio.file.Files
 import java.nio.file.Paths
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class MaxWeightPathEvaluatorTest {
     companion object {
@@ -492,7 +492,7 @@ class MaxWeightPathEvaluatorTest {
             993,
             995,
             998,
-            1000
+            1000,
         )
         assertEquals(expected, path)
         assertEquals(setOf(1, 3, 117, 517), path.intersect(listOf(1, 2, 3, 4, 17, 117, 517, 997)))

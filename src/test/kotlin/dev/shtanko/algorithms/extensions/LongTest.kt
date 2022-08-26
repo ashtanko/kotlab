@@ -16,44 +16,44 @@
 
 package dev.shtanko.algorithms.extensions
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class LongTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 4L,
-                true
+                true,
             ),
             Arguments.of(
                 12L,
-                false
+                false,
             ),
             Arguments.of(
                 24L,
-                false
+                false,
             ),
             Arguments.of(
                 484L,
-                true
+                true,
             ),
             Arguments.of(
                 676L,
-                false
+                false,
             ),
             Arguments.of(
                 1156L,
-                false
+                false,
             ),
             Arguments.of(
                 686,
-                true
+                true,
             ),
         )
     }
@@ -62,23 +62,23 @@ internal class LongTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 1L,
-                1L
+                1L,
             ),
             Arguments.of(
                 12L,
-                21L
+                21L,
             ),
             Arguments.of(
                 121L,
-                121L
+                121L,
             ),
             Arguments.of(
                 242L,
-                242L
+                242L,
             ),
             Arguments.of(
                 484L,
-                484L
+                484L,
             ),
         )
     }
@@ -87,19 +87,19 @@ internal class LongTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 0L,
-                true
+                true,
             ),
             Arguments.of(
                 34L,
-                false
+                false,
             ),
             Arguments.of(
                 11L,
-                true
+                true,
             ),
             Arguments.of(
                 879L,
-                false
+                false,
             ),
         )
     }

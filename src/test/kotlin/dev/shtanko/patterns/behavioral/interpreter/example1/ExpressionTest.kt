@@ -16,19 +16,19 @@
 
 package dev.shtanko.patterns.behavioral.interpreter.example1
 
+import java.util.function.BiFunction
+import java.util.function.IntBinaryOperator
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.function.BiFunction
-import java.util.function.IntBinaryOperator
-import java.util.stream.Stream
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class ExpressionTest<T : Expression>(
     private val factory: BiFunction<NumberExpression, NumberExpression, T>,
-    private val expectedToString: String? = null
+    private val expectedToString: String? = null,
 ) {
     /**
      * Generate inputs ranging from -10 to 10 for both input params and calculate the expected result
@@ -44,8 +44,8 @@ abstract class ExpressionTest<T : Expression>(
                     Arguments.of(
                         NumberExpression(i),
                         NumberExpression(j),
-                        resultCalc.applyAsInt(i, j)
-                    )
+                        resultCalc.applyAsInt(i, j),
+                    ),
                 )
             }
         }

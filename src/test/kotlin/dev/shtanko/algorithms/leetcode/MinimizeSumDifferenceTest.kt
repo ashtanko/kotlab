@@ -29,15 +29,15 @@ abstract class MinimizeSumDifferenceTest<out T : MinimizeSumDifference>(private 
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(3, 9, 7, 3),
-                2
+                2,
             ),
             Arguments.of(
                 intArrayOf(-36, 36),
-                72
+                72,
             ),
             Arguments.of(
                 intArrayOf(2, -1, 0, 4, -2, -9),
-                0
+                0,
             ),
         )
     }

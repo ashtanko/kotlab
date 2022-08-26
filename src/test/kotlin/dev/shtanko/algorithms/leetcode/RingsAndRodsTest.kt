@@ -29,27 +29,27 @@ abstract class RingsAndRodsTest<out T : RingsAndRods>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "B0B6G0R6R0R6G9",
-                1
+                1,
             ),
             Arguments.of(
                 "B0R0G0R9R0B0G0",
-                1
+                1,
             ),
             Arguments.of(
                 "G4",
-                0
+                0,
             ),
             Arguments.of(
                 "R0G0B0R1G1B1",
-                2
+                2,
             ),
             Arguments.of(
                 "R0G0B0R1G1B1R2G2B2",
-                3
+                3,
             ),
             Arguments.of(
                 "R0G0B0R1G1B1R2G2B2R3G3B3",
-                4
+                4,
             ),
         )
     }

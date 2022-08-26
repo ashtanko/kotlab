@@ -30,7 +30,7 @@ internal class RemoveDuplicatesTest {
                 intArrayOf(4, 8, 15) to 3,
                 intArrayOf(1, 1, 1, 1, 1) to 1,
                 intArrayOf() to 0,
-                intArrayOf(1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1) to 5
+                intArrayOf(1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1) to 5,
             )
         }
     }

@@ -30,7 +30,7 @@ internal abstract class PeakIndexInMountainArrayTest<out T : PeakIndexInMountain
                 intArrayOf(0, 2, 1, 0) to 1,
                 intArrayOf(0, 10, 5, 2) to 1,
                 intArrayOf(3, 4, 5, 1) to 2,
-                intArrayOf(24, 69, 100, 99, 79, 78, 67, 36, 26, 19) to 2
+                intArrayOf(24, 69, 100, 99, 79, 78, 67, 36, 26, 19) to 2,
             )
         }
     }
@@ -52,5 +52,5 @@ internal class PeakIndexInMountainArrayBinarySearchTest :
 
 internal class PeakIndexInMountainArrayBetterThanBinarySearchTest :
     PeakIndexInMountainArrayTest<PeakIndexInMountainArrayBetterThanBinarySearch>(
-        PeakIndexInMountainArrayBetterThanBinarySearch()
+        PeakIndexInMountainArrayBetterThanBinarySearch(),
     )

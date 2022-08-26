@@ -21,7 +21,7 @@ import dev.shtanko.patterns.behavioral.iterator.CustomIterator
 data class TreasureChestItemIterator(
     val chest: TreasureChest,
     val type: ItemType,
-    var idx: Int = -1
+    var idx: Int = -1,
 ) : CustomIterator<Item> {
 
     override fun hasNext(): Boolean {

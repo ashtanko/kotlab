@@ -27,6 +27,6 @@ object AppModule {
     fun provideContext() = Context()
 }
 
-fun main(args: Array<String>) {
+fun main() {
     println("Hello!")
 }

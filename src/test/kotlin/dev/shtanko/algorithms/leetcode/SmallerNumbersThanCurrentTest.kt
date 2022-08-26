@@ -28,7 +28,7 @@ internal class SmallerNumbersThanCurrentTest {
             return listOf(
                 intArrayOf(8, 1, 2, 2, 3) to intArrayOf(4, 0, 1, 1, 3),
                 intArrayOf(6, 5, 4, 8) to intArrayOf(2, 1, 0, 3),
-                intArrayOf(7, 7, 7, 7) to intArrayOf(0, 0, 0, 0)
+                intArrayOf(7, 7, 7, 7) to intArrayOf(0, 0, 0, 0),
             )
         }
     }

@@ -155,7 +155,7 @@ class NetworkDelayTimeDijkstra : NetworkDelayTime {
         graph: Map<Int, GraphNode>,
         weight: Map<Pair<Int, Int>, Int>,
         distance: MutableMap<Int, Int>,
-        sourceId: Int
+        sourceId: Int,
     ) {
         initializeSingleSource(graph, distance, sourceId)
         val minHeap = PriorityQueue<GraphNode>(Comparator { o1, o2 -> (distance[o1.id] ?: 0) - (distance[o2.id] ?: 0) })

@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory
 
 class Weather(
     currentWeather: WeatherType = WeatherType.SUNNY,
-    observers: List<WeatherObserver> = ArrayList()
+    observers: List<WeatherObserver> = ArrayList(),
 ) {
     private val _observers: MutableList<WeatherObserver> = observers.toMutableList()
     private var _currentWeather = currentWeather

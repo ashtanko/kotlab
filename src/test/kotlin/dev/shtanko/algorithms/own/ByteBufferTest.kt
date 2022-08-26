@@ -97,10 +97,9 @@ internal class ByteBufferTest {
 
     @Test
     internal fun `combine events test`() {
-
         val expected = listOf(
             "{\"ev\":\"one big event lorem lorem\"}",
-            "{\"ev\":\"You can edit, run, and share this code.\"}"
+            "{\"ev\":\"You can edit, run, and share this code.\"}",
         )
 
         val actual = mutableListOf<String>()
@@ -137,7 +136,7 @@ internal class ByteBufferTest {
             byteArrayOf(0, -128, 104, 105, 115, 32),
             byteArrayOf(1, -127, 111, 114, 101, 109, 34, 125),
             byteArrayOf(0, -128, 99, 111, 100, 101, 46, 34),
-            byteArrayOf(1, -128, 125)
+            byteArrayOf(1, -128, 125),
         )
     }
 }

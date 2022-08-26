@@ -33,7 +33,7 @@ abstract class LongestIncreasingPathInMatrixTest<out T : LongestIncreasingPathIn
                     intArrayOf(6, 6, 8),
                     intArrayOf(2, 1, 1),
                 ),
-                4
+                4,
             ),
             Arguments.of(
                 arrayOf(
@@ -41,13 +41,13 @@ abstract class LongestIncreasingPathInMatrixTest<out T : LongestIncreasingPathIn
                     intArrayOf(3, 2, 6),
                     intArrayOf(2, 2, 1),
                 ),
-                4
+                4,
             ),
             Arguments.of(
                 arrayOf(
-                    intArrayOf(1)
+                    intArrayOf(1),
                 ),
-                1
+                1,
             ),
         )
     }

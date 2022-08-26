@@ -30,17 +30,17 @@ abstract class MaxFrequencyTest<out T : MaxFrequency>(private val strategy: T) {
             Arguments.of(
                 intArrayOf(1, 2, 4),
                 5,
-                3
+                3,
             ),
             Arguments.of(
                 intArrayOf(1, 4, 8, 13),
                 5,
-                2
+                2,
             ),
             Arguments.of(
                 intArrayOf(3, 9, 6),
                 2,
-                1
+                1,
             ),
         )
     }

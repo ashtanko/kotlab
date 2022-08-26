@@ -29,15 +29,15 @@ abstract class NumOfWaysTest<out T : NumOfWays>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(2, 1, 3),
-                1
+                1,
             ),
             Arguments.of(
                 intArrayOf(3, 4, 5, 1, 2),
-                5
+                5,
             ),
             Arguments.of(
                 intArrayOf(1, 2, 3),
-                0
+                0,
             ),
         )
     }

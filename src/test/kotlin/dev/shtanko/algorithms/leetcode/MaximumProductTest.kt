@@ -32,7 +32,7 @@ internal abstract class AbstractMaximumProductStrategyTest<out T : AbstractMaxim
                 15456 to intArrayOf(4, 8, 15, 16, 23, 42),
                 60 to intArrayOf(5, 4, 3, 1),
                 2561598 to intArrayOf(
-                    5, 89, 1, 234, 78, 4, 9, 66, 123, 6, 9, 0
+                    5, 89, 1, 234, 78, 4, 9, 66, 123, 6, 9, 0,
                 ),
             )
         }

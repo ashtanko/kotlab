@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 interface FourSum {
     fun perform(nums: IntArray, target: Int): List<List<Int>>
 }
@@ -59,7 +57,7 @@ class FourSumTwoPointers : FourSum {
             } else if (sum > target || hi < nums.size - 1 && nums[hi] == nums[hi + 1]) {
                 --hi
             } else res.add(
-                mutableListOf(nums[lo++], nums[hi--])
+                mutableListOf(nums[lo++], nums[hi--]),
             )
         }
         return res
@@ -98,8 +96,8 @@ class FourSumHashSet : FourSum {
             if (res.isEmpty() || res[res.size - 1][1] != nums[i]) if (s.contains(target - nums[i])) res.add(
                 listOf(
                     target - nums[i],
-                    nums[i]
-                )
+                    nums[i],
+                ),
             )
             s.add(nums[i])
         }

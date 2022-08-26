@@ -31,7 +31,7 @@ internal class ListNodeTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(1),
-                "1"
+                "1",
             ),
             Arguments.of(
                 ListNode(1).apply {
@@ -39,11 +39,11 @@ internal class ListNodeTest {
                         next = ListNode(3)
                     }
                 },
-                "1->2->3"
+                "1->2->3",
             ),
             Arguments.of(
                 getRoot(),
-                "0->1->2->3->4->5->6->7->8->9->10->11->12->13->14->15->16->17->18->19"
+                "0->1->2->3->4->5->6->7->8->9->10->11->12->13->14->15->16->17->18->19",
             ),
         )
 
@@ -62,15 +62,15 @@ internal class ListNodeTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(
-                    1
+                    1,
                 ),
-                listOf(1)
+                listOf(1),
             ),
             Arguments.of(
                 ListNode(1).apply {
                     next = ListNode(2)
                 },
-                listOf(1, 2)
+                listOf(1, 2),
             ),
             Arguments.of(
                 ListNode(4).apply {
@@ -80,7 +80,7 @@ internal class ListNodeTest {
                         }
                     }
                 },
-                listOf(4, 2, 1, 3)
+                listOf(4, 2, 1, 3),
             ),
         )
     }
@@ -89,17 +89,17 @@ internal class ListNodeTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 listOf<Int>(),
-                ListNode()
+                ListNode(),
             ),
             Arguments.of(
                 listOf(1),
-                ListNode(1)
+                ListNode(1),
             ),
             Arguments.of(
                 listOf(1, 2),
                 ListNode(1).apply {
                     next = ListNode(2)
-                }
+                },
             ),
             Arguments.of(
                 listOf(1, 2, 3),
@@ -107,7 +107,7 @@ internal class ListNodeTest {
                     next = ListNode(2).apply {
                         next = ListNode(3)
                     }
-                }
+                },
             ),
             Arguments.of(
                 listOf(1, 2, 3, 4),
@@ -117,7 +117,7 @@ internal class ListNodeTest {
                             next = ListNode(4)
                         }
                     }
-                }
+                },
             ),
         )
     }

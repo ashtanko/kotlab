@@ -26,7 +26,7 @@ data class Canada(val someProperty: String) : Country()
 // object Poland : Country()
 
 class Currency(
-    val code: String
+    val code: String,
 )
 
 object CurrencyFactory {

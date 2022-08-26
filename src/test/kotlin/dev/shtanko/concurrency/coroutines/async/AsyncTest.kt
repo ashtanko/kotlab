@@ -116,6 +116,7 @@ class AsyncTest : TestBase() {
             try {
                 decomposed.await()
             } catch (e: TestException) {
+                e.printStackTrace()
                 42
             }
         }
@@ -134,6 +135,7 @@ class AsyncTest : TestBase() {
             try {
                 decomposed.await()
             } catch (e: TestException) {
+                e.printStackTrace()
                 expect(4) // Should catch this exception, but parent is already cancelled
                 42
             }
@@ -142,6 +144,7 @@ class AsyncTest : TestBase() {
             // This will fail
             assertEquals(42, deferred.await())
         } catch (e: TestException) {
+            e.printStackTrace()
             finish(5)
         }
     }

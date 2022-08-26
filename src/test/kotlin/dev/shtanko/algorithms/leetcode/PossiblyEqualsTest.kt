@@ -30,18 +30,18 @@ abstract class PossiblyEqualsTest<out T : PossiblyEquals>(private val strategy: 
             Arguments.of(
                 "internationalization",
                 "i18n",
-                true
+                true,
             ),
             Arguments.of(
                 "l123e",
                 "44",
-                true
+                true,
             ),
             Arguments.of(
                 "a5b",
                 "c5b",
-                false
-            )
+                false,
+            ),
         )
     }
 

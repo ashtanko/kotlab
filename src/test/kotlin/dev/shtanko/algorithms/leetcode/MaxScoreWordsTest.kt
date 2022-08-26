@@ -31,19 +31,19 @@ abstract class MaxScoreWordsTest<out T : MaxScoreWords>(private val strategy: T)
                 arrayOf("dog", "cat", "dad", "good"),
                 charArrayOf('a', 'a', 'c', 'd', 'd', 'd', 'g', 'o', 'o'),
                 intArrayOf(1, 0, 9, 5, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-                23
+                23,
             ),
             Arguments.of(
                 arrayOf("xxxz", "ax", "bx", "cx"),
                 charArrayOf('z', 'a', 'b', 'c', 'x', 'x', 'x'),
                 intArrayOf(4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 10),
-                27
+                27,
             ),
             Arguments.of(
                 arrayOf("leetcode"),
                 charArrayOf('l', 'e', 't', 'c', 'o', 'd'),
                 intArrayOf(0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0),
-                0
+                0,
             ),
         )
     }

@@ -29,24 +29,24 @@ abstract class DeleteAndEarnTest<out T : DeleteAndEarn>(private val strategy: T)
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(3, 4, 2),
-                6
+                6,
             ),
             Arguments.of(
                 intArrayOf(2, 2, 3, 3, 3, 4),
-                9
+                9,
             ),
             Arguments.of(
                 intArrayOf(),
-                0
+                0,
             ),
             Arguments.of(
                 intArrayOf(1),
-                1
+                1,
             ),
             Arguments.of(
                 intArrayOf(1, 2),
-                2
-            )
+                2,
+            ),
         )
     }
 

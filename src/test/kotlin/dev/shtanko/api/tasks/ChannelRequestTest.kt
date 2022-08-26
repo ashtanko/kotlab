@@ -36,7 +36,7 @@ class ChannelRequestTest {
             Assertions.assertEquals(
                 expected.timeFromStart,
                 time,
-                "Expected intermediate result after virtual ${expected.timeFromStart} ms:"
+                "Expected intermediate result after virtual ${expected.timeFromStart} ms:",
             )
             Assertions.assertEquals(expected.users, users, "Wrong intermediate result after $time:")
         }

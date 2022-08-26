@@ -30,17 +30,17 @@ abstract class CountConsistentStringsTest<out T : CountConsistentStrings>(privat
             Arguments.of(
                 "ab",
                 arrayOf("ad", "bd", "aaab", "baa", "badab"),
-                2
+                2,
             ),
             Arguments.of(
                 "abc",
                 arrayOf("a", "b", "c", "ab", "ac", "bc", "abc"),
-                7
+                7,
             ),
             Arguments.of(
                 "cad",
                 arrayOf("cc", "acd", "b", "ba", "bac", "bad", "ac", "d"),
-                4
+                4,
             ),
         )
     }

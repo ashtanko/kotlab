@@ -49,7 +49,7 @@ class TreeOfCoprimesDFS : TreeOfCoprimes {
         nums: IntArray,
         src: Int,
         pre: Int,
-        curDepth: Int
+        curDepth: Int,
     ) {
         // pre-order traversal
         var closestIdx = -1

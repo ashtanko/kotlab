@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.HashMap
-
 interface CanBeEqualStrategy {
     fun perform(target: IntArray, arr: IntArray): Boolean
 }

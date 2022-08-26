@@ -29,19 +29,19 @@ abstract class LongestNiceSubstringTest<out T : LongestNiceSubstring>(private va
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "YazaAay",
-                "aAa"
+                "aAa",
             ),
             Arguments.of(
                 "Bb",
-                "Bb"
+                "Bb",
             ),
             Arguments.of(
                 "c",
-                ""
+                "",
             ),
             Arguments.of(
                 "",
-                ""
+                "",
             ),
         )
     }

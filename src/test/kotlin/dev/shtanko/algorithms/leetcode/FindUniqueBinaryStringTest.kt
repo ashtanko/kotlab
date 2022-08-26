@@ -29,15 +29,15 @@ abstract class FindUniqueBinaryStringTest<out T : FindUniqueBinaryString>(privat
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 arrayOf("01", "10"),
-                "11"
+                "11",
             ),
             Arguments.of(
                 arrayOf("00", "01"),
-                "10"
+                "10",
             ),
             Arguments.of(
                 arrayOf("111", "011", "001"),
-                "000"
+                "000",
             ),
         )
     }

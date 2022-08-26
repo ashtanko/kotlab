@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class BalancedBinaryTreeTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -35,7 +35,7 @@ internal class BalancedBinaryTreeTest {
                         right = TreeNode(7)
                     }
                 },
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(1).apply {
@@ -48,8 +48,8 @@ internal class BalancedBinaryTreeTest {
                         }
                     }
                 },
-                false
-            )
+                false,
+            ),
         )
     }
 

@@ -16,36 +16,36 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class MoveZeroesTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(),
-                intArrayOf()
+                intArrayOf(),
             ),
             Arguments.of(
                 intArrayOf(0),
-                intArrayOf(0)
+                intArrayOf(0),
             ),
             Arguments.of(
                 intArrayOf(0, 0),
-                intArrayOf(0, 0)
+                intArrayOf(0, 0),
             ),
             Arguments.of(
                 intArrayOf(0, 1, 0, 3, 12),
-                intArrayOf(1, 3, 12, 0, 0)
+                intArrayOf(1, 3, 12, 0, 0),
             ),
             Arguments.of(
                 intArrayOf(0, 0, 1, 3, 0),
-                intArrayOf(1, 3, 0, 0, 0)
+                intArrayOf(1, 3, 0, 0, 0),
             ),
         )
     }

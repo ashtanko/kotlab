@@ -16,41 +16,41 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class JumpGame5Test<out T : JumpGame5Strategy>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(),
-                0
+                0,
             ),
             Arguments.of(
                 intArrayOf(100, -23, -23, 404, 100, 23, 23, 23, 3, 404),
-                3
+                3,
             ),
             Arguments.of(
                 intArrayOf(7),
-                0
+                0,
             ),
             Arguments.of(
                 intArrayOf(7, 6, 9, 6, 9, 6, 9, 7),
-                1
+                1,
             ),
             Arguments.of(
                 intArrayOf(6, 1, 9),
-                2
+                2,
             ),
             Arguments.of(
                 intArrayOf(11, 22, 7, 7, 7, 7, 7, 7, 7, 22, 13),
-                3
-            )
+                3,
+            ),
         )
     }
 

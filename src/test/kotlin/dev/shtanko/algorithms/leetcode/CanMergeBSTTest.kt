@@ -38,7 +38,7 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
                     },
                     TreeNode(5).apply {
                         left = TreeNode(4)
-                    }
+                    },
                 ),
                 TreeNode(3).apply {
                     left = TreeNode(2).apply {
@@ -47,7 +47,7 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
                     right = TreeNode(5).apply {
                         left = TreeNode(4)
                     }
-                }.preorderTraversal()
+                }.preorderTraversal(),
             ),
             Arguments.of(
                 listOf(
@@ -58,18 +58,18 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
                     TreeNode(3).apply {
                         left = TreeNode(2)
                         right = TreeNode(6)
-                    }
+                    },
                 ),
-                emptyList<Int>()
+                emptyList<Int>(),
             ),
             Arguments.of(
                 listOf(
                     TreeNode(5).apply {
                         left = TreeNode(4)
                     },
-                    TreeNode(3)
+                    TreeNode(3),
                 ),
-                emptyList<Int>()
+                emptyList<Int>(),
             ),
         )
     }

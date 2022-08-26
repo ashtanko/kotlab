@@ -26,7 +26,6 @@ interface RingsAndRods {
 
 class RingsAndRodsBF : RingsAndRods {
     override fun countPoints(rings: String): Int {
-
         val map = HashMap<String, MutableList<String>>()
         rings.chunked(2).forEach {
             val a = it[1].toString()

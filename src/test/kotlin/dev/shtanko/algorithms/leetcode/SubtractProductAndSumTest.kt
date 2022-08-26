@@ -27,7 +27,7 @@ internal class SubtractProductAndSumTest {
         fun dataProvider(): List<Pair<Int, Int>> {
             return listOf(
                 234 to 15,
-                4421 to 21
+                4421 to 21,
             )
         }
     }

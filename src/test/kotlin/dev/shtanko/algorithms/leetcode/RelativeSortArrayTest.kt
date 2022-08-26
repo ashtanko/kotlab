@@ -31,7 +31,7 @@ internal class RelativeSortArrayTest {
                     to intArrayOf(2, 2, 2, 1, 4, 3, 3, 9, 6, 7, 19),
                 intArrayOf(2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19) to
                     intArrayOf(2, 1, 4, 3, 9, 6) to
-                    intArrayOf(2, 2, 2, 1, 4, 3, 3, 9, 6, 7, 19)
+                    intArrayOf(2, 2, 2, 1, 4, 3, 3, 9, 6, 7, 19),
             )
         }
     }

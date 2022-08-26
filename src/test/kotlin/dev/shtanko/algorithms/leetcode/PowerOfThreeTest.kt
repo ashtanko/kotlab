@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -77,7 +77,7 @@ internal abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private v
             Arguments.of(268_435_456, false),
             Arguments.of(536_870_912, false),
             Arguments.of(1_073_741_824, false),
-            Arguments.of(-1, false)
+            Arguments.of(-1, false),
         )
     }
 

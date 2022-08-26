@@ -30,63 +30,63 @@ abstract class ValidAnagramTest<out T : ValidAnagram>(private val strategy: T) {
             Arguments.of(
                 "",
                 "",
-                true
+                true,
             ),
             Arguments.of(
                 "q",
                 "q",
-                true
+                true,
             ),
             Arguments.of(
                 "qwe",
                 "qwe",
-                true
+                true,
             ),
             Arguments.of(
                 "cat",
                 "tac",
-                true
+                true,
             ),
             Arguments.of(
                 "a",
                 "b",
-                false
+                false,
             ),
             Arguments.of(
                 "a",
                 "",
-                false
+                false,
             ),
             Arguments.of(
                 "ab",
                 "",
-                false
+                false,
             ),
             Arguments.of(
                 "ab",
                 "ac",
-                false
+                false,
             ),
             Arguments.of(
                 "anagram",
                 "nagaram",
-                true
+                true,
             ),
             Arguments.of(
                 "rat",
                 "car",
-                false
+                false,
             ),
             Arguments.of(
                 "restful",
                 "fluster",
-                true
+                true,
             ),
             Arguments.of(
                 "evil",
                 "vile",
-                true
-            )
+                true,
+            ),
         )
     }
 

@@ -35,7 +35,7 @@ inline fun <reified T> T.callPrivateFunc(name: String, vararg args: Any?): Any? 
 inline fun doOnDebug(
     noinline logger: (String) -> Unit,
     times: Int = 1,
-    crossinline block: () -> Unit
+    crossinline block: () -> Unit,
 ) {
     if (Env.DEBUG) {
         logger("[LOG] Running doOnDebug...")

@@ -39,7 +39,7 @@ abstract class MinCostTest<out T : MinCost>(private val strategy: T) {
                     intArrayOf(4, 5, 15),
                 ),
                 intArrayOf(5, 1, 2, 20, 20, 3),
-                11
+                11,
             ),
             Arguments.of(
                 29,
@@ -49,10 +49,10 @@ abstract class MinCostTest<out T : MinCost>(private val strategy: T) {
                     intArrayOf(2, 5, 10),
                     intArrayOf(0, 3, 1),
                     intArrayOf(3, 4, 10),
-                    intArrayOf(4, 5, 15)
+                    intArrayOf(4, 5, 15),
                 ),
                 intArrayOf(5, 1, 2, 20, 20, 3),
-                48
+                48,
             ),
             Arguments.of(
                 25,
@@ -62,10 +62,10 @@ abstract class MinCostTest<out T : MinCost>(private val strategy: T) {
                     intArrayOf(2, 5, 10),
                     intArrayOf(0, 3, 1),
                     intArrayOf(3, 4, 10),
-                    intArrayOf(4, 5, 15)
+                    intArrayOf(4, 5, 15),
                 ),
                 intArrayOf(5, 1, 2, 20, 20, 3),
-                -1
+                -1,
             ),
         )
     }

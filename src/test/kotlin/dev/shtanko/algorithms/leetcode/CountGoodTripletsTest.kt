@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class CountGoodTripletsTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -32,21 +32,21 @@ internal class CountGoodTripletsTest {
                 0,
                 0,
                 0,
-                0
+                0,
             ),
             Arguments.of(
                 intArrayOf(3, 0, 1, 1, 9, 7),
                 7,
                 2,
                 3,
-                4
+                4,
             ),
             Arguments.of(
                 intArrayOf(1, 1, 2, 2, 3),
                 0,
                 0,
                 1,
-                0
+                0,
             ),
         )
     }

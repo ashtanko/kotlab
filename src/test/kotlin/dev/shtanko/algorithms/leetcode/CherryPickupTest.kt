@@ -33,7 +33,7 @@ abstract class CherryPickupTest<out T : CherryPickup>(private val strategy: T) {
                     intArrayOf(0, 1, -1),
                     intArrayOf(1, 1, 1),
                 ),
-                5
+                5,
             ),
             Arguments.of(
                 arrayOf(
@@ -41,7 +41,7 @@ abstract class CherryPickupTest<out T : CherryPickup>(private val strategy: T) {
                     intArrayOf(1, -1, 1),
                     intArrayOf(-1, 1, 1),
                 ),
-                0
+                0,
             ),
         )
     }

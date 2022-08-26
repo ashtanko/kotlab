@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class TwoSumLessThanKTest<out T : TwoSumLessThanKStrategy>(private val strategy: T) {
 
@@ -31,13 +31,13 @@ internal abstract class TwoSumLessThanKTest<out T : TwoSumLessThanKStrategy>(pri
             Arguments.of(
                 intArrayOf(34, 23, 1, 24, 75, 33, 54, 8),
                 60,
-                58
+                58,
             ),
             Arguments.of(
                 intArrayOf(10, 20, 30),
                 15,
-                -1
-            )
+                -1,
+            ),
         )
     }
 

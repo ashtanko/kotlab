@@ -29,11 +29,11 @@ internal class MinimumTimeVisitingAllPointsTest {
                 7 to arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(3, 4),
-                    intArrayOf(-1, 0)
+                    intArrayOf(-1, 0),
                 ),
                 5 to arrayOf(
                     intArrayOf(3, 2),
-                    intArrayOf(-2, 2)
+                    intArrayOf(-2, 2),
                 ),
                 1047 to arrayOf(
                     intArrayOf(45, 65),
@@ -45,7 +45,7 @@ internal class MinimumTimeVisitingAllPointsTest {
                 1121 to arrayOf(
                     intArrayOf(4, 8, 15, 16, 23, 42),
                     intArrayOf(567, 111, 89, 34, 67, 1),
-                    intArrayOf(9, 345, 12, 457, 87, 67)
+                    intArrayOf(9, 345, 12, 457, 87, 67),
                 ),
                 802 to arrayOf(
                     intArrayOf(20, 67, 161, 196, 317, 390, 459, 592, 698, 717, 720, 746, 764, 880, 955),
@@ -57,8 +57,8 @@ internal class MinimumTimeVisitingAllPointsTest {
                     intArrayOf(31, 42, 79, 88, 104, 174, 478, 594, 598, 745, 764, 783, 834, 887, 997),
                     intArrayOf(52, 148, 214, 318, 454, 486, 491, 498, 583, 593, 661, 679, 816, 900, 931),
                     intArrayOf(164, 165, 226, 268, 273, 285, 322, 581, 583, 653, 803, 836, 920, 943, 997),
-                    intArrayOf(94, 148, 389, 409, 550, 585, 647, 671, 715, 821, 847, 860, 887, 898, 937)
-                )
+                    intArrayOf(94, 148, 389, 409, 550, 585, 647, 671, 715, 821, 847, 860, 887, 898, 937),
+                ),
             )
         }
     }

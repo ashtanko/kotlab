@@ -18,26 +18,29 @@ package dev.shtanko.concurrency.jvm.deadlock
 
 import kotlin.concurrent.thread
 
-fun main() {
-    val res1 = "Resource1"
-    val res2 = "Resource2"
+object DeadLockSample {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val res1 = "Resource1"
+        val res2 = "Resource2"
 
-    thread {
-        synchronized(res1) {
-            println("Lock res 1 in thread: ${Thread.currentThread().name}")
+        thread {
+            synchronized(res1) {
+                println("Lock res 1 in thread: ${Thread.currentThread().name}")
 
-            synchronized(res2) {
-                println("Lock res 2 in thread: ${Thread.currentThread().name}")
+                synchronized(res2) {
+                    println("Lock res 2 in thread: ${Thread.currentThread().name}")
+                }
             }
         }
-    }
 
-    thread {
-        synchronized(res2) {
-            println("Lock res 2 in thread: ${Thread.currentThread().name}")
-
-            synchronized(res1) {
+        thread {
+            synchronized(res2) {
                 println("Lock res 2 in thread: ${Thread.currentThread().name}")
+
+                synchronized(res1) {
+                    println("Lock res 2 in thread: ${Thread.currentThread().name}")
+                }
             }
         }
     }

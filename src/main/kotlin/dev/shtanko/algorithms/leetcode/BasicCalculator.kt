@@ -56,7 +56,6 @@ class StackAndStringReversal : CalculationStrategy {
                 n += 1
             } else if (ch != ' ') {
                 if (n != 0) {
-
                     // Save the operand on the stack
                     // As we encounter some non-digit.
                     stack.push(operand)
@@ -102,8 +101,8 @@ class StackAndNoStringReversal : CalculationStrategy {
                     // Forming operand, since it could be more than one digit
                     operand = DECIMAL * operand + ch.minus('0')
                 }
-                ch == '+' -> {
 
+                ch == '+' -> {
                     // Evaluate the expression to the left,
                     // with result, sign, operand
                     result += sign * operand
@@ -114,13 +113,14 @@ class StackAndNoStringReversal : CalculationStrategy {
                     // Reset operand
                     operand = 0
                 }
+
                 ch == '-' -> {
                     result += sign * operand
                     sign = -1
                     operand = 0
                 }
-                ch == '(' -> {
 
+                ch == '(' -> {
                     // Push the result and sign on to the stack, for later
                     // We push the result first, then sign
                     stack.push(result)
@@ -130,8 +130,8 @@ class StackAndNoStringReversal : CalculationStrategy {
                     sign = 1
                     result = 0
                 }
-                ch == ')' -> {
 
+                ch == ')' -> {
                     // Evaluate the expression to the left
                     // with result, sign and operand
                     result += sign * operand

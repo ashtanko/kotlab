@@ -23,7 +23,7 @@ object EmployeeImportance {
     data class Employee(
         var id: Int = 0,
         var importance: Int = 0,
-        var subordinates: List<Int> = listOf()
+        var subordinates: List<Int> = listOf(),
     )
 
     fun getImportance(employees: List<Employee>, id: Int): Int {

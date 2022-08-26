@@ -28,7 +28,7 @@ class FG2BruteForce : FlipGame2 {
     override fun canWin(currentState: String): Boolean {
         for (i in 0 until currentState.length - 1) {
             if (currentState[i] == '+' && currentState[i + 1] == '+' && !canWin(
-                    currentState.substring(0, i) + "--" + currentState.substring(i + 2)
+                    currentState.substring(0, i) + "--" + currentState.substring(i + 2),
                 )
             ) {
                 return true

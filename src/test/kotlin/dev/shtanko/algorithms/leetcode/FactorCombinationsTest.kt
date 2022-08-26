@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class FactorCombinationsTest<out T : FactorCombinations>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -35,7 +35,7 @@ abstract class FactorCombinationsTest<out T : FactorCombinations>(private val st
                     listOf(2, 6),
                     listOf(3, 4),
                     listOf(2, 2, 3),
-                )
+                ),
             ),
             Arguments.of(37, emptyList<List<Int>>()),
             Arguments.of(
@@ -47,26 +47,26 @@ abstract class FactorCombinationsTest<out T : FactorCombinations>(private val st
                     listOf(2, 4, 4),
                     listOf(2, 2, 2, 4),
                     listOf(2, 2, 2, 2, 2),
-                )
+                ),
             ),
             Arguments.of(
                 15,
                 listOf(
                     listOf(3, 5),
-                )
+                ),
             ),
             Arguments.of(
                 8,
                 listOf(
                     listOf(2, 2, 2),
                     listOf(2, 4),
-                )
+                ),
             ),
             Arguments.of(
                 9,
                 listOf(
                     listOf(3, 3),
-                )
+                ),
             ),
             Arguments.of(
                 100,
@@ -79,7 +79,7 @@ abstract class FactorCombinationsTest<out T : FactorCombinations>(private val st
                     listOf(4, 25),
                     listOf(5, 20),
                     listOf(10, 10),
-                )
+                ),
             ),
         )
     }

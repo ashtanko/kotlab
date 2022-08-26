@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.Assert.assertFalse
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
@@ -28,11 +28,11 @@ internal class DesignHashSetTest {
         hashSet.add(1)
         hashSet.add(2)
         assertTrue(hashSet.contains(1))
-        assertFalse(hashSet.contains(3))
+        assertThat(hashSet.contains(3)).isFalse
         hashSet.add(2)
         assertTrue(hashSet.contains(2))
         hashSet.remove(2)
-        assertFalse(hashSet.contains(2))
+        assertThat(hashSet.contains(2)).isFalse
     }
 
     @Test

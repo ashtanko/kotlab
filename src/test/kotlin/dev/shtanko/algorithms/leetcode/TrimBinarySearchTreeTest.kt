@@ -32,10 +32,10 @@ internal class TrimBinarySearchTreeTest {
                         right = TreeNode(2)
                     },
                     1,
-                    2
+                    2,
                 ) to listOf(
                     listOf(1),
-                    listOf(2)
+                    listOf(2),
                 ),
                 Triple(
                     TreeNode(3).apply {
@@ -47,38 +47,38 @@ internal class TrimBinarySearchTreeTest {
                         right = TreeNode(4)
                     },
                     1,
-                    3
+                    3,
                 ) to listOf(
                     listOf(3),
                     listOf(2),
-                    listOf(1)
+                    listOf(1),
                 ),
                 Triple(
                     TreeNode(1),
                     1,
-                    2
+                    2,
                 ) to listOf(
-                    listOf(1)
+                    listOf(1),
                 ),
                 Triple(
                     TreeNode(1).apply {
                         right = TreeNode(2)
                     },
                     1,
-                    3
+                    3,
                 ) to listOf(
                     listOf(1),
-                    listOf(2)
+                    listOf(2),
                 ),
                 Triple(
                     TreeNode(1).apply {
                         right = TreeNode(2)
                     },
                     2,
-                    4
+                    4,
                 ) to listOf(
-                    listOf(2)
-                )
+                    listOf(2),
+                ),
             )
         }
     }

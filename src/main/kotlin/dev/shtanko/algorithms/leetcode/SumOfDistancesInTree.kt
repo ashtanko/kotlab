@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 class SumOfDistancesInTree {
 
     private lateinit var ans: IntArray

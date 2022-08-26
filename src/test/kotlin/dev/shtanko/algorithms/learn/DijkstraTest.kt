@@ -33,7 +33,7 @@ internal class DijkstraTest {
             Edge("c", "d", 11),
             Edge("c", "f", 2),
             Edge("d", "e", 6),
-            Edge("e", "f", 9)
+            Edge("e", "f", 9),
         )
     }
 

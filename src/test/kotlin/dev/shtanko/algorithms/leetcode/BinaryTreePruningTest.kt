@@ -38,7 +38,7 @@ abstract class BinaryTreePruningTest<out T : BinaryTreePruning>(private val stra
                     right = TreeNode(0).apply {
                         right = TreeNode(1)
                     }
-                }
+                },
             ),
             Arguments.of(
                 TreeNode(1).apply {
@@ -55,7 +55,7 @@ abstract class BinaryTreePruningTest<out T : BinaryTreePruning>(private val stra
                     right = TreeNode(1).apply {
                         right = TreeNode(1)
                     }
-                }
+                },
             ),
             Arguments.of(
                 TreeNode(1).apply {
@@ -78,8 +78,8 @@ abstract class BinaryTreePruningTest<out T : BinaryTreePruning>(private val stra
                     right = TreeNode(0).apply {
                         right = TreeNode(1)
                     }
-                }
-            )
+                },
+            ),
         )
     }
 

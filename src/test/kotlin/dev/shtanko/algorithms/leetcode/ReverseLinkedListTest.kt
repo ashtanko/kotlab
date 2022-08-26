@@ -44,7 +44,7 @@ internal class ReverseLinkedListTest {
             reversed?.next?.next?.value,
             reversed?.next?.next?.next?.value,
             reversed?.next?.next?.next?.next?.value,
-            reversed?.next?.next?.next?.next?.next?.value
+            reversed?.next?.next?.next?.next?.next?.value,
         )
         assertEquals(listOf(5, 4, 3, 2, 1, null), values)
     }
@@ -69,7 +69,7 @@ internal class ReverseLinkedListTest {
             reversed?.next?.next?.value,
             reversed?.next?.next?.next?.value,
             reversed?.next?.next?.next?.next?.value,
-            reversed?.next?.next?.next?.next?.next?.value
+            reversed?.next?.next?.next?.next?.next?.value,
         )
         assertEquals(listOf(5, 4, 3, 2, 1, null), values)
     }

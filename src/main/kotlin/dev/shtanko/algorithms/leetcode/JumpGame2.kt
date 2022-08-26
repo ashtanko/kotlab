@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * Each element in the array represents your maximum jump length at that position.
  * Your goal is to reach the last index in the minimum number of jumps.
  */
-fun IntArray.jump(): Int {
+fun IntArray.jumpGame2(): Int {
     var jumps = 0
     var curEnd = 0
     var curFarthest = 0

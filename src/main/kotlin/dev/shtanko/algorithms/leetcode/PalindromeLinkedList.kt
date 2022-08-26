@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 interface PalindromeLinkedList {
     fun perform(head: ListNode): Boolean
 }

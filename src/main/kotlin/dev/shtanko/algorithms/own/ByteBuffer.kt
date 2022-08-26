@@ -25,7 +25,6 @@ class ByteBuffer(private val message: (bytes: ByteArray) -> Unit) {
      * Empty the [buffer] when chunk is last
      */
     fun execute(chunks: ByteArray) {
-
         val pair = Pair(chunks[0], chunks[1])
 
         if (buffer.containsKey(pair.second)) {

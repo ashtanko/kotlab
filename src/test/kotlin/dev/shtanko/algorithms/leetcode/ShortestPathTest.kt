@@ -36,7 +36,7 @@ abstract class ShortestPathTest<out T : ShortestPath>(private val strategy: T) {
                     intArrayOf(0, 0, 0),
                 ),
                 1,
-                6
+                6,
             ),
             Arguments.of(
                 arrayOf(
@@ -45,7 +45,7 @@ abstract class ShortestPathTest<out T : ShortestPath>(private val strategy: T) {
                     intArrayOf(1, 0, 0),
                 ),
                 1,
-                -1
+                -1,
             ),
         )
     }

@@ -30,7 +30,7 @@ internal class SearchInsertPosition {
                 Pair(Pair(intArrayOf(1, 3, 5, 6), 5), 2),
                 Pair(Pair(intArrayOf(1, 3, 5, 6), 2), 1),
                 Pair(Pair(intArrayOf(1, 3, 5, 6), 7), 4),
-                Pair(Pair(intArrayOf(1, 3, 5, 6), 0), 0)
+                Pair(Pair(intArrayOf(1, 3, 5, 6), 0), 0),
             )
         }
     }

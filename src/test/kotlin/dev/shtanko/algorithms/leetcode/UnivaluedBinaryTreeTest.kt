@@ -41,7 +41,7 @@ internal abstract class UnivaluedBinaryTreeStrategyTest<out T : UnivaluedBinaryT
                         right = TreeNode(2)
                     }
                     right = TreeNode(2)
-                }
+                },
             )
         }
     }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class MinMaxGasDistTest<out T : MinMaxGasDist>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -30,13 +30,13 @@ abstract class MinMaxGasDistTest<out T : MinMaxGasDist>(private val strategy: T)
             Arguments.of(
                 intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                 9,
-                0.50000
+                0.50000,
             ),
             Arguments.of(
                 intArrayOf(23, 24, 36, 39, 46, 56, 57, 65, 84, 98),
                 1,
-                14.00000
-            )
+                14.00000,
+            ),
         )
     }
 

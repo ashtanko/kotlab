@@ -28,7 +28,6 @@ class CounterTest : TestBase() {
 
     @Test
     fun test() = runTest {
-
         assertThat(counter).isNotNull
 
         withContext(Dispatchers.Default) {

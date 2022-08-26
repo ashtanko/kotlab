@@ -29,12 +29,12 @@ internal class MinimumPathSumTest {
                 7 to arrayOf(
                     intArrayOf(1, 3, 1),
                     intArrayOf(1, 5, 1),
-                    intArrayOf(4, 2, 1)
+                    intArrayOf(4, 2, 1),
                 ),
                 6 to arrayOf(
                     intArrayOf(1, 1, 2),
                     intArrayOf(1, 1, 3),
-                    intArrayOf(4, 2, 1)
+                    intArrayOf(4, 2, 1),
                 ),
                 83 to arrayOf(
                     intArrayOf(3, 8, 6, 0, 5, 9, 9, 6, 3, 4, 0, 5, 7, 3, 9, 3),
@@ -54,8 +54,8 @@ internal class MinimumPathSumTest {
                     intArrayOf(6, 5, 1, 9, 9, 2, 2, 7, 4, 2, 7, 2, 2, 3, 7, 2),
                     intArrayOf(7, 1, 9, 6, 1, 2, 7, 0, 9, 6, 6, 4, 4, 5, 1, 0),
                     intArrayOf(3, 4, 9, 2, 8, 3, 1, 2, 6, 9, 7, 0, 2, 4, 2, 0),
-                    intArrayOf(5, 1, 8, 8, 4, 6, 8, 5, 2, 4, 1, 6, 2, 2, 9, 7)
-                )
+                    intArrayOf(5, 1, 8, 8, 4, 6, 8, 5, 2, 4, 1, 6, 2, 2, 9, 7),
+                ),
             )
         }
     }

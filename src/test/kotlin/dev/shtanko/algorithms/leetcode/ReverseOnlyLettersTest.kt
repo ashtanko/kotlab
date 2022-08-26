@@ -16,28 +16,28 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class ReverseOnlyLettersTest<out T : ReverseOnlyLetters>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "ab-cd",
-                "dc-ba"
+                "dc-ba",
             ),
             Arguments.of(
                 "a-bC-dEf-ghIj",
-                "j-Ih-gfE-dCba"
+                "j-Ih-gfE-dCba",
             ),
             Arguments.of(
                 "Test1ng-Leet=code-Q!",
-                "Qedo1ct-eeLg=ntse-T!"
+                "Qedo1ct-eeLg=ntse-T!",
             ),
         )
     }

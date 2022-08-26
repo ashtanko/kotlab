@@ -33,16 +33,16 @@ abstract class ValidParenthesesStringPathTest<out T : ValidParenthesesStringPath
                     charArrayOf('(', '(', '('),
                     charArrayOf(')', '(', ')'),
                     charArrayOf('(', '(', ')'),
-                    charArrayOf('(', '(', ')')
+                    charArrayOf('(', '(', ')'),
                 ),
-                true
+                true,
             ),
             Arguments.of(
                 arrayOf(
                     charArrayOf(')', ')'),
-                    charArrayOf('(', '(')
+                    charArrayOf('(', '('),
                 ),
-                false
+                false,
             ),
         )
     }

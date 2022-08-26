@@ -16,11 +16,11 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 internal class SumOfDistancesInTreeTest {
     companion object {
@@ -39,9 +39,9 @@ internal class SumOfDistancesInTreeTest {
                     intArrayOf(0, 2),
                     intArrayOf(2, 3),
                     intArrayOf(2, 4),
-                    intArrayOf(2, 5)
+                    intArrayOf(2, 5),
                 ),
-                intArrayOf(8, 12, 6, 10, 10, 10)
+                intArrayOf(8, 12, 6, 10, 10, 10),
             ),
         )
     }

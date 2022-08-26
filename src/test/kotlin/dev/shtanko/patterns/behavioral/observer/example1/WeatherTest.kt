@@ -16,7 +16,6 @@
 
 package dev.shtanko.patterns.behavioral.observer.example1
 
-import com.nhaarman.mockitokotlin2.verify
 import dev.shtanko.patterns.utils.InMemoryAppender
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach

@@ -35,7 +35,7 @@ abstract class MaximumLevelSumOfBinaryTreeTest<out T : MaximumLevelSumOfBinaryTr
                         right = TreeNode(-8)
                     }
                 },
-                2
+                2,
             ),
             Arguments.of(
                 TreeNode(989).apply {
@@ -46,7 +46,7 @@ abstract class MaximumLevelSumOfBinaryTreeTest<out T : MaximumLevelSumOfBinaryTr
                         }
                     }
                 },
-                2
+                2,
             ),
         )
     }

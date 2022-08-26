@@ -30,7 +30,7 @@ class TreasureChest {
         Item(ItemType.POTION, "Potion of healing"),
         Item(ItemType.RING, "Ring of armor"),
         Item(ItemType.WEAPON, "Steel halberd"),
-        Item(ItemType.WEAPON, "Dagger of poison")
+        Item(ItemType.WEAPON, "Dagger of poison"),
     )
 
     fun iterator(itemType: ItemType): CustomIterator<Item> {

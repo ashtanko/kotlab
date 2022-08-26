@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -38,7 +38,7 @@ abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
                     }
                 },
                 9,
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(5).apply {
@@ -51,7 +51,7 @@ abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
                     }
                 },
                 28,
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(2).apply {
@@ -59,7 +59,7 @@ abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
                     right = TreeNode(3)
                 },
                 4,
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(2).apply {
@@ -67,7 +67,7 @@ abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
                     right = TreeNode(3)
                 },
                 1,
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(2).apply {
@@ -75,7 +75,7 @@ abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
                     right = TreeNode(3)
                 },
                 3,
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(7).apply {
@@ -87,7 +87,7 @@ abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
                     }
                 },
                 15,
-                true
+                true,
             ),
         )
     }

@@ -24,7 +24,7 @@ private fun backtrack(
     comb: MutableList<Int>,
     start: Int,
     candidates: IntArray,
-    results: MutableList<List<Int>>
+    results: MutableList<List<Int>>,
 ) {
     if (remain == 0) {
         results.add(ArrayList(comb))

@@ -36,7 +36,7 @@ class FindGoodStringsDFS : FindGoodStrings {
             s2 = s2.toCharArray(),
             evil = evil.toCharArray(),
             lps = computeLPS(evil.toCharArray()),
-            dp = dp
+            dp = dp,
         )
     }
 
@@ -50,7 +50,7 @@ class FindGoodStringsDFS : FindGoodStrings {
         s2: CharArray,
         evil: CharArray,
         lps: IntArray,
-        dp: IntArray
+        dp: IntArray,
     ): Int {
         if (evilMatched == evil.size) return 0 // contain `evil` as a substring -> not good string
         if (i == n) return 1 // it's a good string
@@ -70,7 +70,7 @@ class FindGoodStringsDFS : FindGoodStrings {
             }
             res += dfs(
                 i + 1, j, leftBound && (c == from), rightBound && c == to,
-                n, s1, s2, evil, lps, dp
+                n, s1, s2, evil, lps, dp,
             )
             res %= MOD
             c++

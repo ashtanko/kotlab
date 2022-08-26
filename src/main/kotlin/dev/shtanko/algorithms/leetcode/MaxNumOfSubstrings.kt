@@ -78,7 +78,7 @@ class MaxNumOfSubstringsKosaraju : MaxNumOfSubstrings {
         val exists = BooleanArray(ARR_SIZE)
         val prefixSum = Array(s.length + 1) {
             IntArray(
-                ARR_SIZE
+                ARR_SIZE,
             )
         }
         for (i in s.indices) {

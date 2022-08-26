@@ -53,9 +53,11 @@ class DisjointSet(val size: Int) {
             rank[rootV] > rank[rootV] -> {
                 parent[rootW] = rootV
             }
+
             rank[rootW] > rank[rootV] -> {
                 parent[rootV] = rootW
             }
+
             else -> {
                 parent[rootV] = rootW
                 rank[rootW]++

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class FindAnagramMappingsTest {
 
@@ -31,8 +31,8 @@ internal class FindAnagramMappingsTest {
             Arguments.of(
                 intArrayOf(12, 28, 46, 32, 50),
                 intArrayOf(50, 12, 32, 46, 28),
-                intArrayOf(1, 4, 3, 2, 0)
-            )
+                intArrayOf(1, 4, 3, 2, 0),
+            ),
         )
     }
 

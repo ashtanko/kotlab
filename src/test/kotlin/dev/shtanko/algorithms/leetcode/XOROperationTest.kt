@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 class XOROperationTest {
 
@@ -31,7 +31,7 @@ class XOROperationTest {
             Arguments.of(5, 0, 8),
             Arguments.of(4, 3, 8),
             Arguments.of(1, 7, 7),
-            Arguments.of(10, 5, 2)
+            Arguments.of(10, 5, 2),
         )
     }
 

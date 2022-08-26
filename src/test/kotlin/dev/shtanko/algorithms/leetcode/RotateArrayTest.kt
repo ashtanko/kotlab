@@ -27,7 +27,7 @@ internal abstract class AbstractRotateArrayStrategyTest<out T : AbstractRotateAr
         fun dataProvider(): List<Pair<Pair<IntArray, Int>, IntArray>> {
             return listOf(
                 Pair(Pair(intArrayOf(1, 2, 3, 4, 5, 6, 7), 3), intArrayOf(5, 6, 7, 1, 2, 3, 4)),
-                Pair(Pair(intArrayOf(-1, -100, 3, 99), 2), intArrayOf(3, 99, -1, -100))
+                Pair(Pair(intArrayOf(-1, -100, 3, 99), 2), intArrayOf(3, 99, -1, -100)),
             )
         }
     }

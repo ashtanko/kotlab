@@ -44,7 +44,7 @@ internal class SameTreeTest {
                 } to TreeNode(1).apply {
                     right = TreeNode(2)
                     left = TreeNode(1)
-                } to false
+                } to false,
             )
         }
     }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class TextJustificationTest<out T : TextJustification>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -30,48 +30,44 @@ abstract class TextJustificationTest<out T : TextJustification>(private val stra
             Arguments.of(
                 arrayOf<String>(),
                 1,
-                listOf<String>()
+                listOf<String>(),
             ),
             Arguments.of(
                 arrayOf(
-                    ""
+                    "",
                 ),
                 1,
                 listOf(
-                    " "
-                )
+                    " ",
+                ),
             ),
             Arguments.of(
                 arrayOf(
                     "q",
-                    "q"
+                    "q",
                 ),
                 5,
                 listOf(
-                    "q q  "
-                )
+                    "q q  ",
+                ),
             ),
             Arguments.of(
-                arrayOf(
-                    "This", "is", "an", "example", "of", "text", "justification."
-                ),
+                arrayOf("This", "is", "an", "example", "of", "text", "justification."),
                 16,
                 listOf(
                     "This    is    an",
                     "example  of text",
-                    "justification.  "
-                )
+                    "justification.  ",
+                ),
             ),
             Arguments.of(
-                arrayOf(
-                    "What", "must", "be", "acknowledgment", "shall", "be"
-                ),
+                arrayOf("What", "must", "be", "acknowledgment", "shall", "be"),
                 16,
                 listOf(
                     "What   must   be",
                     "acknowledgment  ",
-                    "shall be        "
-                )
+                    "shall be        ",
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -92,7 +88,7 @@ abstract class TextJustificationTest<out T : TextJustification>(private val stra
                     "everything",
                     "else",
                     "we",
-                    "do"
+                    "do",
                 ),
                 20,
                 listOf(
@@ -101,8 +97,8 @@ abstract class TextJustificationTest<out T : TextJustification>(private val stra
                     "enough to explain to",
                     "a  computer.  Art is",
                     "everything  else  we",
-                    "do                  "
-                )
+                    "do                  ",
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -196,7 +192,7 @@ abstract class TextJustificationTest<out T : TextJustification>(private val stra
                     "versions",
                     "of",
                     "Lorem",
-                    "Ipsum ."
+                    "Ipsum .",
                 ),
                 57,
                 listOf(
@@ -210,8 +206,8 @@ abstract class TextJustificationTest<out T : TextJustification>(private val stra
                     "the  1960s with the release of Letraset sheets containing",
                     "Lorem  Ipsum  passages,  and  more  recently with desktop",
                     "publishing   software   like  Aldus  PageMaker  including",
-                    "versions of Lorem Ipsum .                                "
-                )
+                    "versions of Lorem Ipsum .                                ",
+                ),
             ),
         )
     }

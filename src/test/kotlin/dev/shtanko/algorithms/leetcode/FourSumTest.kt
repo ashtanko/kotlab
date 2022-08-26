@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class FourSumTest<out T : FourSum>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -31,12 +31,12 @@ internal abstract class FourSumTest<out T : FourSum>(private val strategy: T) {
             Arguments.of(
                 intArrayOf(),
                 0,
-                emptyList<List<Int>>()
+                emptyList<List<Int>>(),
             ),
             Arguments.of(
                 intArrayOf(1, 0, -1, 0, -2, 2),
                 0,
-                listOf(listOf(-2, -1, 1, 2), listOf(-2, 0, 0, 2), listOf(-1, 0, 0, 1))
+                listOf(listOf(-2, -1, 1, 2), listOf(-2, 0, 0, 2), listOf(-1, 0, 0, 1)),
             ),
         )
     }

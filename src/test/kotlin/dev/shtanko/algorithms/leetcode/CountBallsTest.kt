@@ -30,17 +30,17 @@ abstract class CountBallsTest<out T : CountBalls>(private val strategy: T) {
             Arguments.of(
                 1,
                 10,
-                2
+                2,
             ),
             Arguments.of(
                 5,
                 15,
-                2
+                2,
             ),
             Arguments.of(
                 19,
                 28,
-                2
+                2,
             ),
         )
     }

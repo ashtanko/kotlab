@@ -16,8 +16,8 @@
 
 package dev.shtanko.algorithms.interview
 
-import org.junit.jupiter.api.Test
 import java.util.Stack
+import org.junit.jupiter.api.Test
 
 internal class SortStackTest {
 

@@ -30,17 +30,17 @@ abstract class DistributeRepeatingIntegersTest<out T : DistributeRepeatingIntege
             Arguments.of(
                 intArrayOf(1, 2, 3, 4),
                 intArrayOf(2),
-                false
+                false,
             ),
             Arguments.of(
                 intArrayOf(1, 2, 3, 3),
                 intArrayOf(2),
-                true
+                true,
             ),
             Arguments.of(
                 intArrayOf(1, 1, 2, 2),
                 intArrayOf(2, 2),
-                true
+                true,
             ),
         )
     }

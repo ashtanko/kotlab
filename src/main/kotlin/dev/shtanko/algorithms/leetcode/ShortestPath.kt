@@ -37,7 +37,7 @@ class ShortestPathBFS : ShortestPath {
         val dp = Array(n) {
             Array(m) {
                 BooleanArray(
-                    k + 1
+                    k + 1,
                 )
             }
         }

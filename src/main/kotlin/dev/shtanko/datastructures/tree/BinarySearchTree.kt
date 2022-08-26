@@ -28,7 +28,7 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
         override var value: V,
         var left: Node<K, V>? = null,
         var right: Node<K, V>? = null,
-        var size: Int = 1
+        var size: Int = 1,
     ) : Map.Entry<K, V>
 
     private var root: Node<K, V>? = null

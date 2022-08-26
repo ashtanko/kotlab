@@ -126,6 +126,6 @@ class MaximumGapBuckets : MaximumGap {
     private data class Bucket(
         var used: Boolean = false,
         var maxVal: Int = Int.MIN_VALUE,
-        var minVal: Int = Int.MAX_VALUE
+        var minVal: Int = Int.MAX_VALUE,
     )
 }

@@ -16,23 +16,19 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class PowerfulIntegersTest<out T : PowerfulIntegers>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(
-                2, 3, 10, listOf(2, 3, 4, 5, 7, 9, 10)
-            ),
-            Arguments.of(
-                3, 5, 15, listOf(2, 4, 6, 8, 10, 14)
-            ),
+            Arguments.of(2, 3, 10, listOf(2, 3, 4, 5, 7, 9, 10)),
+            Arguments.of(3, 5, 15, listOf(2, 4, 6, 8, 10, 14)),
         )
     }
 

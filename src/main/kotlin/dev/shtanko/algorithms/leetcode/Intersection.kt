@@ -17,7 +17,6 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.Arrays
-import java.util.HashSet
 
 /**
  * Given two arrays, write a function to compute their intersection.
@@ -66,9 +65,11 @@ class IntersectionTwoPointers : IntersectionStrategy {
                 p.first[i] < p.second[j] -> {
                     i++
                 }
+
                 p.first[i] > p.second[j] -> {
                     j++
                 }
+
                 else -> {
                     set.add(p.first[i])
                     i++

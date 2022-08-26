@@ -38,7 +38,7 @@ abstract class RecoverFromPreorderTest<out T : RecoverFromPreorder>(private val 
                         left = TreeNode(6)
                         right = TreeNode(7)
                     }
-                }
+                },
             ),
             Arguments.of(
                 "1-2--3---4-5--6---7",
@@ -53,7 +53,7 @@ abstract class RecoverFromPreorderTest<out T : RecoverFromPreorder>(private val 
                             right = TreeNode(7)
                         }
                     }
-                }
+                },
             ),
             Arguments.of(
                 "1-401--349---90--88",
@@ -64,7 +64,7 @@ abstract class RecoverFromPreorderTest<out T : RecoverFromPreorder>(private val 
                         }
                         right = TreeNode(88)
                     }
-                }
+                },
             ),
         )
     }

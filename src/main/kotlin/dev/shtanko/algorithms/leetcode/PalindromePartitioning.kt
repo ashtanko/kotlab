@@ -76,7 +76,7 @@ class PPBacktrackingDP : PalindromePartitioning {
         s: String,
         start: Int,
         currentList: MutableList<String>,
-        dp: Array<BooleanArray>
+        dp: Array<BooleanArray>,
     ) {
         if (start >= s.length) result.add(ArrayList(currentList))
         for (end in start until s.length) {

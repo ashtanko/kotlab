@@ -146,10 +146,12 @@ class FinalReachableBuilding : FurthestBuilding {
                     b -= climb
                     // Otherwise, you'll have to use a ladder.
                 }
+
                 l >= 1 -> {
                     l -= 1
                     // And if there are no ladders either, we can't reach buildingIndex.
                 }
+
                 else -> {
                     return false
                 }
@@ -208,9 +210,11 @@ class ImprovedFinalReachableBuilding : FurthestBuilding {
                 climb <= b -> {
                     b -= climb
                 }
+
                 l >= 1 -> {
                     l -= 1
                 }
+
                 else -> {
                     return false
                 }
@@ -279,9 +283,11 @@ class BSThreshold : FurthestBuilding {
                     laddersUsedOnThreshold++
                     laddersCount--
                 }
+
                 climb > k -> {
                     laddersCount--
                 }
+
                 else -> {
                     bricksCount -= climb
                 }

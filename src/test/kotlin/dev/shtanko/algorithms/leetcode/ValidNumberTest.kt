@@ -40,7 +40,7 @@ internal class ValidNumberTest {
                 false to " --6 ",
                 false to "-+3",
                 false to "95a54e53",
-                true to "-1"
+                true to "-1",
             )
         }
     }

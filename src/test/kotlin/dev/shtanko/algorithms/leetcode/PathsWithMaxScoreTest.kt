@@ -29,16 +29,16 @@ abstract class PathsWithMaxScoreTest<out T : PathsWithMaxScore>(private val stra
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 listOf("E23", "2X2", "12S"),
-                intArrayOf(7, 1)
+                intArrayOf(7, 1),
             ),
             Arguments.of(
                 listOf("E12", "1X1", "21S"),
-                intArrayOf(4, 2)
+                intArrayOf(4, 2),
             ),
             Arguments.of(
                 listOf("E11", "XXX", "11S"),
-                intArrayOf(0, 0)
-            )
+                intArrayOf(0, 0),
+            ),
         )
     }
 

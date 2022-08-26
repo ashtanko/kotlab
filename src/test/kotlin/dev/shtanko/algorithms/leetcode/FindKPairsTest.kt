@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class FindKPairsTest<out T : FindKPairs>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -30,27 +30,27 @@ abstract class FindKPairsTest<out T : FindKPairs>(private val strategy: T) {
             Arguments.of(
                 intArrayOf(3, 1, 4, 1, 5),
                 2,
-                2
+                2,
             ),
             Arguments.of(
                 intArrayOf(1, 2, 3, 4, 5),
                 1,
-                4
+                4,
             ),
             Arguments.of(
                 intArrayOf(1, 3, 1, 5, 4),
-                0, 1
+                0,
+                1,
             ),
             Arguments.of(
                 intArrayOf(1, 2, 4, 4, 3, 3, 0, 9, 2, 3),
-
                 3,
-                2
+                2,
             ),
             Arguments.of(
                 intArrayOf(-1, -2, -3),
                 1,
-                2
+                2,
             ),
         )
     }

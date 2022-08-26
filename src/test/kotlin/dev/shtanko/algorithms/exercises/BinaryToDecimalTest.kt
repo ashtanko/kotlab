@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.exercises
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class BinaryToDecimalTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -33,7 +33,7 @@ internal class BinaryToDecimalTest {
             Arguments.of("11", 3),
             Arguments.of("1010", 10),
             Arguments.of("1101011000010", 6850),
-            Arguments.of("10011011001110", 9934)
+            Arguments.of("10011011001110", 9934),
         )
     }
 

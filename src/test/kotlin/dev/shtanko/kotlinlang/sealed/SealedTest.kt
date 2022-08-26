@@ -43,6 +43,7 @@ internal class SealedTest {
             is Success -> {
                 // Expected
             }
+
             is Failure -> fail("Expected Success")
         }
     }
@@ -53,6 +54,7 @@ internal class SealedTest {
             is Failure -> {
                 // Expected
             }
+
             else -> {
             }
         }

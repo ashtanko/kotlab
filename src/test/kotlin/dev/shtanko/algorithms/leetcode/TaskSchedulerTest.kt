@@ -27,7 +27,7 @@ internal abstract class TaskSchedulerTest<out T : TaskSchedulerStrategy>(private
         fun dataProvider(): List<Pair<Pair<CharArray, Int>, Int>> {
             return listOf(
                 charArrayOf('A', 'A', 'A', 'B', 'B', 'B') to 2 to 8,
-                charArrayOf('A', 'A', 'A', 'B', 'B', 'B') to 0 to 6
+                charArrayOf('A', 'A', 'A', 'B', 'B', 'B') to 0 to 6,
             )
         }
     }

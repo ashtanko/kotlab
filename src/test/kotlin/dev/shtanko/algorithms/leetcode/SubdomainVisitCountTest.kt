@@ -36,8 +36,8 @@ internal class SubdomainVisitCountTest {
                 listOf(
                     "9001 com",
                     "9001 leetcode.com",
-                    "9001 discuss.leetcode.com"
-                )
+                    "9001 discuss.leetcode.com",
+                ),
             ),
             Arguments.of(
                 arrayOf("900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"),
@@ -48,9 +48,9 @@ internal class SubdomainVisitCountTest {
                     "5 org",
                     "5 wiki.org",
                     "901 mail.com",
-                    "50 yahoo.com"
-                )
-            )
+                    "50 yahoo.com",
+                ),
+            ),
         )
     }
 

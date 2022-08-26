@@ -29,15 +29,15 @@ abstract class DistinctSubseq2Test<out T : DistinctSubseq2>(private val strategy
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "abc",
-                7
+                7,
             ),
             Arguments.of(
                 "aba",
-                6
+                6,
             ),
             Arguments.of(
                 "aaa",
-                3
+                3,
             ),
         )
     }

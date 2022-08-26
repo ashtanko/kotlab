@@ -31,7 +31,7 @@ internal class ShuffleStringTest {
                 Pair(Pair(intArrayOf(3, 1, 4, 2, 0), "aiohn"), "nihao"),
                 Pair(Pair(intArrayOf(4, 0, 2, 6, 7, 3, 1, 5), "aaiougrt"), "arigatou"),
                 Pair(Pair(intArrayOf(1, 0, 2), "art"), "rat"),
-                Pair(Pair(intArrayOf(3, 4, 5, 6, 0, 1, 2), "ankosht"), "shtanko")
+                Pair(Pair(intArrayOf(3, 4, 5, 6, 0, 1, 2), "ankosht"), "shtanko"),
             )
         }
     }

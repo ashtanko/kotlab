@@ -34,18 +34,18 @@ class BigIntegerExtTest {
                     BigInteger.valueOf(2L),
                     BigInteger.valueOf(2L),
                 ),
-                BigInteger.valueOf(4L)
+                BigInteger.valueOf(4L),
             ),
             Arguments.of(
                 listOf(
                     0,
                     0,
                     0,
-                    0
+                    0,
                 ).map {
                     it.toBigInteger()
                 },
-                0.toBigInteger()
+                0.toBigInteger(),
             ),
             Arguments.of(
                 listOf(
@@ -53,47 +53,47 @@ class BigIntegerExtTest {
                 ).map {
                     it.toBigInteger()
                 },
-                0.toBigInteger()
+                0.toBigInteger(),
             ),
             Arguments.of(
                 emptyList<BigInteger>(),
-                BigInteger.ZERO
+                BigInteger.ZERO,
             ),
             Arguments.of(
                 listOf(
                     -2,
-                    2
+                    2,
                 ).map {
                     it.toBigInteger()
                 },
-                0.toBigInteger()
+                0.toBigInteger(),
             ),
             Arguments.of(
                 listOf(
                     -2,
-                    -2
+                    -2,
                 ).map {
                     it.toBigInteger()
                 },
-                (-4).toBigInteger()
+                (-4).toBigInteger(),
             ),
             Arguments.of(
                 (1..10_000).map {
                     it.toBigInteger()
                 },
-                50005000.toBigInteger()
+                50005000.toBigInteger(),
             ),
             Arguments.of(
                 (-10_000..10_000).map {
                     it.toBigInteger()
                 },
-                0.toBigInteger()
+                0.toBigInteger(),
             ),
             Arguments.of(
                 (50_000..100_000).map {
                     it.toBigInteger()
                 },
-                3750075000.toBigInteger()
+                3750075000.toBigInteger(),
             ),
         )
     }

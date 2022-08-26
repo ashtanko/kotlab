@@ -17,7 +17,6 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.math.gcd
-import java.util.HashMap
 
 private const val SAME_LINE = 3
 

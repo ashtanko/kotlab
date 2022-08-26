@@ -30,7 +30,7 @@ internal class StringToIntegerTest {
                 "0" to 0,
                 "4" to 4,
                 "-3" to -3,
-                "435" to 435
+                "435" to 435,
             )
         }
     }

@@ -30,11 +30,11 @@ class ReduceStringsIndexedTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 listOf("a", "b", "c", "d"),
-                "ab1c2d3"
+                "ab1c2d3",
             ),
             Arguments.of(
                 listOf("", "", "", ""),
-                "123"
+                "123",
             ),
         )
     }

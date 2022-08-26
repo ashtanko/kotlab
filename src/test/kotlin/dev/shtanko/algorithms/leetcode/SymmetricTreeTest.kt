@@ -16,46 +16,46 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class SymmetricTreeTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 TreeNode(2),
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(2).apply {
                     left = TreeNode(1)
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(5).apply {
                     right = TreeNode(6)
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
                     right = TreeNode(2)
                 },
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
                     right = TreeNode(3)
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(10).apply {
@@ -64,16 +64,16 @@ internal class SymmetricTreeTest {
                     }
                     right = TreeNode(3)
                 },
-                false
+                false,
             ),
             Arguments.of(
                 symmetricTree,
-                true
+                true,
             ),
             Arguments.of(
                 asymmetricTree,
-                false
-            )
+                false,
+            ),
         )
 
         private val symmetricTree = TreeNode(1).apply {

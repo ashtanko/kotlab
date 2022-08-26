@@ -37,21 +37,21 @@ internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>
             } to listOf(
                 listOf(4),
                 listOf(7, 2),
-                listOf(9, 6, 3, 1)
+                listOf(9, 6, 3, 1),
             ),
             TreeNode(4).apply {
                 left = TreeNode(2)
                 right = TreeNode(7)
             } to listOf(
                 listOf(4),
-                listOf(7, 2)
+                listOf(7, 2),
             ),
             TreeNode(1).apply {
                 left = TreeNode(2)
                 right = TreeNode(3)
             } to listOf(
                 listOf(1),
-                listOf(3, 2)
+                listOf(3, 2),
             ),
         )
     }

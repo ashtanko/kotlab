@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class MatrixBlockSumTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -31,27 +31,27 @@ internal class MatrixBlockSumTest {
                 arrayOf(
                     intArrayOf(1, 2, 3),
                     intArrayOf(4, 5, 6),
-                    intArrayOf(7, 8, 9)
+                    intArrayOf(7, 8, 9),
                 ),
                 1,
                 arrayOf(
                     intArrayOf(12, 21, 16),
                     intArrayOf(27, 45, 33),
-                    intArrayOf(24, 39, 28)
-                )
+                    intArrayOf(24, 39, 28),
+                ),
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(1, 2, 3),
                     intArrayOf(4, 5, 6),
-                    intArrayOf(7, 8, 9)
+                    intArrayOf(7, 8, 9),
                 ),
                 2,
                 arrayOf(
                     intArrayOf(45, 45, 45),
                     intArrayOf(45, 45, 45),
-                    intArrayOf(45, 45, 45)
-                )
+                    intArrayOf(45, 45, 45),
+                ),
             ),
         )
     }

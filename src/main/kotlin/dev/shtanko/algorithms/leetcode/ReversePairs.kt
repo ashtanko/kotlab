@@ -23,30 +23,36 @@ private fun Node?.search(value: Int): Int {
         this == null -> {
             0
         }
+
         value == this.value -> {
             this.cnt
         }
+
         value < this.value -> {
             this.cnt + this.left.search(value)
         }
+
         else -> {
             this.right.search(value)
         }
     }
 }
 
-private fun insert(r: Node?, value: Int): Node? {
+private fun insert(r: Node?, value: Int): Node {
     var root = r
     when {
         root == null -> {
             root = Node(value)
         }
+
         value == root.value -> {
             root.cnt++
         }
+
         value < root.value -> {
             root.left = insert(root.left, value)
         }
+
         else -> {
             root.cnt++
             root.right = insert(root.right, value)

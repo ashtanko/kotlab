@@ -52,7 +52,7 @@ class FourKeysKeyboardMath : FourKeysKeyboard {
     companion object {
         private val best = intArrayOf(
             0, 1, 2, 3, 4, 5, 6, 9, 12,
-            16, 20, 27, 36, 48, 64, 81
+            16, 20, 27, 36, 48, 64, 81,
         )
         private const val MAX = 15
         private const val N_MAX = 11

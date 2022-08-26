@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class DeleteTreeNodesTest<out T : DeleteTreeNodes>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -31,25 +31,25 @@ internal abstract class DeleteTreeNodesTest<out T : DeleteTreeNodes>(private val
                 7,
                 intArrayOf(-1, 0, 0, 1, 2, 2, 2),
                 intArrayOf(1, -2, 4, 0, -2, -1, -1),
-                2
+                2,
             ),
             Arguments.of(
                 7,
                 intArrayOf(-1, 0, 0, 1, 2, 2, 2),
                 intArrayOf(1, -2, 4, 0, -2, -1, -2),
-                6
+                6,
             ),
             Arguments.of(
                 5,
                 intArrayOf(-1, 0, 1, 0, 0),
                 intArrayOf(-672, 441, 18, 728, 378),
-                5
+                5,
             ),
             Arguments.of(
                 5,
                 intArrayOf(-1, 0, 0, 1, 1),
                 intArrayOf(-686, -842, 616, -739, -746),
-                5
+                5,
             ),
         )
     }

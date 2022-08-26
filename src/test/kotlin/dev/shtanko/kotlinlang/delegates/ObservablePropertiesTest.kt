@@ -16,9 +16,9 @@
 
 package dev.shtanko.kotlinlang.delegates
 
+import kotlin.properties.Delegates
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import kotlin.properties.Delegates
 
 internal class ObservablePropertiesTest {
 

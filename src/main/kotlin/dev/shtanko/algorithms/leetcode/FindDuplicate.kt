@@ -39,8 +39,9 @@ class FindDuplicateBruteForce : FindDuplicate {
                 nameCont[1] = nameCont[1].replace(")", "")
                 list.add(
                     arrayOf(
-                        values[0] + "/" + nameCont[0], nameCont[1]
-                    )
+                        values[0] + "/" + nameCont[0],
+                        nameCont[1],
+                    ),
                 )
             }
         }

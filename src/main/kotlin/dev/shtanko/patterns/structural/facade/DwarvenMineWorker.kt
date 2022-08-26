@@ -56,6 +56,7 @@ abstract class DwarvenMineWorker {
             is Action.GoToSleep -> {
                 goToSleep()
             }
+
             is Action.WakeUp -> {
                 wakeUp()
             }

@@ -34,11 +34,11 @@ class DungeonGameDP : DungeonGame {
         dp[n] = 1
         for (i in m - 1 downTo 0) {
             for (j in n - 1 downTo 0) {
-                var health = 0
-                health =
-                    if (i == m - 1) dp[j + 1] - dungeon[i][j] else if (j == n - 1) dp[j] - dungeon[i][j] else min(
-                        dp[j + 1], dp[j]
-                    ) - dungeon[i][j]
+                val health: Int = if (i == m - 1) {
+                    dp[j + 1] - dungeon[i][j]
+                } else if (j == n - 1) {
+                    dp[j] - dungeon[i][j]
+                } else min(dp[j + 1], dp[j]) - dungeon[i][j]
                 dp[j] = if (health <= 0) 1 else health
             }
         }

@@ -16,9 +16,9 @@
 
 package dev.shtanko.patterns.behavioral.interpreter.example1
 
-import org.junit.jupiter.params.provider.Arguments
 import java.util.function.BiFunction
 import java.util.stream.Stream
+import org.junit.jupiter.params.provider.Arguments
 
 class MinusExpressionTest :
     ExpressionTest<MinusExpression>(BiFunction { t, u -> MinusExpression(t, u) }, "-") {

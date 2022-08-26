@@ -60,7 +60,7 @@ class CherryPickupTopDown : CherryPickup {
             if (c1 != c2) ans += grid[r2][c2]
             ans += max(
                 max(dp(r1, c1 + 1, c2 + 1), dp(r1 + 1, c1, c2 + 1)),
-                max(dp(r1, c1 + 1, c2), dp(r1 + 1, c1, c2))
+                max(dp(r1, c1 + 1, c2), dp(r1 + 1, c1, c2)),
             )
             memo[r1][c1][c2] = ans
             ans

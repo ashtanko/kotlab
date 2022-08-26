@@ -234,7 +234,7 @@ internal data class TraversalInformation(val size: Int, val tail: Node, val link
     companion object {
         fun getShorterLonger(
             a: TraversalInformation,
-            b: TraversalInformation
+            b: TraversalInformation,
         ): Pair<TraversalInformation, TraversalInformation> {
             return if (a.size <= b.size) {
                 Pair(a, b)

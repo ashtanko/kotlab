@@ -28,7 +28,7 @@ internal class RemoveElementTest {
             return listOf(
                 intArrayOf(2, 3, 3, 2) to 4 to 4,
                 intArrayOf(2, 3, 3, 2) to 2 to 2,
-                intArrayOf(0, 1, 2, 2, 3, 0, 4, 2) to 2 to 5
+                intArrayOf(0, 1, 2, 2, 3, 0, 4, 2) to 2 to 5,
             )
         }
     }

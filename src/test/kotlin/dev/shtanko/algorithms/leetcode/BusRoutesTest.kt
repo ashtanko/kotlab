@@ -35,7 +35,7 @@ abstract class BusRoutesTest<out T : BusRoutes>(private val strategy: T) {
                 ),
                 1,
                 6,
-                2
+                2,
             ),
             Arguments.of(
                 arrayOf(
@@ -47,7 +47,7 @@ abstract class BusRoutesTest<out T : BusRoutes>(private val strategy: T) {
                 ),
                 15,
                 12,
-                -1
+                -1,
             ),
         )
     }

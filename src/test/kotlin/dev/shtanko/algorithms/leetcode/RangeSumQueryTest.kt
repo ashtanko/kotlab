@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class RangeSumQueryTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -32,55 +32,55 @@ internal class RangeSumQueryTest {
                 RangeSumQueryBruteForce(arr),
                 0,
                 2,
-                1
+                1,
             ),
             Arguments.of(
                 RangeSumQueryBruteForce(arr),
                 2,
                 5,
-                -1
+                -1,
             ),
             Arguments.of(
                 RangeSumQueryBruteForce(arr),
                 0,
                 5,
-                -3
+                -3,
             ),
             Arguments.of(
                 RangeSumQueryCaching(arr),
                 0,
                 2,
-                1
+                1,
             ),
             Arguments.of(
                 RangeSumQueryCaching(arr),
                 2,
                 5,
-                -1
+                -1,
             ),
             Arguments.of(
                 RangeSumQueryCaching(arr),
                 0,
                 5,
-                -3
+                -3,
             ),
             Arguments.of(
                 RangeSumQueryCachingOptimized(arr),
                 0,
                 2,
-                1
+                1,
             ),
             Arguments.of(
                 RangeSumQueryCachingOptimized(arr),
                 2,
                 5,
-                -1
+                -1,
             ),
             Arguments.of(
                 RangeSumQueryCachingOptimized(arr),
                 0,
                 5,
-                -3
+                -3,
             ),
         )
     }

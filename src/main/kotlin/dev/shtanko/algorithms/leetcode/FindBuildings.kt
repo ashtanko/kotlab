@@ -27,7 +27,6 @@ interface FindBuildings {
 sealed class FindBuildingStrategy {
     object BruteForce : FindBuildings, FindBuildingStrategy() {
         override fun perform(heights: IntArray): IntArray {
-
             var last = Int.MIN_VALUE
             val indexes: MutableList<Int> = ArrayList()
             for (i in heights.size - 1 downTo 0) {

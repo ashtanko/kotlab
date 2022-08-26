@@ -30,32 +30,32 @@ abstract class FindFinalValueTest<out T : FindFinalValue>(private val strategy: 
             Arguments.of(
                 intArrayOf(5, 3, 6, 1, 12),
                 3,
-                24
+                24,
             ),
             Arguments.of(
                 intArrayOf(2, 7, 9),
                 4,
-                4
+                4,
             ),
             Arguments.of(
                 intArrayOf(),
                 0,
-                0
+                0,
             ),
             Arguments.of(
                 intArrayOf(1),
                 1,
-                2
+                2,
             ),
             Arguments.of(
                 intArrayOf(1, 2),
                 2,
-                4
+                4,
             ),
             Arguments.of(
                 intArrayOf(12, 24),
                 12,
-                48
+                48,
             ),
         )
     }

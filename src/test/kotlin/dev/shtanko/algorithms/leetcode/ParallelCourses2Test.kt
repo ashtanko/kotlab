@@ -35,7 +35,7 @@ abstract class ParallelCourses2Test<out T : ParallelCourses2>(private val strate
                     intArrayOf(1, 4),
                 ),
                 2,
-                3
+                3,
             ),
             Arguments.of(
                 5,
@@ -46,13 +46,13 @@ abstract class ParallelCourses2Test<out T : ParallelCourses2>(private val strate
                     intArrayOf(1, 5),
                 ),
                 2,
-                4
+                4,
             ),
             Arguments.of(
                 11,
                 arrayOf<IntArray>(),
                 2,
-                6
+                6,
             ),
         )
     }

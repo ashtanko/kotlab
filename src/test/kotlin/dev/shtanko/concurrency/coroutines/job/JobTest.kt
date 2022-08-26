@@ -114,7 +114,7 @@ class JobTest : TestBase() {
 
     @Test
     fun `failed job test`() = runTest(
-        unhandled = listOf { it is TestException }
+        unhandled = listOf { it is TestException },
     ) {
         expect(1)
         val job = launch(NonCancellable) {
@@ -131,7 +131,7 @@ class JobTest : TestBase() {
 
     @Test
     fun `failed child job test`() = runTest(
-        unhandled = listOf { it is TestException }
+        unhandled = listOf { it is TestException },
     ) {
         expect(1)
         val job = launch(NonCancellable) {

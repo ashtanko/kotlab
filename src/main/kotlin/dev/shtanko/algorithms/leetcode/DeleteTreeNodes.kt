@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 /**
  * 1273. Delete Tree Nodes
  * @link https://leetcode.com/problems/delete-tree-nodes/

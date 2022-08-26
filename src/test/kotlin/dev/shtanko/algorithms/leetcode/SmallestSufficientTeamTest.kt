@@ -34,7 +34,7 @@ abstract class SmallestSufficientTeamTest<out T : SmallestSufficientTeam>(privat
                     listOf("nodejs"),
                     listOf("nodejs", "reactjs"),
                 ),
-                intArrayOf(0, 2)
+                intArrayOf(0, 2),
             ),
             Arguments.of(
                 arrayOf("algorithms", "math", "java", "reactjs", "csharp", "aws"),
@@ -44,9 +44,9 @@ abstract class SmallestSufficientTeamTest<out T : SmallestSufficientTeam>(privat
                     listOf("java", "csharp", "aws"),
                     listOf("reactjs", "csharp"),
                     listOf("csharp", "math"),
-                    listOf("aws", "java")
+                    listOf("aws", "java"),
                 ),
-                intArrayOf(1, 2)
+                intArrayOf(1, 2),
             ),
         )
     }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(private val strategy: T) {
     class InputArgumentsProvider : ArgumentsProvider {
@@ -39,7 +39,7 @@ internal abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(priva
             Arguments.of(10, 89),
             Arguments.of(20, 10946),
             Arguments.of(30, 1346269),
-            Arguments.of(40, 165580141)
+            Arguments.of(40, 165580141),
         )
     }
 

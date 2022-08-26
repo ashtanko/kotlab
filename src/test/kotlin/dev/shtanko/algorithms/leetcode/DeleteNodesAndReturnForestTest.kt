@@ -35,7 +35,7 @@ internal class DeleteNodesAndReturnForestTest {
             listOf(
                 listOf(1),
                 listOf(2),
-                listOf(4)
+                listOf(4),
             ),
             listOf(listOf(6)),
             listOf(listOf(7)),

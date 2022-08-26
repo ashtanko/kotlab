@@ -31,7 +31,7 @@ interface PlantFactory {
             when (T::class) {
                 OrangePlant::class -> OrangeFactory()
                 ApplePlant::class -> AppleFactory()
-                else -> throw IllegalArgumentException()
+                else -> throw IllegalArgumentException("Unknown class")
             }
     }
 }

@@ -82,9 +82,8 @@ class WordBreakDFS : WordBreak {
         idx: Int,
         s: String,
         seen: HashSet<Int>,
-        wordSet: HashSet<String>
+        wordSet: HashSet<String>,
     ): Boolean {
-
         val len = s.length
 
         if (idx == len) return true

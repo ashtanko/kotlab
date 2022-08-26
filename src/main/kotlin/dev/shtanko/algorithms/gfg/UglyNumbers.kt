@@ -47,8 +47,8 @@ class UglyNumbersBruteForce : UglyNumbers {
                 nextMultipleOf2,
                 min(
                     nextMultipleOf3,
-                    nextMultipleOf5
-                )
+                    nextMultipleOf5,
+                ),
             )
             ugly[i] = nextUglyNo
             if (nextUglyNo == nextMultipleOf2) {

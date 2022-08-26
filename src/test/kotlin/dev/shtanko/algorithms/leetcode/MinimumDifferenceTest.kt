@@ -29,11 +29,11 @@ abstract class MinimumDifferenceTest<out T : MinimumDifference>(private val stra
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(3, 1, 2),
-                -1L
+                -1L,
             ),
             Arguments.of(
                 intArrayOf(7, 9, 5, 8, 1, 3),
-                1L
+                1L,
             ),
         )
     }

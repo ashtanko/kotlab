@@ -31,19 +31,19 @@ abstract class IsSumEqualTest<out T : IsSumEqual>(private val strategy: T) {
                 "acb",
                 "cba",
                 "cdb",
-                true
+                true,
             ),
             Arguments.of(
                 "aaa",
                 "a",
                 "aab",
-                false
+                false,
             ),
             Arguments.of(
                 "aaa",
                 "a",
                 "aaaa",
-                true
+                true,
             ),
         )
     }

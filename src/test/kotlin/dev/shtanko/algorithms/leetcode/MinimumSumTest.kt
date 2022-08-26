@@ -29,11 +29,11 @@ abstract class MinimumSumTest<out T : MinimumSum>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 2932,
-                52
+                52,
             ),
             Arguments.of(
                 4009,
-                13
+                13,
             ),
         )
     }

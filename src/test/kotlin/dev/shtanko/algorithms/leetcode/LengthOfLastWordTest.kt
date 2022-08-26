@@ -19,22 +19,24 @@ package dev.shtanko.algorithms.leetcode
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
-class LengthOfLastWordTest : ShouldSpec({
+class LengthOfLastWordTest : ShouldSpec(
+    {
 
-    val testCases = listOf(
-        "Hello World" to 5,
-        " " to 0,
-    )
-    for (testCase in testCases) {
-        val (s, expected) = testCase
-        should("string index manipulation strategy with $s should return $expected") {
-            LengthOfLastWord.stringIndexManipulation(s) shouldBe expected
+        val testCases = listOf(
+            "Hello World" to 5,
+            " " to 0,
+        )
+        for (testCase in testCases) {
+            val (s, expected) = testCase
+            should("string index manipulation strategy with $s should return $expected") {
+                LengthOfLastWord.stringIndexManipulation(s) shouldBe expected
+            }
+            should("one loop iteration strategy with $s should return $expected") {
+                LengthOfLastWord.oneLoopIteration(s) shouldBe expected
+            }
+            should("builtin string strategy with $s should return $expected") {
+                LengthOfLastWord.builtinString(s) shouldBe expected
+            }
         }
-        should("one loop iteration strategy with $s should return $expected") {
-            LengthOfLastWord.oneLoopIteration(s) shouldBe expected
-        }
-        should("builtin string strategy with $s should return $expected") {
-            LengthOfLastWord.builtinString(s) shouldBe expected
-        }
-    }
-})
+    },
+)

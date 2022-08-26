@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,10 +24,9 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageOfLevelsInBinaryTreeStrategy>(
-    private val strategy: T
+    private val strategy: T,
 ) {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -40,8 +40,8 @@ internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageO
                         right = TreeNode(7)
                     }
                 },
-                doubleArrayOf(3.0, 14.5, 11.0)
-            )
+                doubleArrayOf(3.0, 14.5, 11.0),
+            ),
         )
     }
 
@@ -55,10 +55,10 @@ internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageO
 
 internal class AverageOfLevelsInBinaryTreeDFSTest :
     AverageOfLevelsInBinaryTreeStrategyTest<AverageOfLevelsInBinaryTreeDFS>(
-        AverageOfLevelsInBinaryTreeDFS()
+        AverageOfLevelsInBinaryTreeDFS(),
     )
 
 internal class AverageOfLevelsInBinaryTreeBFSTest :
     AverageOfLevelsInBinaryTreeStrategyTest<AverageOfLevelsInBinaryTreeBFS>(
-        AverageOfLevelsInBinaryTreeBFS()
+        AverageOfLevelsInBinaryTreeBFS(),
     )

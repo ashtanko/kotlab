@@ -27,7 +27,7 @@ internal class SingleNumberTest {
         fun dataProvider(): List<Pair<IntArray, Int>> {
             return listOf(
                 intArrayOf(2, 2, 1) to 1,
-                intArrayOf(4, 1, 2, 1, 2) to 4
+                intArrayOf(4, 1, 2, 1, 2) to 4,
             )
         }
     }

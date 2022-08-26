@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -24,7 +25,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T) {
 
@@ -33,22 +33,22 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
             Arguments.of(
                 "0",
                 "1",
-                "1"
+                "1",
             ),
             Arguments.of(
                 "0",
                 "0",
-                "0"
+                "0",
             ),
             Arguments.of(
                 "11",
                 "1",
-                "100"
+                "100",
             ),
             Arguments.of(
                 "1010",
                 "1011",
-                "10101"
+                "10101",
             ),
         )
     }

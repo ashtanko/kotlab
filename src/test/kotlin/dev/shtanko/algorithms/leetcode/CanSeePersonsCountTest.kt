@@ -30,7 +30,7 @@ abstract class CanSeePersonsCountTest<out T : CanSeePersonsCount>(private val st
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(10, 6, 8, 5, 11, 9),
-                intArrayOf(3, 1, 2, 1, 1, 0)
+                intArrayOf(3, 1, 2, 1, 1, 0),
             ),
             Arguments.of(
                 intArrayOf(5, 1, 2, 3, 10),

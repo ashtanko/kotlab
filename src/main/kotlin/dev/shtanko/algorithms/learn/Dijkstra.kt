@@ -32,9 +32,11 @@ internal class Vertex(val name: String) : Comparable<Vertex> {
             this -> {
                 print(name)
             }
+
             null -> {
                 print("$name(unreached)")
             }
+
             else -> {
                 previous?.printPath()
                 print(" -> $name($dist)")
@@ -53,7 +55,7 @@ internal class Vertex(val name: String) : Comparable<Vertex> {
 internal class Graph(
     edges: List<Edge>,
     private val directed: Boolean,
-    private val showAllPaths: Boolean = false
+    private val showAllPaths: Boolean = false,
 ) {
     // mapping of vertex names to Vertex objects, built from a set of Edges
     private val mainGraph = HashMap<String, Vertex>(edges.size)

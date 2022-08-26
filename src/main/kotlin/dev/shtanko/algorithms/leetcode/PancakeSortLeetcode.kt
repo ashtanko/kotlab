@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 object PancakeSortLeetcode {
     fun pancakeSort(arr: IntArray): List<Int> {
         val ans: MutableList<Int> = ArrayList()

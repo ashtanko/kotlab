@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 internal fun leafSimilar(root1: TreeNode?, root2: TreeNode?): Boolean {
     val leaves1: MutableList<Int?> = ArrayList()
     val leaves2: MutableList<Int?> = ArrayList()

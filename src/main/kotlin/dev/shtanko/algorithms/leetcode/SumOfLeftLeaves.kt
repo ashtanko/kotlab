@@ -35,7 +35,7 @@ internal class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
             val node: TreeNode = stack.pop()
             if (node.left != null) {
                 if (node.left!!.left == null && node.left!!.right == null) ans += node.left?.value ?: 0 else stack.push(
-                    node.left
+                    node.left,
                 )
             }
             if (node.right != null) {

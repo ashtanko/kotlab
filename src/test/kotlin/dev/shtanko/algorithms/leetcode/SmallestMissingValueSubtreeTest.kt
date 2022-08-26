@@ -30,7 +30,7 @@ abstract class SmallestMissingValueSubtreeTest<out T : SmallestMissingValueSubtr
             Arguments.of(
                 intArrayOf(-1, 0, 0, 2),
                 intArrayOf(1, 2, 3, 4),
-                intArrayOf(5, 1, 1, 1)
+                intArrayOf(5, 1, 1, 1),
             ),
             Arguments.of(
                 intArrayOf(-1, 0, 1, 0, 3, 3),

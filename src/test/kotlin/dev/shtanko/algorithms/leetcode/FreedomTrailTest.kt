@@ -30,12 +30,12 @@ abstract class FreedomTrailTest<out T : FreedomTrail>(private val strategy: T) {
             Arguments.of(
                 "godding",
                 "gd",
-                4
+                4,
             ),
             Arguments.of(
                 "godding",
                 "godding",
-                13
+                13,
             ),
         )
     }

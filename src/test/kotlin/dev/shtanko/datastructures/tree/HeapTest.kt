@@ -16,12 +16,12 @@
 
 package dev.shtanko.datastructures.tree
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 import java.util.PriorityQueue
 import java.util.Random
 import java.util.stream.IntStream
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class HeapTest {
 

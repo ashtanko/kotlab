@@ -30,32 +30,32 @@ class StampingSequenceTest {
             Arguments.of(
                 "abc",
                 "ababc",
-                intArrayOf(1, 0, 2)
+                intArrayOf(1, 0, 2),
             ),
             Arguments.of(
                 "abca",
                 "aabcaca",
-                intArrayOf(2, 3, 0, 1)
+                intArrayOf(2, 3, 0, 1),
             ),
             Arguments.of(
                 "",
                 "aabcaca",
-                intArrayOf()
+                intArrayOf(),
             ),
             Arguments.of(
                 "",
                 "",
-                intArrayOf(0)
+                intArrayOf(0),
             ),
             Arguments.of(
                 "abca",
                 "",
-                intArrayOf()
+                intArrayOf(),
             ),
             Arguments.of(
                 "q",
                 "q",
-                intArrayOf(0)
+                intArrayOf(0),
             ),
         )
     }

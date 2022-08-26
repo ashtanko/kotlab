@@ -41,7 +41,7 @@ class MinDistanceLCS : MinDistance {
         if (m == 0 || n == 0) return 0
         return if (s1[m - 1] == s2[n - 1]) 1 + lcs(s1, s2, m - 1, n - 1) else Math.max(
             lcs(s1, s2, m, n - 1),
-            lcs(s1, s2, m - 1, n)
+            lcs(s1, s2, m - 1, n),
         )
     }
 }
@@ -55,7 +55,7 @@ class MinDistanceLCSMemo : MinDistance {
     override fun perform(word1: String, word2: String): Int {
         val memo = Array(word1.length + 1) {
             IntArray(
-                word2.length + 1
+                word2.length + 1,
             )
         }
         return word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length, memo)
@@ -83,7 +83,7 @@ class MinDistanceLCSDP : MinDistance {
                 if (i == 0 || j == 0) continue
                 if (word1[i - 1] == word2[j - 1]) dp[i][j] = 1 + dp[i - 1][j - 1] else dp[i][j] = max(
                     dp[i - 1][j],
-                    dp[i][j - 1]
+                    dp[i][j - 1],
                 )
             }
         }
@@ -100,7 +100,7 @@ class MinDistanceDP : MinDistance {
     override fun perform(word1: String, word2: String): Int {
         val dp = Array(word1.length + 1) {
             IntArray(
-                word2.length + 1
+                word2.length + 1,
             )
         }
         for (i in 0..word1.length) {
@@ -124,10 +124,13 @@ class MinDistance1DDP : MinDistance {
         for (i in 0..word1.length) {
             val temp = IntArray(word2.length + 1)
             for (j in 0..word2.length) {
-                if (i == 0 || j == 0) temp[j] = i + j else if (word1[i - 1] == word2[j - 1]) temp[j] =
-                    dp[j - 1] else temp[j] = 1 + min(
-                    dp[j], temp[j - 1]
-                )
+                if (i == 0 || j == 0) {
+                    temp[j] = i + j
+                } else if (word1[i - 1] == word2[j - 1]) {
+                    temp[j] = dp[j - 1]
+                } else {
+                    temp[j] = 1 + min(dp[j], temp[j - 1])
+                }
             }
             dp = temp
         }

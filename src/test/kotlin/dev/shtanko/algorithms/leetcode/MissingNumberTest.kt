@@ -29,7 +29,7 @@ internal abstract class AbstractMissingNumberStrategyTest<out T : AbstractMissin
                 2 to intArrayOf(3, 0, 1),
                 8 to intArrayOf(9, 6, 4, 2, 3, 5, 7, 0, 1),
                 0 to intArrayOf(1, 2, 3),
-                7 to intArrayOf(9, 6, 4, 2, 3, 5, 8, 0, 1)
+                7 to intArrayOf(9, 6, 4, 2, 3, 5, 8, 0, 1),
             )
         }
     }

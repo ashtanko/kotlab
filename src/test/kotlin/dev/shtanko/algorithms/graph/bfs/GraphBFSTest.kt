@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.graph.bfs
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 class GraphBFSTest {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -38,7 +38,7 @@ class GraphBFSTest {
                     3 to 3,
                 ),
                 2,
-                listOf(2, 0, 3, 1)
+                listOf(2, 0, 3, 1),
             ),
             Arguments.of(
                 4,
@@ -51,7 +51,7 @@ class GraphBFSTest {
                     3 to 3,
                 ),
                 0,
-                listOf(0, 1, 2, 3)
+                listOf(0, 1, 2, 3),
             ),
             Arguments.of(
                 4,
@@ -64,7 +64,7 @@ class GraphBFSTest {
                     3 to 3,
                 ),
                 3,
-                listOf(3)
+                listOf(3),
             ),
             Arguments.of(
                 6,
@@ -78,7 +78,7 @@ class GraphBFSTest {
                     5 to 3,
                 ),
                 3,
-                listOf(3, 1, 4, 2, 5)
+                listOf(3, 1, 4, 2, 5),
             ),
             Arguments.of(
                 10,
@@ -98,7 +98,7 @@ class GraphBFSTest {
                     8 to 9,
                 ),
                 0,
-                listOf(0, 1, 3, 2, 4, 5, 6, 7, 8, 9)
+                listOf(0, 1, 3, 2, 4, 5, 6, 7, 8, 9),
             ),
             Arguments.of(
                 10,
@@ -118,7 +118,7 @@ class GraphBFSTest {
                     8 to 9,
                 ),
                 3,
-                listOf(3, 2, 4, 5, 6, 7, 8, 9)
+                listOf(3, 2, 4, 5, 6, 7, 8, 9),
             ),
             Arguments.of(
                 10,
@@ -138,7 +138,7 @@ class GraphBFSTest {
                     8 to 9,
                 ),
                 5,
-                listOf(5, 7, 6, 8, 9)
+                listOf(5, 7, 6, 8, 9),
             ),
             Arguments.of(
                 10,
@@ -160,7 +160,7 @@ class GraphBFSTest {
                     9 to 7,
                 ),
                 9,
-                listOf(9, 8, 7)
+                listOf(9, 8, 7),
             ),
             Arguments.of(
                 13,
@@ -195,8 +195,8 @@ class GraphBFSTest {
                     12 to 8,
                 ),
                 0,
-                listOf(0, 7, 9, 11, 3, 6, 8, 10, 2, 4, 5, 1, 12)
-            )
+                listOf(0, 7, 9, 11, 3, 6, 8, 10, 2, 4, 5, 1, 12),
+            ),
         )
     }
 

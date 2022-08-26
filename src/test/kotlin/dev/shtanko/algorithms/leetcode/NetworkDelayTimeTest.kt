@@ -35,7 +35,7 @@ abstract class NetworkDelayTimeTest<out T : NetworkDelayTime>(private val strate
                 ),
                 4,
                 2,
-                2
+                2,
             ),
             Arguments.of(
                 arrayOf(
@@ -43,7 +43,7 @@ abstract class NetworkDelayTimeTest<out T : NetworkDelayTime>(private val strate
                 ),
                 2,
                 1,
-                1
+                1,
             ),
             Arguments.of(
                 arrayOf(
@@ -51,7 +51,7 @@ abstract class NetworkDelayTimeTest<out T : NetworkDelayTime>(private val strate
                 ),
                 2,
                 2,
-                -1
+                -1,
             ),
         )
     }

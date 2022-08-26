@@ -17,6 +17,7 @@
 package dev.shtanko.kotlinlang.serialization
 
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.stream.Stream
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -27,7 +28,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 @OptIn(ExperimentalSerializationApi::class)
 internal class EncodeToStringTest {
@@ -41,7 +41,7 @@ internal class EncodeToStringTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 Data(name = "kotlinx.serialization", lang = "Kotlin"),
-                """{"name":"kotlinx.serialization","lang":"Kotlin"}"""
+                """{"name":"kotlinx.serialization","lang":"Kotlin"}""",
             ),
         )
     }
@@ -50,11 +50,11 @@ internal class EncodeToStringTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 emptyList<Data>(),
-                """[]"""
+                """[]""",
             ),
             Arguments.of(
                 listOf(Data(name = "kotlinx.serialization", lang = "Kotlin")),
-                """[{"name":"kotlinx.serialization","lang":"Kotlin"}]"""
+                """[{"name":"kotlinx.serialization","lang":"Kotlin"}]""",
             ),
             Arguments.of(
                 listOf(
@@ -64,7 +64,7 @@ internal class EncodeToStringTest {
                 ),
                 """
                     [{"name":"kotlinx.serialization","lang":"Kotlin"},{"name":"go","lang":"Go"},{"name":"Vec","lang":"Rust"}]
-                """.trimIndent()
+                """.trimIndent(),
             ),
         )
     }

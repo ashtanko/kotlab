@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class RemoveNthFromEndTest<out T : RemoveNthFromEnd>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -49,14 +49,14 @@ internal abstract class RemoveNthFromEndTest<out T : RemoveNthFromEnd>(private v
             Arguments.of(
                 ListNode(1),
                 1,
-                null
+                null,
             ),
             Arguments.of(
                 ListNode(1).apply {
                     next = ListNode(2)
                 },
                 1,
-                ListNode(1)
+                ListNode(1),
             ),
         )
     }

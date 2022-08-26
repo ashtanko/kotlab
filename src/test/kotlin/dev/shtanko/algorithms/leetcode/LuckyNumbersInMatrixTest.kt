@@ -29,16 +29,16 @@ internal abstract class AbstractLuckyNumbersStrategyTest<out T : AbstractLuckyNu
                 arrayOf(
                     intArrayOf(3, 7, 8),
                     intArrayOf(9, 11, 13),
-                    intArrayOf(15, 16, 17)
+                    intArrayOf(15, 16, 17),
                 ) to listOf(15),
                 arrayOf(
                     intArrayOf(1, 10, 4, 2),
                     intArrayOf(9, 3, 8, 7),
-                    intArrayOf(15, 16, 17, 12)
+                    intArrayOf(15, 16, 17, 12),
                 ) to listOf(12),
                 arrayOf(
                     intArrayOf(7, 8),
-                    intArrayOf(1, 2)
+                    intArrayOf(1, 2),
                 ) to listOf(7),
             )
         }

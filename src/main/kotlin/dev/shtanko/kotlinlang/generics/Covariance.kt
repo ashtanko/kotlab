@@ -34,19 +34,19 @@ internal interface Bank<out T> {
 
 internal class DepositBank : Bank<Deposit> {
     override fun produce(sum: Int): Deposit {
-        return Deposit(sum)
+        return Deposit()
     }
 }
 
 internal class AccountBank : Bank<Account> {
     override fun produce(sum: Int): Account {
-        return Account(sum)
+        return Account()
     }
 }
 
-internal open class Account(sum: Int)
+internal open class Account
 
-internal class Deposit(sum: Int) : Account(sum)
+internal class Deposit : Account()
 
 fun copy(from: Array<out Any>, to: Array<Any>) {
     assert(from.size == to.size)

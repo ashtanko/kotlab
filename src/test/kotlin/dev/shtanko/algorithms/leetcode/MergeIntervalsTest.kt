@@ -30,12 +30,12 @@ internal abstract class MergeIntervalsStrategyTest<out T : MergeIntervalsStrateg
                     intArrayOf(1, 3),
                     intArrayOf(2, 6),
                     intArrayOf(8, 10),
-                    intArrayOf(15, 18)
+                    intArrayOf(15, 18),
                 ) to arrayOf(
                     intArrayOf(1, 6),
                     intArrayOf(8, 10),
-                    intArrayOf(15, 18)
-                )
+                    intArrayOf(15, 18),
+                ),
             )
         }
     }

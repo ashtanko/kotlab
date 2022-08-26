@@ -28,7 +28,7 @@ internal class UncrossedLinesTest {
             return listOf(
                 intArrayOf(1, 4, 2) to intArrayOf(1, 2, 4) to 2,
                 intArrayOf(2, 5, 1, 2, 5) to intArrayOf(10, 5, 2, 1, 5, 2) to 3,
-                intArrayOf(1, 3, 7, 1, 7, 5) to intArrayOf(1, 9, 2, 5, 1) to 2
+                intArrayOf(1, 3, 7, 1, 7, 5) to intArrayOf(1, 9, 2, 5, 1) to 2,
             )
         }
     }

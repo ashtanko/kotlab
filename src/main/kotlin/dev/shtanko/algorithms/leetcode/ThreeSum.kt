@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 /**
  * 3 Sum.
  * @link https://leetcode.com/problems/3sum/
@@ -54,9 +52,11 @@ class ThreeSumTwoPointers : ThreeSum {
                 sum < 0 -> {
                     ++lo
                 }
+
                 sum > 0 -> {
                     --hi
                 }
+
                 else -> {
                     res.add(listOf(nums[i], nums[lo++], nums[hi--]))
                     while (lo < hi && nums[lo] == nums[lo - 1]) ++lo

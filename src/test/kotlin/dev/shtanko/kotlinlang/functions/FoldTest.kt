@@ -30,7 +30,7 @@ class FoldTest {
             { acc: Int, i: Int ->
                 val result = acc + i
                 result
-            }
+            },
         )
         val expected = 18
         assertThat(actual).isEqualTo(expected)
@@ -47,7 +47,7 @@ class FoldTest {
                 val result = acc * i
                 println("result = $result")
                 result
-            }
+            },
         )
         val expected = 360
         assertThat(actual).isEqualTo(expected)

@@ -30,17 +30,17 @@ abstract class MakeArrayStrictlyIncreasingTest<out T : MakeArrayStrictlyIncreasi
             Arguments.of(
                 intArrayOf(1, 5, 3, 6, 7),
                 intArrayOf(1, 3, 2, 4),
-                1
+                1,
             ),
             Arguments.of(
                 intArrayOf(1, 5, 3, 6, 7),
                 intArrayOf(4, 3, 1),
-                2
+                2,
             ),
             Arguments.of(
                 intArrayOf(1, 5, 3, 6, 7),
                 intArrayOf(1, 6, 3, 3),
-                -1
+                -1,
             ),
         )
     }

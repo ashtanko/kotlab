@@ -30,7 +30,7 @@ class PalindromePartitioning4DP : PalindromePartitioning4 {
         val arr = s.toCharArray()
         val dp = Array(n) {
             BooleanArray(
-                n
+                n,
             )
         }
         for (i in n - 1 downTo 0) {

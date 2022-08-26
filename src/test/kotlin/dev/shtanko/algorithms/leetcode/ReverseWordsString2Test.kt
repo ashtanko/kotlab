@@ -17,13 +17,13 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.utils.reverse
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class ReverseWordsString2Test {
 
@@ -31,8 +31,8 @@ internal class ReverseWordsString2Test {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 charArrayOf('t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e'),
-                charArrayOf('b', 'l', 'u', 'e', ' ', 'i', 's', ' ', 's', 'k', 'y', ' ', 't', 'h', 'e')
-            )
+                charArrayOf('b', 'l', 'u', 'e', ' ', 'i', 's', ' ', 's', 'k', 'y', ' ', 't', 'h', 'e'),
+            ),
         )
     }
 
@@ -42,14 +42,14 @@ internal class ReverseWordsString2Test {
                 charArrayOf(),
                 0,
                 0,
-                charArrayOf()
+                charArrayOf(),
             ),
             Arguments.of(
                 charArrayOf('t', 'h', 'e'),
                 0,
                 2,
-                charArrayOf('e', 'h', 't')
-            )
+                charArrayOf('e', 'h', 't'),
+            ),
         )
     }
 
@@ -57,12 +57,12 @@ internal class ReverseWordsString2Test {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 charArrayOf(),
-                charArrayOf()
+                charArrayOf(),
             ),
             Arguments.of(
                 charArrayOf('t', 'h', 'e'),
-                charArrayOf('e', 'h', 't')
-            )
+                charArrayOf('e', 'h', 't'),
+            ),
         )
     }
 

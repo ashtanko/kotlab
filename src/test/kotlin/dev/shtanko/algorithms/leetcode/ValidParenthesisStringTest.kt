@@ -29,31 +29,31 @@ abstract class ValidParenthesisStringTest<out T : ValidParenthesisString>(privat
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "()",
-                true
+                true,
             ),
             Arguments.of(
                 "(*)",
-                true
+                true,
             ),
             Arguments.of(
                 "(*))",
-                true
+                true,
             ),
             Arguments.of(
                 "",
-                true
+                true,
             ),
             Arguments.of(
                 "(",
-                false
+                false,
             ),
             Arguments.of(
                 ")",
-                false
+                false,
             ),
             Arguments.of(
                 "((",
-                false
+                false,
             ),
         )
     }

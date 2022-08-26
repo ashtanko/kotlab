@@ -28,12 +28,12 @@ internal abstract class KClosestPointsTest<out T : KClosestPointsStrategy>(priva
         fun dataProvider(): List<Pair<Pair<Array<IntArray>, Int>, Array<IntArray>>> = listOf(
             arrayOf(
                 intArrayOf(1, 3),
-                intArrayOf(-2, 2)
+                intArrayOf(-2, 2),
             ) to 1 to arrayOf(intArrayOf(-2, 2)),
             arrayOf(
                 intArrayOf(3, 3),
                 intArrayOf(5, -1),
-                intArrayOf(-2, 4)
+                intArrayOf(-2, 4),
             ) to 2 to arrayOf(intArrayOf(3, 3), intArrayOf(-2, 4)),
         )
     }

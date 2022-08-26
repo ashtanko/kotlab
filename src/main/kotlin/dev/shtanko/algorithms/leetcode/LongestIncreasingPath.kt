@@ -77,8 +77,8 @@ class LongestIncreasingPathPeelingOnion : LongestIncreasingPath {
                     if (matrix[node[0]][node[1]] > matrix[x][y]) if (--outdegree[x][y] == 0) newLeaves.add(
                         intArrayOf(
                             x,
-                            y
-                        )
+                            y,
+                        ),
                     )
                 }
             }

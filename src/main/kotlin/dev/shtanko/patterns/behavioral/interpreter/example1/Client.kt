@@ -41,7 +41,6 @@ internal object Client {
                 val resultExpression = NumberExpression(result)
                 stack.push(resultExpression)
             } else {
-
                 // numbers are pushed on top of the stack
                 val i = NumberExpression(s)
                 stack.push(i)

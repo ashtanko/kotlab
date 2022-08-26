@@ -31,17 +31,17 @@ abstract class WordBreak2Test<out T : WordBreak2>(private val strategy: T) {
             Arguments.of(
                 "catsanddog",
                 listOf("cat", "cats", "and", "sand", "dog"),
-                listOf("cats and dog", "cat sand dog")
+                listOf("cats and dog", "cat sand dog"),
             ),
             Arguments.of(
                 "pineapplepenapple",
                 listOf("apple", "pen", "applepen", "pine", "pineapple"),
-                listOf("pine apple pen apple", "pineapple pen apple", "pine applepen apple")
+                listOf("pine apple pen apple", "pineapple pen apple", "pine applepen apple"),
             ),
             Arguments.of(
                 "catsandog",
                 listOf("cats", "dog", "sand", "and", "cat"),
-                listOf<String>()
+                listOf<String>(),
             ),
         )
     }

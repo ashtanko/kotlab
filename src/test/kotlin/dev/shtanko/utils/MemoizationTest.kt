@@ -29,7 +29,7 @@ class MemoizationTest : FreeSpec() {
                 runBlocking {
                     val (first, second) = listOf(
                         async { 2 + 2 },
-                        async { 2 + 2 }
+                        async { 2 + 2 },
                     ).awaitAll()
 
                     first == second

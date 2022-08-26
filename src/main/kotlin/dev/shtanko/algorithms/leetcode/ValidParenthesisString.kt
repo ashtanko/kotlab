@@ -37,7 +37,6 @@ class ValidParenthesisStringBruteForce : ValidParenthesisString {
     }
 
     private fun solve(sb: StringBuilder, i: Int) {
-
         if (i == sb.length) {
             ans = ans or valid(sb)
         } else if (sb[i] == '*') {

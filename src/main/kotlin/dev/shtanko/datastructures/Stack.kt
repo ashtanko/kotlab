@@ -62,7 +62,6 @@ class Stack<T> : Collection<T> {
 
     override fun contains(element: T): Boolean {
         for (obj in this) {
-
             if (obj == element) return true
         }
         return false

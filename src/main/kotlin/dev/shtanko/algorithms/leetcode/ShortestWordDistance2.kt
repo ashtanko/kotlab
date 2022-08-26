@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
 import kotlin.math.abs
 import kotlin.math.min
 

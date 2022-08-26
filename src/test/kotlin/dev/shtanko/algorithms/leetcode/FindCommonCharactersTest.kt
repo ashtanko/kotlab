@@ -17,13 +17,13 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.randomString
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 private const val RANDOM_STRING_LENGTH = 6
 private const val RANDOM_ARRAY_SIZE = 100_000
@@ -38,7 +38,7 @@ internal class FindCommonCharactersTest {
             Arguments.of(arrayOf("far", "bar", "rar"), listOf("a", "r")),
             Arguments.of(
                 Array(RANDOM_ARRAY_SIZE) { ('a'..'z').randomString(RANDOM_STRING_LENGTH) + "q" },
-                listOf("q")
+                listOf("q"),
             ),
         )
     }

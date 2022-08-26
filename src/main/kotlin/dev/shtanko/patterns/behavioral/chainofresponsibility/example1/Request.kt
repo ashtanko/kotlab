@@ -37,7 +37,7 @@ class Request(private val requestType: RequestType, private val requestDescripti
      *
      * @return The request type
      */
-    fun getRequestType(): RequestType? {
+    fun getRequestType(): RequestType {
         return requestType
     }
 

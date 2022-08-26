@@ -32,7 +32,7 @@ internal object CoroutinesUtils {
             format,
             time,
             currentThreadName,
-            msg
+            msg,
         )
 
     fun printLog(time: String = currentTime, msg: String) = println(log(time, msg))

@@ -76,7 +76,7 @@ private fun calculateSum(
     arr: IntArray,
     i: Int,
     carr: CharArray,
-    action: (type: CharacterType) -> Unit
+    action: (type: CharacterType) -> Unit,
 ) {
     var k = i
     while (k < arr.size) {

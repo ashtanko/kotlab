@@ -32,7 +32,7 @@ internal class MaxProductTest {
                 2 to intArrayOf(1, 2, 3),
                 12 to intArrayOf(3, 4, 5, 2),
                 16 to intArrayOf(1, 5, 4, 5),
-                12 to intArrayOf(3, 7)
+                12 to intArrayOf(3, 7),
             )
         }
     }

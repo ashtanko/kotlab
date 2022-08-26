@@ -30,17 +30,17 @@ abstract class ConstrainedSubsequenceSumTest<out T : ConstrainedSubsequenceSum>(
             Arguments.of(
                 intArrayOf(10, 2, -10, 5, 20),
                 2,
-                37
+                37,
             ),
             Arguments.of(
                 intArrayOf(-1, -2, -3),
                 1,
-                -1
+                -1,
             ),
             Arguments.of(
                 intArrayOf(10, -2, -10, -5, 20),
                 2,
-                23
+                23,
             ),
         )
     }

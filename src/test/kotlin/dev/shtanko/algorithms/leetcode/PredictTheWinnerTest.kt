@@ -29,11 +29,11 @@ abstract class PredictTheWinnerTest<out T : PredictTheWinner>(private val strate
         override fun provideArguments(p0: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(1, 5, 2),
-                false
+                false,
             ),
             Arguments.of(
                 intArrayOf(1, 5, 233, 7),
-                true
+                true,
             ),
         )
     }

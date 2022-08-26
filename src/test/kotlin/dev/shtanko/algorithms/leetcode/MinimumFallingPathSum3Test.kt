@@ -33,13 +33,13 @@ abstract class MinimumFallingPathSum3Test<out T : MinimumFallingPathSum3>(privat
                     intArrayOf(4, 5, 6),
                     intArrayOf(7, 8, 9),
                 ),
-                13
+                13,
             ),
             Arguments.of(
                 arrayOf(
-                    intArrayOf(7)
+                    intArrayOf(7),
                 ),
-                7
+                7,
             ),
         )
     }

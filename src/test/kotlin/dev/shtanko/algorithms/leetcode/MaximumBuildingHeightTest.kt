@@ -33,12 +33,12 @@ abstract class MaximumBuildingHeightTest<out T : MaximumBuildingHeight>(private 
                     intArrayOf(2, 1),
                     intArrayOf(4, 1),
                 ),
-                2
+                2,
             ),
             Arguments.of(
                 6,
                 arrayOf<IntArray>(),
-                5
+                5,
             ),
             Arguments.of(
                 10,
@@ -48,7 +48,7 @@ abstract class MaximumBuildingHeightTest<out T : MaximumBuildingHeight>(private 
                     intArrayOf(7, 4),
                     intArrayOf(10, 3),
                 ),
-                5
+                5,
             ),
         )
     }

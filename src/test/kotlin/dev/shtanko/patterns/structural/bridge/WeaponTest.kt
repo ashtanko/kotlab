@@ -22,7 +22,6 @@ import org.mockito.Mockito.verifyNoMoreInteractions
 abstract class WeaponTest {
 
     fun testBasicWeaponActions(weapon: Weapon) {
-
         val enchantment = weapon.enchantment
         weapon.swing()
 

@@ -33,9 +33,9 @@ abstract class GraphConnectivityWithThresholdTest<out T : GraphConnectivityWithT
                 arrayOf(
                     intArrayOf(1, 4),
                     intArrayOf(2, 5),
-                    intArrayOf(3, 6)
+                    intArrayOf(3, 6),
                 ),
-                listOf(false, false, true)
+                listOf(false, false, true),
             ),
             Arguments.of(
                 6,
@@ -47,7 +47,7 @@ abstract class GraphConnectivityWithThresholdTest<out T : GraphConnectivityWithT
                     intArrayOf(2, 6),
                     intArrayOf(1, 3),
                 ),
-                listOf(true, true, true, true, true)
+                listOf(true, true, true, true, true),
             ),
             Arguments.of(
                 5,
@@ -59,7 +59,7 @@ abstract class GraphConnectivityWithThresholdTest<out T : GraphConnectivityWithT
                     intArrayOf(2, 3),
                     intArrayOf(3, 4),
                 ),
-                listOf(false, false, false, false, false)
+                listOf(false, false, false, false, false),
             ),
         )
     }
@@ -73,5 +73,5 @@ abstract class GraphConnectivityWithThresholdTest<out T : GraphConnectivityWithT
 }
 
 class GraphConnectivityWithThresholdUnionTest : GraphConnectivityWithThresholdTest<GraphConnectivityWithThreshold>(
-    GraphConnectivityWithThresholdUnion()
+    GraphConnectivityWithThresholdUnion(),
 )

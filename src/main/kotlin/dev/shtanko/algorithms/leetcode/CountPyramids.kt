@@ -74,7 +74,7 @@ class CountPyramidsDP2 : CountPyramids {
                 if (grid[i][j] > 0) {
                     grid[i][j] = min(
                         min(grid[i - 1][j], grid[i - 1][j - 1]),
-                        grid[i - 1][j + 1]
+                        grid[i - 1][j + 1],
                     ) + 1
                     ans += grid[i][j] - 1
                 }

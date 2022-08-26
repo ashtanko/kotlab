@@ -28,7 +28,7 @@ internal class RobotReturnToOriginTest {
             return listOf(
                 "" to true,
                 "UD" to true,
-                "LL" to false
+                "LL" to false,
             )
         }
     }

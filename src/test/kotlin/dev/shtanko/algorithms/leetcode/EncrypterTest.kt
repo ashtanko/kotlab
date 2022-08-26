@@ -24,10 +24,9 @@ class EncrypterTest {
     @Test
     fun `encrypter test`() {
         val encrypter = Encrypter(
-            charArrayOf('a', 'b', 'c', 'd'), arrayOf("ei", "zf", "ei", "am"),
-            arrayOf(
-                "abcd", "acbd", "adbc", "badc", "dacb", "cadb", "cbda", "abad"
-            )
+            charArrayOf('a', 'b', 'c', 'd'),
+            arrayOf("ei", "zf", "ei", "am"),
+            arrayOf("abcd", "acbd", "adbc", "badc", "dacb", "cadb", "cbda", "abad"),
         )
         assertThat(encrypter.encrypt("abcd")).isEqualTo("eizfeiam")
         assertThat(encrypter.decrypt("eizfeiam")).isEqualTo(2)

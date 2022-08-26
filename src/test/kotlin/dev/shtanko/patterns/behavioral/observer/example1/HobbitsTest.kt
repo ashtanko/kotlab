@@ -24,7 +24,7 @@ class HobbitsTest : WeatherObserverTest<Hobbits>(Supplier { Hobbits() }) {
             arrayOf(WeatherType.SUNNY, "The hobbits are facing Sunny weather now"),
             arrayOf(WeatherType.RAINY, "The hobbits are facing Rainy weather now"),
             arrayOf(WeatherType.WINDY, "The hobbits are facing Windy weather now"),
-            arrayOf(WeatherType.COLD, "The hobbits are facing Cold weather now")
+            arrayOf(WeatherType.COLD, "The hobbits are facing Cold weather now"),
         )
     }
 }

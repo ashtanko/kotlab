@@ -28,7 +28,7 @@ internal class MinStartValueTest {
             return listOf(
                 5 to intArrayOf(-3, 2, -3, 4, 2),
                 1 to intArrayOf(1, 2),
-                5 to intArrayOf(1, -2, -3)
+                5 to intArrayOf(1, -2, -3),
             )
         }
     }

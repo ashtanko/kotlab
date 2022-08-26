@@ -98,7 +98,7 @@ class WordBreak2Backtracking : WordBreak2 {
         s: String,
         dict: List<String>,
         canBreak: BooleanArray,
-        start: Int
+        start: Int,
     ) {
         if (start == s.length) {
             rst.add(sb.substring(1))
@@ -134,7 +134,7 @@ class WordBreak2DFS : WordBreak2 {
         for (word in wordDict) if (s.startsWith(word)) {
             val next = s.substring(word.length)
             if (next.isEmpty()) result.add(word) else for (sub in backtrack(next, wordDict, mem)) result.add(
-                "$word $sub"
+                "$word $sub",
             )
         }
         mem[s] = result

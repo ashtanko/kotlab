@@ -18,7 +18,7 @@ package dev.shtanko.utils
 
 import kotlin.system.measureTimeMillis
 
-inline fun <T> measure(action: () -> T, result: (result: Pair<Long, T>) -> Unit) {
+inline fun <T> measureTime(action: () -> T, result: (result: Pair<Long, T>) -> Unit) {
     var a: T
     val time = measureTimeMillis {
         a = action()

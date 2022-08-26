@@ -31,7 +31,7 @@ internal class PalindromeNumberTest {
                 -121 to false,
                 0 to true,
                 Int.MAX_VALUE to false,
-                444 to true
+                444 to true,
             )
         }
     }

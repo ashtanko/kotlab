@@ -21,7 +21,7 @@ class DwarvenGoldmineFacade {
     private val workers: List<DwarvenMineWorker> = listOf(
         DwarvenGoldDigger(),
         DwarvenCartOperator(),
-        DwarvenTunnelDigger()
+        DwarvenTunnelDigger(),
     )
 
     fun startNewDay() {
@@ -39,7 +39,7 @@ class DwarvenGoldmineFacade {
     @Suppress("SpreadOperator")
     private fun makeActions(
         workers: Collection<DwarvenMineWorker>,
-        vararg actions: DwarvenMineWorker.Action
+        vararg actions: DwarvenMineWorker.Action,
     ) {
         workers.forEach {
             it.performActions(*actions)

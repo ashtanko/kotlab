@@ -49,7 +49,10 @@ class RemoveBoxesTopDown : RemoveBoxes {
         for (m in i0 + 1..j) {
             if (boxes[i0] == boxes[m]) {
                 res = max(
-                    res, removeBoxesSub(boxes, i0 + 1, m - 1, 0, dp).plus(removeBoxesSub(boxes, m, j, k0 + 1, dp))
+                    res,
+                    removeBoxesSub(boxes, i0 + 1, m - 1, 0, dp).plus(
+                        removeBoxesSub(boxes, m, j, k0 + 1, dp),
+                    ),
                 )
             }
         }

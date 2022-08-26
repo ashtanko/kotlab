@@ -30,17 +30,17 @@ abstract class StringCompression2Test<out T : StringCompression2>(private val st
             Arguments.of(
                 "aaabcccd",
                 2,
-                4
+                4,
             ),
             Arguments.of(
                 "aabbaa",
                 2,
-                2
+                2,
             ),
             Arguments.of(
                 "aaaaaaaaaaa",
                 0,
-                3
+                3,
             ),
         )
     }

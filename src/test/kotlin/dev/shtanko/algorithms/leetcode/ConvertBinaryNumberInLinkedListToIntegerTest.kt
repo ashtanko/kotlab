@@ -16,16 +16,16 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>(
-    private val strategy: T
+    private val strategy: T,
 ) {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -36,25 +36,25 @@ internal abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>
                         next = ListNode(1)
                     }
                 },
-                5
+                5,
             ),
             Arguments.of(
                 ListNode(0),
-                0
+                0,
             ),
             Arguments.of(
                 ListNode(1),
-                1
+                1,
             ),
             Arguments.of(
                 ListNode(0).apply {
                     next = ListNode(0)
                 },
-                0
+                0,
             ),
             Arguments.of(
                 getNode(),
-                18880
+                18880,
             ),
         )
 

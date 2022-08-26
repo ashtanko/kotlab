@@ -30,18 +30,18 @@ abstract class HappyStringTest<out T : HappyString>(private val strategy: T) {
             Arguments.of(
                 1,
                 3,
-                "c"
+                "c",
             ),
             Arguments.of(
                 1,
                 4,
-                ""
+                "",
             ),
             Arguments.of(
                 3,
                 9,
-                "cab"
-            )
+                "cab",
+            ),
         )
     }
 

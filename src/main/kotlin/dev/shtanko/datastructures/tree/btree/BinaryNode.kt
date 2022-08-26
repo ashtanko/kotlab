@@ -37,7 +37,7 @@ internal class BinaryNode<T>(val value: T) {
         node: BinaryNode<T>?,
         top: String = "",
         root: String = "",
-        bottom: String = ""
+        bottom: String = "",
     ): String {
         return node?.let {
             if (node.leftChild == null && node.rightChild == null) {
@@ -47,14 +47,14 @@ internal class BinaryNode<T>(val value: T) {
                     node.rightChild,
                     "$top ",
                     "$top┌──",
-                    "$top│ "
+                    "$top│ ",
                 )
 
                 val dl = diagram(
                     node.leftChild,
                     "$bottom│ ",
                     "$bottom└──",
-                    "$bottom "
+                    "$bottom ",
                 )
 
                 dr.plus(root).plus("${node.value}\n").plus(dl)

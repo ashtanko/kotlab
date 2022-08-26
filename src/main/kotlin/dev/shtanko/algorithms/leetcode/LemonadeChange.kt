@@ -28,10 +28,12 @@ class LemonadeChange {
                     five--
                     ten++
                 }
+
                 ten > 0 -> {
                     ten--
                     five--
                 }
+
                 else -> five -= BILL_THREE
             }
             if (five < 0) return false

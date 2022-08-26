@@ -28,7 +28,7 @@ internal class NumTeamsTest {
             return listOf(
                 3 to intArrayOf(2, 5, 3, 4, 1),
                 0 to intArrayOf(2, 1, 3),
-                4 to intArrayOf(1, 2, 3, 4)
+                4 to intArrayOf(1, 2, 3, 4),
             )
         }
     }

@@ -35,7 +35,6 @@ interface DistinctSubseq2 {
  */
 class DistinctSubseq2DP : DistinctSubseq2 {
     override fun distinctSubseqII(s: String): Int {
-
         val n: Int = s.length
         val dp = IntArray(n + 1)
         dp[0] = 1

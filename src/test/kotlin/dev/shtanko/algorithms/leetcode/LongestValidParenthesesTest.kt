@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 internal abstract class LongestValidParenthesesTest<out T : LongestValidParenthesesStrategy>(private val strategy: T) {
 
@@ -31,15 +31,15 @@ internal abstract class LongestValidParenthesesTest<out T : LongestValidParenthe
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",
-                0
+                0,
             ),
             Arguments.of(
                 "(()",
-                2
+                2,
             ),
             Arguments.of(
                 ")()())",
-                4
+                4,
             ),
         )
     }

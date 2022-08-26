@@ -65,7 +65,7 @@ class VerbalArithmeticPuzzleBacktracking : VerbalArithmeticPuzzle {
         nonLeadingZero: BooleanArray,
         step: Int,
         diff: Int,
-        charCount: IntArray
+        charCount: IntArray,
     ): Boolean {
         if (step == charList.size) return diff == 0 // difference between sum of words and result equal to 0
         for (d in 0..9) { // each character is decoded as one digit (0 - 9).
@@ -79,7 +79,7 @@ class VerbalArithmeticPuzzleBacktracking : VerbalArithmeticPuzzle {
                         nonLeadingZero,
                         step + 1,
                         diff + charCount[c.code] * d,
-                        charCount
+                        charCount,
                     )
                 ) {
                     return true

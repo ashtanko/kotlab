@@ -27,7 +27,7 @@ internal class RemoveOutermostParenthesesTest {
         fun dataProvider(): List<Pair<String, String>> {
             return listOf(
                 "(()())(())" to "()()()",
-                "()()" to ""
+                "()()" to "",
             )
         }
     }

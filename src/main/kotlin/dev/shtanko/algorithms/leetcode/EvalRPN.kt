@@ -36,7 +36,6 @@ class RPNInPlace : EvalRPN {
         var length: Int = tokens.size // We need to keep track of this ourselves.
 
         while (length > 1) {
-
             // Move the position pointer to the next operator token.
             while (!OPERATIONS.containsKey(tokens[currentPosition])) {
                 currentPosition++

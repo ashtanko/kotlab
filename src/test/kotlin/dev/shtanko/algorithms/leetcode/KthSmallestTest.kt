@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class KthSmallestTest<out T : KthSmallest>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -35,14 +35,14 @@ abstract class KthSmallestTest<out T : KthSmallest>(private val strategy: T) {
                     intArrayOf(12, 13, 15),
                 ),
                 8,
-                13
+                13,
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(-5),
                 ),
                 1,
-                -5
+                -5,
             ),
         )
     }

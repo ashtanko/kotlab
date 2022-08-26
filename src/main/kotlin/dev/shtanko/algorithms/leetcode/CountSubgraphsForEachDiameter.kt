@@ -34,10 +34,10 @@ class CountSubgraphsForEachDiameterDFS : CountSubgraphsForEachDiameter {
         val graph: MutableMap<Int, MutableSet<Int>> = HashMap()
         for (edge in edges) {
             graph.computeIfAbsent(
-                edge[0]
+                edge[0],
             ) { HashSet() }.add(edge[1])
             graph.computeIfAbsent(
-                edge[1]
+                edge[1],
             ) { HashSet() }.add(edge[0])
         }
         val ans = IntArray(n - 1)

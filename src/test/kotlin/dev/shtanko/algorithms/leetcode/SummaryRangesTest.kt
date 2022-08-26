@@ -27,7 +27,7 @@ internal class SummaryRangesTest {
         fun dataProvider(): List<Pair<IntArray, List<String>>> {
             return listOf(
                 intArrayOf(0, 1, 2, 4, 5, 7) to listOf("0->2", "4->5", "7"),
-                intArrayOf(0, 2, 3, 4, 6, 8, 9) to listOf("0", "2->4", "6", "8->9")
+                intArrayOf(0, 2, 3, 4, 6, 8, 9) to listOf("0", "2->4", "6", "8->9"),
             )
         }
     }

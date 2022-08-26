@@ -33,22 +33,28 @@ class GeneratorTest {
     internal class InputHoursArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                1, false
+                1,
+                false,
             ),
             Arguments.of(
-                9, false
+                9,
+                false,
             ),
             Arguments.of(
-                10, false
+                10,
+                false,
             ),
             Arguments.of(
-                11, true
+                11,
+                true,
             ),
             Arguments.of(
-                15, true
+                15,
+                true,
             ),
             Arguments.of(
-                100, true
+                100,
+                true,
             ),
         )
     }
@@ -56,22 +62,28 @@ class GeneratorTest {
     internal class InputDurationArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                1, 100.0
+                1,
+                100.0,
             ),
             Arguments.of(
-                9, 100.0
+                9,
+                100.0,
             ),
             Arguments.of(
-                10, 100.0
+                10,
+                100.0,
             ),
             Arguments.of(
-                11, 150.0
+                11,
+                150.0,
             ),
             Arguments.of(
-                15, 150.0
+                15,
+                150.0,
             ),
             Arguments.of(
-                100, 150.0
+                100,
+                150.0,
             ),
         )
     }

@@ -26,7 +26,7 @@ internal abstract class CountSortedVowelStringsTest<out T : CountSortedVowelStri
     internal fun `count vowel strings`() = listOf(
         1 to 5,
         2 to 15,
-        33 to 66045
+        33 to 66045,
     ).map { (input, expected) ->
         DynamicTest.dynamicTest("count vowel strings of $input then get $expected") {
             val actual = strategy.perform(input)

@@ -17,13 +17,13 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.leetcode.BinaryTreeMaximumPathSum.maxPathSum
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class BinaryTreeMaximumPathSumTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -33,7 +33,7 @@ internal class BinaryTreeMaximumPathSumTest {
                     left = TreeNode(2)
                     right = TreeNode(3)
                 },
-                6
+                6,
             ),
             Arguments.of(
                 TreeNode(-10).apply {
@@ -44,8 +44,8 @@ internal class BinaryTreeMaximumPathSumTest {
                         left = TreeNode(15)
                     }
                 },
-                42
-            )
+                42,
+            ),
         )
     }
 

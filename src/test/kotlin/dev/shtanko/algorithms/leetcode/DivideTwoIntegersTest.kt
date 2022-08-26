@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class DivideTwoIntegersTest<out T : DivideTwoIntegers>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -30,22 +30,22 @@ internal abstract class DivideTwoIntegersTest<out T : DivideTwoIntegers>(private
             Arguments.of(
                 10,
                 3,
-                3
+                3,
             ),
             Arguments.of(
                 7,
                 -3,
-                -2
+                -2,
             ),
             Arguments.of(
                 0,
                 1,
-                0
+                0,
             ),
             Arguments.of(
                 1,
                 1,
-                1
+                1,
             ),
         )
     }

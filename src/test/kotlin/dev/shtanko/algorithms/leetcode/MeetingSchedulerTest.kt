@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -38,7 +38,7 @@ internal abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private v
                     intArrayOf(60, 70),
                 ),
                 8,
-                listOf(60, 68)
+                listOf(60, 68),
             ),
             Arguments.of(
                 arrayOf(
@@ -51,7 +51,7 @@ internal abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private v
                     intArrayOf(60, 70),
                 ),
                 12,
-                listOf<Int>()
+                listOf<Int>(),
             ),
         )
     }
@@ -62,7 +62,7 @@ internal abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private v
         slots1: Array<IntArray>,
         slots2: Array<IntArray>,
         duration: Int,
-        expected: List<Int>
+        expected: List<Int>,
     ) {
         val actual = strategy.perform(slots1, slots2, duration)
         assertThat(actual).isEqualTo(expected)

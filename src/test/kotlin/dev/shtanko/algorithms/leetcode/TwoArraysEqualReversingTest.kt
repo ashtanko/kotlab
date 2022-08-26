@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -31,7 +31,7 @@ internal abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(
             Arguments.of(intArrayOf(7), intArrayOf(7), true),
             Arguments.of(intArrayOf(1, 12), intArrayOf(12, 1), true),
             Arguments.of(intArrayOf(3, 7, 9), intArrayOf(3, 7, 11), false),
-            Arguments.of(intArrayOf(1, 1, 1, 1, 1), intArrayOf(1, 1, 1, 1, 1), true)
+            Arguments.of(intArrayOf(1, 1, 1, 1, 1), intArrayOf(1, 1, 1, 1, 1), true),
         )
     }
 

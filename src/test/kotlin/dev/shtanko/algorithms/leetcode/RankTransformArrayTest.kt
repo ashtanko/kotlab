@@ -28,7 +28,7 @@ internal class RankTransformArrayTest {
             return listOf(
                 intArrayOf(40, 10, 20, 30) to intArrayOf(4, 1, 2, 3),
                 intArrayOf(100, 100, 100) to intArrayOf(1, 1, 1),
-                intArrayOf(37, 12, 28, 9, 100, 56, 80, 5, 12) to intArrayOf(5, 3, 4, 2, 8, 6, 7, 1, 3)
+                intArrayOf(37, 12, 28, 9, 100, 56, 80, 5, 12) to intArrayOf(5, 3, 4, 2, 8, 6, 7, 1, 3),
             )
         }
     }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class PathSum2Test<out T : PathSum2>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -47,12 +47,12 @@ abstract class PathSum2Test<out T : PathSum2>(private val strategy: T) {
                 listOf(
                     listOf(5, 4, 11, 2),
                     listOf(5, 8, 4, 5),
-                )
+                ),
             ),
             Arguments.of(
                 TreeNode(1),
                 2,
-                emptyList<List<Int>>()
+                emptyList<List<Int>>(),
             ),
             Arguments.of(
                 TreeNode(5).apply {
@@ -64,8 +64,8 @@ abstract class PathSum2Test<out T : PathSum2>(private val strategy: T) {
                 10,
                 listOf(
                     listOf(5, 4, 1),
-                    listOf(5, 5)
-                )
+                    listOf(5, 5),
+                ),
             ),
             Arguments.of(
                 TreeNode(1).apply {
@@ -73,15 +73,15 @@ abstract class PathSum2Test<out T : PathSum2>(private val strategy: T) {
                     right = TreeNode(3)
                 },
                 5,
-                emptyList<List<Int>>()
+                emptyList<List<Int>>(),
             ),
             Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
                 },
                 0,
-                emptyList<List<Int>>()
-            )
+                emptyList<List<Int>>(),
+            ),
         )
     }
 

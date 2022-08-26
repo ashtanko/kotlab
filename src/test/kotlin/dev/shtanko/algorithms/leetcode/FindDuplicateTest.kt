@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class FindDuplicateTest<out T : FindDuplicate>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -32,20 +32,20 @@ internal abstract class FindDuplicateTest<out T : FindDuplicate>(private val str
                     "root/a 1.txt(abcd) 2.txt(efgh)",
                     "root/c 3.txt(abcd)",
                     "root/c/d 4.txt(efgh)",
-                    "root 4.txt(efgh)"
+                    "root 4.txt(efgh)",
                 ),
                 listOf(
                     listOf("root/a/2.txt", "root/c/d/4.txt", "root/4.txt"),
                     listOf("root/a/1.txt", "root/c/3.txt"),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf("root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)"),
                 listOf(
                     listOf("root/a/2.txt", "root/c/d/4.txt"),
                     listOf("root/a/1.txt", "root/c/3.txt"),
-                )
-            )
+                ),
+            ),
         )
     }
 

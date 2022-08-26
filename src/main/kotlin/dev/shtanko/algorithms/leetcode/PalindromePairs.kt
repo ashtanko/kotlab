@@ -67,7 +67,7 @@ class PalindromePairsTrie : PalindromePairs {
         words: Array<String>,
         i: Int,
         root: TrieNode,
-        res: MutableList<List<Int>>
+        res: MutableList<List<Int>>,
     ) {
         var node: TrieNode? = root
         for (j in 0 until words[i].length) {

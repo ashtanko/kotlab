@@ -78,13 +78,11 @@ sealed class KthSmallestStrategy {
             var col = 0
             while (row >= 0 && col < n) {
                 if (matrix[row][col] > mid) {
-
                     // as matrix[row][col] is bigger than the mid, let's keep track of the
                     // smallest number greater than the mid
                     smallLargePair[1] = min(smallLargePair[1], matrix[row][col])
                     row--
                 } else {
-
                     // as matrix[row][col] is less than or equal to the mid, let's keep track of the
                     // biggest number less than or equal to the mid
                     smallLargePair[0] = max(smallLargePair[0], matrix[row][col])

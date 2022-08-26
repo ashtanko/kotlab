@@ -27,7 +27,7 @@ internal abstract class SuperEggDropStrategyTest<out T : SuperEggDropStrategy>(p
         fun dataProvider(): List<Pair<Int, Pair<Int, Int>>> {
             return listOf(
                 3 to (2 to 6),
-                4 to (3 to 14)
+                4 to (3 to 14),
             )
         }
     }

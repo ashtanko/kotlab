@@ -150,7 +150,7 @@ class OnesAndZeroesDP : OnesAndZeroes {
             val count: IntArray = s.countZeroesOnes()
             for (zeroes in m downTo count[0]) for (ones in n downTo count[1]) dp[zeroes][ones] = max(
                 1 + dp[zeroes - count[0]][ones - count[1]],
-                dp[zeroes][ones]
+                dp[zeroes][ones],
             )
         }
         return dp[m][n]

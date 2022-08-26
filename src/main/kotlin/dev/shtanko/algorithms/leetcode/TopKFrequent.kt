@@ -152,12 +152,11 @@ class TopKFrequentTrie : TopKFrequent {
             if (buckets[i] != null) {
                 val l: MutableList<String> = LinkedList()
                 buckets[i]?.getWords(buckets[i]?.root, l)
-                var k0 = k
-                k0 = if (l.size < k0) {
+                if (l.size < k) {
                     ans.addAll(l)
-                    k0 - l.size
+                    k - l.size
                 } else {
-                    for (j in 0 until k0) {
+                    for (j in 0 until k) {
                         ans.add(l[j])
                     }
                     break

@@ -16,12 +16,12 @@
 
 package dev.shtanko.collections
 
+import java.util.stream.Collectors
+import java.util.stream.StreamSupport
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.containsInAnyOrder
 import org.hamcrest.Matchers.equalTo
 import org.junit.jupiter.api.Test
-import java.util.stream.Collectors
-import java.util.stream.StreamSupport
 
 internal class ConvertingIteratorTest {
 

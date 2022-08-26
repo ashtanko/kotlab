@@ -17,7 +17,6 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.awt.Point
-import java.util.ArrayList
 
 interface MaximumWidthRampStrategy {
     fun maxWidthRamp(arr: IntArray): Int

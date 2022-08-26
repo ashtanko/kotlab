@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -32,7 +32,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                     left = TreeNode(1)
                     right = TreeNode(3)
                 },
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(5).apply {
@@ -42,7 +42,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         right = TreeNode(6)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(4).apply {
@@ -52,11 +52,11 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                     }
                     right = TreeNode(5)
                 },
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(1),
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(6).apply {
@@ -81,7 +81,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         right = TreeNode(2)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(1).apply {
@@ -90,7 +90,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         left = TreeNode(2)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(8).apply {
@@ -99,7 +99,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                     }
                     right = TreeNode(6)
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(22).apply {
@@ -114,7 +114,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         }
                     }
                 },
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(300).apply {
@@ -165,7 +165,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         }
                     }
                 },
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(2).apply {
@@ -182,7 +182,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         }
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(6).apply {
@@ -191,7 +191,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         right = TreeNode(9)
                     }
                 },
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(6).apply {
@@ -200,7 +200,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         right = TreeNode(9)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(2).apply {
@@ -208,23 +208,23 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         left = TreeNode(1)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(2),
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(2).apply {
                     right = TreeNode(1)
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(3).apply {
                     left = TreeNode(4)
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(5).apply {
@@ -232,7 +232,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         right = TreeNode(6)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(5).apply {
@@ -240,7 +240,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         right = TreeNode(5)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(5).apply {
@@ -248,7 +248,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         right = TreeNode(6)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 TreeNode(7).apply {
@@ -256,8 +256,8 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                         right = TreeNode(6)
                     }
                 },
-                true
-            )
+                true,
+            ),
         )
     }
 

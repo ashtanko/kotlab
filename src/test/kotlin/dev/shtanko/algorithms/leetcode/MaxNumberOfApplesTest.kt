@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,22 +24,21 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class MaxNumberOfApplesTest<out T : MaxNumberOfApples>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(),
-                0
+                0,
             ),
             Arguments.of(
                 intArrayOf(100, 200, 150, 1000),
-                4
+                4,
             ),
             Arguments.of(
                 intArrayOf(900, 950, 800, 1000, 700, 800),
-                5
+                5,
             ),
             Arguments.of(
                 intArrayOf(
@@ -91,10 +91,10 @@ internal abstract class MaxNumberOfApplesTest<out T : MaxNumberOfApples>(private
                     838,
                     161,
                     15,
-                    330
+                    330,
                 ),
-                23
-            )
+                23,
+            ),
         )
     }
 

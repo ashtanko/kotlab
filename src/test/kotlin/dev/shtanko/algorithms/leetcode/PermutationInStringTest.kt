@@ -27,7 +27,7 @@ internal abstract class PermutationInStringStrategyTest<out T : StringPermutatio
         fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> {
             return listOf(
                 "ab" to "eidbaooo" to true,
-                "ab" to "eidboaoo" to false
+                "ab" to "eidboaoo" to false,
             )
         }
     }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.graph
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 class AdjacencyMapTest {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -103,7 +103,7 @@ class AdjacencyMapTest {
                  G -> [C, F]
                  H -> [E]
 
-                """.trimIndent()
+                """.trimIndent(),
             ),
         )
     }
@@ -113,7 +113,7 @@ class AdjacencyMapTest {
     fun `create adjacency map of int test`(
         pairs: List<Pair<Int, Int>>,
         expectedList: List<List<Int>>,
-        expectedString: String
+        expectedString: String,
     ) {
         assertGraph(pairs, expectedList, expectedString)
     }
@@ -123,7 +123,7 @@ class AdjacencyMapTest {
     fun `create adjacency map of string test`(
         pairs: List<Pair<String, String>>,
         expectedList: List<List<String>>,
-        expectedString: String
+        expectedString: String,
     ) {
         assertGraph(pairs, expectedList, expectedString)
     }
@@ -131,7 +131,7 @@ class AdjacencyMapTest {
     private fun <T> assertGraph(
         pairs: List<Pair<T, T>>,
         expectedList: List<List<T>>,
-        expectedString: String
+        expectedString: String,
     ) {
         val graph = AdjacencyMap<T>()
         pairs.forEach {

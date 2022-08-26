@@ -29,23 +29,23 @@ abstract class NumberOfAtomsTest<out T : NumberOfAtoms>(private val strategy: T)
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",
-                ""
+                "",
             ),
             Arguments.of(
                 "H",
-                "H"
+                "H",
             ),
             Arguments.of(
                 "H2O",
-                "H2O"
+                "H2O",
             ),
             Arguments.of(
                 "Mg(OH)2",
-                "H2MgO2"
+                "H2MgO2",
             ),
             Arguments.of(
                 "K4(ON(SO3)2)2",
-                "K4N2O14S4"
+                "K4N2O14S4",
             ),
         )
     }

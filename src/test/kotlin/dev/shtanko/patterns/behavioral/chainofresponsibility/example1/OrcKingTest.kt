@@ -26,7 +26,7 @@ class OrcKingTest {
     private val requests = listOf(
         Request(RequestType.DEFEND_CASTLE, "Don't let the barbarians enter my castle!!"),
         Request(RequestType.TORTURE_PRISONER, "Don't just stand there, tickle him!"),
-        Request(RequestType.COLLECT_TAX, "Don't steal, the King hates competition ...")
+        Request(RequestType.COLLECT_TAX, "Don't steal, the King hates competition ..."),
     )
 
     @Test
@@ -37,7 +37,7 @@ class OrcKingTest {
             king.makeRequest(request)
             Assertions.assertTrue(
                 request.isHandled(),
-                "Expected all requests from King to be handled, but [$request] was not!"
+                "Expected all requests from King to be handled, but [$request] was not!",
             )
         }
     }

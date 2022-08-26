@@ -28,7 +28,7 @@ internal class SmallestRangeITest {
             return listOf(
                 Pair(Pair(intArrayOf(1), 0), 0),
                 Pair(Pair(intArrayOf(0, 10), 2), 6),
-                Pair(Pair(intArrayOf(1, 3, 6), 3), 0)
+                Pair(Pair(intArrayOf(1, 3, 6), 3), 0),
             )
         }
     }

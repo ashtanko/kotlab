@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class SuperPalindromesTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -30,27 +30,27 @@ internal class SuperPalindromesTest {
             Arguments.of(
                 "0",
                 "0",
-                0
+                0,
             ),
             Arguments.of(
                 "-4",
                 "-1000",
-                0
+                0,
             ),
             Arguments.of(
                 "1",
                 "1",
-                1
+                1,
             ),
             Arguments.of(
                 "4",
                 "1000",
-                4
+                4,
             ),
             Arguments.of(
                 "1",
                 "2",
-                1
+                1,
             ),
         )
     }

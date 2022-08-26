@@ -32,7 +32,7 @@ object MakeTheStringGreat {
         val stack: Stack<Char> = Stack()
         for (i in s.indices) {
             if (!stack.isEmpty() && abs(stack.peek() - s[i]) == ASCII_A - ASCII_a) stack.pop() else stack.push(
-                s[i]
+                s[i],
             )
         }
         val res = CharArray(stack.size)

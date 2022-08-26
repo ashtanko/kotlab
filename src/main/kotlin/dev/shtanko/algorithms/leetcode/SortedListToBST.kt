@@ -29,7 +29,6 @@ interface SortedListToBST {
 class SortedListToBSTRecursion : SortedListToBST {
 
     override fun perform(head: ListNode?): TreeNode? {
-
         // If the head doesn't exist, then the linked list is empty
         if (head == null) {
             return null
@@ -59,7 +58,6 @@ class SortedListToBSTRecursion : SortedListToBST {
     }
 
     private fun findMiddleElement(head: ListNode): ListNode? {
-
         // The pointer used to disconnect the left half from the mid node.
         var prevPtr: ListNode? = null
         var slowPtr: ListNode? = head

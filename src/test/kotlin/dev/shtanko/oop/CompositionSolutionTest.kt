@@ -16,9 +16,9 @@
 
 package dev.shtanko.oop
 
+import java.util.TreeSet
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import java.util.TreeSet
 
 internal class CompositionSolutionTest {
     @Test

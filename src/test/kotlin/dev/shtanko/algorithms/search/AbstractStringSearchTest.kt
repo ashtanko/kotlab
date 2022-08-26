@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.search
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class AbstractStringSearchTest<out T : AbstractSearchStrategy<String>>(private val strategy: T) {
 
@@ -33,7 +33,7 @@ internal abstract class AbstractStringSearchTest<out T : AbstractSearchStrategy<
             Arguments.of(arrayOf("A"), "B", -1),
             Arguments.of(arrayOf("A", "B"), "A", 0),
             Arguments.of(arrayOf("A", "B"), "B", 1),
-            Arguments.of(arrayOf("A", "B"), "C", -1)
+            Arguments.of(arrayOf("A", "B"), "C", -1),
         )
     }
 

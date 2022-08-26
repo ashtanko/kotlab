@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private val strategy: T) {
 
@@ -33,10 +33,10 @@ internal abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private
                     intArrayOf(3, 1, 1),
                     intArrayOf(2, 5, 1),
                     intArrayOf(1, 5, 5),
-                    intArrayOf(2, 1, 1)
+                    intArrayOf(2, 1, 1),
                 ),
-                24
-            )
+                24,
+            ),
         )
     }
 

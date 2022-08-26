@@ -31,12 +31,12 @@ abstract class ReplaceWordsTest<out T : ReplaceWords>(private val strategy: T) {
             Arguments.of(
                 listOf("cat", "bat", "rat"),
                 "the cattle was rattled by the battery",
-                "the cat was rat by the bat"
+                "the cat was rat by the bat",
             ),
             Arguments.of(
                 listOf("a", "b", "c"),
                 "aadsfasf absbs bbab cadsfafs",
-                "a a b c"
+                "a a b c",
             ),
         )
     }

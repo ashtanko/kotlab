@@ -33,7 +33,7 @@ class NumOfWaysTriangle : NumOfWays {
         for (n in nums) {
             arr.add(n)
         }
-        return getCombs(arr, getTriangle(len + 1)!!).toInt() - 1
+        return getCombs(arr, getTriangle(len + 1)).toInt() - 1
     }
 
     private fun getCombs(nums: List<Int>, combs: Array<LongArray>): Long {
@@ -53,11 +53,11 @@ class NumOfWaysTriangle : NumOfWays {
         // mod every number to avoid overflow
         return combs[left.size + right.size][left.size] * (getCombs(left, combs) % MOD) % MOD * getCombs(
             right,
-            combs
+            combs,
         ) % MOD
     }
 
-    private fun getTriangle(n: Int): Array<LongArray>? {
+    private fun getTriangle(n: Int): Array<LongArray> {
         // Yang Hui (Pascle) triangle
         // 4C2 = triangle[4][2] = 6
         val triangle = Array(n) { LongArray(n) }
@@ -134,6 +134,6 @@ class NumOfWaysImpl : NumOfWays {
         var value: Int,
         var left: Node? = null,
         var right: Node? = null,
-        var cnt: Int = 1
+        var cnt: Int = 1,
     )
 }

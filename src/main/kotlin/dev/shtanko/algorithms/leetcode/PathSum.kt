@@ -27,7 +27,7 @@ class PathSumRecursive : PathSumStrategy {
         if (root == null) return false
         return if (root.left == null && root.right == null && sum - root.value == 0) true else hasPathSum(
             root.left,
-            sum - root.value
+            sum - root.value,
         ) || hasPathSum(root.right, sum - root.value)
     }
 }

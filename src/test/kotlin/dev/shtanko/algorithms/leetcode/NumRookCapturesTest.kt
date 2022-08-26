@@ -16,110 +16,62 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class NumRookCapturesTest<out T : NumRookCaptures>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 arrayOf(
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', 'p', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', 'R', '.', '.', '.', 'p'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', 'p', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', 'p', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', 'R', '.', '.', '.', 'p'),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', 'p', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
                 ),
-                3
+                3,
             ),
             Arguments.of(
                 arrayOf(
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', 'p', 'p', 'p', 'p', 'p', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', 'p', 'p', 'B', 'p', 'p', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', 'p', 'B', 'R', 'B', 'p', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', 'p', 'p', 'B', 'p', 'p', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', 'p', 'p', 'p', 'p', 'p', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
+                    charArrayOf('.', 'p', 'p', 'p', 'p', 'p', '.', '.'),
+                    charArrayOf('.', 'p', 'p', 'B', 'p', 'p', '.', '.'),
+                    charArrayOf('.', 'p', 'B', 'R', 'B', 'p', '.', '.'),
+                    charArrayOf('.', 'p', 'p', 'B', 'p', 'p', '.', '.'),
+                    charArrayOf('.', 'p', 'p', 'p', 'p', 'p', '.', '.'),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
                 ),
-                0
+                0,
             ),
             Arguments.of(
                 arrayOf(
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', 'p', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', 'p', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        'p', 'p', '.', 'R', '.', 'p', 'B', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', 'B', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', 'p', '.', '.', '.', '.'
-                    ),
-                    charArrayOf(
-                        '.', '.', '.', '.', '.', '.', '.', '.'
-                    ),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', 'p', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', 'p', '.', '.', '.', '.'),
+                    charArrayOf('p', 'p', '.', 'R', '.', 'p', 'B', '.'),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', 'B', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', 'p', '.', '.', '.', '.'),
+                    charArrayOf('.', '.', '.', '.', '.', '.', '.', '.'),
                 ),
-                3
+                3,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num Rook captures test`(board: Array<CharArray>, expected: Any) {
+    fun `num Rook captures test`(board: Array<CharArray>, expected: Int) {
         val actual = strategy.perform(board)
         assertThat(actual).isEqualTo(expected)
     }

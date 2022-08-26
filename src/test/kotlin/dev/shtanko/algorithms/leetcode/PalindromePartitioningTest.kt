@@ -29,20 +29,20 @@ abstract class PalindromePartitioningTest<out T : PalindromePartitioning>(privat
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",
-                listOf<List<String>>()
+                listOf<List<String>>(),
             ),
             Arguments.of(
                 "aab",
                 listOf(
                     listOf("a", "a", "b"),
                     listOf("aa", "b"),
-                )
+                ),
             ),
             Arguments.of(
                 "a",
                 listOf(
                     listOf("a"),
-                )
+                ),
             ),
             Arguments.of(
                 "qqqe",
@@ -51,14 +51,14 @@ abstract class PalindromePartitioningTest<out T : PalindromePartitioning>(privat
                     listOf("q", "qq", "e"),
                     listOf("qq", "q", "e"),
                     listOf("qqq", "e"),
-                )
+                ),
             ),
             Arguments.of(
                 "leetcode",
                 listOf(
                     listOf("l", "e", "e", "t", "c", "o", "d", "e"),
                     listOf("l", "ee", "t", "c", "o", "d", "e"),
-                )
+                ),
             ),
         )
     }

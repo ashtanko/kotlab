@@ -30,12 +30,12 @@ abstract class FindDifferenceTest<out T : FindDifference>(private val strategy: 
             Arguments.of(
                 "abcd",
                 "abcde",
-                'e'
+                'e',
             ),
             Arguments.of(
                 "",
                 "y",
-                'y'
+                'y',
             ),
         )
     }

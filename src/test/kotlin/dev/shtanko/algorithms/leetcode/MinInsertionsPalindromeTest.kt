@@ -29,15 +29,15 @@ abstract class MinInsertionsPalindromeTest<out T : MinInsertionsPalindrome>(priv
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "zzazz",
-                0
+                0,
             ),
             Arguments.of(
                 "mbadm",
-                2
+                2,
             ),
             Arguments.of(
                 "leetcode",
-                5
+                5,
             ),
         )
     }

@@ -30,12 +30,12 @@ abstract class DecodeMessageTest<out T : DecodeMessage>(private val strategy: T)
             Arguments.of(
                 "the quick brown fox jumps over the lazy dog",
                 "vkbs bs t suepuv",
-                "this is a secret"
+                "this is a secret",
             ),
             Arguments.of(
                 "eljuxhpwnyrdgtqkviszcfmabo",
                 "zwx hnfx lqantp mnoeius ycgk vcnjrdb",
-                "the five boxing wizards jump quickly"
+                "the five boxing wizards jump quickly",
             ),
         )
     }

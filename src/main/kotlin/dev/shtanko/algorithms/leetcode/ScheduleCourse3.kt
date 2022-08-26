@@ -36,7 +36,7 @@ class ScheduleCourse3Recursion : ScheduleCourse3 {
         Arrays.sort(courses) { a, b -> a[1] - b[1] }
         val memo = Array(courses.size) {
             arrayOfNulls<Int>(
-                courses[courses.size - 1][1] + 1
+                courses[courses.size - 1][1] + 1,
             )
         }
         return schedule(courses, 0, 0, memo)

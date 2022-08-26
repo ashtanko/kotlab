@@ -69,6 +69,7 @@ class UnconfinedTest : TestBase() {
                 throw TestException()
             }
         } catch (e: TestException) {
+            e.printStackTrace()
             finish(6)
         }
     }

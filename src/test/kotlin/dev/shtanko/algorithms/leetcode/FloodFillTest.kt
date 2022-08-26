@@ -25,7 +25,7 @@ internal data class FloodFillTestCase(
     val sr: Int,
     val sc: Int,
     val newColor: Int,
-    val output: List<IntArray>
+    val output: List<IntArray>,
 )
 
 internal class FloodFillTest {
@@ -39,7 +39,7 @@ internal class FloodFillTest {
                     1,
                     1,
                     2,
-                    listOf(intArrayOf(2, 2, 2), intArrayOf(2, 2, 0), intArrayOf(2, 0, 1))
+                    listOf(intArrayOf(2, 2, 2), intArrayOf(2, 2, 0), intArrayOf(2, 0, 1)),
                 ),
             )
         }

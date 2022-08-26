@@ -28,10 +28,20 @@ abstract class OutOfBoundaryPathsTest<out T : OutOfBoundaryPaths>(private val st
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                2, 2, 2, 0, 0, 6
+                2,
+                2,
+                2,
+                0,
+                0,
+                6,
             ),
             Arguments.of(
-                1, 3, 3, 0, 1, 12
+                1,
+                3,
+                3,
+                0,
+                1,
+                12,
             ),
         )
     }

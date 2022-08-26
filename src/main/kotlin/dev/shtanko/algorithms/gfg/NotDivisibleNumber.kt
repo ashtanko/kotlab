@@ -25,7 +25,6 @@ interface NotDivisibleNumber {
 
 class NotDivisibleNumberBruteForce : NotDivisibleNumber {
     override fun perform(n: Long): Long {
-
         val primes = prime.sumOf { n / it }
         val a = numbersA.sumOf { n / it }
         val b = numbersB.sumOf { n / it } - n / LAST

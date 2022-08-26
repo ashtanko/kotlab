@@ -36,13 +36,13 @@ class OutOfBoundaryPathsBruteForce : OutOfBoundaryPaths {
             n,
             maxMove - 1,
             startRow + 1,
-            startColumn
+            startColumn,
         ) + findPaths(m, n, maxMove - 1, startRow, startColumn - 1) + findPaths(
             m,
             n,
             maxMove - 1,
             startRow,
-            startColumn + 1
+            startColumn + 1,
         )
     }
 }
@@ -66,7 +66,7 @@ class OutOfBoundaryPathsMemo : OutOfBoundaryPaths {
         maxMove: Int,
         startRow: Int,
         startColumn: Int,
-        memo: Array<Array<IntArray>>
+        memo: Array<Array<IntArray>>,
     ): Int {
         if (startRow == m || startColumn == n || startRow < 0 || startColumn < 0) return 1
         if (maxMove == 0) return 0

@@ -29,16 +29,16 @@ internal class MinimumAbsDifferenceTest {
                 intArrayOf(4, 2, 1, 3) to listOf(
                     listOf(1, 2),
                     listOf(2, 3),
-                    listOf(3, 4)
+                    listOf(3, 4),
                 ),
                 intArrayOf(1, 3, 6, 10, 15) to listOf(
-                    listOf(1, 3)
+                    listOf(1, 3),
                 ),
                 intArrayOf(3, 8, -10, 23, 19, -4, -14, 27) to listOf(
                     listOf(-14, -10),
                     listOf(19, 23),
-                    listOf(23, 27)
-                )
+                    listOf(23, 27),
+                ),
             )
         }
     }

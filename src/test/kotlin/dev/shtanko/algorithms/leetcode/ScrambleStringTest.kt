@@ -30,17 +30,17 @@ abstract class ScrambleStringTest<out T : ScrambleString>(private val strategy: 
             Arguments.of(
                 "great",
                 "rgeat",
-                true
+                true,
             ),
             Arguments.of(
                 "abcde",
                 "caebd",
-                false
+                false,
             ),
             Arguments.of(
                 "a",
                 "a",
-                true
+                true,
             ),
         )
     }

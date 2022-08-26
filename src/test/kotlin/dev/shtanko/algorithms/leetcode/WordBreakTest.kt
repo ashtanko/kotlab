@@ -30,17 +30,17 @@ abstract class WordBreakTest<out T : WordBreak>(private val strategy: T) {
             Arguments.of(
                 "leetcode",
                 listOf("leet", "code"),
-                true
+                true,
             ),
             Arguments.of(
                 "applepenapple",
                 listOf("apple", "pen"),
-                true
+                true,
             ),
             Arguments.of(
                 "catsandog",
                 listOf("cats", "dog", "sand", "and", "cat"),
-                false
+                false,
             ),
         )
     }

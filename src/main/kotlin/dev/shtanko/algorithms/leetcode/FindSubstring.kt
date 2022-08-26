@@ -16,9 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-import java.util.HashMap
-
 interface AbstractFindSubstring {
     fun perform(s: String, words: Array<String>): List<Int>
 }

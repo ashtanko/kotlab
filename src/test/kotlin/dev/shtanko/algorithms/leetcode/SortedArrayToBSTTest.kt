@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class SortedArrayToBSTTest<out T : SortedArrayToBST>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -36,13 +36,13 @@ abstract class SortedArrayToBSTTest<out T : SortedArrayToBST>(private val strate
                     right = TreeNode(5).apply {
                         right = TreeNode(9)
                     }
-                }
+                },
             ),
             Arguments.of(
                 intArrayOf(1, 3),
                 TreeNode(1).apply {
                     left = TreeNode(3)
-                }
+                },
             ),
         )
     }

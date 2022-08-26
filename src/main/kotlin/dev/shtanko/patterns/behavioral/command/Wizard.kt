@@ -16,9 +16,9 @@
 
 package dev.shtanko.patterns.behavioral.command
 
-import org.slf4j.LoggerFactory
 import java.util.Deque
 import java.util.LinkedList
+import org.slf4j.LoggerFactory
 
 class Wizard {
     companion object {

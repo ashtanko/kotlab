@@ -30,22 +30,22 @@ abstract class TopKFrequentTest<out T : TopKFrequent>(private val strategy: T) {
             Arguments.of(
                 arrayOf("i", "love", "leetcode", "i", "love", "coding"),
                 2,
-                listOf("i", "love")
+                listOf("i", "love"),
             ),
             Arguments.of(
                 arrayOf("the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"),
                 4,
-                listOf("the", "is", "sunny", "day")
+                listOf("the", "is", "sunny", "day"),
             ),
             Arguments.of(
                 arrayOf<String>(),
                 0,
-                emptyList<String>()
+                emptyList<String>(),
             ),
             Arguments.of(
                 arrayOf("a", "b"),
                 0,
-                emptyList<String>()
+                emptyList<String>(),
             ),
         )
     }

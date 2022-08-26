@@ -35,7 +35,7 @@ abstract class WordSearch2Test<out T : WordSearch2>(private val strategy: T) {
                     charArrayOf('i', 'f', 'l', 'v'),
                 ),
                 arrayOf("oath", "pea", "eat", "rain"),
-                listOf("eat", "oath")
+                listOf("eat", "oath"),
             ),
             Arguments.of(
                 arrayOf(
@@ -43,7 +43,7 @@ abstract class WordSearch2Test<out T : WordSearch2>(private val strategy: T) {
                     charArrayOf('c', 'd'),
                 ),
                 arrayOf("abcb"),
-                emptyList<String>()
+                emptyList<String>(),
             ),
         )
     }
@@ -53,7 +53,7 @@ abstract class WordSearch2Test<out T : WordSearch2>(private val strategy: T) {
     fun `get length of optimal compression test`(
         board: Array<CharArray>,
         words: Array<String>,
-        expected: List<String>
+        expected: List<String>,
     ) {
         val actual = strategy.findWords(board, words)
         Assertions.assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)

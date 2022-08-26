@@ -28,7 +28,7 @@ internal class UniqueOccurrencesTest {
             return listOf(
                 true to intArrayOf(1, 2, 2, 1, 1, 3),
                 false to intArrayOf(1, 2),
-                true to intArrayOf(-3, 0, 1, -3, 1, 1, 1, -3, 10, 0)
+                true to intArrayOf(-3, 0, 1, -3, 1, 1, 1, -3, 10, 0),
             )
         }
     }

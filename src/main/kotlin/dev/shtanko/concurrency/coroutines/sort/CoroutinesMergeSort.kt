@@ -73,9 +73,8 @@ class CoroutinesMergeSort {
         input: IntArray,
         output: IntArray,
         start: Int,
-        exclusiveEnd: Int
+        exclusiveEnd: Int,
     ) {
-
         if (exclusiveEnd - start <= 1) {
             return
         }
@@ -99,7 +98,7 @@ class CoroutinesMergeSort {
         workB: IntArray,
         start: Int,
         mid: Int,
-        exclusiveEnd: Int
+        exclusiveEnd: Int,
     ) {
         var p1 = start
         var p2 = mid

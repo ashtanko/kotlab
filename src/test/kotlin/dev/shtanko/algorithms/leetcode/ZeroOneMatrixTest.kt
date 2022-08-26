@@ -37,7 +37,7 @@ abstract class ZeroOneMatrixTest<out T : ZeroOneMatrix>(private val strategy: T)
                     intArrayOf(0, 0, 0),
                     intArrayOf(0, 1, 0),
                     intArrayOf(0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(

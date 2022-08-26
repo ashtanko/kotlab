@@ -62,7 +62,7 @@ class ContributorsImpl : Contributors {
     }
 
     override fun setParams(params: Params) {
-        val p = getParams()
+        getParams()
         if (params.username.isEmpty() && params.password.isEmpty()) {
             removeStoredParams()
         } else {

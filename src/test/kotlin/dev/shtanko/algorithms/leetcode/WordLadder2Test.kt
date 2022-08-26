@@ -26,7 +26,7 @@ internal abstract class AbstractWordLadder2StrategyTest<out T : AbstractWordLadd
         val beginWord: String,
         val endWord: String,
         val wordList: List<String>,
-        val output: List<List<String>>
+        val output: List<List<String>>,
     )
 
     companion object {
@@ -39,15 +39,15 @@ internal abstract class AbstractWordLadder2StrategyTest<out T : AbstractWordLadd
                     listOf("hot", "dot", "dog", "lot", "log", "cog"),
                     listOf(
                         listOf("hit", "hot", "dot", "dog", "cog"),
-                        listOf("hit", "hot", "lot", "log", "cog")
-                    )
+                        listOf("hit", "hot", "lot", "log", "cog"),
+                    ),
                 ),
                 WordLadderTestCase(
                     "hit",
                     "cog",
                     listOf("hot", "dot", "dog", "lot", "log"),
-                    emptyList()
-                )
+                    emptyList(),
+                ),
             )
         }
     }

@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
 import java.util.Collections
 import java.util.LinkedList
 
@@ -41,7 +40,7 @@ class PermutationsBacktracking : Permutations {
         n: Int,
         nums: List<Int>,
         output: MutableList<List<Int>>,
-        first: Int
+        first: Int,
     ) {
         // if all integers are used up
         if (first == n) output.add(ArrayList(nums))

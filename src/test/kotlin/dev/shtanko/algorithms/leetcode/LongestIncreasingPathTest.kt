@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class LongestIncreasingPathTest<out T : LongestIncreasingPath>(private val strategy: T) {
 
@@ -34,7 +34,7 @@ internal abstract class LongestIncreasingPathTest<out T : LongestIncreasingPath>
                     intArrayOf(6, 6, 8),
                     intArrayOf(2, 1, 1),
                 ),
-                4
+                4,
             ),
             Arguments.of(
                 arrayOf(
@@ -42,14 +42,14 @@ internal abstract class LongestIncreasingPathTest<out T : LongestIncreasingPath>
                     intArrayOf(3, 2, 6),
                     intArrayOf(2, 2, 1),
                 ),
-                4
+                4,
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(1),
                 ),
-                1
-            )
+                1,
+            ),
         )
     }
 

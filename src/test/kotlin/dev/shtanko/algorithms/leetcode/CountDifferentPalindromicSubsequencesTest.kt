@@ -29,11 +29,11 @@ abstract class CountDifferentPalindromicSubsequencesTest<out T : CountDifferentP
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "bccb",
-                6
+                6,
             ),
             Arguments.of(
                 "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba",
-                104860361
+                104860361,
             ),
         )
     }
@@ -48,5 +48,5 @@ abstract class CountDifferentPalindromicSubsequencesTest<out T : CountDifferentP
 
 class CountDifferentPalindromicSubsequencesDPTest :
     CountDifferentPalindromicSubsequencesTest<CountDifferentPalindromicSubsequences>(
-        CountDifferentPalindromicSubsequencesDP()
+        CountDifferentPalindromicSubsequencesDP(),
     )

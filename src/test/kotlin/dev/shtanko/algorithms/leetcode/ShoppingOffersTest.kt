@@ -31,19 +31,19 @@ abstract class ShoppingOffersTest<out T : ShoppingOffers>(private val strategy: 
                 listOf(2, 5),
                 listOf(
                     listOf(3, 0, 5),
-                    listOf(1, 2, 10)
+                    listOf(1, 2, 10),
                 ),
                 listOf(3, 2),
-                14
+                14,
             ),
             Arguments.of(
                 listOf(2, 3, 4),
                 listOf(
                     listOf(1, 1, 0, 4),
-                    listOf(2, 2, 1, 9)
+                    listOf(2, 2, 1, 9),
                 ),
                 listOf(1, 2, 1),
-                11
+                11,
             ),
         )
     }

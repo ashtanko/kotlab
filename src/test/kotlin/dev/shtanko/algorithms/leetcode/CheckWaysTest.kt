@@ -32,7 +32,7 @@ abstract class CheckWaysTest<out T : CheckWays>(private val strategy: T) {
                     intArrayOf(1, 2),
                     intArrayOf(2, 3),
                 ),
-                1
+                1,
             ),
             Arguments.of(
                 arrayOf(
@@ -40,7 +40,7 @@ abstract class CheckWaysTest<out T : CheckWays>(private val strategy: T) {
                     intArrayOf(2, 3),
                     intArrayOf(1, 3),
                 ),
-                2
+                2,
             ),
             Arguments.of(
                 arrayOf(
@@ -49,7 +49,7 @@ abstract class CheckWaysTest<out T : CheckWays>(private val strategy: T) {
                     intArrayOf(2, 4),
                     intArrayOf(1, 5),
                 ),
-                0
+                0,
             ),
         )
     }

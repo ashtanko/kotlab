@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -31,32 +31,32 @@ internal abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T
             Arguments.of(
                 2,
                 arrayOf<IntArray>(),
-                -1
+                -1,
             ),
             Arguments.of(
                 2,
                 arrayOf(intArrayOf(1, 2)),
-                2
+                2,
             ),
             Arguments.of(
                 3,
                 arrayOf(intArrayOf(1, 3), intArrayOf(2, 3)),
-                3
+                3,
             ),
             Arguments.of(
                 3,
                 arrayOf(intArrayOf(1, 3), intArrayOf(2, 3), intArrayOf(3, 1)),
-                -1
+                -1,
             ),
             Arguments.of(
                 3,
                 arrayOf(intArrayOf(1, 2), intArrayOf(2, 3)),
-                -1
+                -1,
             ),
             Arguments.of(
                 4,
                 arrayOf(intArrayOf(1, 3), intArrayOf(1, 4), intArrayOf(2, 3), intArrayOf(2, 4), intArrayOf(4, 3)),
-                3
+                3,
             ),
             Arguments.of(
                 5,
@@ -67,9 +67,9 @@ internal abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T
                     intArrayOf(4, 1),
                     intArrayOf(5, 3),
                     intArrayOf(5, 1),
-                    intArrayOf(5, 4)
+                    intArrayOf(5, 4),
                 ),
-                3
+                3,
             ),
             Arguments.of(
                 5,
@@ -79,9 +79,9 @@ internal abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T
                     intArrayOf(4, 2),
                     intArrayOf(4, 3),
                     intArrayOf(4, 5),
-                    intArrayOf(5, 1)
+                    intArrayOf(5, 1),
                 ),
-                -1
+                -1,
             ),
             Arguments.of(
                 5,
@@ -91,9 +91,9 @@ internal abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T
                     intArrayOf(3, 2),
                     intArrayOf(3, 4),
                     intArrayOf(4, 2),
-                    intArrayOf(5, 4)
+                    intArrayOf(5, 4),
                 ),
-                -1
+                -1,
             ),
         )
     }

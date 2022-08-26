@@ -29,19 +29,19 @@ abstract class UglyNumbersTest<out T : UglyNumbers>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 7,
-                8
+                8,
             ),
             Arguments.of(
                 10,
-                12
+                12,
             ),
             Arguments.of(
                 15,
-                24
+                24,
             ),
             Arguments.of(
                 150,
-                5832
+                5832,
             ),
         )
     }

@@ -16,33 +16,33 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 abstract class UniqueBinarySearchTreesTest<out T : UniqueBinarySearchTrees>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(p0: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 3,
-                5
+                5,
             ),
             Arguments.of(
                 1,
-                1
+                1,
             ),
             Arguments.of(
                 7,
-                429
+                429,
             ),
             Arguments.of(
                 12,
-                208012
-            )
+                208012,
+            ),
         )
     }
 

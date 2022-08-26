@@ -30,22 +30,22 @@ abstract class MinimumWindowSubstringTest<out T : MinimumWindowSubstring>(privat
             Arguments.of(
                 "ADOBECODEBANC",
                 "ABC",
-                "BANC"
+                "BANC",
             ),
             Arguments.of(
                 "",
                 "",
-                ""
+                "",
             ),
             Arguments.of(
                 "a",
                 "a",
-                "a"
+                "a",
             ),
             Arguments.of(
                 "a",
                 "aa",
-                ""
+                "",
             ),
         )
     }

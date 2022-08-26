@@ -26,7 +26,7 @@ internal class CovarianceTest {
         val s = EmptySource()
         assertThat(demo(s)).isExactlyInstanceOf(EmptySource::class.java)
 
-        var bank1: Bank<Account> = AccountBank()
+        val bank1: Bank<Account> // = AccountBank() TODO
         val bank2: Bank<Deposit> = DepositBank()
 
         // val dep: Deposit = bank2.produce(200) // TODO

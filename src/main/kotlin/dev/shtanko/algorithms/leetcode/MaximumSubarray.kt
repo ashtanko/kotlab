@@ -38,7 +38,7 @@ class MaximumSubarrayBruteForce : MaximumSubarray {
             var currentSubarray = 0
             for (j in i until nums.size) {
                 currentSubarray += nums[j]
-                maxSubarray = kotlin.math.max(maxSubarray, currentSubarray)
+                maxSubarray = max(maxSubarray, currentSubarray)
             }
         }
         return maxSubarray

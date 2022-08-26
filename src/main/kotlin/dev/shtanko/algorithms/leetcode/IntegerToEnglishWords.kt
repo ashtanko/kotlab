@@ -29,7 +29,7 @@ class IntegerToEnglishWords {
         "Sixteen",
         "Seventeen",
         "Eighteen",
-        "Nineteen"
+        "Nineteen",
     )
     private val belowHundred =
         arrayOf("", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety")
@@ -47,20 +47,23 @@ class IntegerToEnglishWords {
                 THOUSAND_FORMAT,
                 helper(num / HUNDRED),
                 HUNDRED_STRING,
-                helper(num % HUNDRED)
+                helper(num % HUNDRED),
             )
+
             num < MILLION -> String.format(
                 MILLION_FORMAT,
                 helper(num / THOUSAND),
                 THOUSAND_STRING,
-                helper(num % THOUSAND)
+                helper(num % THOUSAND),
             )
+
             num < BILLION -> String.format(
                 BILLION_FORMAT,
                 helper(num / MILLION),
                 MILLION_STRING,
-                helper(num % MILLION)
+                helper(num % MILLION),
             )
+
             else -> String.format(FORMAT, helper(num / BILLION), BILLION_STRING, helper(num % BILLION))
         }
         return result.trim { it <= BLANK }

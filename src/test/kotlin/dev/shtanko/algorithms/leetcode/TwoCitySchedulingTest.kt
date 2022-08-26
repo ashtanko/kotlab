@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class TwoCitySchedulingTest {
 
@@ -33,10 +33,10 @@ internal class TwoCitySchedulingTest {
                     intArrayOf(10, 20),
                     intArrayOf(30, 200),
                     intArrayOf(400, 50),
-                    intArrayOf(30, 20)
+                    intArrayOf(30, 20),
                 ),
-                110
-            )
+                110,
+            ),
         )
     }
 

@@ -16,10 +16,10 @@
 
 package dev.shtanko.algorithms.dp
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import java.util.stream.Stream
 
 /**
  * The longest common subsequence test.
@@ -27,9 +27,7 @@ import java.util.stream.Stream
 internal class LCSTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(
-                // TODO
-            )
+            Arguments.of(),
         )
     }
 }

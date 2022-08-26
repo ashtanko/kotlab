@@ -34,7 +34,7 @@ abstract class MinimumFinishTimeTest<out T : MinimumFinishTime>(private val stra
                 ),
                 5,
                 4,
-                21
+                21,
             ),
             Arguments.of(
                 arrayOf(
@@ -44,7 +44,7 @@ abstract class MinimumFinishTimeTest<out T : MinimumFinishTime>(private val stra
                 ),
                 6,
                 5,
-                25
+                25,
             ),
         )
     }

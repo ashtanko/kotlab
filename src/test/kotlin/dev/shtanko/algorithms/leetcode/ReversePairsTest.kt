@@ -28,7 +28,7 @@ internal class ReversePairsTest {
             return listOf(
                 intArrayOf() to 0,
                 intArrayOf(1, 3, 2, 3, 1) to 2,
-                intArrayOf(2, 4, 3, 5, 1) to 3
+                intArrayOf(2, 4, 3, 5, 1) to 3,
             )
         }
     }

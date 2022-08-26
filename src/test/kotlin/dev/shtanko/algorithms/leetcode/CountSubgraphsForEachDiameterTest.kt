@@ -34,14 +34,14 @@ abstract class CountSubgraphsForEachDiameterTest<out T : CountSubgraphsForEachDi
                     intArrayOf(2, 3),
                     intArrayOf(2, 4),
                 ),
-                intArrayOf(3, 4, 0)
+                intArrayOf(3, 4, 0),
             ),
             Arguments.of(
                 2,
                 arrayOf(
                     intArrayOf(1, 2),
                 ),
-                intArrayOf(1)
+                intArrayOf(1),
             ),
             Arguments.of(
                 3,
@@ -49,7 +49,7 @@ abstract class CountSubgraphsForEachDiameterTest<out T : CountSubgraphsForEachDi
                     intArrayOf(1, 2),
                     intArrayOf(2, 3),
                 ),
-                intArrayOf(2, 1)
+                intArrayOf(2, 1),
             ),
         )
     }

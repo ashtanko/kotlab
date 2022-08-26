@@ -39,7 +39,7 @@ class PathSum2DFS : PathSum2 {
         node: TreeNode?,
         remainingSum: Int,
         pathNodes: MutableList<Int>,
-        pathsList: MutableList<List<Int>>
+        pathsList: MutableList<List<Int>>,
     ) {
         if (node == null) {
             return

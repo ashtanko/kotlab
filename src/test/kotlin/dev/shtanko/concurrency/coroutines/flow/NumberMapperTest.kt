@@ -31,15 +31,15 @@ internal class NumberMapperTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 0,
-                listOf("0")
+                listOf("0"),
             ),
             Arguments.of(
                 1,
-                listOf("0")
+                listOf("0"),
             ),
             Arguments.of(
                 5,
-                listOf("0", "2", "4")
+                listOf("0", "2", "4"),
             ),
         )
     }

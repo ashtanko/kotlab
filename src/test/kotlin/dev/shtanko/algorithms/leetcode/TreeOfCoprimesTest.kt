@@ -34,7 +34,7 @@ abstract class TreeOfCoprimesTest<out T : TreeOfCoprimes>(private val strategy: 
                     intArrayOf(1, 2),
                     intArrayOf(1, 3),
                 ),
-                intArrayOf(-1, 0, 0, 1)
+                intArrayOf(-1, 0, 0, 1),
             ),
             Arguments.of(
                 intArrayOf(5, 6, 10, 2, 3, 6, 15),
@@ -46,7 +46,7 @@ abstract class TreeOfCoprimesTest<out T : TreeOfCoprimes>(private val strategy: 
                     intArrayOf(2, 5),
                     intArrayOf(2, 6),
                 ),
-                intArrayOf(-1, 0, -1, 0, 0, 0, -1)
+                intArrayOf(-1, 0, -1, 0, 0, 0, -1),
             ),
         )
     }

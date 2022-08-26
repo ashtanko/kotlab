@@ -45,7 +45,7 @@ class PossiblyEqualsDFS : PossiblyEquals {
         diff: Int,
         s1: CharArray,
         s2: CharArray,
-        dp: Array<Array<Array<Boolean?>>>
+        dp: Array<Array<Array<Boolean?>>>,
     ): Boolean {
         if (i == s1.size && j == s2.size) {
             return diff == 0

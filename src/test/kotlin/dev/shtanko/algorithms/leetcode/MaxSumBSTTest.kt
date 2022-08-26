@@ -41,7 +41,7 @@ abstract class MaxSumBSTTest<out T : MaxSumBST>(private val strategy: T) {
                         }
                     }
                 },
-                20
+                20,
             ),
             Arguments.of(
                 TreeNode(4).apply {
@@ -50,15 +50,15 @@ abstract class MaxSumBSTTest<out T : MaxSumBST>(private val strategy: T) {
                         right = TreeNode(2)
                     }
                 },
-                2
+                2,
             ),
             Arguments.of(
                 TreeNode(-4).apply {
                     left = TreeNode(-2)
                     right = TreeNode(-5)
                 },
-                0
-            )
+                0,
+            ),
         )
     }
 

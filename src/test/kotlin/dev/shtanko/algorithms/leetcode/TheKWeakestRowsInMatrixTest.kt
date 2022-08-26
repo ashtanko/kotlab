@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class TheKWeakestRowsInMatrixTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -33,21 +33,21 @@ internal class TheKWeakestRowsInMatrixTest {
                     intArrayOf(1, 1, 1, 1, 0),
                     intArrayOf(1, 0, 0, 0, 0),
                     intArrayOf(1, 1, 0, 0, 0),
-                    intArrayOf(1, 1, 1, 1, 1)
+                    intArrayOf(1, 1, 1, 1, 1),
                 ),
                 3,
-                intArrayOf(2, 0, 3)
+                intArrayOf(2, 0, 3),
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(1, 0, 0, 0),
                     intArrayOf(1, 1, 1, 1),
                     intArrayOf(1, 0, 0, 0),
-                    intArrayOf(1, 0, 0, 0)
+                    intArrayOf(1, 0, 0, 0),
                 ),
                 2,
-                intArrayOf(0, 2)
-            )
+                intArrayOf(0, 2),
+            ),
         )
     }
 

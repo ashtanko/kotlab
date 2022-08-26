@@ -35,7 +35,7 @@ abstract class MatrixRankTransformTest<out T : MatrixRankTransform>(private val 
                 arrayOf(
                     intArrayOf(1, 2),
                     intArrayOf(2, 3),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -45,7 +45,7 @@ abstract class MatrixRankTransformTest<out T : MatrixRankTransform>(private val 
                 arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(1, 1),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -58,8 +58,8 @@ abstract class MatrixRankTransformTest<out T : MatrixRankTransform>(private val 
                     intArrayOf(4, 2, 3),
                     intArrayOf(1, 3, 4),
                     intArrayOf(5, 1, 6),
-                    intArrayOf(1, 3, 4)
-                )
+                    intArrayOf(1, 3, 4),
+                ),
             ),
         )
     }

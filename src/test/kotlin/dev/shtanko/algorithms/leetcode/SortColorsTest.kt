@@ -29,7 +29,7 @@ internal abstract class SortColorsTest<out T : SortColorsStrategy>(private val s
             intArrayOf(2, 0, 2, 1, 1, 0) to intArrayOf(0, 0, 1, 1, 2, 2),
             intArrayOf(2, 0, 1) to intArrayOf(0, 1, 2),
             intArrayOf(0) to intArrayOf(0),
-            intArrayOf(1) to intArrayOf(1)
+            intArrayOf(1) to intArrayOf(1),
         )
     }
 

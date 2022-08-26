@@ -25,9 +25,11 @@ fun IntArray.searchInsertPosition(target: Int): Int {
             this[mid] == target -> {
                 return mid
             }
+
             this[mid] > target -> {
                 high = mid - 1
             }
+
             else -> {
                 low = mid + 1
             }

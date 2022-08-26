@@ -25,10 +25,10 @@ class GetMaximumScore {
     fun maxSum(nums1: IntArray, nums2: IntArray): Int {
         val map: MutableMap<Int, MutableList<Int>> = HashMap()
         for (i in 0 until nums1.size - 1) map.computeIfAbsent(
-            nums1[i]
+            nums1[i],
         ) { LinkedList() }.add(nums1[i + 1])
         for (i in 0 until nums2.size - 1) map.computeIfAbsent(
-            nums2[i]
+            nums2[i],
         ) { LinkedList() }.add(nums2[i + 1])
         val memo: MutableMap<Int?, Long?> = HashMap()
         return max(greedy(nums1[0], map, memo) % M, greedy(nums2[0], map, memo) % M).toInt()

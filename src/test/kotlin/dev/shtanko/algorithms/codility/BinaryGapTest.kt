@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.codility
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 class BinaryGapTest {
 
@@ -51,7 +51,7 @@ class BinaryGapTest {
                 1376796946 to 5,
                 805306373 to 25,
                 74901729 to 4,
-                6 to 0
+                6 to 0,
             )
         }
     }

@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.lang.StringBuilder
 import java.util.Stack
 
 internal interface ConstructStringFromBinaryTreeStrategy {

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class SortedListToBSTTest<out T : SortedListToBST>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -47,7 +47,7 @@ internal abstract class SortedListToBSTTest<out T : SortedListToBST>(private val
                 ListNode(1).apply {
                     next = ListNode(3)
                 },
-                listOf(3, 1)
+                listOf(3, 1),
             ),
         )
     }

@@ -16,10 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.TreeMap
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.TreeMap
 
 internal class ValidParenthesesTest {
 
@@ -31,7 +31,7 @@ internal class ValidParenthesesTest {
                 true to "()[]{}",
                 false to "(]",
                 false to "([)]",
-                true to "{[]}"
+                true to "{[]}",
             )
         }
     }

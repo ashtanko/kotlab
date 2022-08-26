@@ -29,15 +29,15 @@ abstract class PalindromePartitioning4Test<out T : PalindromePartitioning4>(priv
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "abcbdd",
-                true
+                true,
             ),
             Arguments.of(
                 "bcbddxy",
-                false
+                false,
             ),
             Arguments.of(
                 "",
-                false
+                false,
             ),
         )
     }

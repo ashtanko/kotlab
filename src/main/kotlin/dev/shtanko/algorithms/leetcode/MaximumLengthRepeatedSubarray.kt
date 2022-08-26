@@ -38,9 +38,8 @@ sealed class MaximumLengthRepeatedSubarrayStrategy {
             var ans = 0
             val bstarts: MutableMap<Int, ArrayList<Int>> = HashMap()
             for (j in nums2.indices) {
-
                 bstarts.computeIfAbsent(
-                    nums2[j]
+                    nums2[j],
                 ) { ArrayList() }.add(j)
             }
 

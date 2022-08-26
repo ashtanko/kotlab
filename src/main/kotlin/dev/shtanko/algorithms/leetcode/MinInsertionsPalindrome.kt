@@ -33,10 +33,15 @@ class MinInsertionsPalindromeLCS : MinInsertionsPalindrome {
     override fun minInsertions(s: String): Int {
         val n: Int = s.length
         val dp = Array(n + 1) { IntArray(n + 1) }
-        for (i in 0 until n) for (j in 0 until n) dp[i + 1][j + 1] =
-            if (s[i] == s[n - 1 - j]) dp[i][j] + 1 else max(
-                dp[i][j + 1], dp[i + 1][j]
-            )
+        for (i in 0 until n) {
+            for (j in 0 until n) {
+                dp[i + 1][j + 1] = if (s[i] == s[n - 1 - j]) {
+                    dp[i][j] + 1
+                } else {
+                    max(dp[i][j + 1], dp[i + 1][j])
+                }
+            }
+        }
         return n - dp[n][n]
     }
 }

@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 /**
  * Generate Parentheses.
  * @link https://leetcode.com/problems/generate-parentheses/
@@ -87,7 +85,7 @@ class GenerateParenthesesClosureNumber : GenerateParentheses {
             ans.add("")
         } else {
             for (c in 0 until n) for (left in perform(c)) for (right in perform(n - 1 - c)) ans.add(
-                "($left)$right"
+                "($left)$right",
             )
         }
         return ans

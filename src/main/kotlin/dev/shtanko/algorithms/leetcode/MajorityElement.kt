@@ -30,9 +30,11 @@ fun IntArray.majorityElement(): Int {
                 count++
                 major = this[i]
             }
+
             major == this[i] -> {
                 count++
             }
+
             else -> {
                 count--
             }

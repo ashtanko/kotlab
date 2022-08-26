@@ -40,7 +40,7 @@ internal class JumpGame2Test {
     @MethodSource("dataProvider")
     internal fun `jump test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
-        val actual = arr.jump()
+        val actual = arr.jumpGame2()
         assertEquals(expected, actual)
     }
 }

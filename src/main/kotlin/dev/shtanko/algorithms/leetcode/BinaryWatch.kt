@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 /**
  * Binary Watch
  * @link https://leetcode.com/problems/binary-watch/

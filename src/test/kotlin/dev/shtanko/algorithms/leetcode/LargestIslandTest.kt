@@ -33,21 +33,21 @@ abstract class LargestIslandTest<out T : LargestIsland>(private val strategy: T)
                     intArrayOf(1, 0),
                     intArrayOf(0, 1),
                 ),
-                3
+                3,
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(1, 0),
                 ),
-                4
+                4,
             ),
             Arguments.of(
                 arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(1, 1),
                 ),
-                4
+                4,
             ),
         )
     }

@@ -28,8 +28,8 @@ internal class MaxSumSubMatrixTest {
             return listOf(
                 2 to arrayOf(
                     intArrayOf(1, 0, 1),
-                    intArrayOf(0, -2, 3)
-                ) to 2
+                    intArrayOf(0, -2, 3),
+                ) to 2,
             )
         }
     }

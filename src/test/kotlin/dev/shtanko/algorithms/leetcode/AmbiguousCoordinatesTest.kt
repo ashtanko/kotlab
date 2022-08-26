@@ -16,32 +16,32 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class AmbiguousCoordinatesTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "(123)",
-                listOf("(1, 23)", "(12, 3)", "(1.2, 3)", "(1, 2.3)")
+                listOf("(1, 23)", "(12, 3)", "(1.2, 3)", "(1, 2.3)"),
             ),
             Arguments.of(
                 "(00011)",
-                listOf("(0.001, 1)", "(0, 0.011)")
+                listOf("(0.001, 1)", "(0, 0.011)"),
             ),
             Arguments.of(
                 "(0123)",
-                listOf("(0, 123)", "(0, 12.3)", "(0, 1.23)", "(0.1, 23)", "(0.1, 2.3)", "(0.12, 3)")
+                listOf("(0, 123)", "(0, 12.3)", "(0, 1.23)", "(0.1, 23)", "(0.1, 2.3)", "(0.12, 3)"),
             ),
             Arguments.of(
                 "(100)",
-                listOf("(10, 0)")
+                listOf("(10, 0)"),
             ),
         )
     }

@@ -55,7 +55,7 @@ internal class CommandTest {
         assertEquals(
             expectedVisibility,
             goblin.visibility,
-            "Goblin's visibility must be same as expectedVisibility"
+            "Goblin's visibility must be same as expectedVisibility",
         )
     }
 }

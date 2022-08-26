@@ -97,14 +97,14 @@ internal class BinarySearchTreeTest {
         val tree = BinarySearchTree<Char, String>()
         val letters = arrayOf(
             'j', 'p', 'q', 's', 'f', 'o', 'g', 'v', 'h', 'm', 'x', 'z',
-            'l', 'n', 'd', 'c', 'a', 'r', 'b', 't', 'i', 'u', 'w', 'k', 'y', 'e'
+            'l', 'n', 'd', 'c', 'a', 'r', 'b', 't', 'i', 'u', 'w', 'k', 'y', 'e',
         )
         letters.forEach { tree.add(it, it.toString()) }
 
         assertEquals(letters.toSet(), tree.keys)
         assertArrayEquals(
             letters.map { it.toString() }.sorted().toTypedArray(),
-            tree.values.sorted().toTypedArray()
+            tree.values.sorted().toTypedArray(),
         )
 
         assertEquals(26, tree.size)

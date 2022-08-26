@@ -69,7 +69,7 @@ class IterativeInorder : ClosestBST {
             }
             node = stack.removeLast()
             if (pred <= target && target < node!!.value) return if (abs(
-                    pred - target
+                    pred - target,
                 ) < abs(node.value - target)
             ) pred else node.value
             pred = node!!.value

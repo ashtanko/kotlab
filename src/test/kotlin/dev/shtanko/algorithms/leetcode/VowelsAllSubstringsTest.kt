@@ -29,15 +29,15 @@ abstract class VowelsAllSubstringsTest<out T : VowelsAllSubstrings>(private val 
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "aba",
-                6
+                6,
             ),
             Arguments.of(
                 "abc",
-                3
+                3,
             ),
             Arguments.of(
                 "ltcd",
-                0
+                0,
             ),
         )
     }

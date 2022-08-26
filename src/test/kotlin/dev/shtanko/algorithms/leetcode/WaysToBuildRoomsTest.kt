@@ -29,12 +29,12 @@ abstract class WaysToBuildRoomsTest<out T : WaysToBuildRooms>(private val strate
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(-1, 0, 1),
-                1
+                1,
             ),
             Arguments.of(
                 intArrayOf(-1, 0, 0, 1, 2),
-                6
-            )
+                6,
+            ),
         )
     }
 

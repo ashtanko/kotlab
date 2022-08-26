@@ -30,12 +30,12 @@ abstract class RotateListTest<out T : RotateList>(private val strategy: T) {
             Arguments.of(
                 listOf(1, 2, 3, 4, 5),
                 2,
-                listOf(4, 5, 1, 2, 3)
+                listOf(4, 5, 1, 2, 3),
             ),
             Arguments.of(
                 listOf(0, 1, 2),
                 4,
-                listOf(2, 0, 1)
+                listOf(2, 0, 1),
             ),
         )
     }

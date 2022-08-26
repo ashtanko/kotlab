@@ -29,15 +29,15 @@ abstract class RemoveBoxesTest<out T : RemoveBoxes>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(1, 3, 2, 2, 2, 3, 4, 3, 1),
-                23
+                23,
             ),
             Arguments.of(
                 intArrayOf(1, 1, 1),
-                9
+                9,
             ),
             Arguments.of(
                 intArrayOf(1),
-                1
+                1,
             ),
         )
     }

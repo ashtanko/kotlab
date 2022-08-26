@@ -48,9 +48,9 @@ class ReplaceWordsTrie : ReplaceWords {
         for (root in dictionary) {
             var cur = trie
             for (letter in root.toCharArray()) {
-                if (cur.children[letter.toInt() - 'a'.toInt()] == null) cur.children[letter.toInt() - 'a'.toInt()] =
+                if (cur.children[letter.code - 'a'.code] == null) cur.children[letter.code - 'a'.code] =
                     TrieNode()
-                cur = cur.children[letter.toInt() - 'a'.toInt()] ?: TrieNode()
+                cur = cur.children[letter.code - 'a'.code] ?: TrieNode()
             }
             cur.word = root
         }

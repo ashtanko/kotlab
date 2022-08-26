@@ -40,7 +40,7 @@ class AggregationTest {
                     User("1", 20),
                     User("2", 10),
                     User("3", 10),
-                )
+                ),
             ),
             Arguments.of(
                 listOf(
@@ -51,7 +51,7 @@ class AggregationTest {
                 listOf(
                     User("1", 10),
                     User("3", 10),
-                )
+                ),
             ),
             Arguments.of(
                 listOf(
@@ -63,7 +63,7 @@ class AggregationTest {
                     User("1", 10),
                     User("2", 10),
                     User("3", 10),
-                )
+                ),
             ),
             Arguments.of(
                 listOf(
@@ -73,7 +73,7 @@ class AggregationTest {
                 ),
                 listOf(
                     User("1", 30),
-                )
+                ),
             ),
             Arguments.of(
                 listOf(
@@ -85,7 +85,7 @@ class AggregationTest {
                 listOf(
                     User("1", 20),
                     User("2", 20),
-                )
+                ),
             ),
             Arguments.of(
                 listOf(
@@ -93,7 +93,7 @@ class AggregationTest {
                 ),
                 listOf(
                     User("1", 10),
-                )
+                ),
             ),
             Arguments.of(
                 emptyList<User>(),

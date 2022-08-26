@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -30,7 +30,7 @@ internal abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>
             Arguments.of(intArrayOf(), false),
             Arguments.of(intArrayOf(1, 2, 3, 1), true),
             Arguments.of(intArrayOf(1, 1, 1, 3, 3, 4, 3, 2, 4, 2), true),
-            Arguments.of(intArrayOf(1, 2, 3, 4), false)
+            Arguments.of(intArrayOf(1, 2, 3, 4), false),
         )
     }
 

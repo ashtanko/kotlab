@@ -16,13 +16,13 @@
 
 package dev.shtanko.kotlinlang.collections
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class CompareIterableSequenceTest {
 
@@ -30,11 +30,11 @@ internal class CompareIterableSequenceTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 0..2,
-                Triple(3, 3, 1)
+                Triple(3, 3, 1),
             ),
             Arguments.of(
                 0..3,
-                Triple(4, 4, 1)
+                Triple(4, 4, 1),
             ),
         )
     }
@@ -43,15 +43,15 @@ internal class CompareIterableSequenceTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 (0..2).asSequence(),
-                Triple(1, 1, 1)
+                Triple(1, 1, 1),
             ),
             Arguments.of(
                 (0..3).asSequence(),
-                Triple(1, 1, 1)
+                Triple(1, 1, 1),
             ),
             Arguments.of(
                 (0..300).asSequence(),
-                Triple(1, 1, 1)
+                Triple(1, 1, 1),
             ),
         )
     }

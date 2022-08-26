@@ -30,12 +30,12 @@ abstract class MaximumANDSumTest<out T : MaximumANDSum>(private val strategy: T)
             Arguments.of(
                 intArrayOf(1, 2, 3, 4, 5, 6),
                 3,
-                9
+                9,
             ),
             Arguments.of(
                 intArrayOf(1, 3, 10, 4, 7, 1),
                 9,
-                24
+                24,
             ),
         )
     }

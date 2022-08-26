@@ -16,15 +16,15 @@
 
 package dev.shtanko.algorithms.exercises
 
-import org.hamcrest.CoreMatchers.`is`
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class MaxPowerOfTwoTest {
 
@@ -45,7 +45,7 @@ internal class MaxPowerOfTwoTest {
             Arguments.of(3378, 2048),
             Arguments.of(4815, 4096),
             Arguments.of(12_346, 8192),
-            Arguments.of(20_896, 16_384)
+            Arguments.of(20_896, 16_384),
         )
     }
 
@@ -58,7 +58,7 @@ internal class MaxPowerOfTwoTest {
             Arguments.of(8, listOf(8)),
             Arguments.of(9, listOf(8, 1)),
             Arguments.of(20, listOf(16, 4)),
-            Arguments.of(55, listOf(32, 16, 4, 2, 1))
+            Arguments.of(55, listOf(32, 16, 4, 2, 1)),
         )
     }
 

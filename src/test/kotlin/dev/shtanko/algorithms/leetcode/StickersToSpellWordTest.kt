@@ -30,12 +30,12 @@ abstract class StickersToSpellWordTest<out T : StickersToSpellWord>(private val 
             Arguments.of(
                 arrayOf("with", "example", "science"),
                 "thehat",
-                3
+                3,
             ),
             Arguments.of(
                 arrayOf("notice", "possible"),
                 "basicbasic",
-                -1
+                -1,
             ),
         )
     }

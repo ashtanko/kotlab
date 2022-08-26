@@ -30,12 +30,12 @@ abstract class NumWaysTest<out T : NumWays>(private val strategy: T) {
             Arguments.of(
                 arrayOf("acca", "bbbb", "caca"),
                 "aba",
-                6
+                6,
             ),
             Arguments.of(
                 arrayOf("abba", "baab"),
                 "bab",
-                4
+                4,
             ),
         )
     }

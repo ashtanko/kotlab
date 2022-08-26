@@ -35,11 +35,11 @@ abstract class PopulatingNextRightPointersTest<out T : PopulatingNextRightPointe
                     right = TreeLinkNode(3).apply {
                         right = TreeLinkNode(7)
                     }
-                }
+                },
             ),
             Arguments.of(
                 null,
-                null
+                null,
             ),
         )
     }

@@ -57,7 +57,7 @@ internal class BinaryTreeNodeTest {
                 } else {
                     0
                 }
-            }
+            },
         )
     }
 }

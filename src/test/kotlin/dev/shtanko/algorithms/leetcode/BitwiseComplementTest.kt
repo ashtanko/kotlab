@@ -16,36 +16,36 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class BitwiseComplementTest<out T : BitwiseComplement>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 0,
-                1
+                1,
             ),
             Arguments.of(
                 5,
-                2
+                2,
             ),
             Arguments.of(
                 7,
-                0
+                0,
             ),
             Arguments.of(
                 10,
-                5
+                5,
             ),
             Arguments.of(
                 10_000,
-                6383
+                6383,
             ),
         )
     }

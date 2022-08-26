@@ -20,7 +20,7 @@ internal class MinStack {
     data class Node(
         val value: Int,
         var next: Node?,
-        val subStackMin: Int
+        val subStackMin: Int,
     )
 
     private var top: Node? = null

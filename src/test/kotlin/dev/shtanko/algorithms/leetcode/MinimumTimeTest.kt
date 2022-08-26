@@ -29,15 +29,15 @@ abstract class MinimumTimeTest<out T : MinimumTime>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "1100101",
-                5
+                5,
             ),
             Arguments.of(
                 "0010",
-                2
+                2,
             ),
             Arguments.of(
                 "0010",
-                2
+                2,
             ),
         )
     }

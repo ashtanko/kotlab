@@ -46,7 +46,7 @@ val minMaxGasDistDP = MinMaxGasDist { stations, station ->
 
     val dp = Array(n - 1) {
         DoubleArray(
-            station + 1
+            station + 1,
         )
     }
     for (i in 0..station) {

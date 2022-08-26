@@ -32,7 +32,7 @@ internal class RunningSum1DTest {
                 intArrayOf(1, 2, 3, 4) to intArrayOf(1, 3, 6, 10),
                 intArrayOf(1, 1, 1, 1, 1) to intArrayOf(1, 2, 3, 4, 5),
                 intArrayOf(3, 1, 2, 10, 1) to intArrayOf(3, 4, 6, 16, 17),
-                intArrayOf(-3, 1, -2, 10, -1) to intArrayOf(-3, -2, -4, 6, 5)
+                intArrayOf(-3, 1, -2, 10, -1) to intArrayOf(-3, -2, -4, 6, 5),
             )
         }
     }

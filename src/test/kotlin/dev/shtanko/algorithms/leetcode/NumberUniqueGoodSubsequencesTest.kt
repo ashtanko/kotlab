@@ -29,23 +29,23 @@ class NumberUniqueGoodSubsequencesTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "001",
-                2
+                2,
             ),
             Arguments.of(
                 "11",
-                2
+                2,
             ),
             Arguments.of(
                 "101",
-                5
+                5,
             ),
             Arguments.of(
                 "",
-                0
+                0,
             ),
             Arguments.of(
                 "1110001",
-                23
+                23,
             ),
         )
     }

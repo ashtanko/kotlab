@@ -34,15 +34,15 @@ class ParallelSmartMergeSortTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 1000,
-                7
+                7,
             ),
             Arguments.of(
                 10_000,
-                7
+                7,
             ),
             Arguments.of(
                 100_000,
-                10
+                10,
             ),
         )
     }

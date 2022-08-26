@@ -49,7 +49,7 @@ internal abstract class SqrtTest<out T : SqrtStrategy>(private val strategy: T) 
                 441 to 21,
                 484 to 22,
                 529 to 23,
-                576 to 24
+                576 to 24,
             )
         }
     }

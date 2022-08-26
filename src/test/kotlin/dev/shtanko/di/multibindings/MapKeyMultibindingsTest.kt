@@ -16,10 +16,10 @@
 
 package dev.shtanko.di.multibindings
 
+import java.math.BigDecimal
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
-import java.math.BigDecimal
 
 class MapKeyMultibindingsTest {
 
@@ -36,7 +36,7 @@ class MapKeyMultibindingsTest {
             DynamicTest.dynamicTest("get BigDecimal class should return value for BigDecimal") {
                 assertThat(component.stringsByNumberClass()[BigDecimal::class.java])
                     .isEqualTo("value for BigDecimal")
-            }
+            },
         )
         return tests
     }

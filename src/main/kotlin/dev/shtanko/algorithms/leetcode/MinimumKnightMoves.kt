@@ -38,7 +38,7 @@ interface MinimumKnightMoves {
             intArrayOf(-1, -2),
             intArrayOf(-2, -1),
             intArrayOf(-2, 1),
-            intArrayOf(-1, 2)
+            intArrayOf(-1, 2),
         )
     }
 }
@@ -92,7 +92,6 @@ class MinimumKnightMovesBFS : MinimumKnightMoves {
  */
 class MinimumKnightMovesBidirectional : MinimumKnightMoves {
     override fun perform(x: Int, y: Int): Int {
-
         // data structures needed to move from the origin point
         val originQueue: Deque<IntArray> = LinkedList()
         originQueue.addLast(intArrayOf(0, 0, 0))
@@ -156,13 +155,15 @@ class MinimumKnightMovesMemoization : MinimumKnightMoves {
             x + y == 0 -> {
                 0
             }
+
             x + y == 2 -> {
                 2
             }
+
             else -> {
                 val ret = min(
                     dfs(abs(x - 1), abs(y - 2)),
-                    dfs(abs(x - 2), abs(y - 1))
+                    dfs(abs(x - 2), abs(y - 1)),
                 ) + 1
                 memo[key] = ret
                 ret

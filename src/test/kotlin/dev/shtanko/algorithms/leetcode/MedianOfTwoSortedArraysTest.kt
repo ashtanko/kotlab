@@ -27,7 +27,7 @@ internal class MedianOfTwoSortedArraysTest {
         fun casesProvider(): List<Pair<Double, Pair<IntArray, IntArray>>> {
             return listOf(
                 2.0 to (intArrayOf(1, 3) to intArrayOf(2)),
-                2.5 to (intArrayOf(1, 2) to intArrayOf(3, 4))
+                2.5 to (intArrayOf(1, 2) to intArrayOf(3, 4)),
             )
         }
     }

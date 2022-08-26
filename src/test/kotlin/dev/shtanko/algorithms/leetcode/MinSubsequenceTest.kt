@@ -30,7 +30,7 @@ internal abstract class AbstractMinSubsequenceStrategyTest<T : MinSubsequenceStr
                 listOf(7, 7, 6) to intArrayOf(4, 4, 7, 6, 7),
                 listOf(6) to intArrayOf(6),
                 listOf(1, 1, 1) to intArrayOf(1, 1, 1, 1, 1),
-                listOf(5, 3) to intArrayOf(1, 1, 1, 1, 1, 3, 5)
+                listOf(5, 3) to intArrayOf(1, 1, 1, 1, 1, 3, 5),
             )
         }
     }

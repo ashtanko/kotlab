@@ -30,17 +30,17 @@ abstract class MinimumIncompatibilityTest<out T : MinimumIncompatibility>(privat
             Arguments.of(
                 intArrayOf(1, 2, 1, 4),
                 2,
-                4
+                4,
             ),
             Arguments.of(
                 intArrayOf(6, 3, 8, 1, 3, 1, 2, 2),
                 4,
-                6
+                6,
             ),
             Arguments.of(
                 intArrayOf(5, 3, 3, 6, 3, 3),
                 3,
-                -1
+                -1,
             ),
         )
     }

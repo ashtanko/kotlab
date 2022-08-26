@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class FindSmallestSetOfVerticesTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -38,7 +38,7 @@ internal class FindSmallestSetOfVerticesTest {
                     listOf(3, 4),
                     listOf(4, 2),
                 ),
-                listOf(0, 3)
+                listOf(0, 3),
             ),
             Arguments.of(
                 5,
@@ -49,7 +49,7 @@ internal class FindSmallestSetOfVerticesTest {
                     listOf(1, 4),
                     listOf(2, 4),
                 ),
-                listOf(0, 2, 3)
+                listOf(0, 2, 3),
             ),
         )
     }

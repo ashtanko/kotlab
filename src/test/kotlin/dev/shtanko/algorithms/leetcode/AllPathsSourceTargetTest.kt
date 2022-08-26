@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,30 +24,29 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class AllPathsSourceTargetTest<out T : AllPathsSourceTarget>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 arrayOf(intArrayOf(1), intArrayOf()),
-                listOf(listOf(0, 1))
+                listOf(listOf(0, 1)),
             ),
             Arguments.of(
                 arrayOf(intArrayOf(1, 2, 3), intArrayOf(2), intArrayOf(3), intArrayOf()),
-                listOf(listOf(0, 1, 2, 3), listOf(0, 2, 3), listOf(0, 3))
+                listOf(listOf(0, 1, 2, 3), listOf(0, 2, 3), listOf(0, 3)),
             ),
             Arguments.of(
                 arrayOf(intArrayOf(1, 3), intArrayOf(2), intArrayOf(3), intArrayOf()),
-                listOf(listOf(0, 1, 2, 3), listOf(0, 3))
+                listOf(listOf(0, 1, 2, 3), listOf(0, 3)),
             ),
             Arguments.of(
                 arrayOf(intArrayOf(1, 2), intArrayOf(3), intArrayOf(3), intArrayOf()),
-                listOf(listOf(0, 1, 3), listOf(0, 2, 3))
+                listOf(listOf(0, 1, 3), listOf(0, 2, 3)),
             ),
             Arguments.of(
                 arrayOf(intArrayOf(4, 3, 1), intArrayOf(3, 2, 4), intArrayOf(3), intArrayOf(4), intArrayOf()),
-                listOf(listOf(0, 4), listOf(0, 3, 4), listOf(0, 1, 3, 4), listOf(0, 1, 2, 3, 4), listOf(0, 1, 4))
+                listOf(listOf(0, 4), listOf(0, 3, 4), listOf(0, 1, 3, 4), listOf(0, 1, 2, 3, 4), listOf(0, 1, 4)),
             ),
         )
     }

@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class SimilarStringGroupsTest {
 
@@ -33,7 +33,7 @@ internal class SimilarStringGroupsTest {
             Arguments.of(arrayOf("a", "aa", "a"), 3),
             Arguments.of(arrayOf("one"), 1),
             Arguments.of(arrayOf("tars", "rats", "arts", "star"), 2),
-            Arguments.of(arrayOf("omv", "ovm"), 1)
+            Arguments.of(arrayOf("omv", "ovm"), 1),
         )
     }
 

@@ -28,7 +28,7 @@ internal class ReverseIntegerTest {
             return listOf(
                 123 to 321,
                 -123 to -321,
-                0 to 0
+                0 to 0,
             )
         }
     }
@@ -37,7 +37,7 @@ internal class ReverseIntegerTest {
     @MethodSource("dataProvider")
     internal fun `reversed number test`(testCase: Pair<Int, Int>) {
         val (num, expected) = testCase
-        val actual = num.reversed()
+        val actual = num.reverseInteger()
         assertEquals(expected, actual)
     }
 }

@@ -28,7 +28,7 @@ internal class ShortestSubArrayTest {
             return listOf(
                 Pair(Pair(intArrayOf(1), 1), 1),
                 Pair(Pair(intArrayOf(1, 2), 4), -1),
-                Pair(Pair(intArrayOf(2, -1, 2), 3), 3)
+                Pair(Pair(intArrayOf(2, -1, 2), 3), 3),
             )
         }
     }

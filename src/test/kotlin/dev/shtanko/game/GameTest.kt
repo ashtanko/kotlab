@@ -16,6 +16,7 @@
 
 package dev.shtanko.game
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.greaterThan
@@ -32,7 +33,6 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import org.junit.jupiter.params.provider.ValueSource
-import java.util.stream.Stream
 
 internal class GameTest {
 
@@ -50,7 +50,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -64,7 +64,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(2, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -78,7 +78,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(4, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -92,7 +92,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 4, 0),
                     intArrayOf(0, 0, 4, 0),
-                )
+                ),
             ),
         )
     }
@@ -111,7 +111,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -125,7 +125,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -139,7 +139,7 @@ internal class GameTest {
                     intArrayOf(4, 8, 16, 32),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -153,7 +153,7 @@ internal class GameTest {
                     intArrayOf(32, 64, 128, 256),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
         )
     }
@@ -172,7 +172,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -186,7 +186,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 8, 8),
                     intArrayOf(0, 0, 16, 16),
                     intArrayOf(0, 0, 32, 32),
-                )
+                ),
             ),
         )
     }
@@ -205,7 +205,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -219,7 +219,7 @@ internal class GameTest {
                     intArrayOf(8, 8, 0, 0),
                     intArrayOf(16, 16, 0, 0),
                     intArrayOf(32, 32, 0, 0),
-                )
+                ),
             ),
         )
     }
@@ -239,7 +239,7 @@ internal class GameTest {
                     intArrayOf(8, 8, 0, 0),
                     intArrayOf(16, 16, 0, 0),
                     intArrayOf(32, 32, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 "s",
@@ -254,7 +254,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(4, 8, 16, 32),
                     intArrayOf(8, 16, 32, 64),
-                )
+                ),
             ),
             Arguments.of(
                 "d",
@@ -269,7 +269,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 16, 8),
                     intArrayOf(0, 0, 32, 16),
                     intArrayOf(0, 0, 64, 32),
-                )
+                ),
             ),
             Arguments.of(
                 "w",
@@ -284,7 +284,7 @@ internal class GameTest {
                     intArrayOf(8, 32, 256, 1024),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
         )
     }
@@ -305,7 +305,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -321,7 +321,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -337,7 +337,7 @@ internal class GameTest {
                     intArrayOf(2, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
-                )
+                ),
             ),
             Arguments.of(
                 arrayOf(
@@ -353,7 +353,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 2),
-                )
+                ),
             ),
         )
     }
@@ -367,7 +367,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                 ),
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf(
@@ -376,7 +376,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                 ),
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf(
@@ -385,7 +385,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                 ),
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf(
@@ -394,7 +394,7 @@ internal class GameTest {
                     intArrayOf(2, 2, 2, 2),
                     intArrayOf(0, 0, 0, 0),
                 ),
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf(
@@ -403,7 +403,7 @@ internal class GameTest {
                     intArrayOf(2, 2, 2, 2),
                     intArrayOf(2, 2, 2, 0),
                 ),
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf(
@@ -412,7 +412,7 @@ internal class GameTest {
                     intArrayOf(2, 2, 2, 2),
                     intArrayOf(2, 2, 2, 2),
                 ),
-                true
+                true,
             ),
         )
     }
@@ -426,7 +426,7 @@ internal class GameTest {
                     intArrayOf(0, 0, 0, 0),
                     intArrayOf(0, 0, 0, 0),
                 ),
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf(
@@ -435,7 +435,7 @@ internal class GameTest {
                     intArrayOf(512, 1024, 2, 2),
                     intArrayOf(0, 0, 0, 0),
                 ),
-                false
+                false,
             ),
             Arguments.of(
                 arrayOf(
@@ -444,7 +444,7 @@ internal class GameTest {
                     intArrayOf(512, 1024, 2048, 2),
                     intArrayOf(0, 0, 0, 0),
                 ),
-                true
+                true,
             ),
         )
     }
@@ -452,7 +452,7 @@ internal class GameTest {
     @Test
     internal fun `display empty grid test`() {
         val grid = arrayOf(
-            intArrayOf()
+            intArrayOf(),
         )
         display(grid)
     }
@@ -500,7 +500,7 @@ internal class GameTest {
     internal fun `shift cells down error test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
-                intArrayOf()
+                intArrayOf(),
             )
             shiftCellsDown(grid)
         }
@@ -517,7 +517,7 @@ internal class GameTest {
     internal fun `shift cells up error test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
-                intArrayOf()
+                intArrayOf(),
             )
             shiftCellsUp(grid)
         }
@@ -556,7 +556,7 @@ internal class GameTest {
     internal fun `manipulate grid with unsupported input test`() {
         assertThrows(IllegalArgumentException::class.java) {
             val grid = arrayOf(
-                intArrayOf()
+                intArrayOf(),
             )
             val input = ""
             manipulateGrid(grid, input)
@@ -574,7 +574,7 @@ internal class GameTest {
     internal fun `manipulate grid with S input test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
-                intArrayOf()
+                intArrayOf(),
             )
             val input = "s"
             manipulateGrid(grid, input)
@@ -584,12 +584,12 @@ internal class GameTest {
     @Test
     internal fun `manipulate grid with D input test`() {
         val grid = arrayOf(
-            intArrayOf()
+            intArrayOf(),
         )
         val input = "d"
         val actual = manipulateGrid(grid, input)
         val expected = arrayOf(
-            intArrayOf()
+            intArrayOf(),
         )
         assertArrayEquals(expected, actual)
     }
@@ -598,7 +598,7 @@ internal class GameTest {
     internal fun `manipulate grid with W input test`() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
             val grid = arrayOf(
-                intArrayOf()
+                intArrayOf(),
             )
             val input = "w"
             manipulateGrid(grid, input)
@@ -624,7 +624,7 @@ internal class GameTest {
         grid: Array<IntArray>,
         coordinates: Pair<Int, Int>,
         value: Int,
-        expected: Array<IntArray>
+        expected: Array<IntArray>,
     ) {
         val actual = updateGrid(grid, coordinates, value)
         assertArrayEquals(expected, actual)

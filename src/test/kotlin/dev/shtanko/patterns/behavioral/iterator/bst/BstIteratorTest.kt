@@ -48,7 +48,7 @@ internal class BstIteratorTest {
         assertThrows(
             NoSuchElementException::class.java,
             { bstIterator.next() },
-            "next() should throw an IllegalStateException if hasNext() is false."
+            "next() should throw an IllegalStateException if hasNext() is false.",
         )
     }
 

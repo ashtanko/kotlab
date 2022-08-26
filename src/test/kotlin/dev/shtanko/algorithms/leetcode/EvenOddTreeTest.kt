@@ -16,11 +16,11 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 internal abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val strategy: T) {
 
@@ -30,7 +30,7 @@ internal abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val
         fun dataProvider(): Stream<Arguments?> = Stream.of(
             Arguments.of(
                 TreeNode(1),
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(1).apply {
@@ -49,7 +49,7 @@ internal abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val
                         }
                     }
                 },
-                true
+                true,
             ),
             Arguments.of(
                 TreeNode(5).apply {
@@ -61,12 +61,12 @@ internal abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val
                         left = TreeNode(7)
                     }
                 },
-                false
+                false,
             ),
             Arguments.of(
                 intArrayOf(11, 8, 6, 1, 3, 9, 11, 30, 20, 18, 16, 12, 10, 4, 2, 17).toTree(),
-                true
-            )
+                true,
+            ),
         )
     }
 

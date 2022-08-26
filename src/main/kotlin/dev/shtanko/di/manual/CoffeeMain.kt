@@ -16,18 +16,18 @@
 
 package dev.shtanko.di.manual
 
-import kotlin.time.Duration
-import kotlin.time.ExperimentalTime
+import kotlin.time.Duration.Companion.hours
 
-@OptIn(ExperimentalTime::class)
-internal fun main() {
+object CoffeeMain {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val fuel: Petrol = PremiumUnleadedPetrol()
+        val generator: ElectricGenerator = PetrolGenerator2(fuel)
 
-    val fuel: Petrol = PremiumUnleadedPetrol()
-    val generator: ElectricGenerator = PetrolGenerator2(fuel)
+        val heater: Heater = ElectricHeater(generator.generate(2.hours).power)
+        val pump: Pump = Thermosiphon()
 
-    val heater: Heater = ElectricHeater(generator.generate(Duration.Companion.hours(2)).power)
-    val pump: Pump = Thermosiphon()
-
-    val coffee = CoffeeMaker(heater, pump).makeCoffee()
-    println(coffee)
+        val coffee = CoffeeMaker(heater, pump).makeCoffee()
+        println(coffee)
+    }
 }

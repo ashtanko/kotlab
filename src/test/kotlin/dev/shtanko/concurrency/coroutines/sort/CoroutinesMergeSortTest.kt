@@ -31,17 +31,17 @@ class CoroutinesMergeSortTest : TestBase() {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                1000.genData()
+                1000.genData(),
             ),
             Arguments.of(
-                5000.genData()
+                5000.genData(),
             ),
             Arguments.of(
-                10_000.genData()
+                10_000.genData(),
             ),
             Arguments.of(
-                100_000.genData()
-            )
+                100_000.genData(),
+            ),
         )
 
         private fun Int.genData(): Pair<IntArray, IntArray> {

@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.exercises
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class DecimalToBinaryTest {
 
@@ -55,7 +55,7 @@ internal class DecimalToBinaryTest {
             Arguments.of(900, "1110000100"),
             Arguments.of(1000, "1111101000"),
             Arguments.of(9999, "10011100001111"),
-            Arguments.of(10_000, "10011100010000")
+            Arguments.of(10_000, "10011100010000"),
         )
     }
 

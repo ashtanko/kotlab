@@ -95,9 +95,11 @@ class SparseVectorPairs(val array: IntArray) : SparseVector<SparseVectorPairs> {
                     p++
                     q++
                 }
+
                 pairs[p][0] > vec.pairs[q][0] -> {
                     q++
                 }
+
                 else -> {
                     p++
                 }

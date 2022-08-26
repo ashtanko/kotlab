@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.ArrayList
-
 /**
  * Coin Path.
  * @link https://leetcode.com/problems/coin-path/

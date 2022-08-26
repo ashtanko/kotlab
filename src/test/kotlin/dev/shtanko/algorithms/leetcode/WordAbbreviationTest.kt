@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -23,7 +24,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal abstract class WordAbbreviationTest<out T : WordAbbreviation>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -34,11 +34,11 @@ internal abstract class WordAbbreviationTest<out T : WordAbbreviation>(private v
             ),
             Arguments.of(
                 listOf(
-                    "like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion"
+                    "like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion",
                 ),
                 listOf(
-                    "l2e", "god", "internal", "me", "i6t", "interval", "inte4n", "f2e", "intr4n"
-                )
+                    "l2e", "god", "internal", "me", "i6t", "interval", "inte4n", "f2e", "intr4n",
+                ),
             ),
             Arguments.of(
                 listOf("applicable", "law", "language", "distributed"),
@@ -78,7 +78,7 @@ internal abstract class WordAbbreviationTest<out T : WordAbbreviation>(private v
             ),
             Arguments.of(
                 listOf("", "", "a", "", " "),
-                listOf("", "", "a", "", " ")
+                listOf("", "", "a", "", " "),
             ),
             Arguments.of(
                 listOf("", "aaa"),

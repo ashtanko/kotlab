@@ -29,20 +29,25 @@ abstract class RankTeamsTest<out T : RankTeams>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 arrayOf(
-                    "ABC", "ACB", "ABC", "ACB", "ACB"
+                    "ABC",
+                    "ACB",
+                    "ABC",
+                    "ACB",
+                    "ACB",
                 ),
-                "ACB"
+                "ACB",
             ),
             Arguments.of(
                 arrayOf(
-                    "WXYZ", "XYZW"
+                    "WXYZ",
+                    "XYZW",
                 ),
-                "XWYZ"
+                "XWYZ",
             ),
             Arguments.of(
                 arrayOf("ZMNAGUEDSJYLBOPHRQICWFXTVK"),
-                "ZMNAGUEDSJYLBOPHRQICWFXTVK"
-            )
+                "ZMNAGUEDSJYLBOPHRQICWFXTVK",
+            ),
         )
     }
 

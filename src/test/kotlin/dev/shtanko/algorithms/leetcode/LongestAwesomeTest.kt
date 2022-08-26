@@ -29,15 +29,15 @@ abstract class LongestAwesomeTest<out T : LongestAwesome>(private val strategy: 
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "3242415",
-                5
+                5,
             ),
             Arguments.of(
                 "12345678",
-                1
+                1,
             ),
             Arguments.of(
                 "213123",
-                6
+                6,
             ),
         )
     }

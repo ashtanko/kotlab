@@ -33,13 +33,13 @@ abstract class DungeonGameTest<out T : DungeonGame>(private val strategy: T) {
                     intArrayOf(-5, -10, 1),
                     intArrayOf(10, 30, -5),
                 ),
-                7
+                7,
             ),
             Arguments.of(
                 arrayOf(
-                    intArrayOf(0)
+                    intArrayOf(0),
                 ),
-                1
+                1,
             ),
         )
     }

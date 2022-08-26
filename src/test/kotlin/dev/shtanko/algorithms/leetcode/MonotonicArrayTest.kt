@@ -32,7 +32,7 @@ internal class MonotonicArrayTest {
                 true to intArrayOf(1, 2, 4, 5),
                 true to intArrayOf(1, 1, 1),
                 true to intArrayOf(1, 2, 5),
-                false to intArrayOf(1, 5, 2)
+                false to intArrayOf(1, 5, 2),
             )
         }
     }

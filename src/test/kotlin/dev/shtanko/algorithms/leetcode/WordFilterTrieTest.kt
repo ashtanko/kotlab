@@ -16,13 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class WordFilterTrieTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
@@ -31,85 +31,85 @@ internal class WordFilterTrieTest {
                 WordFilterTrie(arrayOf()),
                 "",
                 "",
-                -1
+                -1,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf()),
                 "c",
                 "d",
-                -1
+                -1,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("")),
                 "",
                 "",
-                0
+                0,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("can")),
                 "a",
                 "n",
-                -1
+                -1,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("apple")),
                 "app",
                 "le",
-                0
+                0,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("ae")),
                 "a",
                 "e",
-                0
+                0,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("aaaaaaaaaaaaaeeeeeee")),
                 "a",
                 "e",
-                0
+                0,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("better")),
                 "a",
                 "e",
-                -1
+                -1,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("apple")),
                 "a",
                 "e",
-                0
+                0,
             ),
             Arguments.of(
                 WordFilterTrie(arrayOf("applies")),
                 "a",
                 "e",
-                -1
+                -1,
             ),
             Arguments.of(
                 WordFilterWrappedWords(arrayOf()),
                 "",
                 "",
-                -1
+                -1,
             ),
             Arguments.of(
                 WordFilterWrappedWords(arrayOf("")),
                 "",
                 "",
-                0
+                0,
             ),
             Arguments.of(
                 WordFilterWrappedWords(arrayOf("apple")),
                 "a",
                 "e",
-                0
+                0,
             ),
             Arguments.of(
                 WordFilterWrappedWords(arrayOf("applies")),
                 "a",
                 "e",
-                -1
+                -1,
             ),
         )
     }
