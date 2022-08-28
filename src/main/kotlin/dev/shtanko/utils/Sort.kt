@@ -45,3 +45,16 @@ fun Int.toRandomArray(): IntArray {
     }
     return array
 }
+
+/**
+ * Returns maximum value of an array (a linear complexity operation).
+ */
+fun IntArray.maximum(): Int {
+    var max = 0
+    for (value in this) {
+        if (value > max) {
+            max = value
+        }
+    }
+    return max
+}

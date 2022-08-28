@@ -63,6 +63,35 @@ class SortTest {
         }
     }
 
+    private class ArrayMaxInputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(3),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(4, 6, 8, 2, 3),
+                8,
+            ),
+        )
+    }
+
     @ParameterizedTest
     @ArgumentsSource(MergeInputParamsProvider::class)
     fun `merge test`(data: Pair<IntArray, Triple<Int, Int, Int>>, expected: IntArray) {
@@ -78,5 +107,12 @@ class SortTest {
     fun `new random array test`(n: Int) {
         val array = n.toRandomArray()
         assertThat(array.size).isEqualTo(n)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ArrayMaxInputArgumentsProvider::class)
+    fun `maximum test`(nums: IntArray, expected: Int) {
+        val actual = nums.maximum()
+        assertThat(actual).isEqualTo(expected)
     }
 }
