@@ -14,28 +14,22 @@
  * limitations under the License.
  */
 
-package dev.shtanko.kotlinlang.delegates
+package dev.shtanko.kotlinlang.delegates.observable
 
+import kotlin.properties.Delegates
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class VetoableTest {
+internal class ObservablePropertiesTest {
 
-    @Test
-    fun `max test`() {
-        assertThat(max).isEqualTo(0)
-        max = 10
-        assertThat(max).isEqualTo(10)
-        max = 5
-        assertThat(max).isEqualTo(10)
+    var name: String by Delegates.observable("no name") { _, old, new ->
+        println("$old -> $new")
     }
 
     @Test
-    fun `name test`() {
-        assertThat(name).isEqualTo("Jack")
-        name = "Adam"
-        assertThat(name).isEqualTo("Jack")
-        name = "Jame"
-        assertThat(name).isEqualTo("Jame")
+    fun `simple test`() {
+        assertThat(name).isEqualTo("no name")
+        name = "kek"
+        assertThat(name).isEqualTo("kek")
     }
 }

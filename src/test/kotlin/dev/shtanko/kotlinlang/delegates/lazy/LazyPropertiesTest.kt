@@ -14,22 +14,26 @@
  * limitations under the License.
  */
 
-package dev.shtanko.kotlinlang.delegates
+package dev.shtanko.kotlinlang.delegates.lazy
 
-import kotlin.properties.Delegates
+import dev.shtanko.concurrency.TestBase
+import kotlinx.coroutines.async
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class ObservablePropertiesTest {
-
-    var name: String by Delegates.observable("no name") { _, old, new ->
-        println("$old -> $new")
+internal class LazyPropertiesTest : TestBase() {
+    @Test
+    fun `simple test`() {
+        assertThat(lazyValue).isEqualTo("Hello")
+        assertThat(lazyValue).isEqualTo("Hello")
     }
 
     @Test
-    fun `simple test`() {
-        assertThat(name).isEqualTo("no name")
-        name = "kek"
-        assertThat(name).isEqualTo("kek")
+    fun `simple test2`() = runTest {
+        val s1 = async { notThreadSafeLazy }
+        val s2 = async { notThreadSafeLazy }
+
+        assertThat(s1.await()).isEqualTo("World")
+        assertThat(s2.await()).isEqualTo("World")
     }
 }

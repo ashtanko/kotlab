@@ -14,20 +14,28 @@
  * limitations under the License.
  */
 
-package dev.shtanko.kotlinlang.delegates
+package dev.shtanko.kotlinlang.delegates.vetoable
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class LazyPropertiesTest {
+internal class VetoableTest {
 
-    private val lazyValue: String by lazy {
-        println("computed!")
-        "Hello"
+    @Test
+    fun `max test`() {
+        assertThat(max).isEqualTo(0)
+        max = 10
+        assertThat(max).isEqualTo(10)
+        max = 5
+        assertThat(max).isEqualTo(10)
     }
 
     @Test
-    fun `simple test`() {
-        assertThat(lazyValue).isEqualTo("Hello")
+    fun `name test`() {
+        assertThat(name).isEqualTo("Jack")
+        name = "Adam"
+        assertThat(name).isEqualTo("Jack")
+        name = "Jame"
+        assertThat(name).isEqualTo("Jame")
     }
 }

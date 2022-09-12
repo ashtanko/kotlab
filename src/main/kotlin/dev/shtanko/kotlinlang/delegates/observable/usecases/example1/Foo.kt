@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2022 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package dev.shtanko.kotlinlang.delegates
+package dev.shtanko.kotlinlang.delegates.observable.usecases.example1
 
-import kotlin.properties.Delegates.vetoable
-import kotlin.reflect.KProperty
-
-var name by vetoable("Jack") { _: KProperty<*>, _, newValue ->
-    newValue.startsWith("J")
+class Foo {
+    override fun toString(): String = "Foo ${hashCode()}"
 }
 
-var max: Int by vetoable(0) { _, oldValue, newValue ->
-    newValue > oldValue
-}
+var bar: Bar = Bar()
+    set(value) {
+        println("bar = $value")
+        field = value
+    }
