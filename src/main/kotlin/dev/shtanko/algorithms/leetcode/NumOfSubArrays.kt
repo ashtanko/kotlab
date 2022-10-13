@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-private const val E_9 = 1e9
 private const val MODULE = 7
 
 fun numOfSubArrays(arr: IntArray): Int {

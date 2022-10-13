@@ -21,3 +21,4 @@ internal const val OCTAL = 8
 internal const val HEXADECIMAL = 16
 internal const val SHUFFLE_CONST = 0xFFFF
 internal const val MOD = 1_000_000_007 // 1000000007
+internal const val E_9 = 1e9
