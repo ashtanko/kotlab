@@ -61,11 +61,25 @@ class LongestIncreasingPathPeelingOnion : LongestIncreasingPath {
         val matrix = Array(m + 2) { IntArray(n + 2) }
         for (i in 0 until m) System.arraycopy(grid[i], 0, matrix[i + 1], 1, n)
         val outdegree = Array(m + 2) { IntArray(n + 2) }
-        for (i in 1..m) for (j in 1..n) for (d in dir) if (matrix[i][j] < matrix[i + d[0]][j + d[1]]) outdegree[i][j]++
+        for (i in 1..m) {
+            for (j in 1..n) {
+                for (d in dir) {
+                    if (matrix[i][j] < matrix[i + d[0]][j + d[1]]) {
+                        outdegree[i][j]++
+                    }
+                }
+            }
+        }
         n += 2
         m += 2
         var leaves: MutableList<IntArray> = ArrayList()
-        for (i in 1 until m - 1) for (j in 1 until n - 1) if (outdegree[i][j] == 0) leaves.add(intArrayOf(i, j))
+        for (i in 1 until m - 1) {
+            for (j in 1 until n - 1) {
+                if (outdegree[i][j] == 0) {
+                    leaves.add(intArrayOf(i, j))
+                }
+            }
+        }
         var height = 0
         while (leaves.isNotEmpty()) {
             height++
@@ -74,12 +88,11 @@ class LongestIncreasingPathPeelingOnion : LongestIncreasingPath {
                 for (d in dir) {
                     val x = node[0] + d[0]
                     val y = node[1] + d[1]
-                    if (matrix[node[0]][node[1]] > matrix[x][y]) if (--outdegree[x][y] == 0) newLeaves.add(
-                        intArrayOf(
-                            x,
-                            y,
-                        ),
-                    )
+                    if (matrix[node[0]][node[1]] > matrix[x][y]) {
+                        if (--outdegree[x][y] == 0) {
+                            newLeaves.add(intArrayOf(x, y))
+                        }
+                    }
                 }
             }
             leaves = newLeaves

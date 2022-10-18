@@ -25,10 +25,11 @@ interface PathSumStrategy {
 class PathSumRecursive : PathSumStrategy {
     override fun hasPathSum(root: TreeNode?, sum: Int): Boolean {
         if (root == null) return false
-        return if (root.left == null && root.right == null && sum - root.value == 0) true else hasPathSum(
-            root.left,
-            sum - root.value,
-        ) || hasPathSum(root.right, sum - root.value)
+        return if (root.left == null && root.right == null && sum - root.value == 0) {
+            true
+        } else {
+            hasPathSum(root.left, sum - root.value) || hasPathSum(root.right, sum - root.value)
+        }
     }
 }
 

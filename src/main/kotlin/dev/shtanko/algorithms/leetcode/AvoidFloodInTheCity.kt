@@ -40,8 +40,9 @@ class AvoidFloodTree : AvoidFloodStrategy {
                 res[key] = lake // set the day to be drained with lake
                 drain.remove(key)
             }
-            if (lake == 0) drain.add(i) // we got new days
-            else {
+            if (lake == 0) {
+                drain.add(i) // we got new days
+            } else {
                 full[lake] = i
                 res[i] = -1 // lake is 0, or could be dry
             }

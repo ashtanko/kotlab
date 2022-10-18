@@ -51,7 +51,9 @@ object TreeCodec {
 
     private fun buildTree(nodes: Deque<String>): TreeNode? {
         val value = nodes.remove()
-        return if (value == NN) null else {
+        return if (value == NN) {
+            null
+        } else {
             val node = TreeNode(Integer.valueOf(value))
             node.left = buildTree(nodes)
             node.right = buildTree(nodes)

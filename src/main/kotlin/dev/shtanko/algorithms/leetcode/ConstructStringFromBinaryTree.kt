@@ -24,14 +24,21 @@ internal interface ConstructStringFromBinaryTreeStrategy {
 
 internal class ConstructStringFromBinaryTreeRecursion : ConstructStringFromBinaryTreeStrategy {
     override fun perform(t: TreeNode?): String {
-        if (t == null) return ""
-        if (t.left == null && t.right == null) return "${t.value}"
+        if (t == null) {
+            return ""
+        }
+        if (t.left == null && t.right == null) {
+            return "${t.value}"
+        }
         val leftFormat = "%s(%s)"
         val leftToRightValueFormat = "%s(%s)(%s)"
         val leftValue = String.format(leftFormat, "${t.value}", perform(t.left))
         val leftToRightValue = String.format(leftToRightValueFormat, "${t.value}", perform(t.left), perform(t.right))
-        return if (t.right == null) leftValue
-        else leftToRightValue
+        return if (t.right == null) {
+            leftValue
+        } else {
+            leftToRightValue
+        }
     }
 }
 
@@ -50,9 +57,15 @@ internal class ConstructStringFromBinaryTreeStack : ConstructStringFromBinaryTre
             } else {
                 visited.add(tree)
                 s.append("(" + tree.value)
-                if (tree.left == null && tree.right != null) s.append("()")
-                if (tree.right != null) stack.push(tree.right)
-                if (tree.left != null) stack.push(tree.left)
+                if (tree.left == null && tree.right != null) {
+                    s.append("()")
+                }
+                if (tree.right != null) {
+                    stack.push(tree.right)
+                }
+                if (tree.left != null) {
+                    stack.push(tree.left)
+                }
             }
         }
         return s.substring(1, s.length - 1)

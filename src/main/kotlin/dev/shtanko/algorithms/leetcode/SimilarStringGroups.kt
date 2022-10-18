@@ -41,8 +41,12 @@ class SimilarStringGroups {
                     }
                 }
             }
-            for (i1 in strings.indices) if (buckets.containsKey(strings[i1])) for (i2 in buckets[strings[i1]]!!) {
-                dsu.union(i1, i2)
+            for (i1 in strings.indices) {
+                if (buckets.containsKey(strings[i1])) {
+                    for (i2 in buckets[strings[i1]]!!) {
+                        dsu.union(i1, i2)
+                    }
+                }
             }
         }
 

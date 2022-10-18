@@ -32,7 +32,9 @@ class ArrayMap<K, V> constructor(capacity: Int = 0) {
         if (capacity <= 0) {
             hashes = IntArray(0)
             array = arrayOf()
-        } else allocArrays(capacity)
+        } else {
+            allocArrays(capacity)
+        }
     }
 
     fun isEmpty() = size <= 0

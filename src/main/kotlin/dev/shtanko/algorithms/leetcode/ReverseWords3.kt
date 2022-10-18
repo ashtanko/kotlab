@@ -52,7 +52,9 @@ class ReverseWords3BruteForce2 : ReverseWords3 {
             if (s[i] == ' ') {
                 words.add(word.toString())
                 word = StringBuilder()
-            } else word.append(s[i])
+            } else {
+                word.append(s[i])
+            }
         }
         words.add(word.toString())
         return words.toTypedArray()

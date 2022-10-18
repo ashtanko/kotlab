@@ -109,7 +109,9 @@ class WordBreak2Backtracking : WordBreak2 {
         }
         for (i in start + 1..s.length) {
             val word = s.substring(start, i)
-            if (!dict.contains(word)) continue
+            if (!dict.contains(word)) {
+                continue
+            }
             val sbBeforeAdd = sb.length
             sb.append(" $word")
             val rstBeforeDFS = rst.size
@@ -133,9 +135,15 @@ class WordBreak2DFS : WordBreak2 {
         val result: MutableList<String> = ArrayList()
         for (word in wordDict) if (s.startsWith(word)) {
             val next = s.substring(word.length)
-            if (next.isEmpty()) result.add(word) else for (sub in backtrack(next, wordDict, mem)) result.add(
-                "$word $sub",
-            )
+            if (next.isEmpty()) {
+                result.add(word)
+            } else {
+                for (sub in backtrack(next, wordDict, mem)) {
+                    result.add(
+                        "$word $sub",
+                    )
+                }
+            }
         }
         mem[s] = result
         return result

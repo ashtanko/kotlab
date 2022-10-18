@@ -34,8 +34,11 @@ class BacktrackingWithCounters : CombinationSum2 {
 
         val counter: HashMap<Int, Int> = HashMap()
         for (candidate in candidates) {
-            if (counter.containsKey(candidate)) counter[candidate] = counter[candidate]!! + 1 else counter[candidate] =
-                1
+            if (counter.containsKey(candidate)) {
+                counter[candidate] = counter.getOrDefault(candidate, 0) + 1
+            } else {
+                counter[candidate] = 1
+            }
         }
 
         // convert the counter table to a list of (num, count) tuples

@@ -68,10 +68,16 @@ class IterativeInorder : ClosestBST {
                 node = node.left
             }
             node = stack.removeLast()
-            if (pred <= target && target < node!!.value) return if (abs(
-                    pred - target,
-                ) < abs(node.value - target)
-            ) pred else node.value
+            if (pred <= target && target < node!!.value) {
+                return if (abs(
+                        pred - target,
+                    ) < abs(node.value - target)
+                ) {
+                    pred
+                } else {
+                    node.value
+                }
+            }
             pred = node!!.value
             node = node.right
         }
@@ -91,8 +97,16 @@ class ClosestBSTBinarySearch : ClosestBST {
         var closest: Int = node?.value ?: 0
         while (node != null) {
             value = node.value
-            closest = if (abs(value - target) < abs(closest - target)) value else closest
-            node = if (target < node.value) node.left else node.right
+            closest = if (abs(value - target) < abs(closest - target)) {
+                value
+            } else {
+                closest
+            }
+            node = if (target < node.value) {
+                node.left
+            } else {
+                node.right
+            }
         }
         return closest
     }

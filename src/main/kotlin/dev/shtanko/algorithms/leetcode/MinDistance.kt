@@ -39,10 +39,11 @@ class MinDistanceLCS : MinDistance {
 
     private fun lcs(s1: String, s2: String, m: Int, n: Int): Int {
         if (m == 0 || n == 0) return 0
-        return if (s1[m - 1] == s2[n - 1]) 1 + lcs(s1, s2, m - 1, n - 1) else Math.max(
-            lcs(s1, s2, m, n - 1),
-            lcs(s1, s2, m - 1, n),
-        )
+        return if (s1[m - 1] == s2[n - 1]) {
+            1 + lcs(s1, s2, m - 1, n - 1)
+        } else {
+            max(lcs(s1, s2, m, n - 1), lcs(s1, s2, m - 1, n))
+        }
     }
 }
 
@@ -54,24 +55,29 @@ class MinDistanceLCS : MinDistance {
 class MinDistanceLCSMemo : MinDistance {
     override fun perform(word1: String, word2: String): Int {
         val memo = Array(word1.length + 1) {
-            IntArray(
-                word2.length + 1,
-            )
+            IntArray(word2.length + 1)
         }
         return word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length, memo)
     }
 
     private fun lcs(s1: String, s2: String, m: Int, n: Int, memo: Array<IntArray>): Int {
-        if (m == 0 || n == 0) return 0
-        if (memo[m][n] > 0) return memo[m][n]
-        if (s1[m - 1] == s2[n - 1]) memo[m][n] = 1 + lcs(s1, s2, m - 1, n - 1, memo) else memo[m][n] =
-            max(lcs(s1, s2, m, n - 1, memo), lcs(s1, s2, m - 1, n, memo))
+        if (m == 0 || n == 0) {
+            return 0
+        }
+        if (memo[m][n] > 0) {
+            return memo[m][n]
+        }
+        if (s1[m - 1] == s2[n - 1]) {
+            memo[m][n] = 1 + lcs(s1, s2, m - 1, n - 1, memo)
+        } else {
+            memo[m][n] = max(lcs(s1, s2, m, n - 1, memo), lcs(s1, s2, m - 1, n, memo))
+        }
         return memo[m][n]
     }
 }
 
 /**
- * Approach #3 Using Longest Common Subsequence- Dynamic Programming
+ * Approach #3 Using The Longest Common Subsequence- Dynamic Programming
  * Time complexity : O(m*n).
  * Space complexity : O(m*n).
  */
@@ -80,11 +86,14 @@ class MinDistanceLCSDP : MinDistance {
         val dp = Array(word1.length + 1) { IntArray(word2.length + 1) }
         for (i in 0..word1.length) {
             for (j in 0..word2.length) {
-                if (i == 0 || j == 0) continue
-                if (word1[i - 1] == word2[j - 1]) dp[i][j] = 1 + dp[i - 1][j - 1] else dp[i][j] = max(
-                    dp[i - 1][j],
-                    dp[i][j - 1],
-                )
+                if (i == 0 || j == 0) {
+                    continue
+                }
+                if (word1[i - 1] == word2[j - 1]) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1]
+                } else {
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+                }
             }
         }
         return word1.length + word2.length - 2 * dp[word1.length][word2.length]
@@ -105,8 +114,14 @@ class MinDistanceDP : MinDistance {
         }
         for (i in 0..word1.length) {
             for (j in 0..word2.length) {
-                if (i == 0 || j == 0) dp[i][j] = i + j else if (word1[i - 1] == word2[j - 1]) dp[i][j] =
-                    dp[i - 1][j - 1] else dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1])
+                if (i == 0 || j == 0) {
+                    dp[i][j] = i + j
+                } else if (word1[i - 1] == word2[j - 1]) {
+                    dp[i][j] =
+                        dp[i - 1][j - 1]
+                } else {
+                    dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1])
+                }
             }
         }
         return dp[word1.length][word2.length]

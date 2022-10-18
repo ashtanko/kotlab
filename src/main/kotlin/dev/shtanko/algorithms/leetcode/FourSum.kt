@@ -56,9 +56,9 @@ class FourSumTwoPointers : FourSum {
                 ++lo
             } else if (sum > target || hi < nums.size - 1 && nums[hi] == nums[hi + 1]) {
                 --hi
-            } else res.add(
-                mutableListOf(nums[lo++], nums[hi--]),
-            )
+            } else {
+                res.add(mutableListOf(nums[lo++], nums[hi--]))
+            }
         }
         return res
     }
@@ -93,12 +93,11 @@ class FourSumHashSet : FourSum {
         val res: MutableList<List<Int>> = ArrayList()
         val s: MutableSet<Int> = HashSet()
         for (i in start until nums.size) {
-            if (res.isEmpty() || res[res.size - 1][1] != nums[i]) if (s.contains(target - nums[i])) res.add(
-                listOf(
-                    target - nums[i],
-                    nums[i],
-                ),
-            )
+            if (res.isEmpty() || res[res.size - 1][1] != nums[i]) {
+                if (s.contains(target - nums[i])) {
+                    res.add(listOf(target - nums[i], nums[i]))
+                }
+            }
             s.add(nums[i])
         }
         return res

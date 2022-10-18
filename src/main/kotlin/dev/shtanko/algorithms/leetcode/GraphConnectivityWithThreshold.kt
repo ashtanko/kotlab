@@ -57,8 +57,12 @@ class GraphConnectivityWithThresholdUnion : GraphConnectivityWithThreshold {
         }
 
         fun find(x: Int): Int {
-            return if (x == parent[x]) x else find(parent[x]).also {
-                parent[x] = it // Path compression
+            return if (x == parent[x]) {
+                x
+            } else {
+                find(parent[x]).also {
+                    parent[x] = it // Path compression
+                }
             }
         }
 

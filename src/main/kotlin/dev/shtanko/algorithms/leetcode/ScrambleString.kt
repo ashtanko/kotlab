@@ -90,7 +90,9 @@ class ScrambleStringDP : ScrambleString {
             while (i + k <= len) {
                 var j = 0
                 while (j + k <= len) {
-                    if (k == 1) f[i][j][k] = s1[i] == s2[j] else {
+                    if (k == 1) {
+                        f[i][j][k] = s1[i] == s2[j]
+                    } else {
                         var q = 1
                         while (q < k && !f[i][j][k]) {
                             f[i][j][k] =

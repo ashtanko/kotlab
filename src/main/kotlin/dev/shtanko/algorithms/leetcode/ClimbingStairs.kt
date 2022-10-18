@@ -34,7 +34,9 @@ class ClimbingStairsBruteForce : ClimbingStairsStrategy {
         }
         return if (i == n) {
             1
-        } else climbStairs(i + 1, n) + climbStairs(i + 2, n)
+        } else {
+            climbStairs(i + 1, n) + climbStairs(i + 2, n)
+        }
     }
 }
 

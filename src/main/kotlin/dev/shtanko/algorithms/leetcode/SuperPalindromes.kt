@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.extensions.isPalindrome
 
 enum class SPNumType(val value: Int) {
     EVEN(1),
-    ODD(2)
+    ODD(2),
 }
 
 /**

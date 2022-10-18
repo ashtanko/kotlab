@@ -36,7 +36,9 @@ data class TreeNode<T : Comparable<T>>(var value: T, var left: TreeNode<T>? = nu
     private fun traverseOneLevelDown(value: T): TreeNode<T>? {
         return if (isGreaterThan(value)) {
             left
-        } else right
+        } else {
+            right
+        }
     }
 
     private fun insertNewChild(valToInsert: T) {

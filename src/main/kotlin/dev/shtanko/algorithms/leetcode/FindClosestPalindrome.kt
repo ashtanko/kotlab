@@ -41,7 +41,9 @@ fun String.nearestPalindromic(): String {
         s.delete(0, 1)
         val mid = (s.length - 1) / 2
         s.replace(mid, mid + 1, "9")
-    } else s.replace(i, i + 1, "" + (s[i].code - 1).toChar())
+    } else {
+        s.replace(i, i + 1, "" + (s[i].code - 1).toChar())
+    }
     val b = s.toString().mirroring()
     val diff2 = abs(this.toLong() - b.toLong())
     s = StringBuilder(this)
@@ -52,9 +54,17 @@ fun String.nearestPalindromic(): String {
     }
     if (i < 0) {
         s.insert(0, "1")
-    } else s.replace(i, i + 1, "" + (s[i].code + 1).toChar())
+    } else {
+        s.replace(i, i + 1, "" + (s[i].code + 1).toChar())
+    }
     val c = s.toString().mirroring()
     val diff3 = abs(this.toLong() - c.toLong())
-    if (diff2 <= diff1 && diff2 <= diff3) return b
-    return if (diff1 <= diff3 && diff1 <= diff2) a else c
+    if (diff2 <= diff1 && diff2 <= diff3) {
+        return b
+    }
+    return if (diff1 <= diff3 && diff1 <= diff2) {
+        a
+    } else {
+        c
+    }
 }

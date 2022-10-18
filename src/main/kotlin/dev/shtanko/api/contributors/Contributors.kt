@@ -56,7 +56,7 @@ enum class Variant(val description: String = "") {
     CONCURRENT("Request5Concurrent"),
     NOT_CANCELLABLE("Request6NotCancellable"),
     PROGRESS("Request6Progress"),
-    CHANNELS("Request7Channels")
+    CHANNELS("Request7Channels"),
 }
 
 private const val MILLIS = 1000
@@ -187,7 +187,9 @@ interface Contributors : CoroutineScope {
         val time = if (startTime != null) {
             val time = System.currentTimeMillis() - startTime
             "${(time / MILLIS)}.${time % MILLIS / H} sec"
-        } else ""
+        } else {
+            ""
+        }
 
         val text = "Loading status: " +
             when (status) {

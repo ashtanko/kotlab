@@ -47,7 +47,9 @@ fun sortSentence(s: String): String {
     val list = ArrayList<String>()
     val sb = StringBuilder()
     for (c in s.toCharArray()) {
-        if (c != ' ') sb.append(c) else {
+        if (c != ' ') {
+            sb.append(c)
+        } else {
             list.add(sb.toString())
             sb.setLength(0)
         }

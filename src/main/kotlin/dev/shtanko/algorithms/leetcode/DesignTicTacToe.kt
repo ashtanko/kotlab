@@ -112,7 +112,9 @@ class TTTOptimised(val n: Int) : DesignTicTacToe {
         val rowsOrCols = abs(rows[row]) == n || abs(cols[col]) == n
         return if (rowsOrCols || abs(diagonal) == n || abs(antiDiagonal) == n) {
             player
-        } else 0
+        } else {
+            0
+        }
         // No one wins
     }
 }

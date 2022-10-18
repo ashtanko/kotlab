@@ -34,12 +34,16 @@ internal class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
         while (!stack.empty()) {
             val node: TreeNode = stack.pop()
             if (node.left != null) {
-                if (node.left!!.left == null && node.left!!.right == null) ans += node.left?.value ?: 0 else stack.push(
-                    node.left,
-                )
+                if (node.left?.left == null && node.left?.right == null) {
+                    ans += node.left?.value ?: 0
+                } else {
+                    stack.push(node.left)
+                }
             }
             if (node.right != null) {
-                if (node.right!!.left != null || node.right!!.right != null) stack.push(node.right)
+                if (node.right?.left != null || node.right?.right != null) {
+                    stack.push(node.right)
+                }
             }
         }
         return ans

@@ -25,8 +25,11 @@ private const val SOLVED = 2048
 private const val RANDOM = 0.10
 
 fun run2048(grid: Array<IntArray>): String {
-    if (isGridSolved(grid)) return POSITIVE_GAME_OVER_MESSAGE
-    else if (isGridFull(grid)) return NEGATIVE_GAME_OVER_MESSAGE
+    if (isGridSolved(grid)) {
+        return POSITIVE_GAME_OVER_MESSAGE
+    } else if (isGridFull(grid)) {
+        return NEGATIVE_GAME_OVER_MESSAGE
+    }
 
     val populatedGrid = spawnNumber(grid)
     display(populatedGrid)
@@ -142,8 +145,11 @@ fun merge(row: IntArray, idxToMatch: Int = 0, idxToCompare: Int = 1): IntArray {
         row[idxToCompare] = 0
         merge(row, idxToMatch + 1, idxToMatch + 2)
     } else {
-        if (row[idxToCompare] != 0) merge(row, idxToMatch + 1, idxToMatch + 2)
-        else merge(row, idxToMatch, idxToCompare + 1)
+        if (row[idxToCompare] != 0) {
+            merge(row, idxToMatch + 1, idxToMatch + 2)
+        } else {
+            merge(row, idxToMatch, idxToCompare + 1)
+        }
     }
 }
 

@@ -115,8 +115,11 @@ internal class SealedTest {
     }
 
     private fun saveFile(f: File): Error {
-        return if (f.exists().not()) FileReadError(f)
-        else RuntimeError
+        return if (f.exists().not()) {
+            FileReadError(f)
+        } else {
+            RuntimeError
+        }
     }
 
     private fun divide(a: Int, b: Int): Result<Float, String> = when (b) {

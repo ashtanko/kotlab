@@ -21,7 +21,8 @@ enum class StarType(private val title: String) {
     RED_GIANT("red giant"),
     WHITE_DWARF("white dwarf"),
     SUPERNOVA("supernova"),
-    DEAD("dead star");
+    DEAD("dead star"),
+    ;
 
     override fun toString(): String = title
 }

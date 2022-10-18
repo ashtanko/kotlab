@@ -37,7 +37,11 @@ class TSMThreePointer : ThreeSumMulti {
             var j = i + 1
             var k: Int = arr.size - 1
             while (j < k) {
-                if (arr[j] + arr[k] < t) j++ else if (arr[j] + arr[k] > t) k-- else if (arr[j] != arr[k]) {
+                if (arr[j] + arr[k] < t) {
+                    j++
+                } else if (arr[j] + arr[k] > t) {
+                    k--
+                } else if (arr[j] != arr[k]) {
                     var left = 1
                     var right = 1
                     while (j + 1 < k && arr[j] == arr[j + 1]) {

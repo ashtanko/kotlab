@@ -209,7 +209,9 @@ class LargestIslandUnionFind : LargestIsland {
     private fun find(father: IntArray, id: Int): Int {
         return if (father[id] == id) {
             id
-        } else find(father, father[id]).also { father[id] = it }
+        } else {
+            find(father, father[id]).also { father[id] = it }
+        }
     }
 
     private fun union(father: IntArray, size: IntArray, id1: Int, id2: Int) {

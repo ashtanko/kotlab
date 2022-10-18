@@ -92,7 +92,11 @@ val minMaxGasDistHeap = MinMaxGasDist { stations, station ->
     val n: Int = stations.size
     val pq: PriorityQueue<IntArray> = PriorityQueue<IntArray> { a, b ->
         if (b[0].toDouble() / b[1] < a[0].toDouble() / a[1]
-        ) -1 else 1
+        ) {
+            -1
+        } else {
+            1
+        }
     }
     for (i in 0 until n - 1) pq.add(intArrayOf(stations[i + 1] - stations[i], 1))
     for (k in 0 until station) {

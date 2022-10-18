@@ -39,7 +39,9 @@ fun String.reformat(): String {
     }
     return if (strLen < numLen) {
         printStr(nums, str)
-    } else printStr(str, nums)
+    } else {
+        printStr(str, nums)
+    }
 }
 
 private fun printStr(

@@ -27,8 +27,11 @@ fun IntArray.removeDuplicates(): Int {
     if (n < 2) return n
     var count = 0
     for (i in 1 until n) {
-        if (this[i] == this[i - 1]) count++
-        else this[i - count] = this[i]
+        if (this[i] == this[i - 1]) {
+            count++
+        } else {
+            this[i - count] = this[i]
+        }
     }
     return n - count
 }

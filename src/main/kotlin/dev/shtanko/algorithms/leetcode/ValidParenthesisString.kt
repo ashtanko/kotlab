@@ -46,7 +46,9 @@ class ValidParenthesisStringBruteForce : ValidParenthesisString {
                 if (ans) return
             }
             sb.setCharAt(i, '*')
-        } else solve(sb, i + 1)
+        } else {
+            solve(sb, i + 1)
+        }
     }
 
     fun valid(sb: StringBuilder): Boolean {

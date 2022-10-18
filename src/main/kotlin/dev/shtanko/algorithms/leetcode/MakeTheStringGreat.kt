@@ -31,9 +31,11 @@ object MakeTheStringGreat {
     fun perform(s: String): String {
         val stack: Stack<Char> = Stack()
         for (i in s.indices) {
-            if (!stack.isEmpty() && abs(stack.peek() - s[i]) == ASCII_A - ASCII_a) stack.pop() else stack.push(
-                s[i],
-            )
+            if (!stack.isEmpty() && abs(stack.peek() - s[i]) == ASCII_A - ASCII_a) {
+                stack.pop()
+            } else {
+                stack.push(s[i])
+            }
         }
         val res = CharArray(stack.size)
         var index: Int = stack.size - 1

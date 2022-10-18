@@ -75,7 +75,9 @@ class Heap<T>(private val comparator: Comparator<T>) {
 
                 swap(tree, index, nextIndex)
                 index = nextIndex
-            } else break
+            } else {
+                break
+            }
         }
     }
 

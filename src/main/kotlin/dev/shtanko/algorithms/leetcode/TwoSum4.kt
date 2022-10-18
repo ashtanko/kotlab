@@ -63,7 +63,9 @@ class TwoSum4BFS : TwoSum4 {
                 set.add(node.value)
                 queue.add(node.right)
                 queue.add(node.left)
-            } else queue.remove()
+            } else {
+                queue.remove()
+            }
         }
         return false
     }
@@ -102,18 +104,26 @@ class TwoSum4DFS : TwoSum4 {
     }
 
     fun dfs(root: TreeNode?, cur: TreeNode?, k: Int): Boolean {
-        return if (cur == null) false else search(root, cur, k - cur.value) || dfs(root, cur.left, k) || dfs(
-            root,
-            cur.right,
-            k,
-        )
+        return if (cur == null) {
+            false
+        } else {
+            search(root, cur, k - cur.value) || dfs(root, cur.left, k) || dfs(
+                root,
+                cur.right,
+                k,
+            )
+        }
     }
 
     fun search(root: TreeNode?, cur: TreeNode, value: Int): Boolean {
-        return if (root == null) false else root.value == value && root != cur || root.value < value && search(
-            root.right,
-            cur,
-            value,
-        ) || root.value > value && search(root.left, cur, value)
+        return if (root == null) {
+            false
+        } else {
+            root.value == value && root != cur || root.value < value && search(
+                root.right,
+                cur,
+                value,
+            ) || root.value > value && search(root.left, cur, value)
+        }
     }
 }

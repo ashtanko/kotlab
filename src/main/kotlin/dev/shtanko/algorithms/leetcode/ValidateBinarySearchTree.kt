@@ -44,7 +44,9 @@ class RecursiveTraversalValidRange : ValidateBinarySearchTree {
         // The current node's value must be between low and high.
         return if (low != null && root.value <= low || high != null && root.value >= high) {
             false
-        } else validate(root.right, root.value, high) && validate(root.left, low, root.value)
+        } else {
+            validate(root.right, root.value, high) && validate(root.left, low, root.value)
+        }
         // The left and right subtree must also be valid.
     }
 }

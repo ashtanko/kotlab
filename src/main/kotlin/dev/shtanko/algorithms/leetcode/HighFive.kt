@@ -75,7 +75,9 @@ class HighFiveSort : HighFiveStrategy {
             // for each id/student, item[id, score] is ordered by score (increasing)
             if (t1[0] == t2[0]) {
                 t2[1] - t1[1]
-            } else t1[0] - t2[0]
+            } else {
+                t1[0] - t2[0]
+            }
         }
 
         val s: Int = items.size

@@ -38,8 +38,14 @@ class DungeonGameDP : DungeonGame {
                     dp[j + 1] - dungeon[i][j]
                 } else if (j == n - 1) {
                     dp[j] - dungeon[i][j]
-                } else min(dp[j + 1], dp[j]) - dungeon[i][j]
-                dp[j] = if (health <= 0) 1 else health
+                } else {
+                    min(dp[j + 1], dp[j]) - dungeon[i][j]
+                }
+                dp[j] = if (health <= 0) {
+                    1
+                } else {
+                    health
+                }
             }
         }
         return dp[0]

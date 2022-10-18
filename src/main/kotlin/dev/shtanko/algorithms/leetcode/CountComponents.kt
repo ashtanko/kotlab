@@ -45,7 +45,9 @@ class CountComponentsDFS : CountComponents {
     private fun find(representative: IntArray, vertex: Int): Int {
         return if (vertex == representative[vertex]) {
             vertex
-        } else find(representative, representative[vertex]).also { representative[vertex] = it }
+        } else {
+            find(representative, representative[vertex]).also { representative[vertex] = it }
+        }
     }
 
     private fun combine(representative: IntArray, size: IntArray, vertex1: Int, vertex2: Int): Int {

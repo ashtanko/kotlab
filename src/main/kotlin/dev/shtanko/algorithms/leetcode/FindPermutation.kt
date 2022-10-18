@@ -38,11 +38,17 @@ class FindPermutationStack : FindPermutation {
         for (i in 1..s.length) {
             if (s[i - 1] == 'I') {
                 stack.push(i)
-                while (!stack.isEmpty()) res[j++] = stack.pop()
-            } else stack.push(i)
+                while (!stack.isEmpty()) {
+                    res[j++] = stack.pop()
+                }
+            } else {
+                stack.push(i)
+            }
         }
         stack.push(s.length + 1)
-        while (!stack.isEmpty()) res[j++] = stack.pop()
+        while (!stack.isEmpty()) {
+            res[j++] = stack.pop()
+        }
         return res
     }
 }
@@ -89,7 +95,9 @@ class FindPermutationTwoPointers : FindPermutation {
                     k++
                     c--
                 }
-            } else i++
+            } else {
+                i++
+            }
         }
         return res
     }

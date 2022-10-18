@@ -58,8 +58,12 @@ class KInversePairsArrayDP : KInversePairsArray {
         val dp = Array(n + 1) { IntArray(k + 1) }
         for (i in 1..n) {
             for (j in 0..k) {
-                if (j == 0) dp[i][j] = 1 else {
-                    for (p in 0..min(j, i - 1)) dp[i][j] = (dp[i][j] + dp[i - 1][j - p]) % MOD
+                if (j == 0) {
+                    dp[i][j] = 1
+                } else {
+                    for (p in 0..min(j, i - 1)) {
+                        dp[i][j] = (dp[i][j] + dp[i - 1][j - p]) % MOD
+                    }
                 }
             }
         }
@@ -75,8 +79,16 @@ class CumulativeSum : KInversePairsArray {
         val dp = Array(n + 1) { IntArray(k + 1) }
         for (i in 1..n) {
             for (j in 0..k) {
-                if (j == 0) dp[i][j] = 1 else {
-                    val value = (dp[i - 1][j] + MOD - if (j - i >= 0) dp[i - 1][j - i] else 0) % MOD
+                if (j == 0) {
+                    dp[i][j] = 1
+                } else {
+                    val value = (
+                        dp[i - 1][j] + MOD - if (j - i >= 0) {
+                            dp[i - 1][j - i]
+                        } else {
+                            0
+                        }
+                        ) % MOD
                     dp[i][j] = (dp[i][j - 1] + value) % MOD
                 }
             }
@@ -97,7 +109,9 @@ class KInversePairsArrayOptimizedDP : KInversePairsArray {
                 if (i == 1 && j == 0) {
                     dp[i][j] = 1
                     break
-                } else if (j == 0) dp[i][j] = 1 else {
+                } else if (j == 0) {
+                    dp[i][j] = 1
+                } else {
                     val value = (dp[i - 1][j] + MOD - if (j - i >= 0) dp[i - 1][j - i] else 0) % MOD
                     dp[i][j] = (dp[i][j - 1] + value) % MOD
                 }

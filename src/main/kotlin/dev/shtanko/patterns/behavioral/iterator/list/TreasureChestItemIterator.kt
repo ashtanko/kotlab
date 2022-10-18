@@ -32,7 +32,9 @@ data class TreasureChestItemIterator(
         idx = findNextIdx()
         return if (idx != -1) {
             chest.items[idx]
-        } else null
+        } else {
+            null
+        }
     }
 
     private fun findNextIdx(): Int {

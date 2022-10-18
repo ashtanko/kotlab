@@ -38,8 +38,11 @@ class RainWaterStraightForward : RainWaterStrategy {
 
         while (low <= high) {
             if (this[low] <= this[high]) {
-                if (this[low] >= maxLeft) maxLeft = this[low]
-                else ans += maxLeft - this[low]
+                if (this[low] >= maxLeft) {
+                    maxLeft = this[low]
+                } else {
+                    ans += maxLeft - this[low]
+                }
                 low++
             } else {
                 if (this[high] >= maxRight) maxRight = this[high]

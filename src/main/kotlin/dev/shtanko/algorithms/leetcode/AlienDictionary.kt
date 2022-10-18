@@ -84,7 +84,9 @@ class AlienDictionaryBFS : AlienDictionary {
 
         return if (sb.length < counts.size) {
             ""
-        } else sb.toString()
+        } else {
+            sb.toString()
+        }
     }
 }
 

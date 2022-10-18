@@ -51,8 +51,9 @@ class IntMap<V> constructor(capacity: Int = INT_MAP_CAPACITY) {
 
     fun put(key: Int, value: V) {
         var index = Arrays.binarySearch(hashes, 0, size, key)
-        if (index >= 0) array[index] = value
-        else {
+        if (index >= 0) {
+            array[index] = value
+        } else {
             index = index.inv()
             if (size >= hashes.size) {
                 val newSize = if (size < ARRAY_MAP_SIZE_INDEX) ARRAY_MAP_SIZE_INDEX else size + (size shr 1)

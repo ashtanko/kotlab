@@ -53,7 +53,9 @@ class TotalNQueensStraightForward : TotalNQueensStrategy {
                 continue
             }
             // we can now place a queen here
-            if (row == this - 1) count++ else {
+            if (row == this - 1) {
+                count++
+            } else {
                 occupiedCols.add(col)
                 occupiedDiag1s.add(diag1)
                 occupiedDiag2s.add(diag2)

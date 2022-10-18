@@ -44,7 +44,7 @@ class MaxProductBitmasks : MaximumProductOfWordLengths {
         for (i in 0 until n) {
             bitmask = 0
             for (ch in words[i].toCharArray()) {
-                // add bit number bit_number in bitmask
+                // add a bit number bit_number in bitmask
                 bitmask = bitmask or (1 shl ch.bitNumber())
             }
             masks[i] = bitmask
@@ -52,15 +52,20 @@ class MaxProductBitmasks : MaximumProductOfWordLengths {
         }
 
         var maxVal = 0
-        for (i in 0 until n) for (j in i + 1 until n) if (masks[i] and masks[j] == 0) maxVal =
-            max(maxVal, lens[i] * lens[j])
+        for (i in 0 until n) {
+            for (j in i + 1 until n) {
+                if (masks[i] and masks[j] == 0) {
+                    maxVal = max(maxVal, lens[i] * lens[j])
+                }
+            }
+        }
 
         return maxVal
     }
 }
 
 /**
- * Approach 2: Optimise Number of Comparisons : Bitmasks + Precomputation + Hashmap
+ * Approach 2: Optimise Number of Comparisons : Bitmasks + Pre-computation + Hashmap
  */
 class MaxProductHashmap : MaximumProductOfWordLengths {
     override fun maxProduct(words: Array<String>): Int {
@@ -79,8 +84,16 @@ class MaxProductHashmap : MaximumProductOfWordLengths {
         }
 
         var maxProd = 0
-        for (x in hashmap.keys) for (y in hashmap.keys) if (x and y == 0) maxProd =
-            max(maxProd, hashmap[x]!! * hashmap[y]!!)
+        for (x in hashmap.keys) {
+            for (y in hashmap.keys) {
+                if (x and y == 0) {
+                    maxProd = max(
+                        maxProd,
+                        hashmap.getOrDefault(x, 0) * hashmap.getOrDefault(y, 0),
+                    )
+                }
+            }
+        }
 
         return maxProd
     }

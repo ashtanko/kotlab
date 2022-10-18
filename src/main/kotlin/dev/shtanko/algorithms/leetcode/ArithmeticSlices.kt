@@ -85,7 +85,9 @@ class ArSlicesRecursion : ArithmeticSlices {
         if (arr[i] - arr[i - 1] == arr[i - 1] - arr[i - 2]) {
             ap = 1 + slices(arr, i - 1)
             sum += ap
-        } else slices(arr, i - 1)
+        } else {
+            slices(arr, i - 1)
+        }
         return ap
     }
 }
@@ -122,7 +124,9 @@ class ArSlicesConstantSpaceDP : ArithmeticSlices {
             if (arr[i] - arr[i - 1] == arr[i - 1] - arr[i - 2]) {
                 dp += 1
                 sum += dp
-            } else dp = 0
+            } else {
+                dp = 0
+            }
         }
         return sum
     }

@@ -22,7 +22,7 @@ internal enum class Skill(val value: Int) {
     C1(650),
     C(500),
     D(300),
-    E(100)
+    E(100),
 }
 
 internal data class Employee(val id: Int, val name: String, val salary: Int, val skill: Skill)

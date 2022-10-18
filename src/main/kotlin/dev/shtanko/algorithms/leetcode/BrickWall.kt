@@ -70,7 +70,9 @@ class BrickWallBetterBruteForce : BrickWall {
                 val row = wall[i]
                 if (row[pos[i]] != 0) {
                     count++
-                } else pos[i]++
+                } else {
+                    pos[i]++
+                }
                 mini = min(mini, row[pos[i]])
             }
             for (i in wall.indices) {

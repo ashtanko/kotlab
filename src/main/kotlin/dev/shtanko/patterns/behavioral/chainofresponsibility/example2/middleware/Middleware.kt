@@ -34,7 +34,9 @@ abstract class Middleware {
     protected fun checkNext(email: String, password: String): Boolean {
         return if (next == null) {
             true
-        } else next!!.check(email, password)
+        } else {
+            next?.check(email, password) ?: false
+        }
     }
 
     companion object {

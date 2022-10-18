@@ -34,7 +34,11 @@ class PalindromicSubstringsCheckAllSubstrings : PalindromicSubstrings {
                 start,
                 end,
             )
-        ) 1 else 0
+        ) {
+            1
+        } else {
+            0
+        }
 
         return ans
     }
@@ -43,7 +47,9 @@ class PalindromicSubstringsCheckAllSubstrings : PalindromicSubstrings {
         var s = start
         var e = end
         while (start < e) {
-            if (str[start] != str[e]) return false
+            if (str[start] != str[e]) {
+                return false
+            }
             ++s
             --e
         }
@@ -61,7 +67,9 @@ class PalindromicSubstringsDP : PalindromicSubstrings {
         val n: Int = s.length
         var ans = 0
 
-        if (n <= 0) return 0
+        if (n <= 0) {
+            return 0
+        }
 
         val dp = Array(n) { BooleanArray(n) }
 
@@ -76,7 +84,11 @@ class PalindromicSubstringsDP : PalindromicSubstrings {
         // Base case: double letter substrings
         for (i in 0 until n - 1) {
             dp[i][i + 1] = s[i] == s[i + 1]
-            ans += if (dp[i][i + 1]) 1 else 0
+            ans += if (dp[i][i + 1]) {
+                1
+            } else {
+                0
+            }
         }
 
         // All other cases: substrings of length 3 to n
@@ -85,7 +97,11 @@ class PalindromicSubstringsDP : PalindromicSubstrings {
             var j = i + len - 1
             while (j < n) {
                 dp[i][j] = dp[i + 1][j - 1] && s[i] == s[j]
-                ans += if (dp[i][j]) 1 else 0
+                ans += if (dp[i][j]) {
+                    1
+                } else {
+                    0
+                }
                 ++i
                 ++j
             }
@@ -120,7 +136,9 @@ class PalindromicSubstringsPossibleCenters : PalindromicSubstrings {
         var h = hi
         var ans = 0
         while (l >= 0 && h < ss.length) {
-            if (ss[l] != ss[h]) break // the first and last characters don't match!
+            if (ss[l] != ss[h]) {
+                break // the first and last characters don't match!
+            }
 
             // expand around the center
             l--

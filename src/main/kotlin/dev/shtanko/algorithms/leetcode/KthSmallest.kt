@@ -64,9 +64,14 @@ sealed class KthSmallestStrategy {
                 // first number is the smallest and the second number is the largest
                 val smallLargePair = intArrayOf(matrix[0][0], matrix[n - 1][n - 1])
                 val count = countLessEqual(matrix, mid, smallLargePair)
-                if (count == k) return smallLargePair[0]
-                if (count < k) start = smallLargePair[1] // search higher
-                else end = smallLargePair[0] // search lower
+                if (count == k) {
+                    return smallLargePair[0]
+                }
+                if (count < k) {
+                    start = smallLargePair[1] // search higher
+                } else {
+                    end = smallLargePair[0] // search lower
+                }
             }
             return start
         }

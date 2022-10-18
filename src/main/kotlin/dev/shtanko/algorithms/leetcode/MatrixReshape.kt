@@ -38,7 +38,9 @@ sealed class MatrixReshapeStrategy {
         override fun perform(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray> {
             val res = Array(r) { IntArray(c) }
             if (mat.isEmpty() || r * c != mat.size * mat[0].size
-            ) return mat
+            ) {
+                return mat
+            }
             val queue: Queue<Int> = LinkedList()
             for (i in mat.indices) {
                 for (j in 0 until mat[0].size) {

@@ -101,8 +101,9 @@ class OnesAndZeroesRecursion : OnesAndZeroes {
         if (i == strs.size) return 0
         val count: IntArray = strs[i].countZeroesOnes()
         var taken = -1
-        if (zeroes - count[0] >= 0 && ones - count[1] >= 0) taken =
-            calculate(strs, i + 1, zeroes - count[0], ones - count[1]) + 1
+        if (zeroes - count[0] >= 0 && ones - count[1] >= 0) {
+            taken = calculate(strs, i + 1, zeroes - count[0], ones - count[1]) + 1
+        }
         val notTaken = calculate(strs, i + 1, zeroes, ones)
         return max(taken, notTaken)
     }
@@ -125,12 +126,17 @@ class OnesAndZeroesMemoization : OnesAndZeroes {
     }
 
     private fun calculate(strs: Array<String>, i: Int, zeroes: Int, ones: Int, memo: Array<Array<IntArray>>): Int {
-        if (i == strs.size) return 0
-        if (memo[i][zeroes][ones] != 0) return memo[i][zeroes][ones]
+        if (i == strs.size) {
+            return 0
+        }
+        if (memo[i][zeroes][ones] != 0) {
+            return memo[i][zeroes][ones]
+        }
         val count: IntArray = strs[i].countZeroesOnes()
         var taken = -1
-        if (zeroes - count[0] >= 0 && ones - count[1] >= 0) taken =
-            calculate(strs, i + 1, zeroes - count[0], ones - count[1], memo) + 1
+        if (zeroes - count[0] >= 0 && ones - count[1] >= 0) {
+            taken = calculate(strs, i + 1, zeroes - count[0], ones - count[1], memo) + 1
+        }
         val notTaken = calculate(strs, i + 1, zeroes, ones, memo)
         memo[i][zeroes][ones] = max(taken, notTaken)
         return memo[i][zeroes][ones]
