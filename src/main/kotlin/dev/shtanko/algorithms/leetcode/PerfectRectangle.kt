@@ -34,6 +34,9 @@ class PerfectRectangleSweepLine : PerfectRectangle {
         val pq: PriorityQueue<Event> = PriorityQueue<Event>()
         // border of y-intervals
         val border = intArrayOf(Int.MAX_VALUE, Int.MIN_VALUE)
+        if (rectangles.size == 1 && rectangles.first().isEmpty()) {
+            return false
+        }
         for (rect in rectangles) {
             val e1 = Event(rect[0], rect)
             val e2 = Event(rect[2], rect)
@@ -66,7 +69,7 @@ class PerfectRectangleSweepLine : PerfectRectangle {
                 return false
             }
         }
-        return true
+        return rectangles.isNotEmpty()
     }
 
     data class Event(var time: Int, var rect: IntArray) : Comparable<Event> {

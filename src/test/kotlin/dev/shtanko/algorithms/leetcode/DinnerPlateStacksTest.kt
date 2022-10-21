@@ -62,4 +62,17 @@ class DinnerPlateStacksTest {
         assertThat(obj.pop()).isEqualTo(1)
         assertThat(obj.pop()).isEqualTo(-1)
     }
+
+    @Test
+    fun `dinner plate stacks empty tree test`() {
+        val obj = DinnerPlatesTree(0)
+        assertThat(obj.pop()).isEqualTo(-1)
+    }
+
+    @Test
+    fun `dinner plate stacks empty push tree test`() {
+        val obj = DinnerPlatesTree(0)
+        obj.push(1)
+        assertThat(obj.pop()).isEqualTo(1)
+    }
 }

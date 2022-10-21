@@ -18,6 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -55,6 +56,16 @@ abstract class PerfectRectangleTest<out T : PerfectRectangle>(private val strate
                 ),
                 false,
             ),
+            Arguments.of(
+                arrayOf<IntArray>(),
+                false,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(),
+                ),
+                false,
+            ),
         )
     }
 
@@ -63,6 +74,20 @@ abstract class PerfectRectangleTest<out T : PerfectRectangle>(private val strate
     fun `is rectangle cover test`(rectangles: Array<IntArray>, expected: Boolean) {
         val actual = strategy.isRectangleCover(rectangles)
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `events are equal test`() {
+        val ev1 = PerfectRectangleSweepLine.Event(0, intArrayOf(0))
+        val ev2 = PerfectRectangleSweepLine.Event(0, intArrayOf(0))
+        assertThat(ev1).isEqualTo(ev2)
+    }
+
+    @Test
+    fun `events arent equal test`() {
+        val ev1 = PerfectRectangleSweepLine.Event(0, intArrayOf(0))
+        val ev2 = PerfectRectangleSweepLine.Event(0, intArrayOf(1))
+        assertThat(ev1).isNotEqualTo(ev2)
     }
 }
 
