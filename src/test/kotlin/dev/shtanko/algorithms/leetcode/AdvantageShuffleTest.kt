@@ -35,6 +35,21 @@ internal class AdvantageShuffleTest {
                 intArrayOf(),
             ),
             Arguments.of(
+                intArrayOf(1),
+                intArrayOf(1),
+                intArrayOf(1),
+            ),
+            Arguments.of(
+                intArrayOf(2),
+                intArrayOf(1),
+                intArrayOf(2),
+            ),
+            Arguments.of(
+                intArrayOf(2),
+                intArrayOf(2),
+                intArrayOf(2),
+            ),
+            Arguments.of(
                 intArrayOf(2, 7, 11, 15),
                 intArrayOf(1, 10, 4, 11),
                 intArrayOf(2, 11, 7, 15),

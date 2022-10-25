@@ -28,6 +28,18 @@ abstract class AreOccurrencesEqualTest<out T : AreOccurrencesEqual>(private val 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                "",
+                true,
+            ),
+            Arguments.of(
+                "a",
+                true,
+            ),
+            Arguments.of(
+                "aa",
+                true,
+            ),
+            Arguments.of(
                 "abacbc",
                 true,
             ),

@@ -36,6 +36,18 @@ abstract class ConcatenatedWordsTest<out T : ConcatenatedWords>(private val stra
                 arrayOf("cat", "dog", "catdog"),
                 listOf("catdog"),
             ),
+            Arguments.of(
+                arrayOf<String>(),
+                listOf<String>(),
+            ),
+            Arguments.of(
+                arrayOf("a"),
+                listOf<String>(),
+            ),
+            Arguments.of(
+                arrayOf("a", "b"),
+                listOf<String>(),
+            ),
         )
     }
 

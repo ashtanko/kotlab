@@ -36,6 +36,18 @@ abstract class CanSeePersonsCountTest<out T : CanSeePersonsCount>(private val st
                 intArrayOf(5, 1, 2, 3, 10),
                 intArrayOf(4, 1, 1, 1, 0),
             ),
+            Arguments.of(
+                intArrayOf(),
+                intArrayOf(),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                intArrayOf(0),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                intArrayOf(1, 0),
+            ),
         )
     }
 

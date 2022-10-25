@@ -18,6 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -32,9 +33,14 @@ internal class BuildArrayWithStackOperationsTest {
             Arguments.of(intArrayOf(1, 2, 3), 3, listOf("Push", "Push", "Push")),
             Arguments.of(intArrayOf(1, 2), 4, listOf("Push", "Push")),
             Arguments.of(intArrayOf(2, 3, 4), 4, listOf("Push", "Pop", "Push", "Push", "Push")),
+            Arguments.of(intArrayOf(), 0, emptyList<String>()),
+            Arguments.of(intArrayOf(1), 0, emptyList<String>()),
+            Arguments.of(intArrayOf(), 1, emptyList<String>()),
+            Arguments.of(intArrayOf(1), 1, listOf("Push")),
         )
     }
 
+    @DisplayName("build an array with stack operations")
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `build an array with stack operations test`(target: IntArray, n: Int, expected: List<String>) {

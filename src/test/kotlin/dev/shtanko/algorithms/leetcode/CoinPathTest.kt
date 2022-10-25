@@ -28,8 +28,31 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 internal abstract class CoinPathTest<out T : CoinPath>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(intArrayOf(1, 2, 4, -1, 2), 2, listOf(1, 3, 5)),
-            Arguments.of(intArrayOf(1, 2, 4, -1, 2), 1, listOf<Int>()),
+            Arguments.of(
+                intArrayOf(1, 2, 4, -1, 2),
+                2,
+                listOf(1, 3, 5),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 4, -1, 2),
+                1,
+                listOf<Int>(),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                listOf<Int>(),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+                listOf(1),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+                listOf(1),
+            ),
         )
     }
 

@@ -32,6 +32,9 @@ abstract class AlienDictionaryTest<out T : AlienDictionary>(private val strategy
             Arguments.of(arrayOf("z", "x", "z"), ""),
             Arguments.of(arrayOf<String>(), ""),
             Arguments.of(arrayOf(""), ""),
+            Arguments.of(arrayOf<String>(), ""),
+            Arguments.of(arrayOf("a"), "a"),
+            Arguments.of(arrayOf("a", "b", "c"), "abc"),
         )
     }
 

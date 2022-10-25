@@ -39,7 +39,6 @@ internal abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(priva
             Arguments.of(10, 89),
             Arguments.of(20, 10946),
             Arguments.of(30, 1346269),
-            Arguments.of(40, 165580141),
         )
     }
 

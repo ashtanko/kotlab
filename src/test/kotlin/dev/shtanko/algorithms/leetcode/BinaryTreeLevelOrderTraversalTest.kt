@@ -42,6 +42,12 @@ internal class BinaryTreeLevelOrderTraversalTest {
                     listOf(15, 7),
                 ),
             ),
+            Arguments.of(
+                TreeNode(3),
+                listOf(
+                    listOf(3),
+                ),
+            ),
         )
     }
 

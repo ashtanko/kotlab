@@ -42,6 +42,20 @@ internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageO
                 },
                 doubleArrayOf(3.0, 14.5, 11.0),
             ),
+            Arguments.of(
+                TreeNode(3),
+                doubleArrayOf(3.0),
+            ),
+            Arguments.of(
+                TreeNode(0),
+                doubleArrayOf(0.0),
+            ),
+            Arguments.of(
+                TreeNode(2).apply {
+                    left = TreeNode(1)
+                },
+                doubleArrayOf(2.0, 1.0),
+            ),
         )
     }
 

@@ -45,6 +45,30 @@ abstract class ClosestDessertCostTest<out T : ClosestDessertCost>(private val st
                 9,
                 8,
             ),
+            Arguments.of(
+                intArrayOf(),
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                intArrayOf(),
+                0,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                intArrayOf(1),
+                0,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                intArrayOf(1),
+                1,
+                1,
+            ),
         )
     }
 

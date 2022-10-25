@@ -35,6 +35,14 @@ abstract class BraceExpansion2Test<out T : BraceExpansion2>(private val strategy
                 "{{a,z},a{b,c},{ab,z}}",
                 listOf("a", "ab", "ac", "z"),
             ),
+            Arguments.of(
+                "",
+                listOf(""),
+            ),
+            Arguments.of(
+                "{{a,z}}",
+                listOf("a", "z"),
+            ),
         )
     }
 

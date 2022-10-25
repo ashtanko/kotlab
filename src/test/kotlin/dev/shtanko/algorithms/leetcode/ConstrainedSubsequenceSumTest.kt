@@ -42,6 +42,26 @@ abstract class ConstrainedSubsequenceSumTest<out T : ConstrainedSubsequenceSum>(
                 2,
                 23,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                -2147483648,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                3,
+                1,
+            ),
         )
     }
 

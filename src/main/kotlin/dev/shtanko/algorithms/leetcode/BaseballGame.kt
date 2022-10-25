@@ -33,6 +33,7 @@ class BaseballGame {
 
                 "C" -> stack.pop()
                 "D" -> stack.push(2 * stack.peek())
+                "" -> return 0
                 else -> stack.push(Integer.valueOf(op))
             }
         }

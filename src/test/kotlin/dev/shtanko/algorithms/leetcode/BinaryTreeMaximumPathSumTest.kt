@@ -29,6 +29,22 @@ internal class BinaryTreeMaximumPathSumTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                TreeNode(0),
+                0,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                },
+                3,
+            ),
+            Arguments.of(
+                TreeNode(2).apply {
+                    left = TreeNode(2)
+                },
+                4,
+            ),
+            Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
                     right = TreeNode(3)

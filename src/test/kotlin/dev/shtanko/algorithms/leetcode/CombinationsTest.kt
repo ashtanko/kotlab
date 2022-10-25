@@ -46,6 +46,25 @@ abstract class CombinationsTest<out T : Combinations>(private val strategy: T) {
                     listOf(1),
                 ),
             ),
+            Arguments.of(
+                0,
+                0,
+                listOf(
+                    listOf<Int>(),
+                ),
+            ),
+            Arguments.of(
+                6,
+                1,
+                listOf(
+                    listOf(1),
+                    listOf(2),
+                    listOf(3),
+                    listOf(4),
+                    listOf(5),
+                    listOf(6),
+                ),
+            ),
         )
     }
 

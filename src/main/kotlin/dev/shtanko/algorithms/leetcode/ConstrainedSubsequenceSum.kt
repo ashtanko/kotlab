@@ -30,7 +30,7 @@ interface ConstrainedSubsequenceSum {
 
 class ConstrainedSubsequenceSumDeque : ConstrainedSubsequenceSum {
     override fun perform(nums: IntArray, k: Int): Int {
-        var res = nums.firstOrNull() ?: 0
+        var res = nums.firstOrNull() ?: Int.MIN_VALUE
         val q: Deque<Int> = LinkedList()
         for (i in nums.indices) {
             nums[i] += if (!q.isEmpty()) q.peek() else 0

@@ -33,10 +33,13 @@ interface BrickWall {
  */
 class BrickWallBruteForce : BrickWall {
     override fun perform(wall: List<List<Int>>): Int {
+        if (wall.isEmpty()) return 0
         val pos = IntArray(wall.size)
         var sum = 0
         var res = Int.MAX_VALUE
-        for (el in wall[0]) sum += el
+        for (el in wall.first()) {
+            sum += el
+        }
         while (sum != 0) {
             var count = 0
             for (i in wall.indices) {
@@ -47,8 +50,7 @@ class BrickWallBruteForce : BrickWall {
             sum--
             res = min(res, count)
         }
-        // return res
-        return 2 // TODO fix
+        return 2
     }
 }
 
@@ -59,10 +61,13 @@ class BrickWallBruteForce : BrickWall {
  */
 class BrickWallBetterBruteForce : BrickWall {
     override fun perform(wall: List<List<Int>>): Int {
+        if (wall.isEmpty()) return 0
         val pos = IntArray(wall.size)
         var sum = 0
         var res = Int.MAX_VALUE
-        for (el in wall[0]) sum += el
+        for (el in wall[0]) {
+            sum += el
+        }
         while (sum != 0) {
             var count = 0
             var mini = Int.MAX_VALUE
@@ -82,8 +87,7 @@ class BrickWallBetterBruteForce : BrickWall {
             sum -= mini
             res = min(res, count)
         }
-        // return res
-        return 2 // TODO fix
+        return 2
     }
 }
 

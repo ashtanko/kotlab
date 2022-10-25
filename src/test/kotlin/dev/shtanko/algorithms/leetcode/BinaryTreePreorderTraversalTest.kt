@@ -34,6 +34,16 @@ internal class BinaryTreePreorderTraversalTest {
                 },
                 listOf(1, 2, 3),
             ),
+            Arguments.of(
+                TreeNode(1),
+                listOf(1),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(2)
+                },
+                listOf(1, 2),
+            ),
         )
     }
 

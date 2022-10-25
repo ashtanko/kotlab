@@ -28,6 +28,23 @@ internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(pri
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                TreeNode(1),
+                listOf("1"),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                },
+                listOf("1->2"),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                },
+                listOf("1->2", "1->3"),
+            ),
+            Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
                     right = TreeNode(3)

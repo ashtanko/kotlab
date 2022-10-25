@@ -31,6 +31,11 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                "",
+                "",
+                "",
+            ),
+            Arguments.of(
                 "0",
                 "1",
                 "1",
@@ -49,6 +54,16 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
                 "1010",
                 "1011",
                 "10101",
+            ),
+            Arguments.of(
+                "10101010010010101001010010100100101",
+                "101111111111111111",
+                "10101010010010101111010010100100100",
+            ),
+            Arguments.of(
+                "10101010",
+                "11001100",
+                "101110110",
             ),
         )
     }

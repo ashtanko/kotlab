@@ -37,6 +37,16 @@ internal abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private
                 ),
                 24,
             ),
+            Arguments.of(
+                arrayOf<IntArray>(),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0),
+                ),
+                0,
+            ),
         )
     }
 

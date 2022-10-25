@@ -29,6 +29,26 @@ internal abstract class ArithmeticSlicesTest<out T : ArithmeticSlices>(private v
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(11),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                28,
+            ),
+            Arguments.of(
+                intArrayOf(-1, -2, -3, -4),
+                3,
+            ),
+            Arguments.of(
                 intArrayOf(1, 2, 3, 4),
                 3,
             ),

@@ -52,6 +52,38 @@ abstract class BalanceBSTreeTest<out T : BalanceBST>(private val strategy: T) {
                     right = TreeNode(3)
                 },
             ),
+            Arguments.of(
+                TreeNode(2),
+                TreeNode(2),
+            ),
+            Arguments.of(
+                TreeNode(0),
+                TreeNode(0),
+            ),
+            Arguments.of(
+                TreeNode(1),
+                TreeNode(1),
+            ),
+            Arguments.of(
+                TreeNode(2).apply {
+                    left = TreeNode(1)
+                },
+                TreeNode(2).apply {
+                    left = TreeNode(1)
+                },
+            ),
+            Arguments.of(
+                TreeNode(2).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                    }
+                },
+                TreeNode(2).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                    }
+                },
+            ),
         )
     }
 

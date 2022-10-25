@@ -38,6 +38,10 @@ internal abstract class BrickWallTest<out T : BrickWall>(private val strategy: T
                 ),
                 2,
             ),
+            Arguments.of(
+                listOf<List<Int>>(),
+                0,
+            ),
         )
     }
 

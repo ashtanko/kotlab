@@ -31,6 +31,9 @@ internal abstract class AddDigitsTest<out T : AddDigitsStrategy>(private val str
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(38, 2),
             Arguments.of(0, 0),
+            Arguments.of(1, 1),
+            Arguments.of(1111111111, 1),
+            Arguments.of(123456789, 9),
             Arguments.of(2, 2),
             Arguments.of(10, 1),
             Arguments.of(111, 3),

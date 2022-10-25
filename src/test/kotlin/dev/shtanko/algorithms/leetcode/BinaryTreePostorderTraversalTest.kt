@@ -34,6 +34,16 @@ internal class BinaryTreePostorderTraversalTest {
                 },
                 listOf(3, 2, 1),
             ),
+            Arguments.of(
+                TreeNode(1),
+                listOf(1),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(2)
+                },
+                listOf(2, 1),
+            ),
         )
     }
 

@@ -45,6 +45,18 @@ abstract class CombinationSum2Test<out T : CombinationSum2>(private val strategy
                     listOf(5),
                 ),
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                listOf(
+                    listOf<Int>(),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                1,
+                listOf<List<Int>>(),
+            ),
         )
     }
 

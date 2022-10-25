@@ -35,6 +35,18 @@ internal abstract class CheckPossibilityTest<out T : CheckPossibility>(private v
                 intArrayOf(4, 2, 1),
                 false,
             ),
+            Arguments.of(
+                intArrayOf(),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                true,
+            ),
         )
     }
 

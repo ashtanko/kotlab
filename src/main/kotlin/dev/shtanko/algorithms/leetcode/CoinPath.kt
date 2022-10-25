@@ -46,6 +46,7 @@ class CoinPathMemo : CoinPath {
     }
 
     private fun jump(a: IntArray, b: Int, i: Int, next: IntArray, memo: LongArray): Long {
+        if (a.isEmpty()) return 0L
         if (memo[i] > 0) return memo[i]
         if (i == a.size - 1 && a[i] >= 0) return a[i].toLong()
         var minCost = Int.MAX_VALUE.toLong()

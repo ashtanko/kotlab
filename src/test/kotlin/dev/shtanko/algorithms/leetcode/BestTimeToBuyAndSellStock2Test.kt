@@ -28,6 +28,22 @@ internal class BestTimeToBuyAndSellStock2Test {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+            ),
+            Arguments.of(
                 intArrayOf(7, 1, 5, 3, 6, 4),
                 7,
             ),

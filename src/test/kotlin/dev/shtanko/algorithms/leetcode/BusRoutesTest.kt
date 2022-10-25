@@ -29,6 +29,24 @@ abstract class BusRoutesTest<out T : BusRoutes>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                arrayOf<IntArray>(),
+                0,
+                0,
+                0,
+            ),
+            Arguments.of(
+                arrayOf(intArrayOf(1)),
+                1,
+                1,
+                0,
+            ),
+            Arguments.of(
+                arrayOf(intArrayOf(1, 2)),
+                1,
+                1,
+                0,
+            ),
+            Arguments.of(
                 arrayOf(
                     intArrayOf(1, 2, 7),
                     intArrayOf(3, 6, 7),

@@ -33,6 +33,10 @@ internal abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(priv
             Arguments.of(intArrayOf(1, 2, 0, 1, 2) to intArrayOf()),
             Arguments.of(intArrayOf(69, 0, 0, 0, 69) to intArrayOf(-1, 69, 1, 1, -1)),
             Arguments.of(intArrayOf(10, 20, 20) to intArrayOf()),
+            Arguments.of(intArrayOf() to intArrayOf()),
+            Arguments.of(intArrayOf(0) to intArrayOf(1)),
+            Arguments.of(intArrayOf(1) to intArrayOf(-1)),
+            Arguments.of(intArrayOf(1, 2) to intArrayOf(-1, -1)),
         )
     }
 

@@ -25,6 +25,7 @@ interface BeautifulArrangement2 {
  */
 class BA2Construction : BeautifulArrangement2 {
     override fun constructArray(n: Int, k: Int): IntArray {
+        if (n == 0) return intArrayOf()
         val ans = IntArray(n)
         var c = 0
         for (v in 1 until n - k) {

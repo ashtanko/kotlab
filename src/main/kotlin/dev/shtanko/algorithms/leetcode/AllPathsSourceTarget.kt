@@ -42,10 +42,8 @@ class AllPathsSourceBacktracking : AllPathsSourceTarget {
         target = graph.size - 1
         this.graph = graph
         // adopt the LinkedList for fast access to the tail element.
-        // adopt the LinkedList for fast access to the tail element.
         val path = LinkedList<Int>()
         path.addLast(0)
-        // kick of the backtracking, starting from the source (node 0)
         // kick of the backtracking, starting from the source (node 0)
         this.backtrack(0, path)
         return results
@@ -57,6 +55,7 @@ class AllPathsSourceBacktracking : AllPathsSourceTarget {
             results.add(ArrayList(path))
             return
         }
+        if (graph.isEmpty()) return
         // explore the neighbor nodes one after another.
         for (nextNode in graph[currNode]) {
             // mark the choice, before backtracking.
@@ -80,12 +79,12 @@ class AllPathsSourceDP : AllPathsSourceTarget {
     override fun perform(graph: Array<IntArray>): List<List<Int>> {
         this.target = graph.size - 1
         this.graph = graph
-        return allPathsToTarget(0) ?: emptyList()
+        return allPathsToTarget(0)
     }
 
-    private fun allPathsToTarget(currNode: Int): List<List<Int>>? {
+    private fun allPathsToTarget(currNode: Int): List<List<Int>> {
         // memoization. check the result in the cache first
-        if (memo.containsKey(currNode)) return memo[currNode]
+        if (memo.containsKey(currNode)) return memo[currNode] ?: emptyList()
         val results: MutableList<List<Int>> = ArrayList()
         // base case
         if (currNode == target) {
@@ -94,10 +93,10 @@ class AllPathsSourceDP : AllPathsSourceTarget {
             results.add(path)
             return results
         }
-
+        if (graph.isEmpty()) return emptyList()
         // iterate through the paths starting from each neighbor.
         for (nextNode in graph[currNode]) {
-            for (path in allPathsToTarget(nextNode)!!) {
+            for (path in allPathsToTarget(nextNode)) {
                 val newPath = ArrayList<Int>()
                 newPath.add(currNode)
                 newPath.addAll(path)

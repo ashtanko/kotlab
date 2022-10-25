@@ -47,6 +47,23 @@ abstract class CatAndMouseTest<out T : CatAndMouse>(private val strategy: T) {
                 ),
                 1,
             ),
+            Arguments.of(
+                arrayOf<IntArray>(),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 3),
+                    intArrayOf(0),
+                ),
+                0,
+            ),
         )
     }
 

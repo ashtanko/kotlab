@@ -49,6 +49,9 @@ class CherryPickupTopDown : CherryPickup {
     private fun dp(r1: Int, c1: Int, c2: Int): Int {
         val r2 = r1 + c1 - c2
         val helper = n == r1 || n == r2 || n == c1 || n == c2
+        if (grid.isNotEmpty()) {
+            if (grid.first().isEmpty()) return 0
+        }
         return if (helper || grid[r1][c1] == -1 || grid[r2][c2] == -1) {
             LIMIT
         } else if (r1 == n - 1 && c1 == n - 1) {
@@ -77,10 +80,14 @@ class CherryPickupTopDown : CherryPickup {
  */
 class CherryPickupBottomUp : CherryPickup {
     override fun perform(grid: Array<IntArray>): Int {
+        if (grid.isEmpty()) return 0
         val n: Int = grid.size
         var dp = Array(n) { IntArray(n) }
         for (row in dp) Arrays.fill(row, Int.MIN_VALUE)
-        dp[0][0] = grid[0][0]
+        if (grid.isNotEmpty()) {
+            if (grid.first().isEmpty()) return 0
+        }
+        dp.first()[0] = grid.first().first()
 
         for (t in 1..2 * n - 2) {
             val dp2 = Array(n) { IntArray(n) }

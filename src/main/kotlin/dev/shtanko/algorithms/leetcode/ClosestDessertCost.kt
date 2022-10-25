@@ -30,6 +30,7 @@ class ClosestDessertCostBacktracking : ClosestDessertCost {
     private var result = 0
 
     override fun perform(baseCosts: IntArray, toppingCosts: IntArray, target: Int): Int {
+        if (baseCosts.isEmpty()) return 0
         result = baseCosts[0]
         for (base in baseCosts) closestCost(base, toppingCosts, 0, target)
         return result

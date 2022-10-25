@@ -80,6 +80,10 @@ abstract class BinaryTreePruningTest<out T : BinaryTreePruning>(private val stra
                     }
                 },
             ),
+            Arguments.of(
+                TreeNode(1),
+                TreeNode(1),
+            ),
         )
     }
 

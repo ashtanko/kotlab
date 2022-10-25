@@ -17,12 +17,12 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal data class BuddyStringsTestCase(
     val buddyString: Pair<String, String>,
@@ -31,26 +31,59 @@ internal data class BuddyStringsTestCase(
 
 internal class BuddyStringsTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
-    }
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<BuddyStringsTestCase> {
-            return listOf(
-                BuddyStringsTestCase("ab" to "ba", true),
-                BuddyStringsTestCase("ab" to "ab", false),
-                BuddyStringsTestCase("aa" to "aa", true),
-                BuddyStringsTestCase("aaaaaaabc" to "aaaaaaacb", true),
-                BuddyStringsTestCase("" to "aa", false),
-            )
-        }
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "ab",
+                "ba",
+                true,
+            ),
+            Arguments.of(
+                "ab",
+                "ab",
+                false,
+            ),
+            Arguments.of(
+                "aa",
+                "aa",
+                true,
+            ),
+            Arguments.of(
+                "aaaaaaabc",
+                "aaaaaaacb",
+                true,
+            ),
+            Arguments.of(
+                "",
+                "aa",
+                false,
+            ),
+            Arguments.of(
+                "",
+                "",
+                false,
+            ),
+            Arguments.of(
+                "a",
+                "a",
+                false,
+            ),
+            Arguments.of(
+                "a",
+                "a",
+                false,
+            ),
+            Arguments.of(
+                "",
+                "a",
+                false,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `buddy strings test`(testCase: BuddyStringsTestCase) {
-        val actual = testCase.buddyString.buddyStrings()
-        assertEquals(testCase.expected, actual)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `buddy strings test`(s1: String, s2: String, expected: Boolean) {
+        val actual = (s1 to s2).buddyStrings()
+        assertThat(actual).isEqualTo(expected)
     }
 }

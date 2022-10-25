@@ -37,6 +37,16 @@ internal abstract class CombinationSum4Test<out T : CombinationSum4>(private val
                 3,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(0),
+                0,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                1,
+            ),
         )
     }
 

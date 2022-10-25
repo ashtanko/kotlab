@@ -27,6 +27,14 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 internal class BaseballGameTest {
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(arrayOf<String>(), 0),
+            Arguments.of(arrayOf(""), 0),
+            Arguments.of(arrayOf("1"), 1),
+            Arguments.of(arrayOf("2"), 2),
+            Arguments.of(arrayOf("99"), 99),
+            Arguments.of(arrayOf("2", "2", "+"), 8),
+            Arguments.of(arrayOf("1", "1", "+"), 4),
+            Arguments.of(arrayOf("1", "", "+"), 0),
             Arguments.of(arrayOf("5", "2", "C", "D", "+"), 30),
             Arguments.of(arrayOf("5", "-2", "4", "C", "D", "9", "+", "+"), 27),
         )

@@ -42,6 +42,16 @@ abstract class CoinChangeTest<out T : CoinChange>(private val strategy: T) {
                 0,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(100, 22, 456),
+                34,
+                -1,
+            ),
         )
     }
 

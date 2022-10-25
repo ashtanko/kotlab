@@ -28,6 +28,34 @@ internal class AmbiguousCoordinatesTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                "",
+                emptyList<String>(),
+            ),
+            Arguments.of(
+                "(",
+                emptyList<String>(),
+            ),
+            Arguments.of(
+                "1",
+                emptyList<String>(),
+            ),
+            Arguments.of(
+                "a",
+                emptyList<String>(),
+            ),
+            Arguments.of(
+                "()",
+                emptyList<String>(),
+            ),
+            Arguments.of(
+                "(1)",
+                emptyList<String>(),
+            ),
+            Arguments.of(
+                "(12)",
+                listOf("(1, 2)"),
+            ),
+            Arguments.of(
                 "(123)",
                 listOf("(1, 23)", "(12, 3)", "(1.2, 3)", "(1, 2.3)"),
             ),

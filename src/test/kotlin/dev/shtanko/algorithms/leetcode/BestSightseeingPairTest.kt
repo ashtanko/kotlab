@@ -27,6 +27,11 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 internal class BestSightseeingPairTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(intArrayOf(), 0),
+            Arguments.of(intArrayOf(1), 1),
+            Arguments.of(intArrayOf(1, 2), 2),
+            Arguments.of(intArrayOf(1, 2, 3), 4),
+            Arguments.of(intArrayOf(-1), 0),
             Arguments.of(intArrayOf(8, 1, 5, 2, 6), 11),
         )
     }

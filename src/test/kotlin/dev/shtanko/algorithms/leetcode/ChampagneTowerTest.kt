@@ -45,6 +45,18 @@ abstract class ChampagneTowerTest<out T : ChampagneTower>(private val strategy: 
                 17,
                 1.00000,
             ),
+            Arguments.of(
+                0,
+                0,
+                0,
+                0,
+            ),
+            Arguments.of(
+                1,
+                2,
+                1,
+                0,
+            ),
         )
     }
 

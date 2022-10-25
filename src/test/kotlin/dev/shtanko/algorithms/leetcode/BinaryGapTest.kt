@@ -28,6 +28,18 @@ internal abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val str
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                0,
+                0,
+            ),
+            Arguments.of(
+                1,
+                0,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                1,
+            ),
+            Arguments.of(
                 22,
                 2,
             ),

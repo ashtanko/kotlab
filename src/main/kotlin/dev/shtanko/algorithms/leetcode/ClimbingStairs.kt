@@ -65,6 +65,8 @@ class ClimbingStairsDP : ClimbingStairsStrategy {
     override fun perform(n: Int): Int {
         if (n == 1) {
             return 1
+        } else if (n == 0) {
+            return 0
         }
         val dp = IntArray(n + 1)
         dp[1] = 1

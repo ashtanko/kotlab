@@ -31,6 +31,12 @@ internal class BoldWordsInStringTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<String>(), "", ""),
             Arguments.of(arrayOf("ab", "bc"), "aabcd", "a<b>abc</b>d"),
+            Arguments.of(arrayOf("ab"), "aabcd", "a<b>ab</b>cd"),
+            Arguments.of(arrayOf("ab"), "", ""),
+            Arguments.of(arrayOf("ab"), "a", "a"),
+            Arguments.of(arrayOf("ab"), "ab", "<b>ab</b>"),
+            Arguments.of(arrayOf("a", "b"), "ab", "<b>ab</b>"),
+            Arguments.of(arrayOf("a", "c"), "ab", "<b>a</b>b"),
         )
     }
 

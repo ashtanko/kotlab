@@ -31,6 +31,14 @@ internal class BalancedStringSplitTest {
             Arguments.of("RLLLLRRRLR", 3),
             Arguments.of("LLLLRRRR", 1),
             Arguments.of("RLRRRLLRLL", 2),
+            Arguments.of("", 0),
+            Arguments.of("R", 0),
+            Arguments.of("L", 0),
+            Arguments.of("RL", 1),
+            Arguments.of("RRR", 0),
+            Arguments.of("RRRLLL", 1),
+            Arguments.of("RRRRRRLLL", 0),
+            Arguments.of("A", 0),
         )
     }
 

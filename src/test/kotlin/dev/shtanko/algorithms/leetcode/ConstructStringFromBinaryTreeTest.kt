@@ -45,6 +45,10 @@ internal abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStrin
                 },
                 "1(2()(4))(3)",
             ),
+            Arguments.of(
+                TreeNode(1),
+                "1",
+            ),
         )
     }
 

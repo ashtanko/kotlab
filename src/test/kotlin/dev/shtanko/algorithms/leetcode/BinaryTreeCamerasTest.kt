@@ -49,6 +49,14 @@ internal abstract class BinaryTreeCamerasTest<out T : BinaryTreeCamerasStrategy>
                 },
                 2,
             ),
+            Arguments.of(
+                TreeNode(0),
+                1,
+            ),
+            Arguments.of(
+                TreeNode(0),
+                1,
+            ),
         )
     }
 

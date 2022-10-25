@@ -50,6 +50,23 @@ internal class BalancedBinaryTreeTest {
                 },
                 false,
             ),
+            Arguments.of(
+                TreeNode(1),
+                true,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(2)
+                },
+                true,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(2)
+                    left = TreeNode(2)
+                },
+                true,
+            ),
         )
     }
 

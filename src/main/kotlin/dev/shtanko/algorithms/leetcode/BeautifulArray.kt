@@ -32,7 +32,7 @@ class BeautifulArray {
             for (i in res) if (i * 2 <= n) tmp.add(i * 2)
             res = tmp
         }
-        return res.stream().mapToInt { i: Int? -> i!! }.toArray()
+        return res.stream().mapToInt { i: Int -> i }.toArray()
     }
 
     fun divideAndConquer(n: Int): IntArray {

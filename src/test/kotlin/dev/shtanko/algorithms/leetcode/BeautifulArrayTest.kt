@@ -36,6 +36,10 @@ internal class BeautifulArrayTest {
                 5,
                 intArrayOf(1, 5, 3, 2, 4),
             ),
+            Arguments.of(
+                1,
+                intArrayOf(1),
+            ),
         )
     }
 

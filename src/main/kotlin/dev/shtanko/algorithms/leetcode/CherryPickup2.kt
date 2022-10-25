@@ -24,6 +24,7 @@ interface CherryPickup2Strategy {
 
 class CherryPickup2DPTopDown : CherryPickup2Strategy {
     override fun perform(grid: Array<IntArray>): Int {
+        if (grid.isEmpty()) return 0
         val m: Int = grid.size
         val n: Int = grid[0].size
         val dpCache = Array(m) { Array(n) { IntArray(n) } }
@@ -75,6 +76,7 @@ class CherryPickup2DPTopDown : CherryPickup2Strategy {
 
 class CherryPickup2DPBottomUp : CherryPickup2Strategy {
     override fun perform(grid: Array<IntArray>): Int {
+        if (grid.isEmpty()) return 0
         val m: Int = grid.size
         val n: Int = grid[0].size
         val dp = Array(m) { Array(n) { IntArray(n) } }

@@ -26,5 +26,7 @@ internal class ConstantsTest {
         assertEquals(8, OCTAL)
         assertEquals(16, HEXADECIMAL)
         assertEquals(0xFFFF, SHUFFLE_CONST)
+        assertEquals(1_000_000_007, MOD)
+        assertEquals(1e9, E_9)
     }
 }

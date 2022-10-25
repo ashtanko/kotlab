@@ -17,42 +17,47 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class CanMakeArithmeticProgressionTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
-    }
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Any> {
-            return listOf(
-                true to intArrayOf(3, 5, 1),
-                false to intArrayOf(1, 2, 4),
-                false to intArrayOf(0, 1, 4, 9, 16, 25, 36),
-            )
-        }
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(3, 5, 1),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 4),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 4, 9, 16, 25, 36),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                true,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `can make arithmetic progression test`(param: Pair<Boolean, IntArray>) {
-        val (expected, arr) = param
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `can make arithmetic progression test`(arr: IntArray, expected: Boolean) {
         val actual = arr.canMakeArithmeticProgression()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `can make arithmetic progression using set test`(param: Pair<Boolean, IntArray>) {
-        val (expected, arr) = param
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `can make arithmetic progression using set test`(arr: IntArray, expected: Boolean) {
         val actual = arr.canMakeArithmeticProgressionSet()
-        assertEquals(expected, actual)
+        assertThat(actual).isEqualTo(expected)
     }
 }
