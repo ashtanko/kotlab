@@ -43,8 +43,7 @@ class GetMaximumGoldBacktracking : GetMaximumGold {
 
     private fun findMaxGold(grid: Array<IntArray>, m: Int, n: Int, r: Int, c: Int): Int {
         val left = r < 0 || r == m || c < 0
-        val right = c == n || grid[r][c] == 0
-        if (left || right) return 0
+        if (left || c == n || grid[r][c] == 0) return 0
         val origin = grid[r][c]
         grid[r][c] = 0 // mark as visited
         var maxGold = 0
@@ -74,8 +73,7 @@ class GetMaximumGoldDFS : GetMaximumGold {
 
     private fun dfs(grid: Array<IntArray>, i: Int, j: Int, currSum: Int, max: IntArray) {
         val left = i < 0 || j < 0 || i >= grid.size
-        val right = j >= grid[0].size || grid[i][j] == 0
-        if (left || right) {
+        if (left || j >= grid[0].size || grid[i][j] == 0) {
             max[0] = max(max[0], currSum)
             return
         }
