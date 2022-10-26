@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2022 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.utils
 
-internal const val DECIMAL = 10
-internal const val OCTAL = 8
-internal const val HEXADECIMAL = 16
-internal const val SHUFFLE_CONST = 0xFFFF
-internal const val MOD = 1_000_000_007 // 1000000007
-internal const val E_9 = 1e9
-internal const val BYTE = 1024
-const val MILLISECOND = 1000L
+inline fun <T> proceedWithMeasure(crossinline task: () -> T) {
+    val timeConsumed = measureTime(action = task)
+    val memConsumed = measureMemFormatted(task = task)
+    println(timeConsumed)
+    println(memConsumed)
+}

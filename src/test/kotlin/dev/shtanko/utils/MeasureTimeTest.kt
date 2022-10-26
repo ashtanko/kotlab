@@ -16,7 +16,9 @@
 
 package dev.shtanko.utils
 
+import dev.shtanko.algorithms.sorts.isSorted
 import kotlin.random.Random
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class MeasureTimeTest {
@@ -25,12 +27,37 @@ class MeasureTimeTest {
     fun `measure time test`() {
         measureTime(
             {
-                (1..100_000).map {
-                    Random.nextInt(100_000)
-                }.sorted()
+                getLongRunningTask()
             },
         ) {
-            println(it.second)
+            assertThat(it.second.toTypedArray().isSorted()).isTrue()
         }
+    }
+
+    @Test
+    fun `measure time test with print message`() {
+        val (_, actual) = measureTime(isPrint = true) {
+            getLongRunningTask()
+        }
+        assertThat(actual.toTypedArray().isSorted()).isTrue
+    }
+
+    @Test
+    fun `measure time test without print message`() {
+        val (time, actual) = measureTime {
+            getLongRunningTask()
+        }
+        println(time)
+        assertThat(actual.toTypedArray().isSorted()).isTrue
+    }
+
+    private fun getLongRunningTask(): List<Int> {
+        return (1..1000_000).map {
+            var r = 0
+            repeat(3) {
+                r += Random.nextInt(100_000)
+            }
+            r
+        }.sorted()
     }
 }

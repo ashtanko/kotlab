@@ -331,8 +331,6 @@ potential-bugs:
   active: true
   Deprecation:
     active: false
-  DuplicateCaseInWhenExpression:
-    active: true
   EqualsAlwaysReturnsTrueOrFalse:
     active: true
     excludes: [ '**/test/**', '**/androidTest/**', '**/*.Test.kt','**/*.Spec.kt','**/*.Spek.kt' ]
@@ -357,10 +355,6 @@ potential-bugs:
     ignoreOnClassesPattern: ""
   MapGetWithNotNullAssertionOperator:
     active: false
-  MissingWhenCase:
-    active: true
-  RedundantElseInWhen:
-    active: true
   UnconditionalJumpStatementInLoop:
     active: false
   UnreachableCode:
@@ -380,7 +374,7 @@ style:
     active: false
   DataClassContainsFunctions:
     active: false
-    conversionFunctionPrefix: 'to'
+    conversionFunctionPrefix: [ 'to' ]
   DataClassShouldBeImmutable:
     active: false
   EqualsNullCall:
@@ -411,12 +405,6 @@ style:
     methods:
       - 'kotlin.io.print'
       - 'kotlin.io.println'
-  ForbiddenPublicDataClass:
-    active: true
-    excludes: ['**']
-    ignorePackages:
-      - '*.internal'
-      - '*.internal.*'
   ForbiddenVoid:
     active: false
     ignoreOverridden: false
@@ -424,10 +412,8 @@ style:
   FunctionOnlyReturningConstant:
     active: true
     ignoreOverridableFunction: true
-    excludedFunctions: 'describeContents'
+    excludedFunctions: [ 'describeContents' ]
     ignoreAnnotated: [ "dagger.Provides" ]
-  LibraryCodeMustSpecifyReturnType:
-    active: true
   LoopWithTooManyJumpStatements:
     active: true
     maxJumpCount: 3
@@ -480,7 +466,7 @@ style:
   ReturnCount:
     active: false
     max: 2
-    excludedFunctions: "equals"
+    excludedFunctions: [ "equals" ]
     excludeLabeled: false
     excludeReturnFromLambda: true
     excludeGuardClauses: false
