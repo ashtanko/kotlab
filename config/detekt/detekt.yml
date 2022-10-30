@@ -56,7 +56,7 @@ complexity:
   active: true
   ComplexCondition:
     active: true
-    threshold: 5
+    threshold: 6
   ComplexInterface:
     active: false
     threshold: 10
