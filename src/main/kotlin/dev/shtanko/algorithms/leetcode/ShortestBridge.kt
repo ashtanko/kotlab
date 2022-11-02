@@ -77,70 +77,68 @@ class ShortestBridgeDP : ShortestBridge {
 
 class ShortestBridgeDFS : ShortestBridge {
     override fun invoke(grid: Array<IntArray>): Int {
-        // Use DFS to rename one of the island to "2" so we can distinguish between the two islands
-        dfs@ for (row in grid.indices) {
-            for (col in 0 until grid[row].size) {
-                if (grid[row][col] == 1) {
-                    renameIsland(grid, row, col)
-                    break@dfs
+        return shortestBridge(grid)
+    }
+
+    private fun shortestBridge(grid: Array<IntArray>): Int {
+        val m = grid.size
+        val n = grid[0].size
+        val visited = Array(m) { BooleanArray(n) }
+        val dirs = arrayOf(intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, 1), intArrayOf(0, -1))
+        val q: Queue<IntArray> = LinkedList()
+        var found = false
+        // 1. dfs to find an island, mark it in `visited`
+        for (i in 0 until m) {
+            if (found) {
+                break
+            }
+            for (j in 0 until n) {
+                if (grid[i][j] == 1) {
+                    dfs(grid, visited, q, i, j, dirs)
+                    found = true
+                    break
                 }
             }
         }
-
-        // Insert all the 1s to the queue and use BFS to find the shortest path
-        val q = ArrayDeque<Pair<Int, Int>>()
-        grid.forEachIndexed { row, arr ->
-            arr.forEachIndexed { col, value ->
-                if (value == 1) {
-                    q.add(Pair(row, col))
+        // 2. bfs to expand this island
+        var step = 0
+        while (!q.isEmpty()) {
+            var size = q.size
+            while (size-- > 0) {
+                val cur = q.poll()
+                for (dir in dirs) {
+                    val i = cur[0] + dir[0]
+                    val j = cur[1] + dir[1]
+                    if (i >= 0 && j >= 0 && i < m && j < n && !visited[i][j]) {
+                        if (grid[i][j] == 1) {
+                            return step
+                        }
+                        q.offer(intArrayOf(i, j))
+                        visited[i][j] = true
+                    }
                 }
             }
+            step++
         }
-        return minDist(grid, q)
+        return -1
     }
 
-    // Use DFS to rename one of the island
-    private fun renameIsland(a: Array<IntArray>, row: Int, col: Int) {
-        if (row >= a.size || row < 0 || col < 0 || col >= a[row].size) return
-
-        if (a[row][col] == 1) {
-            a[row][col] = 2
-            renameIsland(a, row + 1, col)
-            renameIsland(a, row - 1, col)
-            renameIsland(a, row, col + 1)
-            renameIsland(a, row, col - 1)
+    private fun dfs(
+        grid: Array<IntArray>,
+        visited: Array<BooleanArray>,
+        q: Queue<IntArray>,
+        i: Int,
+        j: Int,
+        dirs: Array<IntArray>,
+    ) {
+        val left = i < 0 || j < 0 || i >= grid.size || j >= grid[0].size
+        if (left || visited[i][j] || grid[i][j] == 0) {
+            return
         }
-    }
-
-    // Use BFS to find minimum path
-    private fun minDist(a: Array<IntArray>, q: ArrayDeque<Pair<Int, Int>>): Int {
-        var depth = 0
-        while (q.size > 0) {
-            val depthLevelNodes = q.size
-            for (i in 0 until depthLevelNodes) {
-                val node = q.first()
-                for (pair in node.validNeighbours(a)) {
-                    // pair.first is the row and pair.second is the col
-                    if (a[pair.first][pair.second] == 2) return depth
-                    a[pair.first][pair.second] = 1
-                    q.add(pair)
-                }
-            }
-            depth++
+        visited[i][j] = true
+        q.offer(intArrayOf(i, j))
+        for (dir in dirs) {
+            dfs(grid, visited, q, i + dir[0], j + dir[1], dirs)
         }
-        return Int.MAX_VALUE
-    }
-
-    // Extension function to get all the 0 and 2 valued neighbours of a particular (row, col)
-    private fun Pair<Int, Int>.validNeighbours(a: Array<IntArray>): List<Pair<Int, Int>> {
-        val list = mutableListOf<Pair<Int, Int>>()
-        val row = this.first
-        val col = this.second
-        if (row - 1 >= 0 && (a[row - 1][col] == 0 || a[row - 1][col] == 2)) list.add(Pair(row - 1, col))
-        if (row + 1 < a.size && (a[row + 1][col] == 0 || a[row + 1][col] == 2)) list.add(Pair(row + 1, col))
-        if (col - 1 >= 0 && (a[row][col - 1] == 0 || a[row][col - 1] == 2)) list.add(Pair(row, col - 1))
-        if (col + 1 < a[row].size && (a[row][col + 1] == 0 || a[row][col + 1] == 2)) list.add(Pair(row, col + 1))
-
-        return list
     }
 }
