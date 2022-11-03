@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 fun String?.longestPalindrome(): String {
-    if (this == null || this.isEmpty()) {
+    if (this.isNullOrEmpty()) {
         return ""
     }
     val len = this.length
