@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class Maximum69NumberTest {
+abstract class Maximum69NumberTest<out T : Maximum69Number>(private val strategy: T) {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -35,7 +35,11 @@ internal class Maximum69NumberTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `maximum 69 number test`(num: Int, expected: Int) {
-        val actual = maximum69Number(num)
+        val actual = strategy.invoke(num)
         assertEquals(expected, actual)
     }
 }
+
+class Max69NumberIterableTest : Maximum69NumberTest<Maximum69Number>(Max69NumberIterable())
+class Max69NumberBuildInTest : Maximum69NumberTest<Maximum69Number>(Max69NumberBuildIn())
+class Max69NumberRemTest : Maximum69NumberTest<Maximum69Number>(Max69NumberRem())
