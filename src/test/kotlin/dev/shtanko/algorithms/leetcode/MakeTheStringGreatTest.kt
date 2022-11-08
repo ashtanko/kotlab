@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oleksii Shtanko
+ * Copyright 2022 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +17,15 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.MatcherAssert.assertThat
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MakeTheStringGreatTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+abstract class MakeTheStringGreatTest<out T : MakeTheStringGreat>(private val strategy: T) {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "leEeetcode",
@@ -36,13 +35,25 @@ internal class MakeTheStringGreatTest {
                 "abBAcC",
                 "",
             ),
+            Arguments.of(
+                "s",
+                "s",
+            ),
+            Arguments.of(
+                "",
+                "",
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `make good test`(s: String, expected: String) {
-        val actual = MakeTheStringGreat.perform(s)
-        assertThat(actual, equalTo(expected))
+    fun `make good test`(s: String, expected: String) {
+        val actual = strategy.perform(s)
+        assertThat(actual).isEqualTo(expected)
     }
 }
+
+class MakeTheStringGreatStackTest : MakeTheStringGreatTest<MakeTheStringGreat>(MakeTheStringGreatStack())
+class MakeTheStringGreatIterationTest : MakeTheStringGreatTest<MakeTheStringGreat>(MakeTheStringGreatIteration())
+class MakeTheStringGreatRecursionTest : MakeTheStringGreatTest<MakeTheStringGreat>(MakeTheStringGreatRecursion())
