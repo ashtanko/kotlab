@@ -18,8 +18,11 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-// Remove All Adjacent Duplicates In String
-interface RemoveAllAdjacentDuplicatesStrategy {
+/**
+ * 1047. Remove All Adjacent Duplicates In String
+ * @link https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+ */
+fun interface RemoveAllAdjacentDuplicatesStrategy {
     fun perform(s: String): String
 }
 
