@@ -28,3 +28,10 @@ internal fun TreeNode?.clone(): TreeNode? {
     node.right = right.clone()
     return node
 }
+
+/**
+ * @return left height of the tree
+ */
+fun TreeNode?.height(): Int {
+    return if (this == null) -1 else 1 + this.left.height()
+}
