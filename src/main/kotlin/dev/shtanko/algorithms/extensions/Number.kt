@@ -45,4 +45,29 @@ fun Int.isUgly(): Boolean {
     return n == 1
 }
 
+fun Int.isUgly2(): Boolean {
+    var n = this
+    // A non-positive integer cannot be ugly
+    if (n <= 0) {
+        return false
+    }
+
+    // Factorize by dividing with permitted factors
+    for (factor in intArrayOf(2, 3, 5)) {
+        n = (n to factor).keepDividingWhenDivisible()
+    }
+
+    // Check if the integer is reduced to 1 or not.
+    return n == 1
+}
+
+fun Pair<Int, Int>.keepDividingWhenDivisible(): Int {
+    val (dividend, divisor) = this
+    var d = dividend
+    while (d % divisor == 0) {
+        d /= divisor
+    }
+    return d
+}
+
 private val prms = listOf(2, 3, 5)

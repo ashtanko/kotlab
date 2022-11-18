@@ -53,4 +53,11 @@ class NumberTest {
         val actual = n.isUgly()
         assertThat(actual).isEqualTo(expected)
     }
+
+    @ParameterizedTest
+    @ArgumentsSource(UglyNumberInputArgumentsProvider::class)
+    fun `is ugly2 number test`(n: Int, expected: Boolean) {
+        val actual = n.isUgly2()
+        assertThat(actual).isEqualTo(expected)
+    }
 }
