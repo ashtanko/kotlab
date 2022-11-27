@@ -79,3 +79,22 @@ class NumberOfArithmeticSlicesDP : NumberOfArithmeticSlices {
         return ans.toInt()
     }
 }
+
+class NumberOfArithmeticSlicesDP2 : NumberOfArithmeticSlices {
+    override fun perform(nums: IntArray): Int {
+        val n: Int = nums.size
+        var ans = 0
+        val dp: Array<HashMap<Long, Int>> = Array(n) { HashMap() }
+        for (i in 0 until n) dp[i] = HashMap()
+        for (i in 1 until n) {
+            for (j in 0 until i) {
+                val diff = nums[i].toLong() - nums[j].toLong()
+                val cnt = dp[j].getOrDefault(diff, 0)
+                dp[i][diff] = dp[i].getOrDefault(diff, 0) + cnt + 1
+
+                ans += cnt
+            }
+        }
+        return ans
+    }
+}

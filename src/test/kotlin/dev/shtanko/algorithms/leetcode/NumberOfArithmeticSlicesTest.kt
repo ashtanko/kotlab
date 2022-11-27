@@ -51,3 +51,6 @@ class NumberOfArithmeticSlicesBruteForceTest :
 
 class NumberOfArithmeticSlicesDPTest :
     NumberOfArithmeticSlicesTest<NumberOfArithmeticSlices>(NumberOfArithmeticSlicesDP())
+
+class NumberOfArithmeticSlicesDP2Test :
+    NumberOfArithmeticSlicesTest<NumberOfArithmeticSlices>(NumberOfArithmeticSlicesDP2())
