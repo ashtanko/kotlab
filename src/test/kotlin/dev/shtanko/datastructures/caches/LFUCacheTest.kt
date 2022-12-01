@@ -73,4 +73,29 @@ class LFUCacheTest {
         assertThat(lfuCache[2]).isNull()
         assertThat(lfuCache[7]).isEqualTo("Zeta")
     }
+
+    @Test
+    fun `LFU cache with object values`() {
+        val lfuCache = LFUCache<String, Any>(3)
+        lfuCache["Cat"] = 10
+        lfuCache["Dog"] = "10"
+        lfuCache["Fish"] = 10.0
+
+        assertThat(lfuCache["Cat"]).isEqualTo(10)
+        assertThat(lfuCache["Dog"]).isEqualTo("10")
+        assertThat(lfuCache["Fish"]).isEqualTo(10.0)
+
+        assertThat(lfuCache["Cat"]).isInstanceOf(Integer::class.java)
+        assertThat(lfuCache["Dog"]).isInstanceOf(String::class.java)
+        assertThat(lfuCache["Fish"]).isInstanceOf(java.lang.Double::class.java)
+    }
+
+    @Test
+    fun `null keys and values`() {
+        val lfuCache = LFUCache<Int?, Any?>(3)
+        lfuCache[null] = null
+        assertThat(lfuCache[null]).isNull()
+        lfuCache[1] = null
+        assertThat(lfuCache[1]).isNull()
+    }
 }
