@@ -36,11 +36,11 @@ class LRUCacheTest {
 
     @Test
     fun `null keys and values`() {
-        val mruCache = LRUCache<Int?, Int?>(CAP)
-        mruCache[null] = 2
-        mruCache[6] = null
-        assertThat(mruCache[null]).isEqualTo(2)
-        assertThat(mruCache[6]).isNull()
+        val lruCache = LRUCache<Int?, Int?>(CAP)
+        lruCache[null] = 2
+        lruCache[6] = null
+        assertThat(lruCache[null]).isEqualTo(2)
+        assertThat(lruCache[6]).isNull()
     }
 
     @Test
