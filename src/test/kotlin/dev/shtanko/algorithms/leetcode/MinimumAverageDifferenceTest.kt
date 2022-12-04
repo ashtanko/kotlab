@@ -54,3 +54,6 @@ class MinimumAverageDifferencePrefixSumTest :
 
 class MinimumAverageDifferencePrefixSumOptTest :
     MinimumAverageDifferenceTest<MinimumAverageDifference>(MinimumAverageDifferencePrefixSumOpt())
+
+class MinimumAverageDifferenceKtTest :
+    MinimumAverageDifferenceTest<MinimumAverageDifference>(MinimumAverageDifferenceKt())

@@ -156,3 +156,27 @@ class MinimumAverageDifferencePrefixSumOpt : MinimumAverageDifference {
         return ans
     }
 }
+
+class MinimumAverageDifferenceKt : MinimumAverageDifference {
+    override fun perform(nums: IntArray): Int {
+        var sum = 0L
+        nums.forEach { sum += it.toLong() }
+        var leftSum = 0L
+        var min = Long.MAX_VALUE
+        var minInd = 0
+        for (i in 0..nums.lastIndex) {
+            val leftCount = (i + 1).toLong()
+            leftSum += nums[i].toLong()
+            val front = leftSum / leftCount
+            val rightCount = nums.size.toLong() - leftCount
+            val rightSum = sum - leftSum
+            val back = if (rightCount == 0L) 0L else rightSum / rightCount
+            val diff = abs(front - back)
+            if (diff < min) {
+                min = diff
+                minInd = i
+            }
+        }
+        return minInd
+    }
+}
