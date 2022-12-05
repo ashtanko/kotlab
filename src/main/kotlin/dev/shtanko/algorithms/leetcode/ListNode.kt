@@ -44,7 +44,7 @@ fun List<Int>.toListNode(): ListNode {
     if (isEmpty()) return ListNode()
     var current = ListNode()
     var startNode = ListNode()
-    for (i in 0 until this.size) {
+    for (i in indices) {
         val node = ListNode(this[i])
         if (i > 0) {
             current.next = node
