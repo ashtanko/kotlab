@@ -62,7 +62,7 @@ class NumberOfGoodPathsUnionFind : NumberOfGoodPaths {
             }
             ans += ints.size
             for (key in group.keys) {
-                val size = group[key]!!
+                val size = group[key] ?: 0
                 ans += size * (size - 1) / 2
             }
         }
