@@ -81,9 +81,9 @@ plugins.withId("info.solidsoft.pitest") {
     configure<info.solidsoft.gradle.pitest.PitestPluginExtension> {
         jvmArgs.set(listOf("-Xmx1024m"))
         avoidCallsTo.set(setOf("kotlin.jvm.internal", "kotlin.Result"))
-        targetClasses.set(setOf("dev.shtanko.template.*"))
-        targetTests.set(setOf("dev.shtanko.template.*"))
-        pitestVersion.set("1.4.11")
+        targetClasses.set(setOf("dev.shtanko.*"))
+        targetTests.set(setOf("dev.shtanko.*"))
+        pitestVersion.set("1.9.0")
         verbose.set(true)
         threads.set(System.getenv("PITEST_THREADS")?.toInt() ?: satisfyingNumberOfCores)
         outputFormats.set(setOf("XML", "HTML"))

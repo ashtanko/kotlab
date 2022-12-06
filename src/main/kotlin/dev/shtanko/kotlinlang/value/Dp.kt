@@ -19,7 +19,7 @@ package dev.shtanko.kotlinlang.value
 @JvmInline
 value class Dp(val value: Float) : Comparable<Dp> {
 
-    inline operator fun plus(other: Dp) = Dp(value = this.value + other.value)
+    infix operator fun plus(other: Dp) = Dp(value = this.value + other.value)
 
     override operator fun compareTo(other: Dp) = value.compareTo(other.value)
 }
