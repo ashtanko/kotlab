@@ -16,9 +16,9 @@
 
 package dev.shtanko.algorithms.hackerrank
 
-object CuttingBoards {
+import dev.shtanko.algorithms.leetcode.MOD
 
-    private const val LIMIT = 1000000007L
+object CuttingBoards {
 
     fun perform(x: IntArray, y: IntArray): Long {
         var horizontalCuts = 0
@@ -33,6 +33,6 @@ object CuttingBoards {
                     verticalCuts++
                     cost * (horizontalCuts + 1)
                 }
-            }.sum() % LIMIT
+            }.sum() % MOD.toLong()
     }
 }
