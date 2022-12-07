@@ -22,7 +22,7 @@ else
     echo "*********************************************"
 
     echo "*********************************************"
-    echo "            Coping detekt report             "
+    echo "          Coping the detekt report           "
     echo "*********************************************"
 
     cat ../../build/reports/detekt/detekt.md >> README.md
