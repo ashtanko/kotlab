@@ -22,12 +22,12 @@ else
     echo "*********************************************"
 
     echo "*********************************************"
-    echo "      Coping detekt report                  "
+    echo "            Coping detekt report             "
     echo "*********************************************"
 
     cat ../../build/reports/detekt/detekt.md >> README.md
 
     echo "*********************************************"
-    echo "      All set                               "
+    echo "                   All set                   "
     echo "*********************************************"
 fi
