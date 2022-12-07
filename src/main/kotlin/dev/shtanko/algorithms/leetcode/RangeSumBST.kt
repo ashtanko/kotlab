@@ -18,7 +18,11 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-interface RangeSumStrategy {
+/**
+ * 938. Range Sum of BST
+ * @link https://leetcode.com/problems/range-sum-of-bst/description/
+ */
+fun interface RangeSumStrategy {
     fun perform(root: TreeNode?, left: Int, right: Int): Int
 }
 
