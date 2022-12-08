@@ -16,16 +16,19 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class LeafSimilarTreesTest {
+abstract class LeafSimilarTreesTest<out T : LeafSimilarTrees>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<TreeNode, TreeNode>, Boolean>> {
-            return listOf(
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
                 TreeNode(3).apply {
                     left = TreeNode(5).apply {
                         left = TreeNode(6)
@@ -37,7 +40,8 @@ internal class LeafSimilarTreesTest {
                         left = TreeNode(9)
                         right = TreeNode(8)
                     }
-                } to TreeNode(3).apply {
+                },
+                TreeNode(3).apply {
                     left = TreeNode(5).apply {
                         left = TreeNode(6)
                         right = TreeNode(7)
@@ -49,31 +53,48 @@ internal class LeafSimilarTreesTest {
                             left = TreeNode(9)
                         }
                     }
-                } to true,
-                TreeNode(1) to TreeNode(1) to true,
-                TreeNode(2) to TreeNode(2) to true,
+                },
+                true,
+            ),
+            Arguments.of(
+                TreeNode(1),
+                TreeNode(1),
+                true,
+            ),
+            Arguments.of(
+                TreeNode(2),
+                TreeNode(2),
+                true,
+            ),
+            Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
-                } to TreeNode(2).apply {
+                },
+                TreeNode(2).apply {
                     left = TreeNode(2)
-                } to true,
+                },
+                true,
+            ),
+            Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
                     right = TreeNode(3)
-                } to TreeNode(1).apply {
+                },
+                TreeNode(1).apply {
                     left = TreeNode(3)
                     right = TreeNode(2)
-                } to false,
-            )
-        }
+                },
+                false,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `leaf similar trees test`(testCase: Pair<Pair<TreeNode, TreeNode>, Boolean>) {
-        val (data, expected) = testCase
-        val (root1, root2) = data
-        val actual = leafSimilar(root1, root2)
-        assertEquals(expected, actual)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `leaf similar trees test`(root1: TreeNode?, root2: TreeNode?, expected: Boolean) {
+        val actual = strategy.leafSimilar(root1, root2)
+        assertThat(actual).isEqualTo(expected)
     }
 }
+
+class LeafSimilarDFSTest : LeafSimilarTreesTest<LeafSimilarTrees>(LeafSimilarDFS())
