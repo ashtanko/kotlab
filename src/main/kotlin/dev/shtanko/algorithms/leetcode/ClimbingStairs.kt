@@ -19,7 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-interface ClimbingStairsStrategy {
+/**
+ * 70. Climbing Stairs
+ * @link https://leetcode.com/problems/climbing-stairs/description/
+ */
+fun interface ClimbingStairsStrategy {
     fun perform(n: Int): Int
 }
 
