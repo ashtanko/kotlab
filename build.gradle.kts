@@ -39,7 +39,7 @@ plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.pitest)
-    alias(libs.plugins.kt.serializatin)
+    alias(libs.plugins.serialization)
     kotlin("kapt") version "1.7.20"
 }
 
@@ -256,5 +256,7 @@ dependencies {
     testImplementation(libs.logback.classic)
     testImplementation(libs.rxjava)
     testImplementation(libs.junit.benchmarks)
+    testImplementation(libs.kotlin.serialization.json)
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation("com.squareup.okhttp3:mockwebserver:5.0.0-alpha.10")
 }

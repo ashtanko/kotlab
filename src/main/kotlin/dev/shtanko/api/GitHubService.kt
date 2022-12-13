@@ -22,6 +22,8 @@ import java.util.Base64
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -82,11 +84,8 @@ private const val ACCEPT_HEADER = "Accept"
 private const val ACCEPT_HEADER_VALUE = "application/vnd.github.v3+json"
 private const val AUTH_BASIC = "Basic %s"
 
-@OptIn(ExperimentalSerializationApi::class)
-fun createGitHubService(username: String, password: String): GitHubService {
-    val authToken =
-        format(AUTH_BASIC, Base64.getEncoder().encode("$username:$password".toByteArray()).toString(Charsets.UTF_8))
-    val httpClient = OkHttpClient.Builder()
+fun createHttpClient(authToken: String): OkHttpClient {
+    return OkHttpClient.Builder()
         .addInterceptor { chain ->
             val original = chain.request()
             val builder = original.newBuilder()
@@ -96,12 +95,28 @@ fun createGitHubService(username: String, password: String): GitHubService {
             chain.proceed(request)
         }
         .build()
+}
 
+@OptIn(ExperimentalSerializationApi::class)
+fun createRetrofit(httpClient: OkHttpClient, baseUrl: HttpUrl = BASE_URL.toHttpUrl()): Retrofit {
     val contentType = JSON_CONTENT_TYPE.toMediaType()
-    val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+    return Retrofit.Builder()
+        .baseUrl(baseUrl)
         .addConverterFactory(json.asConverterFactory(contentType))
         .client(httpClient)
         .build()
+}
+
+fun createGitHubService(
+    username: String,
+    password: String,
+    httpClient: OkHttpClient = createHttpClient(
+        format(
+            AUTH_BASIC,
+            Base64.getEncoder().encode("$username:$password".toByteArray()).toString(Charsets.UTF_8),
+        ),
+    ),
+    retrofit: Retrofit = createRetrofit(httpClient),
+): GitHubService {
     return retrofit.create(GitHubService::class.java)
 }

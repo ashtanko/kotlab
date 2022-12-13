@@ -12,7 +12,7 @@ kapt = "1.7.20"
 slf4j = "1.7.36"
 rxjava = "3.1.5"
 rxkotlin = "3.0.1"
-lincheck = "2.14.1"
+lincheck = "2.16"
 serialization = "1.4.1"
 retrofit = "2.9.0"
 serializationconv = "0.8.0"
@@ -74,7 +74,7 @@ hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
 
 [plugins]
 kt-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kt-serializatin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kapt = { id = "kapt", version.ref = "kapt" }
