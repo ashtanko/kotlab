@@ -26,6 +26,7 @@ internal class InheritanceViolationTest {
         val s = InheritanceInstrumentedHashSet<String>()
         s.addAll(listOf("Snap", "Crackle", "Pop"))
         val actual = s.getAddCount()
-        assertEquals(6, actual) // Should be 3
+        val wrongExpectedResult = 6 // should be 3
+        assertEquals(wrongExpectedResult, actual)
     }
 }

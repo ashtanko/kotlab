@@ -26,6 +26,6 @@ internal class CompositionSolutionTest {
         val s = CompositionInstrumentedHashSet<String>(TreeSet())
         s.addAll(listOf("Snap", "Crackle", "Pop"))
         val actual = s.getAddCount()
-        assertEquals(3, actual) // Right value is 3, composition working correctly
+        assertEquals(3, actual) // right value is 3, composition working correctly
     }
 }

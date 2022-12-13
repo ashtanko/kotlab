@@ -25,8 +25,8 @@ open class ForwardingSet<E>(set: MutableSet<E>) : MutableSet<E> {
     override fun clear() = s.clear()
     override fun iterator(): MutableIterator<E> = s.iterator()
     override fun remove(element: E): Boolean = s.remove(element)
-    override fun removeAll(elements: Collection<E>) = s.removeAll(elements)
-    override fun retainAll(elements: Collection<E>) = s.retainAll(elements)
+    override fun removeAll(elements: Collection<E>) = s.removeAll(elements.toSet())
+    override fun retainAll(elements: Collection<E>) = s.retainAll(elements.toSet())
     override val size: Int
         get() = s.size
 
