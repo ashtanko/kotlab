@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package dev.shtanko.collections
+package dev.shtanko.collections.concurrent
 
-import java.util.Hashtable
+import java.util.concurrent.ConcurrentMap
+import java.util.concurrent.ConcurrentSkipListMap
 import org.jetbrains.kotlinx.lincheck.LinChecker
 import org.jetbrains.kotlinx.lincheck.LoggingLevel
 import org.jetbrains.kotlinx.lincheck.annotations.Operation
@@ -29,9 +30,9 @@ import org.junit.jupiter.api.Test
 
 @StressCTest(minimizeFailedScenario = false)
 @Param(name = "key", gen = IntGen::class, conf = "1:5")
-internal class HashtableLinearizabilityTest : VerifierState() {
+internal class SkipListMapLinearizabilityTest : VerifierState() {
 
-    private val map: MutableMap<Int, Int> = Hashtable()
+    private val map: ConcurrentMap<Int, Int> = ConcurrentSkipListMap()
 
     @Operation
     fun put(@Param(name = "key") key: Int, value: Int): Int? {
@@ -49,7 +50,7 @@ internal class HashtableLinearizabilityTest : VerifierState() {
             .iterations(5)
             .threads(3)
             .logLevel(LoggingLevel.INFO)
-        LinChecker.check(HashtableLinearizabilityTest::class.java, opts)
+        LinChecker.check(SkipListMapLinearizabilityTest::class.java, opts)
     }
 
     override fun extractState(): Any {

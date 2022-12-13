@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package dev.shtanko.collections
+package dev.shtanko.collections.concurrent
 
-import java.util.concurrent.ConcurrentHashMap
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
 import org.jetbrains.kotlinx.lincheck.LinChecker
 import org.jetbrains.kotlinx.lincheck.LoggingLevel
 import org.jetbrains.kotlinx.lincheck.annotations.Operation
@@ -25,34 +26,40 @@ import org.jetbrains.kotlinx.lincheck.paramgen.IntGen
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressCTest
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
 import org.jetbrains.kotlinx.lincheck.verifier.VerifierState
+import org.jetbrains.kotlinx.lincheck.verifier.linearizability.LinearizabilityVerifier
 import org.junit.jupiter.api.Test
 
-@StressCTest(minimizeFailedScenario = false)
-@Param(name = "key", gen = IntGen::class, conf = "1:5")
-internal class HashMapLinearizabilityTest : VerifierState() {
-
-    private val map: MutableMap<Int, Int> = ConcurrentHashMap()
+@Param(name = "value", gen = IntGen::class, conf = "1:5")
+@StressCTest(verifier = LinearizabilityVerifier::class, actorsAfter = 0)
+internal class ChanelLinearizabilityTest : VerifierState() {
+    private val ch = Channel<Int>(capacity = 3)
 
     @Operation
-    fun put(@Param(name = "key") key: Int, value: Int): Int? {
-        return map.put(key, value)
+    suspend fun send(@Param(name = "value") value: Int) {
+        ch.send(value)
     }
 
     @Operation
-    operator fun get(@Param(name = "key") key: Int): Int? {
-        return map[key]
-    }
+    suspend fun receive() = ch.receive()
 
     @Test
-    internal fun test() {
+    fun `run test`() {
         val opts = StressOptions()
-            .iterations(5)
+            .iterations(3)
             .threads(3)
             .logLevel(LoggingLevel.INFO)
-        LinChecker.check(HashMapLinearizabilityTest::class.java, opts)
+        LinChecker.check(ChanelLinearizabilityTest::class.java, opts)
     }
 
+//    @Operation
+//    internal fun close() = ch.close()
+
+    // state = elements in the channel + closed flag
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun extractState(): Any {
-        return map
+        val elements = mutableListOf<Int>()
+        while (!ch.isEmpty) elements.add(ch.tryReceive().getOrNull()!!)
+        val closed = ch.isClosedForSend
+        return elements to closed
     }
 }
