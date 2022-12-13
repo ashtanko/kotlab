@@ -42,6 +42,12 @@ class CoroutinesMergeSortTest : TestBase() {
             Arguments.of(
                 100_000.genData(),
             ),
+            Arguments.of(
+                500_000.genData(),
+            ),
+            Arguments.of(
+                1000_000.genData(),
+            ),
         )
 
         private fun Int.genData(): Pair<IntArray, IntArray> {

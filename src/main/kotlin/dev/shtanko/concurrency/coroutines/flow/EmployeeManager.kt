@@ -16,18 +16,10 @@
 
 package dev.shtanko.concurrency.coroutines.flow
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flow
 
 object EmployeeManager {
-
-    @ExperimentalCoroutinesApi
-    @FlowPreview
-    suspend fun getHighQualityEmployees() {
-        // TODO
-    }
 
     suspend fun getEmployee(id: Int) = flow {
         getEmployees().asFlow().collect {
