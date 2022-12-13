@@ -48,15 +48,13 @@ class WordSearchShort : WordSearch {
             return false
         }
         board[y][x] = (board[y][x].code xor HALF_OF_BYTE).toChar()
-        val exist = (
-            exist(board, y, x + 1, word, i + 1) || exist(board, y, x - 1, word, i + 1) || exist(
-                board,
-                y + 1,
-                x,
-                word,
-                i + 1,
-            ) || exist(board, y - 1, x, word, i + 1)
-            )
+        val exist = exist(board, y, x + 1, word, i + 1) || exist(board, y, x - 1, word, i + 1) || exist(
+            board,
+            y + 1,
+            x,
+            word,
+            i + 1,
+        ) || exist(board, y - 1, x, word, i + 1)
         board[y][x] = (board[y][x].code xor HALF_OF_BYTE).toChar()
         return exist
     }

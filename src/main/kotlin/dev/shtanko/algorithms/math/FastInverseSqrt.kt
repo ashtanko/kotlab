@@ -50,7 +50,7 @@ class FastInverseSqrtImpl : FastInverseSqrt {
         i = WTF - i shr 1 // what the luck? // initial guess for Newton's method
         x = java.lang.Float.intBitsToFloat(i)
         // evil floating point bit level hacking, one round of Newton's method
-        x *= (THREEHALFS.toFloat() - xhalf * x * x)
+        x *= THREEHALFS.toFloat() - xhalf * x * x
         return x
     }
 
@@ -61,7 +61,7 @@ class FastInverseSqrtImpl : FastInverseSqrt {
         i = WTFD - i shr 1 // what the duck?
         x = java.lang.Double.longBitsToDouble(i)
         for (it in 0..3) {
-            x *= (THREEHALFS - xhalf * x * x) // evil floating point bit level hacking
+            x *= THREEHALFS - xhalf * x * x // evil floating point bit level hacking
         }
         x *= number
         return x

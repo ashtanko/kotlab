@@ -164,7 +164,8 @@ class NetworkDelayTimeDijkstra : NetworkDelayTime {
             val node = minHeap.poll()
             node.neighbors.forEach { graphNode ->
                 val newDist = (distance[node.id] ?: 0) + (weight[Pair(node.id, graphNode.id)] ?: 0)
-                if ((distance[graphNode.id] ?: 0) > newDist) {
+                val safeDist = distance[graphNode.id] ?: 0
+                if (safeDist > newDist) {
                     distance[graphNode.id] = newDist
                     graph[graphNode.id]?.let { minHeap.offer(it) }
                 }

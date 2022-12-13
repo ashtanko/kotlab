@@ -45,7 +45,7 @@ object EcommerceApp {
                         "4 - Memory" + "\n",
                 )
                 val choice = reader.readLine().toInt()
-                cost = (priceOnProducts[choice]) ?: 0
+                cost = priceOnProducts[choice] ?: 0
                 print("Count: ")
                 val count = reader.readLine().toInt()
                 order.totalCost = cost * count
@@ -62,7 +62,7 @@ object EcommerceApp {
 
                 // Client creates different strategies based on input from user,
                 // application configuration, etc.
-                strategy = if ((paymentMethod == "1")) {
+                strategy = if (paymentMethod == "1") {
                     PayByPayPal()
                 } else {
                     PayByCreditCard()

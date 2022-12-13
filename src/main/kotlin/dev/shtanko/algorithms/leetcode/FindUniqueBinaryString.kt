@@ -46,6 +46,6 @@ class FindUniqueBinaryStringStream : FindUniqueBinaryString {
 
 class FindUniqueBinaryStringOneLine : FindUniqueBinaryString {
     override fun perform(nums: Array<String>): String {
-        return (nums.indices).joinToString("") { i -> if (nums[i][i] == '0') "1" else "0" }
+        return nums.indices.joinToString("") { i -> if (nums[i][i] == '0') "1" else "0" }
     }
 }

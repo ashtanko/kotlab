@@ -28,7 +28,7 @@ interface SumOfFlooredPairs {
 
 class SumOfFlooredPairsBF : SumOfFlooredPairs {
     override fun perform(nums: IntArray): Int {
-        val counts = IntArray((MAX + 1))
+        val counts = IntArray(MAX + 1)
         for (num in nums) {
             ++counts[num]
         }

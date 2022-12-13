@@ -28,7 +28,7 @@ class NotDivisibleNumberBruteForce : NotDivisibleNumber {
         val primes = prime.sumOf { n / it }
         val a = numbersA.sumOf { n / it }
         val b = numbersB.sumOf { n / it } - n / LAST
-        return n - (primes - (a) + b)
+        return n - primes - (a + b)
     }
 
     companion object {

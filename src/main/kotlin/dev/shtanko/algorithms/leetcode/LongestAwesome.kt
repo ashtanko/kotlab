@@ -35,7 +35,7 @@ class LongestAwesomeImpl : LongestAwesome {
         dp[0] = -1
         for (i in s.indices) {
             val ch = s[i]
-            mask = mask xor (1 shl (ch - '0'))
+            mask = mask xor 1 shl (ch - '0')
             res = max(res, i - dp[mask])
             for (j in 0..9) {
                 res = max(res, i - dp[mask xor (1 shl j)])

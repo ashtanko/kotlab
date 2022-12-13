@@ -71,7 +71,8 @@ class PalindromePairsTrie : PalindromePairs {
     ) {
         var node: TrieNode? = root
         for (j in 0 until words[i].length) {
-            if ((node?.index ?: -1) >= 0 && node?.index != i && isPalindrome(words[i], j, words[i].length - 1)) {
+            val safeIdx = node?.index ?: -1
+            if (safeIdx >= 0 && node?.index != i && isPalindrome(words[i], j, words[i].length - 1)) {
                 res.add(mutableListOf(i, node?.index ?: -1))
             }
             node = node?.next?.get(words[i][j].code - 'a'.code)

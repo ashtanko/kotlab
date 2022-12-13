@@ -186,7 +186,7 @@ interface Contributors : CoroutineScope {
     ) {
         val time = if (startTime != null) {
             val time = System.currentTimeMillis() - startTime
-            "${(time / MILLIS)}.${time % MILLIS / H} sec"
+            "${time / MILLIS}.${time % MILLIS / H} sec"
         } else {
             ""
         }

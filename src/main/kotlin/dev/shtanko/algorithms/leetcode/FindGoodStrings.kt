@@ -69,7 +69,7 @@ class FindGoodStringsDFS : FindGoodStrings {
                 j++
             }
             res += dfs(
-                i + 1, j, leftBound && (c == from), rightBound && c == to,
+                i + 1, j, leftBound && c == from, rightBound && c == to,
                 n, s1, s2, evil, lps, dp,
             )
             res %= MOD

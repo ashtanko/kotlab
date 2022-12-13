@@ -73,7 +73,7 @@ class ValidParenthesisStringDP : ValidParenthesisString {
 
         for (i in 0 until n) {
             if (s[i] == '*') dp[i][i] = true
-            val local = (s[i] == '(' || s[i] == '*')
+            val local = s[i] == '(' || s[i] == '*'
             if (i < n - 1 && local && (s[i + 1] == ')' || s[i + 1] == '*')) {
                 dp[i][i + 1] = true
             }

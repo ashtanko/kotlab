@@ -43,7 +43,7 @@ class KInversePairsArrayRecursion : KInversePairsArray {
         if (memo[n][k] != null) return memo[n][k] ?: -1
         var inv = 0
         for (i in 0..min(k, n - 1)) {
-            inv = ((inv + perform(n - 1, k - i)) % MOD)
+            inv = (inv + perform(n - 1, k - i)) % MOD
         }
         memo[n][k] = inv
         return inv

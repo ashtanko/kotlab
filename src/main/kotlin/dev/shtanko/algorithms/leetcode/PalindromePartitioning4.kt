@@ -36,7 +36,11 @@ class PalindromePartitioning4DP : PalindromePartitioning4 {
         for (i in n - 1 downTo 0) {
             for (j in i until n) {
                 if (arr[i] == arr[j]) {
-                    dp[i][j] = (if (i + 1 <= j - 1) dp[i + 1][j - 1] else true)
+                    dp[i][j] = if (i + 1 <= j - 1) {
+                        dp[i + 1][j - 1]
+                    } else {
+                        true
+                    }
                 } else {
                     dp[i][j] = false
                 }
