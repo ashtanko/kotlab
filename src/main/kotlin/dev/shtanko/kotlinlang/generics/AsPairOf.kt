@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oleksii Shtanko
+ * Copyright 2022 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,7 @@
 
 package dev.shtanko.kotlinlang.generics
 
-fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T>
-    where T : Comparable<T>,
-          T : Cloneable {
-    return list.filter { it > threshold }.map { it }
+inline fun <reified A, reified B> Pair<*, *>.asPairOf(): Pair<A, B>? {
+    if (first !is A || second !is B) return null
+    return first as A to second as B
 }
