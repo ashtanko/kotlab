@@ -17,36 +17,37 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class PopulatingNextRightPointersTest<out T : PopulatingNextRightPointers>(private val strategy: T) {
+abstract class CountPairsTest<out T : CountPairs>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                TreeLinkNode(1).apply {
-                    left = TreeLinkNode(2).apply {
-                        left = TreeLinkNode(4)
-                        right = TreeLinkNode(5)
-                    }
-                    right = TreeLinkNode(3).apply {
-                        right = TreeLinkNode(7)
-                    }
-                },
+                intArrayOf(1, 3, 5, 7, 9),
+                4,
             ),
             Arguments.of(
-                null,
-                null,
+                intArrayOf(1, 1, 1, 3, 3, 3, 7),
+                15,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `connect test`(root: TreeLinkNode?, expected: TreeLinkNode?) {
-        // TODO
+    fun `count pairs test`(deliciousness: IntArray, expected: Int) {
+        val actual = strategy.perform(deliciousness)
+        assertThat(actual).isEqualTo(expected)
     }
 }
+
+class CountPairsTwoSumTest : CountPairsTest<CountPairs>(CountPairsTwoSum())
