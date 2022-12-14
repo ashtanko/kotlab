@@ -40,6 +40,22 @@ abstract class SortArrayByParityTest<out T : SortArrayByParity>(private val stra
                 intArrayOf(0),
                 intArrayOf(0),
             ),
+            Arguments.of(
+                intArrayOf(1),
+                intArrayOf(1),
+            ),
+            Arguments.of(
+                intArrayOf(2, 2),
+                intArrayOf(2, 2),
+            ),
+            Arguments.of(
+                intArrayOf(3, 3),
+                intArrayOf(3, 3),
+            ),
+            Arguments.of(
+                intArrayOf(2, 2, 3),
+                intArrayOf(2, 2, 3),
+            ),
         )
     }
 
