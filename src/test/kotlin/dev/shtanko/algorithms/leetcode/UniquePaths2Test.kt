@@ -29,6 +29,72 @@ internal abstract class UniquePaths2Test<out T : UniquePaths2>(private val strat
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 arrayOf(
+                    intArrayOf(0),
+                    intArrayOf(0),
+                ),
+                1,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1),
+                    intArrayOf(1),
+                    intArrayOf(1),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0),
+                    intArrayOf(1, 0),
+                    intArrayOf(1, 0),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0),
+                    intArrayOf(0, 0),
+                    intArrayOf(0, 0),
+                ),
+                3,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 1),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 1),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0),
+                    intArrayOf(0, 0),
+                ),
+                2,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0),
+                    intArrayOf(1, 0),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                    intArrayOf(1, 1),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
                     intArrayOf(0, 0, 0),
                     intArrayOf(0, 1, 0),
                     intArrayOf(0, 0, 0),
