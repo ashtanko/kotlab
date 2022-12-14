@@ -16,30 +16,69 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class StringToIntegerTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<String, Int>> {
-            return listOf(
-                "" to 0,
-                "0" to 0,
-                "4" to 4,
-                "-3" to -3,
-                "435" to 435,
-            )
-        }
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "",
+                0,
+            ),
+            Arguments.of(
+                " ",
+                0,
+            ),
+            Arguments.of(
+                " 1",
+                1,
+            ),
+            Arguments.of(
+                "1 ",
+                1,
+            ),
+            Arguments.of(
+                "0",
+                0,
+            ),
+            Arguments.of(
+                "4",
+                4,
+            ),
+            Arguments.of(
+                "-3",
+                -3,
+            ),
+            Arguments.of(
+                "435",
+                435,
+            ),
+            Arguments.of(
+                "${Int.MAX_VALUE}",
+                Int.MAX_VALUE,
+            ),
+            Arguments.of(
+                "${Int.MIN_VALUE}",
+                Int.MIN_VALUE,
+            ),
+            Arguments.of(
+                "A",
+                0,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `string to int test`(testCase: Pair<String, Int>) {
-        val (str, expected) = testCase
-        val actual = str.atoi()
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `string to int test`(s: String, expected: Int) {
+        val actual = s.atoi()
         assertEquals(expected, actual)
     }
 }
