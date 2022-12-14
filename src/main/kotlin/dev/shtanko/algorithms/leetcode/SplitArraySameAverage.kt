@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
-
 private fun IntArray.check(leftSum: Int, leftNum: Int, startIndex: Int): Boolean {
     if (leftNum == 0) return leftSum == 0
     if (this[startIndex] > leftSum / leftNum) return false
@@ -31,8 +29,10 @@ private fun IntArray.check(leftSum: Int, leftNum: Int, startIndex: Int): Boolean
 fun IntArray.splitArraySameAverage(): Boolean {
     if (this.size == 1) return false
     var sumA = 0
-    for (a in this) sumA += a
-    Arrays.sort(this)
+    for (a in this) {
+        sumA += a
+    }
+    this.sort()
     for (lenOfB in 1..this.size / 2) {
         if (sumA * lenOfB % this.size == 0) {
             if (this.check(sumA * lenOfB / this.size, lenOfB, 0)) return true

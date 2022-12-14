@@ -28,8 +28,71 @@ internal class SplitArrayWithSameAverageTest {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(intArrayOf(), false),
-            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8), true),
+            Arguments.of(
+                intArrayOf(),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(-1),
+                false,
+            ),
+
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 4),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(3, 2, 1),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(3, 2),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(3, 3),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(3, 3, 3),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(3, 3, 1),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 3, 3),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(3, 1, 3),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(-1, -2, -3, -4, -5, -6, -7, -8),
+                true,
+            ),
         )
     }
 
