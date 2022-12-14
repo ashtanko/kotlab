@@ -16,44 +16,81 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class SameTreeTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<TreeNode, TreeNode>, Boolean>> {
-            return listOf(
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
                     right = TreeNode(3)
-                } to TreeNode(1).apply {
+                },
+                TreeNode(1).apply {
                     left = TreeNode(2)
                     right = TreeNode(3)
-                } to true,
+                },
+                true,
+            ),
+            Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
-                } to TreeNode(1).apply {
+                },
+                TreeNode(1).apply {
                     right = TreeNode(2)
-                } to false,
+                },
+                false,
+            ),
+            Arguments.of(
                 TreeNode(1).apply {
                     left = TreeNode(2)
                     right = TreeNode(2)
-                } to TreeNode(1).apply {
+                },
+                TreeNode(1).apply {
                     right = TreeNode(2)
                     left = TreeNode(1)
-                } to false,
-            )
-        }
+                },
+                false,
+            ),
+            Arguments.of(
+                null,
+                null,
+                true,
+            ),
+            Arguments.of(
+                TreeNode(1),
+                null,
+                false,
+            ),
+            Arguments.of(
+                null,
+                TreeNode(1),
+                false,
+            ),
+            Arguments.of(
+                TreeNode(1),
+                TreeNode(1),
+                true,
+            ),
+            Arguments.of(
+                TreeNode(1),
+                TreeNode(2),
+                false,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `is same test test`(testCase: Pair<Pair<TreeNode, TreeNode>, Boolean>) {
-        val (data, expected) = testCase
-        val actual = data.isSame()
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `is same test test`(t1: TreeNode?, t2: TreeNode?, expected: Boolean) {
+        val actual = (t1 to t2).isSame()
         assertEquals(expected, actual)
     }
 }
