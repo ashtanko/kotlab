@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency.coroutines.sort
+package dev.shtanko.algorithms.sorts
 
-import dev.shtanko.algorithms.sorts.isSorted
-import dev.shtanko.concurrency.TestBase
-import dev.shtanko.utils.toRandomArray
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -27,43 +24,56 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class CoroutinesMergeSortTest : TestBase() {
-
-    private class InputArgumentsProvider : ArgumentsProvider {
+class IsSortedTest {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                1000.genData(),
+                intArrayOf(),
+                true,
             ),
             Arguments.of(
-                5000.genData(),
+                intArrayOf(0),
+                true,
             ),
             Arguments.of(
-                10_000.genData(),
+                intArrayOf(0, 1),
+                true,
             ),
             Arguments.of(
-                100_000.genData(),
+                intArrayOf(-1),
+                true,
             ),
             Arguments.of(
-                500_000.genData(),
+                intArrayOf(-2, -1),
+                true,
             ),
             Arguments.of(
-                1000_000.genData(),
+                intArrayOf(1, 2, 3),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(2, 1),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(3, 2, 1),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(3, 6, 9, 1),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(-3, -2, -7, -1),
+                false,
             ),
         )
-
-        private fun Int.genData(): Pair<IntArray, IntArray> {
-            val arr = this.toRandomArray()
-            val expected = arr.sorted().toIntArray()
-            return arr to expected
-        }
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `test merge sort`(data: Pair<IntArray, IntArray>) = runTest {
-        val (array, expected) = data
-        val actual = CoroutinesMergeSort().perform(array)
+    fun `is sorted test`(arr: IntArray, expected: Boolean) {
+        val actual = arr.isSorted()
         assertThat(actual).isEqualTo(expected)
-        assertThat(actual.isSorted()).isTrue()
     }
 }
