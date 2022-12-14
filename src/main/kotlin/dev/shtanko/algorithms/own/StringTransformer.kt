@@ -37,7 +37,7 @@ class StringTransformer(private val ringBuffer: RingBuffer) {
      *       [0, -128, n]  ... [1, -128, n]
      *        ^                 ^
      *        |                 |
-     *  [ELEMENT_MARK]  [LAST_ELEMENT_MARK]
+     *      start             last
      *
      * For example:
      * The first chunk:

@@ -48,10 +48,10 @@ internal class StringTransformerTest {
     internal fun `one full chunk and half test`() {
         val string = "{\"ev\":\"Lorem Ipsum\"}"
         val actual = transformer.transform(string)
-        val expected = Pair(0.toByte(), 1.toByte())
+        val expected = 0.toByte() to 1.toByte()
         val first = actual.first()[0]
         val last = actual.last()[0]
-        val actualResult = Pair(first, last)
+        val actualResult = first to last
         assertEquals(expected, actualResult)
     }
 
