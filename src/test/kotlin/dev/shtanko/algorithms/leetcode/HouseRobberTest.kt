@@ -16,29 +16,52 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, Int>> {
-            return listOf(
-                intArrayOf(1, 2, 3, 1) to 4,
-                intArrayOf(2, 7, 9, 3, 1) to 12,
-                intArrayOf(4, 8, 15, 16, 23, 42) to 66,
-                intArrayOf(1, 1, 1, 1, 1, 1) to 3,
-                intArrayOf(1, 0, 1, 0, 1, 0, 1) to 4,
-            )
-        }
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 1),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(2, 7, 9, 3, 1),
+                12,
+            ),
+            Arguments.of(
+                intArrayOf(4, 8, 15, 16, 23, 42),
+                66,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1, 1),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 0, 1, 0, 1, 0, 1),
+                4,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `robber test`(testCase: Pair<IntArray, Int>) {
-        val (arr, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `robber test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
