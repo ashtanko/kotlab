@@ -47,6 +47,26 @@ abstract class LongestCommonSubsequenceTest<out T : LongestCommonSubsequence>(pr
                 "def",
                 0,
             ),
+            Arguments.of(
+                "",
+                "",
+                0,
+            ),
+            Arguments.of(
+                "q",
+                "",
+                0,
+            ),
+            Arguments.of(
+                "",
+                "a",
+                0,
+            ),
+            Arguments.of(
+                "ab",
+                "abc",
+                2,
+            ),
         )
     }
 
