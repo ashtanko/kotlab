@@ -18,7 +18,10 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-// Implement Queue using Stacks
+/**
+ * 232. Implement Queue using Stacks
+ * @link https://leetcode.com/problems/implement-queue-using-stacks/description/
+ */
 internal class MyQueue {
 
     private val addStack = Stack<Int>()
