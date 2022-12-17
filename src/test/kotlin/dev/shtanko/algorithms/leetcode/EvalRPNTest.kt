@@ -27,9 +27,26 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 abstract class EvalRPNTest<out T : EvalRPN>(private val solution: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(arrayOf("2", "1", "+", "3", "*"), 9),
-            Arguments.of(arrayOf("4", "13", "5", "/", "+"), 6),
-            Arguments.of(arrayOf("10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"), 22),
+            Arguments.of(
+                arrayOf("2", "1", "+", "3", "*"),
+                9,
+            ),
+            Arguments.of(
+                arrayOf("4", "13", "5", "/", "+"),
+                6,
+            ),
+            Arguments.of(
+                arrayOf("10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"),
+                22,
+            ),
+            Arguments.of(
+                arrayOf("1"),
+                1,
+            ),
+            Arguments.of(
+                arrayOf("2", "1", "-", "3", "*"),
+                3,
+            ),
         )
     }
 
