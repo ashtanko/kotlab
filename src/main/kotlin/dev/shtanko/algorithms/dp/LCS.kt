@@ -19,6 +19,19 @@ package dev.shtanko.algorithms.dp
 /**
  * The longest common subsequence.
  */
-class LCS {
-    // TODO
+interface LCS {
+    fun perform(x: String, y: String, m: Int, n: Int): Int
+}
+
+class LCSRecursive : LCS {
+    override fun perform(x: String, y: String, m: Int, n: Int): Int {
+        if (m == 0 || n == 0) return 0
+        val xArr = x.toCharArray()
+        val yArr = y.toCharArray()
+        return if (xArr[m - 1] == yArr[n - 1]) {
+            1 + perform(x, y, m - 1, n - 1)
+        } else {
+            maxOf(perform(x, y, m, n - 1), perform(x, y, m - 1, n))
+        }
+    }
 }
