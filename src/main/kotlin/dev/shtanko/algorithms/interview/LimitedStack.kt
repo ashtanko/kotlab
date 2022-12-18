@@ -51,7 +51,7 @@ class StackOfStacks {
     }
 
     fun pop(): Int {
-        val topStack = stack.peek()!!
+        val topStack = stack.peek()
         val topValue = topStack.pop()
         if (topStack.isEmpty()) {
             stack.pop()

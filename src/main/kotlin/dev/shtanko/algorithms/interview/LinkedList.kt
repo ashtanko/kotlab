@@ -122,14 +122,14 @@ internal fun deleteCurrentNodeValue(node: Node) {
     var currentNode = node
 
     while (currentNode.next != null) {
-        val next = currentNode.next!!
-        currentNode.data = next.data
+        val next = currentNode.next
+        currentNode.data = next?.data ?: -1
 
-        if (next.next == null) {
+        if (next?.next == null) {
             currentNode.next = null
         }
 
-        currentNode = next
+        currentNode = next ?: Node(-1)
     }
 }
 
@@ -204,7 +204,7 @@ internal fun add(a: LinkedList, b: LinkedList): LinkedList {
         tail.next = placeNode
     }
 
-    return LinkedList(beforeHead.next!!)
+    return LinkedList(beforeHead.next ?: throw IllegalStateException("Node shouldn't be null"))
 }
 
 internal fun Node?.getData(): Int {

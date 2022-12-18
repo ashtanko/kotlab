@@ -27,10 +27,10 @@ class FibonacciOptimized {
         if (n == 0) return 0
         if (n == 1) return 1
         return when {
-            cache.containsKey(n) -> cache[n]!!
+            cache.containsKey(n) -> cache[n] ?: -1
             else -> {
                 cache[n] = perform(n - 1) + perform(n - 2)
-                cache[n]!!
+                cache[n] ?: -1
             }
         }
     }

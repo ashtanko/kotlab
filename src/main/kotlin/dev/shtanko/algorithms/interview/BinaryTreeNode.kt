@@ -27,8 +27,12 @@ class BinaryTreeNode(private val parent: BinaryTreeNode? = null) {
         val n = right.weight + left.weight
         val local = left.weight + right.weight + 1
         return when (getBetween(0 until local)) {
-            in (0 until left.weight) -> left.child!!.getRandom(getBetween)
-            in (left.weight until n) -> right.child!!.getRandom(getBetween)
+            in (0 until left.weight) -> left.child?.getRandom(getBetween)
+                ?: throw IllegalStateException("BinaryTreeNode is null")
+
+            in (left.weight until n) -> right.child?.getRandom(getBetween)
+                ?: throw IllegalStateException("BinaryTreeNode is null")
+
             else -> this
         }
     }
