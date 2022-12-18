@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import kotlin.math.min
 
 /**
@@ -30,8 +29,7 @@ interface StringCompression2 {
 class StringCompression2DP : StringCompression2 {
     override fun getLengthOfOptimalCompression(s: String, k: Int): Int {
         val n: Int = s.length
-        val dp = Array(n + 1) { IntArray(k + 1) }
-        for (i in dp) Arrays.fill(i, n)
+        val dp = Array(n + 1) { IntArray(k + 1) { n } }
         dp[0][0] = 0
 
         for (i in 1..n) {

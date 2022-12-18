@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import java.util.TreeSet
 import kotlin.math.min
 
@@ -34,8 +33,7 @@ class MakeArrayStrictlyIncreasingDP : MakeArrayStrictlyIncreasing {
         if (arr1.size == 1) return 0
         val ts = TreeSet<Int?>()
         for (element in arr2) ts.add(element)
-        val dp = Array(arr1.size + 1) { IntArray(arr1.size + 1) }
-        for (i in dp.indices) Arrays.fill(dp[i], Int.MAX_VALUE)
+        val dp = Array(arr1.size + 1) { IntArray(arr1.size + 1) { Int.MAX_VALUE } }
         dp[0][0] = Int.MIN_VALUE
 
         for (j in 1 until dp.size) {

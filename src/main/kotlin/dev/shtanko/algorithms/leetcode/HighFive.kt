@@ -17,7 +17,6 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.second
-import java.util.Arrays
 import java.util.PriorityQueue
 import java.util.TreeMap
 
@@ -70,7 +69,7 @@ class HighFivePriorityQueue : HighFiveStrategy {
 class HighFiveSort : HighFiveStrategy {
 
     override fun perform(items: Array<IntArray>): Array<IntArray> {
-        Arrays.sort(items) { t1, t2 ->
+        items.sortWith { t1, t2 ->
             // put item[id, score] with same id together
             // for each id/student, item[id, score] is ordered by score (increasing)
             if (t1[0] == t2[0]) {

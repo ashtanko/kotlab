@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import java.util.PriorityQueue
 import kotlin.math.max
 
@@ -33,7 +32,7 @@ interface ScheduleCourse3 {
  */
 class ScheduleCourse3Recursion : ScheduleCourse3 {
     override fun perform(courses: Array<IntArray>): Int {
-        Arrays.sort(courses) { a, b -> a[1] - b[1] }
+        courses.sortWith { a, b -> a[1] - b[1] }
         val memo = Array(courses.size) {
             arrayOfNulls<Int>(
                 courses[courses.size - 1][1] + 1,

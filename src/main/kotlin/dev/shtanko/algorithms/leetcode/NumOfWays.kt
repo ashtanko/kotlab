@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
-
 /**
  * 1569. Number of Ways to Reorder Array to Get Same BST
  * @Link https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/
@@ -82,8 +80,7 @@ class NumOfWaysImpl : NumOfWays {
         arr = Array(n + 1) { longArrayOf() }
 
         for (i in 0..n) {
-            arr[i] = LongArray(i + 1)
-            Arrays.fill(arr[i], 1)
+            arr[i] = LongArray(i + 1) { 1 }
             for (j in 1 until i) {
                 arr[i][j] = (arr[i - 1][j - 1] + arr[i - 1][j]) % MOD
             }

@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.math.min
@@ -98,7 +97,7 @@ class AlienDictionaryDFS : AlienDictionary {
 
     override fun alienOrder(words: Array<String>): String {
         val adj = Array(N) { BooleanArray(N) }
-        val visited = IntArray(N)
+        val visited = IntArray(N) { -1 }
         buildGraph(words, adj, visited)
 
         val sb = StringBuilder()
@@ -127,7 +126,6 @@ class AlienDictionaryDFS : AlienDictionary {
     }
 
     private fun buildGraph(words: Array<String>, adj: Array<BooleanArray>, visited: IntArray) {
-        Arrays.fill(visited, -1)
         if (words.isEmpty()) return
         var pre = words[0].toCharArray()
         for (k in pre.indices) visited[pre[k] - 'a'] = 0

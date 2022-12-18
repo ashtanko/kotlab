@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
-
 private const val MAX = 25
 
 interface StringPermutationStrategy {
@@ -72,7 +70,7 @@ class PermutationSorting : StringPermutationStrategy {
 
     private fun sort(s: String): String {
         val t = s.toCharArray()
-        Arrays.sort(t)
+        t.sort()
         return String(t)
     }
 }

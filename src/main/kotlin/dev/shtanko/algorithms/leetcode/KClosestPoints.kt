@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import java.util.PriorityQueue
 
 interface KClosestPointsStrategy {
@@ -46,7 +45,7 @@ class KClosestPointsSort : KClosestPointsStrategy {
         val n = points.size
         val dists = IntArray(n)
         for (i in 0 until n) dists[i] = points[i].getDistance()
-        Arrays.sort(dists)
+        dists.sort()
         val distK = dists[k - 1]
         val ans = Array(k) { IntArray(2) }
         var t = 0

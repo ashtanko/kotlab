@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import java.util.PriorityQueue
 import kotlin.math.min
 
@@ -49,8 +48,7 @@ class SuperUglyNumberRedundantMultiplication : SuperUglyNumberStrategy {
     override fun perform(n: Int, primes: IntArray): Int {
         val ugly = IntArray(n)
         val idx = IntArray(primes.size)
-        val values = IntArray(primes.size)
-        Arrays.fill(values, 1)
+        val values = IntArray(primes.size) { 1 }
 
         var next = 1
         for (i in 0 until n) {

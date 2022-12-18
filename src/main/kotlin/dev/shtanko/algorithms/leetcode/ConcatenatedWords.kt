@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
-
 /**
  * 472. Concatenated Words
  * @link https://leetcode.com/problems/concatenated-words/
@@ -28,7 +26,7 @@ interface ConcatenatedWords {
 
 class ConcatenatedWordsDP : ConcatenatedWords {
     override fun findAllConcatenatedWordsInADict(words: Array<String>): List<String> {
-        Arrays.sort(words) { w1, w2 -> w1.length - w2.length }
+        words.sortWith { w1, w2 -> w1.length - w2.length }
         val ans: MutableList<String> = ArrayList()
         val dict: MutableSet<String> = HashSet()
         for (w in words) {

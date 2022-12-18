@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
-
 /**
  * Given two arrays, write a function to compute their intersection.
  */
@@ -56,8 +54,8 @@ class IntersectionTwoSets : IntersectionStrategy {
 class IntersectionTwoPointers : IntersectionStrategy {
     override fun perform(p: Pair<IntArray, IntArray>): IntArray {
         val set: MutableSet<Int> = HashSet()
-        Arrays.sort(p.first)
-        Arrays.sort(p.second)
+        p.first.sort()
+        p.second.sort()
         var i = 0
         var j = 0
         while (i < p.first.size && j < p.second.size) {
@@ -92,7 +90,7 @@ class IntersectionTwoPointers : IntersectionStrategy {
 class IntersectionBinarySearch : IntersectionStrategy {
     override fun perform(p: Pair<IntArray, IntArray>): IntArray {
         val set: MutableSet<Int> = HashSet()
-        Arrays.sort(p.second)
+        p.second.sort()
         for (num in p.first) {
             if (binarySearch(p.second, num)) {
                 set.add(num)

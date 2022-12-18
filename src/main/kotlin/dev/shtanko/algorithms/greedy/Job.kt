@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.greedy
 
-import java.util.Arrays
-
 internal data class Job(
     var id: Char = ' ',
     var deadline: Int = 0,
@@ -29,7 +27,7 @@ internal data class Job(
 }
 
 internal fun Array<Job>.scheduleJobs(): MutableList<Char> {
-    Arrays.sort(this, Job())
+    sortWith(Job())
     val n = size
     val result = IntArray(n) // To store result (Sequence of jobs)
     val slot = BooleanArray(n) // To keep track of free time slots

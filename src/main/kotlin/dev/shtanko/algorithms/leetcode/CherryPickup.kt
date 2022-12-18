@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import kotlin.math.max
 import kotlin.math.min
 
@@ -39,10 +38,7 @@ class CherryPickupTopDown : CherryPickup {
     override fun perform(grid: Array<IntArray>): Int {
         this.grid = grid
         n = grid.size
-        memo = Array(n) { Array(n) { IntArray(n) } }
-        for (layer in memo) for (row in layer) {
-            Arrays.fill(row, Int.MIN_VALUE)
-        }
+        memo = Array(n) { Array(n) { IntArray(n) { Int.MIN_VALUE } } }
         return max(0, dp(0, 0, 0))
     }
 
@@ -82,16 +78,14 @@ class CherryPickupBottomUp : CherryPickup {
     override fun perform(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0
         val n: Int = grid.size
-        var dp = Array(n) { IntArray(n) }
-        for (row in dp) Arrays.fill(row, Int.MIN_VALUE)
+        var dp = Array(n) { IntArray(n) { Int.MIN_VALUE } }
         if (grid.isNotEmpty()) {
             if (grid.first().isEmpty()) return 0
         }
         dp.first()[0] = grid.first().first()
 
         for (t in 1..2 * n - 2) {
-            val dp2 = Array(n) { IntArray(n) }
-            for (row in dp2) Arrays.fill(row, Int.MIN_VALUE)
+            val dp2 = Array(n) { IntArray(n) { Int.MIN_VALUE } }
             for (i in max(0, t - (n - 1))..min(n - 1, t)) {
                 for (j in max(0, t - (n - 1))..min(n - 1, t)) {
                     if (grid[i][t - i] == -1 || grid[j][t - j] == -1) continue

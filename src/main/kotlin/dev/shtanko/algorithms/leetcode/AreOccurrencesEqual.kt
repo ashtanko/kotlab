@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
-
 /**
  * 1941. Check if All Characters Have Equal Number of Occurrences
  * link https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
@@ -40,7 +38,11 @@ class AreOccurrencesEqualBF : AreOccurrencesEqual {
     override fun perform(s: String): Boolean {
         val fr = IntArray(ARR_SIZE)
         s.chars().forEach { c -> fr[c - 'a'.code]++ }
-        return Arrays.stream(fr).filter { f -> f > 0 }.allMatch { f -> f == Arrays.stream(fr).max().asInt }
+        return fr.filter { f ->
+            f > 0
+        }.all { f ->
+            f == fr.max()
+        }
     }
 
     companion object {

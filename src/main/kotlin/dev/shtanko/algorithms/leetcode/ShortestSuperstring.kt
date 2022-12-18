@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import kotlin.math.min
 
 /**
@@ -81,9 +80,8 @@ object ShortestSuperstring {
 
     private fun overlap(n: Int, overlaps: Array<IntArray>): Pair<Array<IntArray>, Array<IntArray>> {
         val dp = Array(1 shl n) { IntArray(n) }
-        val parent = Array(1 shl n) { IntArray(n) }
+        val parent = Array(1 shl n) { IntArray(n) { -1 } }
         for (mask in 0 until (1 shl n)) {
-            Arrays.fill(parent[mask], -1)
             for (bit in 0 until n) if (mask shr bit and 1 > 0) {
                 // Let's try to find dp[mask][bit].  Previously, we had
                 // a collection of items represented by pmask.

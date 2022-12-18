@@ -17,7 +17,6 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.second
-import java.util.Arrays
 import kotlin.math.max
 
 /**
@@ -33,7 +32,7 @@ class RemoveCoveredIntervalsSort : RemoveCoveredIntervals {
         var res = 0
         var left = -1
         var right = -1
-        Arrays.sort(intervals) { a, b -> a[0] - b[0] }
+        intervals.sortWith { a, b -> a[0] - b[0] }
         for (v in intervals) {
             if (v[0] > left && v[1] > right) {
                 left = v[0]
@@ -49,9 +48,7 @@ class RemoveCoveredIntervalsSortLeft : RemoveCoveredIntervals {
     override fun perform(intervals: Array<IntArray>): Int {
         var res = 0
         var right = 0
-        Arrays.sort(
-            intervals,
-        ) { a: IntArray, b: IntArray ->
+        intervals.sortWith { a: IntArray, b: IntArray ->
             if (a.first() != b.first()) {
                 a.first() - b.first()
             } else {

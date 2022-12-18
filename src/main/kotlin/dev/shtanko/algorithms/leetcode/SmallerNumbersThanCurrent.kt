@@ -16,13 +16,12 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Arrays
 import java.util.TreeMap
 
 fun IntArray.smallerNumbersThanCurrentNaive(): IntArray {
     val map: MutableMap<Int, Int> = HashMap()
     val copy = this.clone()
-    Arrays.sort(copy)
+    copy.sort()
     for (i in indices) {
         map.putIfAbsent(copy[i], i)
     }
