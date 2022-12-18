@@ -13,25 +13,25 @@
 
 * 5,153 number of functions
 
-* 4,289 number of classes
+* 4,290 number of classes
 
 * 127 number of packages
 
-* 1,818 number of kt files
+* 1,819 number of kt files
 
 ## Complexity Report
 
-* 119,877 lines of code (loc)
+* 119,874 lines of code (loc)
 
-* 73,485 source lines of code (sloc)
+* 73,469 source lines of code (sloc)
 
-* 52,347 logical lines of code (lloc)
+* 52,354 logical lines of code (lloc)
 
-* 32,943 comment lines of code (cloc)
+* 32,959 comment lines of code (cloc)
 
-* 12,735 cyclomatic complexity (mcc)
+* 12,729 cyclomatic complexity (mcc)
 
-* 11,061 cognitive complexity
+* 11,053 cognitive complexity
 
 * 0 number of total code smells
 
@@ -43,4 +43,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2022-12-18 10:15:44 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2022-12-18 13:59:28 UTC

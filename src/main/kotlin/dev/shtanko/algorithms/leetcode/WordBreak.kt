@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.utils.Dp
+
 /**
  * 139. Word Break
  */
@@ -42,6 +44,7 @@ class WordBreakBruteForce : WordBreak {
     }
 }
 
+@Dp
 class WordBreakDP : WordBreak {
     override fun perform(s: String, wordDict: List<String>): Boolean {
         val dp = BooleanArray(s.length + 1)
