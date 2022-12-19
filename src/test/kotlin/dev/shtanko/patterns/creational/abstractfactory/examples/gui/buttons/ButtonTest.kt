@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.patterns.creational.abstractfactory.examples.gui.buttons
 
-/**
- * TODO
- */
-interface Template {
-    fun perform(): Int
-}
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
 
-class TemplateImpl : Template {
-    override fun perform(): Int = 0
+class ButtonTest {
+    @Test
+    fun `paint mac os button test`() {
+        Assertions.assertThat(MacOSButton().paint()).isEqualTo("You have created MacOSButton.")
+    }
+
+    @Test
+    fun `paint windows button test`() {
+        Assertions.assertThat(WindowsButton().paint()).isEqualTo("You have created WindowsButton.")
+    }
 }

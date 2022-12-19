@@ -29,21 +29,17 @@ interface RemoveVowels {
 class RemoveVowelsBruteForce : RemoveVowels {
     override fun perform(s: String): String {
         val vowels = charArrayOf('a', 'e', 'i', 'o', 'u')
-        val sb = StringBuilder()
-        for (str in s) {
-            if (!vowels.contains(str)) {
-                sb.append(str)
-            }
-        }
-        return sb.toString()
+        return s.filter { !vowels.contains(it) }
     }
 }
 
 class RemoveVowelsStringBuffer : RemoveVowels {
     override fun perform(s: String): String {
         val sb = StringBuffer(s.length)
-        for (c in s) {
-            if (c.isVowel().not()) sb.append(c)
+        s.filter {
+            it.isVowel().not()
+        }.forEach {
+            sb.append(it)
         }
         return sb.toString()
     }

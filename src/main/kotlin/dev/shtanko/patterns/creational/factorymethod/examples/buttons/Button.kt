@@ -17,6 +17,6 @@
 package dev.shtanko.patterns.creational.factorymethod.examples.buttons
 
 interface Button {
-    fun render()
+    fun render(): String
     fun onClick()
 }

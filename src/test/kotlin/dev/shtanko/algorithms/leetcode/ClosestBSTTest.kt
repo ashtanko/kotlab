@@ -44,6 +44,11 @@ abstract class ClosestBSTTest<out T : ClosestBST>(private val strategy: T) {
                 1,
             ),
             Arguments.of(
+                TreeNode(-1),
+                4.428571,
+                -1,
+            ),
+            Arguments.of(
                 TreeNode(22).apply {
                     left = TreeNode(18).apply {
                         right = TreeNode(19)

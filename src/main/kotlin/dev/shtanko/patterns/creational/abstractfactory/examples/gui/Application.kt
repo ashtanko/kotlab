@@ -32,8 +32,5 @@ class Application(factory: GUIFactory) {
         checkbox = factory.createCheckbox()
     }
 
-    fun paint() {
-        button.paint()
-        checkbox.paint()
-    }
+    fun paint(): String = "${button.paint()} ${checkbox.paint()}"
 }

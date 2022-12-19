@@ -17,9 +17,7 @@
 package dev.shtanko.patterns.creational.factorymethod.examples.buttons
 
 class WindowsButton : Button {
-    override fun render() {
-        println("Windows Button")
-    }
+    override fun render() = "Windows Button".apply(::println)
 
     override fun onClick() {
         println("On Click")

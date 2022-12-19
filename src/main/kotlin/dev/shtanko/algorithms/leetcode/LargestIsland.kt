@@ -81,7 +81,7 @@ class LargestIslandComponentSizes : LargestIsland {
     private val dr = intArrayOf(-1, 0, 1, 0)
     private val dc = intArrayOf(0, -1, 0, 1)
     private var grid: Array<IntArray> = arrayOf()
-    var n = 0
+    private var n = 0
 
     override fun perform(grid: Array<IntArray>): Int {
         this.grid = grid

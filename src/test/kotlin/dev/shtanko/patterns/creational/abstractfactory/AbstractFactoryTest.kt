@@ -22,11 +22,16 @@ import org.junit.jupiter.api.Test
 class AbstractFactoryTest {
 
     @Test
-    fun `abstract factory test`() {
+    fun `abstract orange factory test`() {
         val plantFactory = PlantFactory.createFactory<OrangePlant>()
         val plant = plantFactory.makePlant()
-        println("Created plant: $plant")
-
         assertThat(plant).isInstanceOf(OrangePlant::class.java)
+    }
+
+    @Test
+    fun `abstract apple factory test`() {
+        val plantFactory = PlantFactory.createFactory<ApplePlant>()
+        val plant = plantFactory.makePlant()
+        assertThat(plant).isInstanceOf(ApplePlant::class.java)
     }
 }

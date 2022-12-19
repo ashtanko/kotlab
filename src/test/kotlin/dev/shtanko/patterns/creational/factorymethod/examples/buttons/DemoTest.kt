@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.patterns.creational.factorymethod.examples.buttons
 
-/**
- * TODO
- */
-interface Template {
-    fun perform(): Int
-}
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-class TemplateImpl : Template {
-    override fun perform(): Int = 0
+class DemoTest {
+
+    @Test
+    fun `windows test`() {
+        assertThat(Demo.runExample("Windows 10")).isEqualTo("Windows Button")
+    }
+
+    @Test
+    fun `mac os x test`() {
+        assertThat(Demo.runExample("Mac OS X")).isEqualTo("<button>Test Button</button>")
+    }
 }

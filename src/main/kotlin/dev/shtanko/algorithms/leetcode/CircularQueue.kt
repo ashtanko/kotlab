@@ -62,5 +62,5 @@ class CircularQueue(val k: Int) {
         return this.count == this.capacity
     }
 
-    internal data class Node(var value: Int, var nextNode: Node? = null)
+    private data class Node(var value: Int, var nextNode: Node? = null)
 }

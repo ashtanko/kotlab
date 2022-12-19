@@ -18,11 +18,9 @@ package dev.shtanko.patterns.creational.abstractfactory.examples.gui
 
 import java.util.Locale
 
-private fun configureApplication(): Application {
+internal fun configureApplication(osName: String): Application {
     val app: Application
-    val factory: GUIFactory
-    val osName = System.getProperty("os.name").lowercase(Locale.getDefault())
-    factory = if (osName.contains("mac")) {
+    val factory: GUIFactory = if (osName.contains("mac")) {
         MacOSFactory()
     } else {
         WindowsFactory()
@@ -34,7 +32,8 @@ private fun configureApplication(): Application {
 object Demo {
     @JvmStatic
     fun main(args: Array<String>) {
-        val app = configureApplication()
+        val osName = System.getProperty("os.name").lowercase(Locale.getDefault())
+        val app = configureApplication(osName)
         app.paint()
     }
 }

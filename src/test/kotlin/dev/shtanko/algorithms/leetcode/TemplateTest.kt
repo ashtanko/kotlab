@@ -27,15 +27,16 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 abstract class TemplateTest<out T : Template>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(),
+            Arguments.of(0),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `template test`() {
+    fun `template test`(expected: Int) {
         val actual = Any()
         assertThat(actual).isInstanceOf(Any::class.java)
+        assertThat(strategy.perform()).isEqualTo(expected)
     }
 }
 

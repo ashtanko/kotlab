@@ -17,9 +17,9 @@
 package dev.shtanko.patterns.creational.factorymethod.examples.buttons
 
 interface Dialog {
-    fun renderWindow() {
+    fun renderWindow(): String {
         val okButton: Button = createButton()
-        okButton.render()
+        return okButton.render()
     }
 
     /**

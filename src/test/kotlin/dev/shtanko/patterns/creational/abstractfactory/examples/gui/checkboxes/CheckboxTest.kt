@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.patterns.creational.abstractfactory.examples.gui.checkboxes
 
-/**
- * TODO
- */
-interface Template {
-    fun perform(): Int
-}
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
 
-class TemplateImpl : Template {
-    override fun perform(): Int = 0
+class CheckboxTest {
+    @Test
+    fun `paint mac os checkbox test`() {
+        Assertions.assertThat(MacOSCheckbox().paint()).isEqualTo("You have created MacOSCheckbox.")
+    }
+
+    @Test
+    fun `paint windows checkbox test`() {
+        Assertions.assertThat(WindowsCheckbox().paint()).isEqualTo("You have created WindowsCheckbox.")
+    }
 }

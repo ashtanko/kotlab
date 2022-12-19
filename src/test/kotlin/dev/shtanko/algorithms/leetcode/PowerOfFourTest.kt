@@ -31,8 +31,11 @@ internal abstract class PowerOfFourTest<out T : PowOfFour>(private val strategy:
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, false),
             Arguments.of(1, true),
+            Arguments.of(3, false),
             Arguments.of(5, false),
             Arguments.of(16, true),
+            Arguments.of(-16, false),
+            Arguments.of(-1, false),
         )
     }
 

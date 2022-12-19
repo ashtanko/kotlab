@@ -17,9 +17,9 @@
 package dev.shtanko.patterns.creational.factorymethod.examples.buttons
 
 class HtmlButton : Button {
-    override fun render() {
-        println("<button>Test Button</button>")
+    override fun render(): String {
         onClick()
+        return "<button>Test Button</button>".apply(::println)
     }
 
     override fun onClick() {

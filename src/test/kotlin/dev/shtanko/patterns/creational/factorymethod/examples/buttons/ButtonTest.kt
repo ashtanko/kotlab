@@ -16,12 +16,20 @@
 
 package dev.shtanko.patterns.creational.factorymethod.examples.buttons
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class ButtonTest {
 
     @Test
-    fun `button test`() {
-        // val btn: Button = HtmlButton() // TODO
+    fun `html button test`() {
+        val btn: Button = HtmlButton()
+        assertThat(btn.render()).isEqualTo("<button>Test Button</button>")
+    }
+
+    @Test
+    fun `windows button test`() {
+        val btn: Button = WindowsButton()
+        assertThat(btn.render()).isEqualTo("Windows Button")
     }
 }

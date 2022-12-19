@@ -20,12 +20,16 @@ object Demo {
     @JvmStatic
     fun main(args: Array<String>) {
         val os = "Windows 10"
+        runExample(os)
+    }
+
+    fun runExample(os: String): String {
         val dialog: Dialog = if (os == "Windows 10") {
             WindowsDialog()
         } else {
             HtmlDialog()
         }
 
-        dialog.renderWindow()
+        return dialog.renderWindow()
     }
 }

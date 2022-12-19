@@ -22,14 +22,32 @@ import org.junit.jupiter.api.Test
 class FactoryMethodTest {
 
     @Test
-    fun `factory method test`() {
+    fun `greece currency test`() {
         val greeceCurrency = CurrencyFactory.currencyForCountry(Greece("")).code
-        println("Greece currency: $greeceCurrency")
-
-        val usaCurrency = CurrencyFactory.currencyForCountry(Country.USA).code
-        println("USA currency: $usaCurrency")
-
         assertThat(greeceCurrency).isEqualTo("EUR")
+    }
+
+    @Test
+    fun `usa currency test`() {
+        val usaCurrency = CurrencyFactory.currencyForCountry(Country.USA).code
         assertThat(usaCurrency).isEqualTo("USD")
+    }
+
+    @Test
+    fun `spain currency test`() {
+        val usaCurrency = CurrencyFactory.currencyForCountry(Spain).code
+        assertThat(usaCurrency).isEqualTo("EUR")
+    }
+
+    @Test
+    fun `canada currency test`() {
+        val usaCurrency = CurrencyFactory.currencyForCountry(Canada("")).code
+        assertThat(usaCurrency).isEqualTo("CAD")
+    }
+
+    @Test
+    fun `ukraine currency test`() {
+        val usaCurrency = CurrencyFactory.currencyForCountry(Ukraine).code
+        assertThat(usaCurrency).isEqualTo("UAH")
     }
 }

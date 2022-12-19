@@ -56,12 +56,12 @@ class RollingHash : LongestCommonSubPath {
         return begin
     }
 
-    private class PolyHash internal constructor(x: IntArray) {
+    private class PolyHash(x: IntArray) {
         // This class stores polynomial hashes for a given array
-        var b: Long = BASE
-        var q: Long = MODULE
-        var n: Int
-        var pow: LongArray // pow[i] = (b^i) % q
+        private var b: Long = BASE
+        private var q: Long = MODULE
+        private var n: Int
+        private var pow: LongArray // pow[i] = (b^i) % q
         private var cumulativeHash: LongArray
 
         init {
@@ -93,22 +93,13 @@ class RollingHash : LongestCommonSubPath {
         private val begin: Int,
         private val end: Int,
     ) {
-        // Stores subarray by storing the array and subarray's ends
-        // uses polynomial hash to calculate hashCode() in O(1)
-        // hashCode() and equals() are needed to use MySubArray as a key in a HashSet<>()
-        override fun toString(): String {
-            return "MySubArray{" +
-                "l=" + array.copyOfRange(begin, end).contentToString() +
-                '}'
-        }
-
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (other == null || javaClass != other.javaClass) return false
-            val other = other as MySubArray
-            if (end - begin != other.end - other.begin) return false
+            val o = other as MySubArray
+            if (end - begin != o.end - o.begin) return false
             for (i in 0 until end - begin) {
-                if (array[i + begin] != other.array[i + other.begin]) return false
+                if (array[i + begin] != o.array[i + o.begin]) return false
                 if (i > 10) return true // This is a horrible optimization.
                 // It means there is ~1/(n^10 * (collision chance)) probability to  make a wrong answer
                 // But in return the equals() works in O(1)

@@ -98,5 +98,5 @@ class StampingSequence {
         return ret
     }
 
-    internal data class Node(var made: Set<Int>, var todo: MutableSet<Int>)
+    private data class Node(var made: Set<Int>, var todo: MutableSet<Int>)
 }
