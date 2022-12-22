@@ -16,6 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
+/**
+ * 834. Sum of Distances in Tree
+ * @link https://leetcode.com/problems/sum-of-distances-in-tree/description/
+ */
 class SumOfDistancesInTree {
 
     private lateinit var ans: IntArray
@@ -28,7 +32,9 @@ class SumOfDistancesInTree {
         ans = IntArray(n)
         count = IntArray(n) { 1 }
 
-        for (i in 0 until n) graph.add(HashSet())
+        for (i in 0 until n) {
+            graph.add(HashSet())
+        }
         for (edge in edges) {
             graph[edge[0]].add(edge[1])
             graph[edge[1]].add(edge[0])
