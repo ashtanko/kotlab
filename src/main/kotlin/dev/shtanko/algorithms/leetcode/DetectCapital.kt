@@ -37,16 +37,16 @@ class DetectCapitalCharacter : DetectCapital {
         }
 
         // case 1: All capital
-        if (Character.isUpperCase(word.first()) && Character.isUpperCase(word[1])) {
+        if (word.first().isUpperCase() && word[1].isUpperCase()) {
             for (i in 2 until n) {
-                if (Character.isLowerCase(word[i])) {
+                if (word[i].isLowerCase()) {
                     return false
                 }
             }
             // case 2 and case 3
         } else {
             for (i in 1 until n) {
-                if (Character.isUpperCase(word[i])) {
+                if (word[i].isUpperCase()) {
                     return false
                 }
             }
