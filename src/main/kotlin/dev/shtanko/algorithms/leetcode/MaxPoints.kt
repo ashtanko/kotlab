@@ -18,30 +18,42 @@ package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.math.gcd
 
-private const val SAME_LINE = 3
+/**
+ * 149. Max Points on a Line
+ * @link https://leetcode.com/problems/max-points-on-a-line/
+ */
+interface MaxPoints {
+    fun perform(points: Array<IntArray>): Int
+}
 
-fun Array<IntArray>.maxPoints(): Int {
-    if (size < SAME_LINE) return size
-    var maxRes = 0
-    for (i in indices) {
-        var same = 0
-        var tempMax = 0
-        val map = HashMap<String, Int>()
-        for (j in indices) {
-            if (i != j) {
-                val dx = this[i][0] - this[j][0]
-                val dy = this[i][1] - this[j][1]
-                if (dx == 0 && dy == 0) {
-                    same++
-                    continue
+class MaxPointsMap : MaxPoints {
+    override fun perform(points: Array<IntArray>): Int {
+        if (points.size < SAME_LINE) return points.size
+        var maxRes = 0
+        for (i in points.indices) {
+            var same = 0
+            var tempMax = 0
+            val map = HashMap<String, Int>()
+            for (j in points.indices) {
+                if (i != j) {
+                    val dx = points[i][0] - points[j][0]
+                    val dy = points[i][1] - points[j][1]
+                    if (dx == 0 && dy == 0) {
+                        same++
+                        continue
+                    }
+                    val gcd = (dx to dy).gcd()
+                    val key = dx.div(gcd).toString().plus("/").plus(dy / gcd)
+                    map[key] = map.getOrDefault(key, 0).plus(1)
+                    tempMax = tempMax.coerceAtLeast(map[key]!!)
                 }
-                val gcd = (dx to dy).gcd()
-                val key = dx.div(gcd).toString().plus("/").plus(dy / gcd)
-                map[key] = map.getOrDefault(key, 0).plus(1)
-                tempMax = tempMax.coerceAtLeast(map[key]!!)
             }
+            maxRes = maxRes.coerceAtLeast(tempMax + same + 1)
         }
-        maxRes = maxRes.coerceAtLeast(tempMax + same + 1)
+        return maxRes
     }
-    return maxRes
+
+    private companion object {
+        private const val SAME_LINE = 3
+    }
 }

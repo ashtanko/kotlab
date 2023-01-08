@@ -16,24 +16,36 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MaxPointsTest {
+abstract class MaxPointsTest<out T : MaxPoints>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<Int, Array<IntArray>>> {
-            return listOf(
-                0 to arrayOf(),
-                1 to arrayOf(intArrayOf(1)),
-                3 to arrayOf(
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf<IntArray>(),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(intArrayOf(1)),
+                1,
+            ),
+            Arguments.of(
+                arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(2, 2),
                     intArrayOf(3, 3),
                 ),
-                4 to arrayOf(
+                3,
+            ),
+            Arguments.of(
+                arrayOf(
                     intArrayOf(1, 1),
                     intArrayOf(3, 2),
                     intArrayOf(5, 3),
@@ -41,15 +53,17 @@ internal class MaxPointsTest {
                     intArrayOf(2, 3),
                     intArrayOf(1, 4),
                 ),
-            )
-        }
+                4,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("casesProvider")
-    internal fun `max points test`(testCase: Pair<Int, Array<IntArray>>) {
-        val (expected, points) = testCase
-        val actual = points.maxPoints()
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `max points test`(points: Array<IntArray>, expected: Int) {
+        val actual = strategy.perform(points)
         assertEquals(expected, actual)
     }
 }
+
+class MaxPointsMapTest : MaxPointsTest<MaxPoints>(MaxPointsMap())
