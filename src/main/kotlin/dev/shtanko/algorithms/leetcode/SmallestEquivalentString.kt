@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 /**
- * 1061. Lexicographically Smallest Equivalent String
+ * 1061. Lexicographically The Smallest Equivalent String
  * @link https://leetcode.com/problems/lexicographically-smallest-equivalent-string/
  */
 interface SmallestEquivalentString {
