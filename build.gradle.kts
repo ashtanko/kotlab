@@ -258,5 +258,5 @@ dependencies {
     testImplementation(libs.junit.benchmarks)
     testImplementation(libs.kotlin.serialization.json)
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("com.squareup.okhttp3:mockwebserver:5.0.0-alpha.10")
+    testImplementation("com.squareup.okhttp3:mockwebserver:5.0.0-alpha.11")
 }

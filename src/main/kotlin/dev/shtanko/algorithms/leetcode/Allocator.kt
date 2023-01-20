@@ -109,7 +109,7 @@ class TAllocator(n: Int) : Malloc {
             }
         }
         if (addr != -1) {
-            memory.computeIfAbsent(mID) { x: Int? -> TreeMap() }[availableRange[0]] = availableRange[0] + size - 1
+            memory.computeIfAbsent(mID) { _: Int? -> TreeMap() }[availableRange[0]] = availableRange[0] + size - 1
             memory[0]?.remove(availableRange[0])
             if (availableRange[1] - availableRange[0] + 1 > size) {
                 memory[0]!![availableRange[0] + size] = availableRange[1]

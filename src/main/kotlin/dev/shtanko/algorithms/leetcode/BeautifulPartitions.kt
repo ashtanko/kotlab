@@ -39,18 +39,18 @@ class BeautifulPartitionsDP : BeautifulPartitions {
             dp[0][i] = if (prime(cs[i])) 1 else 0
             --i
         }
-        for (i in 1 until k) {
+        for (i1 in 1 until k) {
             // re-use dp[k - 1][] and compute the `prefix sum` backwards
             // sum is the number of valid end points
             run {
-                var j: Int = n - i * minLength
+                var j: Int = n - i1 * minLength
                 var sum = 0
                 while (0 <= j) {
                     // if dp[][] is 0, store the sum. othewise, it could be a possible valid end point.
-                    if (0 == dp[i - 1][j]) {
-                        dp[i - 1][j] = sum
-                    } else if (0 != j && 0 == dp[i - 1][j - 1]) {
-                        sum = (sum + dp[i - 1][j]) % MOD
+                    if (0 == dp[i1 - 1][j]) {
+                        dp[i1 - 1][j] = sum
+                    } else if (0 != j && 0 == dp[i1 - 1][j - 1]) {
+                        sum = (sum + dp[i1 - 1][j]) % MOD
                     }
                     --j
                 }
@@ -58,15 +58,15 @@ class BeautifulPartitionsDP : BeautifulPartitions {
             // use 2 pointers [j, p] to find a valid substring
             var j = 0
             var p: Int = minLength - 1
-            while (j + minLength * i < n) {
+            while (j + minLength * i1 < n) {
                 if (!prime(cs[j])) {
                     ++j
                     continue
                 }
                 p = max(p, j + minLength - 1)
                 while (prime(cs[p])) p++ // boundary check is skipped as the last character is not prime
-                if (0 == dp[i - 1][p]) break // early break because there's no valid end points
-                dp[i][j] = dp[i - 1][p]
+                if (0 == dp[i1 - 1][p]) break // early break because there's no valid end points
+                dp[i1][j] = dp[i1 - 1][p]
                 ++j
             }
         }

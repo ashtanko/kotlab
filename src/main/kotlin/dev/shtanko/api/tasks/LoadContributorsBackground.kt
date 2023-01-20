@@ -18,10 +18,9 @@ package dev.shtanko.api.tasks
 
 import dev.shtanko.api.GitHubService
 import dev.shtanko.api.RequestData
-import dev.shtanko.api.User
 import kotlin.concurrent.thread
 
-fun loadContributorsBackground(service: GitHubService, req: RequestData, updateResults: (List<User>) -> Unit) {
+fun loadContributorsBackground(service: GitHubService, req: RequestData) {
     thread {
         loadContributorsBlocking(service, req)
     }

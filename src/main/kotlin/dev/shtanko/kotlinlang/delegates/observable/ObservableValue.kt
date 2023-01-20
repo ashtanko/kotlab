@@ -19,7 +19,7 @@ package dev.shtanko.kotlinlang.delegates.observable
 import kotlin.properties.Delegates
 
 var observableValue: String by Delegates.observable("<no value>") { prop, old, new ->
-    println("$old -> $new")
+    println("$old -> $new prop: $prop")
 }
 
 fun main() {

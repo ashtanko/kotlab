@@ -17,6 +17,7 @@
 package dev.shtanko.kotlinlang.delegation.support
 
 import dev.shtanko.kotlinlang.delegation.AreaInputArgumentsProvider
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ArgumentsSource
 
@@ -26,6 +27,7 @@ class ClosedWindowTest {
     fun `rectangle delegation test`(width: Int, height: Int, expected: Int) {
         val rectangle = ClosedRectangle(width, height)
         val window = ClosedWindow(rectangle)
-        window.area()
+        val actual = window.area()
+        assertThat(actual).isEqualTo(expected)
     }
 }

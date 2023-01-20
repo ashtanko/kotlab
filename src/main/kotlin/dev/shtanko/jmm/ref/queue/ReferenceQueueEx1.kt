@@ -36,5 +36,7 @@ object ReferenceQueueEx1 {
             println("GC has cleared the instance")
             true
         }
+        println(predicate)
+        println(referent2)
     }
 }
