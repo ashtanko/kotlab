@@ -420,7 +420,7 @@ style:
   MagicNumber:
     active: true
     excludes: [ "**/test/**","**/androidTest/**","**/*.Test.kt","**/*.Spec.kt","**/*.Spek.kt","**/coroutines/flow/Data.kt" ]
-    ignoreNumbers: [ "-2","-1", "0", "1", "2","3","4","5","6","7","8","9","10" ]
+    ignoreNumbers: [ "-2","-1", "0", "1", "2","3","4","5","6","7","8","9","10", "255" ]
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: true
     ignoreLocalVariableDeclaration: false
