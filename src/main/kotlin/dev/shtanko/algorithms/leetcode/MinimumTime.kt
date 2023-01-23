@@ -44,18 +44,31 @@ class MinimumTimePrefixSuffix : MinimumTime {
         if (s.isEmpty()) {
             return 0
         }
-        val left = IntArray(s.length)
-        val right = IntArray(s.length)
-        var res = Int.MAX_VALUE
+        return calculateRes(s, calculateLeft(s), calculateRight(s))
+    }
 
+    private fun calculateRes(s: String, left: IntArray, right: IntArray, res: Int = Int.MAX_VALUE): Int {
+        var r = res
         for (i in s.indices) {
-            if (s[i] == '1') {
-                left[i] = if (i == 0) 1 else min(left[i - 1] + 2, i + 1)
+            if (i == 0) {
+                if (right[i] < r) {
+                    r = right[i]
+                }
+            } else if (i == s.length - 1) {
+                if (left[i] < r) {
+                    r = left[i]
+                }
             } else {
-                left[i] = if (i == 0) 0 else left[i - 1]
+                if (left[i] + right[i + 1] < r) {
+                    r = left[i] + right[i + 1]
+                }
             }
         }
+        return r
+    }
 
+    private fun calculateRight(s: String): IntArray {
+        val right = IntArray(s.length)
         for (i in s.length - 1 downTo 0) {
             if (s[i] == '1') {
                 right[i] = if (i == s.length - 1) 1 else min(right[i + 1] + 2, s.length - i)
@@ -63,22 +76,18 @@ class MinimumTimePrefixSuffix : MinimumTime {
                 right[i] = if (i == s.length - 1) 0 else right[i + 1]
             }
         }
+        return right
+    }
 
+    private fun calculateLeft(s: String): IntArray {
+        val left = IntArray(s.length)
         for (i in s.indices) {
-            if (i == 0) {
-                if (right[i] < res) {
-                    res = right[i]
-                }
-            } else if (i == s.length - 1) {
-                if (left[i] < res) {
-                    res = left[i]
-                }
+            if (s[i] == '1') {
+                left[i] = if (i == 0) 1 else min(left[i - 1] + 2, i + 1)
             } else {
-                if (left[i] + right[i + 1] < res) {
-                    res = left[i] + right[i + 1]
-                }
+                left[i] = if (i == 0) 0 else left[i - 1]
             }
         }
-        return res
+        return left
     }
 }

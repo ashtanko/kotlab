@@ -125,6 +125,12 @@ class PalindromePairsImpl : PalindromePairs {
             }
         }
 
+        reverse(words, map, res)
+
+        return res
+    }
+
+    private fun reverse(words: Array<String>, map: HashMap<String, Int>, res: MutableList<List<Int>>) {
         for (i in words.indices) {
             val cur = words[i]
             for (cut in 1 until cur.length) {
@@ -146,8 +152,6 @@ class PalindromePairsImpl : PalindromePairs {
                 }
             }
         }
-
-        return res
     }
 
     private fun reverseStr(str: String?): String {

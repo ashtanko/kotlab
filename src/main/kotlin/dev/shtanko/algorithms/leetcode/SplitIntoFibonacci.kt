@@ -36,7 +36,7 @@ class SplitIntoFibonacciBruteForce : SplitIntoFibonacci {
             if (num[0] == '0' && i > 0) break
             val a: Long = java.lang.Long.valueOf(num.substring(0, i + 1))
             if (a >= Int.MAX_VALUE) break
-            search@ for (j in i + 1 until min(i + 10, n)) {
+            search@ for (j in i + 1 until min(i + DECIMAL, n)) {
                 if (num[i + 1] == '0' && j > i + 1) break
                 val b: Long = java.lang.Long.valueOf(num.substring(i + 1, j + 1))
                 if (b >= Int.MAX_VALUE) break
@@ -55,7 +55,9 @@ class SplitIntoFibonacciBruteForce : SplitIntoFibonacci {
                         continue@search
                     }
                 }
-                if (fib.size >= 3) return fib
+                if (fib.size >= 3) {
+                    return fib
+                }
             }
         }
 

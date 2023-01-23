@@ -95,43 +95,69 @@ class NumberOfEnclavesBFS : NumberOfEnclaves {
         rows: Int,
         cols: Int,
     ): Queue<IntArray> {
-        var top = 0
-        val left = 0
-        var bottom = rows - 1
-        var right = cols - 1
+        val bottom = rows - 1
+        val right = cols - 1
         val q: Queue<IntArray> = LinkedList()
+        calculateTopRight(q = q, bottom = bottom, right = right, grid = grid, visited = visited)
+        calculateBottomLeft(q = q, bottom = bottom, right = right, grid = grid, visited = visited)
+        return q
+    }
 
+    @Suppress("UNUSED_CHANGED_VALUE")
+    private fun calculateTopRight(
+        q: Queue<IntArray>,
+        top: Int = 0,
+        bottom: Int,
+        left: Int = 0,
+        right: Int,
+        grid: Array<IntArray>,
+        visited: Array<BooleanArray>,
+    ) {
+        var t = top
+        var r = right
         // UP
-        if (top <= bottom && left <= right) {
-            for (col in left..right) {
-                if (grid[top][col] == 1) {
-                    visited[top][col] = true
-                    q.offer(intArrayOf(top, col))
+        if (t <= bottom && left <= r) {
+            for (col in left..r) {
+                if (grid[t][col] == 1) {
+                    visited[t][col] = true
+                    q.offer(intArrayOf(t, col))
                 }
             }
-            top++
+            t++
         }
 
         // RIGHT
-        if (top <= bottom && left <= right) {
+        if (top <= bottom && left <= r) {
             for (row in top..bottom) {
-                if (grid[row][right] == 1) {
-                    visited[row][right] = true
-                    q.offer(intArrayOf(row, right))
+                if (grid[row][r] == 1) {
+                    visited[row][r] = true
+                    q.offer(intArrayOf(row, r))
                 }
             }
-            right--
+            r--
         }
+    }
 
+    @Suppress("UNUSED_CHANGED_VALUE")
+    private fun calculateBottomLeft(
+        q: Queue<IntArray>,
+        top: Int = 0,
+        bottom: Int,
+        left: Int = 0,
+        right: Int,
+        grid: Array<IntArray>,
+        visited: Array<BooleanArray>,
+    ) {
+        var b = bottom
         // DOWN
-        if (top <= bottom && left <= right) {
+        if (top <= b && left <= right) {
             for (col in right downTo left) {
-                if (grid[bottom][col] == 1) {
-                    visited[bottom][col] = true
-                    q.offer(intArrayOf(bottom, col))
+                if (grid[b][col] == 1) {
+                    visited[b][col] = true
+                    q.offer(intArrayOf(b, col))
                 }
             }
-            bottom--
+            b--
         }
 
         // LEFT
@@ -143,7 +169,6 @@ class NumberOfEnclavesBFS : NumberOfEnclaves {
                 }
             }
         }
-        return q
     }
 
     private fun isValid(

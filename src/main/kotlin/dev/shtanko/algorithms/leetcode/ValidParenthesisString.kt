@@ -78,7 +78,11 @@ class ValidParenthesisStringDP : ValidParenthesisString {
                 dp[i][i + 1] = true
             }
         }
+        dp(s, n, dp)
+        return dp[0][n - 1]
+    }
 
+    private fun dp(s: String, n: Int, dp: Array<BooleanArray>) {
         for (size in 2 until n) {
             var i = 0
             while (i + size < n) {
@@ -95,7 +99,6 @@ class ValidParenthesisStringDP : ValidParenthesisString {
                 i++
             }
         }
-        return dp[0][n - 1]
     }
 }
 

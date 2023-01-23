@@ -52,7 +52,7 @@ class MinimumRoundsGreedy : MinimumRounds {
                 var numberLeft = it.value.size % 3
                 while (numberLeft % 2 != 0 && totalNumberOfThrees > 0) {
                     totalNumberOfThrees--
-                    numberLeft = (numberLeft + 3)
+                    numberLeft += 3
                 }
                 if (totalNumberOfThrees == 0 && numberLeft % 2 != 0) {
                     return -1

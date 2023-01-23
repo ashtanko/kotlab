@@ -59,4 +59,4 @@ abstract class MinimumWindowSubstringTest<out T : MinimumWindowSubstring>(privat
 }
 
 class MWSSlidingWindowTest : MinimumWindowSubstringTest<MinimumWindowSubstring>(MWSSlidingWindow())
-class MWSSlidingWindowOptTest : MinimumWindowSubstringTest<MinimumWindowSubstring>(MWSSlidingWindowOpt())
+class MWSSlidingWindowOptTest : MinimumWindowSubstringTest<MinimumWindowSubstring>(MWSSlidingLongestSubstring())

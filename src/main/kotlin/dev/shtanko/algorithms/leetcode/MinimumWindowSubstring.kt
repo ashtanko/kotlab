@@ -33,138 +33,84 @@ class MWSSlidingWindow : MinimumWindowSubstring {
             return ""
         }
 
-        // Dictionary which keeps a count of all the unique characters in t.
-        val dictT: MutableMap<Char, Int> = HashMap()
-        for (i in t.indices) {
-            val count = dictT.getOrDefault(t[i], 0)
-            dictT[t[i]] = count + 1
+        val map = IntArray(LIMIT)
+        for (c in t.toCharArray()) {
+            map[c.code]++
+        }
+        var start = 0
+        var end = 0
+        var minStart = 0
+        var minLen = Int.MAX_VALUE
+        var counter: Int = t.length
+        while (end < s.length) {
+            val c1: Char = s[end]
+            if (map[c1.code] > 0) counter--
+            map[c1.code]--
+            end++
+            while (counter == 0) {
+                if (minLen > end - start) {
+                    minLen = end - start
+                    minStart = start
+                }
+                val c2: Char = s[start]
+                map[c2.code]++
+                if (map[c2.code] > 0) counter++
+                start++
+            }
         }
 
-        // Number of unique characters in t, which need to be present in the desired window.
-        val required = dictT.size
-
-        // Left and Right pointer
-        var l = 0
-        var r = 0
-
-        // formed is used to keep track of how many unique characters in t
-        // are present in the current window in its desired frequency.
-        // e.g. if t is "AABC" then the window must have two A's, one B and one C.
-        // Thus formed would be = 3 when all these conditions are met.
-        var formed = 0
-
-        // Dictionary which keeps a count of all the unique characters in the current window.
-        val windowCounts: MutableMap<Char, Int> = HashMap()
-
-        // ans list of the form (window length, left, right)
-        val ans = intArrayOf(-1, 0, 0)
-
-        while (r < s.length) {
-            // Add one character from the right to the window
-            var c: Char = s[r]
-            val count = windowCounts.getOrDefault(c, 0)
-            windowCounts[c] = count + 1
-
-            // If the frequency of the current character added equals to the
-            // desired count in t then increment the formed count by 1.
-            if (dictT.containsKey(c) && windowCounts.getOrDefault(c, 0) == dictT.getOrDefault(c, 0)) {
-                formed++
-            }
-
-            // Try and contract the window till the point where it ceases to be 'desirable'.
-            while (l <= r && formed == required) {
-                c = s[l]
-                // Save the smallest window until now.
-                if (ans[0] == -1 || r - l + 1 < ans[0]) {
-                    ans[0] = r - l + 1
-                    ans[1] = l
-                    ans[2] = r
-                }
-
-                // The character at the position pointed by the
-                // `Left` pointer is no longer a part of the window.
-                windowCounts[c] = windowCounts.getOrDefault(c, 0) - 1
-                if (dictT.containsKey(c) && windowCounts.getOrDefault(c, 0) < dictT.getOrDefault(c, 0)) {
-                    formed--
-                }
-
-                // Move the left pointer ahead, this would help to look for a new window.
-                l++
-            }
-
-            // Keep expanding the window once we are done contracting.
-            r++
+        return if (minLen == Int.MAX_VALUE) {
+            ""
+        } else {
+            s.substring(minStart, minStart + minLen)
         }
+    }
 
-        return if (ans[0] == -1) "" else s.substring(ans[1], ans[2] + 1)
+    companion object {
+        private const val LIMIT = 128
     }
 }
 
 /**
  * Approach 2: Optimized Sliding Window
  */
-class MWSSlidingWindowOpt : MinimumWindowSubstring {
-    override fun minWindow(s: String, t: String): String {
+class MWSSlidingLongestSubstring : MinimumWindowSubstring {
+    override fun minWindow(s: String, t: String): String { // TODO
         if (s.isEmpty() || t.isEmpty()) {
             return ""
         }
 
-        val dictT: MutableMap<Char, Int> = HashMap()
-
-        for (i in t.indices) {
-            val count = dictT.getOrDefault(t[i], 0)
-            dictT[t[i]] = count + 1
+        val map: HashMap<Char, Int> = HashMap()
+        for (c in s.toCharArray()) map[c] = 0
+        for (c in t.toCharArray()) {
+            if (map.containsKey(c)) map[c] = map[c]!! + 1 else return ""
         }
 
-        val required = dictT.size
-
-        // Filter all the characters from s into a new list along with their index.
-        // The filtering criteria is that the character should be present in t.
-        val filteredS: MutableList<Pair<Int, Char>> = ArrayList()
-        for (i in s.indices) {
-            val c: Char = s[i]
-            if (dictT.containsKey(c)) {
-                filteredS.add(Pair(i, c))
-            }
-        }
-
-        var l = 0
-        var r = 0
-        var formed = 0
-        val windowCounts: MutableMap<Char, Int> = HashMap()
-        val ans = intArrayOf(-1, 0, 0)
-
-        // Look for the characters only in the filtered list instead of entire s.
-        // This helps to reduce our search.
-        // Hence, we follow the sliding window approach on as small list.
-        while (r < filteredS.size) {
-            var c: Char = filteredS[r].second
-            val count = windowCounts.getOrDefault(c, 0)
-            windowCounts[c] = count + 1
-            if (dictT.containsKey(c) && windowCounts.getOrDefault(c, 0) == dictT.getOrDefault(c, 0)) {
-                formed++
-            }
-
-            // Try and contract the window till the point where it ceases to be 'desirable'.
-            while (l <= r && formed == required) {
-                c = filteredS[l].second
-
-                // Save the smallest window until now.
-                val end: Int = filteredS[r].first
-                val start: Int = filteredS[l].first
-                if (ans[0] == -1 || end - start + 1 < ans[0]) {
-                    ans[0] = end - start + 1
-                    ans[1] = start
-                    ans[2] = end
+        var start = 0
+        var end = 0
+        var minStart = 0
+        var minLen = Int.MAX_VALUE
+        var counter: Int = t.length
+        while (end < s.length) {
+            val c1: Char = s[end]
+            if (map[c1]!! > 0) counter--
+            map[c1] = map[c1]!! - 1
+            end++
+            while (counter == 0) {
+                if (minLen > end - start) {
+                    minLen = end - start
+                    minStart = start
                 }
-                windowCounts[c] = windowCounts.getOrDefault(c, 0) - 1
-                if (dictT.containsKey(c) && windowCounts.getOrDefault(c, 0) < dictT.getOrDefault(c, 0)) {
-                    formed--
-                }
-                l++
+                val c2: Char = s[start]
+                map[c2] = map[c2]!! + 1
+                if (map[c2]!! > 0) counter++
+                start++
             }
-            r++
         }
-        return if (ans[0] == -1) "" else s.substring(ans[1], ans[2] + 1)
+        return if (minLen == Int.MAX_VALUE) {
+            ""
+        } else {
+            s.substring(minStart, minStart + minLen)
+        }
     }
 }

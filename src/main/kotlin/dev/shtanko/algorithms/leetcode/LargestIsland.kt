@@ -156,29 +156,28 @@ class LargestIslandUnionFind : LargestIsland {
         val dx = intArrayOf(0, 1, -1, 0)
         val dy = intArrayOf(1, 0, 0, -1)
 
-        // scan grid, update father array and size array
-        for (i in 0 until rows) {
-            for (j in 0 until cols) {
-                if (grid[i][j] == 1) {
-                    val id = i * cols + j
-                    for (k in 0..3) {
-                        val newI = i + dx[k]
-                        val newJ = j + dy[k]
-                        val newId = newI * cols + newJ
-                        if (isValid(rows, cols, newI, newJ) && grid[newI][newJ] == 1) {
-                            union(father, size, id, newId)
-                        }
-                    }
-                }
-            }
-        }
+        scanGrid(rows, cols, grid, dx, dy, father, size)
 
         // find current max component size
+        val max = findMaxComponent(rows, cols, grid, dx, dy, father, size)
+
+        // return whole size if the grid is an all 1 matrix, otherwise return the value of max
+        return if (max == 0) rows * cols else max
+    }
+
+    private fun findMaxComponent(
+        rows: Int,
+        cols: Int,
+        grid: Array<IntArray>,
+        dx: IntArray,
+        dy: IntArray,
+        father: IntArray,
+        size: IntArray,
+    ): Int {
         var max = 0
         for (i in size.indices) {
             max = max(max, size[i])
         }
-
         // find max component size if we set any 0 to 1
         for (i in 0 until rows) {
             for (j in 0 until cols) {
@@ -201,9 +200,34 @@ class LargestIslandUnionFind : LargestIsland {
                 }
             }
         }
+        return max
+    }
 
-        // return whole size if the grid is an all 1 matrix, otherwise return the value of max
-        return if (max == 0) rows * cols else max
+    private fun scanGrid(
+        rows: Int,
+        cols: Int,
+        grid: Array<IntArray>,
+        dx: IntArray,
+        dy: IntArray,
+        father: IntArray,
+        size: IntArray,
+    ) {
+        // scan grid, update father array and size array
+        for (i in 0 until rows) {
+            for (j in 0 until cols) {
+                if (grid[i][j] == 1) {
+                    val id = i * cols + j
+                    for (k in 0..3) {
+                        val newI = i + dx[k]
+                        val newJ = j + dy[k]
+                        val newId = newI * cols + newJ
+                        if (isValid(rows, cols, newI, newJ) && grid[newI][newJ] == 1) {
+                            union(father, size, id, newId)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun find(father: IntArray, id: Int): Int {

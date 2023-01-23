@@ -62,6 +62,30 @@ class StampingSequence {
             }
         }
 
+        calculateEachEnqueuedLetter(queue, a, m, n, ans, done)
+
+        for (b in done) {
+            if (!b) {
+                return IntArray(0)
+            }
+        }
+
+        val ret = IntArray(ans.size)
+        var t = 0
+        while (!ans.isEmpty()) {
+            ret[t++] = ans.pop()
+        }
+        return ret
+    }
+
+    private fun calculateEachEnqueuedLetter(
+        queue: Queue<Int>,
+        a: MutableList<Node>,
+        m: Int,
+        n: Int,
+        ans: Stack<Int>,
+        done: BooleanArray,
+    ) {
         // For each enqueued letter (position),
         while (!queue.isEmpty()) {
             val i: Int = queue.poll()
@@ -83,19 +107,6 @@ class StampingSequence {
                 }
             }
         }
-
-        for (b in done) {
-            if (!b) {
-                return IntArray(0)
-            }
-        }
-
-        val ret = IntArray(ans.size)
-        var t = 0
-        while (!ans.isEmpty()) {
-            ret[t++] = ans.pop()
-        }
-        return ret
     }
 
     private data class Node(var made: Set<Int>, var todo: MutableSet<Int>)
