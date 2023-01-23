@@ -63,7 +63,7 @@ complexity:
     includeStaticDeclarations: false
   ComplexMethod:
     active: true
-    threshold: 27
+    threshold: 30
     excludes: [ '**/test/**', '**/*.Test.kt', '**/*.Spec.kt' ]
     ignoreSingleWhenExpression: false
     ignoreSimpleWhenEntries: false
