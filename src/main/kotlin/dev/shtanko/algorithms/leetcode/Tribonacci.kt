@@ -18,6 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1137. N-th Tribonacci Number
+ * @link https://leetcode.com/problems/n-th-tribonacci-number/submissions/887948261/
  */
 interface Tribonacci {
     fun perform(n: Int): Int
