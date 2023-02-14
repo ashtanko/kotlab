@@ -76,7 +76,9 @@ class TwoSumOnePassHashTable : TwoSumStrategy {
         for (i in nums.indices) {
             val complement = target - nums[i]
             if (map.containsKey(complement)) {
-                return intArrayOf(map[complement]!!, i)
+                map[complement]?.let {
+                    return intArrayOf(it, i)
+                }
             }
             map[nums[i]] = i
         }
