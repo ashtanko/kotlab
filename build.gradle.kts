@@ -19,8 +19,8 @@ import java.util.Locale
 
 val projectJvmTarget = "11"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
-val ktlint: Configuration by configurations.creating
-val isK2Enabled = false
+val ktLintConfig: Configuration by configurations.creating
+val isK2Enabled = false // kapt currently doesn't support new kotlin compiler
 val k2CompilerArg = if (isK2Enabled) listOf("-Xuse-k2") else emptyList()
 
 fun isLinux(): Boolean {
@@ -62,7 +62,7 @@ val ktlintCheck by tasks.creating(JavaExec::class) {
     outputs.dir(outputDir)
 
     description = "Check Kotlin code style."
-    classpath = ktlint
+    classpath = ktLintConfig
     mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("src/**/*.kt")
 }
@@ -72,7 +72,7 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
     outputs.dir(outputDir)
 
     description = "Fix Kotlin code style deviations."
-    classpath = ktlint
+    classpath = ktLintConfig
     mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("-F", "src/**/*.kt")
 }
@@ -231,8 +231,7 @@ dependencies {
     implementation(libs.autovalue.annotations)
     implementation(libs.jmh)
 
-    ktlint(libs.ktlint)
-    //detektPlugins()
+    ktLintConfig(libs.ktlint)
 
     kapt(libs.dagger.compiler)
     kapt(libs.autovalue)
