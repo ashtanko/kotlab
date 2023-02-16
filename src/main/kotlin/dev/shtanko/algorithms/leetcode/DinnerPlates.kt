@@ -23,17 +23,23 @@ import java.util.TreeSet
 /**
  * 1172. Dinner Plate Stacks
  */
-class DinnerPlates(val capacity: Int) {
+interface DinnerPlatesDS {
+    fun push(value: Int)
+    fun pop(): Int
+    fun popAtStack(index: Int): Int
+}
 
-    var pq: PriorityQueue<Int> = PriorityQueue()
-    var max = 0
-    var map: MutableMap<Int, Stack<Int>> = HashMap()
+class DinnerPlates(val capacity: Int) : DinnerPlatesDS {
+
+    private val pq: PriorityQueue<Int> = PriorityQueue()
+    private val map: MutableMap<Int, Stack<Int>> = HashMap()
+    private var max = 0
 
     init {
         map[max] = Stack()
     }
 
-    fun push(value: Int) {
+    override fun push(value: Int) {
         if (pq.isEmpty()) {
             if (map[max]?.size == capacity) {
                 max++
@@ -46,7 +52,7 @@ class DinnerPlates(val capacity: Int) {
         }
     }
 
-    fun pop(): Int {
+    override fun pop(): Int {
         if (max == -1) {
             max = 0
             return -1
@@ -62,7 +68,7 @@ class DinnerPlates(val capacity: Int) {
         return top ?: -1
     }
 
-    fun popAtStack(index: Int): Int {
+    override fun popAtStack(index: Int): Int {
         if (!map.containsKey(index) || map[index]?.size == 0) {
             return -1
         }
@@ -72,11 +78,11 @@ class DinnerPlates(val capacity: Int) {
     }
 }
 
-class DinnerPlatesTree(val capacity: Int) {
-    var stacks: Stack<Stack<Int>> = Stack()
-    var set = TreeSet<Int>()
+class DinnerPlatesTree(val capacity: Int) : DinnerPlatesDS {
+    private val stacks: Stack<Stack<Int>> = Stack()
+    private val set = TreeSet<Int>()
 
-    fun push(value: Int) {
+    override fun push(value: Int) {
         if (set.size != 0) {
             val idx = set.iterator().next()
             stacks[idx].push(value)
@@ -93,7 +99,7 @@ class DinnerPlatesTree(val capacity: Int) {
         }
     }
 
-    fun pop(): Int {
+    override fun pop(): Int {
         if (!stacks.isEmpty()) {
             val k = stacks.peek().pop()
             while (!stacks.isEmpty() && stacks.peek().isEmpty()) {
@@ -105,7 +111,7 @@ class DinnerPlatesTree(val capacity: Int) {
         return -1
     }
 
-    fun popAtStack(index: Int): Int {
+    override fun popAtStack(index: Int): Int {
         if (index >= stacks.size || stacks[index].size == 0) {
             return -1
         }
