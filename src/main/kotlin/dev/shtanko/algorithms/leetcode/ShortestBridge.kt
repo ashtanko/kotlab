@@ -41,6 +41,14 @@ class ShortestBridgeDP : ShortestBridge {
             }
             if (flag) break
         }
+
+        return bfs(grid, queue)
+    }
+
+    private fun bfs(
+        grid: Array<IntArray>,
+        queue: Queue<IntArray>,
+    ): Int {
         var step = 0
         val dirs = arrayOf(intArrayOf(-1, 0), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(0, 1))
         while (!queue.isEmpty()) {
@@ -101,6 +109,17 @@ class ShortestBridgeDFS : ShortestBridge {
             }
         }
         // 2. bfs to expand this island
+        return bfs(grid, visited, q, n, m, dirs)
+    }
+
+    private fun bfs(
+        grid: Array<IntArray>,
+        visited: Array<BooleanArray>,
+        q: Queue<IntArray>,
+        n: Int,
+        m: Int,
+        dirs: Array<IntArray>,
+    ): Int {
         var step = 0
         while (!q.isEmpty()) {
             var size = q.size

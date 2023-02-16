@@ -46,6 +46,17 @@ class ShortestPathBFS : ShortestPath {
 
         ls.offer(intArrayOf(0, 0, 0))
 
+        return helper(ls, n, m, dp, grid, k)
+    }
+
+    private fun helper(
+        ls: LinkedList<IntArray>,
+        n: Int,
+        m: Int,
+        dp: Array<Array<BooleanArray>>,
+        grid: Array<IntArray>,
+        k: Int,
+    ): Int {
         var step = 0
         while (!ls.isEmpty()) {
             var size: Int = ls.size
@@ -97,6 +108,16 @@ class ShortestPathBFS2 : ShortestPath {
 
         visited[0][0][k] = true
 
+        return helper(grid, q, m, n, visited)
+    }
+
+    private fun helper(
+        grid: Array<IntArray>,
+        q: Queue<IntArray>,
+        m: Int,
+        n: Int,
+        visited: Array<Array<BooleanArray>>,
+    ): Int {
         while (!q.isEmpty()) {
             val top: IntArray = q.poll()
             val r = top[0]
