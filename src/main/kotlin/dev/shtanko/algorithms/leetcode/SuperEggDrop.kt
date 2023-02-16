@@ -80,8 +80,9 @@ class SuperEggDropDPOptimalityCriterion : SuperEggDropStrategy {
                 // Increase our optimal x while we can make our answer better.
                 // Notice max(dp[x-1], dp2[n-x]) > max(dp[x], dp2[n-x-1])
                 // is simply max(T1(x-1), T2(x-1)) > max(T1(x), T2(x)).
-                while (x < j && dp[x - 1].coerceAtLeast(dp2[j - x]) > dp[x].coerceAtLeast(dp2[j - x - 1])
-                ) x++
+                while (x < j && dp[x - 1].coerceAtLeast(dp2[j - x]) > dp[x].coerceAtLeast(dp2[j - x - 1])) {
+                    x++
+                }
 
                 // The final answer happens at this x.
                 dp2[j] = 1 + dp[x - 1].coerceAtLeast(dp2[j - x])

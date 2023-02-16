@@ -17,7 +17,6 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.Deque
-
 import java.util.LinkedList
 
 object TreeCodec {

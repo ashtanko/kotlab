@@ -22,5 +22,4 @@ enum class Action(val title: String, val description: String) {
     GOLD("found gold", "takes his share of the gold"),
     ENEMY("spotted enemies", "runs for cover"),
     NONE("", ""),
-    ;
 }
