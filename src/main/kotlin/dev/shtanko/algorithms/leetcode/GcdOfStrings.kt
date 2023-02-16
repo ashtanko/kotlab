@@ -28,7 +28,7 @@ interface GcdOfStrings {
 
 class GcdOfStringsImpl : GcdOfStrings {
     override fun perform(str1: String, str2: String): String {
-        if ((str1 + str2) != str2 + str1) return ""
+        if (str1.plus(str2) != str2.plus(str1)) return ""
         val gcdVal: Int = gcd(str1.length, str2.length)
         return str2.substring(0, gcdVal)
     }
