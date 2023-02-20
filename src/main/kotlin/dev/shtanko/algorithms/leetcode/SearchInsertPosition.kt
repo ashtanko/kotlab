@@ -16,24 +16,48 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun IntArray.searchInsertPosition(target: Int): Int {
-    var low = 0
-    var high = this.size - 1
-    while (low <= high) {
-        val mid = (low + high) / 2
-        when {
-            this[mid] == target -> {
-                return mid
-            }
+/**
+ * 35. Search Insert Position
+ * @link https://leetcode.com/problems/search-insert-position/description/
+ */
+interface SearchInsertPosition {
+    fun searchInsert(nums: IntArray, target: Int): Int
+}
 
-            this[mid] > target -> {
-                high = mid - 1
-            }
+class SearchInsertPositionIterative : SearchInsertPosition {
+    override fun searchInsert(nums: IntArray, target: Int): Int {
+        var low = 0
+        var high = nums.size - 1
+        while (low <= high) {
+            val mid = (low + high) / 2
+            when {
+                nums[mid] == target -> {
+                    return mid
+                }
 
-            else -> {
-                low = mid + 1
+                nums[mid] > target -> {
+                    high = mid - 1
+                }
+
+                else -> {
+                    low = mid + 1
+                }
             }
         }
+        return low
     }
-    return low
+}
+
+class SearchInsertPositionFast : SearchInsertPosition {
+    override fun searchInsert(nums: IntArray, target: Int): Int {
+        var start = 0
+        var end: Int = nums.size - 1
+
+        while (start <= end) {
+            val mid = start + (end - start) / 2
+            if (nums[mid] == target) return mid else if (nums[mid] > target) end = mid - 1 else start = mid + 1
+        }
+
+        return start
+    }
 }
