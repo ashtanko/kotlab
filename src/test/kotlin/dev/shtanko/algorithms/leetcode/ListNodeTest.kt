@@ -122,6 +122,31 @@ internal class ListNodeTest {
         )
     }
 
+    class ReverseListArgs : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                listOf(1, 2, 3, 4, 5, 6, 7).toListNode(),
+                listOf(1, 2, 3, 4, 5, 6, 7).reversed(),
+            ),
+            Arguments.of(
+                listOf(1).toListNode(),
+                listOf(1).reversed(),
+            ),
+            Arguments.of(
+                listOf(1, 2).toListNode(),
+                listOf(1, 2).reversed(),
+            ),
+            Arguments.of(
+                listOf<Int>().toListNode(),
+                listOf<Int>().reversed(),
+            ),
+            Arguments.of(
+                listOf(-1, -2).toListNode(),
+                listOf(-1, -2).reversed(),
+            ),
+        )
+    }
+
     @ParameterizedTest
     @ArgumentsSource(ToListArgs::class)
     internal fun `to list node test`(list: List<Int>, expected: ListNode) {
@@ -140,6 +165,13 @@ internal class ListNodeTest {
     @ParameterizedTest
     internal fun `list node to list test`(head: ListNode, expected: List<Int>) {
         val actual = head.toList()
+        assertThat(actual).containsAll(expected)
+    }
+
+    @ArgumentsSource(ReverseListArgs::class)
+    @ParameterizedTest
+    internal fun `reverse list test`(head: ListNode, expected: List<Int>) {
+        val actual = head.reverseList()?.toList()
         assertThat(actual).containsAll(expected)
     }
 }
