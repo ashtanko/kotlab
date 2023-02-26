@@ -40,6 +40,7 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.pitest)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.protobuf)
     kotlin("kapt") version "1.8.10"
 }
 
@@ -99,9 +100,9 @@ spotless {
                 mapOf(
                     "dir" to ".",
                     "include" to listOf("**/*.kt"),
-                    "exclude" to listOf("**/build/**", "**/spotless/*.kt")
-                )
-            )
+                    "exclude" to listOf("**/build/**", "**/spotless/*.kt"),
+                ),
+            ),
         )
         trimTrailingWhitespace()
         indentWithSpaces()
@@ -212,6 +213,22 @@ tasks {
     }
 }
 
+protobuf {
+    protoc {
+        artifact = libs.protobuf.protoc.get().toString()
+    }
+
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                val kotlin by registering {
+                    option("lite")
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
@@ -230,6 +247,11 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.autovalue.annotations)
     implementation(libs.jmh)
+
+    implementation("com.google.protobuf:protobuf-java:3.19.1")
+    implementation("com.google.protobuf:protobuf-kotlin-lite:3.19.6")
+    implementation("io.grpc:grpc-stub:1.15.1")
+    implementation("io.grpc:grpc-protobuf:1.15.1")
 
     ktLintConfig(libs.ktlint)
 
