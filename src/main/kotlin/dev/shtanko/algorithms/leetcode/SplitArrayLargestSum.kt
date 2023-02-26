@@ -121,8 +121,6 @@ class SplitArrayLargestSumBinarySearch : SplitArrayLargestSum {
         // sanity check
         if (nums.isEmpty()) return 0
 
-        val size = nums.size
-
         var lo = 0L
         var hi = 0L
         for (num in nums) {
