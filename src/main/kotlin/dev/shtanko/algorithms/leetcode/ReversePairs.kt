@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-private data class Node(val value: Int, var cnt: Int = 1, var left: Node? = null, var right: Node? = null)
+data class Node(val value: Int, var cnt: Int = 1, var left: Node? = null, var right: Node? = null)
 
 private fun Node?.search(value: Int): Int {
     return when {
