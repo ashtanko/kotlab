@@ -19,26 +19,32 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.abs
 
 /**
+ * 977. Squares of a Sorted Array
+ * @link https://leetcode.com/problems/squares-of-a-sorted-array/description/
  * Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number,
  * also in sorted non-decreasing order.
  */
-fun IntArray.sortedSquares(): IntArray {
-    val n = size
+interface SortedSquares {
+    fun perform(nums: IntArray): IntArray
+}
 
-    val result = IntArray(n)
+class SortedSquaresTwoPointers : SortedSquares {
+    override fun perform(nums: IntArray): IntArray {
+        val n = nums.size
+        val result = IntArray(n)
+        var i = 0
+        var j = n - 1
 
-    var i = 0
-    var j = n - 1
-
-    for (p in n - 1 downTo 0) {
-        if (abs(this[i]) > abs(this[j])) {
-            result[p] = this[i] * this[i]
-            i++
-        } else {
-            result[p] = this[j] * this[j]
-            j--
+        for (p in n - 1 downTo 0) {
+            if (abs(nums[i]) > abs(nums[j])) {
+                result[p] = nums[i] * nums[i]
+                i++
+            } else {
+                result[p] = nums[j] * nums[j]
+                j--
+            }
         }
-    }
 
-    return result
+        return result
+    }
 }
