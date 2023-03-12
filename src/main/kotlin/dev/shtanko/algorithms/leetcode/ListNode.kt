@@ -70,6 +70,20 @@ fun ListNode.toList(): List<Int> {
     return result
 }
 
+fun ListNode?.toListOrEmpty(): List<Int> {
+    return this?.toList() ?: emptyList()
+}
+
+fun ListNode?.isNotNull(): Boolean {
+    return this != null
+}
+
+fun MutableCollection<ListNode>.addIfNotNull(node: ListNode?) {
+    node?.let {
+        add(it)
+    }
+}
+
 fun ListNode.reverseList(): ListNode? {
     var prev: ListNode? = null
     var curr: ListNode? = this

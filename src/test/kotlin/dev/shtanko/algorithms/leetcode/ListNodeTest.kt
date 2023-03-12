@@ -17,7 +17,9 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
+import kotlin.streams.toList
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -27,7 +29,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class ListNodeTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    internal class PrettyPrintArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(1),
@@ -42,12 +44,12 @@ internal class ListNodeTest {
                 "1->2->3",
             ),
             Arguments.of(
-                getRoot(),
+                getTwentyItemsList(),
                 "0->1->2->3->4->5->6->7->8->9->10->11->12->13->14->15->16->17->18->19",
             ),
         )
 
-        private fun getRoot(): ListNode {
+        private fun getTwentyItemsList(): ListNode {
             val root = ListNode(0)
             var ptr: ListNode? = root
             for (i in 1 until 20) {
@@ -58,7 +60,7 @@ internal class ListNodeTest {
         }
     }
 
-    internal class InputArgumentsProvider2 : ArgumentsProvider {
+    internal class InputToListArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(
@@ -83,6 +85,18 @@ internal class ListNodeTest {
                 listOf(4, 2, 1, 3),
             ),
         )
+    }
+
+    internal class InputToListNullableArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> =
+            InputToListArgumentsProvider().provideArguments(context).toList().toMutableList().apply {
+                add(
+                    Arguments.of(
+                        null,
+                        emptyList<Int>(),
+                    ),
+                )
+            }.stream()
     }
 
     class ToListArgs : ArgumentsProvider {
@@ -154,17 +168,24 @@ internal class ListNodeTest {
         assertThat(actual).isEqualTo(expected.toList())
     }
 
-    @ArgumentsSource(InputArgumentsProvider::class)
+    @ArgumentsSource(PrettyPrintArgumentsProvider::class)
     @ParameterizedTest
     internal fun `print list node test`(node: ListNode, expected: String) {
         val actual = node.prettyPrinted()
         assertEquals(expected, actual)
     }
 
-    @ArgumentsSource(InputArgumentsProvider2::class)
+    @ArgumentsSource(InputToListArgumentsProvider::class)
     @ParameterizedTest
     internal fun `list node to list test`(head: ListNode, expected: List<Int>) {
         val actual = head.toList()
+        assertThat(actual).containsAll(expected)
+    }
+
+    @ArgumentsSource(InputToListNullableArgumentsProvider::class)
+    @ParameterizedTest
+    internal fun `list node to list nullable test`(head: ListNode?, expected: List<Int>) {
+        val actual = head.toListOrEmpty()
         assertThat(actual).containsAll(expected)
     }
 
@@ -173,5 +194,33 @@ internal class ListNodeTest {
     internal fun `reverse list test`(head: ListNode, expected: List<Int>) {
         val actual = head.reverseList()?.toList()
         assertThat(actual).containsAll(expected)
+    }
+
+    @Test
+    internal fun `when list node is not null, should return true`() {
+        val node = ListNode(1)
+        assertThat(node.isNotNull()).isTrue()
+    }
+
+    @Test
+    internal fun `when list node is null, should return false`() {
+        val node: ListNode? = null
+        assertThat(node.isNotNull()).isFalse()
+    }
+
+    @Test
+    internal fun `addIfNotNull, when null, should skip`() {
+        val node: ListNode? = null
+        val list = ArrayList<ListNode>()
+        list.addIfNotNull(node)
+        assertThat(list).isEmpty()
+    }
+
+    @Test
+    internal fun `addIfNotNull, when not null, should add`() {
+        val node = ListNode(0)
+        val list = ArrayList<ListNode>()
+        list.addIfNotNull(node)
+        assertThat(list).isNotEmpty()
     }
 }
