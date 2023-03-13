@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SymmetricTreeTest {
+internal abstract class SymmetricTreeTest<out T : SymmetricTree>(private val strategy: T) {
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -99,8 +99,11 @@ internal class SymmetricTreeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `name test`(root: TreeNode, expected: Boolean) {
-        val actual = root.isSymmetric()
+    internal fun `is symmetric tree test`(root: TreeNode, expected: Boolean) {
+        val actual = strategy.isSymmetric(root)
         assertThat(actual).isEqualTo(expected)
     }
 }
+
+internal class SymmetricTreeRecursiveTest : SymmetricTreeTest<SymmetricTree>(SymmetricTreeRecursive())
+internal class SymmetricTreeIterativeTest : SymmetricTreeTest<SymmetricTree>(SymmetricTreeIterative())
