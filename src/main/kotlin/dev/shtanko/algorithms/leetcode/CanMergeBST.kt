@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.Deque
+import java.util.LinkedList
+
 /**
  * 1932. Merge BSTs to Create Single BST
  * @link https://leetcode.com/problems/merge-bsts-to-create-single-bst/
@@ -25,41 +28,75 @@ interface CanMergeBST {
 }
 
 class CanMergeBSTImpl : CanMergeBST {
-
     override fun perform(trees: List<TreeNode>): TreeNode? {
-        return canMerge(trees)
+        val rootMap: MutableMap<Int, TreeNode> = HashMap()
+        val rootCount: MutableMap<Int, Int> = HashMap()
+        for (treeNode in trees) {
+            rootMap[treeNode.value] = treeNode
+        }
+
+        // Optimization: Count numbers for a root value in the trees. Find the root that the value is unique,
+        // no other nodes in other trees have the same value, it must be the root for the answer,
+        // so that does not need to traverse every tree later.
+        for (treeNode in trees) {
+            countElements(treeNode, rootCount)
+        }
+        var root: TreeNode? = null
+        for (treeNode in trees) {
+            if (rootCount[treeNode.value] == 1) {
+                root = treeNode
+                rootMap.remove(treeNode.value)
+                break
+            }
+        }
+        if (root == null) {
+            return root
+        }
+        val node: TreeNode = root
+        val queue: Deque<TreeNode?> = LinkedList()
+        queue.offerFirst(node)
+        while (!queue.isEmpty()) {
+            val cur = queue.pollLast()
+            // If cur is a leaf node and find the matching root
+            if (cur != null && cur.left == null && cur.right == null && rootMap.containsKey(cur.value)) {
+                val matchingRoot = rootMap[cur.value]
+                cur.left = matchingRoot!!.left
+                cur.right = matchingRoot.right
+                rootMap.remove(cur.value)
+            }
+            if (cur?.left != null) {
+                queue.offerFirst(cur.left)
+            }
+            if (cur?.right != null) {
+                queue.offerFirst(cur.right)
+            }
+        }
+
+        // Optimization: merge all, do validation once in the end, instead of validating every time when merging a tree
+        return if (rootMap.isEmpty() && isBST(root, Int.MIN_VALUE, Int.MAX_VALUE)) {
+            root
+        } else {
+            null
+        }
     }
 
-    private fun canMerge(trees: List<TreeNode>): TreeNode? {
-        val map: MutableMap<Int, TreeNode> = HashMap() // root.val -> root
-        val count: MutableMap<Int, Int> = HashMap() // node.val -> count
-        for (tree in trees) {
-            map[tree.value] = tree
-            count[tree.value] = count.getOrDefault(tree.value, 0) + 1
-            if (tree.left != null) {
-                count[tree.left?.value ?: 0] = count.getOrDefault(tree.left?.value, 0) + 1
-            }
-            if (tree.right != null) {
-                count[tree.right?.value ?: 0] = count.getOrDefault(tree.right?.value, 0) + 1
-            }
+    private fun countElements(node: TreeNode?, map: MutableMap<Int, Int>) {
+        if (node != null) {
+            val count = map.getOrDefault(node.value, 0) + 1
+            map[node.value] = count
+            countElements(node.left, map)
+            countElements(node.right, map)
         }
-        for (root in trees) if (count[root.value] == 1) {
-            return if (traverse(root, map, Int.MIN_VALUE, Int.MAX_VALUE) && map.size == 1) root else null
-        }
-        return null
     }
 
-    private fun traverse(root: TreeNode?, map: MutableMap<Int, TreeNode>, min: Int, max: Int): Boolean {
-        if (root == null) return true
-        if (root.value <= min || root.value >= max) return false
-        if (root.left == null && root.right == null) { // leaf node
-            if (map.containsKey(root.value) && root != map[root.value]) {
-                val next = map[root.value]
-                root.left = next?.left
-                root.right = next?.right
-                map.remove(root.value)
-            }
+    private fun isBST(root: TreeNode?, min: Int, max: Int): Boolean {
+        if (root == null) {
+            return true
         }
-        return traverse(root.left, map, min, root.value) && traverse(root.right, map, root.value, max)
+        return if (root.value <= min || root.value >= max) {
+            false
+        } else {
+            isBST(root.left, min, root.value) && isBST(root.right, root.value, max)
+        }
     }
 }

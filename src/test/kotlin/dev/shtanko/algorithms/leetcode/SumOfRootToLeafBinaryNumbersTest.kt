@@ -55,10 +55,13 @@ internal abstract class SumOfRootToLeafBinaryNumbersTest<out T : SumOfRootToLeaf
 }
 
 internal class SumOfRootToLeafBinaryNumbersIPTTest :
-    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersIPT>(SumOfRootToLeafBinaryNumbersIPT())
+    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersStrategy>(SumOfRootToLeafBinaryNumbersIPT())
 
 internal class SumOfRootToLeafBinaryNumbersRPTTest :
-    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersRPT>(SumOfRootToLeafBinaryNumbersRPT())
+    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersStrategy>(SumOfRootToLeafBinaryNumbersRPT())
 
 internal class SumOfRootToLeafBinaryNumbersMPTTest :
-    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersMPT>(SumOfRootToLeafBinaryNumbersMPT())
+    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersStrategy>(SumOfRootToLeafBinaryNumbersMPT())
+
+internal class SumOfRootToLeafBinaryNumbersBitwiseTest :
+    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersStrategy>(SumOfRootToLeafBinaryNumbersBitwise())

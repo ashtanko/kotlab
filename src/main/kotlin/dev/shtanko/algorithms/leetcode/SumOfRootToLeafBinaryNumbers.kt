@@ -19,8 +19,39 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Deque
 import java.util.LinkedList
 
+/**
+ * 1022. Sum of Root To Leaf Binary Numbers
+ * @link https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
+ */
 internal interface SumOfRootToLeafBinaryNumbersStrategy {
     fun sumRootToLeaf(root: TreeNode?): Int
+}
+
+internal class SumOfRootToLeafBinaryNumbersBitwise : SumOfRootToLeafBinaryNumbersStrategy {
+    override fun sumRootToLeaf(root: TreeNode?): Int {
+        var rootNode = root
+        var rootToLeaf = 0
+        var currNumber = 0
+        val stack: Deque<Pair<TreeNode?, Int>> = LinkedList()
+        stack.push(rootNode to 0)
+
+        while (!stack.isEmpty()) {
+            val p = stack.pop()
+            rootNode = p.first
+            currNumber = p.second
+            if (rootNode != null) {
+                currNumber = currNumber shl 1 or rootNode.value
+                // if it's a leaf, update root-to-leaf sum
+                if (rootNode.left == null && rootNode.right == null) {
+                    rootToLeaf += currNumber
+                } else {
+                    stack.push(Pair(rootNode.right, currNumber))
+                    stack.push(Pair(rootNode.left, currNumber))
+                }
+            }
+        }
+        return rootToLeaf
+    }
 }
 
 // Iterative Preorder Traversal
@@ -81,19 +112,19 @@ internal class SumOfRootToLeafBinaryNumbersMPT : SumOfRootToLeafBinaryNumbersStr
         var currNumber = 0
         var steps: Int
         var predecessor: TreeNode?
-        var r = root
+        var treeNode = root
 
-        while (r != null) {
+        while (treeNode != null) {
             // If there is a left child,
             // then compute the predecessor.
             // If there is no link predecessor.right = root --> set it.
             // If there is a link predecessor.right = root --> break it.
-            if (r.left != null) {
+            if (treeNode.left != null) {
                 // Predecessor node is one step to the left
                 // and then to the right till you can.
-                predecessor = r.left
+                predecessor = treeNode.left
                 steps = 1
-                while (predecessor!!.right != null && predecessor.right != r) {
+                while (predecessor!!.right != null && predecessor.right !== treeNode) {
                     predecessor = predecessor.right
                     ++steps
                 }
@@ -101,9 +132,9 @@ internal class SumOfRootToLeafBinaryNumbersMPT : SumOfRootToLeafBinaryNumbersStr
                 // Set link predecessor.right = root
                 // and go to explore the left subtree
                 if (predecessor.right == null) {
-                    currNumber = currNumber shl 1 or r.value
-                    predecessor.right = r
-                    r = r.left
+                    currNumber = currNumber shl 1 or treeNode.value
+                    predecessor.right = treeNode
+                    treeNode = treeNode.left
                 } else {
                     // If you're on the leaf, update the sum
                     if (predecessor.left == null) {
@@ -114,15 +145,15 @@ internal class SumOfRootToLeafBinaryNumbersMPT : SumOfRootToLeafBinaryNumbersStr
                         currNumber = currNumber shr 1
                     }
                     predecessor.right = null
-                    r = r.right
+                    treeNode = treeNode.right
                 }
             } else {
-                currNumber = currNumber shl 1 or r.value
+                currNumber = currNumber shl 1 or treeNode.value
                 // if you're on the leaf, update the sum
-                if (r.right == null) {
+                if (treeNode.right == null) {
                     rootToLeaf += currNumber
                 }
-                r = r.right
+                treeNode = treeNode.right
             }
         }
         return rootToLeaf

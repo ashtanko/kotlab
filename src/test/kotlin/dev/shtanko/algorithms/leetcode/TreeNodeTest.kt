@@ -67,4 +67,53 @@ class TreeNodeTest {
         }
         assertThat(tree.height()).isEqualTo(3)
     }
+
+    @Test
+    fun `prettyPrinted test`() {
+        val tree = TreeNode(6).apply {
+            right = TreeNode(7)
+            left = TreeNode(5)
+        }
+        tree.prettyPrinted()
+    }
+
+    @Test
+    fun `pretty printed test`() {
+        val tree = TreeNode(3).apply {
+            left = TreeNode(9)
+            right = TreeNode(20).apply {
+                left = TreeNode(15)
+                right = TreeNode(7)
+            }
+        }
+        val actual = tree.prettyPrinted()
+
+        val expected = "            3           \n" +
+            "      ┌─────┴─────┐     \n" +
+            "      9          20     \n" +
+            "               ┌──┴──┐  \n" +
+            "              15     7  \n"
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `pretty printed one value test`() {
+        val tree = TreeNode(3)
+        val actual = tree.prettyPrinted()
+        val expected = "   3  \n"
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `pretty printed two values test`() {
+        val tree = TreeNode(3).apply {
+            left = TreeNode(9)
+        }
+        val actual = tree.prettyPrinted()
+        println(actual)
+        val expected = "      3     \n" +
+            "   ┌──┘     \n" +
+            "   9        \n"
+        assertThat(actual).isEqualTo(expected)
+    }
 }

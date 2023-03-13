@@ -40,14 +40,7 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
                         left = TreeNode(4)
                     },
                 ),
-                TreeNode(3).apply {
-                    left = TreeNode(2).apply {
-                        left = TreeNode(1)
-                    }
-                    right = TreeNode(5).apply {
-                        left = TreeNode(4)
-                    }
-                }.preorderTraversal(),
+                listOf(3, 2, 5, 1, 4),
             ),
             Arguments.of(
                 listOf(
@@ -78,6 +71,7 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `can merge test`(trees: List<TreeNode>, expected: List<Int>) {
         val actual = strategy.perform(trees).preorderTraversal()
+        println("$trees ${strategy.perform(trees)}")
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }
