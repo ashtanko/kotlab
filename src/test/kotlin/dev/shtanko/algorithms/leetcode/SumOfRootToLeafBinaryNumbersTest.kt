@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class SumOfRootToLeafBinaryNumbersTest<out T : SumOfRootToLeafBinaryNumbersStrategy>(
+internal abstract class SumOfRootToLeafBinaryNumbersTest<out T : SumOfRootToLeafBinaryNumbers>(
     private val strategy: T,
 ) {
 
@@ -55,13 +55,13 @@ internal abstract class SumOfRootToLeafBinaryNumbersTest<out T : SumOfRootToLeaf
 }
 
 internal class SumOfRootToLeafBinaryNumbersIPTTest :
-    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersStrategy>(SumOfRootToLeafBinaryNumbersIPT())
+    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbers>(SumOfRootToLeafBinaryNumbersIPT())
 
 internal class SumOfRootToLeafBinaryNumbersRPTTest :
-    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersStrategy>(SumOfRootToLeafBinaryNumbersRPT())
+    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbers>(SumOfRootToLeafBinaryNumbersRPT())
 
 internal class SumOfRootToLeafBinaryNumbersMPTTest :
-    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersStrategy>(SumOfRootToLeafBinaryNumbersMPT())
+    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbers>(SumOfRootToLeafBinaryNumbersMPT())
 
 internal class SumOfRootToLeafBinaryNumbersBitwiseTest :
-    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbersStrategy>(SumOfRootToLeafBinaryNumbersBitwise())
+    SumOfRootToLeafBinaryNumbersTest<SumOfRootToLeafBinaryNumbers>(SumOfRootToLeafBinaryNumbersBitwise())

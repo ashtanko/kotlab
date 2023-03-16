@@ -23,22 +23,22 @@ import java.util.LinkedList
  * 1022. Sum of Root To Leaf Binary Numbers
  * @link https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
  */
-internal interface SumOfRootToLeafBinaryNumbersStrategy {
+internal interface SumOfRootToLeafBinaryNumbers {
     fun sumRootToLeaf(root: TreeNode?): Int
 }
 
-internal class SumOfRootToLeafBinaryNumbersBitwise : SumOfRootToLeafBinaryNumbersStrategy {
+internal class SumOfRootToLeafBinaryNumbersBitwise : SumOfRootToLeafBinaryNumbers {
     override fun sumRootToLeaf(root: TreeNode?): Int {
         var rootNode = root
         var rootToLeaf = 0
-        var currNumber = 0
+        var currNumber: Int
         val stack: Deque<Pair<TreeNode?, Int>> = LinkedList()
         stack.push(rootNode to 0)
 
         while (!stack.isEmpty()) {
-            val p = stack.pop()
-            rootNode = p.first
-            currNumber = p.second
+            val treeNodeIntPair = stack.pop()
+            rootNode = treeNodeIntPair.first
+            currNumber = treeNodeIntPair.second
             if (rootNode != null) {
                 currNumber = currNumber shl 1 or rootNode.value
                 // if it's a leaf, update root-to-leaf sum
@@ -55,26 +55,26 @@ internal class SumOfRootToLeafBinaryNumbersBitwise : SumOfRootToLeafBinaryNumber
 }
 
 // Iterative Preorder Traversal
-internal class SumOfRootToLeafBinaryNumbersIPT : SumOfRootToLeafBinaryNumbersStrategy {
+internal class SumOfRootToLeafBinaryNumbersIPT : SumOfRootToLeafBinaryNumbers {
     override fun sumRootToLeaf(root: TreeNode?): Int {
         var rootToLeaf = 0
         var currNumber: Int
-        var r = root
+        var treeNode = root
         val stack: Deque<Pair<TreeNode?, Int>> = LinkedList()
-        stack.push(r to 0)
+        stack.push(treeNode to 0)
 
         while (!stack.isEmpty()) {
             val p = stack.pop()
-            r = p.first
+            treeNode = p.first
             currNumber = p.second
-            if (r != null) {
-                currNumber = currNumber shl 1 or r.value
+            if (treeNode != null) {
+                currNumber = currNumber shl 1 or treeNode.value
                 // if it's a leaf, update root-to-leaf sum
-                if (r.left == null && r.right == null) {
+                if (treeNode.left == null && treeNode.right == null) {
                     rootToLeaf += currNumber
                 } else {
-                    stack.push(r.right to currNumber)
-                    stack.push(r.left to currNumber)
+                    stack.push(treeNode.right to currNumber)
+                    stack.push(treeNode.left to currNumber)
                 }
             }
         }
@@ -83,7 +83,7 @@ internal class SumOfRootToLeafBinaryNumbersIPT : SumOfRootToLeafBinaryNumbersStr
 }
 
 // Recursive Preorder Traversal
-internal class SumOfRootToLeafBinaryNumbersRPT : SumOfRootToLeafBinaryNumbersStrategy {
+internal class SumOfRootToLeafBinaryNumbersRPT : SumOfRootToLeafBinaryNumbers {
     private var rootToLeaf = 0
 
     override fun sumRootToLeaf(root: TreeNode?): Int {
@@ -91,22 +91,22 @@ internal class SumOfRootToLeafBinaryNumbersRPT : SumOfRootToLeafBinaryNumbersStr
         return rootToLeaf
     }
 
-    private fun preorder(r: TreeNode?, currNumber: Int) {
+    private fun preorder(node: TreeNode?, currNumber: Int) {
         var number = currNumber
-        if (r != null) {
-            number = number shl 1 or r.value
+        if (node != null) {
+            number = number shl 1 or node.value
             // if it's a leaf, update root-to-leaf sum
-            if (r.left == null && r.right == null) {
+            if (node.left == null && node.right == null) {
                 rootToLeaf += number
             }
-            preorder(r.left, number)
-            preorder(r.right, number)
+            preorder(node.left, number)
+            preorder(node.right, number)
         }
     }
 }
 
 // Morris Preorder Traversal
-internal class SumOfRootToLeafBinaryNumbersMPT : SumOfRootToLeafBinaryNumbersStrategy {
+internal class SumOfRootToLeafBinaryNumbersMPT : SumOfRootToLeafBinaryNumbers {
     override fun sumRootToLeaf(root: TreeNode?): Int {
         var rootToLeaf = 0
         var currNumber = 0
