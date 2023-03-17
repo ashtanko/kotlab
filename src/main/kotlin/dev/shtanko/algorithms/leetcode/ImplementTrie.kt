@@ -16,28 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-data class TrieNode(var isEnd: Boolean = false) {
-
-    private val links: Array<TrieNode?> = Array(R) { null }
-
-    fun containsKey(ch: Char): Boolean {
-        return links[ch - 'a'] != null
-    }
-
-    fun get(ch: Char): TrieNode? {
-        return links[ch - 'a']
-    }
-
-    fun put(ch: Char, node: TrieNode?) {
-        links[ch - 'a'] = node
-    }
-
-    companion object {
-        private const val R = 26
-    }
-}
-
-internal interface Trie {
+interface Trie {
     fun insert(word: String)
 
     fun search(word: String): Boolean
@@ -45,7 +24,7 @@ internal interface Trie {
     fun startsWith(prefix: String): Boolean
 }
 
-internal class TrieImpl : Trie {
+internal class TrieArray : Trie {
 
     private val root = TrieNode()
 
@@ -81,4 +60,74 @@ internal class TrieImpl : Trie {
         }
         return node
     }
+
+    data class TrieNode(var isEnd: Boolean = false) {
+
+        private val links: Array<TrieNode?> = Array(R) { null }
+
+        fun containsKey(ch: Char): Boolean {
+            return links[ch - 'a'] != null
+        }
+
+        fun get(ch: Char): TrieNode? {
+            return links[ch - 'a']
+        }
+
+        fun put(ch: Char, node: TrieNode?) {
+            links[ch - 'a'] = node
+        }
+
+        companion object {
+            private const val R = 26
+        }
+    }
+}
+
+class TrieHashMap : Trie {
+
+    private val head = TrieNode()
+
+    /**
+     * Inserts a word into the trie
+     */
+    override fun insert(word: String) {
+        var node: TrieNode? = head
+        for (ch in word.toCharArray()) {
+            if (node?.charToNode?.containsKey(ch)?.not() == true) {
+                node.charToNode[ch] = TrieNode()
+            }
+            node = node?.charToNode?.get(ch)
+        }
+        node?.isEnd = true
+    }
+
+    /**
+     * Returns if the word is in the trie
+     */
+    override fun search(word: String): Boolean {
+        var node = head
+        for (ch in word.toCharArray()) {
+            if (node.charToNode.containsKey(ch).not()) {
+                return false
+            }
+            node = node.charToNode[ch] ?: return false
+        }
+        return node.isEnd
+    }
+
+    /**
+     * Returns if there is any word in the trie that starts with the given prefix
+     */
+    override fun startsWith(prefix: String): Boolean {
+        var node = head
+        for (ch in prefix.toCharArray()) {
+            if (node.charToNode.containsKey(ch).not()) {
+                return false
+            }
+            node = node.charToNode[ch] ?: return false
+        }
+        return true
+    }
+
+    data class TrieNode(val charToNode: MutableMap<Char, TrieNode> = HashMap(), var isEnd: Boolean = false)
 }
