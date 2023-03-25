@@ -16,41 +16,76 @@
 
 package dev.shtanko.algorithms.sorts
 
-import dev.shtanko.algorithms.utils.measureTime
+import dev.shtanko.utils.measureMemFormatted
 import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class MemoryTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "BubbleSort",
+                BubbleSort(),
+            ),
+            Arguments.of(
+                "SimpleBubbleSort",
+                SimpleBubbleSort(),
+            ),
+            Arguments.of(
+                "InsertionSort",
+                InsertionSort(),
+            ),
+            Arguments.of(
+                "InsertionSort2",
+                InsertionSort2(),
+            ),
+            Arguments.of(
+                "MergeSort",
+                MergeSort(),
+            ),
+            Arguments.of(
+                "QuickSort",
+                QuickSort(),
+            ),
+            Arguments.of(
+                "SelectionSort",
+                SelectionSort(),
+            ),
+            Arguments.of(
+                "ShellSort",
+                ShellSort(),
+            ),
+            Arguments.of(
+                "HeapSort",
+                HeapSort(),
+            ),
+            Arguments.of(
+                "ArraySort",
+                ArraySort(),
+            ),
+            Arguments.of(
+                "PancakeSort",
+                PancakeSort(),
+            ),
+            Arguments.of(
+                "GnomeSort",
+                GnomeSort(),
+            ),
+            Arguments.of(
+                "BinarySort",
+                BinarySort(),
+            ),
+        )
     }
 
     companion object {
         // 1000_000 //uncomment for original test
-        private const val ARRAY_SIZE = 1000
-
-        @JvmStatic
-        fun dataProvider(): List<AbstractSortStrategy> {
-            return listOf(
-                BubbleSort(),
-                SimpleBubbleSort(),
-                InsertionSort(),
-                InsertionSort2(),
-                MergeSort(),
-                QuickSort(),
-                SelectionSort(),
-                ShellSort(),
-                HeapSort(),
-                ArraySort(),
-                PancakeSort(),
-                GnomeSort(),
-            )
-        }
+        private const val ARRAY_SIZE = 5000
 
         private fun getSortedArray(): IntArray {
             val array = IntArray(ARRAY_SIZE)
@@ -62,15 +97,17 @@ internal class MemoryTest {
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `sorts test`(testCase: AbstractSortStrategy) {
-        execute(testCase, getSortedArray())
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `sorts test`(name: String, testCase: AbstractSortStrategy) {
+        execute(name, testCase, getSortedArray())
     }
 
-    private fun execute(strategy: AbstractSortStrategy, array: IntArray) {
-        measureTime(strategy, array) {
+    private fun execute(name: String, strategy: AbstractSortStrategy, array: IntArray) {
+        val (msg, result) = measureMemFormatted(name) {
             strategy.perform(array.toTypedArray())
+            array.toTypedArray()
         }
-        assertTrue(array.isSorted())
+        println(msg)
+        assertTrue(result.isSorted())
     }
 }

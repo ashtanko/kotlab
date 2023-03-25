@@ -35,7 +35,7 @@ inline fun <T> measureMemFormatted(taskName: String = "", task: () -> T): Pair<S
     val s = if (taskName.isEmpty()) {
         String.format("Memory Usage: %s", consumed)
     } else {
-        String.format(" Memory Usage: %s of %s task", taskName, consumed)
+        String.format(" Memory Usage: task: %s consumed %s", taskName, consumed)
     }
     return s to res
 }
