@@ -17,6 +17,7 @@
 package dev.shtanko.concurrency.coroutines
 
 import dev.shtanko.concurrency.TestBase
+import dev.shtanko.utils.measureMemFormatted
 import java.util.stream.Stream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -80,7 +81,11 @@ class FlowFactorialTest : TestBase() {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `flow factorial test`(n: Int, expected: String) = runTest {
-        val actual = withContext(Dispatchers.Default) { flowFactorial(n) }.toString()
-        assertThat(actual).isEqualTo(expected)
+        val task = flowFactorial(n)
+        val (msg, res) = measureMemFormatted("flow factorial") {
+            withContext(Dispatchers.Default) { task }.toString()
+        }
+        println(msg)
+        assertThat(res).isEqualTo(expected)
     }
 }
