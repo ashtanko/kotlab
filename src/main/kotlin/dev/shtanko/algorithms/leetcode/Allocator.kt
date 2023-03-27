@@ -42,7 +42,7 @@ class Allocator(n: Int) : Malloc {
         if (l == -1) return -1
         // find the list of memories allocated for this mID
         if (m[mID] == null) m[mID] = ArrayList() // if new, create the empty memList for this mID
-        m[mID]!!.add(Node(l, l + size)) // append to memList allocated to this mID
+        m[mID]?.add(Node(l, l + size)) // append to memList allocated to this mID
 
         // allocate memory
         var i = l
@@ -62,7 +62,7 @@ class Allocator(n: Int) : Malloc {
             size += r - l
             for (i in l until r) a[i] = false // free memory
         }
-        m[mID]!!.clear() // this mID is gone
+        m[mID]?.clear() // this mID is gone
         return size
     }
 

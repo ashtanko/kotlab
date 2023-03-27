@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Collections
 import kotlin.math.min
 
 /**
@@ -67,7 +66,7 @@ class MinimumIncompatibilityDFS : MinimumIncompatibility {
     }
 
     private fun findDiff(level: Set<Int>): Int {
-        return Collections.max(level) - Collections.min(level)
+        return level.max() - level.min()
     }
 
     private fun end(count: IntArray): Boolean {

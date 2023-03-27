@@ -60,8 +60,8 @@ class CanMergeBSTImpl : CanMergeBST {
             // If cur is a leaf node and find the matching root
             if (cur != null && cur.left == null && cur.right == null && rootMap.containsKey(cur.value)) {
                 val matchingRoot = rootMap[cur.value]
-                cur.left = matchingRoot!!.left
-                cur.right = matchingRoot.right
+                cur.left = matchingRoot?.left
+                cur.right = matchingRoot?.right
                 rootMap.remove(cur.value)
             }
             if (cur?.left != null) {

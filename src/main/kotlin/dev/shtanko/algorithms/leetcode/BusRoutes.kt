@@ -36,7 +36,7 @@ class BusRoutesBFS : BusRoutes {
         if (source == target) return 0
         val n: Int = routes.size
 
-        val graph: MutableList<MutableList<Int?>?> = ArrayList()
+        val graph: MutableList<MutableList<Int>> = ArrayList()
         for (i in 0 until n) {
             routes[i].sort()
             graph.add(ArrayList())
@@ -48,8 +48,8 @@ class BusRoutesBFS : BusRoutes {
         // Build the graph.  Two buses are connected if
         // they share at least one bus stop.
         for (i in 0 until n) for (j in i + 1 until n) if (intersect(routes[i], routes[j])) {
-            graph[i]?.add(j)
-            graph[j]?.add(i)
+            graph[i].add(j)
+            graph[j].add(i)
         }
 
         // Initialize seen, queue, targets.
@@ -71,12 +71,10 @@ class BusRoutesBFS : BusRoutes {
             val node: Int = info.x
             val depth: Int = info.y
             if (targets.contains(node)) return depth + 1
-            for (nei in graph[node]!!) {
+            for (nei in graph[node]) {
                 if (!seen.contains(nei)) {
-                    nei?.let {
-                        seen.add(it)
-                        queue.offer(Point(it, depth + 1))
-                    }
+                    seen.add(nei)
+                    queue.offer(Point(nei, depth + 1))
                 }
             }
         }
@@ -114,7 +112,7 @@ class BusRoutesBFS2 : BusRoutes {
             val bus = bfs.peek()[1]
             bfs.poll()
             if (stop == target) return bus
-            for (i in toRoutes[stop]!!) {
+            for (i in toRoutes.getOrDefault(stop, HashSet())) {
                 if (seenRoutes[i]) continue
                 for (j in routes[i]) {
                     if (!seen.contains(j)) {

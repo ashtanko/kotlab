@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Collections
 import kotlin.math.min
 
 /**
@@ -26,7 +25,7 @@ import kotlin.math.min
 object DegreeOfArray {
     fun findShortestSubArray(nums: IntArray): Int {
         if (nums.isEmpty()) return 0
-        val left: MutableMap<Int, Int?> = HashMap()
+        val left: MutableMap<Int, Int> = HashMap()
         val right: MutableMap<Int, Int> = HashMap()
         val count: MutableMap<Int, Int> = HashMap()
 
@@ -38,10 +37,10 @@ object DegreeOfArray {
         }
 
         var ans: Int = nums.size
-        val degree = Collections.max(count.values)
+        val degree = count.values.max()
         for (x in count.keys) {
             if (count[x] == degree) {
-                ans = min(ans, right[x]!! - left[x]!! + 1)
+                ans = min(ans, right.getOrDefault(x, 0) - left.getOrDefault(x, 0) + 1)
             }
         }
         return ans

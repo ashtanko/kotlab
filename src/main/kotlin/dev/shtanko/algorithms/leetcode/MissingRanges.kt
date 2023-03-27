@@ -16,14 +16,12 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Collections
-
 //  Missing Ranges
 class MissingRanges {
-    fun findMissingRanges(nums: IntArray, lower: Int, upper: Int): List<String>? {
+    fun findMissingRanges(nums: IntArray, lower: Int, upper: Int): List<String> {
         val n = nums.size
         if (n == 0) {
-            return Collections.singletonList(formatRange(lower, upper))
+            return listOf(formatRange(lower, upper))
         }
         val missingRanges: MutableList<String> = ArrayList()
 

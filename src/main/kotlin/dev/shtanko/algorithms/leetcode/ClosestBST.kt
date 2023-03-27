@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Collections
 import java.util.LinkedList
 import kotlin.math.abs
 
@@ -41,7 +40,7 @@ class RecursiveInorder : ClosestBST {
             val second = abs(o2 - target)
             return@Comparator if (first < second) -1 else 1
         }
-        return Collections.min(nums, comparator)
+        return nums.minWith(comparator)
     }
 
     private fun inorder(root: TreeNode?): List<Int> {

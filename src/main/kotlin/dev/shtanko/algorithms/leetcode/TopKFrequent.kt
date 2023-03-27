@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Collections
 import java.util.LinkedList
 import java.util.PriorityQueue
 import java.util.TreeMap
@@ -66,7 +65,7 @@ class TopKFrequentSorting : TopKFrequent {
         for (e in map.entries) {
             l.add(e)
         }
-        Collections.sort(l, Comparator2())
+        l.sortWith(Comparator2())
 
         val ans: MutableList<String> = LinkedList()
         for (i in 0 until k) {

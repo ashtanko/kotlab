@@ -60,7 +60,7 @@ class CycleDetection : CriticalConnections {
 
         // This is the max we have seen till now. So we start with this instead of INT_MAX or something.
         var minRank = discoveryRank + 1
-        for (neighbor in graph[node]!!) {
+        for (neighbor in graph.getOrDefault(node, ArrayList())) {
             // Skip the parent.
             val neighRank = rank[neighbor]
             if (neighRank != null && neighRank == discoveryRank - 1) {

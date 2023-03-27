@@ -103,7 +103,7 @@ class BrickWallHashMap : BrickWall {
             var sum = 0
             for (i in 0 until row.size - 1) {
                 sum += row[i]
-                if (map.containsKey(sum)) map[sum] = map[sum]!! + 1 else map[sum] = 1
+                if (map.containsKey(sum)) map[sum] = map.getOrDefault(sum, 0) + 1 else map[sum] = 1
             }
         }
         var res: Int = wall.size

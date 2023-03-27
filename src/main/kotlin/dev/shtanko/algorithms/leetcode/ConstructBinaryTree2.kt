@@ -27,7 +27,7 @@ interface ConstructBinaryTree2 {
 class ConstructBinaryTree2Recursive : ConstructBinaryTree2 {
     override fun buildTree(inorder: IntArray, postorder: IntArray): TreeNode? {
         if (inorder.size != postorder.size) return null
-        val map: HashMap<Int?, Int?> = HashMap()
+        val map: HashMap<Int, Int> = HashMap()
         for (i in inorder.indices) {
             map[inorder[i]] = i
         }
@@ -41,11 +41,11 @@ class ConstructBinaryTree2Recursive : ConstructBinaryTree2 {
         postorder: IntArray,
         postorderStart: Int,
         postorderEnd: Int,
-        map: HashMap<Int?, Int?>,
+        map: HashMap<Int, Int>,
     ): TreeNode? {
         if (postorderStart > postorderEnd || inorderStart > inorderEnd) return null
         val node = TreeNode(postorder[postorderEnd])
-        val rootIndex = map[postorder[postorderEnd]]!!
+        val rootIndex = map.getOrDefault(postorder[postorderEnd], 0)
         val leftChild = buildBinaryTree(
             inorder,
             inorderStart,

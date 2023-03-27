@@ -39,7 +39,7 @@ class CheckWaysDFS : CheckWays {
 
         val nodes: ArrayList<Int> = ArrayList(graph.keys)
         nodes.sortWith { a, b ->
-            graph[a]!!.size - graph[b]!!.size
+            graph.getOrDefault(a, HashSet()).size - graph.getOrDefault(b, HashSet()).size
         }
 
         val tree: HashMap<Int, ArrayList<Int>> = HashMap()
@@ -48,7 +48,7 @@ class CheckWaysDFS : CheckWays {
         for (l in nodes.indices) {
             var p = l + 1
             val leaf = nodes[l]
-            while (p < nodes.size && !graph[nodes[p]]!!.contains(leaf)) p++
+            while (p < nodes.size && !graph.getOrDefault(nodes[p], HashSet()).contains(leaf)) p++
             if (p < nodes.size) {
                 tree.computeIfAbsent(nodes[p]) { ArrayList() }.add(leaf)
                 if (graph[nodes[p]]?.size == graph[leaf]?.size) {
@@ -68,7 +68,7 @@ class CheckWaysDFS : CheckWays {
         return result
     }
 
-    fun dfs(
+    private fun dfs(
         root: Int,
         depth: Int,
         tree: HashMap<Int, ArrayList<Int>>,
@@ -82,13 +82,15 @@ class CheckWaysDFS : CheckWays {
         }
         visited.add(root)
         var descendantsNum = 0
-        for (node in tree.getOrDefault(root, ArrayList())) descendantsNum += dfs(
-            node,
-            depth + 1,
-            tree,
-            graph,
-            visited,
-        )
+        for (node in tree.getOrDefault(root, ArrayList())) {
+            descendantsNum += dfs(
+                node,
+                depth + 1,
+                tree,
+                graph,
+                visited,
+            )
+        }
         if (descendantsNum + depth != graph[root]?.size) {
             result = 0
             return -1
