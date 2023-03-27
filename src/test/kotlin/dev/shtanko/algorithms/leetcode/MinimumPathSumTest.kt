@@ -16,27 +16,36 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MinimumPathSumTest {
+abstract class MinimumPathSumTest<out T : MinimumPathSum>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<Int, Array<IntArray>>> {
-            return listOf(
-                7 to arrayOf(
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                arrayOf(
                     intArrayOf(1, 3, 1),
                     intArrayOf(1, 5, 1),
                     intArrayOf(4, 2, 1),
                 ),
-                6 to arrayOf(
+                7,
+            ),
+            Arguments.of(
+                arrayOf(
                     intArrayOf(1, 1, 2),
                     intArrayOf(1, 1, 3),
                     intArrayOf(4, 2, 1),
                 ),
-                83 to arrayOf(
+                6,
+            ),
+            Arguments.of(
+                arrayOf(
                     intArrayOf(3, 8, 6, 0, 5, 9, 9, 6, 3, 4, 0, 5, 7, 3, 9, 3),
                     intArrayOf(0, 9, 2, 5, 5, 4, 9, 1, 4, 6, 9, 5, 6, 7, 3, 2),
                     intArrayOf(8, 2, 2, 3, 3, 3, 1, 6, 9, 1, 1, 6, 6, 2, 1, 9),
@@ -56,15 +65,17 @@ internal class MinimumPathSumTest {
                     intArrayOf(3, 4, 9, 2, 8, 3, 1, 2, 6, 9, 7, 0, 2, 4, 2, 0),
                     intArrayOf(5, 1, 8, 8, 4, 6, 8, 5, 2, 4, 1, 6, 2, 2, 9, 7),
                 ),
-            )
-        }
+                83,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("casesProvider")
-    internal fun `min path sum test`(testCase: Pair<Int, Array<IntArray>>) {
-        val (expected, matrix) = testCase
-        val actual = minPathSum(matrix)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `min path sum test`(matrix: Array<IntArray>, expected: Int) {
+        val actual = strategy.perform(matrix)
         assertEquals(expected, actual)
     }
 }
+
+class MinimumPathSumDPTest : MinimumPathSumTest<MinimumPathSum>(MinimumPathSumDP())
