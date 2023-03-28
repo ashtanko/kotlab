@@ -43,7 +43,9 @@ class DPDayVariant : MinCostTickets {
 
     private fun dp(i: Int): Int {
         if (i > YEAR_DAYS) return 0
-        if (memo[i] != null) return memo[i] ?: 0
+        if (memo[i] != null) {
+            return memo[i] ?: 0
+        }
         var ans: Int
         if (dayset.contains(i)) {
             ans = min(
@@ -83,11 +85,15 @@ class DPWindowVariant : MinCostTickets {
 
     private fun dp(i: Int): Int {
         if (i >= days.size) return 0
-        if (memo[i] != null) return memo[i] ?: 0
+        if (memo[i] != null) {
+            return memo[i] ?: 0
+        }
         var ans = Int.MAX_VALUE
         var j = i
         for (k in 0..2) {
-            while (j < days.size && days[j] < days[i] + durations[k]) j++
+            while (j < days.size && days[j] < days[i] + durations[k]) {
+                j++
+            }
             ans = min(ans, dp(j) + costs[k])
         }
         memo[i] = ans
