@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface RunningSum {
+/**
+ * 1685. Sum of Absolute Differences in a Sorted Array
+ * @link https://leetcode.com/problems/sum-of-absolute-differences-in-a-sorted-array/
+ */
+interface GetSumAbsoluteDifferences {
     fun perform(nums: IntArray): IntArray
-}
-
-class RunningSumNaive : RunningSum {
-    override fun perform(nums: IntArray): IntArray {
-        return nums.naive()
-    }
-
-    private fun IntArray.naive(): IntArray {
-        if (isEmpty() || size <= 1) return intArrayOf()
-        for (i in 1 until size) {
-            this[i] += this[i - 1]
-        }
-        return this
-    }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,23 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface RunningSum {
-    fun perform(nums: IntArray): IntArray
+/**
+ * 724. Find Pivot Index
+ * @link https://leetcode.com/problems/find-pivot-index/?envType=study-plan&id=level-1
+ */
+interface FindPivotIndex {
+    fun pivotIndex(nums: IntArray): Int
 }
 
-class RunningSumNaive : RunningSum {
-    override fun perform(nums: IntArray): IntArray {
-        return nums.naive()
-    }
-
-    private fun IntArray.naive(): IntArray {
-        if (isEmpty() || size <= 1) return intArrayOf()
-        for (i in 1 until size) {
-            this[i] += this[i - 1]
+class FindPivotIndexPrefixSum : FindPivotIndex {
+    override fun pivotIndex(nums: IntArray): Int {
+        var sum = 0
+        var leftsum = 0
+        for (x in nums) sum += x
+        for (i in nums.indices) {
+            if (leftsum == sum - leftsum - nums[i]) return i
+            leftsum += nums[i]
         }
-        return this
+        return -1
     }
 }
