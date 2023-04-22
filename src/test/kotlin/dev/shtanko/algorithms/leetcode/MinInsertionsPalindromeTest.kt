@@ -52,3 +52,9 @@ abstract class MinInsertionsPalindromeTest<out T : MinInsertionsPalindrome>(priv
 
 class MinInsertionsPalindromeLCSTest :
     MinInsertionsPalindromeTest<MinInsertionsPalindrome>(MinInsertionsPalindromeLCS())
+
+class MinInsertionsPalindromeRecursiveTest :
+    MinInsertionsPalindromeTest<MinInsertionsPalindrome>(MinInsertionsPalindromeRecursive())
+
+class MinInsertionsPalindromeIterativeTest :
+    MinInsertionsPalindromeTest<MinInsertionsPalindrome>(MinInsertionsPalindromeIterative())
