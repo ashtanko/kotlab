@@ -26,6 +26,72 @@ interface RestoreTheArray {
     fun numberOfArrays(s: String, k: Int): Int
 }
 
+/**
+ * Approach 1: Dynamic Programming (Top Down)
+ */
+class RestoreTheArrayTopDown : RestoreTheArray {
+    override fun numberOfArrays(s: String, k: Int): Int {
+        val m: Int = s.length
+        val dp = IntArray(m + 1)
+        return dfs(dp, 0, s, k)
+    }
+
+    // Number of possible splits for substring s[start ~ m-1].
+    private fun dfs(dp: IntArray, start: Int, s: String, k: Int): Int {
+        // If we have already updated dp[start], return it.
+        if (dp[start] != 0) return dp[start]
+
+        // There is only 1 split for an empty string.
+        if (start == s.length) return 1
+
+        // Number can't have leading zeros.
+        if (s[start] == '0') return 0
+
+        // For all possible starting number, add the number of arrays
+        // that can be printed as the remaining string to count.
+        var count = 0
+        for (end in start until s.length) {
+            val currNumber = s.substring(start, end + 1)
+            if (currNumber.toLong() > k) break
+            count = (count + dfs(dp, end + 1, s, k)) % MOD
+        }
+
+        // Update dp[start] so we don't recalculate it later.
+        dp[start] = count
+        return count
+    }
+}
+
+/**
+ * Approach 2: Dynamic Programming (Bottom Up)
+ */
+class RestoreTheArrayBottomUp : RestoreTheArray {
+    override fun numberOfArrays(s: String, k: Int): Int {
+        val m: Int = s.length
+        // dp[i] records the number of arrays that can be printed as
+        // the prefix substring s[0 ~ i - 1]
+        val dp = IntArray(m + 1)
+
+        // Empty string has 1 valid split.
+        dp[0] = 1
+        // Iterate over every digit, for each digit s[start]
+        for (start in 0 until m) {
+            if (s[start] == '0') continue
+
+            // Iterate over ending digit end and find all valid numbers
+            // s[start ~ end].
+            for (end in start until m) {
+                val currNumber: String = s.substring(start, end + 1)
+                if (currNumber.toLong() > k) break
+
+                // If s[start ~ end] is valid, increment dp[end + 1] by dp[start].
+                dp[end + 1] = (dp[end + 1] + dp[start]) % MOD
+            }
+        }
+        return dp[m]
+    }
+}
+
 class RestoreTheArrayMemoization : RestoreTheArray {
     override fun numberOfArrays(s: String, k: Int): Int {
         val dp = arrayOfNulls<Int>(s.length) // dp[i] is number of ways to print valid arrays from string s start at i

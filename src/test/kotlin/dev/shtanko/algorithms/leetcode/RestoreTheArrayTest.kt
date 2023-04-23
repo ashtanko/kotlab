@@ -55,3 +55,5 @@ abstract class RestoreTheArrayTest<out T : RestoreTheArray>(private val strategy
 
 class RestoreTheArrayMemoizationTest : RestoreTheArrayTest<RestoreTheArray>(RestoreTheArrayMemoization())
 class RestoreTheArrayDPTest : RestoreTheArrayTest<RestoreTheArray>(RestoreTheArrayDP())
+class RestoreTheArrayTopDownTest : RestoreTheArrayTest<RestoreTheArray>(RestoreTheArrayTopDown())
+class RestoreTheArrayBottomUpTest : RestoreTheArrayTest<RestoreTheArray>(RestoreTheArrayBottomUp())
