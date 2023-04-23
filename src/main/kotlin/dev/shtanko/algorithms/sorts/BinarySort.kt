@@ -39,7 +39,8 @@ class BinarySort : AbstractSortStrategy {
              * Invariants:
              *   pivot >= all in [lo, left).
              *   pivot <  all in [right, start).
-             */while (left < right) {
+             */
+            while (left < right) {
                 val mid = left + right ushr 1
                 if (pivot < a[mid]) right = mid else left = mid + 1
             }

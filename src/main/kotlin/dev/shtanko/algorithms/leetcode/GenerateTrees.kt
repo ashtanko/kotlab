@@ -31,7 +31,7 @@ internal fun generateTrees(n: Int): MutableList<TreeNode?> {
             /* Case 1: put n on the root,
              * and the original @node tree is its right tree
              * since i is the smallest value in the @node tree (from n to i+1)
-            */
+             */
             val root = TreeNode(i)
             root.right = node
             next.add(root)
@@ -40,17 +40,17 @@ internal fun generateTrees(n: Int): MutableList<TreeNode?> {
              * the root of the new tree is still @node,
              * i put on insertParent.left,
              * and the original left tree of the insertParent is set as the right subtree of the new node since i is small than values in the subtree.
-            */
+             */
             var insertParent = node
             while (insertParent != null) {
-                /* Step 1: generate a new tree from the @node tree */
+                // Step 1: generate a new tree from the @node tree
                 val cRoot = TreeNode(node?.value!!)
                 // clone left subtree since we need to change it by inserting i
                 cRoot.left = node.left.clone()
                 // reusing the right tree since it is fixed
                 cRoot.right = node.right
 
-                /* Step 2: insert i into the new tree */
+                // Step 2: insert i into the new tree
                 val insertParentInNewTree = getValNode(cRoot, insertParent.value)
                 val tmp = insertParentInNewTree?.left
                 insertParentInNewTree?.left = TreeNode(i)

@@ -42,7 +42,7 @@ internal class AVLTreeTest {
           20   40
          /  \    \
         10  25   50
-    */
+     */
     @Test
     internal fun `insert items test`() {
         val tree = AVLTree()

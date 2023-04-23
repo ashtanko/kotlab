@@ -38,7 +38,7 @@ class AVLTree {
     var root: Node? = null
 
     fun insert(node: Node?, key: Int): Node? {
-        /* 1.  Perform the normal BST insertion */
+        // 1.  Perform the normal BST insertion
         if (node == null) return Node(key)
         when {
             key < node.key -> node.left = insert(node.left, key)
@@ -47,14 +47,16 @@ class AVLTree {
             else -> return node
         }
 
-        /* 2. Update height of this ancestor node */node.height = 1 + max(
+        // 2. Update height of this ancestor node
+        node.height = 1 + max(
             height(node.left),
             height(node.right),
         )
 
         /* 3. Get the balance factor of this ancestor
               node to check whether this node became
-              unbalanced */
+              unbalanced
+         */
         val balance = getBalance(node)
 
         // If this node becomes unbalanced, then there
@@ -76,7 +78,7 @@ class AVLTree {
             return leftRotate(node)
         }
 
-        /* return the (unchanged) node pointer */
+        // return the (unchanged) node pointer
         return node
     }
 
