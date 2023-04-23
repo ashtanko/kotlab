@@ -73,11 +73,15 @@ class BinarySort : AbstractSortStrategy {
         if (runHi == hi) return 1
 
         // Find end of run, and reverse range if descending
-        if ((a[runHi++]) < a[lo]) { // Descending
-            while (runHi < hi && (a[runHi]) < a[runHi - 1]) runHi++
+        if (a[runHi++] < a[lo]) { // Descending
+            while (runHi < hi && a[runHi] < a[runHi - 1]) {
+                runHi++
+            }
             reverseRange(a, lo, runHi)
         } else { // Ascending
-            while (runHi < hi && (a[runHi]) >= a[runHi - 1]) runHi++
+            while (runHi < hi && a[runHi] >= a[runHi - 1]) {
+                runHi++
+            }
         }
         return runHi - lo
     }
