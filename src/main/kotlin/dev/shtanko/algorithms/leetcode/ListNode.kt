@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 data class ListNode(
-    val value: Int = 0,
+    var value: Int = 0,
     var next: ListNode? = null,
 ) {
     fun prettyPrinted(): String {
