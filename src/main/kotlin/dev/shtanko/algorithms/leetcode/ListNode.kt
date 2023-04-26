@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.extensions.isEven
+
 data class ListNode(
     var value: Int = 0,
     var next: ListNode? = null,
@@ -87,12 +89,37 @@ fun MutableCollection<ListNode>.addIfNotNull(node: ListNode?) {
 fun ListNode.reverseList(): ListNode? {
     var prev: ListNode? = null
     var curr: ListNode? = this
-    var next: ListNode?
     while (curr != null) {
-        next = curr.next
+        val next = curr.next
         curr.next = prev
         prev = curr
         curr = next
     }
     return prev
+}
+
+fun ListNode.zip(head2: ListNode?): ListNode {
+    var tail: ListNode? = this
+    var current1 = this.next
+    var current2 = head2
+    var count = 0
+    while (current1 != null && current2 != null) {
+        if (count.isEven) {
+            tail?.next = current2
+            current2 = current2.next
+        } else {
+            tail?.next = current1
+            current1 = current1.next
+        }
+        tail = tail?.next
+        count++
+    }
+    if (current1 != null) {
+        tail?.next = current1
+    }
+    if (current2 != null) {
+        tail?.next = current2
+    }
+
+    return this
 }

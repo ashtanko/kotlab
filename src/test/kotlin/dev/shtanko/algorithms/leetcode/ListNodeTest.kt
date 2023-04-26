@@ -29,7 +29,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class ListNodeTest {
 
-    internal class PrettyPrintArgumentsProvider : ArgumentsProvider {
+    private class PrettyPrintArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(1),
@@ -60,7 +60,7 @@ internal class ListNodeTest {
         }
     }
 
-    internal class InputToListArgumentsProvider : ArgumentsProvider {
+    private class InputToListArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(
@@ -87,7 +87,7 @@ internal class ListNodeTest {
         )
     }
 
-    internal class InputToListNullableArgumentsProvider : ArgumentsProvider {
+    private class InputToListNullableArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> =
             InputToListArgumentsProvider().provideArguments(context).toList().toMutableList().apply {
                 add(
@@ -99,7 +99,7 @@ internal class ListNodeTest {
             }.stream()
     }
 
-    class ToListArgs : ArgumentsProvider {
+    private class ToListArgs : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 listOf<Int>(),
@@ -136,7 +136,7 @@ internal class ListNodeTest {
         )
     }
 
-    class ReverseListArgs : ArgumentsProvider {
+    private class ReverseListArgs : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 listOf(1, 2, 3, 4, 5, 6, 7).toListNode(),
@@ -159,6 +159,23 @@ internal class ListNodeTest {
                 listOf(-1, -2).reversed(),
             ),
         )
+    }
+
+    private class ZipListArgs : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                listOf(1, 3).toListNode(),
+                listOf(2, 4).toListNode(),
+                listOf(1, 2, 3, 4).toListNode(),
+            ),
+        )
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ZipListArgs::class)
+    internal fun `zip node test`(head1: ListNode, head2: ListNode, expected: ListNode) {
+        val actual = head1.zip(head2).toList()
+        assertThat(actual).isEqualTo(expected.toList())
     }
 
     @ParameterizedTest
