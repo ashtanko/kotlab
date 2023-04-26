@@ -25,9 +25,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AddDigitsTest<out T : AddDigitsStrategy>(private val strategy: T) {
+abstract class AddDigitsTest<out T : AddDigits>(private val strategy: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(38, 2),
             Arguments.of(0, 0),
@@ -39,6 +39,7 @@ internal abstract class AddDigitsTest<out T : AddDigitsStrategy>(private val str
             Arguments.of(111, 3),
             Arguments.of(1111, 4),
             Arguments.of(11112, 6),
+            Arguments.of(Int.MAX_VALUE, 1),
         )
     }
 
@@ -50,5 +51,6 @@ internal abstract class AddDigitsTest<out T : AddDigitsStrategy>(private val str
     }
 }
 
-internal class AddDigitsStraightForwardTest : AddDigitsTest<AddDigitsStraightForward>(AddDigitsStraightForward())
-internal class AddDigitsMathTest : AddDigitsTest<AddDigitsMath>(AddDigitsMath())
+class AddDigitsStraightForwardTest : AddDigitsTest<AddDigits>(AddDigitsStraightForward())
+class AddDigitsMathTest : AddDigitsTest<AddDigits>(AddDigitsMath())
+class AddDigitsDigitalRootTest : AddDigitsTest<AddDigits>(AddDigitsDigitalRoot())

@@ -22,19 +22,19 @@ private const val MAX = 9
  * Add Digits
  * @link https://leetcode.com/problems/add-digits/
  */
-interface AddDigitsStrategy {
-    fun perform(digits: Int): Int
+interface AddDigits {
+    fun perform(num: Int): Int
 }
 
-class AddDigitsStraightForward : AddDigitsStrategy {
-    override fun perform(digits: Int): Int {
+class AddDigitsStraightForward : AddDigits {
+    override fun perform(num: Int): Int {
         var digitalRoot = 0
-        var num = digits
-        while (num > 0) {
-            digitalRoot += num % DECIMAL
-            num /= DECIMAL
-            if (num == 0 && digitalRoot > MAX) {
-                num = digitalRoot
+        var digits = num
+        while (digits > 0) {
+            digitalRoot += digits % DECIMAL
+            digits /= DECIMAL
+            if (digits == 0 && digitalRoot > MAX) {
+                digits = digitalRoot
                 digitalRoot = 0
             }
         }
@@ -42,10 +42,16 @@ class AddDigitsStraightForward : AddDigitsStrategy {
     }
 }
 
-class AddDigitsMath : AddDigitsStrategy {
-    override fun perform(digits: Int): Int {
-        if (digits == 0) return 0
-        if (digits % MAX == 0) return MAX
-        return digits % MAX
+class AddDigitsMath : AddDigits {
+    override fun perform(num: Int): Int {
+        if (num == 0) return 0
+        if (num % MAX == 0) return MAX
+        return num % MAX
+    }
+}
+
+class AddDigitsDigitalRoot : AddDigits {
+    override fun perform(num: Int): Int {
+        return if (num == 0) 0 else 1 + (num - 1) % MAX
     }
 }
