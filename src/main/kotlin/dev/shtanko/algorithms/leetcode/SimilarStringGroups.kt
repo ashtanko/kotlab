@@ -17,10 +17,171 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.swap
+import java.util.LinkedList
+import java.util.Queue
 
-class SimilarStringGroups {
+/**
+ * 839. Similar String Groups
+ * @link https://leetcode.com/problems/similar-string-groups/description/
+ */
+interface SimilarStringGroups {
+    fun numSimilarGroups(strings: Array<String>): Int
+}
 
-    fun perform(strings: Array<String>): Int {
+private fun numSimilarGroupsCount(
+    strings: Array<String>,
+    strategy: (n: Int, adj: Map<Int, MutableList<Int>>, visit: BooleanArray) -> Unit,
+): Int = run {
+    fun isSimilar(a: String, b: String): Boolean {
+        var diff = 0
+        for (i in a.indices) {
+            if (a[i] != b[i]) {
+                diff++
+            }
+        }
+        return diff == 0 || diff == 2
+    }
+
+    val n = strings.size
+    val adj: MutableMap<Int, MutableList<Int>> = HashMap()
+    // Form the required graph from the given strings array.
+    for (i in 0 until n) {
+        for (j in i + 1 until n) {
+            if (isSimilar(strings[i], strings[j])) {
+                adj.computeIfAbsent(i) { ArrayList() }.add(j)
+                adj.computeIfAbsent(j) { ArrayList() }.add(i)
+            }
+        }
+    }
+    val visit = BooleanArray(n)
+    var count = 0
+    // Count the number of connected components.
+    for (i in 0 until n) {
+        if (!visit[i]) {
+            strategy(i, adj, visit)
+            count++
+        }
+    }
+    return count
+}
+
+/**
+ * Approach 1: Depth First Search
+ */
+class SimilarStringGroupsBFS : SimilarStringGroups {
+
+    override fun numSimilarGroups(strings: Array<String>): Int {
+        return numSimilarGroupsCount(strings, ::bfs)
+    }
+
+    private fun bfs(n: Int, adj: Map<Int, MutableList<Int>>, visit: BooleanArray) {
+        var node = n
+        val q: Queue<Int> = LinkedList()
+        q.offer(node)
+        visit[node] = true
+        while (!q.isEmpty()) {
+            node = q.poll()
+            if (!adj.containsKey(node)) {
+                continue
+            }
+            for (neighbor in adj[node]!!) {
+                if (!visit[neighbor]) {
+                    visit[neighbor] = true
+                    q.offer(neighbor)
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Approach 2: Breadth First Search
+ */
+class SimilarStringGroupsDFS : SimilarStringGroups {
+    override fun numSimilarGroups(strings: Array<String>): Int {
+        return numSimilarGroupsCount(strings, ::dfs)
+    }
+
+    private fun dfs(node: Int, adj: Map<Int, MutableList<Int>>, visit: BooleanArray) {
+        visit[node] = true
+        if (!adj.containsKey(node)) {
+            return
+        }
+        for (neighbor in adj[node]!!) {
+            if (!visit[neighbor]) {
+                visit[neighbor] = true
+                dfs(neighbor, adj, visit)
+            }
+        }
+    }
+}
+
+/**
+ * Approach 3: Union-find
+ */
+class SimilarStringGroupsUnionFind : SimilarStringGroups {
+    override fun numSimilarGroups(strings: Array<String>): Int {
+        val n: Int = strings.size
+        val dsu = UnionFind(n)
+        var count = n
+        // Form the required graph from the given strings array.
+        for (i in 0 until n) {
+            for (j in i + 1 until n) {
+                if (isSimilar(strings[i], strings[j]) && dsu.find(i) != dsu.find(j)) {
+                    count--
+                    dsu.unionSet(i, j)
+                }
+            }
+        }
+
+        return count
+    }
+
+    private fun isSimilar(a: String, b: String): Boolean {
+        var diff = 0
+        for (i in a.indices) {
+            if (a[i] != b[i]) {
+                diff++
+            }
+        }
+        return diff == 0 || diff == 2
+    }
+
+    internal class UnionFind(size: Int) {
+        var parent: IntArray = IntArray(size)
+        var rank: IntArray = IntArray(size)
+
+        init {
+            for (i in 0 until size) parent[i] = i
+        }
+
+        fun find(x: Int): Int {
+            if (parent[x] != x) parent[x] = find(parent[x])
+            return parent[x]
+        }
+
+        fun unionSet(x: Int, y: Int) {
+            val xSet = find(x)
+            val ySet = find(y)
+            if (xSet == ySet) {
+                return
+            } else if (rank[xSet] < rank[ySet]) {
+                parent[xSet] = ySet
+            } else if (rank[xSet] > rank[ySet]) {
+                parent[ySet] = xSet
+            } else {
+                parent[ySet] = xSet
+                rank[xSet]++
+            }
+        }
+    }
+}
+
+/**
+ * Approach 4: Union-find 2
+ */
+class SimilarStringGroupsDSU : SimilarStringGroups {
+    override fun numSimilarGroups(strings: Array<String>): Int {
         val n: Int = strings.size
         val w: Int = strings[0].length
         val dsu = DSU(n)
@@ -61,22 +222,22 @@ class SimilarStringGroups {
         for (i in word1.indices) if (word1[i] != word2[i]) diff++
         return diff <= 2
     }
-}
 
-internal class DSU(n: Int) {
+    class DSU(n: Int) {
 
-    var parent: IntArray = IntArray(n)
+        var parent: IntArray = IntArray(n)
 
-    init {
-        for (i in 0 until n) parent[i] = i
-    }
+        init {
+            for (i in 0 until n) parent[i] = i
+        }
 
-    fun find(x: Int): Int {
-        if (parent[x] != x) parent[x] = find(parent[x])
-        return parent[x]
-    }
+        fun find(x: Int): Int {
+            if (parent[x] != x) parent[x] = find(parent[x])
+            return parent[x]
+        }
 
-    fun union(x: Int, y: Int) {
-        parent[find(x)] = find(y)
+        fun union(x: Int, y: Int) {
+            parent[find(x)] = find(y)
+        }
     }
 }
