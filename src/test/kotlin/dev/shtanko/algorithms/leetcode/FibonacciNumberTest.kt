@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FibonacciNumberTest<out T : FibonacciStrategy>(private val strategy: T) {
+abstract class FibonacciNumberTest<out T : FibonacciStrategy>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> =
@@ -89,16 +89,11 @@ internal abstract class FibonacciNumberTest<out T : FibonacciStrategy>(private v
     }
 }
 
-internal class FibonacciRecursionTest : FibonacciNumberTest<FibonacciRecursion>(FibonacciRecursion())
-internal class FibonacciOptimizedRecursionTest :
-    FibonacciNumberTest<FibonacciOptimizedRecursion>(FibonacciOptimizedRecursion())
-
-internal class FibonacciBottomUpTest : FibonacciNumberTest<FibonacciBottomUp>(FibonacciBottomUp())
-internal class FibonacciTopDownTest : FibonacciNumberTest<FibonacciTopDown>(FibonacciTopDown())
-internal class FibonacciIterativeTopDownTest :
-    FibonacciNumberTest<FibonacciIterativeTopDown>(FibonacciIterativeTopDown())
-
-internal class FibonacciMatrixExponentiationTest :
-    FibonacciNumberTest<FibonacciMatrixExponentiation>(FibonacciMatrixExponentiation())
-
-internal class FibonacciMathTest : FibonacciNumberTest<FibonacciMath>(FibonacciMath())
+class FibonacciIterativeTest : FibonacciNumberTest<FibonacciStrategy>(FibonacciIterative())
+class FibonacciRecursionTest : FibonacciNumberTest<FibonacciStrategy>(FibonacciRecursion())
+class FibonacciOptimizedRecursionTest : FibonacciNumberTest<FibonacciStrategy>(FibonacciOptimizedRecursion())
+class FibonacciBottomUpTest : FibonacciNumberTest<FibonacciStrategy>(FibonacciBottomUp())
+class FibonacciTopDownTest : FibonacciNumberTest<FibonacciStrategy>(FibonacciTopDown())
+class FibonacciIterativeTopDownTest : FibonacciNumberTest<FibonacciStrategy>(FibonacciIterativeTopDown())
+class FibonacciMatrixExponentiationTest : FibonacciNumberTest<FibonacciStrategy>(FibonacciMatrixExponentiation())
+class FibonacciMathTest : FibonacciNumberTest<FibonacciStrategy>(FibonacciMath())

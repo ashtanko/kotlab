@@ -21,10 +21,36 @@ import kotlin.math.pow
 import kotlin.math.roundToLong
 import kotlin.math.sqrt
 
+/**
+ * 509. Fibonacci Number
+ * @link https://leetcode.com/problems/fibonacci-number/
+ */
 interface FibonacciStrategy {
     fun perform(n: Int): Long
 }
 
+/**
+ * Solution 1: Iterative
+ */
+class FibonacciIterative : FibonacciStrategy {
+    override fun perform(n: Int): Long {
+        var n1: Long = n.toLong()
+        if (n1 <= 1) return n1
+        var a = 0
+        var b = 1
+
+        while (n1-- > 1) {
+            val sum = a + b
+            a = b
+            b = sum
+        }
+        return b.toLong()
+    }
+}
+
+/**
+ * Solution 2: Recursive
+ */
 class FibonacciRecursion : FibonacciStrategy {
     override fun perform(n: Int): Long {
         if (n <= 1) {
@@ -40,6 +66,9 @@ class FibonacciOptimizedRecursion : FibonacciStrategy {
     }
 }
 
+/**
+ * Solution 4: Dynamic Programming - Bottom Up Approach
+ */
 class FibonacciBottomUp : FibonacciStrategy {
     override fun perform(n: Int): Long {
         if (n <= 1) {
@@ -58,6 +87,9 @@ class FibonacciBottomUp : FibonacciStrategy {
     }
 }
 
+/**
+ * Solution 3: Dynamic Programming - Top-Down Approach
+ */
 class FibonacciTopDown : FibonacciStrategy {
 
     private val cache = arrayOfNulls<Long>(60)
