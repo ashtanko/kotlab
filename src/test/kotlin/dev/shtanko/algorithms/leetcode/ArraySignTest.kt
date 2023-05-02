@@ -43,6 +43,22 @@ abstract class ArraySignTest<out T : ArraySign>(private val strategy: T) {
                 intArrayOf(-1, 1, -1, 1, -1),
                 -1,
             ),
+            Arguments.of(
+                intArrayOf(-1),
+                -1,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(2),
+                1,
+            ),
         )
     }
 
