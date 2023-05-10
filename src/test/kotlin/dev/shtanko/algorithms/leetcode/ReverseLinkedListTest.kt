@@ -16,61 +16,44 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.ReverseLinkedList.ListNode
-import dev.shtanko.algorithms.leetcode.ReverseLinkedList.reverseListIterative
-import dev.shtanko.algorithms.leetcode.ReverseLinkedList.reverseListRecursive
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class ReverseLinkedListTest {
 
-    @Test
-    internal fun `iterative test`() {
-        val list = ListNode(1).apply {
-            next = ListNode(2).apply {
-                next = ListNode(3).apply {
-                    next = ListNode(4).apply {
-                        next = ListNode(5)
-                    }
-                }
-            }
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = args().stream()
+
+        private fun args() = testCases().map {
+            Arguments.of(::reverseListIterative, it)
+        } + testCases().map {
+            Arguments.of(::reverseListRecursive, it)
         }
 
-        val reversed = reverseListIterative(list)
-
-        val values = listOf(
-            reversed?.value,
-            reversed?.next?.value,
-            reversed?.next?.next?.value,
-            reversed?.next?.next?.next?.value,
-            reversed?.next?.next?.next?.next?.value,
-            reversed?.next?.next?.next?.next?.next?.value,
+        private fun testCases() = listOf(
+            listOf(0) to listOf(0),
+            listOf<Int>() to listOf(0),
+            listOf(1) to listOf(1),
+            listOf(1, 2) to listOf(2, 1),
+            listOf(2, 1) to listOf(1, 2),
+            listOf(-1, -2) to listOf(-2, -1),
+            listOf(1, 2, 3, 4, 5) to listOf(5, 4, 3, 2, 1),
         )
-        assertEquals(listOf(5, 4, 3, 2, 1, null), values)
     }
 
-    @Test
-    internal fun `recursive test`() {
-        val list = ListNode(1).apply {
-            next = ListNode(2).apply {
-                next = ListNode(3).apply {
-                    next = ListNode(4).apply {
-                        next = ListNode(5)
-                    }
-                }
-            }
-        }
-
-        val reversed = reverseListRecursive(list)
-
-        val values = listOf(
-            reversed?.value,
-            reversed?.next?.value,
-            reversed?.next?.next?.value,
-            reversed?.next?.next?.next?.value,
-            reversed?.next?.next?.next?.next?.value,
-            reversed?.next?.next?.next?.next?.next?.value,
-        )
-        assertEquals(listOf(5, 4, 3, 2, 1, null), values)
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    internal fun `reverse linked list test`(
+        strategy: (head: ListNode?) -> ListNode?,
+        testCase: Pair<List<Int>, List<Int>>,
+    ) {
+        val (list, expected) = testCase
+        val reversed = strategy(list.toListNode())?.toList() ?: emptyList()
+        assertThat(reversed).isEqualTo(expected)
     }
 }
