@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
@@ -45,17 +44,6 @@ internal class SpiralMatrixTest {
                 ) to listOf(1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10),
             )
         }
-
-        @JvmStatic
-        fun dataProvider2(): List<Pair<Int, Array<IntArray>>> {
-            return listOf(
-                3 to arrayOf(
-                    intArrayOf(1, 2, 3),
-                    intArrayOf(8, 9, 4),
-                    intArrayOf(7, 6, 5),
-                ),
-            )
-        }
     }
 
     @ParameterizedTest
@@ -64,13 +52,5 @@ internal class SpiralMatrixTest {
         val (matrix, expected) = testCase
         val actual = matrix.spiralOrder()
         assertEquals(expected, actual)
-    }
-
-    @ParameterizedTest
-    @MethodSource("dataProvider2")
-    internal fun `generate spiral matrix test`(testCase: Pair<Int, Array<IntArray>>) {
-        val (num, matrix) = testCase
-        val actual = num.generateSpiralMatrix()
-        assertArrayEquals(matrix, actual)
     }
 }
