@@ -16,18 +16,64 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun Pair<IntArray, IntArray>.maxUncrossedLines(): Int {
-    val m = first.size
-    val n = second.size
-    val dp = Array(m + 1) { IntArray(n + 1) }
-    for (i in 1..m) {
-        for (j in 1..n) {
-            if (first[i - 1] == second[j - 1]) {
-                dp[i][j] = 1 + dp[i - 1][j - 1]
-            } else {
-                dp[i][j] = dp[i][j - 1].coerceAtLeast(dp[i - 1][j])
+import kotlin.math.max
+
+/**
+ * Uncrossed Lines
+ * @link https://leetcode.com/problems/uncrossed-lines/
+ */
+interface UncrossedLines {
+    fun maxUncrossedLines(nums1: IntArray, nums2: IntArray): Int
+}
+
+/**
+ * Approach 1: Recursive Dynamic Programming
+ */
+class UncrossedLinesRecursiveDP : UncrossedLines {
+    override fun maxUncrossedLines(nums1: IntArray, nums2: IntArray): Int {
+        val n1: Int = nums1.size
+        val n2: Int = nums2.size
+
+        val memo = Array(n1 + 1) { IntArray(n2 + 1) { -1 } }
+        return solve(n1, n2, nums1, nums2, memo)
+    }
+
+    private fun solve(i: Int, j: Int, nums1: IntArray, nums2: IntArray, memo: Array<IntArray>): Int {
+        if (i <= 0 || j <= 0) {
+            return 0
+        }
+        if (memo[i][j] != -1) {
+            return memo[i][j]
+        }
+        if (nums1[i - 1] == nums2[j - 1]) {
+            memo[i][j] = 1 + solve(i - 1, j - 1, nums1, nums2, memo)
+        } else {
+            memo[i][j] = max(solve(i, j - 1, nums1, nums2, memo), solve(i - 1, j, nums1, nums2, memo))
+        }
+        return memo[i][j]
+    }
+}
+
+/**
+ * Approach 2: Iterative Dynamic Programming
+ */
+class UncrossedLinesIterativeDP : UncrossedLines {
+    override fun maxUncrossedLines(nums1: IntArray, nums2: IntArray): Int {
+        val n1: Int = nums1.size
+        val n2: Int = nums2.size
+
+        val dp = Array(n1 + 1) { IntArray(n2 + 1) }
+
+        for (i in 1..n1) {
+            for (j in 1..n2) {
+                if (nums1[i - 1] == nums2[j - 1]) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1]
+                } else {
+                    dp[i][j] = max(dp[i][j - 1], dp[i - 1][j])
+                }
             }
         }
+
+        return dp[n1][n2]
     }
-    return dp[m][n]
 }
