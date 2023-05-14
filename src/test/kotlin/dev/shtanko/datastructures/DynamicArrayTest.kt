@@ -17,6 +17,9 @@
 package dev.shtanko.datastructures
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
@@ -116,5 +119,83 @@ internal class DynamicArrayTest {
         array.add("text4")
 
         assertThat(array.size()).isEqualTo(4)
+    }
+
+    @Test
+    fun testAddAndGet() {
+        val array = DynamicArray<Int>(10)
+        array.add(1)
+        array.add(2)
+        array.add(3)
+
+        assertEquals(1, array.get(0))
+        assertEquals(2, array.get(1))
+        assertEquals(3, array.get(2))
+    }
+
+    @Test
+    fun testSet() {
+        val array = DynamicArray<Int>(10)
+        array.set(0, 1)
+        array.set(1, 2)
+        array.set(2, 3)
+
+        assertEquals(1, array.get(0))
+        assertEquals(2, array.get(1))
+        assertEquals(3, array.get(2))
+    }
+
+    @Test
+    fun testInsert() {
+        val array = DynamicArray<Int>(10)
+        array.add(1)
+        array.add(3)
+        array.insert(1, 2)
+
+        assertEquals(1, array.get(0))
+        assertEquals(2, array.get(1))
+        assertEquals(3, array.get(2))
+    }
+
+    @Test
+    fun testDelete() {
+        val array = DynamicArray<Int>(10)
+        array.add(1)
+        array.add(2)
+        array.add(3)
+        array.delete(1)
+
+        assertEquals(1, array.get(0))
+        assertEquals(3, array.get(1))
+        assertEquals(null, array.get(2))
+    }
+
+    @Test
+    fun testSize() {
+        val array = DynamicArray<Int>(10)
+        array.add(1)
+        array.add(2)
+        array.add(3)
+
+        assertEquals(3, array.size())
+    }
+
+    @Test
+    fun testIsEmpty() {
+        val array = DynamicArray<Int>(10)
+        assertTrue(array.isEmpty())
+
+        array.add(1)
+        assertFalse(array.isEmpty())
+    }
+
+    @Test
+    fun testContains() {
+        val array = DynamicArray<Int>(10)
+        array.add(1)
+        array.add(2)
+
+        assertTrue(array.contains(1))
+        assertFalse(array.contains(3))
     }
 }
