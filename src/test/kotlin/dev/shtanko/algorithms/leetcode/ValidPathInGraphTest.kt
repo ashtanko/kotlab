@@ -51,6 +51,29 @@ abstract class ValidPathInGraphTest<out T : ValidPathInGraph>(private val strate
                 2,
                 true,
             ),
+            Arguments.of(
+                3,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 0),
+                ),
+                0,
+                1,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                3,
+                true,
+            ),
         )
     }
 
