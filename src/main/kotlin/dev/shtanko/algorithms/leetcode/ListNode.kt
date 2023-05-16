@@ -40,6 +40,10 @@ data class ListNode(
     fun prettyPrint() {
         println(prettyPrinted())
     }
+
+    companion object {
+        fun empty(): ListNode = ListNode(0)
+    }
 }
 
 fun List<Int>.toListNode(): ListNode {
