@@ -91,8 +91,8 @@ class MaxTwinSumReverse : MaxTwinSum {
 
         // Get middle of the linked list.
         while (fast?.next != null) {
-            fast = fast.next!!.next
-            slow = slow!!.next
+            fast = fast.next?.next
+            slow = slow?.next
         }
 
         // Reverse second half of the linked list.
