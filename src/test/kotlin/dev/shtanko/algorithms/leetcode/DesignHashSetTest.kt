@@ -16,15 +16,29 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class DesignHashSetTest {
+class DesignHashSetTest {
 
-    @Test
-    internal fun `hash set test`() {
-        val hashSet: DesignHashSet = DesignHashSetImpl()
+    private class InputStrategiesProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(DesignHashSetSimple()),
+            Arguments.of(DesignHashSetImpl()),
+            Arguments.of(DesignHashSetBitSet()),
+        )
+    }
+
+    @ParameterizedTest()
+    @ArgumentsSource(InputStrategiesProvider::class)
+    fun `hash set test`(strategy: DesignHashSet) {
+        val hashSet: DesignHashSet = strategy
         hashSet.add(1)
         hashSet.add(2)
         assertTrue(hashSet.contains(1))
@@ -35,9 +49,10 @@ internal class DesignHashSetTest {
         assertThat(hashSet.contains(2)).isFalse
     }
 
-    @Test
-    internal fun `hash set rehash test`() {
-        val hashSet: DesignHashSet = DesignHashSetImpl()
+    @ParameterizedTest
+    @ArgumentsSource(InputStrategiesProvider::class)
+    fun `hash set rehash test`(strategy: DesignHashSet) {
+        val hashSet: DesignHashSet = strategy
         val n = 32 * 3
         for (i in 0 until n) {
             hashSet.add(i)

@@ -16,10 +16,81 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.BitSet
+import kotlin.math.abs
+
 interface DesignHashSet {
     fun add(key: Int)
     fun remove(key: Int)
     fun contains(key: Int): Boolean
+}
+
+class DesignHashSetBitSet : DesignHashSet {
+
+    private val bitSet = BitSet(BITS + 1)
+    override fun add(key: Int) {
+        bitSet.set(key, true)
+    }
+
+    override fun remove(key: Int) {
+        bitSet.set(key, false)
+    }
+
+    override fun contains(key: Int): Boolean {
+        return bitSet.get(key)
+    }
+
+    companion object {
+        private const val BITS = 1_000_000
+    }
+}
+
+class DesignHashSetSimple : DesignHashSet {
+
+    private var buckets = Array<MutableList<Int>>(INITIAL_CAPACITY) { mutableListOf() }
+    private var threshold = INITIAL_CAPACITY * LOAD_FACTOR
+    private var count = 0
+    override fun add(key: Int) {
+        if (!contains(key)) {
+            buckets[index(key)].add(key)
+            count++
+
+            if (count >= threshold) {
+                rebalanced()
+            }
+        }
+    }
+
+    override fun remove(key: Int) {
+        buckets[index(key)].remove(key)
+        count--
+    }
+
+    override fun contains(key: Int): Boolean {
+        return buckets[index(key)].contains(key)
+    }
+
+    private fun index(key: Int): Int {
+        return abs(key.hashCode()) % buckets.size
+    }
+
+    private fun rebalanced() {
+        val newBuckets = Array<MutableList<Int>>(buckets.size * 2) { mutableListOf() }
+
+        buckets.forEach { list ->
+            list.forEach { key ->
+                newBuckets[key.hashCode() % newBuckets.size].add(key)
+            }
+        }
+
+        buckets = newBuckets
+        threshold = buckets.size * LOAD_FACTOR
+    }
+
+    companion object {
+        private const val INITIAL_CAPACITY = 16
+        private const val LOAD_FACTOR = 0.75
+    }
 }
 
 class DesignHashSetImpl : DesignHashSet {
