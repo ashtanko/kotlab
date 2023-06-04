@@ -146,35 +146,6 @@ class SimilarStringGroupsUnionFind : SimilarStringGroups {
         }
         return diff == 0 || diff == 2
     }
-
-    internal class UnionFind(size: Int) {
-        var parent: IntArray = IntArray(size)
-        var rank: IntArray = IntArray(size)
-
-        init {
-            for (i in 0 until size) parent[i] = i
-        }
-
-        fun find(x: Int): Int {
-            if (parent[x] != x) parent[x] = find(parent[x])
-            return parent[x]
-        }
-
-        fun unionSet(x: Int, y: Int) {
-            val xSet = find(x)
-            val ySet = find(y)
-            if (xSet == ySet) {
-                return
-            } else if (rank[xSet] < rank[ySet]) {
-                parent[xSet] = ySet
-            } else if (rank[xSet] > rank[ySet]) {
-                parent[ySet] = xSet
-            } else {
-                parent[ySet] = xSet
-                rank[xSet]++
-            }
-        }
-    }
 }
 
 /**

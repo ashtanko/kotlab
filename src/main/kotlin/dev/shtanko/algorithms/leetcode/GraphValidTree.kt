@@ -27,7 +27,7 @@ interface GraphValidTree {
     fun validTree(n: Int, edges: Array<IntArray>): Boolean
 }
 
-private class UnionFind(val n: Int) {
+private class GraphValidTreeUnionFind(val n: Int) {
     private val parent: IntArray = IntArray(n)
     private val size: IntArray = IntArray(n)
 
@@ -162,7 +162,7 @@ class GVTAdvancedUnionFind : GraphValidTree {
         if (edges.size != n - 1) return false
         // Condition 2: The graph must contain a single connected component.
         // Create a new UnionFind object with n nodes.
-        val unionFind = UnionFind(n)
+        val unionFind = GraphValidTreeUnionFind(n)
         // Add each edge. Check if a merge happened, because if it
         // didn't, there must be a cycle.
         for (edge in edges) {
