@@ -53,5 +53,8 @@ abstract class MakeArrayStrictlyIncreasingTest<out T : MakeArrayStrictlyIncreasi
     }
 }
 
-class MakeArrayStrictlyIncreasingDPTest :
-    MakeArrayStrictlyIncreasingTest<MakeArrayStrictlyIncreasing>(MakeArrayStrictlyIncreasingDP())
+class MakeArrayStrictlyIncreasingTopDownTest :
+    MakeArrayStrictlyIncreasingTest<MakeArrayStrictlyIncreasing>(MakeArrayStrictlyIncreasingTopDown())
+
+class MakeArrayStrictlyIncreasingBottomUpTest :
+    MakeArrayStrictlyIncreasingTest<MakeArrayStrictlyIncreasing>(MakeArrayStrictlyIncreasingBottomUp())
