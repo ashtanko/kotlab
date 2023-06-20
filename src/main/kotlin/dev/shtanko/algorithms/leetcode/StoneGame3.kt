@@ -88,7 +88,7 @@ class StoneGame3TopDown : StoneGame3 {
         if (i + 3 <= n) {
             result = max(
                 result,
-                (stoneValue[i] + stoneValue[i + 1] + stoneValue[i + 2]) - f(stoneValue, n, i + 3),
+                stoneValue[i] + stoneValue[i + 1] + stoneValue[i + 2] - f(stoneValue, n, i + 3),
             )
         }
         return result
@@ -133,7 +133,7 @@ class StoneGame3Optimized : StoneGame3 {
         if (i + 3 <= n) {
             dp[i] = max(
                 dp[i],
-                (stoneValue[i] + stoneValue[i + 1] + stoneValue[i + 2]) - f(stoneValue, n, i + 3),
+                stoneValue[i] + stoneValue[i + 1] + stoneValue[i + 2] - f(stoneValue, n, i + 3),
             )
         }
         return dp[i]
