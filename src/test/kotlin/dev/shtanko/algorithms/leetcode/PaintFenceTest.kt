@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal abstract class PaintFenceTest<out T : PaintFence>(private val strategy: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, 0, 0),
             Arguments.of(3, 2, 6),

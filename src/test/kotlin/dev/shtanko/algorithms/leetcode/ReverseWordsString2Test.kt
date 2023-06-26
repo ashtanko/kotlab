@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class ReverseWordsString2Test {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 charArrayOf('t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e'),

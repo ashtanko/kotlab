@@ -29,7 +29,7 @@ private const val RANDOM_STRING_LENGTH = 6
 private const val RANDOM_ARRAY_SIZE = 100_000
 
 internal class FindCommonCharactersTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<String>(), listOf<String>()),
             Arguments.of(arrayOf("bella", "label", "roller"), listOf("e", "l", "l")),

@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 class XOROperationTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(5, 0, 8),
             Arguments.of(4, 3, 8),

@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
 class MinPartitionsTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("32", 3),
             Arguments.of("82734", 8),

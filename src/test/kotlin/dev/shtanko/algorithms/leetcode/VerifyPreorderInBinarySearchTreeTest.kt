@@ -34,7 +34,7 @@ internal abstract class VerifyPreorderInBinarySearchTreeTest<out T : VerifyPreor
     //   / \
     //  1   3
     // Preorder (Root, Left, Right)
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(5, 2, 6, 1, 3), false),
             Arguments.of(intArrayOf(5, 2, 1, 3, 6), true),

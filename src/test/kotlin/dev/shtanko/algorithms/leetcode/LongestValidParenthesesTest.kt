@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.MethodSource
 
 internal abstract class LongestValidParenthesesTest<out T : LongestValidParenthesesStrategy>(private val strategy: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",

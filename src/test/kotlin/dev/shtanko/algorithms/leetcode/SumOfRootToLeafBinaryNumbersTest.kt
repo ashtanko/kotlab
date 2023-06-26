@@ -28,7 +28,7 @@ internal abstract class SumOfRootToLeafBinaryNumbersTest<out T : SumOfRootToLeaf
     private val strategy: T,
 ) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 TreeNode(1).apply {

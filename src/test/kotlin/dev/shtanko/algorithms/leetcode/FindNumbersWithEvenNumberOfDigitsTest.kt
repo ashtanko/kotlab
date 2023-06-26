@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class FindNumbersWithEvenNumberOfDigitsTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(12, 345, 2, 6, 7896), 2),
             Arguments.of(intArrayOf(555, 901, 482, 1771), 1),

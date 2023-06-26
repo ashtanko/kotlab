@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class Maximum69NumberTest<out T : Maximum69Number>(private val strategy: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(9669, 9969),
         )

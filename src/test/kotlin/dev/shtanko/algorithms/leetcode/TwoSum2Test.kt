@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class TwoSum2Test {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(2, 7, 11, 15), 9, intArrayOf(1, 2)),
             Arguments.of(intArrayOf(4, 8, 15, 16, 23, 42), 16, intArrayOf(2, 2)),

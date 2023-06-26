@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal abstract class NextGreaterElement1Test<out T : NextGreaterElement1>(private val strategy: T) {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(4, 1, 2),

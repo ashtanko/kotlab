@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class HammingDistanceTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(1, 4, 2),
             Arguments.of(41, 88, 4),

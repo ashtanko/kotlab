@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal abstract class MaxBoxesInWarehouseTest<out T : MaxBoxesInWarehouse>(private val strategy: T) {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 intArrayOf(4, 3, 4, 1),

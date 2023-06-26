@@ -22,28 +22,29 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class DIStringMatchTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
-    }
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, String>> {
-            return listOf(
-                intArrayOf(0, 4, 1, 3, 2) to "IDID",
-                intArrayOf(0, 1, 2, 3) to "III",
-                intArrayOf(3, 2, 0, 1) to "DDI",
-            )
-        }
+class DIStringMatchTest {
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "IDID",
+                intArrayOf(0, 4, 1, 3, 2),
+            ),
+            Arguments.of(
+                "III",
+                intArrayOf(0, 1, 2, 3),
+            ),
+            Arguments.of(
+                "DDI",
+                intArrayOf(3, 2, 0, 1),
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `di string match test`(testCase: Pair<IntArray, String>) {
-        val (expected, str) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `di string match test`(str: String, expected: IntArray) {
         assertArrayEquals(expected, str.diStringMatch())
     }
 }

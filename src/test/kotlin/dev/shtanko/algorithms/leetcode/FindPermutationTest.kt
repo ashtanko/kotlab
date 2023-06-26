@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal abstract class FindPermutationTest<out T : FindPermutation>(private val strategy: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("I", intArrayOf(1, 2)),
             Arguments.of("DI", intArrayOf(2, 1, 3)),

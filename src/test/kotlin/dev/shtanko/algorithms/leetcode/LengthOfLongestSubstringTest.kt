@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal abstract class LengthOfLongestSubstringTest<out T : LengthOfLongestSubstring>(private val solution: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "abcabcbb",

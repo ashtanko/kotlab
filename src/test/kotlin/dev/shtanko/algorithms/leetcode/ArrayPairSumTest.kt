@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T) {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(), 0),
             Arguments.of(intArrayOf(1, 4, 3, 2), 4),

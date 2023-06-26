@@ -22,35 +22,36 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class DefangingIPAddressTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
-    }
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<String, String>> {
-            return listOf(
-                "1.1.1.1" to "1[.]1[.]1[.]1",
-                "255.100.50.0" to "255[.]100[.]50[.]0",
-            )
-        }
+class DefangingIPAddressTest {
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "1.1.1.1",
+                "1[.]1[.]1[.]1",
+            ),
+            Arguments.of(
+                "255.100.50.0",
+                "255[.]100[.]50[.]0",
+            ),
+            Arguments.of(
+                "",
+                "",
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `defang IP address naive test`(testCase: Pair<String, String>) {
-        val (address, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `defang IP address naive test`(address: String, expected: String) {
         val actual = address.defangIPaddrNaive()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `defang IP address test`(testCase: Pair<String, String>) {
-        val (address, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `defang IP address test`(address: String, expected: String) {
         val actual = address.defangIPaddr()
         assertEquals(expected, actual)
     }

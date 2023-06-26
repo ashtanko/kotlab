@@ -28,7 +28,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 internal abstract class SplitArrayIntoConsecutiveSubsequencesTest<out T : SplitArrayIntoConsecutiveSubsequences>(
     private val strategy: T,
 ) {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(1, 2, 3, 3, 4, 5), true),
             Arguments.of(intArrayOf(1, 2, 3, 3, 4, 4, 5, 5), true),

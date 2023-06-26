@@ -22,17 +22,11 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class FindModeInBinarySearchTreeTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun dataProvider(): Stream<Arguments> = Stream.of(
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 TreeNode(1),
                 intArrayOf(1),
@@ -49,7 +43,7 @@ internal class FindModeInBinarySearchTreeTest {
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `find mode in binary search tree test`(root: TreeNode, expected: IntArray) {
         val actual = FindModeInBinarySearchTree().perform(root)
         assertArrayEquals(actual, expected)

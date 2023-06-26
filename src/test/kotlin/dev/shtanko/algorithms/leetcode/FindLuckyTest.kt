@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val strategy: T) {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(2, 2, 3, 4), 2),
             Arguments.of(intArrayOf(1, 2, 2, 3, 3, 3), 3),

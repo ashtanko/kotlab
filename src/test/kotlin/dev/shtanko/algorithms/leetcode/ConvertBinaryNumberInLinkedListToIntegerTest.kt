@@ -28,7 +28,7 @@ internal abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>
     private val strategy: T,
 ) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(1).apply {

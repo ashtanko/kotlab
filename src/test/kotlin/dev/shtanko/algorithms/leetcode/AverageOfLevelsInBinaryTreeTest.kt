@@ -29,7 +29,7 @@ internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageO
     private val strategy: T,
 ) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 TreeNode(3).apply {

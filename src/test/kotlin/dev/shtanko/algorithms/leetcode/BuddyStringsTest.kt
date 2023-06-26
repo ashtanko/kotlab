@@ -30,7 +30,7 @@ internal data class BuddyStringsTestCase(
 )
 
 internal class BuddyStringsTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "ab",

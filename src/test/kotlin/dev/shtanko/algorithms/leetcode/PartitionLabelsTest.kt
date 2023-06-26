@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class PartitionLabelsTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("", listOf<Int>()),
             Arguments.of("ababcbacadefegdehijhklij", listOf(9, 7, 8)),

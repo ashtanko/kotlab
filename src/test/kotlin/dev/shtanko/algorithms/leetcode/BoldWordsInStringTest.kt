@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class BoldWordsInStringTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<String>(), "", ""),
             Arguments.of(arrayOf("ab", "bc"), "aabcd", "a<b>abc</b>d"),

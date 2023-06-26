@@ -22,45 +22,47 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class DivisorGameTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
-    }
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Boolean, Int>> {
-            return listOf(
-                true to 2,
-                false to 3,
-                true to 48,
-                true to 1000, // or Int.MAX_VALUE
-            )
-        }
+class DivisorGameTest {
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                2,
+                true,
+            ),
+            Arguments.of(
+                3,
+                false,
+            ),
+            Arguments.of(
+                48,
+                true,
+            ),
+            Arguments.of(
+                1000,
+                true,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `divisor game test`(testCase: Pair<Boolean, Int>) {
-        val (expected, num) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `divisor game test`(num: Int, expected: Boolean) {
         val actual = num.divisorGame()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `divisor game naive test`(testCase: Pair<Boolean, Int>) {
-        val (expected, num) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `divisor game naive test`(num: Int, expected: Boolean) {
         val actual = num.divisorGameNaive()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    internal fun `divisor game brute force test`(testCase: Pair<Boolean, Int>) {
-        val (expected, num) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `divisor game brute force test`(num: Int, expected: Boolean) {
         val actual = num.divisorGameBruteForce()
         assertEquals(expected, actual)
     }

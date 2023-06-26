@@ -28,7 +28,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class HappyNumberTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(19, true),
             Arguments.of(16, false),
