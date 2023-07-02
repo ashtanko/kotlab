@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MakeArrayEqualTest<out T : MakeArrayEqual>(private val solution: T) {
+abstract class MakeArrayEqualTest<out T : MakeArrayEqual>(private val solution: T) {
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> {
             return Stream.of(
@@ -42,11 +42,11 @@ internal abstract class MakeArrayEqualTest<out T : MakeArrayEqual>(private val s
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `min operations test`(n: Int, expected: Int) {
+    fun `min operations test`(n: Int, expected: Int) {
         val actual = solution.perform(n)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class MakeArrayEqualBruteForceTest : MakeArrayEqualTest<MakeArrayEqualBruteForce>(MakeArrayEqualBruteForce())
-internal class MakeArrayEqualMathTest : MakeArrayEqualTest<MakeArrayEqualMath>(MakeArrayEqualMath())
+class MakeArrayEqualBruteForceTest : MakeArrayEqualTest<MakeArrayEqualBruteForce>(MakeArrayEqualBruteForce())
+class MakeArrayEqualMathTest : MakeArrayEqualTest<MakeArrayEqualMath>(MakeArrayEqualMath())

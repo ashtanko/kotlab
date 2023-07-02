@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class MajorityElementTest {
+class MajorityElementTest {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,7 @@ internal class MajorityElementTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `majority element test`(testCase: Pair<IntArray, Int>) {
+    fun `majority element test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = arr.majorityElement()
         assertEquals(expected, actual)

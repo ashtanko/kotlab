@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(private val strategy: T) {
+abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -57,12 +57,12 @@ internal abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `longest common prefix test`(strs: Array<String>, expected: String) {
+    fun `longest common prefix test`(strs: Array<String>, expected: String) {
         val actual = strategy.perform(strs)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class LCPHorizontalScanningTest : LongestCommonPrefixTest<LCPHorizontalScanning>(LCPHorizontalScanning())
-internal class LCPVerticalScanningTest : LongestCommonPrefixTest<LCPVerticalScanning>(LCPVerticalScanning())
-internal class LCPDivideAndConquerTest : LongestCommonPrefixTest<LCPDivideAndConquer>(LCPDivideAndConquer())
+class LCPHorizontalScanningTest : LongestCommonPrefixTest<LCPHorizontalScanning>(LCPHorizontalScanning())
+class LCPVerticalScanningTest : LongestCommonPrefixTest<LCPVerticalScanning>(LCPVerticalScanning())
+class LCPDivideAndConquerTest : LongestCommonPrefixTest<LCPDivideAndConquer>(LCPDivideAndConquer())

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ReplaceElementsTest {
+class ReplaceElementsTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -41,7 +41,7 @@ internal class ReplaceElementsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `replace elements test`(arr: IntArray, expected: IntArray) {
+    fun `replace elements test`(arr: IntArray, expected: IntArray) {
         val actual = arr.replaceElements()
         assertArrayEquals(expected, actual)
     }

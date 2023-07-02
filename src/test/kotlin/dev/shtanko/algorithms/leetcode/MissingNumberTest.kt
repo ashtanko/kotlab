@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class AbstractMissingNumberStrategyTest<out T : AbstractMissingNumberStrategy>(private val strategy: T) {
+abstract class AbstractMissingNumberStrategyTest<out T : AbstractMissingNumberStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -36,21 +36,21 @@ internal abstract class AbstractMissingNumberStrategyTest<out T : AbstractMissin
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `missing number test`(testCase: Pair<Int, IntArray>) {
+    fun `missing number test`(testCase: Pair<Int, IntArray>) {
         val (expected, arr) = testCase
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class MissingNumberSortingTest :
+class MissingNumberSortingTest :
     AbstractMissingNumberStrategyTest<MissingNumberSorting>(MissingNumberSorting())
 
-internal class MissingNumberHashSetTest :
+class MissingNumberHashSetTest :
     AbstractMissingNumberStrategyTest<MissingNumberHashSet>(MissingNumberHashSet())
 
-internal class MissingNumberBitManipulationTest :
+class MissingNumberBitManipulationTest :
     AbstractMissingNumberStrategyTest<MissingNumberBitManipulation>(MissingNumberBitManipulation())
 
-internal class MissingNumberGaussFormulaTest :
+class MissingNumberGaussFormulaTest :
     AbstractMissingNumberStrategyTest<MissingNumberGaussFormula>(MissingNumberGaussFormula())

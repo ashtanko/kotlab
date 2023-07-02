@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MinimumCostToConnectSticksTest {
+class MinimumCostToConnectSticksTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -37,7 +37,7 @@ internal class MinimumCostToConnectSticksTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `connect sticks test`(sticks: IntArray, expected: Int) {
+    fun `connect sticks test`(sticks: IntArray, expected: Int) {
         val actual = MinimumCostToConnectSticks().connectSticks(sticks)
         assertThat(actual, equalTo(expected))
     }

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class SumOfUniqueTest<out T : SumOfUnique>(private val strategy: T) {
+abstract class SumOfUniqueTest<out T : SumOfUnique>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,12 +52,12 @@ internal abstract class SumOfUniqueTest<out T : SumOfUnique>(private val strateg
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `unique elements test`(elems: IntArray, expected: Int) {
+    fun `unique elements test`(elems: IntArray, expected: Int) {
         val actual = strategy.perform(elems)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class SumOfUniqueBruteForceTest : SumOfUniqueTest<SumOfUniqueBruteForce>(SumOfUniqueBruteForce())
-internal class SumOfUniqueHashMapTest : SumOfUniqueTest<SumOfUniqueHashMap>(SumOfUniqueHashMap())
-internal class SumOfUniqueFilterTest : SumOfUniqueTest<SumOfUniqueFilter>(SumOfUniqueFilter())
+class SumOfUniqueBruteForceTest : SumOfUniqueTest<SumOfUniqueBruteForce>(SumOfUniqueBruteForce())
+class SumOfUniqueHashMapTest : SumOfUniqueTest<SumOfUniqueHashMap>(SumOfUniqueHashMap())
+class SumOfUniqueFilterTest : SumOfUniqueTest<SumOfUniqueFilter>(SumOfUniqueFilter())

@@ -21,7 +21,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal abstract class LFUCacheTest<out T : LFUCache>(private val cache: T) {
+abstract class LFUCacheTest<out T : LFUCache>(private val cache: T) {
 
     @Test
     fun `LFU cache test`() {
@@ -46,4 +46,4 @@ internal abstract class LFUCacheTest<out T : LFUCache>(private val cache: T) {
     }
 }
 
-internal class LFUCacheImplTest : LFUCacheTest<LFUCacheImpl>(LFUCacheImpl(2))
+class LFUCacheImplTest : LFUCacheTest<LFUCacheImpl>(LFUCacheImpl(2))

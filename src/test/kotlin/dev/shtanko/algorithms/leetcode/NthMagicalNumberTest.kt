@@ -22,7 +22,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class NthMagicalNumberTest<out T : NthMagicalNumberStrategy>(private val strategy: T) {
+abstract class NthMagicalNumberTest<out T : NthMagicalNumberStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -36,12 +36,12 @@ internal abstract class NthMagicalNumberTest<out T : NthMagicalNumberStrategy>(p
 
     @ParameterizedTest
     @MethodSource("numbersDataProvider")
-    internal fun `nth magical number test`(n: Int, a: Int, b: Int, expected: Int) {
+    fun `nth magical number test`(n: Int, a: Int, b: Int, expected: Int) {
         val actual = strategy.perform(n, a, b)
         assertEquals(expected, actual)
     }
 }
 
-internal class NthMagicalNumberMathTest : NthMagicalNumberTest<NthMagicalNumberMath>(NthMagicalNumberMath())
+class NthMagicalNumberMathTest : NthMagicalNumberTest<NthMagicalNumberMath>(NthMagicalNumberMath())
 
-internal class NthMagicalNumberBSTest : NthMagicalNumberTest<NthMagicalNumberBS>(NthMagicalNumberBS())
+class NthMagicalNumberBSTest : NthMagicalNumberTest<NthMagicalNumberBS>(NthMagicalNumberBS())

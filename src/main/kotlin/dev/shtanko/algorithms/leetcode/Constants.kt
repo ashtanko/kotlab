@@ -16,12 +16,12 @@
 
 package dev.shtanko.algorithms.leetcode
 
-internal const val DECIMAL = 10
-internal const val OCTAL = 8
-internal const val HEXADECIMAL = 16
-internal const val SHUFFLE_CONST = 0xFFFF
-internal const val MOD = 1_000_000_007 // 1000000007
-internal const val E_9 = 1e9
-internal const val BYTE = 1024
-internal const val HALF_OF_BYTE = 256
+const val DECIMAL = 10
+const val OCTAL = 8
+const val HEXADECIMAL = 16
+const val SHUFFLE_CONST = 0xFFFF
+const val MOD = 1_000_000_007 // 1000000007
+const val E_9 = 1e9
+const val BYTE = 1024
+const val HALF_OF_BYTE = 256
 const val MILLISECOND = 1000L

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ScheduleCourse3Test<out T : ScheduleCourse3>(private val strategy: T) {
+abstract class ScheduleCourse3Test<out T : ScheduleCourse3>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -54,19 +54,19 @@ internal abstract class ScheduleCourse3Test<out T : ScheduleCourse3>(private val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `schedule course test`(courses: Array<IntArray>, expected: Int) {
+    fun `schedule course test`(courses: Array<IntArray>, expected: Int) {
         val actual = strategy.perform(courses)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class ScheduleCourse3RecursionTest : ScheduleCourse3Test<ScheduleCourse3Recursion>(ScheduleCourse3Recursion())
-internal class ScheduleCourse3IterativeTest : ScheduleCourse3Test<ScheduleCourse3Iterative>(ScheduleCourse3Iterative())
-internal class ScheduleCourse3OptimizedIterativeTest :
+class ScheduleCourse3RecursionTest : ScheduleCourse3Test<ScheduleCourse3Recursion>(ScheduleCourse3Recursion())
+class ScheduleCourse3IterativeTest : ScheduleCourse3Test<ScheduleCourse3Iterative>(ScheduleCourse3Iterative())
+class ScheduleCourse3OptimizedIterativeTest :
     ScheduleCourse3Test<ScheduleCourse3OptimizedIterative>(ScheduleCourse3OptimizedIterative())
 
-internal class ScheduleCourse3ExtraListTest :
+class ScheduleCourse3ExtraListTest :
     ScheduleCourse3Test<ScheduleCourse3ExtraList>(ScheduleCourse3ExtraList())
 
-internal class ScheduleCourse3PriorityQueueTest :
+class ScheduleCourse3PriorityQueueTest :
     ScheduleCourse3Test<ScheduleCourse3PriorityQueue>(ScheduleCourse3PriorityQueue())

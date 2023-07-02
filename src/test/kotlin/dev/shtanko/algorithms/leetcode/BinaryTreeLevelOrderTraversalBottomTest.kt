@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BinaryTreeLevelOrderTraversalBottomTest {
+class BinaryTreeLevelOrderTraversalBottomTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -54,7 +54,7 @@ internal class BinaryTreeLevelOrderTraversalBottomTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `level order traversal bottom test`(root: TreeNode, expected: List<List<Int>>) {
+    fun `level order traversal bottom test`(root: TreeNode, expected: List<List<Int>>) {
         val actual = root.levelOrderBottom()
         assertEquals(expected, actual)
     }

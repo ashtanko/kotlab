@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class DeepestLeavesSumTest<out T : DeepestLeavesSum>(private val strategy: T) {
+abstract class DeepestLeavesSumTest<out T : DeepestLeavesSum>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -48,13 +48,13 @@ internal abstract class DeepestLeavesSumTest<out T : DeepestLeavesSum>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `deepest leaves sum test`(root: TreeNode, expected: Int) {
+    fun `deepest leaves sum test`(root: TreeNode, expected: Int) {
         val actual = strategy.perform(root)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class DeepestLeavesSumDFSTest : DeepestLeavesSumTest<DeepestLeavesSumDFS>(DeepestLeavesSumDFS())
-internal class DeepestLeavesSumBFSTest : DeepestLeavesSumTest<DeepestLeavesSumBFS>(DeepestLeavesSumBFS())
-internal class DeepestLeavesSumOptimizedBFSTest :
+class DeepestLeavesSumDFSTest : DeepestLeavesSumTest<DeepestLeavesSumDFS>(DeepestLeavesSumDFS())
+class DeepestLeavesSumBFSTest : DeepestLeavesSumTest<DeepestLeavesSumBFS>(DeepestLeavesSumBFS())
+class DeepestLeavesSumOptimizedBFSTest :
     DeepestLeavesSumTest<DeepestLeavesSumOptimizedBFS>(DeepestLeavesSumOptimizedBFS())

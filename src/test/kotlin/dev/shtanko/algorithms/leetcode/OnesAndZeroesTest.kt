@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class OnesAndZeroesTest<out T : OnesAndZeroes>(private val strategy: T) {
+abstract class OnesAndZeroesTest<out T : OnesAndZeroes>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -54,18 +54,18 @@ internal abstract class OnesAndZeroesTest<out T : OnesAndZeroes>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find max form test`(strs: Array<String>, m: Int, n: Int, expected: Int) {
+    fun `find max form test`(strs: Array<String>, m: Int, n: Int, expected: Int) {
         val actual = strategy.findMaxForm(strs, m, n)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class OnesAndZeroesBFTest : OnesAndZeroesTest<OnesAndZeroesBF>(OnesAndZeroesBF())
+class OnesAndZeroesBFTest : OnesAndZeroesTest<OnesAndZeroesBF>(OnesAndZeroesBF())
 
-internal class OnesAndZeroesBetterBFTest : OnesAndZeroesTest<OnesAndZeroesBetterBF>(OnesAndZeroesBetterBF())
+class OnesAndZeroesBetterBFTest : OnesAndZeroesTest<OnesAndZeroesBetterBF>(OnesAndZeroesBetterBF())
 
-internal class OnesAndZeroesRecursionTest : OnesAndZeroesTest<OnesAndZeroesRecursion>(OnesAndZeroesRecursion())
+class OnesAndZeroesRecursionTest : OnesAndZeroesTest<OnesAndZeroesRecursion>(OnesAndZeroesRecursion())
 
-internal class OnesAndZeroesMemoizationTest : OnesAndZeroesTest<OnesAndZeroesMemoization>(OnesAndZeroesMemoization())
+class OnesAndZeroesMemoizationTest : OnesAndZeroesTest<OnesAndZeroesMemoization>(OnesAndZeroesMemoization())
 
-internal class OnesAndZeroesDPTest : OnesAndZeroesTest<OnesAndZeroesDP>(OnesAndZeroesDP())
+class OnesAndZeroesDPTest : OnesAndZeroesTest<OnesAndZeroesDP>(OnesAndZeroesDP())

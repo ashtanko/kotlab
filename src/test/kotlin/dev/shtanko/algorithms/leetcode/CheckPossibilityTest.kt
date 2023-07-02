@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CheckPossibilityTest<out T : CheckPossibility>(private val strategy: T) {
+abstract class CheckPossibilityTest<out T : CheckPossibility>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,10 +52,10 @@ internal abstract class CheckPossibilityTest<out T : CheckPossibility>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `check possibility test`(nums: IntArray, expected: Boolean) {
+    fun `check possibility test`(nums: IntArray, expected: Boolean) {
         val actual = strategy.perform(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class CheckPossibilityGreedyTest : CheckPossibilityTest<CheckPossibilityGreedy>(CheckPossibilityGreedy())
+class CheckPossibilityGreedyTest : CheckPossibilityTest<CheckPossibilityGreedy>(CheckPossibilityGreedy())

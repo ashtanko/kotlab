@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private val strategy: T) {
+abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(1, true),
@@ -83,16 +83,16 @@ internal abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is power of tree test`(n: Int, expected: Boolean) {
+    fun `is power of tree test`(n: Int, expected: Boolean) {
         val actual = strategy.isPowerOfThree(n)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class POTLoopIterationTest : PowerOfThreeTest<POTLoopIteration>(POTLoopIteration())
+class POTLoopIterationTest : PowerOfThreeTest<POTLoopIteration>(POTLoopIteration())
 
-internal class POTBaseConversionTest : PowerOfThreeTest<POTBaseConversion>(POTBaseConversion())
+class POTBaseConversionTest : PowerOfThreeTest<POTBaseConversion>(POTBaseConversion())
 
-internal class POTMathematicsTest : PowerOfThreeTest<POTMathematics>(POTMathematics())
+class POTMathematicsTest : PowerOfThreeTest<POTMathematics>(POTMathematics())
 
-internal class POTIntegerLimitationsTest : PowerOfThreeTest<POTIntegerLimitations>(POTIntegerLimitations())
+class POTIntegerLimitationsTest : PowerOfThreeTest<POTIntegerLimitations>(POTIntegerLimitations())

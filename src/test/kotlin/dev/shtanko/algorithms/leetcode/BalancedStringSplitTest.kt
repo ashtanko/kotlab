@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BalancedStringSplitTest {
+class BalancedStringSplitTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("RLRRLLRLRL", 4),
@@ -44,7 +44,7 @@ internal class BalancedStringSplitTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `balanced string split test`(str: String, expected: Int) {
+    fun `balanced string split test`(str: String, expected: Int) {
         val actual = str.balancedStringSplit()
         assertEquals(expected, actual)
     }

@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CountSquaresTest {
+class CountSquaresTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -49,7 +49,7 @@ internal class CountSquaresTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `count squares test`(matrix: Array<IntArray>, expected: Int) {
+    fun `count squares test`(matrix: Array<IntArray>, expected: Int) {
         val actual = CountSquares.perform(matrix)
         assertThat(actual, equalTo(expected))
     }

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SelfDividingNumbersTest {
+class SelfDividingNumbersTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -37,7 +37,7 @@ internal class SelfDividingNumbersTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `self dividing numbers test`(numbers: Pair<Int, Int>, expected: List<Int>) {
+    fun `self dividing numbers test`(numbers: Pair<Int, Int>, expected: List<Int>) {
         val actual = numbers.selfDividingNumbers()
         assertEquals(expected, actual)
     }

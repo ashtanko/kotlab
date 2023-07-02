@@ -123,7 +123,7 @@ class ListTNodeTest {
 
     @ParameterizedTest
     @ArgumentsSource(ListObjectArgumentsProvider::class)
-    internal fun `to list t node test`(list: List<DummyObject>, expected: ListTNode<DummyObject>) {
+    fun `to list t node test`(list: List<DummyObject>, expected: ListTNode<DummyObject>) {
         val actual = list.toListTNode()?.toList()
         assertThat(actual).isEqualTo(expected.toList())
     }

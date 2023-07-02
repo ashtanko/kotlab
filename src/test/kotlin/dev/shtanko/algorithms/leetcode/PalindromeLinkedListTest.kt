@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PalindromeLinkedListTest<T : PalindromeLinkedList>(private val solution: T) {
+abstract class PalindromeLinkedListTest<T : PalindromeLinkedList>(private val solution: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -48,17 +48,17 @@ internal abstract class PalindromeLinkedListTest<T : PalindromeLinkedList>(priva
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is palindrome test`(head: ListNode, expected: Boolean) {
+    fun `is palindrome test`(head: ListNode, expected: Boolean) {
         val actual = solution.perform(head)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class PalindromeLinkedListCopyTest :
+class PalindromeLinkedListCopyTest :
     PalindromeLinkedListTest<PalindromeLinkedListCopy>(PalindromeLinkedListCopy())
 
-internal class PalindromeLinkedListStackTest :
+class PalindromeLinkedListStackTest :
     PalindromeLinkedListTest<PalindromeLinkedListRecursive>(PalindromeLinkedListRecursive())
 
-internal class PalindromeLinkedListReverseTest :
+class PalindromeLinkedListReverseTest :
     PalindromeLinkedListTest<PalindromeLinkedListReverse>(PalindromeLinkedListReverse())

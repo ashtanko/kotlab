@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class ShuffleStringTest {
+class ShuffleStringTest {
 
     companion object {
         @JvmStatic
@@ -38,7 +38,7 @@ internal class ShuffleStringTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `restore string test`(testCase: Pair<Pair<IntArray, String>, String>) {
+    fun `restore string test`(testCase: Pair<Pair<IntArray, String>, String>) {
         val (data, expected) = testCase
         val (indices, s) = data
         val actual = (s to indices).restoreString()

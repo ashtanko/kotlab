@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class PascalsTriangleTest {
+class PascalsTriangleTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -47,7 +47,7 @@ internal class PascalsTriangleTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `pascals triangle test`(n: Int, expected: List<List<Int>>) {
+    fun `pascals triangle test`(n: Int, expected: List<List<Int>>) {
         val actual = n.pascalsTriangle()
         assertEquals(expected, actual)
     }

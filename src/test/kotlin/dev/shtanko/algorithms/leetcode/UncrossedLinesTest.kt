@@ -48,7 +48,7 @@ abstract class UncrossedLinesTest<out T : UncrossedLines>(private val strategy: 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `max uncrossed lines test`(nums1: IntArray, nums2: IntArray, expected: Int) {
+    fun `max uncrossed lines test`(nums1: IntArray, nums2: IntArray, expected: Int) {
         val actual = strategy.maxUncrossedLines(nums1, nums2)
         assertEquals(expected, actual)
     }

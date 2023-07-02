@@ -64,5 +64,6 @@ abstract class CheckCompletenessOfBinaryTreeTest<out T : CheckCompletenessOfBina
 
 class CheckCompletenessOfBinaryTreeBFSTest :
     CheckCompletenessOfBinaryTreeTest<CheckCompletenessOfBinaryTree>(CheckCompletenessOfBinaryTreeBFS())
+
 class CheckCompletenessOfBinaryTreeDFSTest :
     CheckCompletenessOfBinaryTreeTest<CheckCompletenessOfBinaryTree>(CheckCompletenessOfBinaryTreeDFS())

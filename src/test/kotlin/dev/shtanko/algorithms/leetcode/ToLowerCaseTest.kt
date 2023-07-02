@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ToLowerCaseTest {
+class ToLowerCaseTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("Hello", "hello"),
@@ -36,7 +36,7 @@ internal class ToLowerCaseTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `to lower case test`(str: String, expected: String) {
+    fun `to lower case test`(str: String, expected: String) {
         val actual = toLowerCase(str)
         assertEquals(expected, actual)
     }

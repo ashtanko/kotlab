@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CountingElementsTest<out T : CountingElements>(private val strategy: T) {
+abstract class CountingElementsTest<out T : CountingElements>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -56,13 +56,13 @@ internal abstract class CountingElementsTest<out T : CountingElements>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `counting elements test`(arr: IntArray, expected: Int) {
+    fun `counting elements test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class CESearchWithArrayTest : CountingElementsTest<CESearchWithArray>(CESearchWithArray())
-internal class CESearchingWithHashSetTest : CountingElementsTest<CESearchingWithHashSet>(CESearchingWithHashSet())
-internal class CESearchingWithSortedArrayTest :
+class CESearchWithArrayTest : CountingElementsTest<CESearchWithArray>(CESearchWithArray())
+class CESearchingWithHashSetTest : CountingElementsTest<CESearchingWithHashSet>(CESearchingWithHashSet())
+class CESearchingWithSortedArrayTest :
     CountingElementsTest<CESearchingWithSortedArray>(CESearchingWithSortedArray())

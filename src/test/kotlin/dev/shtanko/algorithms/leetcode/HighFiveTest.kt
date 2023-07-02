@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class HighFiveTest<out T : HighFiveStrategy>(private val strategy: T) {
+abstract class HighFiveTest<out T : HighFiveStrategy>(private val strategy: T) {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -70,11 +70,11 @@ internal abstract class HighFiveTest<out T : HighFiveStrategy>(private val strat
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `high five test`(items: Array<IntArray>, expected: Array<IntArray>) {
+    fun `high five test`(items: Array<IntArray>, expected: Array<IntArray>) {
         val actual = strategy.perform(items)
         assertArrayEquals(expected, actual)
     }
 }
 
-internal class HighFivePriorityQueueTest : HighFiveTest<HighFivePriorityQueue>(HighFivePriorityQueue())
-internal class HighFiveSortTest : HighFiveTest<HighFiveSort>(HighFiveSort())
+class HighFivePriorityQueueTest : HighFiveTest<HighFivePriorityQueue>(HighFivePriorityQueue())
+class HighFiveSortTest : HighFiveTest<HighFiveSort>(HighFiveSort())

@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T) {
+abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -100,11 +100,11 @@ internal abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find judge test`(n: Int, trust: Array<IntArray>, expected: Int) {
+    fun `find judge test`(n: Int, trust: Array<IntArray>, expected: Int) {
         val actual = strategy.perform(n, trust)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class FindJudgeTwoArraysTest : FindJudgeTest<FindJudgeTwoArrays>(FindJudgeTwoArrays())
-internal class FindJudgeOneArrayTest : FindJudgeTest<FindJudgeOneArray>(FindJudgeOneArray())
+class FindJudgeTwoArraysTest : FindJudgeTest<FindJudgeTwoArrays>(FindJudgeTwoArrays())
+class FindJudgeOneArrayTest : FindJudgeTest<FindJudgeOneArray>(FindJudgeOneArray())

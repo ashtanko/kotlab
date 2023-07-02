@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class HammingDistanceTest {
+class HammingDistanceTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -35,7 +35,7 @@ internal class HammingDistanceTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `hamming distance test`(x: Int, y: Int, expected: Int) {
+    fun `hamming distance test`(x: Int, y: Int, expected: Int) {
         val actual = hammingDistance(x, y)
         assertEquals(expected, actual)
     }

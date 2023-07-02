@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private val strategy: T) {
+abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -58,7 +58,7 @@ internal abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `min available duration test`(
+    fun `min available duration test`(
         slots1: Array<IntArray>,
         slots2: Array<IntArray>,
         duration: Int,
@@ -69,5 +69,5 @@ internal abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private v
     }
 }
 
-internal class MSTwoPointersTest : MeetingSchedulerTest<MSTwoPointers>(MSTwoPointers())
-internal class MSHeapTest : MeetingSchedulerTest<MSHeap>(MSHeap())
+class MSTwoPointersTest : MeetingSchedulerTest<MSTwoPointers>(MSTwoPointers())
+class MSHeapTest : MeetingSchedulerTest<MSHeap>(MSHeap())

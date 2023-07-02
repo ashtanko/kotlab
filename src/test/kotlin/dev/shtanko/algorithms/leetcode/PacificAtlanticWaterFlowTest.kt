@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PacificAtlanticWaterFlowTest<out T : PacificAtlanticWaterFlow>(private val strategy: T) {
+abstract class PacificAtlanticWaterFlowTest<out T : PacificAtlanticWaterFlow>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -50,11 +50,11 @@ internal abstract class PacificAtlanticWaterFlowTest<out T : PacificAtlanticWate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `pacific atlantic test`(matrix: Array<IntArray>, expected: List<List<Int>>) {
+    fun `pacific atlantic test`(matrix: Array<IntArray>, expected: List<List<Int>>) {
         val actual = strategy.perform(matrix)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class PacificAtlanticBFSTest : PacificAtlanticWaterFlowTest<PacificAtlanticBFS>(PacificAtlanticBFS())
-internal class PacificAtlanticDFSTest : PacificAtlanticWaterFlowTest<PacificAtlanticDFS>(PacificAtlanticDFS())
+class PacificAtlanticBFSTest : PacificAtlanticWaterFlowTest<PacificAtlanticBFS>(PacificAtlanticBFS())
+class PacificAtlanticDFSTest : PacificAtlanticWaterFlowTest<PacificAtlanticDFS>(PacificAtlanticDFS())

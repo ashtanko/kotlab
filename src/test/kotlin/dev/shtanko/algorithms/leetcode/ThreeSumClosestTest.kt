@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ThreeSumClosestTest {
+class ThreeSumClosestTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -38,7 +38,7 @@ internal class ThreeSumClosestTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `three sum closest test`(arr: IntArray, target: Int, expected: Int) {
+    fun `three sum closest test`(arr: IntArray, target: Int, expected: Int) {
         val result = arr.threeSumClosest(target)
         assertEquals(expected, result)
     }

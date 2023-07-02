@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Merge Two Binary Trees
  */
-internal fun Pair<TreeNode?, TreeNode?>.mergeTrees(): TreeNode? {
+fun Pair<TreeNode?, TreeNode?>.mergeTrees(): TreeNode? {
     return if (first == null && second == null) {
         null
     } else if (second == null) {

@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ListNodeTest {
+class ListNodeTest {
 
     private class PrettyPrintArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -173,60 +173,60 @@ internal class ListNodeTest {
 
     @ParameterizedTest
     @ArgumentsSource(ZipListArgs::class)
-    internal fun `zip node test`(head1: ListNode, head2: ListNode, expected: ListNode) {
+    fun `zip node test`(head1: ListNode, head2: ListNode, expected: ListNode) {
         val actual = head1.zip(head2).toList()
         assertThat(actual).isEqualTo(expected.toList())
     }
 
     @ParameterizedTest
     @ArgumentsSource(ToListArgs::class)
-    internal fun `to list node test`(list: List<Int>, expected: ListNode) {
+    fun `to list node test`(list: List<Int>, expected: ListNode) {
         val actual = list.toListNode().toList()
         assertThat(actual).isEqualTo(expected.toList())
     }
 
     @ArgumentsSource(PrettyPrintArgumentsProvider::class)
     @ParameterizedTest
-    internal fun `print list node test`(node: ListNode, expected: String) {
+    fun `print list node test`(node: ListNode, expected: String) {
         val actual = node.prettyPrinted()
         assertEquals(expected, actual)
     }
 
     @ArgumentsSource(InputToListArgumentsProvider::class)
     @ParameterizedTest
-    internal fun `list node to list test`(head: ListNode, expected: List<Int>) {
+    fun `list node to list test`(head: ListNode, expected: List<Int>) {
         val actual = head.toList()
         assertThat(actual).containsAll(expected)
     }
 
     @ArgumentsSource(InputToListNullableArgumentsProvider::class)
     @ParameterizedTest
-    internal fun `list node to list nullable test`(head: ListNode?, expected: List<Int>) {
+    fun `list node to list nullable test`(head: ListNode?, expected: List<Int>) {
         val actual = head.toListOrEmpty()
         assertThat(actual).containsAll(expected)
     }
 
     @ArgumentsSource(ReverseListArgs::class)
     @ParameterizedTest
-    internal fun `reverse list test`(head: ListNode, expected: List<Int>) {
+    fun `reverse list test`(head: ListNode, expected: List<Int>) {
         val actual = head.reverseList()?.toList()
         assertThat(actual).containsAll(expected)
     }
 
     @Test
-    internal fun `when list node is not null, should return true`() {
+    fun `when list node is not null, should return true`() {
         val node = ListNode(1)
         assertThat(node.isNotNull()).isTrue()
     }
 
     @Test
-    internal fun `when list node is null, should return false`() {
+    fun `when list node is null, should return false`() {
         val node: ListNode? = null
         assertThat(node.isNotNull()).isFalse()
     }
 
     @Test
-    internal fun `addIfNotNull, when null, should skip`() {
+    fun `addIfNotNull, when null, should skip`() {
         val node: ListNode? = null
         val list = ArrayList<ListNode>()
         list.addIfNotNull(node)
@@ -234,7 +234,7 @@ internal class ListNodeTest {
     }
 
     @Test
-    internal fun `addIfNotNull, when not null, should add`() {
+    fun `addIfNotNull, when not null, should add`() {
         val node = ListNode(0)
         val list = ArrayList<ListNode>()
         list.addIfNotNull(node)

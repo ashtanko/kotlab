@@ -69,7 +69,7 @@ class NumberOfGoodPathsUnionFind : NumberOfGoodPaths {
         return ans
     }
 
-    internal class UF(len: Int) {
+    class UF(len: Int) {
         private val parent: IntArray = IntArray(len) { -1 }
 
         fun find(a: Int): Int {

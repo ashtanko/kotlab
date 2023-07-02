@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class TagValidatorTest<out T : TagValidatorStrategy>(private val strategy: T) {
+abstract class TagValidatorTest<out T : TagValidatorStrategy>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -41,12 +41,12 @@ internal abstract class TagValidatorTest<out T : TagValidatorStrategy>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `tag validator test`(str: String, expected: Boolean) {
+    fun `tag validator test`(str: String, expected: Boolean) {
         val actual = strategy.perform(str)
         assertEquals(expected, actual)
     }
 }
 
-internal class TagValidatorStackTest : TagValidatorTest<TagValidatorStack>(TagValidatorStack())
+class TagValidatorStackTest : TagValidatorTest<TagValidatorStack>(TagValidatorStack())
 
-internal class TagValidatorRegexTest : TagValidatorTest<TagValidatorRegex>(TagValidatorRegex())
+class TagValidatorRegexTest : TagValidatorTest<TagValidatorRegex>(TagValidatorRegex())

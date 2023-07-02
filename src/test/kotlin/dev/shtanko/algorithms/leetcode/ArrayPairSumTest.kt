@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T) {
+abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(), 0),
@@ -39,16 +39,16 @@ internal abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val st
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `array pair sum test`(arr: IntArray, expected: Int) {
+    fun `array pair sum test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class PairSumSort1Test : ArrayPairSumTest<PairSumSort1>(PairSumSort1())
+class PairSumSort1Test : ArrayPairSumTest<PairSumSort1>(PairSumSort1())
 
-internal class PairSumSort2Test : ArrayPairSumTest<PairSumSort2>(PairSumSort2())
+class PairSumSort2Test : ArrayPairSumTest<PairSumSort2>(PairSumSort2())
 
-internal class PairSumSort3Test : ArrayPairSumTest<PairSumSort3>(PairSumSort3())
+class PairSumSort3Test : ArrayPairSumTest<PairSumSort3>(PairSumSort3())
 
-internal class PairSumOddTest : ArrayPairSumTest<PairSumOdd>(PairSumOdd())
+class PairSumOddTest : ArrayPairSumTest<PairSumOdd>(PairSumOdd())

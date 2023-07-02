@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class WordFilterTrieTest {
+class WordFilterTrieTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -116,7 +116,7 @@ internal class WordFilterTrieTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `word filter test`(strategy: WordFilter, prefix: String, suffix: String, expected: Int) {
+    fun `word filter test`(strategy: WordFilter, prefix: String, suffix: String, expected: Int) {
         val actual = strategy.perform(prefix, suffix)
         assertThat(actual).isEqualTo(expected)
     }

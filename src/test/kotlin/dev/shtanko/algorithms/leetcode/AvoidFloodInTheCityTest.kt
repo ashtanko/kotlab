@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(private val strategy: T) {
+abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(1, 2, 3, 4) to intArrayOf(-1, -1, -1, -1)),
@@ -42,13 +42,13 @@ internal abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(priv
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `avoid flood test`(testCase: Pair<IntArray, IntArray>) {
+    fun `avoid flood test`(testCase: Pair<IntArray, IntArray>) {
         val (rains, expected) = testCase
         val actual = strategy.perform(rains)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class AvoidFloodTreeTest : AvoidFloodInTheCityTest<AvoidFloodTree>(AvoidFloodTree())
+class AvoidFloodTreeTest : AvoidFloodInTheCityTest<AvoidFloodTree>(AvoidFloodTree())
 
-internal class AvoidFloodSimpleTest : AvoidFloodInTheCityTest<AvoidFloodSimple>(AvoidFloodSimple())
+class AvoidFloodSimpleTest : AvoidFloodInTheCityTest<AvoidFloodSimple>(AvoidFloodSimple())

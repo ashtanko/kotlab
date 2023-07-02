@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class ReversePairsTest {
+class ReversePairsTest {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal class ReversePairsTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `reverse pairs BST test`(testCase: Pair<IntArray, Int>) {
+    fun `reverse pairs BST test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = arr.reversePairsBST()
         assertEquals(expected, actual)
@@ -43,7 +43,7 @@ internal class ReversePairsTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `reverse pairs BIT 2 test`(testCase: Pair<IntArray, Int>) {
+    fun `reverse pairs BIT 2 test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = arr.reversePairsBIT()
         assertEquals(expected, actual)

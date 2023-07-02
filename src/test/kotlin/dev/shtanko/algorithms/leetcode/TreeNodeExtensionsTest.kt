@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class TreeNodeExtensionsTest {
+class TreeNodeExtensionsTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -41,7 +41,7 @@ internal class TreeNodeExtensionsTest {
     }
 
     @Test
-    internal fun `insert level order test`() {
+    fun `insert level order test`() {
         val arr = intArrayOf(1, 2, 3, 4, 5, 6, 7)
         val tree: TreeNode? = null
         val root = insertLevelOrder(tree, arr, 0)
@@ -63,7 +63,7 @@ internal class TreeNodeExtensionsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `array to tree test`(arr: IntArray, expected: List<Int>) {
+    fun `array to tree test`(arr: IntArray, expected: List<Int>) {
         val tree = arr.toTree()
         val actual = tree.levelOrder().flatten()
         assertEquals(expected, actual)

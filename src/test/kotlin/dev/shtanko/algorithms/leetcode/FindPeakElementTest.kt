@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(private val strategy: T) {
+abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -41,10 +41,10 @@ internal abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(pri
     }
 }
 
-internal class FindPeakElementLinearTest : FindPeakElementTest<FindPeakElementLinear>(FindPeakElementLinear())
+class FindPeakElementLinearTest : FindPeakElementTest<FindPeakElementLinear>(FindPeakElementLinear())
 
-internal class FindPeakElementRecursiveBinarySearchTest :
+class FindPeakElementRecursiveBinarySearchTest :
     FindPeakElementTest<FindPeakElementRecursiveBinarySearch>(FindPeakElementRecursiveBinarySearch())
 
-internal class FindPeakElementIterativeBinarySearchTest :
+class FindPeakElementIterativeBinarySearchTest :
     FindPeakElementTest<FindPeakElementIterativeBinarySearch>(FindPeakElementIterativeBinarySearch())

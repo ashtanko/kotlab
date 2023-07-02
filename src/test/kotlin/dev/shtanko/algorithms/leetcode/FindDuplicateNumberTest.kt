@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FindDuplicateNumberTest<out T : FindDuplicateNumber>(private val strategy: T) {
+abstract class FindDuplicateNumberTest<out T : FindDuplicateNumber>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -56,11 +56,11 @@ internal abstract class FindDuplicateNumberTest<out T : FindDuplicateNumber>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find duplicate number in array test`(nums: IntArray, expected: Int) {
+    fun `find duplicate number in array test`(nums: IntArray, expected: Int) {
         val actual = strategy.perform(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class FindDuplicateSortTest : FindDuplicateNumberTest<FindDuplicateSort>(FindDuplicateSort())
-internal class FindDuplicateSetTest : FindDuplicateNumberTest<FindDuplicateSet>(FindDuplicateSet())
+class FindDuplicateSortTest : FindDuplicateNumberTest<FindDuplicateSort>(FindDuplicateSort())
+class FindDuplicateSetTest : FindDuplicateNumberTest<FindDuplicateSet>(FindDuplicateSet())

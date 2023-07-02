@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class MinimumTimeVisitingAllPointsTest {
+class MinimumTimeVisitingAllPointsTest {
 
     companion object {
         @JvmStatic
@@ -65,7 +65,7 @@ internal class MinimumTimeVisitingAllPointsTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `min time to visit all points test`(testCase: Pair<Int, Array<IntArray>>) {
+    fun `min time to visit all points test`(testCase: Pair<Int, Array<IntArray>>) {
         val (expected, points) = testCase
         val actual = points.minTimeToVisitAllPoints()
         assertEquals(expected, actual)

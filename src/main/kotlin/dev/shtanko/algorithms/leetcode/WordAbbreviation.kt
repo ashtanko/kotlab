@@ -109,7 +109,7 @@ class WordAbbreviationGreedy : WordAbbreviation {
 
 class IndexedWord(var word: String, var index: Int)
 
-internal class WordTrieNode {
+class WordTrieNode {
     var children: Array<WordTrieNode?> = arrayOfNulls(26)
     var count: Int = 0
 }

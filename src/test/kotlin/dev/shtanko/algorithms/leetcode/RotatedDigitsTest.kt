@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class RotatedDigitsTest<out T : RotatedDigits>(private val strategy: T) {
+abstract class RotatedDigitsTest<out T : RotatedDigits>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -41,11 +41,11 @@ internal abstract class RotatedDigitsTest<out T : RotatedDigits>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `rotated digits test`(n: Int, expected: Int) {
+    fun `rotated digits test`(n: Int, expected: Int) {
         val actual = strategy.perform(n)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class RotatedDigitsBruteForceTest : RotatedDigitsTest<RotatedDigitsBruteForce>(RotatedDigitsBruteForce())
-internal class RotatedDigitsDPTest : RotatedDigitsTest<RotatedDigitsDP>(RotatedDigitsDP())
+class RotatedDigitsBruteForceTest : RotatedDigitsTest<RotatedDigitsBruteForce>(RotatedDigitsBruteForce())
+class RotatedDigitsDPTest : RotatedDigitsTest<RotatedDigitsDP>(RotatedDigitsDP())

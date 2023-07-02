@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class SortedListToBSTTest<out T : SortedListToBST>(private val strategy: T) {
+abstract class SortedListToBSTTest<out T : SortedListToBST>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -54,12 +54,12 @@ internal abstract class SortedListToBSTTest<out T : SortedListToBST>(private val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sorted list to BST test`(head: ListNode, expected: List<Int>) {
+    fun `sorted list to BST test`(head: ListNode, expected: List<Int>) {
         val actual = strategy.perform(head).postOrderTraversal()
         assertThat(actual).containsAll(expected)
     }
 }
 
-internal class SortedListToBSTRecursionTest : SortedListToBSTTest<SortedListToBSTRecursion>(SortedListToBSTRecursion())
-internal class SortedListToBSTInorderTest : SortedListToBSTTest<SortedListToBSTInorder>(SortedListToBSTInorder())
-internal class SortedListToBSTArrayTest : SortedListToBSTTest<SortedListToBSTArray>(SortedListToBSTArray())
+class SortedListToBSTRecursionTest : SortedListToBSTTest<SortedListToBSTRecursion>(SortedListToBSTRecursion())
+class SortedListToBSTInorderTest : SortedListToBSTTest<SortedListToBSTInorder>(SortedListToBSTInorder())
+class SortedListToBSTArrayTest : SortedListToBSTTest<SortedListToBSTArray>(SortedListToBSTArray())

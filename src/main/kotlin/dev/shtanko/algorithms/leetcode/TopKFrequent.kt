@@ -165,12 +165,12 @@ class TopKFrequentTrie : TopKFrequent {
         return ans
     }
 
-    internal class TrieNode {
+    class TrieNode {
         var children = arrayOfNulls<TrieNode>(ARR_SIZE)
         var word: String? = null
     }
 
-    internal class Trie {
+    class Trie {
         var root = TrieNode()
         fun addWord(word: String) {
             var cur: TrieNode? = root

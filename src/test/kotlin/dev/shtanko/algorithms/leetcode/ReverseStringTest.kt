@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class ReverseStringTest {
+class ReverseStringTest {
 
     companion object {
         @JvmStatic
@@ -37,7 +37,7 @@ internal class ReverseStringTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `reverse string test`(testCase: Pair<CharArray, CharArray>) {
+    fun `reverse string test`(testCase: Pair<CharArray, CharArray>) {
         val (arr, expected) = testCase
         arr.reverse()
         assertArrayEquals(expected, arr)

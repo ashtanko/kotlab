@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class RobotReturnToOriginTest {
+class RobotReturnToOriginTest {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal class RobotReturnToOriginTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `robot return to origin test`(testCase: Pair<String, Boolean>) {
+    fun `robot return to origin test`(testCase: Pair<String, Boolean>) {
         val (moves, expected) = testCase
         val actual = judgeCircle(moves)
         assertEquals(expected, actual)

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class VerifyPreorderInBinarySearchTreeTest<out T : VerifyPreorderInBinarySearchTreeStrategy>(
+abstract class VerifyPreorderInBinarySearchTreeTest<out T : VerifyPreorderInBinarySearchTreeStrategy>(
     private val strategy: T,
 ) {
 
@@ -43,19 +43,19 @@ internal abstract class VerifyPreorderInBinarySearchTreeTest<out T : VerifyPreor
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `verify test`(preorder: IntArray, expected: Boolean) {
+    fun `verify test`(preorder: IntArray, expected: Boolean) {
         val actual = strategy.perform(preorder)
         assertEquals(expected, actual)
     }
 }
 
-internal class VerifyPreorderInBinarySearchTreeBFTest :
+class VerifyPreorderInBinarySearchTreeBFTest :
     VerifyPreorderInBinarySearchTreeTest<VerifyPreorderInBinarySearchTreeBF>(VerifyPreorderInBinarySearchTreeBF())
 
-internal class VerifyPreorderInBinarySearchTreeStackTest :
+class VerifyPreorderInBinarySearchTreeStackTest :
     VerifyPreorderInBinarySearchTreeTest<VerifyPreorderInBinarySearchTreeStack>(VerifyPreorderInBinarySearchTreeStack())
 
-internal class VerifyPreorderInBinarySearchTreeRecursionTest :
+class VerifyPreorderInBinarySearchTreeRecursionTest :
     VerifyPreorderInBinarySearchTreeTest<VerifyPreorderInBinarySearchTreeRecursion>(
         VerifyPreorderInBinarySearchTreeRecursion(),
     )

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BalancedBinaryTreeTest {
+class BalancedBinaryTreeTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -72,7 +72,7 @@ internal class BalancedBinaryTreeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is balanced test`(root: TreeNode, expected: Boolean) {
+    fun `is balanced test`(root: TreeNode, expected: Boolean) {
         val actual = isBalanced(root)
         assertEquals(expected, actual)
     }

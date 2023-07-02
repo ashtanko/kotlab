@@ -20,7 +20,7 @@ import java.util.ArrayDeque
 import java.util.Deque
 import java.util.LinkedList
 
-internal fun TreeNode?.postOrderTraversal(): List<Int> {
+fun TreeNode?.postOrderTraversal(): List<Int> {
     val result: LinkedList<Int> = LinkedList()
     val stack: Deque<TreeNode> = ArrayDeque()
     var p: TreeNode? = this

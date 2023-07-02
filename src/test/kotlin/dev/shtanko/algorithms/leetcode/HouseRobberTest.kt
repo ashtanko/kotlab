@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(private val strategy: T) {
+abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -61,16 +61,16 @@ internal abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(priva
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `robber test`(arr: IntArray, expected: Int) {
+    fun `robber test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class RecursiveRobberTest : AbstractRobberTest<RecursiveRobber>(RecursiveRobber())
+class RecursiveRobberTest : AbstractRobberTest<RecursiveRobber>(RecursiveRobber())
 
-internal class RecursiveRobberMemoTest : AbstractRobberTest<RecursiveRobberMemo>(RecursiveRobberMemo())
+class RecursiveRobberMemoTest : AbstractRobberTest<RecursiveRobberMemo>(RecursiveRobberMemo())
 
-internal class IterativeRobberMemoTest : AbstractRobberTest<IterativeRobberMemo>(IterativeRobberMemo())
+class IterativeRobberMemoTest : AbstractRobberTest<IterativeRobberMemo>(IterativeRobberMemo())
 
-internal class IterativeRobberTest : AbstractRobberTest<IterativeRobber>(IterativeRobber())
+class IterativeRobberTest : AbstractRobberTest<IterativeRobber>(IterativeRobber())

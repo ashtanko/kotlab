@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CoinPathTest<out T : CoinPath>(private val strategy: T) {
+abstract class CoinPathTest<out T : CoinPath>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -58,11 +58,11 @@ internal abstract class CoinPathTest<out T : CoinPath>(private val strategy: T) 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `cheapest jump test`(a: IntArray, b: Int, expected: List<Int>) {
+    fun `cheapest jump test`(a: IntArray, b: Int, expected: List<Int>) {
         val actual = strategy.cheapestJump(a, b)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class CoinPathMemoTest : CoinPathTest<CoinPathMemo>(CoinPathMemo())
-internal class CoinPathDPTest : CoinPathTest<CoinPathDP>(CoinPathDP())
+class CoinPathMemoTest : CoinPathTest<CoinPathMemo>(CoinPathMemo())
+class CoinPathDPTest : CoinPathTest<CoinPathDP>(CoinPathDP())

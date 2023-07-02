@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Delete Nodes And Return Forest
  */
-internal fun delNodes(root: TreeNode?, toDelete: IntArray): List<TreeNode?> {
+fun delNodes(root: TreeNode?, toDelete: IntArray): List<TreeNode?> {
     val set: MutableSet<Int> = HashSet()
     for (i in toDelete) set.add(i)
     val res: MutableList<TreeNode?> = ArrayList()

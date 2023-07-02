@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BeautifulArrayTest {
+class BeautifulArrayTest {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -45,14 +45,14 @@ internal class BeautifulArrayTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `beautiful array test`(n: Int, expected: IntArray) {
+    fun `beautiful array test`(n: Int, expected: IntArray) {
         val actual = BeautifulArray().perform(n)
         assertArrayEquals(expected, actual)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `beautiful array divide and conquer test`(n: Int, expected: IntArray) {
+    fun `beautiful array divide and conquer test`(n: Int, expected: IntArray) {
         val actual = BeautifulArray().divideAndConquer(n)
         assertArrayEquals(expected, actual)
     }

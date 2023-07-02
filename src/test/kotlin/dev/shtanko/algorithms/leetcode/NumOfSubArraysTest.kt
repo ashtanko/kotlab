@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class NumOfSubArraysTest {
+class NumOfSubArraysTest {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,7 @@ internal class NumOfSubArraysTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `num of sub arrays test`(data: Pair<Int, IntArray>) {
+    fun `num of sub arrays test`(data: Pair<Int, IntArray>) {
         val (expected, arr) = data
         val actual = numOfSubArrays(arr)
         assertEquals(expected, actual)

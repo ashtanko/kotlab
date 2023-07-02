@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class BrickWallTest<out T : BrickWall>(private val strategy: T) {
+abstract class BrickWallTest<out T : BrickWall>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -47,12 +47,12 @@ internal abstract class BrickWallTest<out T : BrickWall>(private val strategy: T
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `least bricks test`(wall: List<List<Int>>, expected: Int) {
+    fun `least bricks test`(wall: List<List<Int>>, expected: Int) {
         val actual = strategy.perform(wall)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class BrickWallBruteForceTest : BrickWallTest<BrickWallBruteForce>(BrickWallBruteForce())
-internal class BrickWallBetterBruteForceTest : BrickWallTest<BrickWallBetterBruteForce>(BrickWallBetterBruteForce())
-internal class BrickWallHashMapTest : BrickWallTest<BrickWallHashMap>(BrickWallHashMap())
+class BrickWallBruteForceTest : BrickWallTest<BrickWallBruteForce>(BrickWallBruteForce())
+class BrickWallBetterBruteForceTest : BrickWallTest<BrickWallBetterBruteForce>(BrickWallBetterBruteForce())
+class BrickWallHashMapTest : BrickWallTest<BrickWallHashMap>(BrickWallHashMap())

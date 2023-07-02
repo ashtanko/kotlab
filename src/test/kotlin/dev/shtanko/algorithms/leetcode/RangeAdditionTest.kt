@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class RangeAdditionTest<out T : RangeAddition>(private val strategy: T) {
+abstract class RangeAdditionTest<out T : RangeAddition>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -41,11 +41,11 @@ internal abstract class RangeAdditionTest<out T : RangeAddition>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `range addition test`(length: Int, updates: Array<IntArray>, expected: IntArray) {
+    fun `range addition test`(length: Int, updates: Array<IntArray>, expected: IntArray) {
         val actual = strategy.perform(length, updates)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class RangeAdditionBruteForceTest : RangeAdditionTest<RangeAdditionBruteForce>(RangeAdditionBruteForce())
-internal class RangeAdditionCachingTest : RangeAdditionTest<RangeAdditionCaching>(RangeAdditionCaching())
+class RangeAdditionBruteForceTest : RangeAdditionTest<RangeAdditionBruteForce>(RangeAdditionBruteForce())
+class RangeAdditionCachingTest : RangeAdditionTest<RangeAdditionCaching>(RangeAdditionCaching())

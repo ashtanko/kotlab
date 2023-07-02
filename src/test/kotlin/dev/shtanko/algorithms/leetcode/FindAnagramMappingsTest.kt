@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class FindAnagramMappingsTest {
+class FindAnagramMappingsTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -38,7 +38,7 @@ internal class FindAnagramMappingsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `internal test`(a: IntArray, b: IntArray, expected: IntArray) {
+    fun `test`(a: IntArray, b: IntArray, expected: IntArray) {
         val actual = FindAnagramMappings.perform(a, b)
         assertArrayEquals(expected, actual)
     }

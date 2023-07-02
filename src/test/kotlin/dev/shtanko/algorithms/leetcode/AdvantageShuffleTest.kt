@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class AdvantageShuffleTest {
+class AdvantageShuffleTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -64,7 +64,7 @@ internal class AdvantageShuffleTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `simple test`(a: IntArray, b: IntArray, expected: IntArray) {
+    fun `simple test`(a: IntArray, b: IntArray, expected: IntArray) {
         val actual = advantageCount(a, b)
         assertThat(actual, equalTo(expected))
     }

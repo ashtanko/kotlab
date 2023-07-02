@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class NumTeamsTest {
+class NumTeamsTest {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal class NumTeamsTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `num teams test`(testCase: Pair<Int, IntArray>) {
+    fun `num teams test`(testCase: Pair<Int, IntArray>) {
         val (expected, arr) = testCase
         val actual = arr.numTeams()
         assertEquals(expected, actual)

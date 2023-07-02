@@ -21,7 +21,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class ElementPositionTest {
+class ElementPositionTest {
 
     companion object {
         @JvmStatic
@@ -36,7 +36,7 @@ internal class ElementPositionTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `search range test`(testCase: Pair<Pair<Int, IntArray>, IntArray>) {
+    fun `search range test`(testCase: Pair<Pair<Int, IntArray>, IntArray>) {
         val (data, expected) = testCase
         val (target, arr) = data
         val actual = arr.searchRange(target)

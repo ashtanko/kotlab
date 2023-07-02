@@ -38,7 +38,7 @@ abstract class SimilarStringGroupsTest<out T : SimilarStringGroups>(private val 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `num similar groups test`(strings: Array<String>, expected: Int) {
+    fun `num similar groups test`(strings: Array<String>, expected: Int) {
         val actual = strategy.numSimilarGroups(strings)
         assertEquals(expected, actual)
     }

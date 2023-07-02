@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PalindromePermutationTest<out T : PalindromePermutationBehavior>(private val strategy: T) {
+abstract class PalindromePermutationTest<out T : PalindromePermutationBehavior>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -46,20 +46,20 @@ internal abstract class PalindromePermutationTest<out T : PalindromePermutationB
     }
 }
 
-internal class PalindromePermutationBruteForceTest :
+class PalindromePermutationBruteForceTest :
     PalindromePermutationTest<PalindromePermutationBruteForce>(PalindromePermutationBruteForce())
 
-internal class PalindromePermutationHashMapTest :
+class PalindromePermutationHashMapTest :
     PalindromePermutationTest<PalindromePermutationHashMap>(PalindromePermutationHashMap())
 
-internal class PalindromePermutationArrayTest :
+class PalindromePermutationArrayTest :
     PalindromePermutationTest<PalindromePermutationArray>(PalindromePermutationArray())
 
-internal class PalindromePermutationSinglePassTest :
+class PalindromePermutationSinglePassTest :
     PalindromePermutationTest<PalindromePermutationSinglePass>(PalindromePermutationSinglePass())
 
-internal class PalindromePermutationSetTest :
+class PalindromePermutationSetTest :
     PalindromePermutationTest<PalindromePermutationSet>(PalindromePermutationSet())
 
-internal class PalindromePermutationTreeTest :
+class PalindromePermutationTreeTest :
     PalindromePermutationTest<PalindromePermutationTree>(PalindromePermutationTree())

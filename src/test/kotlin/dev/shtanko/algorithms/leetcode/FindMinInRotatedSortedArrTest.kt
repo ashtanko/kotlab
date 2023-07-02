@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class FindMinInRotatedSortedArrTest {
+class FindMinInRotatedSortedArrTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,7 +44,7 @@ internal class FindMinInRotatedSortedArrTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find min in rotated sorted array test`(nums: IntArray, expected: Int) {
+    fun `find min in rotated sorted array test`(nums: IntArray, expected: Int) {
         val actual = findMinInRotatedSortedArr(nums)
         assertThat(actual).isEqualTo(expected)
     }

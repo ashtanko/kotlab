@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PowerOfFourTest<out T : PowOfFour>(private val strategy: T) {
+abstract class PowerOfFourTest<out T : PowOfFour>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -41,12 +41,12 @@ internal abstract class PowerOfFourTest<out T : PowOfFour>(private val strategy:
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `power of four test`(n: Int, expected: Boolean) {
+    fun `power of four test`(n: Int, expected: Boolean) {
         val actual = strategy.isPow4(n)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class Pow4BruteForceTest : PowerOfFourTest<Pow4BruteForce>(Pow4BruteForce())
-internal class Pow4MathTest : PowerOfFourTest<Pow4Math>(Pow4Math())
-internal class Pow4BitManipulationTest : PowerOfFourTest<Pow4BitManipulation>(Pow4BitManipulation())
+class Pow4BruteForceTest : PowerOfFourTest<Pow4BruteForce>(Pow4BruteForce())
+class Pow4MathTest : PowerOfFourTest<Pow4Math>(Pow4Math())
+class Pow4BitManipulationTest : PowerOfFourTest<Pow4BitManipulation>(Pow4BitManipulation())

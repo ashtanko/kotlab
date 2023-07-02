@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private val strategy: T) {
+abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private val strategy: T) {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -52,12 +52,12 @@ internal abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `cherry pickup test`(grid: Array<IntArray>, expected: Int) {
+    fun `cherry pickup test`(grid: Array<IntArray>, expected: Int) {
         val actual = strategy.perform(grid)
         assertEquals(expected, actual)
     }
 }
 
-internal class CherryPickup2DPTopDownTest : CherryPickup2Test<CherryPickup2DPTopDown>(CherryPickup2DPTopDown())
+class CherryPickup2DPTopDownTest : CherryPickup2Test<CherryPickup2DPTopDown>(CherryPickup2DPTopDown())
 
-internal class CherryPickup2DPBottomUpTest : CherryPickup2Test<CherryPickup2DPBottomUp>(CherryPickup2DPBottomUp())
+class CherryPickup2DPBottomUpTest : CherryPickup2Test<CherryPickup2DPBottomUp>(CherryPickup2DPBottomUp())

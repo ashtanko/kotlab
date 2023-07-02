@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class LongestStringChainTest<out T : LongestStringChain>(private val strategy: T) {
+abstract class LongestStringChainTest<out T : LongestStringChain>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -40,11 +40,11 @@ internal abstract class LongestStringChainTest<out T : LongestStringChain>(priva
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `longest string chain test`(words: Array<String>, expected: Int) {
+    fun `longest string chain test`(words: Array<String>, expected: Int) {
         val actual = strategy.perform(words)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class LSCTopDownTest : LongestStringChainTest<LSCTopDown>(LSCTopDown())
-internal class LSCBottomUpTest : LongestStringChainTest<LSCBottomUp>(LSCBottomUp())
+class LSCTopDownTest : LongestStringChainTest<LSCTopDown>(LSCTopDown())
+class LSCBottomUpTest : LongestStringChainTest<LSCBottomUp>(LSCBottomUp())

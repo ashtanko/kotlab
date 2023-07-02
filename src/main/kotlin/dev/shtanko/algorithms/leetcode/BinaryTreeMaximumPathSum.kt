@@ -20,7 +20,7 @@ object BinaryTreeMaximumPathSum {
 
     private var maxValue = Int.MIN_VALUE
 
-    internal fun TreeNode?.maxPathSum(): Int {
+    fun TreeNode?.maxPathSum(): Int {
         maxValue = Int.MIN_VALUE
         this.maxPathDown()
         return maxValue

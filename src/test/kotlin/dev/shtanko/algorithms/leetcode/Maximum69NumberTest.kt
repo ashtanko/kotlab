@@ -34,7 +34,7 @@ abstract class Maximum69NumberTest<out T : Maximum69Number>(private val strategy
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `maximum 69 number test`(num: Int, expected: Int) {
+    fun `maximum 69 number test`(num: Int, expected: Int) {
         val actual = strategy.invoke(num)
         assertEquals(expected, actual)
     }

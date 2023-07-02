@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class TheKWeakestRowsInMatrixTest {
+class TheKWeakestRowsInMatrixTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -53,7 +53,7 @@ internal class TheKWeakestRowsInMatrixTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `kWeakest rows test`(matrix: Array<IntArray>, k: Int, expected: IntArray) {
+    fun `kWeakest rows test`(matrix: Array<IntArray>, k: Int, expected: IntArray) {
         val data = matrix to k
         val actual = data.kWeakestRows()
         assertArrayEquals(expected, actual)

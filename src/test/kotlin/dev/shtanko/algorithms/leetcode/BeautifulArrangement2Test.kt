@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class BeautifulArrangement2Test<out T : BeautifulArrangement2>(private val strategy: T) {
+abstract class BeautifulArrangement2Test<out T : BeautifulArrangement2>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -159,10 +159,10 @@ internal abstract class BeautifulArrangement2Test<out T : BeautifulArrangement2>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `construct array test`(n: Int, k: Int, expected: IntArray) {
+    fun `construct array test`(n: Int, k: Int, expected: IntArray) {
         val actual = strategy.constructArray(n, k)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class BA2ConstructionTest : BeautifulArrangement2Test<BA2Construction>(BA2Construction())
+class BA2ConstructionTest : BeautifulArrangement2Test<BA2Construction>(BA2Construction())

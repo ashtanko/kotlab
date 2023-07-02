@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Unique Binary Search Trees 2
  */
-internal fun generateTrees(n: Int): MutableList<TreeNode?> {
+fun generateTrees(n: Int): MutableList<TreeNode?> {
     var res: MutableList<TreeNode?> = ArrayList()
     if (n <= 0) return res
     res.add(null)

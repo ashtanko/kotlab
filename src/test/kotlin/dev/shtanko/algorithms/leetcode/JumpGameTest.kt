@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class JumpGameTest {
+class JumpGameTest {
 
     companion object {
 
@@ -33,7 +33,7 @@ internal class JumpGameTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `can jump test`(testCase: Pair<IntArray, Boolean>) {
+    fun `can jump test`(testCase: Pair<IntArray, Boolean>) {
         val (arr, expected) = testCase
         val actual = arr.canJump()
         assertEquals(expected, actual)

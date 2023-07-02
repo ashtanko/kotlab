@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class ValidBoomerangTest {
+class ValidBoomerangTest {
 
     companion object {
         @JvmStatic
@@ -42,7 +42,7 @@ internal class ValidBoomerangTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `is boomerang test`(testCase: Pair<Boolean, Array<IntArray>>) {
+    fun `is boomerang test`(testCase: Pair<Boolean, Array<IntArray>>) {
         val (expected, points) = testCase
         val actual = isBoomerang(points)
         assertEquals(expected, actual)

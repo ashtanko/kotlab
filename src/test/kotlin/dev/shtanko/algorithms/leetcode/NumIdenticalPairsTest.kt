@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class AbstractNumIdenticalPairsTest<T : AbstractNumIdenticalPairs>(private val strategy: T) {
+abstract class AbstractNumIdenticalPairsTest<T : AbstractNumIdenticalPairs>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -35,16 +35,16 @@ internal abstract class AbstractNumIdenticalPairsTest<T : AbstractNumIdenticalPa
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `abstract num identical pairs test`(testCase: Pair<IntArray, Int>) {
+    fun `abstract num identical pairs test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class NumIdenticalPairsNaiveTest :
+class NumIdenticalPairsNaiveTest :
     AbstractNumIdenticalPairsTest<NumIdenticalPairsNaive>(NumIdenticalPairsNaive())
 
-internal class NumIdenticalPairsMapTest : AbstractNumIdenticalPairsTest<NumIdenticalPairsMap>(NumIdenticalPairsMap())
+class NumIdenticalPairsMapTest : AbstractNumIdenticalPairsTest<NumIdenticalPairsMap>(NumIdenticalPairsMap())
 
-internal class NumIdenticalPairsSortTest : AbstractNumIdenticalPairsTest<NumIdenticalPairsSort>(NumIdenticalPairsSort())
+class NumIdenticalPairsSortTest : AbstractNumIdenticalPairsTest<NumIdenticalPairsSort>(NumIdenticalPairsSort())

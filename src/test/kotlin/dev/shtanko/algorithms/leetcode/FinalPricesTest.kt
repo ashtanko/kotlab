@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class FinalPricesTest {
+class FinalPricesTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -34,7 +34,7 @@ internal class FinalPricesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `final prices test`(arr: IntArray, expected: IntArray) {
+    fun `final prices test`(arr: IntArray, expected: IntArray) {
         val actual = arr.finalPrices()
         assertArrayEquals(expected, actual)
     }

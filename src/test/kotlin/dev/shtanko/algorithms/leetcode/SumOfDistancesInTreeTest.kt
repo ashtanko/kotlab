@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SumOfDistancesInTreeTest {
+class SumOfDistancesInTreeTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -49,7 +49,7 @@ internal class SumOfDistancesInTreeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sum of distances in tree test`(n: Int, edges: Array<IntArray>, expected: IntArray) {
+    fun `sum of distances in tree test`(n: Int, edges: Array<IntArray>, expected: IntArray) {
         val actual = SumOfDistancesInTree().perform(n, edges)
         assertArrayEquals(expected, actual)
     }

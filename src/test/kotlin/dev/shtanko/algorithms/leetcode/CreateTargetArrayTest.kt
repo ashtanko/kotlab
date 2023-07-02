@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CreateTargetArrayTest {
+class CreateTargetArrayTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -48,14 +48,14 @@ internal class CreateTargetArrayTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `create target array solution test`(pair: Pair<IntArray, IntArray>, expected: IntArray) {
+    fun `create target array solution test`(pair: Pair<IntArray, IntArray>, expected: IntArray) {
         val actual = pair.createTargetArray()
         assertArrayEquals(expected, actual)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `create target array solution 2 test`(pair: Pair<IntArray, IntArray>, expected: IntArray) {
+    fun `create target array solution 2 test`(pair: Pair<IntArray, IntArray>, expected: IntArray) {
         val actual = pair.createTargetArray2()
         assertArrayEquals(expected, actual)
     }

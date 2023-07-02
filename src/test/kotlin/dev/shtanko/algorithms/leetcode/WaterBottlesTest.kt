@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class WaterBottlesTest {
+class WaterBottlesTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(9, 3, 13),
@@ -37,7 +37,7 @@ internal class WaterBottlesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `num water bottles test`(numBottles: Int, numExchange: Int, expected: Int) {
+    fun `num water bottles test`(numBottles: Int, numExchange: Int, expected: Int) {
         val actual = WaterBottles().perform(numBottles, numExchange)
         assertThat(actual, `is`(expected))
     }

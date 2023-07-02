@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class KHTFactorTest {
+class KHTFactorTest {
 
     companion object {
         @JvmStatic
@@ -37,7 +37,7 @@ internal class KHTFactorTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `kth factor test`(testCase: Pair<Pair<Int, Int>, Int>) {
+    fun `kth factor test`(testCase: Pair<Pair<Int, Int>, Int>) {
         val (data, expected) = testCase
         val (n, k) = data
         val actual = kthFactor(n, k)

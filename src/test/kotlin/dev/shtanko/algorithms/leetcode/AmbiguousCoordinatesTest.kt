@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class AmbiguousCoordinatesTest {
+class AmbiguousCoordinatesTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -76,7 +76,7 @@ internal class AmbiguousCoordinatesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `name test`(s: String, expected: List<String>) {
+    fun `name test`(s: String, expected: List<String>) {
         val actual = AmbiguousCoordinates().perform(s)
         assertThat(actual).hasSameElementsAs(expected)
     }

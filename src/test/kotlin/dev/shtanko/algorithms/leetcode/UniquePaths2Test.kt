@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class UniquePaths2Test<out T : UniquePaths2>(private val strategy: T) {
+abstract class UniquePaths2Test<out T : UniquePaths2>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -113,10 +113,10 @@ internal abstract class UniquePaths2Test<out T : UniquePaths2>(private val strat
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `unique paths with obstacles test`(obstacleGrid: Array<IntArray>, expected: Int) {
+    fun `unique paths with obstacles test`(obstacleGrid: Array<IntArray>, expected: Int) {
         val actual = strategy.perform(obstacleGrid)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class UniquePaths2DPTest : UniquePaths2Test<UniquePaths2DP>(UniquePaths2DP())
+class UniquePaths2DPTest : UniquePaths2Test<UniquePaths2DP>(UniquePaths2DP())

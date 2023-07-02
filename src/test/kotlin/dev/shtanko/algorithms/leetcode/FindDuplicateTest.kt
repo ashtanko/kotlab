@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FindDuplicateTest<out T : FindDuplicate>(private val strategy: T) {
+abstract class FindDuplicateTest<out T : FindDuplicate>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -51,11 +51,11 @@ internal abstract class FindDuplicateTest<out T : FindDuplicate>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find duplicate test`(paths: Array<String>, expected: List<List<String>>) {
+    fun `find duplicate test`(paths: Array<String>, expected: List<List<String>>) {
         val actual = strategy.perform(paths).flatten().sorted()
         assertThat(actual).containsAll(expected.flatten().sorted())
     }
 }
 
-internal class FindDuplicateBruteForceTest : FindDuplicateTest<FindDuplicateBruteForce>(FindDuplicateBruteForce())
-internal class FindDuplicateHashMapTest : FindDuplicateTest<FindDuplicateHashMap>(FindDuplicateHashMap())
+class FindDuplicateBruteForceTest : FindDuplicateTest<FindDuplicateBruteForce>(FindDuplicateBruteForce())
+class FindDuplicateHashMapTest : FindDuplicateTest<FindDuplicateHashMap>(FindDuplicateHashMap())

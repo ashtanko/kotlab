@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FindPermutationTest<out T : FindPermutation>(private val strategy: T) {
+abstract class FindPermutationTest<out T : FindPermutation>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -37,13 +37,13 @@ internal abstract class FindPermutationTest<out T : FindPermutation>(private val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find permutation test`(s: String, expected: IntArray) {
+    fun `find permutation test`(s: String, expected: IntArray) {
         val actual = strategy.perform(s)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class FindPermutationStackTest : FindPermutationTest<FindPermutationStack>(FindPermutationStack())
-internal class FindPermutationReversingTest : FindPermutationTest<FindPermutationReversing>(FindPermutationReversing())
-internal class FindPermutationTwoPointersTest :
+class FindPermutationStackTest : FindPermutationTest<FindPermutationStack>(FindPermutationStack())
+class FindPermutationReversingTest : FindPermutationTest<FindPermutationReversing>(FindPermutationReversing())
+class FindPermutationTwoPointersTest :
     FindPermutationTest<FindPermutationTwoPointers>(FindPermutationTwoPointers())

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class UniqueMorseCodeWordsTest {
+class UniqueMorseCodeWordsTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -42,7 +42,7 @@ internal class UniqueMorseCodeWordsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `unique morse code words test`(words: Array<String>, expected: Int) {
+    fun `unique morse code words test`(words: Array<String>, expected: Int) {
         val actual = words.uniqueMorseRepresentations()
         assertEquals(expected, actual)
     }

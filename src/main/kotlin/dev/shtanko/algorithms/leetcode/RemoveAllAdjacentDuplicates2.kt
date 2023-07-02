@@ -123,7 +123,7 @@ class RemoveDuplicates2StackReconstruction : RemoveAllAdjacentDuplicatesStrategy
         return b.reverse().toString()
     }
 
-    internal class Pair(var cnt: Int, var ch: Char)
+    class Pair(var cnt: Int, var ch: Char)
 }
 
 /**

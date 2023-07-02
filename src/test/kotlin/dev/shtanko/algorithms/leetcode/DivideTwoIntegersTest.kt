@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class DivideTwoIntegersTest<out T : DivideTwoIntegers>(private val strategy: T) {
+abstract class DivideTwoIntegersTest<out T : DivideTwoIntegers>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,14 +52,14 @@ internal abstract class DivideTwoIntegersTest<out T : DivideTwoIntegers>(private
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `divide two integers test`(dividend: Int, divisor: Int, expected: Int) {
+    fun `divide two integers test`(dividend: Int, divisor: Int, expected: Int) {
         val actual = strategy.divide(dividend, divisor)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class DivideIntegersBitShiftingTest :
+class DivideIntegersBitShiftingTest :
     DivideTwoIntegersTest<DivideIntegersBitShifting>(DivideIntegersBitShifting())
 
-internal class DivideIntegersBitShiftingTest2 :
+class DivideIntegersBitShiftingTest2 :
     DivideTwoIntegersTest<DivideIntegersBitShifting2>(DivideIntegersBitShifting2())

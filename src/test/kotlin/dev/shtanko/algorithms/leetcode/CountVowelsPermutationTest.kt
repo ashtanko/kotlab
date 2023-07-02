@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
-internal abstract class CountVowelsPermutationTest<out T : CountVowelsPermutationStrategy>(private val strategy: T) {
+abstract class CountVowelsPermutationTest<out T : CountVowelsPermutationStrategy>(private val strategy: T) {
 
     @TestFactory
     fun `count vowel permutation strategies test`() = listOf(
@@ -34,11 +34,11 @@ internal abstract class CountVowelsPermutationTest<out T : CountVowelsPermutatio
     }
 }
 
-internal class CountVowelsPermutationBottomUpTest :
+class CountVowelsPermutationBottomUpTest :
     CountVowelsPermutationTest<CountVowelsPermutation.BottomUp>(CountVowelsPermutation.BottomUp())
 
-internal class CountVowelsPermutationOptimizedSpaceTest :
+class CountVowelsPermutationOptimizedSpaceTest :
     CountVowelsPermutationTest<CountVowelsPermutation.OptimizedSpace>(CountVowelsPermutation.OptimizedSpace())
 
-internal class CountVowelsPermutationTopDownTest :
+class CountVowelsPermutationTopDownTest :
     CountVowelsPermutationTest<CountVowelsPermutation.TopDown>(CountVowelsPermutation.TopDown())

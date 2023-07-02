@@ -23,11 +23,11 @@ import java.util.Stack
 private const val FORMAT = "%s%s%s"
 private const val ARROW = "->"
 
-internal interface BinaryTreePathsStrategy {
+interface BinaryTreePathsStrategy {
     fun binaryTreePaths(root: TreeNode?): List<String>
 }
 
-internal class BinaryTreePathsRecursion : BinaryTreePathsStrategy {
+class BinaryTreePathsRecursion : BinaryTreePathsStrategy {
     override fun binaryTreePaths(root: TreeNode?): List<String> {
         val sList: MutableList<String> = LinkedList()
         if (root == null) return sList
@@ -45,7 +45,7 @@ internal class BinaryTreePathsRecursion : BinaryTreePathsStrategy {
     }
 }
 
-internal class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {
+class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {
 
     override fun binaryTreePaths(root: TreeNode?): List<String> {
         val list: MutableList<String> = ArrayList()
@@ -71,7 +71,7 @@ internal class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {
     }
 }
 
-internal class BinaryTreePathsBFSStack : BinaryTreePathsStrategy {
+class BinaryTreePathsBFSStack : BinaryTreePathsStrategy {
     override fun binaryTreePaths(root: TreeNode?): List<String> {
         val list: MutableList<String> = ArrayList()
         val sNode: Stack<TreeNode> = Stack<TreeNode>()

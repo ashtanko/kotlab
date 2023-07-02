@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SuperPalindromesTest {
+class SuperPalindromesTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -57,7 +57,7 @@ internal class SuperPalindromesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `super palindromes test`(left: String, right: String, expected: Int) {
+    fun `super palindromes test`(left: String, right: String, expected: Int) {
         val actual = SuperPalindromes.superPalindromesInRange(left, right)
         assertThat(actual).isEqualTo(expected)
     }

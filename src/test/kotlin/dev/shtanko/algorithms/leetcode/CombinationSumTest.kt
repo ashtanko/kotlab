@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CombinationSumTest {
+class CombinationSumTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -53,7 +53,7 @@ internal class CombinationSumTest {
     @ExperimentalStdlibApi
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `combination sum test`(candidates: IntArray, target: Int, expected: List<List<Int>>) {
+    fun `combination sum test`(candidates: IntArray, target: Int, expected: List<List<Int>>) {
         val actual = combinationSum(candidates, target)
         assertThat(actual, `is`(expected))
         assertEquals(expected, actual)

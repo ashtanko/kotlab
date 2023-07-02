@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class TriangleTest<out T : Triangle>(private val solution: T) {
+abstract class TriangleTest<out T : Triangle>(private val solution: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -48,13 +48,13 @@ internal abstract class TriangleTest<out T : Triangle>(private val solution: T) 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `minimum total test`(triangle: List<List<Int>>, expected: Int) {
+    fun `minimum total test`(triangle: List<List<Int>>, expected: Int) {
         val actual = solution.perform(triangle)
         assertEquals(expected, actual)
     }
 }
 
-internal class TriangleBottomUpTest : TriangleTest<TriangleBottomUp>(TriangleBottomUp())
-internal class TriangleAuxiliarySpaceTest : TriangleTest<TriangleAuxiliarySpace>(TriangleAuxiliarySpace())
-internal class TriangleUpsideDownTest : TriangleTest<TriangleUpsideDown>(TriangleUpsideDown())
-internal class TriangleMemoizationTest : TriangleTest<TriangleMemoization>(TriangleMemoization())
+class TriangleBottomUpTest : TriangleTest<TriangleBottomUp>(TriangleBottomUp())
+class TriangleAuxiliarySpaceTest : TriangleTest<TriangleAuxiliarySpace>(TriangleAuxiliarySpace())
+class TriangleUpsideDownTest : TriangleTest<TriangleUpsideDown>(TriangleUpsideDown())
+class TriangleMemoizationTest : TriangleTest<TriangleMemoization>(TriangleMemoization())

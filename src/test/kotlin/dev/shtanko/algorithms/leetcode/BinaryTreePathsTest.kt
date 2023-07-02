@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(private val strategy: T) {
+abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -67,14 +67,14 @@ internal abstract class BinaryTreePathsTest<out T : BinaryTreePathsStrategy>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `binary tree paths test`(tree: TreeNode, expected: List<String>) {
+    fun `binary tree paths test`(tree: TreeNode, expected: List<String>) {
         val actual = strategy.binaryTreePaths(tree).sorted()
         assertEquals(expected, actual)
     }
 }
 
-internal class BinaryTreePathsRecursionTest : BinaryTreePathsTest<BinaryTreePathsRecursion>(BinaryTreePathsRecursion())
+class BinaryTreePathsRecursionTest : BinaryTreePathsTest<BinaryTreePathsRecursion>(BinaryTreePathsRecursion())
 
-internal class BinaryTreePathsBFSQueueTest : BinaryTreePathsTest<BinaryTreePathsBFSQueue>(BinaryTreePathsBFSQueue())
+class BinaryTreePathsBFSQueueTest : BinaryTreePathsTest<BinaryTreePathsBFSQueue>(BinaryTreePathsBFSQueue())
 
-internal class BinaryTreePathsBFSStackTest : BinaryTreePathsTest<BinaryTreePathsBFSStack>(BinaryTreePathsBFSStack())
+class BinaryTreePathsBFSStackTest : BinaryTreePathsTest<BinaryTreePathsBFSStack>(BinaryTreePathsBFSStack())

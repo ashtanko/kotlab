@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class PathSumTest<out T : PathSumStrategy>(private val strategy: T) {
+abstract class PathSumTest<out T : PathSumStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -46,7 +46,7 @@ internal abstract class PathSumTest<out T : PathSumStrategy>(private val strateg
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `path sum test`(testCase: Pair<Pair<TreeNode, Int>, Boolean>) {
+    fun `path sum test`(testCase: Pair<Pair<TreeNode, Int>, Boolean>) {
         val (data, expected) = testCase
         val (tree, sum) = data
         val actual = strategy.hasPathSum(tree, sum)
@@ -54,6 +54,6 @@ internal abstract class PathSumTest<out T : PathSumStrategy>(private val strateg
     }
 }
 
-internal class PathSumRecursiveTest : PathSumTest<PathSumRecursive>(PathSumRecursive())
+class PathSumRecursiveTest : PathSumTest<PathSumRecursive>(PathSumRecursive())
 
-internal class PathSumStackTest : PathSumTest<PathSumStack>(PathSumStack())
+class PathSumStackTest : PathSumTest<PathSumStack>(PathSumStack())

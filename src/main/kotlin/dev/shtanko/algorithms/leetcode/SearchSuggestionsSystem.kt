@@ -139,7 +139,7 @@ class SSSTrie : SearchSuggestionsSystem {
         return root
     }
 
-    internal class TrieNode {
+    class TrieNode {
         var word: String? = null
         var next = arrayOfNulls<TrieNode>(LETTERS_COUNT)
 

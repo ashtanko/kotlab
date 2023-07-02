@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class SpiralMatrixTest {
+class SpiralMatrixTest {
 
     companion object {
         @JvmStatic
@@ -48,7 +48,7 @@ internal class SpiralMatrixTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `spiral order test`(testCase: Pair<Array<IntArray>, List<Int>>) {
+    fun `spiral order test`(testCase: Pair<Array<IntArray>, List<Int>>) {
         val (matrix, expected) = testCase
         val actual = matrix.spiralOrder()
         assertEquals(expected, actual)

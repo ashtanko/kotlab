@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class TwoSumLessThanKTest<out T : TwoSumLessThanKStrategy>(private val strategy: T) {
+abstract class TwoSumLessThanKTest<out T : TwoSumLessThanKStrategy>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -43,20 +43,20 @@ internal abstract class TwoSumLessThanKTest<out T : TwoSumLessThanKStrategy>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `two sum less than K test`(nums: IntArray, k: Int, expected: Int) {
+    fun `two sum less than K test`(nums: IntArray, k: Int, expected: Int) {
         val actual = strategy.perform(nums, k)
         assertEquals(expected, actual)
     }
 }
 
-internal class TwoSumLessThanKBruteForceTest :
+class TwoSumLessThanKBruteForceTest :
     TwoSumLessThanKTest<TwoSumLessThanKBruteForce>(TwoSumLessThanKBruteForce())
 
-internal class TwoSumLessThanKTwoPointersTest :
+class TwoSumLessThanKTwoPointersTest :
     TwoSumLessThanKTest<TwoSumLessThanKTwoPointers>(TwoSumLessThanKTwoPointers())
 
-internal class TwoSumLessThanKBinarySearchTest :
+class TwoSumLessThanKBinarySearchTest :
     TwoSumLessThanKTest<TwoSumLessThanKBinarySearch>(TwoSumLessThanKBinarySearch())
 
-internal class TwoSumLessThanKCountingSortTest :
+class TwoSumLessThanKCountingSortTest :
     TwoSumLessThanKTest<TwoSumLessThanKCountingSort>(TwoSumLessThanKCountingSort())

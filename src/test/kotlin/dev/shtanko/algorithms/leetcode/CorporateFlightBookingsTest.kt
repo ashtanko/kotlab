@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CorporateFlightBookingsTest {
+class CorporateFlightBookingsTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -41,7 +41,7 @@ internal class CorporateFlightBookingsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `corporate flight bookings test`(bookings: Array<IntArray>, n: Int, expected: IntArray) {
+    fun `corporate flight bookings test`(bookings: Array<IntArray>, n: Int, expected: IntArray) {
         val actual = corpFlightBookings(bookings, n)
         assertArrayEquals(expected, actual)
     }

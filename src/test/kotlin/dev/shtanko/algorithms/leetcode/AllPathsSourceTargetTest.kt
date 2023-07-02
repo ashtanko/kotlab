@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AllPathsSourceTargetTest<out T : AllPathsSourceTarget>(private val strategy: T) {
+abstract class AllPathsSourceTargetTest<out T : AllPathsSourceTarget>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -114,14 +114,14 @@ internal abstract class AllPathsSourceTargetTest<out T : AllPathsSourceTarget>(p
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `all paths source target test`(graph: Array<IntArray>, expected: List<List<Int>>) {
+    fun `all paths source target test`(graph: Array<IntArray>, expected: List<List<Int>>) {
         val actual = strategy.perform(graph)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class AllPathsSourceBacktrackingTest :
+class AllPathsSourceBacktrackingTest :
     AllPathsSourceTargetTest<AllPathsSourceBacktracking>(AllPathsSourceBacktracking())
 
-internal class AllPathsSourceDPTest :
+class AllPathsSourceDPTest :
     AllPathsSourceTargetTest<AllPathsSourceDP>(AllPathsSourceDP())

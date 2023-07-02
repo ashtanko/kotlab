@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class SumOfLeftLeavesTest<out T : SumOfLeftLeavesStrategy>(val strategy: T) {
+abstract class SumOfLeftLeavesTest<out T : SumOfLeftLeavesStrategy>(val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -43,14 +43,14 @@ internal abstract class SumOfLeftLeavesTest<out T : SumOfLeftLeavesStrategy>(val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sum of left leaves test`(tree: TreeNode, expected: Int) {
+    fun `sum of left leaves test`(tree: TreeNode, expected: Int) {
         val actual = strategy.perform(tree)
         assertEquals(expected, actual)
     }
 }
 
-internal class SumOfLeftLeavesIterativeTest : SumOfLeftLeavesTest<SumOfLeftLeavesIterative>(SumOfLeftLeavesIterative())
+class SumOfLeftLeavesIterativeTest : SumOfLeftLeavesTest<SumOfLeftLeavesIterative>(SumOfLeftLeavesIterative())
 
-internal class SumOfLeftLeavesRecursiveTest : SumOfLeftLeavesTest<SumOfLeftLeavesRecursive>(SumOfLeftLeavesRecursive())
+class SumOfLeftLeavesRecursiveTest : SumOfLeftLeavesTest<SumOfLeftLeavesRecursive>(SumOfLeftLeavesRecursive())
 
-internal class SumOfLeftLeavesBSFTest : SumOfLeftLeavesTest<SumOfLeftLeavesBSF>(SumOfLeftLeavesBSF())
+class SumOfLeftLeavesBSFTest : SumOfLeftLeavesTest<SumOfLeftLeavesBSF>(SumOfLeftLeavesBSF())

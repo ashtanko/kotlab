@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MissingNumberInProgressionTest<out T : MissingNumberInProgression>(private val strategy: T) {
+abstract class MissingNumberInProgressionTest<out T : MissingNumberInProgression>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,11 +52,11 @@ internal abstract class MissingNumberInProgressionTest<out T : MissingNumberInPr
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `missing number test`(arr: IntArray, expected: Int) {
+    fun `missing number test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class MNLinearSearchTest : MissingNumberInProgressionTest<MNLinearSearch>(MNLinearSearch())
-internal class MNBinarySearchTest : MissingNumberInProgressionTest<MNBinarySearch>(MNBinarySearch())
+class MNLinearSearchTest : MissingNumberInProgressionTest<MNLinearSearch>(MNLinearSearch())
+class MNBinarySearchTest : MissingNumberInProgressionTest<MNBinarySearch>(MNBinarySearch())

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PalindromicSubstringsTest<out T : PalindromicSubstrings>(private val strategy: T) {
+abstract class PalindromicSubstringsTest<out T : PalindromicSubstrings>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -40,17 +40,17 @@ internal abstract class PalindromicSubstringsTest<out T : PalindromicSubstrings>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `count substrings test`(s: String, expected: Int) {
+    fun `count substrings test`(s: String, expected: Int) {
         val actual = strategy.perform(s)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class PalindromicSubstringsCheckAllSubstringsTest :
+class PalindromicSubstringsCheckAllSubstringsTest :
     PalindromicSubstringsTest<PalindromicSubstringsCheckAllSubstrings>(PalindromicSubstringsCheckAllSubstrings())
 
-internal class PalindromicSubstringsDPTest :
+class PalindromicSubstringsDPTest :
     PalindromicSubstringsTest<PalindromicSubstringsDP>(PalindromicSubstringsDP())
 
-internal class PalindromicSubstringsPossibleCentersTest :
+class PalindromicSubstringsPossibleCentersTest :
     PalindromicSubstringsTest<PalindromicSubstringsPossibleCenters>(PalindromicSubstringsPossibleCenters())

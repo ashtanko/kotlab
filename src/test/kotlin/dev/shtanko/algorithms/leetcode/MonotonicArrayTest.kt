@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class MonotonicArrayTest {
+class MonotonicArrayTest {
 
     companion object {
         @JvmStatic
@@ -39,7 +39,7 @@ internal class MonotonicArrayTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `is monotonic test`(testCase: Pair<Boolean, IntArray>) {
+    fun `is monotonic test`(testCase: Pair<Boolean, IntArray>) {
         val (expected, arr) = testCase
         val actual = arr.isMonotonic()
         assertEquals(expected, actual)

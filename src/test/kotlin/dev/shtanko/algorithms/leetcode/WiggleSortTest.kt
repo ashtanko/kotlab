@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class WiggleSortTest<out T : WiggleSort>(private val strategy: T) {
+abstract class WiggleSortTest<out T : WiggleSort>(private val strategy: T) {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -41,11 +41,11 @@ internal abstract class WiggleSortTest<out T : WiggleSort>(private val strategy:
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `wiggle sort test`(nums: IntArray, expected: IntArray) {
+    fun `wiggle sort test`(nums: IntArray, expected: IntArray) {
         strategy.perform(nums)
         assertArrayEquals(expected, nums)
     }
 }
 
-internal class WiggleSortBruteForceTest : WiggleSortTest<WiggleSortBruteForce>(WiggleSortBruteForce())
-internal class WiggleSortOnePassSwapTest : WiggleSortTest<WiggleSortOnePassSwap>(WiggleSortOnePassSwap())
+class WiggleSortBruteForceTest : WiggleSortTest<WiggleSortBruteForce>(WiggleSortBruteForce())
+class WiggleSortOnePassSwapTest : WiggleSortTest<WiggleSortOnePassSwap>(WiggleSortOnePassSwap())

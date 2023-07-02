@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class AbstractFindSubstringTest<T : AbstractFindSubstring>(private val strategy: T) {
+abstract class AbstractFindSubstringTest<T : AbstractFindSubstring>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal abstract class AbstractFindSubstringTest<T : AbstractFindSubstring>(pri
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `find substring test`(testCase: Pair<Pair<String, Array<String>>, List<Int>>) {
+    fun `find substring test`(testCase: Pair<Pair<String, Array<String>>, List<Int>>) {
         val (data, expected) = testCase
         val (str, words) = data
         val actual = strategy.perform(str, words)
@@ -43,4 +43,4 @@ internal abstract class AbstractFindSubstringTest<T : AbstractFindSubstring>(pri
     }
 }
 
-internal class FindSubstringTest : AbstractFindSubstringTest<FindSubstring>(FindSubstring())
+class FindSubstringTest : AbstractFindSubstringTest<FindSubstring>(FindSubstring())

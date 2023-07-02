@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AbstractDecodeWays2StrategyTest<out T : DecodeWays2Strategy>(private val strategy: DecodeWays2Strategy) {
+abstract class AbstractDecodeWays2StrategyTest<out T : DecodeWays2Strategy>(private val strategy: DecodeWays2Strategy) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("", 0),
@@ -54,19 +54,19 @@ internal abstract class AbstractDecodeWays2StrategyTest<out T : DecodeWays2Strat
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `simple test`(str: String, expected: Int) {
+    fun `simple test`(str: String, expected: Int) {
         val actual = strategy.perform(str)
         assertEquals(expected, actual)
     }
 }
 
-internal class DecodeWays2RecursionWithMemoizationTest :
+class DecodeWays2RecursionWithMemoizationTest :
     AbstractDecodeWays2StrategyTest<DecodeWays2RecursionWithMemoization>(DecodeWays2RecursionWithMemoization())
 
-internal class DecodeWays2DynamicProgrammingTest :
+class DecodeWays2DynamicProgrammingTest :
     AbstractDecodeWays2StrategyTest<DecodeWays2DynamicProgramming>(DecodeWays2DynamicProgramming())
 
-internal class DecodeWays2ConstantSpaceDynamicProgrammingTest :
+class DecodeWays2ConstantSpaceDynamicProgrammingTest :
     AbstractDecodeWays2StrategyTest<DecodeWays2ConstantSpaceDynamicProgramming>(
         DecodeWays2ConstantSpaceDynamicProgramming(),
     )

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SplitArrayWithSameAverageTest {
+class SplitArrayWithSameAverageTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -98,7 +98,7 @@ internal class SplitArrayWithSameAverageTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `split array with same average test`(arr: IntArray, expected: Boolean) {
+    fun `split array with same average test`(arr: IntArray, expected: Boolean) {
         val actual = arr.splitArraySameAverage()
         assertEquals(expected, actual)
     }

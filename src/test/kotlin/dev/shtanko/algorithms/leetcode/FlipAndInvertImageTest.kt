@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class FlipAndInvertImageTest {
+class FlipAndInvertImageTest {
 
     companion object {
         @JvmStatic
@@ -52,7 +52,7 @@ internal class FlipAndInvertImageTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `flip and invert image test`(testCase: Pair<Array<IntArray>, Array<IntArray>>) {
+    fun `flip and invert image test`(testCase: Pair<Array<IntArray>, Array<IntArray>>) {
         val (arr, expected) = testCase
         val actual = flipAndInvertImage(arr)
         assertArrayEquals(expected, actual)

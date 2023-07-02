@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MaximumProductOfWordLengthsTest<out T : MaximumProductOfWordLengths>(private val solution: T) {
+abstract class MaximumProductOfWordLengthsTest<out T : MaximumProductOfWordLengths>(private val solution: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,11 +44,11 @@ internal abstract class MaximumProductOfWordLengthsTest<out T : MaximumProductOf
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `max product test`(words: Array<String>, expected: Int) {
+    fun `max product test`(words: Array<String>, expected: Int) {
         val actual = solution.maxProduct(words)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class MaxProductBitmasksTest : MaximumProductOfWordLengthsTest<MaxProductBitmasks>(MaxProductBitmasks())
-internal class MaxProductHashmapTest : MaximumProductOfWordLengthsTest<MaxProductHashmap>(MaxProductHashmap())
+class MaxProductBitmasksTest : MaximumProductOfWordLengthsTest<MaxProductBitmasks>(MaxProductBitmasks())
+class MaxProductHashmapTest : MaximumProductOfWordLengthsTest<MaxProductHashmap>(MaxProductHashmap())

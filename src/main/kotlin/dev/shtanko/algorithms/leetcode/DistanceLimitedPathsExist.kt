@@ -77,7 +77,7 @@ class DisjointSetUnion : DistanceLimitedPathsExist {
         Arrays.sort(array) { a, b -> a[2] - b[2] }
     }
 
-    internal class UnionFind(size: Int) {
+    class UnionFind(size: Int) {
         private val group: IntArray = IntArray(size)
         private val rank: IntArray = IntArray(size)
 

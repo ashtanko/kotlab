@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ContainsDuplicate2Test<out T : ContainsDuplicate2>(private val strategy: T) {
+abstract class ContainsDuplicate2Test<out T : ContainsDuplicate2>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(), 0, false),
@@ -36,14 +36,14 @@ internal abstract class ContainsDuplicate2Test<out T : ContainsDuplicate2>(priva
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is contains duplicate test`(arr: IntArray, k: Int, expected: Boolean) {
+    fun `is contains duplicate test`(arr: IntArray, k: Int, expected: Boolean) {
         val actual = strategy.perform(arr, k)
         assertEquals(expected, actual)
     }
 }
 
-internal class ContainsDuplicateLinearTest : ContainsDuplicate2Test<ContainsDuplicateLinear>(ContainsDuplicateLinear())
-internal class ContainsDuplicateBinarySearchTreeTest :
+class ContainsDuplicateLinearTest : ContainsDuplicate2Test<ContainsDuplicateLinear>(ContainsDuplicateLinear())
+class ContainsDuplicateBinarySearchTreeTest :
     ContainsDuplicate2Test<ContainsDuplicateBinarySearchTree>(ContainsDuplicateBinarySearchTree())
 
-internal class ContainsDuplicateHashTest : ContainsDuplicate2Test<ContainsDuplicateHash>(ContainsDuplicateHash())
+class ContainsDuplicateHashTest : ContainsDuplicate2Test<ContainsDuplicateHash>(ContainsDuplicateHash())

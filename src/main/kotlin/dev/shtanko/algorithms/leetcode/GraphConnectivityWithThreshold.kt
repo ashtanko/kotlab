@@ -43,7 +43,7 @@ class GraphConnectivityWithThresholdUnion : GraphConnectivityWithThreshold {
     }
 
     // Feel free to copy this class for later reuse!
-    internal class UnionFind(n: Int) {
+    class UnionFind(n: Int) {
         var parent: IntArray
         var size: IntArray
 

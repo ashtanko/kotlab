@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-internal interface BrowserHistory {
+interface BrowserHistory {
     fun visit(url: String)
 
     fun back(steps: Int): String

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class LengthOfLongestSubstringTest<out T : LengthOfLongestSubstring>(private val solution: T) {
+abstract class LengthOfLongestSubstringTest<out T : LengthOfLongestSubstring>(private val solution: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -45,15 +45,15 @@ internal abstract class LengthOfLongestSubstringTest<out T : LengthOfLongestSubs
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `length of longest substring test`(s: String, expected: Int) {
+    fun `length of longest substring test`(s: String, expected: Int) {
         val actual = solution.perform(s)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class LengthOfLongestSubstringBFTest :
+class LengthOfLongestSubstringBFTest :
     LengthOfLongestSubstringTest<LengthOfLongestSubstringBF>(LengthOfLongestSubstringBF())
 
-internal class LLSSlidingWindowTest : LengthOfLongestSubstringTest<LLSSlidingWindow>(LLSSlidingWindow())
+class LLSSlidingWindowTest : LengthOfLongestSubstringTest<LLSSlidingWindow>(LLSSlidingWindow())
 
-internal class LLSSlidingWindowOptTest : LengthOfLongestSubstringTest<LLSSlidingWindowOpt>(LLSSlidingWindowOpt())
+class LLSSlidingWindowOptTest : LengthOfLongestSubstringTest<LLSSlidingWindowOpt>(LLSSlidingWindowOpt())

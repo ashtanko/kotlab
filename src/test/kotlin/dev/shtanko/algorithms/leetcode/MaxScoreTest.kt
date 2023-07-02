@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MaxScoreTest<out T : MaxScore>(private val strategy: T) {
+abstract class MaxScoreTest<out T : MaxScore>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -57,14 +57,14 @@ internal abstract class MaxScoreTest<out T : MaxScore>(private val strategy: T) 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `max product test`(cardPoints: IntArray, k: Int, expected: Int) {
+    fun `max product test`(cardPoints: IntArray, k: Int, expected: Int) {
         val actual = strategy.perform(cardPoints, k)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class MaxScoreDPTest : MaxScoreTest<MaxScoreDP>(MaxScoreDP())
+class MaxScoreDPTest : MaxScoreTest<MaxScoreDP>(MaxScoreDP())
 
-internal class MaxScoreDPSpaceOptimizedTest : MaxScoreTest<MaxScoreDPSpaceOptimized>(MaxScoreDPSpaceOptimized())
+class MaxScoreDPSpaceOptimizedTest : MaxScoreTest<MaxScoreDPSpaceOptimized>(MaxScoreDPSpaceOptimized())
 
-internal class MaxScoreSlidingWindowTest : MaxScoreTest<MaxScoreSlidingWindow>(MaxScoreSlidingWindow())
+class MaxScoreSlidingWindowTest : MaxScoreTest<MaxScoreSlidingWindow>(MaxScoreSlidingWindow())

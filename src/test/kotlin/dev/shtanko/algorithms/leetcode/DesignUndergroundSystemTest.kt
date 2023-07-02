@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal abstract class DesignUndergroundSystemTest<out T : UndergroundSystem>(private val system: T) {
+abstract class DesignUndergroundSystemTest<out T : UndergroundSystem>(private val system: T) {
 
     @Test
     fun `underground system test`() {
@@ -38,4 +38,4 @@ internal abstract class DesignUndergroundSystemTest<out T : UndergroundSystem>(p
     }
 }
 
-internal class UndergroundSystemImplTest : DesignUndergroundSystemTest<UndergroundSystemImpl>(UndergroundSystemImpl())
+class UndergroundSystemImplTest : DesignUndergroundSystemTest<UndergroundSystemImpl>(UndergroundSystemImpl())

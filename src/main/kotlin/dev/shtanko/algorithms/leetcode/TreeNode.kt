@@ -24,7 +24,7 @@ data class TreeNode(var value: Int) {
     var right: TreeNode? = null
 }
 
-internal fun TreeNode?.clone(): TreeNode? {
+fun TreeNode?.clone(): TreeNode? {
     if (this == null) return null
     val node = TreeNode(value)
     node.left = left.clone()

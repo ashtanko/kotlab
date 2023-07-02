@@ -22,7 +22,7 @@ import java.util.Stack
  * 232. Implement Queue using Stacks
  * @link https://leetcode.com/problems/implement-queue-using-stacks/description/
  */
-internal class MyQueue {
+class MyQueue {
 
     private val addStack = Stack<Int>()
     private val delStack = Stack<Int>()

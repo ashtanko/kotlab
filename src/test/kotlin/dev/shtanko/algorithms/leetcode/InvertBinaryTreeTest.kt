@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>(val strategy: T) {
+abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>(val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -58,7 +58,7 @@ internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `invert binary tree test`(testCase: Pair<TreeNode, List<List<Int>>>) {
+    fun `invert binary tree test`(testCase: Pair<TreeNode, List<List<Int>>>) {
         val (tree, expected) = testCase
         val invertedTree = strategy.perform(tree)
         val actual = invertedTree.levelOrder()
@@ -66,6 +66,6 @@ internal abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>
     }
 }
 
-internal class InvertTreeTest : InvertBinaryTreeStrategyTest<InvertTree>(InvertTree())
+class InvertTreeTest : InvertBinaryTreeStrategyTest<InvertTree>(InvertTree())
 
-internal class InvertTreeRecursiveTest : InvertBinaryTreeStrategyTest<InvertTreeRecursive>(InvertTreeRecursive())
+class InvertTreeRecursiveTest : InvertBinaryTreeStrategyTest<InvertTreeRecursive>(InvertTreeRecursive())

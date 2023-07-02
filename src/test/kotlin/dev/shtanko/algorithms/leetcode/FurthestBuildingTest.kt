@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FurthestBuildingTest<out T : FurthestBuilding>(private val strategy: T) {
+abstract class FurthestBuildingTest<out T : FurthestBuilding>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -50,16 +50,16 @@ internal abstract class FurthestBuildingTest<out T : FurthestBuilding>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `furthest building test`(heights: IntArray, bricks: Int, ladders: Int, expected: Int) {
+    fun `furthest building test`(heights: IntArray, bricks: Int, ladders: Int, expected: Int) {
         val actual = strategy.perform(heights, bricks, ladders)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class MinHeapTest : FurthestBuildingTest<MinHeap>(MinHeap())
-internal class MaxHeapTest : FurthestBuildingTest<MaxHeap>(MaxHeap())
-internal class FinalReachableBuildingTest : FurthestBuildingTest<FinalReachableBuilding>(FinalReachableBuilding())
-internal class ImprovedFinalReachableBuildingTest :
+class MinHeapTest : FurthestBuildingTest<MinHeap>(MinHeap())
+class MaxHeapTest : FurthestBuildingTest<MaxHeap>(MaxHeap())
+class FinalReachableBuildingTest : FurthestBuildingTest<FinalReachableBuilding>(FinalReachableBuilding())
+class ImprovedFinalReachableBuildingTest :
     FurthestBuildingTest<ImprovedFinalReachableBuilding>(ImprovedFinalReachableBuilding())
 
-internal class BSThresholdTest : FurthestBuildingTest<BSThreshold>(BSThreshold())
+class BSThresholdTest : FurthestBuildingTest<BSThreshold>(BSThreshold())

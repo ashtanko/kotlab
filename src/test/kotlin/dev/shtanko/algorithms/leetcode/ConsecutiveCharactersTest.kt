@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersStrategy>(private val strategy: T) {
+abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("leetcode", 2),
@@ -39,11 +39,11 @@ internal abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersS
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `consecutive characters test`(s: String, expected: Int) {
+    fun `consecutive characters test`(s: String, expected: Int) {
         val actual = strategy.perform(s)
         assertEquals(expected, actual)
     }
 }
 
-internal class MaxPower1Test : ConsecutiveCharactersTest<MaxPower1>(MaxPower1())
-internal class MaxPower2Test : ConsecutiveCharactersTest<MaxPower2>(MaxPower2())
+class MaxPower1Test : ConsecutiveCharactersTest<MaxPower1>(MaxPower1())
+class MaxPower2Test : ConsecutiveCharactersTest<MaxPower2>(MaxPower2())

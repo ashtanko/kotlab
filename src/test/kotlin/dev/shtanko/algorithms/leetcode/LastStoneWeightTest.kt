@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class LastStoneWeightTest<out T : LastStoneWeightStrategy>(private val strategy: T) {
+abstract class LastStoneWeightTest<out T : LastStoneWeightStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -33,12 +33,12 @@ internal abstract class LastStoneWeightTest<out T : LastStoneWeightStrategy>(pri
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `last stone weight test`(testCase: Pair<IntArray, Int>) {
+    fun `last stone weight test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class LastStoneWeightSortTest : LastStoneWeightTest<LastStoneWeightSort>(LastStoneWeightSort())
-internal class LastStoneWeightQueueTest : LastStoneWeightTest<LastStoneWeightQueue>(LastStoneWeightQueue())
+class LastStoneWeightSortTest : LastStoneWeightTest<LastStoneWeightSort>(LastStoneWeightSort())
+class LastStoneWeightQueueTest : LastStoneWeightTest<LastStoneWeightQueue>(LastStoneWeightQueue())

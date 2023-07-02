@@ -94,7 +94,7 @@ class SplitArrayIntoConsecutiveSubsequencesGreedy : SplitArrayIntoConsecutiveSub
     }
 }
 
-internal class CounterMap : HashMap<Int?, Int?>() {
+class CounterMap : HashMap<Int?, Int?>() {
     operator fun get(k: Int): Int {
         return if (containsKey(k)) super.get(k)!! else 0
     }

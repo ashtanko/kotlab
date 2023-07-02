@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T) {
+abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -96,14 +96,14 @@ internal abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `binary gap test`(n: Int, expected: Int) {
+    fun `binary gap test`(n: Int, expected: Int) {
         val actual = strategy.binaryGap(n)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class BGStoreIndexesTest : BinaryGapTest<BGStoreIndexes>(BGStoreIndexes())
+class BGStoreIndexesTest : BinaryGapTest<BGStoreIndexes>(BGStoreIndexes())
 
-internal class BGOnePassTest : BinaryGapTest<BGOnePass>(BGOnePass())
+class BGOnePassTest : BinaryGapTest<BGOnePass>(BGOnePass())
 
-internal class BGOtherTest : BinaryGapTest<BGOther>(BGOther())
+class BGOtherTest : BinaryGapTest<BGOther>(BGOther())

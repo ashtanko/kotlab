@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class WildcardMatchingTest {
+class WildcardMatchingTest {
 
     companion object {
         @JvmStatic
@@ -37,7 +37,7 @@ internal class WildcardMatchingTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
+    fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
         val (pair, expected) = testCase
         val actual = pair.isMatch()
         assertEquals(expected, actual)

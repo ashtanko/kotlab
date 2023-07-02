@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ValidSubArraysTest {
+class ValidSubArraysTest {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -36,7 +36,7 @@ internal class ValidSubArraysTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `valid sub arrays test`(nums: IntArray, expected: Int) {
+    fun `valid sub arrays test`(nums: IntArray, expected: Int) {
         val actual = ValidSubArrays().perform(nums)
         assertEquals(expected, actual)
     }

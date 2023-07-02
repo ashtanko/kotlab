@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class ValidNumberTest {
+class ValidNumberTest {
 
     companion object {
         @JvmStatic
@@ -47,7 +47,7 @@ internal class ValidNumberTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `is number using regex test`(testCase: Pair<Boolean, String>) {
+    fun `is number using regex test`(testCase: Pair<Boolean, String>) {
         val (expected, str) = testCase
         val actual = str.isNumberRegex()
         assertEquals(expected, actual)
@@ -55,7 +55,7 @@ internal class ValidNumberTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `is number test`(testCase: Pair<Boolean, String>) {
+    fun `is number test`(testCase: Pair<Boolean, String>) {
         val (expected, str) = testCase
         val actual = str.isNumber()
         assertEquals(expected, actual)

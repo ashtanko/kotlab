@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MaxNumberOfApplesTest<out T : MaxNumberOfApples>(private val strategy: T) {
+abstract class MaxNumberOfApplesTest<out T : MaxNumberOfApples>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -100,17 +100,17 @@ internal abstract class MaxNumberOfApplesTest<out T : MaxNumberOfApples>(private
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `max number of apples test`(arr: IntArray, expected: Int) {
+    fun `max number of apples test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class MaxNumberOfApplesSortTest :
+class MaxNumberOfApplesSortTest :
     MaxNumberOfApplesTest<MaxNumberOfApplesSort>(MaxNumberOfApplesSort())
 
-internal class MaxNumberOfApplesMinHeapTest :
+class MaxNumberOfApplesMinHeapTest :
     MaxNumberOfApplesTest<MaxNumberOfApplesMinHeap>(MaxNumberOfApplesMinHeap())
 
-internal class MaxNumberOfApplesBucketSortTest :
+class MaxNumberOfApplesBucketSortTest :
     MaxNumberOfApplesTest<MaxNumberOfApplesBucketSort>(MaxNumberOfApplesBucketSort())

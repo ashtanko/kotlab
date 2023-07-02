@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MostFrequentSubtreeSumTest {
+class MostFrequentSubtreeSumTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -47,7 +47,7 @@ internal class MostFrequentSubtreeSumTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `most frequent subtree sum test`(root: TreeNode, expected: IntArray) {
+    fun `most frequent subtree sum test`(root: TreeNode, expected: IntArray) {
         val actual = MostFrequentSubtreeSum().perform(root)
         assertArrayEquals(expected, actual)
     }

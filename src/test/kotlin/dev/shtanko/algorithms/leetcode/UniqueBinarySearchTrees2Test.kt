@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class UniqueBinarySearchTrees2Test {
+class UniqueBinarySearchTrees2Test {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -43,7 +43,7 @@ internal class UniqueBinarySearchTrees2Test {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `unique binary search trees 2 test`(n: Int, expected: List<List<List<Int>>>) {
+    fun `unique binary search trees 2 test`(n: Int, expected: List<List<List<Int>>>) {
         val actual = generateTrees(n)
         val ordered = actual.map { it.levelOrderBottom() }
         assertEquals(expected, ordered)

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class DayOfTheWeekTest {
+class DayOfTheWeekTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -56,7 +56,7 @@ internal class DayOfTheWeekTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `day of the week test`(date: Triple<Int, Int, Int>, expected: String) {
+    fun `day of the week test`(date: Triple<Int, Int, Int>, expected: String) {
         val actual = date.dayOfTheWeek()
         assertEquals(expected, actual)
     }

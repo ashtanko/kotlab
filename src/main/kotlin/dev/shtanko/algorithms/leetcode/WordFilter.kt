@@ -116,7 +116,7 @@ class WordFilterWrappedWords(words: Array<String>) : WordFilter {
         return cur.weight
     }
 
-    internal class TrieNode {
+    class TrieNode {
         var children: Array<TrieNode?> = arrayOfNulls(27)
         var weight: Int = 0
     }

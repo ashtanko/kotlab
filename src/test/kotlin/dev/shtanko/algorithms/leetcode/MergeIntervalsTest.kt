@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class MergeIntervalsStrategyTest<out T : MergeIntervalsStrategy>(private val strategy: T) {
+abstract class MergeIntervalsStrategyTest<out T : MergeIntervalsStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -42,15 +42,15 @@ internal abstract class MergeIntervalsStrategyTest<out T : MergeIntervalsStrateg
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `merge intervals test`(testCase: Pair<Array<IntArray>, Array<IntArray>>) {
+    fun `merge intervals test`(testCase: Pair<Array<IntArray>, Array<IntArray>>) {
         val (intervals, expected) = testCase
         val actual = strategy.perform(intervals)
         assertArrayEquals(expected, actual)
     }
 }
 
-internal class MergeIntervalsConnectedComponentsTest :
+class MergeIntervalsConnectedComponentsTest :
     MergeIntervalsStrategyTest<MergeIntervalsConnectedComponents>(MergeIntervalsConnectedComponents())
 
-internal class MergeIntervalsSortingTest :
+class MergeIntervalsSortingTest :
     MergeIntervalsStrategyTest<MergeIntervalsSorting>(MergeIntervalsSorting())

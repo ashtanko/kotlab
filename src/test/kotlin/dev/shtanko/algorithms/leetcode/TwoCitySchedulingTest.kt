@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class TwoCitySchedulingTest {
+class TwoCitySchedulingTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -42,7 +42,7 @@ internal class TwoCitySchedulingTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `two city scheduling test`(costs: Array<IntArray>, expected: Int) {
+    fun `two city scheduling test`(costs: Array<IntArray>, expected: Int) {
         assertEquals(expected, costs.twoCitySchedCost())
     }
 }

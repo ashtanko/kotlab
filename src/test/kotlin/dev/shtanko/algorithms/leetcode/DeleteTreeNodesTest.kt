@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class DeleteTreeNodesTest<out T : DeleteTreeNodes>(private val strategy: T) {
+abstract class DeleteTreeNodesTest<out T : DeleteTreeNodes>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -56,13 +56,13 @@ internal abstract class DeleteTreeNodesTest<out T : DeleteTreeNodes>(private val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `delete tree nodes test`(nodes: Int, parent: IntArray, value: IntArray, expected: Int) {
+    fun `delete tree nodes test`(nodes: Int, parent: IntArray, value: IntArray, expected: Int) {
         val actual = strategy.perform(nodes, parent, value)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class DeleteTreeNodesBruteForceTest :
+class DeleteTreeNodesBruteForceTest :
     DeleteTreeNodesTest<DeleteTreeNodesBruteForce>(DeleteTreeNodesBruteForce())
 
-internal class DeleteTreeNodesDFSTest : DeleteTreeNodesTest<DeleteTreeNodesDFS>(DeleteTreeNodesDFS())
+class DeleteTreeNodesDFSTest : DeleteTreeNodesTest<DeleteTreeNodesDFS>(DeleteTreeNodesDFS())

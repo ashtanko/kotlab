@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ThreeSumMultiTest<out T : ThreeSumMulti>(private val strategy: T) {
+abstract class ThreeSumMultiTest<out T : ThreeSumMulti>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,12 +52,12 @@ internal abstract class ThreeSumMultiTest<out T : ThreeSumMulti>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `three sum multi test`(arr: IntArray, target: Int, expected: Int) {
+    fun `three sum multi test`(arr: IntArray, target: Int, expected: Int) {
         val actual = strategy.perform(arr, target)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class TSMThreePointerTest : ThreeSumMultiTest<TSMThreePointer>(TSMThreePointer())
-internal class TSMCountingCasesTest : ThreeSumMultiTest<TSMCountingCases>(TSMCountingCases())
-internal class TSMAdaptTest : ThreeSumMultiTest<TSMAdapt>(TSMAdapt())
+class TSMThreePointerTest : ThreeSumMultiTest<TSMThreePointer>(TSMThreePointer())
+class TSMCountingCasesTest : ThreeSumMultiTest<TSMCountingCases>(TSMCountingCases())
+class TSMAdaptTest : ThreeSumMultiTest<TSMAdapt>(TSMAdapt())

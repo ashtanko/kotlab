@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FlattenBinaryTreeTest<out T : FlattenBinaryTree>(private val strategy: T) {
+abstract class FlattenBinaryTreeTest<out T : FlattenBinaryTree>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,11 +44,11 @@ internal abstract class FlattenBinaryTreeTest<out T : FlattenBinaryTree>(private
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `flatten test`(root: TreeNode?, expected: List<Int>) {
+    fun `flatten test`(root: TreeNode?, expected: List<Int>) {
         strategy.flatten(root)
         assertThat(root.preorderTraversal()).hasSameElementsAs(expected)
     }
 }
 
-internal class FlattenRecursionTest : FlattenBinaryTreeTest<FlattenRecursion>(FlattenRecursion())
-internal class FlattenStackTest : FlattenBinaryTreeTest<FlattenStack>(FlattenStack())
+class FlattenRecursionTest : FlattenBinaryTreeTest<FlattenRecursion>(FlattenRecursion())
+class FlattenStackTest : FlattenBinaryTreeTest<FlattenStack>(FlattenStack())

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MissingRangesTest {
+class MissingRangesTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -63,7 +63,7 @@ internal class MissingRangesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find missing ranges test`(nums: IntArray, lower: Int, upper: Int, expected: List<String>) {
+    fun `find missing ranges test`(nums: IntArray, lower: Int, upper: Int, expected: List<String>) {
         val actual = MissingRanges().findMissingRanges(nums, lower, upper)
         assertEquals(expected, actual)
     }

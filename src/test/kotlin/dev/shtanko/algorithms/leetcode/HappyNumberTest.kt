@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class HappyNumberTest {
+class HappyNumberTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -36,7 +36,7 @@ internal class HappyNumberTest {
         )
     }
 
-    internal class InputListArgumentsProvider : ArgumentsProvider {
+    class InputListArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, listOf<Int>()),
             Arguments.of(5, listOf(1)),
@@ -48,13 +48,13 @@ internal class HappyNumberTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `happy number test`(n: Int, expected: Boolean) {
+    fun `happy number test`(n: Int, expected: Boolean) {
         val actual = n.isHappy()
         assertEquals(expected, actual)
     }
 
     @Test
-    internal fun `lost list test`() {
+    fun `lost list test`() {
         val happyList = mutableListOf<Int>()
         listOf(4, 8, 15, 16, 23, 42).each {
             if (it.isHappy()) {
@@ -66,7 +66,7 @@ internal class HappyNumberTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputListArgumentsProvider::class)
-    internal fun `happy number list test`(times: Int, expected: List<Int>) {
+    fun `happy number list test`(times: Int, expected: List<Int>) {
         val happyList = mutableListOf<Int>()
         repeat(times) {
             if (it.isHappy()) {

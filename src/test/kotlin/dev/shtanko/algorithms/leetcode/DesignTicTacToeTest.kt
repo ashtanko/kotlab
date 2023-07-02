@@ -34,7 +34,7 @@ class DesignTicTacToeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `move test`(ticTacToe: DesignTicTacToe) {
+    fun `move test`(ticTacToe: DesignTicTacToe) {
         // |X| | |
         // | | | |    // Player 1 makes a move at (0, 0).
         // | | | |
@@ -73,7 +73,7 @@ class DesignTicTacToeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `dead heat test`(ticTacToe: DesignTicTacToe) {
+    fun `dead heat test`(ticTacToe: DesignTicTacToe) {
         // |X| | |
         // | | | |    // Player 1 makes a move at (0, 0).
         // | | | |
@@ -122,7 +122,7 @@ class DesignTicTacToeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `win X row 0 test`(ticTacToe: DesignTicTacToe) {
+    fun `win X row 0 test`(ticTacToe: DesignTicTacToe) {
         // |X| | |
         // | | | |    // Player 1 makes a move at (0, 0).
         // | | | |

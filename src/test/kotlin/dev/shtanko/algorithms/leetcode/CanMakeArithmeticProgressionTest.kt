@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CanMakeArithmeticProgressionTest {
+class CanMakeArithmeticProgressionTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -49,14 +49,14 @@ internal class CanMakeArithmeticProgressionTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `can make arithmetic progression test`(arr: IntArray, expected: Boolean) {
+    fun `can make arithmetic progression test`(arr: IntArray, expected: Boolean) {
         val actual = arr.canMakeArithmeticProgression()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `can make arithmetic progression using set test`(arr: IntArray, expected: Boolean) {
+    fun `can make arithmetic progression using set test`(arr: IntArray, expected: Boolean) {
         val actual = arr.canMakeArithmeticProgressionSet()
         assertThat(actual).isEqualTo(expected)
     }

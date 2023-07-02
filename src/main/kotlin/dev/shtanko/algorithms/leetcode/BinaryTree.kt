@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import org.slf4j.LoggerFactory
 
-internal class BinaryTree {
+class BinaryTree {
     var root: TreeNode? = null
 
     fun printLevelOrder() {

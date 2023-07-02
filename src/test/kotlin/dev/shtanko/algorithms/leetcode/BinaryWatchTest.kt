@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BinaryWatchTest {
+class BinaryWatchTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -90,7 +90,7 @@ internal class BinaryWatchTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `binary watch test`(n: Int, expected: List<String>) {
+    fun `binary watch test`(n: Int, expected: List<String>) {
         val actual = BinaryWatch.perform(n)
         println(actual)
         assertThat(actual, containsInAnyOrder(*expected.toTypedArray()))

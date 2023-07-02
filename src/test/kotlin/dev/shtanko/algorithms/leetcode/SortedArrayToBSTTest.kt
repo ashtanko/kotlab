@@ -49,15 +49,15 @@ abstract class SortedArrayToBSTTest<out T : SortedArrayToBST>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sortedArrayToBST test`(nums: IntArray, expected: TreeNode?) {
+    fun `sortedArrayToBST test`(nums: IntArray, expected: TreeNode?) {
         val actual = strategy.perform(nums).postOrderTraversal()
         assertThat(actual).containsAll(expected.postOrderTraversal())
     }
 }
 
-internal class SortedArrayToBSTPreorderTest : SortedArrayToBSTTest<SortedArrayToBSTPreorder>(SortedArrayToBSTPreorder())
-internal class RightMiddleSortedArrayToBSTTest :
+class SortedArrayToBSTPreorderTest : SortedArrayToBSTTest<SortedArrayToBSTPreorder>(SortedArrayToBSTPreorder())
+class RightMiddleSortedArrayToBSTTest :
     SortedArrayToBSTTest<RightMiddleSortedArrayToBST>(RightMiddleSortedArrayToBST())
 
-internal class RandomMiddleSortedArrayToBSTTest :
+class RandomMiddleSortedArrayToBSTTest :
     SortedArrayToBSTTest<RandomMiddleSortedArrayToBST>(RandomMiddleSortedArrayToBST())

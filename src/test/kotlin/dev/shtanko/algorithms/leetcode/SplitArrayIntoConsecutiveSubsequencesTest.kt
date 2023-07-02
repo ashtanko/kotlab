@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class SplitArrayIntoConsecutiveSubsequencesTest<out T : SplitArrayIntoConsecutiveSubsequences>(
+abstract class SplitArrayIntoConsecutiveSubsequencesTest<out T : SplitArrayIntoConsecutiveSubsequences>(
     private val strategy: T,
 ) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -38,18 +38,18 @@ internal abstract class SplitArrayIntoConsecutiveSubsequencesTest<out T : SplitA
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is possible test`(nums: IntArray, expected: Boolean) {
+    fun `is possible test`(nums: IntArray, expected: Boolean) {
         val actual = strategy.isPossible(nums)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class SplitArrayIntoConsecutiveSubsequencesQueueTest :
+class SplitArrayIntoConsecutiveSubsequencesQueueTest :
     SplitArrayIntoConsecutiveSubsequencesTest<SplitArrayIntoConsecutiveSubsequencesQueue>(
         SplitArrayIntoConsecutiveSubsequencesQueue(),
     )
 
-internal class SplitArrayIntoConsecutiveSubsequencesGreedyTest :
+class SplitArrayIntoConsecutiveSubsequencesGreedyTest :
     SplitArrayIntoConsecutiveSubsequencesTest<SplitArrayIntoConsecutiveSubsequencesGreedy>(
         SplitArrayIntoConsecutiveSubsequencesGreedy(),
     )

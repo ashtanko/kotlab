@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class IsSubsequenceTest<out T : IsSubsequence>(private val strategy: T) {
+abstract class IsSubsequenceTest<out T : IsSubsequence>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -42,10 +42,10 @@ internal abstract class IsSubsequenceTest<out T : IsSubsequence>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is subsequence test`(source: String, target: String, expected: Boolean) {
+    fun `is subsequence test`(source: String, target: String, expected: Boolean) {
         val actual = strategy.perform(source, target)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class IsSubsequenceDPTest : IsSubsequenceTest<IsSubsequenceDP>(IsSubsequenceDP())
+class IsSubsequenceDPTest : IsSubsequenceTest<IsSubsequenceDP>(IsSubsequenceDP())

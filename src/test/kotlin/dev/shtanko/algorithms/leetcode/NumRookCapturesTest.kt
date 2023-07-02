@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class NumRookCapturesTest<out T : NumRookCaptures>(private val strategy: T) {
+abstract class NumRookCapturesTest<out T : NumRookCaptures>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -77,5 +77,5 @@ internal abstract class NumRookCapturesTest<out T : NumRookCaptures>(private val
     }
 }
 
-internal class NumRookCapturesSFTest : NumRookCapturesTest<NumRookCapturesSF>(NumRookCapturesSF())
-internal class NumRookCapturesSearchTest : NumRookCapturesTest<NumRookCapturesSearch>(NumRookCapturesSearch())
+class NumRookCapturesSFTest : NumRookCapturesTest<NumRookCapturesSF>(NumRookCapturesSF())
+class NumRookCapturesSearchTest : NumRookCapturesTest<NumRookCapturesSearch>(NumRookCapturesSearch())

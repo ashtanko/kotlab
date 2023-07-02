@@ -20,11 +20,11 @@ package dev.shtanko.algorithms.leetcode
  * 1220. Count Vowels Permutation
  * @link https://leetcode.com/problems/count-vowels-permutation/
  */
-internal interface CountVowelsPermutationStrategy {
+interface CountVowelsPermutationStrategy {
     fun perform(n: Int): Int
 }
 
-internal sealed class CountVowelsPermutation {
+sealed class CountVowelsPermutation {
 
     /**
      * Approach 1: Dynamic Programming (Bottom-up)

@@ -55,17 +55,17 @@ abstract class MatrixReshapeTest<out T : MatrixReshape>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `matrix reshape test`(mat: Array<IntArray>, r: Int, c: Int, expected: Array<IntArray>) {
+    fun `matrix reshape test`(mat: Array<IntArray>, r: Int, c: Int, expected: Array<IntArray>) {
         val actual = strategy.perform(mat, r, c)
         assertThat(actual).isDeepEqualTo(expected)
     }
 }
 
-internal class MRUsingQueueTest :
+class MRUsingQueueTest :
     MatrixReshapeTest<MatrixReshapeStrategy.UsingQueue>(MatrixReshapeStrategy.UsingQueue())
 
-internal class MRWithoutUsingExtraSpaceTest :
+class MRWithoutUsingExtraSpaceTest :
     MatrixReshapeTest<MatrixReshapeStrategy.WithoutUsingExtraSpace>(MatrixReshapeStrategy.WithoutUsingExtraSpace())
 
-internal class MRUsingDivisionTest :
+class MRUsingDivisionTest :
     MatrixReshapeTest<MatrixReshapeStrategy.UsingDivision>(MatrixReshapeStrategy.UsingDivision())

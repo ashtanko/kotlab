@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class WordAbbreviationTest<out T : WordAbbreviation>(private val strategy: T) {
+abstract class WordAbbreviationTest<out T : WordAbbreviation>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -124,12 +124,12 @@ internal abstract class WordAbbreviationTest<out T : WordAbbreviation>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `words abbreviation test`(dict: List<String>, expected: List<String>) {
+    fun `words abbreviation test`(dict: List<String>, expected: List<String>) {
         val actual = strategy.perform(dict)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class WordAbbreviationGreedyTest : WordAbbreviationTest<WordAbbreviationGreedy>(WordAbbreviationGreedy())
-internal class WordAbbreviationLCPTest : WordAbbreviationTest<WordAbbreviationLCP>(WordAbbreviationLCP())
-internal class WordAbbreviationTrieTest : WordAbbreviationTest<WordAbbreviationTrie>(WordAbbreviationTrie())
+class WordAbbreviationGreedyTest : WordAbbreviationTest<WordAbbreviationGreedy>(WordAbbreviationGreedy())
+class WordAbbreviationLCPTest : WordAbbreviationTest<WordAbbreviationLCP>(WordAbbreviationLCP())
+class WordAbbreviationTrieTest : WordAbbreviationTest<WordAbbreviationTrie>(WordAbbreviationTrie())

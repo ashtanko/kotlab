@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MinCostClimbingStairsTest<out T : MinCostClimbingStairs>(private val strategy: T) {
+abstract class MinCostClimbingStairsTest<out T : MinCostClimbingStairs>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -53,20 +53,20 @@ internal abstract class MinCostClimbingStairsTest<out T : MinCostClimbingStairs>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `min cost climbing stairs test`(cost: IntArray, expected: Int) {
+    fun `min cost climbing stairs test`(cost: IntArray, expected: Int) {
         val actual = strategy.perform(cost)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class MinCostClimbingStairsRecursiveTest :
+class MinCostClimbingStairsRecursiveTest :
     MinCostClimbingStairsTest<MinCostClimbingStairsRecursive>(MinCostClimbingStairsRecursive())
 
-internal class MinCostClimbingStairsMemoizationTest :
+class MinCostClimbingStairsMemoizationTest :
     MinCostClimbingStairsTest<MinCostClimbingStairsMemoization>(MinCostClimbingStairsMemoization())
 
-internal class MinCostClimbingStairsDPBottomUpTest :
+class MinCostClimbingStairsDPBottomUpTest :
     MinCostClimbingStairsTest<MinCostClimbingStairsDPBottomUp>(MinCostClimbingStairsDPBottomUp())
 
-internal class MinCostClimbingStairsDPOptimizedTest :
+class MinCostClimbingStairsDPOptimizedTest :
     MinCostClimbingStairsTest<MinCostClimbingStairsDPOptimized>(MinCostClimbingStairsDPOptimized())

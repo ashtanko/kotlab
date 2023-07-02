@@ -20,10 +20,10 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 
-internal class IncreasingOrderSearchTreeTest {
+class IncreasingOrderSearchTreeTest {
 
     @Test
-    internal fun `increasing order search tree test`() {
+    fun `increasing order search tree test`() {
         val root = TreeNode(5).apply {
             left = TreeNode(3)
             right = TreeNode(6)

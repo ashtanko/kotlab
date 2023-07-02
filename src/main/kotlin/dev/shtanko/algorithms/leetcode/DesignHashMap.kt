@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-internal class DesignHashMap {
+class DesignHashMap {
     private val nodes = Array<ListNode?>(10_000) { null }
 
     fun put(key: Int, value: Int) {
@@ -59,7 +59,7 @@ internal class DesignHashMap {
         return prev
     }
 
-    internal class ListNode(val key: Int, var value: Int) {
+    class ListNode(val key: Int, var value: Int) {
         var next: ListNode? = null
     }
 }

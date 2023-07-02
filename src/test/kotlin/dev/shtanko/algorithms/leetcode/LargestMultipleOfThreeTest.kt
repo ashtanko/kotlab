@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class LargestMultipleOfThreeTest {
+class LargestMultipleOfThreeTest {
     companion object {
         @JvmStatic
         fun dataProvider(): List<Pair<IntArray, String>> {
@@ -35,7 +35,7 @@ internal class LargestMultipleOfThreeTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `largest multiple of three test`(testCase: Pair<IntArray, String>) {
+    fun `largest multiple of three test`(testCase: Pair<IntArray, String>) {
         val (digits, expected) = testCase
         val actual = largestMultipleOfThree(digits)
         assertEquals(expected, actual)

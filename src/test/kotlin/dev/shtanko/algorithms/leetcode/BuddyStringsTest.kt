@@ -24,12 +24,12 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal data class BuddyStringsTestCase(
+data class BuddyStringsTestCase(
     val buddyString: Pair<String, String>,
     val expected: Boolean,
 )
 
-internal class BuddyStringsTest {
+class BuddyStringsTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -82,7 +82,7 @@ internal class BuddyStringsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `buddy strings test`(s1: String, s2: String, expected: Boolean) {
+    fun `buddy strings test`(s1: String, s2: String, expected: Boolean) {
         val actual = (s1 to s2).buddyStrings()
         assertThat(actual).isEqualTo(expected)
     }

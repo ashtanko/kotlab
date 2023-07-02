@@ -20,10 +20,10 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
-internal abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val strategy: T) {
+abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val strategy: T) {
 
     @TestFactory
-    internal fun `count primes test`() = listOf(
+    fun `count primes test`() = listOf(
         0 to 0,
         1 to 0,
         3 to 1,
@@ -42,6 +42,6 @@ internal abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val
     }
 }
 
-internal class CountPrimesBrutForceTest : CountPrimesTest<CountPrimesBrutForce>(CountPrimesBrutForce())
+class CountPrimesBrutForceTest : CountPrimesTest<CountPrimesBrutForce>(CountPrimesBrutForce())
 
-internal class CountPrimesTimeComplexityTest : CountPrimesTest<CountPrimesTimeComplexity>(CountPrimesTimeComplexity())
+class CountPrimesTimeComplexityTest : CountPrimesTest<CountPrimesTimeComplexity>(CountPrimesTimeComplexity())

@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class RemoveOutermostParenthesesTest {
+class RemoveOutermostParenthesesTest {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,7 @@ internal class RemoveOutermostParenthesesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `remove outer parentheses test`(testCase: Pair<String, String>) {
+    fun `remove outer parentheses test`(testCase: Pair<String, String>) {
         val (s, expected) = testCase
         val actual = s.removeOuterParentheses()
         assertEquals(expected, actual)
@@ -42,7 +42,7 @@ internal class RemoveOutermostParenthesesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `remove outer parentheses 2 test`(testCase: Pair<String, String>) {
+    fun `remove outer parentheses 2 test`(testCase: Pair<String, String>) {
         val (s, expected) = testCase
         val actual = s.removeOuterParentheses2()
         assertEquals(expected, actual)

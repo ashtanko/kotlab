@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class RangeSumQueryTest {
+class RangeSumQueryTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         private val arr = intArrayOf(-2, 0, 3, -5, 2, -1)
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(

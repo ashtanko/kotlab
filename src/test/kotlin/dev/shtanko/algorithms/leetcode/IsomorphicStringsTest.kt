@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class IsomorphicStringsTest {
+class IsomorphicStringsTest {
 
     companion object {
 
@@ -34,7 +34,7 @@ internal class IsomorphicStringsTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `is isomorphic test`(testCase: Pair<Pair<String, String>, Boolean>) {
+    fun `is isomorphic test`(testCase: Pair<Pair<String, String>, Boolean>) {
         val (data, expected) = testCase
         val actual = data.isIsomorphic()
         assertEquals(expected, actual)

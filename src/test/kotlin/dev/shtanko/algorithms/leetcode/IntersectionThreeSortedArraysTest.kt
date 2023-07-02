@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class IntersectionThreeSortedArraysTest<out T : IntersectionThreeSortedArrays>(private val strategy: T) {
+abstract class IntersectionThreeSortedArraysTest<out T : IntersectionThreeSortedArrays>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -39,7 +39,7 @@ internal abstract class IntersectionThreeSortedArraysTest<out T : IntersectionTh
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `intersection of three sorted arrays test`(
+    fun `intersection of three sorted arrays test`(
         arr1: IntArray,
         arr2: IntArray,
         arr3: IntArray,
@@ -50,8 +50,8 @@ internal abstract class IntersectionThreeSortedArraysTest<out T : IntersectionTh
     }
 }
 
-internal class IntersectionThreeSortedBruteForceTest :
+class IntersectionThreeSortedBruteForceTest :
     IntersectionThreeSortedArraysTest<IntersectionThreeSortedBruteForce>(IntersectionThreeSortedBruteForce())
 
-internal class IntersectionThreeSortedThreePointersTest :
+class IntersectionThreeSortedThreePointersTest :
     IntersectionThreeSortedArraysTest<IntersectionThreeSortedThreePointers>(IntersectionThreeSortedThreePointers())

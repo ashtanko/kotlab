@@ -29,20 +29,20 @@ interface Malloc {
 }
 
 class Allocator(n: Int) : Malloc {
-    internal data class Node(val l: Int, val r: Int)
+    data class Node(val l: Int, val r: Int)
 
     // certain area of memory is allocated or not
     private var a: BooleanArray = BooleanArray(n)
 
     // Track all allocations for each mID
-    private val m: Array<MutableList<Node>?> = arrayOfNulls(LIMIT)
+    private val mIds: Array<MutableList<Node>?> = arrayOfNulls(LIMIT)
 
     override fun allocate(size: Int, mID: Int): Int {
         val l = findFirstAvailable(size)
         if (l == -1) return -1
         // find the list of memories allocated for this mID
-        if (m[mID] == null) m[mID] = ArrayList() // if new, create the empty memList for this mID
-        m[mID]?.add(Node(l, l + size)) // append to memList allocated to this mID
+        if (mIds[mID] == null) mIds[mID] = ArrayList() // if new, create the empty memList for this mID
+        mIds[mID]?.add(Node(l, l + size)) // append to memList allocated to this mID
 
         // allocate memory
         var i = l
@@ -55,14 +55,13 @@ class Allocator(n: Int) : Malloc {
     }
 
     override fun free(mID: Int): Int {
-        if (m[mID] == null) return 0
         var size = 0
         // free all memory allocated to this mID
-        for ((l, r) in m[mID]!!) {
+        for ((l, r) in mIds[mID] ?: return 0) {
             size += r - l
             for (i in l until r) a[i] = false // free memory
         }
-        m[mID]?.clear() // this mID is gone
+        mIds[mID]?.clear() // this mID is gone
         return size
     }
 

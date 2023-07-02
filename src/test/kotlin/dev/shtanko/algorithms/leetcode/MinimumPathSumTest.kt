@@ -72,7 +72,7 @@ abstract class MinimumPathSumTest<out T : MinimumPathSum>(private val strategy: 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `min path sum test`(matrix: Array<IntArray>, expected: Int) {
+    fun `min path sum test`(matrix: Array<IntArray>, expected: Int) {
         val actual = strategy.perform(matrix)
         assertEquals(expected, actual)
     }

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class NQueensIITest<out T : TotalNQueensStrategy>(private val strategy: T) {
+abstract class NQueensIITest<out T : TotalNQueensStrategy>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -35,13 +35,13 @@ internal abstract class NQueensIITest<out T : TotalNQueensStrategy>(private val 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `n queens 2 test`(n: Int, expected: Int) {
+    fun `n queens 2 test`(n: Int, expected: Int) {
         val actual = strategy.perform(n)
         assertEquals(expected, actual)
     }
 }
 
-internal class TotalNQueensStraightForwardTest :
+class TotalNQueensStraightForwardTest :
     NQueensIITest<TotalNQueensStraightForward>(TotalNQueensStraightForward())
 
-internal class TotalNQueensRecursiveTest : NQueensIITest<TotalNQueensRecursive>(TotalNQueensRecursive())
+class TotalNQueensRecursiveTest : NQueensIITest<TotalNQueensRecursive>(TotalNQueensRecursive())

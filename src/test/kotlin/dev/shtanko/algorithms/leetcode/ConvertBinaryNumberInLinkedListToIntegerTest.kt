@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>(
+abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>(
     private val strategy: T,
 ) {
 
@@ -73,11 +73,11 @@ internal abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `convert binary number in a linked list to integer test`(head: ListNode, expected: Int) {
+    fun `convert binary number in a linked list to integer test`(head: ListNode, expected: Int) {
         val actual = strategy.perform(head)
         assertEquals(expected, actual)
     }
 }
 
-internal class BinaryNumberToIntBinaryTest : BinaryNumberToIntTest<BinaryNumberToIntBinary>(BinaryNumberToIntBinary())
-internal class BinaryNumberToIntBitTest : BinaryNumberToIntTest<BinaryNumberToIntBit>(BinaryNumberToIntBit())
+class BinaryNumberToIntBinaryTest : BinaryNumberToIntTest<BinaryNumberToIntBinary>(BinaryNumberToIntBinary())
+class BinaryNumberToIntBitTest : BinaryNumberToIntTest<BinaryNumberToIntBit>(BinaryNumberToIntBit())

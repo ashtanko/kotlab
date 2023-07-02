@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CandyTest<out T : CandyStrategy>(private val strategy: T) {
+abstract class CandyTest<out T : CandyStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -60,13 +60,13 @@ internal abstract class CandyTest<out T : CandyStrategy>(private val strategy: T
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `candy test`(arr: IntArray, expected: Int) {
+    fun `candy test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class CandyBruteForceTest : CandyTest<CandyBruteForce>(CandyBruteForce())
-internal class Candy2ArraysTest : CandyTest<Candy2Arrays>(Candy2Arrays())
-internal class CandyArrayTest : CandyTest<CandyArray>(CandyArray())
-internal class CandyMathTest : CandyTest<CandyMath>(CandyMath())
+class CandyBruteForceTest : CandyTest<CandyBruteForce>(CandyBruteForce())
+class Candy2ArraysTest : CandyTest<Candy2Arrays>(Candy2Arrays())
+class CandyArrayTest : CandyTest<CandyArray>(CandyArray())
+class CandyMathTest : CandyTest<CandyMath>(CandyMath())

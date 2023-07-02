@@ -21,7 +21,7 @@ import kotlin.math.max
 /**
  * Create Maximum Number
  */
-internal fun maxNumber(nums1: IntArray, nums2: IntArray, k: Int): IntArray {
+fun maxNumber(nums1: IntArray, nums2: IntArray, k: Int): IntArray {
     val n: Int = nums1.size
     val m: Int = nums2.size
     var ans = IntArray(k)

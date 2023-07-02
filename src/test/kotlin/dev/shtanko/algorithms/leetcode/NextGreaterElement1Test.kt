@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class NextGreaterElement1Test<out T : NextGreaterElement1>(private val strategy: T) {
+abstract class NextGreaterElement1Test<out T : NextGreaterElement1>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -42,12 +42,12 @@ internal abstract class NextGreaterElement1Test<out T : NextGreaterElement1>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `next greater element test`(nums1: IntArray, nums2: IntArray, expected: IntArray) {
+    fun `next greater element test`(nums1: IntArray, nums2: IntArray, expected: IntArray) {
         val actual = strategy.perform(nums1, nums2)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class NGBruteForceTest : NextGreaterElement1Test<NGBruteForce>(NGBruteForce())
-internal class NGBetterForceTest : NextGreaterElement1Test<NGBetterForce>(NGBetterForce())
-internal class NGStackTest : NextGreaterElement1Test<NGStack>(NGStack())
+class NGBruteForceTest : NextGreaterElement1Test<NGBruteForce>(NGBruteForce())
+class NGBetterForceTest : NextGreaterElement1Test<NGBetterForce>(NGBetterForce())
+class NGStackTest : NextGreaterElement1Test<NGStack>(NGStack())

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class StrobogrammaticNumberTest<out T : StrobogrammaticNumber>(private val strategy: T) {
+abstract class StrobogrammaticNumberTest<out T : StrobogrammaticNumber>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,12 +52,12 @@ internal abstract class StrobogrammaticNumberTest<out T : StrobogrammaticNumber>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is strobogrammatic number test`(num: String, expected: Boolean) {
+    fun `is strobogrammatic number test`(num: String, expected: Boolean) {
         val actual = strategy.perform(num)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class StrobogrammaticRotatedTest : StrobogrammaticNumberTest<StrobogrammaticRotated>(StrobogrammaticRotated())
-internal class StrobogrammaticTwoPointersTest :
+class StrobogrammaticRotatedTest : StrobogrammaticNumberTest<StrobogrammaticRotated>(StrobogrammaticRotated())
+class StrobogrammaticTwoPointersTest :
     StrobogrammaticNumberTest<StrobogrammaticTwoPointers>(StrobogrammaticTwoPointers())

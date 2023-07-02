@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(private val strategy: T) {
+abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, 0),
@@ -39,12 +39,12 @@ internal abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(priva
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `arrange coins test`(coins: Int, expected: Int) {
+    fun `arrange coins test`(coins: Int, expected: Int) {
         val actual = strategy.arrangeCoins(coins)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class ArrangingCoinsMathTest : ArrangingCoinsTest<ArrangingCoinsMath>(ArrangingCoinsMath())
+class ArrangingCoinsMathTest : ArrangingCoinsTest<ArrangingCoinsMath>(ArrangingCoinsMath())
 
-internal class ArrangingCoinsBSTest : ArrangingCoinsTest<ArrangingCoinsBS>(ArrangingCoinsBS())
+class ArrangingCoinsBSTest : ArrangingCoinsTest<ArrangingCoinsBS>(ArrangingCoinsBS())

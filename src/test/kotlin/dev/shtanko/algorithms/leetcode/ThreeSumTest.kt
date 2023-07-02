@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ThreeSumTest<out T : ThreeSum>(private val strategy: T) {
+abstract class ThreeSumTest<out T : ThreeSum>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -46,12 +46,12 @@ internal abstract class ThreeSumTest<out T : ThreeSum>(private val strategy: T) 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `three sum test`(nums: IntArray, expected: List<List<Int>>) {
+    fun `three sum test`(nums: IntArray, expected: List<List<Int>>) {
         val actual = strategy.perform(nums)
         assertThat(actual.flatten().sorted(), equalTo(expected.flatten().sorted()))
     }
 }
 
-internal class ThreeSumTwoPointersTest : ThreeSumTest<ThreeSumTwoPointers>(ThreeSumTwoPointers())
-internal class ThreeSumHashsetTest : ThreeSumTest<ThreeSumHashset>(ThreeSumHashset())
-internal class ThreeSumNoSortTest : ThreeSumTest<ThreeSumNoSort>(ThreeSumNoSort())
+class ThreeSumTwoPointersTest : ThreeSumTest<ThreeSumTwoPointers>(ThreeSumTwoPointers())
+class ThreeSumHashsetTest : ThreeSumTest<ThreeSumHashset>(ThreeSumHashset())
+class ThreeSumNoSortTest : ThreeSumTest<ThreeSumNoSort>(ThreeSumNoSort())

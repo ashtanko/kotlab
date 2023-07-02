@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class SearchInBinarySearchTreeTest {
+class SearchInBinarySearchTreeTest {
 
     @Test
-    internal fun `search in binary search tree test`() {
+    fun `search in binary search tree test`() {
         val tree = TreeNode(4).apply {
             left = TreeNode(2).apply {
                 left = TreeNode(1)

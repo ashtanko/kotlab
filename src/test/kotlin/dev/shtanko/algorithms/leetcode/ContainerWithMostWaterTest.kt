@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWithMostWaterStrategy>(private val strategy: T) {
+abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWithMostWaterStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(1, 8, 6, 2, 5, 4, 8, 3, 7), 49),
@@ -44,8 +44,8 @@ internal abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWith
     }
 }
 
-internal class ContainerWithMostWaterBruteForceTest :
+class ContainerWithMostWaterBruteForceTest :
     ContainerWithMostWaterStrategyTest<ContainerWithMostWaterBruteForce>(ContainerWithMostWaterBruteForce())
 
-internal class ContainerWithMostWaterTwoPointerTest :
+class ContainerWithMostWaterTwoPointerTest :
     ContainerWithMostWaterStrategyTest<ContainerWithMostWaterTwoPointer>(ContainerWithMostWaterTwoPointer())

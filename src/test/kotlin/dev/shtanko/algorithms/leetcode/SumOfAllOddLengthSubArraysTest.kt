@@ -22,7 +22,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArraysStrategy>(private val strategy: T) {
+abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArraysStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -36,11 +36,11 @@ internal abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLength
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `sum of all odd length sub arrays test`(arr: IntArray, expected: Int) {
+    fun `sum of all odd length sub arrays test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class SumOfAllOddLengthSubArraysSFTest :
+class SumOfAllOddLengthSubArraysSFTest :
     SumOfAllOddLengthSubArraysTest<SumOfAllOddLengthSubArraysSF>(SumOfAllOddLengthSubArraysSF())

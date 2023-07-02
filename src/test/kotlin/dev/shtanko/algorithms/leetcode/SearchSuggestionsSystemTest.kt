@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class SearchSuggestionsSystemTest<out T : SearchSuggestionsSystem>(private val strategy: T) {
+abstract class SearchSuggestionsSystemTest<out T : SearchSuggestionsSystem>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -83,11 +83,11 @@ internal abstract class SearchSuggestionsSystemTest<out T : SearchSuggestionsSys
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `suggested products test`(products: Array<String>, searchWord: String, expected: List<List<String>>) {
+    fun `suggested products test`(products: Array<String>, searchWord: String, expected: List<List<String>>) {
         val actual = strategy.perform(products, searchWord)
         assertThat(actual).containsAll(expected)
     }
 }
 
-internal class SSSTrieTest : SearchSuggestionsSystemTest<SSSTrie>(SSSTrie())
-internal class SSSBinarySearchTest : SearchSuggestionsSystemTest<SSSBinarySearch>(SSSBinarySearch())
+class SSSTrieTest : SearchSuggestionsSystemTest<SSSTrie>(SSSTrie())
+class SSSBinarySearchTest : SearchSuggestionsSystemTest<SSSBinarySearch>(SSSBinarySearch())

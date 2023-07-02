@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class TrimBinarySearchTreeTest {
+class TrimBinarySearchTreeTest {
 
     companion object {
         @JvmStatic
@@ -85,7 +85,7 @@ internal class TrimBinarySearchTreeTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `trim BST test`(testCase: Pair<Triple<TreeNode, Int, Int>, List<List<Int>>>) {
+    fun `trim BST test`(testCase: Pair<Triple<TreeNode, Int, Int>, List<List<Int>>>) {
         val (data, expected) = testCase
         val (root, low, high) = data
         val actual = trimBST(root, low, high).levelOrder()

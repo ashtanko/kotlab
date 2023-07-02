@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class MaximumWidthRampTest<out T : MaximumWidthRampStrategy>(private val strategy: T) {
+abstract class MaximumWidthRampTest<out T : MaximumWidthRampStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -34,14 +34,14 @@ internal abstract class MaximumWidthRampTest<out T : MaximumWidthRampStrategy>(p
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `maximum width ramp test`(testCase: Pair<IntArray, Int>) {
+    fun `maximum width ramp test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = strategy.maxWidthRamp(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class MaximumWidthRampSortTest : MaximumWidthRampTest<MaximumWidthRampSort>(MaximumWidthRampSort())
+class MaximumWidthRampSortTest : MaximumWidthRampTest<MaximumWidthRampSort>(MaximumWidthRampSort())
 
-internal class MaximumWidthRampBinarySearchTest :
+class MaximumWidthRampBinarySearchTest :
     MaximumWidthRampTest<MaximumWidthRampBinarySearch>(MaximumWidthRampBinarySearch())

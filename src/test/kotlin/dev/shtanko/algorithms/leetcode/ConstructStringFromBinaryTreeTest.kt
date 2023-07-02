@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStringFromBinaryTreeStrategy>(
+abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStringFromBinaryTreeStrategy>(
     private val strategy: T,
 ) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -54,14 +54,14 @@ internal abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStrin
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `construct string from binary tree test`(tree: TreeNode, expected: String) {
+    fun `construct string from binary tree test`(tree: TreeNode, expected: String) {
         val actual = strategy.perform(tree)
         assertEquals(expected, actual)
     }
 }
 
-internal class ConstructStringFromBinaryTreeRecursionTest :
+class ConstructStringFromBinaryTreeRecursionTest :
     ConstructStringFromBinaryTreeTest<ConstructStringFromBinaryTreeRecursion>(ConstructStringFromBinaryTreeRecursion())
 
-internal class ConstructStringFromBinaryTreeStackTest :
+class ConstructStringFromBinaryTreeStackTest :
     ConstructStringFromBinaryTreeTest<ConstructStringFromBinaryTreeStack>(ConstructStringFromBinaryTreeStack())

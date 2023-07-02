@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SumSubseqWidthsTest {
+class SumSubseqWidthsTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -38,7 +38,7 @@ internal class SumSubseqWidthsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sum sub seq widths test`(a: IntArray, expected: Int) {
+    fun `sum sub seq widths test`(a: IntArray, expected: Int) {
         val actual = SumSubseqWidths.perform(a)
         assertThat(actual, equalTo(expected))
     }

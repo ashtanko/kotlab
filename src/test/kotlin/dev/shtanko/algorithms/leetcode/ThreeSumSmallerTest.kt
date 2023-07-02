@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ThreeSumSmallerTest<out T : ThreeSumSmallerStrategy>(val strategy: T) {
+abstract class ThreeSumSmallerTest<out T : ThreeSumSmallerStrategy>(val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -48,14 +48,14 @@ internal abstract class ThreeSumSmallerTest<out T : ThreeSumSmallerStrategy>(val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `3 sum test`(nums: IntArray, target: Int, expected: Int) {
+    fun `3 sum test`(nums: IntArray, target: Int, expected: Int) {
         val actual = strategy.perform(nums, target)
         assertEquals(expected, actual)
     }
 }
 
-internal class ThreeSumSmallerBinarySearchTest :
+class ThreeSumSmallerBinarySearchTest :
     ThreeSumSmallerTest<ThreeSumSmallerBinarySearch>(ThreeSumSmallerBinarySearch())
 
-internal class ThreeSumSmallerTwoPointersTest :
+class ThreeSumSmallerTwoPointersTest :
     ThreeSumSmallerTest<ThreeSumSmallerTwoPointers>(ThreeSumSmallerTwoPointers())

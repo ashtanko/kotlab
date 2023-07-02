@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(private val strategy: T) {
+abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(private val strategy: T) {
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(1, 1),
@@ -44,20 +44,20 @@ internal abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(priva
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `climb stairs test`(n: Int, expected: Int) {
+    fun `climb stairs test`(n: Int, expected: Int) {
         val actual = strategy.perform(n)
         assertEquals(expected, actual)
     }
 }
 
-internal class ClimbingStairsBruteForceTest : ClimbingStairsTest<ClimbingStairsBruteForce>(ClimbingStairsBruteForce())
-internal class ClimbingStairsRecursionMemoTest :
+class ClimbingStairsBruteForceTest : ClimbingStairsTest<ClimbingStairsBruteForce>(ClimbingStairsBruteForce())
+class ClimbingStairsRecursionMemoTest :
     ClimbingStairsTest<ClimbingStairsRecursionMemo>(ClimbingStairsRecursionMemo())
 
-internal class ClimbingStairsDPTest : ClimbingStairsTest<ClimbingStairsDP>(ClimbingStairsDP())
-internal class ClimbingStairsFibonacciTest : ClimbingStairsTest<ClimbingStairsFibonacci>(ClimbingStairsFibonacci())
-internal class ClimbingStairsBinetsMethodTest :
+class ClimbingStairsDPTest : ClimbingStairsTest<ClimbingStairsDP>(ClimbingStairsDP())
+class ClimbingStairsFibonacciTest : ClimbingStairsTest<ClimbingStairsFibonacci>(ClimbingStairsFibonacci())
+class ClimbingStairsBinetsMethodTest :
     ClimbingStairsTest<ClimbingStairsBinetsMethod>(ClimbingStairsBinetsMethod())
 
-internal class ClimbingStairsFibonacciFormulaTest :
+class ClimbingStairsFibonacciFormulaTest :
     ClimbingStairsTest<ClimbingStairsFibonacciFormula>(ClimbingStairsFibonacciFormula())

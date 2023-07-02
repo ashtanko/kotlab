@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MaximalRectangleTest {
+class MaximalRectangleTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -46,7 +46,7 @@ internal class MaximalRectangleTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `maximal rectangle test`(matrix: Array<CharArray>, expected: Int) {
+    fun `maximal rectangle test`(matrix: Array<CharArray>, expected: Int) {
         val actual = matrix.maximalRectangle()
         assertEquals(expected, actual)
     }

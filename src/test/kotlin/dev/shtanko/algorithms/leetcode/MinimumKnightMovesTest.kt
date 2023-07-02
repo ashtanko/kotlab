@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MinimumKnightMovesTest<out T : MinimumKnightMoves>(private val strategy: T) {
+abstract class MinimumKnightMovesTest<out T : MinimumKnightMoves>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -42,15 +42,15 @@ internal abstract class MinimumKnightMovesTest<out T : MinimumKnightMoves>(priva
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `min knight moves test`(x: Int, y: Int, expected: Int) {
+    fun `min knight moves test`(x: Int, y: Int, expected: Int) {
         val actual = strategy.perform(x, y)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class MinimumKnightMovesBFSTest : MinimumKnightMovesTest<MinimumKnightMovesBFS>(MinimumKnightMovesBFS())
-internal class MinimumKnightMovesBidirectionalTest :
+class MinimumKnightMovesBFSTest : MinimumKnightMovesTest<MinimumKnightMovesBFS>(MinimumKnightMovesBFS())
+class MinimumKnightMovesBidirectionalTest :
     MinimumKnightMovesTest<MinimumKnightMovesBidirectional>(MinimumKnightMovesBidirectional())
 
-internal class MinimumKnightMovesMemoizationTest :
+class MinimumKnightMovesMemoizationTest :
     MinimumKnightMovesTest<MinimumKnightMovesMemoization>(MinimumKnightMovesMemoization())

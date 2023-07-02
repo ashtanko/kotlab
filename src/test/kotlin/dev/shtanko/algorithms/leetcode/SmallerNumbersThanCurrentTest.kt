@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class SmallerNumbersThanCurrentTest {
+class SmallerNumbersThanCurrentTest {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal class SmallerNumbersThanCurrentTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `smaller numbers than current test`(testCase: Pair<IntArray, IntArray>) {
+    fun `smaller numbers than current test`(testCase: Pair<IntArray, IntArray>) {
         val (arr, expected) = testCase
         val actual = arr.smallerNumbersThanCurrent()
         assertArrayEquals(expected, actual)
@@ -43,7 +43,7 @@ internal class SmallerNumbersThanCurrentTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `smaller numbers than current naive test`(testCase: Pair<IntArray, IntArray>) {
+    fun `smaller numbers than current naive test`(testCase: Pair<IntArray, IntArray>) {
         val (arr, expected) = testCase
         val actual = arr.smallerNumbersThanCurrentNaive()
         assertArrayEquals(expected, actual)

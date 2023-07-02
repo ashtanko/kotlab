@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CombinationSum4Test<out T : CombinationSum4>(private val strategy: T) {
+abstract class CombinationSum4Test<out T : CombinationSum4>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,11 +52,11 @@ internal abstract class CombinationSum4Test<out T : CombinationSum4>(private val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `combination sum 4 test`(nums: IntArray, target: Int, expected: Int) {
+    fun `combination sum 4 test`(nums: IntArray, target: Int, expected: Int) {
         val actual = strategy.perform(nums, target)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class CombinationSum4TopDownTest : CombinationSum4Test<CombinationSum4TopDown>(CombinationSum4TopDown())
-internal class CombinationSum4BottomUpTest : CombinationSum4Test<CombinationSum4BottomUp>(CombinationSum4BottomUp())
+class CombinationSum4TopDownTest : CombinationSum4Test<CombinationSum4TopDown>(CombinationSum4TopDown())
+class CombinationSum4BottomUpTest : CombinationSum4Test<CombinationSum4BottomUp>(CombinationSum4BottomUp())

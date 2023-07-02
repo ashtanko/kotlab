@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class OptimalDivisionTest<out T : OptimalDivisionStrategy>(private val strategy: T) {
+abstract class OptimalDivisionTest<out T : OptimalDivisionStrategy>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -49,16 +49,16 @@ internal abstract class OptimalDivisionTest<out T : OptimalDivisionStrategy>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `optimal division test`(nums: IntArray, expected: String) {
+    fun `optimal division test`(nums: IntArray, expected: String) {
         val actual = strategy.perform(nums)
         assertEquals(expected, actual)
     }
 }
 
-internal class OptimalDivisionBruteForceTest :
+class OptimalDivisionBruteForceTest :
     OptimalDivisionTest<OptimalDivisionBruteForce>(OptimalDivisionBruteForce())
 
-internal class OptimalDivisionMemorizationTest :
+class OptimalDivisionMemorizationTest :
     OptimalDivisionTest<OptimalDivisionMemorization>(OptimalDivisionMemorization())
 
-internal class MathOptimalDivisionTest : OptimalDivisionTest<MathOptimalDivision>(MathOptimalDivision())
+class MathOptimalDivisionTest : OptimalDivisionTest<MathOptimalDivision>(MathOptimalDivision())

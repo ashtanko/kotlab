@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CriticalConnectionsTest<out T : CriticalConnections>(private val strategy: T) {
+abstract class CriticalConnectionsTest<out T : CriticalConnections>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,12 +44,12 @@ internal abstract class CriticalConnectionsTest<out T : CriticalConnections>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `critical connections test`(n: Int, connections: List<List<Int>>, expected: List<List<Int>>) {
+    fun `critical connections test`(n: Int, connections: List<List<Int>>, expected: List<List<Int>>) {
         val actual = strategy.perform(n, connections)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class CycleDetectionTest : CriticalConnectionsTest<CycleDetection>(CycleDetection())
-internal class CriticalConnectionsGraphTest :
+class CycleDetectionTest : CriticalConnectionsTest<CycleDetection>(CycleDetection())
+class CriticalConnectionsGraphTest :
     CriticalConnectionsTest<CriticalConnectionsGraph>(CriticalConnectionsGraph())

@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageOfLevelsInBinaryTreeStrategy>(
+abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageOfLevelsInBinaryTreeStrategy>(
     private val strategy: T,
 ) {
 
@@ -61,18 +61,18 @@ internal abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageO
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `average of levels in binary tree test`(tree: TreeNode, expected: DoubleArray) {
+    fun `average of levels in binary tree test`(tree: TreeNode, expected: DoubleArray) {
         val actual = strategy.perform(tree)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class AverageOfLevelsInBinaryTreeDFSTest :
+class AverageOfLevelsInBinaryTreeDFSTest :
     AverageOfLevelsInBinaryTreeStrategyTest<AverageOfLevelsInBinaryTreeDFS>(
         AverageOfLevelsInBinaryTreeDFS(),
     )
 
-internal class AverageOfLevelsInBinaryTreeBFSTest :
+class AverageOfLevelsInBinaryTreeBFSTest :
     AverageOfLevelsInBinaryTreeStrategyTest<AverageOfLevelsInBinaryTreeBFS>(
         AverageOfLevelsInBinaryTreeBFS(),
     )

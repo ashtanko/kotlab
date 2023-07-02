@@ -40,7 +40,7 @@ class DecompressRLEListTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `decompress RLE list test`(arr: IntArray, expected: IntArray) {
+    fun `decompress RLE list test`(arr: IntArray, expected: IntArray) {
         val actual = arr.decompressRLEList()
         assertArrayEquals(expected, actual)
     }

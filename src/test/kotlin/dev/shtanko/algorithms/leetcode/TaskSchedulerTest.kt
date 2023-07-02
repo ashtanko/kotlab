@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class TaskSchedulerTest<out T : TaskSchedulerStrategy>(private val strategy: T) {
+abstract class TaskSchedulerTest<out T : TaskSchedulerStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,7 @@ internal abstract class TaskSchedulerTest<out T : TaskSchedulerStrategy>(private
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `simple test`(testCase: Pair<Pair<CharArray, Int>, Int>) {
+    fun `simple test`(testCase: Pair<Pair<CharArray, Int>, Int>) {
         val (data, expected) = testCase
         val (tasks, n) = data
         val actual = strategy.perform(tasks, n)
@@ -42,7 +42,7 @@ internal abstract class TaskSchedulerTest<out T : TaskSchedulerStrategy>(private
     }
 }
 
-internal class TaskSchedulerSimpleTest : TaskSchedulerTest<TaskSchedulerSimple>(TaskSchedulerSimple())
+class TaskSchedulerSimpleTest : TaskSchedulerTest<TaskSchedulerSimple>(TaskSchedulerSimple())
 
-internal class TaskSchedulerPriorityQueueTest :
+class TaskSchedulerPriorityQueueTest :
     TaskSchedulerTest<TaskSchedulerPriorityQueue>(TaskSchedulerPriorityQueue())

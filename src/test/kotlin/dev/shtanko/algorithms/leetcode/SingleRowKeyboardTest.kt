@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class SingleRowKeyboardTest<out T : SingleRowKeyboard>(private val strategy: T) {
+abstract class SingleRowKeyboardTest<out T : SingleRowKeyboard>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -42,10 +42,10 @@ internal abstract class SingleRowKeyboardTest<out T : SingleRowKeyboard>(private
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `single row keyboard test`(keyboard: String, word: String, expected: Int) {
+    fun `single row keyboard test`(keyboard: String, word: String, expected: Int) {
         val actual = strategy.perform(keyboard, word)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class SingleRowKeyboardNaiveTest : SingleRowKeyboardTest<SingleRowKeyboardNaive>(SingleRowKeyboardNaive())
+class SingleRowKeyboardNaiveTest : SingleRowKeyboardTest<SingleRowKeyboardNaive>(SingleRowKeyboardNaive())

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class FindClosestPalindromeTest {
+class FindClosestPalindromeTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -42,7 +42,7 @@ internal class FindClosestPalindromeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `nearest palindromic test`(str: String, expected: String) {
+    fun `nearest palindromic test`(str: String, expected: String) {
         val actual = str.nearestPalindromic()
         assertEquals(expected, actual)
     }

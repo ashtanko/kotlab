@@ -22,7 +22,7 @@ import java.util.Stack
 /**
  * Binary Tree Preorder Traversal
  */
-internal fun TreeNode?.preorderTraversal(): List<Int> {
+fun TreeNode?.preorderTraversal(): List<Int> {
     val list: MutableList<Int> = LinkedList()
     val stack: Stack<TreeNode> = Stack()
     var node = this

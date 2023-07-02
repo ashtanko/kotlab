@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BoldWordsInStringTest {
+class BoldWordsInStringTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -42,7 +42,7 @@ internal class BoldWordsInStringTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `bold words in string test`(words: Array<String>, s: String, expected: String) {
+    fun `bold words in string test`(words: Array<String>, s: String, expected: String) {
         val solution = BoldWordsInString()
         val actual = solution.perform(words, s)
         assertThat(actual, equalTo(expected))

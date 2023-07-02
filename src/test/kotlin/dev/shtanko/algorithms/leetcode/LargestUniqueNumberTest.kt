@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class LargestUniqueNumberTest(val strategy: LargestUniqueNumber) {
+abstract class LargestUniqueNumberTest(val strategy: LargestUniqueNumber) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -37,11 +37,11 @@ internal abstract class LargestUniqueNumberTest(val strategy: LargestUniqueNumbe
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `largest unique number test`(arr: IntArray, expected: Int) {
+    fun `largest unique number test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class LargestUniqueNumberBruteForceTest : LargestUniqueNumberTest(LargestUniqueNumberBruteForce())
-internal class LargestUniqueNumberHashMapTest : LargestUniqueNumberTest(LargestUniqueNumberHashMap())
+class LargestUniqueNumberBruteForceTest : LargestUniqueNumberTest(LargestUniqueNumberBruteForce())
+class LargestUniqueNumberHashMapTest : LargestUniqueNumberTest(LargestUniqueNumberHashMap())

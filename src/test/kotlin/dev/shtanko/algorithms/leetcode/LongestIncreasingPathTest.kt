@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class LongestIncreasingPathTest<out T : LongestIncreasingPath>(private val strategy: T) {
+abstract class LongestIncreasingPathTest<out T : LongestIncreasingPath>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -55,14 +55,14 @@ internal abstract class LongestIncreasingPathTest<out T : LongestIncreasingPath>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `longest increasing path test`(matrix: Array<IntArray>, expected: Int) {
+    fun `longest increasing path test`(matrix: Array<IntArray>, expected: Int) {
         val actual = strategy.perform(matrix)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class LongestIncreasingPathDFSTest :
+class LongestIncreasingPathDFSTest :
     LongestIncreasingPathTest<LongestIncreasingPathDFS>(LongestIncreasingPathDFS())
 
-internal class LongestIncreasingPathPeelingOnionTest :
+class LongestIncreasingPathPeelingOnionTest :
     LongestIncreasingPathTest<LongestIncreasingPathPeelingOnion>(LongestIncreasingPathPeelingOnion())

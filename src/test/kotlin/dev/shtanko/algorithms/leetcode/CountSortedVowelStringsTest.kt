@@ -20,10 +20,10 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
-internal abstract class CountSortedVowelStringsTest<out T : CountSortedVowelStrings>(private val strategy: T) {
+abstract class CountSortedVowelStringsTest<out T : CountSortedVowelStrings>(private val strategy: T) {
 
     @TestFactory
-    internal fun `count vowel strings`() = listOf(
+    fun `count vowel strings`() = listOf(
         1 to 5,
         2 to 15,
         33 to 66045,
@@ -35,17 +35,17 @@ internal abstract class CountSortedVowelStringsTest<out T : CountSortedVowelStri
     }
 }
 
-internal class CountSortedVowelBruteForceTest :
+class CountSortedVowelBruteForceTest :
     CountSortedVowelStringsTest<CountSortedVowelBruteForce>(CountSortedVowelBruteForce())
 
-internal class CountSortedVowelRecursionTest :
+class CountSortedVowelRecursionTest :
     CountSortedVowelStringsTest<CountSortedVowelRecursion>(CountSortedVowelRecursion())
 
-internal class CountSortedVowelTopDynamicTest :
+class CountSortedVowelTopDynamicTest :
     CountSortedVowelStringsTest<CountSortedVowelTopDynamic>(CountSortedVowelTopDynamic())
 
-internal class CountSortedVowelBottomUpTest :
+class CountSortedVowelBottomUpTest :
     CountSortedVowelStringsTest<CountSortedVowelBottomUp>(CountSortedVowelBottomUp())
 
-internal class CountSortedVowelMathTest :
+class CountSortedVowelMathTest :
     CountSortedVowelStringsTest<CountSortedVowelMath>(CountSortedVowelMath())

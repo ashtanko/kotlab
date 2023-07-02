@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test
 abstract class ImplementTrieTest<out T : Trie>(private val strategy: T) {
 
     @Test
-    internal fun `trie test`() {
+    fun `trie test`() {
         val trie = strategy
         trie.insert("apple")
         assertTrue(trie.search("apple"))
@@ -34,14 +34,14 @@ abstract class ImplementTrieTest<out T : Trie>(private val strategy: T) {
     }
 
     @Test
-    internal fun `empty string trie test`() {
+    fun `empty string trie test`() {
         val trie = strategy
         trie.insert("")
         assertFalse(trie.search("app"))
     }
 
     @Test
-    internal fun `empty trie test`() {
+    fun `empty trie test`() {
         val trie = strategy
         assertFalse(trie.search(""))
     }

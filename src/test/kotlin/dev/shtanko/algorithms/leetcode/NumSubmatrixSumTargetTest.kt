@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class NumSubmatrixSumTargetTest<out T : NumSubmatrixSumTarget>(private val strategy: T) {
+abstract class NumSubmatrixSumTargetTest<out T : NumSubmatrixSumTarget>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -56,11 +56,11 @@ internal abstract class NumSubmatrixSumTargetTest<out T : NumSubmatrixSumTarget>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `num submatrix sum target test`(matrix: Array<IntArray>, target: Int, expected: Int) {
+    fun `num submatrix sum target test`(matrix: Array<IntArray>, target: Int, expected: Int) {
         val actual = strategy.perform(matrix, target)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class HorizontalPrefixSumTest : NumSubmatrixSumTargetTest<HorizontalPrefixSum>(HorizontalPrefixSum())
-internal class VerticalPrefixSumTest : NumSubmatrixSumTargetTest<VerticalPrefixSum>(VerticalPrefixSum())
+class HorizontalPrefixSumTest : NumSubmatrixSumTargetTest<HorizontalPrefixSum>(HorizontalPrefixSum())
+class VerticalPrefixSumTest : NumSubmatrixSumTargetTest<VerticalPrefixSum>(VerticalPrefixSum())

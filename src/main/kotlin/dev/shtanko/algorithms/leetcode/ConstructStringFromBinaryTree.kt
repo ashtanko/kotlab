@@ -18,11 +18,11 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-internal interface ConstructStringFromBinaryTreeStrategy {
+interface ConstructStringFromBinaryTreeStrategy {
     fun perform(t: TreeNode?): String
 }
 
-internal class ConstructStringFromBinaryTreeRecursion : ConstructStringFromBinaryTreeStrategy {
+class ConstructStringFromBinaryTreeRecursion : ConstructStringFromBinaryTreeStrategy {
     override fun perform(t: TreeNode?): String {
         if (t == null) {
             return ""
@@ -42,7 +42,7 @@ internal class ConstructStringFromBinaryTreeRecursion : ConstructStringFromBinar
     }
 }
 
-internal class ConstructStringFromBinaryTreeStack : ConstructStringFromBinaryTreeStrategy {
+class ConstructStringFromBinaryTreeStack : ConstructStringFromBinaryTreeStrategy {
     override fun perform(t: TreeNode?): String {
         var tree: TreeNode? = t ?: return ""
         val stack: Stack<TreeNode> = Stack()

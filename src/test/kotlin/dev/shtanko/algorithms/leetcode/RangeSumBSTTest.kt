@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class RangeSumBSTTest<out T : RangeSumStrategy>(private val strategy: T) {
+abstract class RangeSumBSTTest<out T : RangeSumStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,7 @@ internal abstract class RangeSumBSTTest<out T : RangeSumStrategy>(private val st
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `range sum BST Test`(testCase: Pair<Triple<IntArray, Int, Int>, Int>) {
+    fun `range sum BST Test`(testCase: Pair<Triple<IntArray, Int, Int>, Int>) {
         val (data, expected) = testCase
         val (arr, left, right) = data
         val tree: TreeNode? = null
@@ -44,5 +44,5 @@ internal abstract class RangeSumBSTTest<out T : RangeSumStrategy>(private val st
     }
 }
 
-internal class RangeSumBSTest : RangeSumBSTTest<RangeSumBST>(RangeSumBST())
-internal class RangeSumRecursiveTest : RangeSumBSTTest<RangeSumRecursive>(RangeSumRecursive())
+class RangeSumBSTest : RangeSumBSTTest<RangeSumBST>(RangeSumBST())
+class RangeSumRecursiveTest : RangeSumBSTTest<RangeSumRecursive>(RangeSumRecursive())

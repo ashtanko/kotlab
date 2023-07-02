@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class NimGameTest {
+class NimGameTest {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal class NimGameTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `nim game test`(testCase: Pair<Boolean, Int>) {
+    fun `nim game test`(testCase: Pair<Boolean, Int>) {
         val (expected, n) = testCase
         val actual = canWinNim(n)
         assertEquals(expected, actual)

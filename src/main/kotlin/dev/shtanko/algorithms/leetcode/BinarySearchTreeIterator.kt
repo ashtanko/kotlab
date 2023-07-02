@@ -24,7 +24,7 @@ interface BSTIterator {
     fun hasNext(): Boolean
 }
 
-internal class BSTIteratorFlattening(root: TreeNode?) : BSTIterator {
+class BSTIteratorFlattening(root: TreeNode?) : BSTIterator {
 
     private val nodesSorted: MutableList<Int> = ArrayList()
     private var index = -1
@@ -45,7 +45,7 @@ internal class BSTIteratorFlattening(root: TreeNode?) : BSTIterator {
     }
 }
 
-internal class BSTIteratorControlledRecursion(root: TreeNode?) : BSTIterator {
+class BSTIteratorControlledRecursion(root: TreeNode?) : BSTIterator {
 
     private val stack = Stack<TreeNode>()
 

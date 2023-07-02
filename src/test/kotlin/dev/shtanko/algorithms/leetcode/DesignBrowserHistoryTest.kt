@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal abstract class DesignBrowserHistoryTest<out T : BrowserHistory>(private val history: T) {
+abstract class DesignBrowserHistoryTest<out T : BrowserHistory>(private val history: T) {
 
     @Test
-    internal fun `history test`() {
+    fun `history test`() {
         history.visit("google.com")
         history.visit("facebook.com")
         history.visit("youtube.com")
@@ -36,11 +36,11 @@ internal abstract class DesignBrowserHistoryTest<out T : BrowserHistory>(private
     }
 }
 
-internal class BrowserHistoryListTest :
+class BrowserHistoryListTest :
     DesignBrowserHistoryTest<BrowserHistoryList>(BrowserHistoryList("leetcode.com"))
 
-internal class BrowserHistoryStackTest :
+class BrowserHistoryStackTest :
     DesignBrowserHistoryTest<BrowserHistoryStack>(BrowserHistoryStack("leetcode.com"))
 
-internal class BrowserHistoryArrayTest :
+class BrowserHistoryArrayTest :
     DesignBrowserHistoryTest<BrowserHistoryArray>(BrowserHistoryArray("leetcode.com"))

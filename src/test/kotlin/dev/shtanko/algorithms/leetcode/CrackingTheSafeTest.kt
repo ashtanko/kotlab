@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CrackingSafeHierholzersAlgorithmTest {
+class CrackingSafeHierholzersAlgorithmTest {
 
     private val strategy = CrackingSafeHierholzersAlgorithm()
 
@@ -38,13 +38,13 @@ internal class CrackingSafeHierholzersAlgorithmTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `cracking the safe test`(n: Int, k: Int, expected: String) {
+    fun `cracking the safe test`(n: Int, k: Int, expected: String) {
         val actual = strategy.perform(n, k)
         assertEquals(expected, actual)
     }
 }
 
-internal class CrackingSafeInverseBurrowsWheelerTransformTest {
+class CrackingSafeInverseBurrowsWheelerTransformTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(1, 1, "0"),
@@ -57,7 +57,7 @@ internal class CrackingSafeInverseBurrowsWheelerTransformTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `cracking the safe test`(n: Int, k: Int, expected: String) {
+    fun `cracking the safe test`(n: Int, k: Int, expected: String) {
         val actual = strategy.perform(n, k)
         assertEquals(expected, actual)
     }

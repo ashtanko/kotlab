@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FourKeysKeyboardTest<out T : FourKeysKeyboard>(private val strategy: T) {
+abstract class FourKeysKeyboardTest<out T : FourKeysKeyboard>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(3, 3),
@@ -35,11 +35,11 @@ internal abstract class FourKeysKeyboardTest<out T : FourKeysKeyboard>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `max A test`(n: Int, expected: Int) {
+    fun `max A test`(n: Int, expected: Int) {
         val actual = strategy.maxA(n)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class FourKeysKeyboardDPTest : FourKeysKeyboardTest<FourKeysKeyboardDP>(FourKeysKeyboardDP())
-internal class FourKeysKeyboardMathTest : FourKeysKeyboardTest<FourKeysKeyboardMath>(FourKeysKeyboardMath())
+class FourKeysKeyboardDPTest : FourKeysKeyboardTest<FourKeysKeyboardDP>(FourKeysKeyboardDP())
+class FourKeysKeyboardMathTest : FourKeysKeyboardTest<FourKeysKeyboardMath>(FourKeysKeyboardMath())

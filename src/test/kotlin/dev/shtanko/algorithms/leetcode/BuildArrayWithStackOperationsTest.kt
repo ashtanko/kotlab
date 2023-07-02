@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BuildArrayWithStackOperationsTest {
+class BuildArrayWithStackOperationsTest {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -43,7 +43,7 @@ internal class BuildArrayWithStackOperationsTest {
     @DisplayName("build an array with stack operations")
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `build an array with stack operations test`(target: IntArray, n: Int, expected: List<String>) {
+    fun `build an array with stack operations test`(target: IntArray, n: Int, expected: List<String>) {
         val actual = BuildArrayWithStackOperations().perform(target, n)
         assertEquals(expected, actual)
     }

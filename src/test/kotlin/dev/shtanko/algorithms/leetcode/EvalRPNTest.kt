@@ -52,11 +52,11 @@ abstract class EvalRPNTest<out T : EvalRPN>(private val solution: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `eval RPN test`(tokens: Array<String>, expected: Int) {
+    fun `eval RPN test`(tokens: Array<String>, expected: Int) {
         val actual = solution.perform(tokens)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class RPNInPlaceTest : EvalRPNTest<RPNInPlace>(RPNInPlace())
-internal class RPNStackTest : EvalRPNTest<RPNStack>(RPNStack())
+class RPNInPlaceTest : EvalRPNTest<RPNInPlace>(RPNInPlace())
+class RPNStackTest : EvalRPNTest<RPNStack>(RPNStack())

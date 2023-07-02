@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ReconstructQueueTest {
+class ReconstructQueueTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -51,7 +51,7 @@ internal class ReconstructQueueTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `reconstruct queue test`(people: Array<IntArray>, expected: Array<IntArray>) {
+    fun `reconstruct queue test`(people: Array<IntArray>, expected: Array<IntArray>) {
         val actual = reconstructQueue(people)
         assertArrayEquals(expected, actual)
     }

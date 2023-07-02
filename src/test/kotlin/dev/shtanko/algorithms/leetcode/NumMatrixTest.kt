@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class NumMatrixTest {
+class NumMatrixTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -66,7 +66,7 @@ internal class NumMatrixTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `max product test`(param: NumMatrix, matrix: Array<IntArray>, expected: List<Int>) {
+    fun `max product test`(param: NumMatrix, matrix: Array<IntArray>, expected: List<Int>) {
         val actual: MutableList<Int> = ArrayList()
         for (m in matrix) {
             val (row1, col1, row2, col2) = m

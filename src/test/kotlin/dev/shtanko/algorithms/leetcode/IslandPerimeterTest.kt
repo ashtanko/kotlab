@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class IslandPerimeterTest {
+class IslandPerimeterTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -50,7 +50,7 @@ internal class IslandPerimeterTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `island perimeter test`(arr: Array<IntArray>, expected: Int) {
+    fun `island perimeter test`(arr: Array<IntArray>, expected: Int) {
         val actual = arr.islandPerimeter()
         assertEquals(expected, actual)
     }

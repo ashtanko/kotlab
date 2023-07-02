@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal data class FloodFillTestCase(
+data class FloodFillTestCase(
     val image: List<IntArray>,
     val sr: Int,
     val sc: Int,
@@ -28,7 +28,7 @@ internal data class FloodFillTestCase(
     val output: List<IntArray>,
 )
 
-internal class FloodFillTest {
+class FloodFillTest {
 
     companion object {
         @JvmStatic
@@ -47,7 +47,7 @@ internal class FloodFillTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `flood fill test`(testCase: FloodFillTestCase) {
+    fun `flood fill test`(testCase: FloodFillTestCase) {
         val (image, sr, sc, newColor, output) = testCase
         val actual = FloodFill.perform(image.toTypedArray(), sr, sc, newColor)
         val expected = output.toTypedArray()

@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class FirstMissingPositiveTest {
+class FirstMissingPositiveTest {
 
     companion object {
         @JvmStatic
@@ -36,7 +36,7 @@ internal class FirstMissingPositiveTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `first missing positive test`(testCase: Pair<IntArray, Int>) {
+    fun `first missing positive test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = arr.firstMissingPositive()
         assertEquals(expected, actual)

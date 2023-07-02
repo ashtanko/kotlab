@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import java.util.LinkedList
 import java.util.Queue
 
-internal interface InvertTreeStrategy {
+interface InvertTreeStrategy {
     fun perform(root: TreeNode?): TreeNode?
 }
 
-internal class InvertTree : InvertTreeStrategy {
+class InvertTree : InvertTreeStrategy {
     override fun perform(root: TreeNode?): TreeNode? {
         if (root == null) return null
         val queue: Queue<TreeNode> = LinkedList<TreeNode>()
@@ -40,7 +40,7 @@ internal class InvertTree : InvertTreeStrategy {
     }
 }
 
-internal class InvertTreeRecursive : InvertTreeStrategy {
+class InvertTreeRecursive : InvertTreeStrategy {
     override fun perform(root: TreeNode?): TreeNode? {
         if (root == null) return null
         val right: TreeNode? = perform(root.right)

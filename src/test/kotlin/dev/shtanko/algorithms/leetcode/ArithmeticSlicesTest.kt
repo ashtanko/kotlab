@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ArithmeticSlicesTest<out T : ArithmeticSlices>(private val strategy: T) {
+abstract class ArithmeticSlicesTest<out T : ArithmeticSlices>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -61,15 +61,15 @@ internal abstract class ArithmeticSlicesTest<out T : ArithmeticSlices>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `number of arithmetic slices test`(arr: IntArray, expected: Int) {
+    fun `number of arithmetic slices test`(arr: IntArray, expected: Int) {
         val actual = strategy.numberOfArithmeticSlices(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class ArSlicesBruteForceTest : ArithmeticSlicesTest<ArSlicesBruteForce>(ArSlicesBruteForce())
-internal class ArSlicesBetterBruteForceTest : ArithmeticSlicesTest<ArSlicesBetterBruteForce>(ArSlicesBetterBruteForce())
-internal class ArSlicesRecursionTest : ArithmeticSlicesTest<ArSlicesRecursion>(ArSlicesRecursion())
-internal class ArSlicesDPTest : ArithmeticSlicesTest<ArSlicesDP>(ArSlicesDP())
-internal class ArSlicesConstantSpaceDPTest : ArithmeticSlicesTest<ArSlicesConstantSpaceDP>(ArSlicesConstantSpaceDP())
-internal class ArSlicesFormulaTest : ArithmeticSlicesTest<ArSlicesFormula>(ArSlicesFormula())
+class ArSlicesBruteForceTest : ArithmeticSlicesTest<ArSlicesBruteForce>(ArSlicesBruteForce())
+class ArSlicesBetterBruteForceTest : ArithmeticSlicesTest<ArSlicesBetterBruteForce>(ArSlicesBetterBruteForce())
+class ArSlicesRecursionTest : ArithmeticSlicesTest<ArSlicesRecursion>(ArSlicesRecursion())
+class ArSlicesDPTest : ArithmeticSlicesTest<ArSlicesDP>(ArSlicesDP())
+class ArSlicesConstantSpaceDPTest : ArithmeticSlicesTest<ArSlicesConstantSpaceDP>(ArSlicesConstantSpaceDP())
+class ArSlicesFormulaTest : ArithmeticSlicesTest<ArSlicesFormula>(ArSlicesFormula())

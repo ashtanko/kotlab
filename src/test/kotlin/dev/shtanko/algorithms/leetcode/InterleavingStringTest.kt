@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class InterleavingStringTest<out T : InterleavingStringStrategy>(private val strategy: T) {
+abstract class InterleavingStringTest<out T : InterleavingStringStrategy>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -36,18 +36,18 @@ internal abstract class InterleavingStringTest<out T : InterleavingStringStrateg
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `interleaving string test`(s1: String, s2: String, s3: String, expected: Boolean) {
+    fun `interleaving string test`(s1: String, s2: String, s3: String, expected: Boolean) {
         val actual = strategy.perform(s1, s2, s3)
         assertEquals(expected, actual)
     }
 }
 
-internal class InterleavingStringBruteForceTest :
+class InterleavingStringBruteForceTest :
     InterleavingStringTest<InterleavingStringBruteForce>(InterleavingStringBruteForce())
 
-internal class InterleavingStringRecursionWithMemoTest :
+class InterleavingStringRecursionWithMemoTest :
     InterleavingStringTest<InterleavingStringRecursionWithMemo>(InterleavingStringRecursionWithMemo())
 
-internal class InterleavingString2DTest : InterleavingStringTest<InterleavingString2D>(InterleavingString2D())
+class InterleavingString2DTest : InterleavingStringTest<InterleavingString2D>(InterleavingString2D())
 
-internal class InterleavingString1DTest : InterleavingStringTest<InterleavingString1D>(InterleavingString1D())
+class InterleavingString1DTest : InterleavingStringTest<InterleavingString1D>(InterleavingString1D())

@@ -22,7 +22,7 @@ import java.util.Queue
 /**
  * Binary Tree Level Order Traversal
  */
-internal fun TreeNode?.levelOrder(): List<List<Int>> {
+fun TreeNode?.levelOrder(): List<List<Int>> {
     val queue: Queue<TreeNode> = LinkedList()
     val wrapList: MutableList<MutableList<Int>> = ArrayList()
     if (this == null) return wrapList

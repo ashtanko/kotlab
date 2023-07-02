@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class GraphValidTreeTest<out T : GraphValidTree>(private val strategy: T) {
+abstract class GraphValidTreeTest<out T : GraphValidTree>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -53,12 +53,12 @@ internal abstract class GraphValidTreeTest<out T : GraphValidTree>(private val s
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `graph valid tree test`(n: Int, edges: Array<IntArray>, expected: Boolean) {
+    fun `graph valid tree test`(n: Int, edges: Array<IntArray>, expected: Boolean) {
         val actual = strategy.validTree(n, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class GVTSimpleIterativeDFSTest : GraphValidTreeTest<GVTSimpleIterativeDFS>(GVTSimpleIterativeDFS())
-internal class GVTAdvancedIterativeDFSTest : GraphValidTreeTest<GVTAdvancedIterativeDFS>(GVTAdvancedIterativeDFS())
-internal class GVTAdvancedUnionFindTest : GraphValidTreeTest<GVTAdvancedUnionFind>(GVTAdvancedUnionFind())
+class GVTSimpleIterativeDFSTest : GraphValidTreeTest<GVTSimpleIterativeDFS>(GVTSimpleIterativeDFS())
+class GVTAdvancedIterativeDFSTest : GraphValidTreeTest<GVTAdvancedIterativeDFS>(GVTAdvancedIterativeDFS())
+class GVTAdvancedUnionFindTest : GraphValidTreeTest<GVTAdvancedUnionFind>(GVTAdvancedUnionFind())

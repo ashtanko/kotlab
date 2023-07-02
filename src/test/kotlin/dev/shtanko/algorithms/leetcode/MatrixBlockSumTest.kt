@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MatrixBlockSumTest {
+class MatrixBlockSumTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -58,7 +58,7 @@ internal class MatrixBlockSumTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `matrix block sum test`(mat: Array<IntArray>, k: Int, expected: Array<IntArray>) {
+    fun `matrix block sum test`(mat: Array<IntArray>, k: Int, expected: Array<IntArray>) {
         val actual = MatrixBlockSum.perform(mat, k)
         assertThat(actual).isEqualTo(expected)
     }

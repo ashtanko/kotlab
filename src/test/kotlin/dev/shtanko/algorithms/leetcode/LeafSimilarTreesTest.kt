@@ -91,7 +91,7 @@ abstract class LeafSimilarTreesTest<out T : LeafSimilarTrees>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `leaf similar trees test`(root1: TreeNode?, root2: TreeNode?, expected: Boolean) {
+    fun `leaf similar trees test`(root1: TreeNode?, root2: TreeNode?, expected: Boolean) {
         val actual = strategy.leafSimilar(root1, root2)
         assertThat(actual).isEqualTo(expected)
     }

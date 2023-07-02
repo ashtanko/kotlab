@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ShortestWordDistanceTest<out T : ShortestWordDistanceStrategy>(private val strategy: T) {
+abstract class ShortestWordDistanceTest<out T : ShortestWordDistanceStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,14 +44,14 @@ internal abstract class ShortestWordDistanceTest<out T : ShortestWordDistanceStr
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `shortest distance test`(words: Array<String>, word1: String, word2: String, expected: Int) {
+    fun `shortest distance test`(words: Array<String>, word1: String, word2: String, expected: Int) {
         val actual = strategy.perform(words, word1, word2)
         assertEquals(expected, actual)
     }
 }
 
-internal class ShortestWordDistanceBruteForceTest :
+class ShortestWordDistanceBruteForceTest :
     ShortestWordDistanceTest<ShortestWordDistanceBruteForce>(ShortestWordDistanceBruteForce())
 
-internal class ShortestWordDistanceOnePassTest :
+class ShortestWordDistanceOnePassTest :
     ShortestWordDistanceTest<ShortestWordDistanceOnePass>(ShortestWordDistanceOnePass())

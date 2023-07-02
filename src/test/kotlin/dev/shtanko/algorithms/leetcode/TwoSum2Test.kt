@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class TwoSum2Test {
+class TwoSum2Test {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(2, 7, 11, 15), 9, intArrayOf(1, 2)),
@@ -34,7 +34,7 @@ internal class TwoSum2Test {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `two sum 2 test`(arr: IntArray, target: Int, expected: IntArray) {
+    fun `two sum 2 test`(arr: IntArray, target: Int, expected: IntArray) {
         val actual = arr.twoSum2(target)
         assertArrayEquals(expected, actual)
     }

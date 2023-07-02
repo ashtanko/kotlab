@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class TotalMoneyTest {
+class TotalMoneyTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -48,7 +48,7 @@ internal class TotalMoneyTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `name test`(n: Int, expected: Int) {
+    fun `name test`(n: Int, expected: Int) {
         val actual = TotalMoney.perform(n)
         assertThat(actual).isEqualTo(expected)
     }

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CountBinarySubstringsTest<out T : CountBinarySubstrings>(private val strategy: T) {
+abstract class CountBinarySubstringsTest<out T : CountBinarySubstrings>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -40,11 +40,11 @@ internal abstract class CountBinarySubstringsTest<out T : CountBinarySubstrings>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `count binary substrings test`(s: String, expected: Int) {
+    fun `count binary substrings test`(s: String, expected: Int) {
         val actual = strategy.perform(s)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class GroupByCharacterTest : CountBinarySubstringsTest<GroupByCharacter>(GroupByCharacter())
-internal class CBSLinearScanTest : CountBinarySubstringsTest<CBSLinearScan>(CBSLinearScan())
+class GroupByCharacterTest : CountBinarySubstringsTest<GroupByCharacter>(GroupByCharacter())
+class CBSLinearScanTest : CountBinarySubstringsTest<CBSLinearScan>(CBSLinearScan())

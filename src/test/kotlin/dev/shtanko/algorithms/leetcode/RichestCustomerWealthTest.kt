@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class RichestCustomerWealthTest {
+class RichestCustomerWealthTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -72,7 +72,7 @@ internal class RichestCustomerWealthTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `maximum wealth test`(accounts: Array<IntArray>, expected: Int) {
+    fun `maximum wealth test`(accounts: Array<IntArray>, expected: Int) {
         val actual = RichestCustomerWealth.maximumWealth(accounts)
         assertThat(actual, equalTo(expected))
     }

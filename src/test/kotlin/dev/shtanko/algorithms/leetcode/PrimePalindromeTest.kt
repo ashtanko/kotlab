@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PrimePalindromeTest<out T : PrimePalindrome>(private val strategy: T) {
+abstract class PrimePalindromeTest<out T : PrimePalindrome>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,12 +44,12 @@ internal abstract class PrimePalindromeTest<out T : PrimePalindrome>(private val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `prime palindrome test`(n: Int, expected: Int) {
+    fun `prime palindrome test`(n: Int, expected: Int) {
         val actual = strategy.perform(n)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class IteratePalindromesTest : PrimePalindromeTest<IteratePalindromes>(IteratePalindromes())
-internal class PrimePalindromeBruteForceTest :
+class IteratePalindromesTest : PrimePalindromeTest<IteratePalindromes>(IteratePalindromes())
+class PrimePalindromeBruteForceTest :
     PrimePalindromeTest<PrimePalindromeBruteForce>(PrimePalindromeBruteForce())

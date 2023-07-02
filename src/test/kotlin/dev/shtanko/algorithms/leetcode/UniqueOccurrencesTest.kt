@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class UniqueOccurrencesTest {
+class UniqueOccurrencesTest {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal class UniqueOccurrencesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `unique occurrences test`(testCase: Pair<Boolean, IntArray>) {
+    fun `unique occurrences test`(testCase: Pair<Boolean, IntArray>) {
         val (expected, arr) = testCase
         val actual = arr.uniqueOccurrences()
         assertEquals(expected, actual)

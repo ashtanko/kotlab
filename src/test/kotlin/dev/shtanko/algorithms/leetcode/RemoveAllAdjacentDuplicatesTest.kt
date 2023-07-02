@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class RemoveAllAdjacentDuplicatesTest<out T : RemoveAllAdjacentDuplicatesStrategy>(private val strategy: T) {
+abstract class RemoveAllAdjacentDuplicatesTest<out T : RemoveAllAdjacentDuplicatesStrategy>(private val strategy: T) {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -38,18 +38,18 @@ internal abstract class RemoveAllAdjacentDuplicatesTest<out T : RemoveAllAdjacen
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `remove all adjacent duplicates in string test`(s: String, expected: String) {
+    fun `remove all adjacent duplicates in string test`(s: String, expected: String) {
         val actual = strategy.perform(s)
         assertEquals(expected, actual)
     }
 }
 
-internal class RemoveAllAdjacentDuplicatesArrayTest :
+class RemoveAllAdjacentDuplicatesArrayTest :
     RemoveAllAdjacentDuplicatesTest<RemoveAllAdjacentDuplicatesArray>(RemoveAllAdjacentDuplicatesArray())
 
-internal class RemoveAllAdjacentDuplicatesStackTest :
+class RemoveAllAdjacentDuplicatesStackTest :
     RemoveAllAdjacentDuplicatesTest<RemoveAllAdjacentDuplicatesStack>(RemoveAllAdjacentDuplicatesStack())
 
 // Using StringBuilder
-internal class RemoveAllAdjacentDuplicatesSBTest :
+class RemoveAllAdjacentDuplicatesSBTest :
     RemoveAllAdjacentDuplicatesTest<RemoveAllAdjacentDuplicatesSB>(RemoveAllAdjacentDuplicatesSB())

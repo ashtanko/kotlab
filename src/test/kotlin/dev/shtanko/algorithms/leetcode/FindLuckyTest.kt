@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val strategy: T) {
+abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(2, 2, 3, 4), 2),
@@ -37,11 +37,11 @@ internal abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `simple test`(arr: IntArray, expected: Int) {
+    fun `simple test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class FindLuckyStraightForwardTest : FindLuckyTest<FindLuckyStraightForward>(FindLuckyStraightForward())
-internal class FindLuckyMapTest : FindLuckyTest<FindLuckyMap>(FindLuckyMap())
+class FindLuckyStraightForwardTest : FindLuckyTest<FindLuckyStraightForward>(FindLuckyStraightForward())
+class FindLuckyMapTest : FindLuckyTest<FindLuckyMap>(FindLuckyMap())

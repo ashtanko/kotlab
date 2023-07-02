@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ClosestDivisorsTest {
+class ClosestDivisorsTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -56,7 +56,7 @@ internal class ClosestDivisorsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `closest divisor test`(num: Int, expected: IntArray) {
+    fun `closest divisor test`(num: Int, expected: IntArray) {
         val actual = closestDivisors(num)
         assertArrayEquals(expected, actual)
     }

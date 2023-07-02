@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class MaxBoxesInWarehouseTest<out T : MaxBoxesInWarehouse>(private val strategy: T) {
+abstract class MaxBoxesInWarehouseTest<out T : MaxBoxesInWarehouse>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,11 +52,11 @@ internal abstract class MaxBoxesInWarehouseTest<out T : MaxBoxesInWarehouse>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `max boxes in warehouse test`(boxes: IntArray, warehouse: IntArray, expected: Int) {
+    fun `max boxes in warehouse test`(boxes: IntArray, warehouse: IntArray, expected: Int) {
         val actual = strategy.perform(boxes, warehouse)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class MaxBoxesInWarehouseAddTest : MaxBoxesInWarehouseTest<MaxBoxesInWarehouseAdd>(MaxBoxesInWarehouseAdd())
-internal class MaxBoxesInWarehouseLPBTest : MaxBoxesInWarehouseTest<MaxBoxesInWarehouseLPB>(MaxBoxesInWarehouseLPB())
+class MaxBoxesInWarehouseAddTest : MaxBoxesInWarehouseTest<MaxBoxesInWarehouseAdd>(MaxBoxesInWarehouseAdd())
+class MaxBoxesInWarehouseLPBTest : MaxBoxesInWarehouseTest<MaxBoxesInWarehouseLPB>(MaxBoxesInWarehouseLPB())

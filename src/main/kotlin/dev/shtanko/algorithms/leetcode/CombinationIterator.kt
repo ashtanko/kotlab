@@ -18,13 +18,13 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-internal interface CombinationIterator {
+interface CombinationIterator {
     fun next(): String
 
     fun hasNext(): Boolean
 }
 
-internal class CombinationIteratorImpl(characters: String, combinationLength: Int) : CombinationIterator {
+class CombinationIteratorImpl(characters: String, combinationLength: Int) : CombinationIterator {
 
     private val st = Stack<Char>()
     private val ch2Idx = hashMapOf<Char, Int>()

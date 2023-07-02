@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class HalvesAreAlikeTest<out T : HalvesAreAlike>(private val solution: T) {
+abstract class HalvesAreAlikeTest<out T : HalvesAreAlike>(private val solution: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -48,11 +48,11 @@ internal abstract class HalvesAreAlikeTest<out T : HalvesAreAlike>(private val s
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `halves are alike test`(s: String, expected: Boolean) {
+    fun `halves are alike test`(s: String, expected: Boolean) {
         val actual = solution.perform(s)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class HalvesAreAlikeBruteForceTest : HalvesAreAlikeTest<HalvesAreAlikeBruteForce>(HalvesAreAlikeBruteForce())
-internal class HalvesAreAlikeCountTest : HalvesAreAlikeTest<HalvesAreAlikeCount>(HalvesAreAlikeCount())
+class HalvesAreAlikeBruteForceTest : HalvesAreAlikeTest<HalvesAreAlikeBruteForce>(HalvesAreAlikeBruteForce())
+class HalvesAreAlikeCountTest : HalvesAreAlikeTest<HalvesAreAlikeCount>(HalvesAreAlikeCount())

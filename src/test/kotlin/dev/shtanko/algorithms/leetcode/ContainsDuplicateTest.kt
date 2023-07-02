@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private val strategy: T) {
+abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(), false),
@@ -36,26 +36,26 @@ internal abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `duplicate items test`(arr: IntArray, expected: Boolean) {
+    fun `duplicate items test`(arr: IntArray, expected: Boolean) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class IsContainsDuplicateSortSetSizeTest :
+class IsContainsDuplicateSortSetSizeTest :
     ContainsDuplicateTest<IsContainsDuplicateSortSetSize>(IsContainsDuplicateSortSetSize())
 
-internal class IsContainsDuplicateBrutForceTest :
+class IsContainsDuplicateBrutForceTest :
     ContainsDuplicateTest<IsContainsDuplicateBrutForce>(IsContainsDuplicateBrutForce())
 
-internal class IsContainsDuplicateSortTest :
+class IsContainsDuplicateSortTest :
     ContainsDuplicateTest<IsContainsDuplicateSort>(IsContainsDuplicateSort())
 
-internal class IsContainsDuplicateSortSetTest :
+class IsContainsDuplicateSortSetTest :
     ContainsDuplicateTest<IsContainsDuplicateSortSet>(IsContainsDuplicateSortSet())
 
-internal class IsContainsDuplicateSortSetOptimizedTest :
+class IsContainsDuplicateSortSetOptimizedTest :
     ContainsDuplicateTest<IsContainsDuplicateSortSetOptimized>(IsContainsDuplicateSortSetOptimized())
 
-internal class IsContainsDuplicateBitManipulationTest :
+class IsContainsDuplicateBitManipulationTest :
     ContainsDuplicateTest<IsContainsDuplicateBitManipulation>(IsContainsDuplicateBitManipulation())

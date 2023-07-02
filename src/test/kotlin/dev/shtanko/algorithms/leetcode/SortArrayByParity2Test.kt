@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class AbstractSortByParityStrategyTest<out T : AbstractSortByParityStrategy>(private val strategy: T) {
+abstract class AbstractSortByParityStrategyTest<out T : AbstractSortByParityStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -35,16 +35,16 @@ internal abstract class AbstractSortByParityStrategyTest<out T : AbstractSortByP
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `sort by parity test`(testCase: Pair<IntArray, IntArray>) {
+    fun `sort by parity test`(testCase: Pair<IntArray, IntArray>) {
         val (arr, expected) = testCase
         val actual = strategy.perform(arr)
         assertArrayEquals(expected, actual)
     }
 }
 
-internal class SortByParityTwoPassTest : AbstractSortByParityStrategyTest<SortByParityTwoPass>(SortByParityTwoPass())
+class SortByParityTwoPassTest : AbstractSortByParityStrategyTest<SortByParityTwoPass>(SortByParityTwoPass())
 
-internal class SortByParityHeadsTest : AbstractSortByParityStrategyTest<SortByParityHeads>(SortByParityHeads())
+class SortByParityHeadsTest : AbstractSortByParityStrategyTest<SortByParityHeads>(SortByParityHeads())
 
-internal class SortByParityStraightForwardTest :
+class SortByParityStraightForwardTest :
     AbstractSortByParityStrategyTest<SortByParityStraightForward>(SortByParityStraightForward())

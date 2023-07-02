@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CountCharactersTest {
+class CountCharactersTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -47,7 +47,7 @@ internal class CountCharactersTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `count characters test`(words: Array<String>, chars: String, expected: Int) {
+    fun `count characters test`(words: Array<String>, chars: String, expected: Int) {
         val actual = words.countCharacters(chars)
         assertEquals(expected, actual)
     }

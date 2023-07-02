@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class FairCandySwapTest {
+class FairCandySwapTest {
 
     companion object {
         @JvmStatic
@@ -37,7 +37,7 @@ internal class FairCandySwapTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `fair candy swap test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
+    fun `fair candy swap test`(testCase: Pair<Pair<IntArray, IntArray>, IntArray>) {
         val (candies, expected) = testCase
         val actual = candies.fairCandySwap()
         assertArrayEquals(expected, actual)

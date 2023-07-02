@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MultiplyStringsTest {
+class MultiplyStringsTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -43,7 +43,7 @@ internal class MultiplyStringsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `multiply strings test`(num1: String, num2: String, expected: String) {
+    fun `multiply strings test`(num1: String, num2: String, expected: String) {
         val actual = MultiplyStrings.perform(num1, num2)
         assertThat(actual, equalTo(expected))
     }

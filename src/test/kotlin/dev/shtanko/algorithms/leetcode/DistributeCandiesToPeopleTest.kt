@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class DistributeCandiesToPeopleTest {
+class DistributeCandiesToPeopleTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -42,7 +42,7 @@ internal class DistributeCandiesToPeopleTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `simple test`(candies: Int, numOfPeople: Int, expected: IntArray) {
+    fun `simple test`(candies: Int, numOfPeople: Int, expected: IntArray) {
         val actual = distributeCandies(candies, numOfPeople)
         assertArrayEquals(expected, actual)
     }

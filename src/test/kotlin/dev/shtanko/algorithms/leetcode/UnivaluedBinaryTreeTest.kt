@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class UnivaluedBinaryTreeStrategyTest<out T : UnivaluedBinaryTreeStrategy>(private val strategy: T) {
+abstract class UnivaluedBinaryTreeStrategyTest<out T : UnivaluedBinaryTreeStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -48,15 +48,15 @@ internal abstract class UnivaluedBinaryTreeStrategyTest<out T : UnivaluedBinaryT
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `univalued binary tree test`(testCase: Pair<Boolean, TreeNode>) {
+    fun `univalued binary tree test`(testCase: Pair<Boolean, TreeNode>) {
         val (expected, tree) = testCase
         val actual = strategy.perform(tree)
         assertEquals(expected, actual)
     }
 }
 
-internal class UnivaluedBinaryTreeDFSTest :
+class UnivaluedBinaryTreeDFSTest :
     UnivaluedBinaryTreeStrategyTest<UnivaluedBinaryTreeDFS>(UnivaluedBinaryTreeDFS())
 
-internal class UnivaluedBinaryTreeRecursiveTest :
+class UnivaluedBinaryTreeRecursiveTest :
     UnivaluedBinaryTreeStrategyTest<UnivaluedBinaryTreeRecursive>(UnivaluedBinaryTreeRecursive())

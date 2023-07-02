@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-internal interface UndergroundSystem {
+interface UndergroundSystem {
     fun checkIn(id: Int, stationName: String, t: Int)
 
     fun checkOut(id: Int, stationName: String, t: Int)

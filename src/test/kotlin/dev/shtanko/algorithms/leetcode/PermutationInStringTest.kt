@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class PermutationInStringStrategyTest<out T : StringPermutationStrategy>(private val strategy: T) {
+abstract class PermutationInStringStrategyTest<out T : StringPermutationStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,7 @@ internal abstract class PermutationInStringStrategyTest<out T : StringPermutatio
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
+    fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
         val (data, expected) = testCase
         val (s1, s2) = data
         val actual = strategy.perform(s1, s2)
@@ -42,17 +42,17 @@ internal abstract class PermutationInStringStrategyTest<out T : StringPermutatio
     }
 }
 
-internal class PermutationBruteForceTest :
+class PermutationBruteForceTest :
     PermutationInStringStrategyTest<PermutationBruteForce>(PermutationBruteForce())
 
-internal class PermutationSortingTest : PermutationInStringStrategyTest<PermutationSorting>(PermutationSorting())
+class PermutationSortingTest : PermutationInStringStrategyTest<PermutationSorting>(PermutationSorting())
 
-internal class PermutationHashmapTest : PermutationInStringStrategyTest<PermutationHashmap>(PermutationHashmap())
+class PermutationHashmapTest : PermutationInStringStrategyTest<PermutationHashmap>(PermutationHashmap())
 
-internal class PermutationArrayTest : PermutationInStringStrategyTest<PermutationArray>(PermutationArray())
+class PermutationArrayTest : PermutationInStringStrategyTest<PermutationArray>(PermutationArray())
 
-internal class PermutationSlidingWindowTest :
+class PermutationSlidingWindowTest :
     PermutationInStringStrategyTest<PermutationSlidingWindow>(PermutationSlidingWindow())
 
-internal class PermutationOptimizedSlidingWindowTest :
+class PermutationOptimizedSlidingWindowTest :
     PermutationInStringStrategyTest<PermutationOptimizedSlidingWindow>(PermutationOptimizedSlidingWindow())

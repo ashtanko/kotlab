@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class EditDistanceTest<out T : EditDistance>(private val strategy: T) {
+abstract class EditDistanceTest<out T : EditDistance>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -42,10 +42,10 @@ internal abstract class EditDistanceTest<out T : EditDistance>(private val strat
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `min distance test`(word1: String, word2: String, expected: Int) {
+    fun `min distance test`(word1: String, word2: String, expected: Int) {
         val actual = strategy.perform(word1, word2)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class EditDistanceDPTest : EditDistanceTest<EditDistanceDP>(EditDistanceDP())
+class EditDistanceDPTest : EditDistanceTest<EditDistanceDP>(EditDistanceDP())

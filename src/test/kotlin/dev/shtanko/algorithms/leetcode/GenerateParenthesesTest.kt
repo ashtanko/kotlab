@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class GenerateParenthesesTest<out T : GenerateParentheses>(private val strategy: T) {
+abstract class GenerateParenthesesTest<out T : GenerateParentheses>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -41,17 +41,17 @@ internal abstract class GenerateParenthesesTest<out T : GenerateParentheses>(pri
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `generate parenthesis test`(n: Int, expected: List<String>) {
+    fun `generate parenthesis test`(n: Int, expected: List<String>) {
         val actual = strategy.perform(n)
         assertThat(actual, containsInAnyOrder(*expected.toTypedArray()))
     }
 }
 
-internal class GenerateParenthesesBruteForceTest :
+class GenerateParenthesesBruteForceTest :
     GenerateParenthesesTest<GenerateParenthesesBruteForce>(GenerateParenthesesBruteForce())
 
-internal class GenerateParenthesesBacktrackingTest :
+class GenerateParenthesesBacktrackingTest :
     GenerateParenthesesTest<GenerateParenthesesBacktracking>(GenerateParenthesesBacktracking())
 
-internal class GenerateParenthesesClosureNumberTest :
+class GenerateParenthesesClosureNumberTest :
     GenerateParenthesesTest<GenerateParenthesesClosureNumber>(GenerateParenthesesClosureNumber())

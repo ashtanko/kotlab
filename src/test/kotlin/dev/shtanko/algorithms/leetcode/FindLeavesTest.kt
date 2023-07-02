@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FindLeavesTest<out T : FindLeaves>(private val strategy: T) {
+abstract class FindLeavesTest<out T : FindLeaves>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,5 +52,5 @@ internal abstract class FindLeavesTest<out T : FindLeaves>(private val strategy:
     }
 }
 
-internal class FindLeavesDFSTest : FindLeavesTest<FindLeavesDFS>(FindLeavesDFS())
-internal class FindLeavesDFS2Test : FindLeavesTest<FindLeavesDFS2>(FindLeavesDFS2())
+class FindLeavesDFSTest : FindLeavesTest<FindLeavesDFS>(FindLeavesDFS())
+class FindLeavesDFS2Test : FindLeavesTest<FindLeavesDFS2>(FindLeavesDFS2())

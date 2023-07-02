@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SumEvenAfterQueriesTest {
+class SumEvenAfterQueriesTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -43,7 +43,7 @@ internal class SumEvenAfterQueriesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sum even after queries test`(a: IntArray, queries: Array<IntArray>, expected: IntArray) {
+    fun `sum even after queries test`(a: IntArray, queries: Array<IntArray>, expected: IntArray) {
         val actual = sumEvenAfterQueries(a, queries)
         assertArrayEquals(expected, actual)
     }

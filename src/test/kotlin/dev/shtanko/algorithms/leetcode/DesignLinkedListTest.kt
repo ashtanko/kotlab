@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class DesignLinkedListTest {
+class DesignLinkedListTest {
 
     @Test
-    internal fun `linked add at index test`() {
+    fun `linked add at index test`() {
         val list = DesignLinkedList()
         list.addAtIndex(-1, 2)
         list.addAtIndex(1, 1)
@@ -33,7 +33,7 @@ internal class DesignLinkedListTest {
     }
 
     @Test
-    internal fun `linked list test`() {
+    fun `linked list test`() {
         val list = DesignLinkedList()
         list.addAtHead(1)
         list.addAtTail(3)
@@ -44,7 +44,7 @@ internal class DesignLinkedListTest {
     }
 
     @Test
-    internal fun `linked list test 2`() {
+    fun `linked list test 2`() {
         val list = DesignLinkedList()
         list.addAtHead(2)
         list.deleteAtIndex(1)

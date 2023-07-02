@@ -23,11 +23,11 @@ import java.util.LinkedList
  * 1022. Sum of Root To Leaf Binary Numbers
  * @link https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
  */
-internal interface SumOfRootToLeafBinaryNumbers {
+interface SumOfRootToLeafBinaryNumbers {
     fun sumRootToLeaf(root: TreeNode?): Int
 }
 
-internal class SumOfRootToLeafBinaryNumbersBitwise : SumOfRootToLeafBinaryNumbers {
+class SumOfRootToLeafBinaryNumbersBitwise : SumOfRootToLeafBinaryNumbers {
     override fun sumRootToLeaf(root: TreeNode?): Int {
         var rootNode = root
         var rootToLeaf = 0
@@ -55,7 +55,7 @@ internal class SumOfRootToLeafBinaryNumbersBitwise : SumOfRootToLeafBinaryNumber
 }
 
 // Iterative Preorder Traversal
-internal class SumOfRootToLeafBinaryNumbersIPT : SumOfRootToLeafBinaryNumbers {
+class SumOfRootToLeafBinaryNumbersIPT : SumOfRootToLeafBinaryNumbers {
     override fun sumRootToLeaf(root: TreeNode?): Int {
         var rootToLeaf = 0
         var currNumber: Int
@@ -83,7 +83,7 @@ internal class SumOfRootToLeafBinaryNumbersIPT : SumOfRootToLeafBinaryNumbers {
 }
 
 // Recursive Preorder Traversal
-internal class SumOfRootToLeafBinaryNumbersRPT : SumOfRootToLeafBinaryNumbers {
+class SumOfRootToLeafBinaryNumbersRPT : SumOfRootToLeafBinaryNumbers {
     private var rootToLeaf = 0
 
     override fun sumRootToLeaf(root: TreeNode?): Int {
@@ -106,7 +106,7 @@ internal class SumOfRootToLeafBinaryNumbersRPT : SumOfRootToLeafBinaryNumbers {
 }
 
 // Morris Preorder Traversal
-internal class SumOfRootToLeafBinaryNumbersMPT : SumOfRootToLeafBinaryNumbers {
+class SumOfRootToLeafBinaryNumbersMPT : SumOfRootToLeafBinaryNumbers {
     override fun sumRootToLeaf(root: TreeNode?): Int {
         var rootToLeaf = 0
         var currNumber = 0

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.LinkedList
 
-internal fun TreeNode?.levelOrderBottom(): List<List<Int>> {
+fun TreeNode?.levelOrderBottom(): List<List<Int>> {
     val wrapList: MutableList<MutableList<Int>> = LinkedList()
     levelMaker(wrapList, this, 0)
     return wrapList

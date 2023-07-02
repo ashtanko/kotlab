@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private val strategy: T) {
+abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(1, 2, 3, 4), intArrayOf(2, 4, 1, 3), true),
@@ -37,11 +37,11 @@ internal abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `can be equal test`(arr: IntArray, target: IntArray, expected: Boolean) {
+    fun `can be equal test`(arr: IntArray, target: IntArray, expected: Boolean) {
         val actual = strategy.perform(target, arr)
         assertEquals(expected, actual)
     }
 }
 
-internal class CanBeEqualSortTest : TwoArraysEqualReversingTest<CanBeEqualSort>(CanBeEqualSort())
-internal class CanBeEqualMapTest : TwoArraysEqualReversingTest<CanBeEqualMap>(CanBeEqualMap())
+class CanBeEqualSortTest : TwoArraysEqualReversingTest<CanBeEqualSort>(CanBeEqualSort())
+class CanBeEqualMapTest : TwoArraysEqualReversingTest<CanBeEqualMap>(CanBeEqualMap())

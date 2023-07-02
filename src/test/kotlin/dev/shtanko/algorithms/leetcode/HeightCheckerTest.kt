@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class HeightCheckerTest {
+class HeightCheckerTest {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal class HeightCheckerTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `height checker sort test`(testCase: Pair<IntArray, Int>) {
+    fun `height checker sort test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = arr.heightCheckerSort()
         assertEquals(expected, actual)
@@ -43,7 +43,7 @@ internal class HeightCheckerTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `height checker test`(testCase: Pair<IntArray, Int>) {
+    fun `height checker test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = arr.heightChecker()
         assertEquals(expected, actual)

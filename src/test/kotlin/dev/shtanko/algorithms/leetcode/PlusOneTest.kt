@@ -22,7 +22,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class PlusOneTest {
+class PlusOneTest {
     companion object {
 
         @JvmStatic
@@ -38,7 +38,7 @@ internal class PlusOneTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `plus one test`(arr: IntArray, expected: IntArray) {
+    fun `plus one test`(arr: IntArray, expected: IntArray) {
         val actual = PlusOne().perform(arr)
         assertArrayEquals(expected, actual)
     }

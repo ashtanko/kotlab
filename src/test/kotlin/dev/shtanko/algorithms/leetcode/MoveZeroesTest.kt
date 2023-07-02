@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MoveZeroesTest {
+class MoveZeroesTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,7 +52,7 @@ internal class MoveZeroesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `move zeroes test`(arr: IntArray, expected: IntArray) {
+    fun `move zeroes test`(arr: IntArray, expected: IntArray) {
         arr.moveZeroes()
         assertArrayEquals(expected, arr)
     }

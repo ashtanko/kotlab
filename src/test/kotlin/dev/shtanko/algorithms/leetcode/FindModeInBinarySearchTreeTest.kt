@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class FindModeInBinarySearchTreeTest {
+class FindModeInBinarySearchTreeTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,7 +44,7 @@ internal class FindModeInBinarySearchTreeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find mode in binary search tree test`(root: TreeNode, expected: IntArray) {
+    fun `find mode in binary search tree test`(root: TreeNode, expected: IntArray) {
         val actual = FindModeInBinarySearchTree().perform(root)
         assertArrayEquals(actual, expected)
     }

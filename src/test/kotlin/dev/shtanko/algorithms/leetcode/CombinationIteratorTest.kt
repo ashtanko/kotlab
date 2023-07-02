@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-internal abstract class CombinationIteratorTest<out T : CombinationIterator>(private val iterator: T) {
+abstract class CombinationIteratorTest<out T : CombinationIterator>(private val iterator: T) {
 
     @Test
-    internal fun `combination iterator test`() {
+    fun `combination iterator test`() {
         assertEquals("ab", iterator.next())
         assertTrue(iterator.hasNext())
         assertEquals("ac", iterator.next())
@@ -34,5 +34,5 @@ internal abstract class CombinationIteratorTest<out T : CombinationIterator>(pri
     }
 }
 
-internal class CombinationIteratorImplTest :
+class CombinationIteratorImplTest :
     CombinationIteratorTest<CombinationIteratorImpl>(CombinationIteratorImpl("abc", 2))

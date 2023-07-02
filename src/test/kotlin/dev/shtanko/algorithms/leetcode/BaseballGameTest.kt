@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BaseballGameTest {
+class BaseballGameTest {
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<String>(), 0),
@@ -42,7 +42,7 @@ internal class BaseballGameTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `calculate points`(ops: Array<String>, expected: Int) {
+    fun `calculate points`(ops: Array<String>, expected: Int) {
         val actual = BaseballGame().perform(ops)
         assertEquals(expected, actual)
     }

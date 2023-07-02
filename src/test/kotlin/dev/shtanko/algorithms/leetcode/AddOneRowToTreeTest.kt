@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AddOneRowToTreeTest<out T : AddOneRowToTree>(private val strategy: T) {
+abstract class AddOneRowToTreeTest<out T : AddOneRowToTree>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -95,12 +95,12 @@ internal abstract class AddOneRowToTreeTest<out T : AddOneRowToTree>(private val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `add one row test`(tree: TreeNode, value: Int, depth: Int, expected: TreeNode) {
+    fun `add one row test`(tree: TreeNode, value: Int, depth: Int, expected: TreeNode) {
         val actual = strategy.perform(tree, value, depth)
         assertThat(actual.postOrderTraversal()).isEqualTo(expected.postOrderTraversal())
     }
 }
 
-internal class AddOneRowToTreeRecTest : AddOneRowToTreeTest<AddOneRowToTreeRec>(AddOneRowToTreeRec())
-internal class AddOneRowToTreeStackTest : AddOneRowToTreeTest<AddOneRowToTreeStack>(AddOneRowToTreeStack())
-internal class AddOneRowToTreeQueueTest : AddOneRowToTreeTest<AddOneRowToTreeQueue>(AddOneRowToTreeQueue())
+class AddOneRowToTreeRecTest : AddOneRowToTreeTest<AddOneRowToTreeRec>(AddOneRowToTreeRec())
+class AddOneRowToTreeStackTest : AddOneRowToTreeTest<AddOneRowToTreeStack>(AddOneRowToTreeStack())
+class AddOneRowToTreeQueueTest : AddOneRowToTreeTest<AddOneRowToTreeQueue>(AddOneRowToTreeQueue())

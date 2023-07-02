@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class SmallestCommonElementTest<out T : SmallestCommonElement>(private val strategy: T) {
+abstract class SmallestCommonElementTest<out T : SmallestCommonElement>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -63,20 +63,20 @@ internal abstract class SmallestCommonElementTest<out T : SmallestCommonElement>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `Find Smallest Common Element in All Rows Test`(param: Array<IntArray>, expected: Int) {
+    fun `Find Smallest Common Element in All Rows Test`(param: Array<IntArray>, expected: Int) {
         val actual = strategy.perform(param)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class SCECountElementsTest : SmallestCommonElementTest<SCECountElements>(SCECountElements())
-internal class SCECountElementsImprovedTest :
+class SCECountElementsTest : SmallestCommonElementTest<SCECountElements>(SCECountElements())
+class SCECountElementsImprovedTest :
     SmallestCommonElementTest<SCECountElementsImproved>(SCECountElementsImproved())
 
-internal class SCEBinarySearchTest : SmallestCommonElementTest<SCEBinarySearch>(SCEBinarySearch())
-internal class SCEBinarySearchImprovedTest :
+class SCEBinarySearchTest : SmallestCommonElementTest<SCEBinarySearch>(SCEBinarySearch())
+class SCEBinarySearchImprovedTest :
     SmallestCommonElementTest<SCEBinarySearchImproved>(SCEBinarySearchImproved())
 
-internal class SCERowPositionsTest : SmallestCommonElementTest<SCERowPositions>(SCERowPositions())
-internal class SCERowPositionsImprovedTest :
+class SCERowPositionsTest : SmallestCommonElementTest<SCERowPositions>(SCERowPositions())
+class SCERowPositionsImprovedTest :
     SmallestCommonElementTest<SCERowPositionsImproved>(SCERowPositionsImproved())

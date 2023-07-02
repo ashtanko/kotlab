@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ParallelCoursesTest<out T : ParallelCourses>(private val strategy: T) {
+abstract class ParallelCoursesTest<out T : ParallelCourses>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -49,10 +49,10 @@ internal abstract class ParallelCoursesTest<out T : ParallelCourses>(private val
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `minimum semesters test`(n: Int, relations: Array<IntArray>, expected: Int) {
+    fun `minimum semesters test`(n: Int, relations: Array<IntArray>, expected: Int) {
         val actual = strategy.minimumSemesters(n, relations)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class ParallelCoursesBFSTest : ParallelCoursesTest<ParallelCoursesBFS>(ParallelCoursesBFS())
+class ParallelCoursesBFSTest : ParallelCoursesTest<ParallelCoursesBFS>(ParallelCoursesBFS())

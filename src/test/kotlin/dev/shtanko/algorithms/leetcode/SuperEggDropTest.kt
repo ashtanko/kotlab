@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class SuperEggDropStrategyTest<out T : SuperEggDropStrategy>(private val strategy: T) {
+abstract class SuperEggDropStrategyTest<out T : SuperEggDropStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,7 @@ internal abstract class SuperEggDropStrategyTest<out T : SuperEggDropStrategy>(p
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `super egg drop test`(testCase: Pair<Int, Pair<Int, Int>>) {
+    fun `super egg drop test`(testCase: Pair<Int, Pair<Int, Int>>) {
         val (expected, data) = testCase
         val (eggs, floors) = data
         val actual = strategy.perform(eggs, floors)
@@ -42,11 +42,11 @@ internal abstract class SuperEggDropStrategyTest<out T : SuperEggDropStrategy>(p
     }
 }
 
-internal class SuperEggDropDPBinarySearchTest :
+class SuperEggDropDPBinarySearchTest :
     SuperEggDropStrategyTest<SuperEggDropDPBinarySearch>(SuperEggDropDPBinarySearch())
 
-internal class SuperEggDropDPOptimalityCriterionTest :
+class SuperEggDropDPOptimalityCriterionTest :
     SuperEggDropStrategyTest<SuperEggDropDPOptimalityCriterion>(SuperEggDropDPOptimalityCriterion())
 
-internal class SuperEggDropMathematicalTest :
+class SuperEggDropMathematicalTest :
     SuperEggDropStrategyTest<SuperEggDropMathematical>(SuperEggDropMathematical())

@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class EmployeeImportanceTest {
+class EmployeeImportanceTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -64,7 +64,7 @@ internal class EmployeeImportanceTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `employee importance test`(id: Int, employees: List<Employee>, expected: Int) {
+    fun `employee importance test`(id: Int, employees: List<Employee>, expected: Int) {
         val actual = EmployeeImportance.getImportance(employees, id)
         assertThat(actual, equalTo(expected))
     }

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ReverseLinkedListTest {
+class ReverseLinkedListTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = args().stream()
@@ -48,7 +48,7 @@ internal class ReverseLinkedListTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `reverse linked list test`(
+    fun `reverse linked list test`(
         strategy: (head: ListNode?) -> ListNode?,
         testCase: Pair<List<Int>, List<Int>>,
     ) {

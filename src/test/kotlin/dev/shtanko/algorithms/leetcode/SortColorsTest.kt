@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class SortColorsTest<out T : SortColorsStrategy>(private val strategy: T) {
+abstract class SortColorsTest<out T : SortColorsStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -35,12 +35,12 @@ internal abstract class SortColorsTest<out T : SortColorsStrategy>(private val s
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `sort colors test`(testCase: Pair<IntArray, IntArray>) {
+    fun `sort colors test`(testCase: Pair<IntArray, IntArray>) {
         val (arr, expected) = testCase
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }
 }
 
-internal class SortColorsOnePassTest : SortColorsTest<SortColorsOnePass>(SortColorsOnePass())
-internal class SortColorsTwoPassTest : SortColorsTest<SortColorsTwoPass>(SortColorsTwoPass())
+class SortColorsOnePassTest : SortColorsTest<SortColorsOnePass>(SortColorsOnePass())
+class SortColorsTwoPassTest : SortColorsTest<SortColorsTwoPass>(SortColorsTwoPass())

@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class LongestPalindromeTest {
+class LongestPalindromeTest {
 
     companion object {
         @JvmStatic
@@ -34,7 +34,7 @@ internal class LongestPalindromeTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `simple test`(testCase: Pair<String, String>) {
+    fun `simple test`(testCase: Pair<String, String>) {
         val (str, expected) = testCase
         val actual = str.longestPalindrome()
         assertEquals(expected, actual)

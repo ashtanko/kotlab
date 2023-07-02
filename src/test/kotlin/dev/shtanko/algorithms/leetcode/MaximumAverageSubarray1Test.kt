@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class MaximumAverageSubArray1Test<out T : FindMaxAverageStrategy>(private val strategy: T) {
+abstract class MaximumAverageSubArray1Test<out T : FindMaxAverageStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ internal abstract class MaximumAverageSubArray1Test<out T : FindMaxAverageStrate
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `simple test`(testCase: Pair<Pair<IntArray, Int>, Double>) {
+    fun `simple test`(testCase: Pair<Pair<IntArray, Int>, Double>) {
         val (data, expected) = testCase
         val (nums, k) = data
         val actual = strategy.perform(nums, k)
@@ -43,5 +43,5 @@ internal abstract class MaximumAverageSubArray1Test<out T : FindMaxAverageStrate
     }
 }
 
-internal class FindMaxAverage1Test : MaximumAverageSubArray1Test<FindMaxAverage1>(FindMaxAverage1())
-internal class FindMaxAverage2Test : MaximumAverageSubArray1Test<FindMaxAverage2>(FindMaxAverage2())
+class FindMaxAverage1Test : MaximumAverageSubArray1Test<FindMaxAverage1>(FindMaxAverage1())
+class FindMaxAverage2Test : MaximumAverageSubArray1Test<FindMaxAverage2>(FindMaxAverage2())

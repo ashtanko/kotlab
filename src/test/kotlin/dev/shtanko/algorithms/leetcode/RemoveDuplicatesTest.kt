@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class RemoveDuplicatesTest {
+class RemoveDuplicatesTest {
 
     companion object {
         @JvmStatic
@@ -37,7 +37,7 @@ internal class RemoveDuplicatesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `remove duplicates test`(testCase: Pair<IntArray, Int>) {
+    fun `remove duplicates test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
         val actual = arr.removeDuplicates()
         assertEquals(expected, actual)

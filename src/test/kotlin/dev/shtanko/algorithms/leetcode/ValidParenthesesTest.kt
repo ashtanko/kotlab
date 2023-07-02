@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class ValidParenthesesTest {
+class ValidParenthesesTest {
 
     companion object {
         @JvmStatic
@@ -38,7 +38,7 @@ internal class ValidParenthesesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `is valid parentheses test`(testCase: Pair<Boolean, String>) {
+    fun `is valid parentheses test`(testCase: Pair<Boolean, String>) {
         val (expected, str) = testCase
         val actual = str.isValidParentheses()
         assertEquals(expected, actual)
@@ -46,7 +46,7 @@ internal class ValidParenthesesTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `is valid parentheses mapping test`(testCase: Pair<Boolean, String>) {
+    fun `is valid parentheses mapping test`(testCase: Pair<Boolean, String>) {
         val (expected, s) = testCase
         val actual = ValidParentheses(TreeMap()).perform(s)
         assertEquals(expected, actual)

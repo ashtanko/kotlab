@@ -19,12 +19,12 @@ package dev.shtanko.algorithms.leetcode
 import java.util.LinkedList
 import java.util.Queue
 
-internal interface AverageOfLevelsInBinaryTreeStrategy {
+interface AverageOfLevelsInBinaryTreeStrategy {
     fun perform(root: TreeNode?): DoubleArray
 }
 
 // Using Depth First Search
-internal class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {
+class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {
     override fun perform(root: TreeNode?): DoubleArray {
         val count: MutableList<Int> = ArrayList()
         val res: MutableList<Double> = ArrayList()
@@ -48,7 +48,7 @@ internal class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrat
 }
 
 // Using Breadth First Search
-internal class AverageOfLevelsInBinaryTreeBFS : AverageOfLevelsInBinaryTreeStrategy {
+class AverageOfLevelsInBinaryTreeBFS : AverageOfLevelsInBinaryTreeStrategy {
     override fun perform(root: TreeNode?): DoubleArray {
         val res: MutableList<Double> = ArrayList()
         var queue: Queue<TreeNode?> = LinkedList()

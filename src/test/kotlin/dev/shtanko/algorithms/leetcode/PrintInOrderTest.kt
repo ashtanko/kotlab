@@ -20,13 +20,13 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
 import org.junit.jupiter.api.Test
 
-internal class PrintInOrderTest {
+class PrintInOrderTest {
 
     private val printInOrder = PrintInOrder()
 
     @Test
     @Throws(InterruptedException::class)
-    internal fun `test print in order with concurrency test`() {
+    fun `test print in order with concurrency test`() {
         val service = Executors.newFixedThreadPool(3)
         val latch = CountDownLatch(3)
 
@@ -56,7 +56,7 @@ internal class PrintInOrderTest {
 
     @Test
     @Throws(InterruptedException::class)
-    internal fun `test print in order with concurrency 2 test`() {
+    fun `test print in order with concurrency 2 test`() {
         val service = Executors.newFixedThreadPool(3)
         val latch = CountDownLatch(3)
 

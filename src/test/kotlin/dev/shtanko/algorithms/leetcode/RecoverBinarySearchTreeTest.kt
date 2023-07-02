@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class RecoverBinarySearchTreeTest {
+class RecoverBinarySearchTreeTest {
 
     companion object {
         @JvmStatic
@@ -42,7 +42,7 @@ internal class RecoverBinarySearchTreeTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `recover tree test`(testCase: Pair<TreeNode, List<Int>>) {
+    fun `recover tree test`(testCase: Pair<TreeNode, List<Int>>) {
         val (root, expected) = testCase
         recoverTree(root)
         val actual = root.levelOrder().flatten()

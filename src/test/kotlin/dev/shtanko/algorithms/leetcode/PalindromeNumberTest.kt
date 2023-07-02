@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class PalindromeNumberTest {
+class PalindromeNumberTest {
 
     companion object {
         @JvmStatic
@@ -38,7 +38,7 @@ internal class PalindromeNumberTest {
 
     @ParameterizedTest
     @MethodSource("casesProvider")
-    internal fun `is number palindrome test`(testCase: Pair<Int, Boolean>) {
+    fun `is number palindrome test`(testCase: Pair<Int, Boolean>) {
         val (num, expected) = testCase
         val actual = num.isPalindrome()
         assertEquals(expected, actual)

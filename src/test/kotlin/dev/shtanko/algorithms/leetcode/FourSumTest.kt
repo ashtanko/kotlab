@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FourSumTest<out T : FourSum>(private val strategy: T) {
+abstract class FourSumTest<out T : FourSum>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -43,11 +43,11 @@ internal abstract class FourSumTest<out T : FourSum>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `4 sum test`(nums: IntArray, target: Int, expected: List<List<Int>>) {
+    fun `4 sum test`(nums: IntArray, target: Int, expected: List<List<Int>>) {
         val actual = strategy.perform(nums, target).flatten().sorted()
         assertThat(actual, equalTo(expected.flatten().sorted()))
     }
 }
 
-internal class FourSumTwoPointersTest : FourSumTest<FourSumTwoPointers>(FourSumTwoPointers())
-internal class FourSumHashSetTest : FourSumTest<FourSumHashSet>(FourSumHashSet())
+class FourSumTwoPointersTest : FourSumTest<FourSumTwoPointers>(FourSumTwoPointers())
+class FourSumHashSetTest : FourSumTest<FourSumHashSet>(FourSumHashSet())

@@ -67,7 +67,7 @@ class MinIntegerAdjacentSwapsImpl : MinIntegerAdjacentSwaps {
         return ans
     }
 
-    internal class SegmentTree(max: Int) {
+    class SegmentTree(max: Int) {
         var nodes: IntArray
         var n: Int
 

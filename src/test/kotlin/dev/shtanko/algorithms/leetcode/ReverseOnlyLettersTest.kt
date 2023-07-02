@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class ReverseOnlyLettersTest<out T : ReverseOnlyLetters>(private val strategy: T) {
+abstract class ReverseOnlyLettersTest<out T : ReverseOnlyLetters>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,11 +44,11 @@ internal abstract class ReverseOnlyLettersTest<out T : ReverseOnlyLetters>(priva
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `reverse only letters test`(s: String, expected: String) {
+    fun `reverse only letters test`(s: String, expected: String) {
         val actual = strategy.perform(s)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class ReverseOnlyLettersStackTest : ReverseOnlyLettersTest<ReverseOnlyLettersStack>(ReverseOnlyLettersStack())
-internal class ReversePointerTest : ReverseOnlyLettersTest<ReversePointer>(ReversePointer())
+class ReverseOnlyLettersStackTest : ReverseOnlyLettersTest<ReverseOnlyLettersStack>(ReverseOnlyLettersStack())
+class ReversePointerTest : ReverseOnlyLettersTest<ReversePointer>(ReversePointer())

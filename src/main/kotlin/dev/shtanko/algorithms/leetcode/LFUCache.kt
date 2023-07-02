@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Least Frequently Used Cache
  */
-internal interface LFUCache {
+interface LFUCache {
     fun get(key: Int): Int
 
     fun put(key: Int, value: Int)

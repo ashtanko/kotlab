@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class StrongPasswordCheckerTest {
+class StrongPasswordCheckerTest {
 
     companion object {
         @JvmStatic
@@ -62,7 +62,7 @@ internal class StrongPasswordCheckerTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `strong password checker test`(testCase: Pair<String, Int>) {
+    fun `strong password checker test`(testCase: Pair<String, Int>) {
         val (password, expected) = testCase
         val actual = strongPasswordChecker(password)
         assertEquals(expected, actual)

@@ -61,7 +61,7 @@ abstract class SortArrayByParityTest<out T : SortArrayByParity>(private val stra
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sort array by parity test`(arr: IntArray, expected: IntArray) {
+    fun `sort array by parity test`(arr: IntArray, expected: IntArray) {
         val actual = strategy.perform(arr)
         assertThat(actual).containsExactlyInAnyOrder(*expected)
     }

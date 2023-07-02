@@ -42,11 +42,11 @@ abstract class FindAndReplacePatternTest<out T : FindAndReplacePattern>(private 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `findAndReplacePattern test`(words: Array<String>, pattern: String, expected: List<String>) {
+    fun `findAndReplacePattern test`(words: Array<String>, pattern: String, expected: List<String>) {
         val actual = strategy.perform(words, pattern)
         assertThat(actual).containsAll(expected)
     }
 }
 
-internal class FRPTwoMapsTest : FindAndReplacePatternTest<FRPTwoMaps>(FRPTwoMaps())
-internal class FRPOneMapTest : FindAndReplacePatternTest<FRPOneMap>(FRPOneMap())
+class FRPTwoMapsTest : FindAndReplacePatternTest<FRPTwoMaps>(FRPTwoMaps())
+class FRPOneMapTest : FindAndReplacePatternTest<FRPOneMap>(FRPOneMap())

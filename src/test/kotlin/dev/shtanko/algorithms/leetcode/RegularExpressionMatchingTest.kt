@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class RegularExpressionMatchingStrategyTest<out T : RegularExpressionMatchStrategy>(private val strategy: T) {
+abstract class RegularExpressionMatchingStrategyTest<out T : RegularExpressionMatchStrategy>(private val strategy: T) {
 
     companion object {
         @JvmStatic
@@ -37,7 +37,7 @@ internal abstract class RegularExpressionMatchingStrategyTest<out T : RegularExp
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `regular expression matching test`(testCase: Pair<Pair<String, String>, Boolean>) {
+    fun `regular expression matching test`(testCase: Pair<Pair<String, String>, Boolean>) {
         val (data, expected) = testCase
         val (text, pattern) = data
         val actual = strategy.perform(text = text, pattern = pattern)
@@ -45,11 +45,11 @@ internal abstract class RegularExpressionMatchingStrategyTest<out T : RegularExp
     }
 }
 
-internal class RegularExpressionMatchRecursionTest :
+class RegularExpressionMatchRecursionTest :
     RegularExpressionMatchingStrategyTest<RegularExpressionMatchRecursion>(RegularExpressionMatchRecursion())
 
-internal class RegularExpressionMatchDPTopDownTest :
+class RegularExpressionMatchDPTopDownTest :
     RegularExpressionMatchingStrategyTest<RegularExpressionMatchDPTopDown>(RegularExpressionMatchDPTopDown())
 
-internal class RegularExpressionMatchDPBottomUpTest :
+class RegularExpressionMatchDPBottomUpTest :
     RegularExpressionMatchingStrategyTest<RegularExpressionMatchDPBottomUp>(RegularExpressionMatchDPBottomUp())

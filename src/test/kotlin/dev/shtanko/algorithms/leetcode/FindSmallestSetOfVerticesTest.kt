@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class FindSmallestSetOfVerticesTest {
+class FindSmallestSetOfVerticesTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -56,7 +56,7 @@ internal class FindSmallestSetOfVerticesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find smallest set of vertices test`(n: Int, edges: List<List<Int>>, expected: List<Int>) {
+    fun `find smallest set of vertices test`(n: Int, edges: List<List<Int>>, expected: List<Int>) {
         val actual = FindSmallestSetOfVertices.perform(n, edges)
         assertThat(actual, equalTo(expected))
     }

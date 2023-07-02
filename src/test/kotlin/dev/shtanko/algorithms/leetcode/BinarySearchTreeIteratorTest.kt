@@ -32,10 +32,10 @@ private fun getTree(): TreeNode {
     }
 }
 
-internal abstract class BinarySearchTreeIteratorTest<out T : BSTIterator>(private val iterator: T) {
+abstract class BinarySearchTreeIteratorTest<out T : BSTIterator>(private val iterator: T) {
 
     @Test
-    internal fun `bst iterator test`() {
+    fun `bst iterator test`() {
         assertEquals(3, iterator.next())
         assertEquals(7, iterator.next())
         assertTrue(iterator.hasNext())
@@ -48,8 +48,8 @@ internal abstract class BinarySearchTreeIteratorTest<out T : BSTIterator>(privat
     }
 }
 
-internal class BSTIteratorFlatteningTest :
+class BSTIteratorFlatteningTest :
     BinarySearchTreeIteratorTest<BSTIteratorFlattening>(BSTIteratorFlattening(getTree()))
 
-internal class BSTIteratorControlledRecursionTest :
+class BSTIteratorControlledRecursionTest :
     BinarySearchTreeIteratorTest<BSTIteratorControlledRecursion>(BSTIteratorControlledRecursion(getTree()))

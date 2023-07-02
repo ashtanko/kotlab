@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class ThirdMaximumNumberTest {
+class ThirdMaximumNumberTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(3, 2, 1), 1),
@@ -35,7 +35,7 @@ internal class ThirdMaximumNumberTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `third max test`(nums: IntArray, expected: Int) {
+    fun `third max test`(nums: IntArray, expected: Int) {
         val actual = thirdMax(nums)
         assertEquals(expected, actual)
     }

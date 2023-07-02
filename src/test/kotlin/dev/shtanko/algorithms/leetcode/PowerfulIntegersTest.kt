@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PowerfulIntegersTest<out T : PowerfulIntegers>(private val strategy: T) {
+abstract class PowerfulIntegersTest<out T : PowerfulIntegers>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -74,10 +74,10 @@ internal abstract class PowerfulIntegersTest<out T : PowerfulIntegers>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `max product test`(x: Int, y: Int, bound: Int, expected: List<Int>) {
+    fun `max product test`(x: Int, y: Int, bound: Int, expected: List<Int>) {
         val actual = strategy.perform(x, y, bound)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class LogarithmicBoundsTest : PowerfulIntegersTest<LogarithmicBounds>(LogarithmicBounds())
+class LogarithmicBoundsTest : PowerfulIntegersTest<LogarithmicBounds>(LogarithmicBounds())

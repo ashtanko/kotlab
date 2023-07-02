@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class RemoveVowelsTest<out T : RemoveVowels>(private val strategy: T) {
+abstract class RemoveVowelsTest<out T : RemoveVowels>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("", ""),
@@ -36,13 +36,13 @@ internal abstract class RemoveVowelsTest<out T : RemoveVowels>(private val strat
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `remove vowels test`(s: String, expected: String) {
+    fun `remove vowels test`(s: String, expected: String) {
         val actual = strategy.perform(s)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class RemoveVowelsBruteForceTest : RemoveVowelsTest<RemoveVowelsBruteForce>(RemoveVowelsBruteForce())
-internal class RemoveVowelsStringBufferTest : RemoveVowelsTest<RemoveVowelsStringBuffer>(RemoveVowelsStringBuffer())
-internal class RemoveVowelsFilterTest : RemoveVowelsTest<RemoveVowelsFilter>(RemoveVowelsFilter())
-internal class RemoveVowelsReplaceTest : RemoveVowelsTest<RemoveVowelsReplace>(RemoveVowelsReplace())
+class RemoveVowelsBruteForceTest : RemoveVowelsTest<RemoveVowelsBruteForce>(RemoveVowelsBruteForce())
+class RemoveVowelsStringBufferTest : RemoveVowelsTest<RemoveVowelsStringBuffer>(RemoveVowelsStringBuffer())
+class RemoveVowelsFilterTest : RemoveVowelsTest<RemoveVowelsFilter>(RemoveVowelsFilter())
+class RemoveVowelsReplaceTest : RemoveVowelsTest<RemoveVowelsReplace>(RemoveVowelsReplace())

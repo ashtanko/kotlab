@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDictionary>(private val strategy: T) {
+abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDictionary>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -47,11 +47,11 @@ internal abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDicti
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is alien sorted test`(words: Array<String>, order: String, expected: Boolean) {
+    fun `is alien sorted test`(words: Array<String>, order: String, expected: Boolean) {
         val actual = strategy.isAlienSorted(words, order)
         Assertions.assertEquals(expected, actual)
     }
 }
 
-internal class VerifyingAlienDictionaryCompareTest :
+class VerifyingAlienDictionaryCompareTest :
     VerifyingAlienDictionaryTest<VerifyingAlienDictionaryCompare>(VerifyingAlienDictionaryCompare())

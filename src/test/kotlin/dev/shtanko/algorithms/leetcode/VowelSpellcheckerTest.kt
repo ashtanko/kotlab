@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class VowelSpellcheckerTest<out T : VowelSpellchecker>(private val strategy: T) {
+abstract class VowelSpellcheckerTest<out T : VowelSpellchecker>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -42,10 +42,10 @@ internal abstract class VowelSpellcheckerTest<out T : VowelSpellchecker>(private
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `spellchecker test`(wordlist: Array<String>, queries: Array<String>, expected: Array<String>) {
+    fun `spellchecker test`(wordlist: Array<String>, queries: Array<String>, expected: Array<String>) {
         val actual = strategy.perform(wordlist, queries)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class VowelSpellcheckerImplTest : VowelSpellcheckerTest<VowelSpellcheckerImpl>(VowelSpellcheckerImpl())
+class VowelSpellcheckerImplTest : VowelSpellcheckerTest<VowelSpellcheckerImpl>(VowelSpellcheckerImpl())

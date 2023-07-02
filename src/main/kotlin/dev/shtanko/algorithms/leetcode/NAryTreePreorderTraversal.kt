@@ -18,15 +18,15 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-internal class NAryNode(var value: Int) {
+class NAryNode(var value: Int) {
     var children: List<NAryNode?> = listOf()
 }
 
-internal interface NAryTreePreorderTraversalStrategy {
+interface NAryTreePreorderTraversalStrategy {
     fun preorder(root: NAryNode?): List<Int>
 }
 
-internal class NAryTreePreorderTraversalIterative : NAryTreePreorderTraversalStrategy {
+class NAryTreePreorderTraversalIterative : NAryTreePreorderTraversalStrategy {
     override fun preorder(root: NAryNode?): List<Int> {
         var r = root
         val list: MutableList<Int> = ArrayList()
@@ -45,7 +45,7 @@ internal class NAryTreePreorderTraversalIterative : NAryTreePreorderTraversalStr
     }
 }
 
-internal class NAryTreePreorderTraversalRecursive : NAryTreePreorderTraversalStrategy {
+class NAryTreePreorderTraversalRecursive : NAryTreePreorderTraversalStrategy {
 
     var list: MutableList<Int> = ArrayList()
 

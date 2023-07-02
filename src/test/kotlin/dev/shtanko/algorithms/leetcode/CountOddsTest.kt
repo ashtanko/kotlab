@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CountOddsTest {
+class CountOddsTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -42,7 +42,7 @@ internal class CountOddsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `count odds test`(low: Int, high: Int, expected: Int) {
+    fun `count odds test`(low: Int, high: Int, expected: Int) {
         val actual = CountOdds.perform(low, high)
         assertThat(actual).isEqualTo(expected)
     }

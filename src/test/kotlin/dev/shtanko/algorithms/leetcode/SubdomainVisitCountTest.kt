@@ -27,7 +27,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class SubdomainVisitCountTest {
+class SubdomainVisitCountTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -56,7 +56,7 @@ internal class SubdomainVisitCountTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `subdomain visits test`(cpDomains: Array<String>, expected: List<String>) {
+    fun `subdomain visits test`(cpDomains: Array<String>, expected: List<String>) {
         val actual = cpDomains.subdomainVisits()
         assertEquals(expected, actual)
         assertTrue(assertListEquals(expected, actual))

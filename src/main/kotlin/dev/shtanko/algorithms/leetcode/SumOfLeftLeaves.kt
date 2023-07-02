@@ -20,11 +20,11 @@ import java.util.LinkedList
 import java.util.Queue
 import java.util.Stack
 
-internal interface SumOfLeftLeavesStrategy {
+interface SumOfLeftLeavesStrategy {
     fun perform(root: TreeNode?): Int
 }
 
-internal class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
+class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
     override fun perform(root: TreeNode?): Int {
         if (root == null) return 0
         var ans = 0
@@ -50,7 +50,7 @@ internal class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
     }
 }
 
-internal class SumOfLeftLeavesRecursive : SumOfLeftLeavesStrategy {
+class SumOfLeftLeavesRecursive : SumOfLeftLeavesStrategy {
     override fun perform(root: TreeNode?): Int {
         if (root == null) return 0
         var ans = 0
@@ -66,7 +66,7 @@ internal class SumOfLeftLeavesRecursive : SumOfLeftLeavesStrategy {
     }
 }
 
-internal class SumOfLeftLeavesBSF : SumOfLeftLeavesStrategy {
+class SumOfLeftLeavesBSF : SumOfLeftLeavesStrategy {
     override fun perform(root: TreeNode?): Int {
         if (root == null) return 0
 
@@ -81,7 +81,7 @@ internal class SumOfLeftLeavesBSF : SumOfLeftLeavesStrategy {
             if (presentNode.right != null) {
                 queue.add(presentNode.right)
             }
-            if (presentNode.left != null && presentNode.left!!.left == null && presentNode.left!!.right == null) {
+            if (presentNode.left != null && presentNode.left?.left == null && presentNode.left?.right == null) {
                 sum += presentNode.left?.value ?: 0
             }
         }

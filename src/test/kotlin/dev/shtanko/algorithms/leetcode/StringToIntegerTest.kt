@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class StringToIntegerTest {
+class StringToIntegerTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -77,7 +77,7 @@ internal class StringToIntegerTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `string to int test`(s: String, expected: Int) {
+    fun `string to int test`(s: String, expected: Int) {
         val actual = s.atoi()
         assertEquals(expected, actual)
     }

@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class PaintFenceTest<out T : PaintFence>(private val strategy: T) {
+abstract class PaintFenceTest<out T : PaintFence>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -36,12 +36,12 @@ internal abstract class PaintFenceTest<out T : PaintFence>(private val strategy:
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `num ways test`(n: Int, k: Int, expected: Int) {
+    fun `num ways test`(n: Int, k: Int, expected: Int) {
         val actual = strategy.numWays(n, k)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class PaintFence1DTopDownTest : PaintFenceTest<PaintFence1DTopDown>(PaintFence1DTopDown())
-internal class PaintFence1DBottomUpTest : PaintFenceTest<PaintFence1DBottomUp>(PaintFence1DBottomUp())
-internal class PaintFence2DBottomUpTest : PaintFenceTest<PaintFence2DBottomUp>(PaintFence2DBottomUp())
+class PaintFence1DTopDownTest : PaintFenceTest<PaintFence1DTopDown>(PaintFence1DTopDown())
+class PaintFence1DBottomUpTest : PaintFenceTest<PaintFence1DBottomUp>(PaintFence1DBottomUp())
+class PaintFence2DBottomUpTest : PaintFenceTest<PaintFence2DBottomUp>(PaintFence2DBottomUp())

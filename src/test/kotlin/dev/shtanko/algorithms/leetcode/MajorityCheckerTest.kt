@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class MajorityCheckerTest {
+class MajorityCheckerTest {
 
     private val array = intArrayOf(1, 1, 2, 2, 1, 1)
 
@@ -37,7 +37,7 @@ internal class MajorityCheckerTest {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `majority checker test`(testCase: Pair<Int, Triple<Int, Int, Int>>) {
+    fun `majority checker test`(testCase: Pair<Int, Triple<Int, Int, Int>>) {
         val (expected, data) = testCase
         val (left, right, threshold) = data
         val actual = MajorityChecker(array).query(left, right, threshold)

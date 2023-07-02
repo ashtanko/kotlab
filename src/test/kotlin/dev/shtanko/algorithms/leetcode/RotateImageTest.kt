@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class RotateImageTest<out T : RotateImage>(private val strategy: T) {
+abstract class RotateImageTest<out T : RotateImage>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -58,11 +58,11 @@ internal abstract class RotateImageTest<out T : RotateImage>(private val strateg
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `rotate image test`(matrix: Array<IntArray>, expected: Array<IntArray>) {
+    fun `rotate image test`(matrix: Array<IntArray>, expected: Array<IntArray>) {
         strategy.rotate(matrix)
         assertThat(matrix).isEqualTo(expected)
     }
 }
 
-internal class RotateGroupsTest : RotateImageTest<RotateGroups>(RotateGroups())
-internal class ReverseLeftToRightTest : RotateImageTest<ReverseLeftToRight>(ReverseLeftToRight())
+class RotateGroupsTest : RotateImageTest<RotateGroups>(RotateGroups())
+class ReverseLeftToRightTest : RotateImageTest<ReverseLeftToRight>(ReverseLeftToRight())

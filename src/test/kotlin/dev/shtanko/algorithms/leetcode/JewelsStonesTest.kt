@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class JewelsStonesTest<out T : NumJewelsInStonesStrategy>(private val strategy: T) {
+abstract class JewelsStonesTest<out T : NumJewelsInStonesStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -33,7 +33,7 @@ internal abstract class JewelsStonesTest<out T : NumJewelsInStonesStrategy>(priv
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `jewels stones test`(testCase: Pair<Pair<String, String>, Int>) {
+    fun `jewels stones test`(testCase: Pair<Pair<String, String>, Int>) {
         val (data, expected) = testCase
         val (a, b) = data
         val actual = strategy.perform(a, b)
@@ -41,5 +41,5 @@ internal abstract class JewelsStonesTest<out T : NumJewelsInStonesStrategy>(priv
     }
 }
 
-internal class NumJewelsInStonesMapTest : JewelsStonesTest<NumJewelsInStonesMap>(NumJewelsInStonesMap())
-internal class NumJewelsInStonesRegexTest : JewelsStonesTest<NumJewelsInStonesRegex>(NumJewelsInStonesRegex())
+class NumJewelsInStonesMapTest : JewelsStonesTest<NumJewelsInStonesMap>(NumJewelsInStonesMap())
+class NumJewelsInStonesRegexTest : JewelsStonesTest<NumJewelsInStonesRegex>(NumJewelsInStonesRegex())

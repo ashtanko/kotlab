@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Recover Binary Search Tree
  */
-internal fun recoverTree(root: TreeNode?) {
+fun recoverTree(root: TreeNode?) {
     var rootNode = root
     var pre: TreeNode? = null
     var first: TreeNode? = null

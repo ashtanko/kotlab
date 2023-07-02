@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class RepeatedNTimesTest<out T : RepeatedNTimes>(private val strategy: T) {
+abstract class RepeatedNTimesTest<out T : RepeatedNTimes>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -48,11 +48,11 @@ internal abstract class RepeatedNTimesTest<out T : RepeatedNTimes>(private val s
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `repeated n times test`(arr: IntArray, expected: Int) {
+    fun `repeated n times test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class RepeatedNTimesCountTest : RepeatedNTimesTest<RepeatedNTimesCount>(RepeatedNTimesCount())
-internal class RepeatedNTimesCompareTest : RepeatedNTimesTest<RepeatedNTimesCompare>(RepeatedNTimesCompare())
+class RepeatedNTimesCountTest : RepeatedNTimesTest<RepeatedNTimesCount>(RepeatedNTimesCount())
+class RepeatedNTimesCompareTest : RepeatedNTimesTest<RepeatedNTimesCompare>(RepeatedNTimesCompare())

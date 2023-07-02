@@ -48,11 +48,11 @@ abstract class FlipGame2Test<out T : FlipGame2>(private val solution: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `can win test`(currentState: String, expected: Boolean) {
+    fun `can win test`(currentState: String, expected: Boolean) {
         val actual = solution.canWin(currentState)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class FG2BacktrackingTest : FlipGame2Test<FG2Backtracking>(FG2Backtracking())
-internal class FG2BruteForceTest : FlipGame2Test<FG2BruteForce>(FG2BruteForce())
+class FG2BacktrackingTest : FlipGame2Test<FG2Backtracking>(FG2Backtracking())
+class FG2BruteForceTest : FlipGame2Test<FG2BruteForce>(FG2BruteForce())

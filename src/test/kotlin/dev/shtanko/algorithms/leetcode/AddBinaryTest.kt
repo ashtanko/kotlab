@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T) {
+abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -70,7 +70,7 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `add binary test`(a: String, b: String, expected: String) {
+    fun `add binary test`(a: String, b: String, expected: String) {
         measureTime("Add binary a: $a b: $b") {
             val actual = strategy.perform(a, b)
             assertThat(actual, equalTo(expected))
@@ -78,8 +78,8 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
     }
 }
 
-internal class AddBinaryBitByBitComputationTest :
+class AddBinaryBitByBitComputationTest :
     AddBinaryTest<AddBinaryBitByBitComputation>(AddBinaryBitByBitComputation())
 
-internal class AddBinaryBitManipulationTest :
+class AddBinaryBitManipulationTest :
     AddBinaryTest<AddBinaryBitManipulation>(AddBinaryBitManipulation())

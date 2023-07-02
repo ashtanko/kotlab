@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class OriginalDigitsTest {
+class OriginalDigitsTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -40,7 +40,7 @@ internal class OriginalDigitsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `original digits test`(s: String, expected: String) {
+    fun `original digits test`(s: String, expected: String) {
         val actual = originalDigits(s)
         assertThat(actual).isEqualTo(expected)
     }

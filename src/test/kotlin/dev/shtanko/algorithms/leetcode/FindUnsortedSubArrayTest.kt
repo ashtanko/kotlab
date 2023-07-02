@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class FindUnsortedSubArrayTest<out T : FindUnsortedSubArray>(private val strategy: T) {
+abstract class FindUnsortedSubArrayTest<out T : FindUnsortedSubArray>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -48,23 +48,23 @@ internal abstract class FindUnsortedSubArrayTest<out T : FindUnsortedSubArray>(p
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `find unsorted sub array test`(nums: IntArray, expected: Int) {
+    fun `find unsorted sub array test`(nums: IntArray, expected: Int) {
         val actual = strategy.perform(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class FindUnsortedSubArrayBruteForceTest :
+class FindUnsortedSubArrayBruteForceTest :
     FindUnsortedSubArrayTest<FindUnsortedSubArrayBruteForce>(FindUnsortedSubArrayBruteForce())
 
-internal class FindUnsortedSubArrayBetterBruteForceTest :
+class FindUnsortedSubArrayBetterBruteForceTest :
     FindUnsortedSubArrayTest<FindUnsortedSubArrayBetterBruteForce>(FindUnsortedSubArrayBetterBruteForce())
 
-internal class FindUnsortedSubArraySortTest :
+class FindUnsortedSubArraySortTest :
     FindUnsortedSubArrayTest<FindUnsortedSubArraySort>(FindUnsortedSubArraySort())
 
-internal class FindUnsortedSubStackTest :
+class FindUnsortedSubStackTest :
     FindUnsortedSubArrayTest<FindUnsortedSubArrayStack>(FindUnsortedSubArrayStack())
 
-internal class FindUnsortedSubArrayConstSpaceTest :
+class FindUnsortedSubArrayConstSpaceTest :
     FindUnsortedSubArrayTest<FindUnsortedSubArrayConstSpace>(FindUnsortedSubArrayConstSpace())

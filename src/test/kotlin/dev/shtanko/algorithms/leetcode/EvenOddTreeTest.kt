@@ -22,7 +22,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val strategy: T) {
+abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val strategy: T) {
 
     companion object {
 
@@ -72,10 +72,10 @@ internal abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `even odd tree test`(root: TreeNode, expected: Boolean) {
+    fun `even odd tree test`(root: TreeNode, expected: Boolean) {
         val actual = strategy.perform(root)
         assertEquals(expected, actual)
     }
 }
 
-internal class EvenOddTreeBSFTest : EvenOddTreeTest<EvenOddTreeBSF>(EvenOddTreeBSF())
+class EvenOddTreeBSFTest : EvenOddTreeTest<EvenOddTreeBSF>(EvenOddTreeBSF())

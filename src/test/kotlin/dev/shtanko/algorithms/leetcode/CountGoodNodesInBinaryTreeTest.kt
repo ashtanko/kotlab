@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CountGoodNodesInBinaryTreeTest {
+class CountGoodNodesInBinaryTreeTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,7 +44,7 @@ internal class CountGoodNodesInBinaryTreeTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `count good nodes in binary tree test`(tree: TreeNode?, expected: Int) {
+    fun `count good nodes in binary tree test`(tree: TreeNode?, expected: Int) {
         val actual = CountGoodNodesInBinaryTree().goodNodes(tree)
         assertEquals(expected, actual)
     }

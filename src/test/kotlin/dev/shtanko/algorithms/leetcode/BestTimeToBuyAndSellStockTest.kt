@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BestTimeToBuyAndSellStockTest {
+class BestTimeToBuyAndSellStockTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -52,7 +52,7 @@ internal class BestTimeToBuyAndSellStockTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `simple max profit test`(arr: IntArray, expected: Int) {
+    fun `simple max profit test`(arr: IntArray, expected: Int) {
         val actual = arr.maxProfitSimple()
         assertEquals(expected, actual)
     }

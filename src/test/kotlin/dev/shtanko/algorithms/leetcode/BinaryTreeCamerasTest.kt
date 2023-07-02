@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class BinaryTreeCamerasTest<out T : BinaryTreeCamerasStrategy>(private val strategy: T) {
+abstract class BinaryTreeCamerasTest<out T : BinaryTreeCamerasStrategy>(private val strategy: T) {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -62,12 +62,12 @@ internal abstract class BinaryTreeCamerasTest<out T : BinaryTreeCamerasStrategy>
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `binary tree cameras test`(root: TreeNode, expected: Int) {
+    fun `binary tree cameras test`(root: TreeNode, expected: Int) {
         val actual = strategy.perform(root)
         assertEquals(expected, actual)
     }
 }
 
-internal class BinaryTreeCamerasDFSTest : BinaryTreeCamerasTest<BinaryTreeCamerasDFS>(BinaryTreeCamerasDFS())
-internal class BinaryTreeCamerasDPTest : BinaryTreeCamerasTest<BinaryTreeCamerasDP>(BinaryTreeCamerasDP())
-internal class BinaryTreeCamerasGreedyTest : BinaryTreeCamerasTest<BinaryTreeCamerasGreedy>(BinaryTreeCamerasGreedy())
+class BinaryTreeCamerasDFSTest : BinaryTreeCamerasTest<BinaryTreeCamerasDFS>(BinaryTreeCamerasDFS())
+class BinaryTreeCamerasDPTest : BinaryTreeCamerasTest<BinaryTreeCamerasDP>(BinaryTreeCamerasDP())
+class BinaryTreeCamerasGreedyTest : BinaryTreeCamerasTest<BinaryTreeCamerasGreedy>(BinaryTreeCamerasGreedy())

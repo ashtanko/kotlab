@@ -25,7 +25,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class PartitionLabelsTest {
+class PartitionLabelsTest {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -38,7 +38,7 @@ internal class PartitionLabelsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `partition labels test`(s: String, expected: List<Int>) {
+    fun `partition labels test`(s: String, expected: List<Int>) {
         val actual = PartitionLabels().perform(s)
         assertThat(actual, equalTo(expected))
     }

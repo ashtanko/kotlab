@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CountGoodTripletsTest {
+class CountGoodTripletsTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -53,7 +53,7 @@ internal class CountGoodTripletsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `count good triplets test`(arr: IntArray, a: Int, b: Int, c: Int, expected: Int) {
+    fun `count good triplets test`(arr: IntArray, a: Int, b: Int, c: Int, expected: Int) {
         val actual = countGoodTriplets(arr, a, b, c)
         assertEquals(expected, actual)
     }

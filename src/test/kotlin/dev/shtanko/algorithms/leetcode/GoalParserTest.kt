@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class GoalParserTest<out T : GoalParser>(private val strategy: T) {
+abstract class GoalParserTest<out T : GoalParser>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -44,11 +44,11 @@ internal abstract class GoalParserTest<out T : GoalParser>(private val strategy:
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `interpret test`(command: String, expected: String) {
+    fun `interpret test`(command: String, expected: String) {
         val actual = strategy.interpret(command)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class GoalParserBruteForceTest : GoalParserTest<GoalParserBruteForce>(GoalParserBruteForce())
-internal class GoalParserRegexTest : GoalParserTest<GoalParserRegex>(GoalParserRegex())
+class GoalParserBruteForceTest : GoalParserTest<GoalParserBruteForce>(GoalParserBruteForce())
+class GoalParserRegexTest : GoalParserTest<GoalParserRegex>(GoalParserRegex())

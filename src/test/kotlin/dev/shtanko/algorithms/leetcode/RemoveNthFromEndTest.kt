@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class RemoveNthFromEndTest<out T : RemoveNthFromEnd>(private val strategy: T) {
+abstract class RemoveNthFromEndTest<out T : RemoveNthFromEnd>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -63,11 +63,11 @@ internal abstract class RemoveNthFromEndTest<out T : RemoveNthFromEnd>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `remove nth from end test`(head: ListNode?, n: Int, expected: ListNode?) {
+    fun `remove nth from end test`(head: ListNode?, n: Int, expected: ListNode?) {
         val actual = strategy.perform(head, n)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class RemoveNthFromEndTwoPassTest : RemoveNthFromEndTest<RemoveNthFromEndTwoPass>(RemoveNthFromEndTwoPass())
-internal class RemoveNthFromEndOnePassTest : RemoveNthFromEndTest<RemoveNthFromEndOnePass>(RemoveNthFromEndOnePass())
+class RemoveNthFromEndTwoPassTest : RemoveNthFromEndTest<RemoveNthFromEndTwoPass>(RemoveNthFromEndTwoPass())
+class RemoveNthFromEndOnePassTest : RemoveNthFromEndTest<RemoveNthFromEndOnePass>(RemoveNthFromEndOnePass())

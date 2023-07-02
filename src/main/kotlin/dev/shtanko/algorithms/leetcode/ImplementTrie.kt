@@ -24,7 +24,7 @@ interface Trie {
     fun startsWith(prefix: String): Boolean
 }
 
-internal class TrieArray : Trie {
+class TrieArray : Trie {
 
     private val root = TrieNode()
 
