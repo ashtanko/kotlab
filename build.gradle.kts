@@ -40,7 +40,7 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.pitest)
     alias(libs.plugins.serialization)
-    kotlin("kapt") version "1.8.10"
+    kotlin("kapt") version "1.9.0"
 }
 
 repositories {
