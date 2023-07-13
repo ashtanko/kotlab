@@ -38,7 +38,7 @@ class LargestVarianceKadane : LargestVariance {
     override fun perform(s: String): Int {
         val counter = IntArray(LIMIT)
         for (ch in s.toCharArray()) {
-            counter[(ch.code - 'a'.code)]++
+            counter[ch.code.minus('a'.code)]++
         }
         var globalMax = 0
 

@@ -89,7 +89,7 @@ class FindEventualSafeStatesDFS : FindEventualSafeStates {
         val visit = BooleanArray(n)
         val inStack = BooleanArray(n)
         for (i in 0 until n) {
-            dfs(i, adj, visit, inStack)
+            safeStatesDFS(i, adj, visit, inStack)
         }
         val safeNodes: MutableList<Int> = ArrayList()
         for (i in 0 until n) {
@@ -99,25 +99,25 @@ class FindEventualSafeStatesDFS : FindEventualSafeStates {
         }
         return safeNodes
     }
+}
 
-    private fun dfs(node: Int, adj: List<MutableList<Int>>, visit: BooleanArray, inStack: BooleanArray): Boolean {
-        // If the node is already in the stack, we have a cycle.
-        if (inStack[node]) {
-            return true
-        }
-        if (visit[node]) {
-            return false
-        }
-        // Mark the current node as visited and part of current recursion stack.
-        visit[node] = true
-        inStack[node] = true
-        for (neighbor in adj[node]) {
-            if (dfs(neighbor, adj, visit, inStack)) {
-                return true
-            }
-        }
-        // Remove the node from the stack.
-        inStack[node] = false
+fun safeStatesDFS(node: Int, adj: List<MutableList<Int>>, visit: BooleanArray, inStack: BooleanArray): Boolean {
+    // If the node is already in the stack, we have a cycle.
+    if (inStack[node]) {
+        return true
+    }
+    if (visit[node]) {
         return false
     }
+    // Mark the current node as visited and part of current recursion stack.
+    visit[node] = true
+    inStack[node] = true
+    for (neighbor in adj[node]) {
+        if (safeStatesDFS(neighbor, adj, visit, inStack)) {
+            return true
+        }
+    }
+    // Remove the node from the stack.
+    inStack[node] = false
+    return false
 }

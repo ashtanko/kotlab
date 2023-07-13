@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,35 +17,37 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class CrackingSafeStrategyTest<out T : CrackingSafeStrategy>(private val strategy: T) {
+abstract class CourseScheduleTest<out T : CourseSchedule>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(1, 1, "0"),
-            Arguments.of(1, 2, "10"),
-            Arguments.of(2, 2, "01100"),
+            Arguments.of(
+                2,
+                arrayOf(intArrayOf(1, 0)),
+                true,
+            ),
+            Arguments.of(
+                2,
+                arrayOf(intArrayOf(1, 0), intArrayOf(0, 1)),
+                false,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `cracking the safe test`(n: Int, k: Int, expected: String) {
-        val actual = strategy.perform(n, k)
-        val resultList = expected.toList().map { it.toString() }
-        val actualList = actual.toList().map { it.toString() }
-        assertThat(actualList).containsExactlyInAnyOrder(*resultList.toTypedArray())
+    fun `cracking the safe test`(numCourses: Int, prerequisites: Array<IntArray>, expected: Boolean) {
+        val actual = strategy.canFinish(numCourses, prerequisites)
+        Assertions.assertEquals(expected, actual)
     }
 }
 
-class CrackingSafeHierholzersAlgorithmTest :
-    CrackingSafeStrategyTest<CrackingSafeStrategy>(CrackingSafeHierholzersAlgorithm())
-
-class CrackingSafeInverseBurrowsWheelerTransformTest :
-    CrackingSafeStrategyTest<CrackingSafeStrategy>(CrackingSafeInverseBurrowsWheelerTransform())
+class CourseScheduleKahnTest : CourseScheduleTest<CourseSchedule>(CourseScheduleKahn())
+class CourseScheduleDFSTest : CourseScheduleTest<CourseSchedule>(CourseScheduleDFS())
