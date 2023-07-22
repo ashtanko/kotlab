@@ -44,11 +44,9 @@ jobs:
 
       - name: Unit Tests
         run: ./gradlew test --build-cache --stacktrace
-        working-directory: JVM/jacoco/gradle
 
       - name: Jacoco test report
         run: ./gradlew jacocoTestReport
-        working-directory: JVM/jacoco/gradle
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.3
@@ -62,7 +60,7 @@ jobs:
         with:
           name: jacoco-report
           #path: "${{ github.workspace }}/**/build/reports/jacoco"
-          path: JVM/jacoco/gradle/.qodana/code-coverage
+          path: "${{ github.workspace }}/.qodana/code-coverage
 
       - name: Upload detekt report
         uses: actions/upload-artifact@v3
@@ -86,6 +84,3 @@ jobs:
         uses: JetBrains/qodana-action@main
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }} # read the steps about it below
-        with:
-          args: "-i,JVM/jacoco/gradle,--linter,jetbrains/qodana-jvm-community:2023.2-eap"
-          pr-mode: false
