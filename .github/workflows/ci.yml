@@ -60,7 +60,7 @@ jobs:
         with:
           name: jacoco-report
           #path: "${{ github.workspace }}/**/build/reports/jacoco"
-          path: "${{ github.workspace }}/.qodana/code-coverage
+          path: "${{ github.workspace }}/.qodana/code-coverage"
 
       - name: Upload detekt report
         uses: actions/upload-artifact@v3
