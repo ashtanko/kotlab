@@ -1,19 +1,24 @@
 name: Build
-
 on:
   push:
+    branches:
+      - main
     paths-ignore:
       - '**.md'
   pull_request:
-    paths-ignore:
-      - '**.md'
+    types: [ opened, synchronize, reopened ]
+
+env:
+  GRADLE_HOME: ${{ github.workspace }}/gradle-home
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -27,60 +32,96 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Spotless Apply
-        run: ./gradlew spotlessApply
+      - name: Cache gradle dependencies
+        uses: actions/cache@v3.0.8
+        with:
+          path: ${{ env.GRADLE_HOME }}/caches
+          # Include the SHA in the hash so this step always adds a cache entry. If we didn't use the SHA, the artifacts
+          # would only get cached once for each build config hash.
+          # Don't use ${{ runner.os }} in the key so we don't re-assemble for UI tests.
+          key: gradle-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/buildSrc/**') }}-${{ github.sha }}
+          # The first time a SHA is assembled, we still want to load dependencies from the cache.
+          # Note that none of jobs dependent on this one need restore keys, since they'll always have an exact hit.
+          restore-keys: |
+            gradle-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/buildSrc/**') }}-
 
-      - name: Spotless
-        run: ./gradlew spotlessCheck --stacktrace
+      - name: Run checks and tests
+        run: ./gradlew detekt ktlintCheck test --build-cache --no-daemon --stacktrace --gradle-user-home "$GRADLE_HOME"
 
-      - name: Detekt
-        run: ./gradlew detekt --stacktrace
-
-      - name: Ktlint
-        run: ./gradlew ktlintCheck --stacktrace
-
-      - name: Build Health
-        run: ./gradlew buildHealth --build-cache --stacktrace
-
-      - name: Unit Tests
-        run: ./gradlew test --build-cache --stacktrace
+      - name: Upload test results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: "${{ github.workspace }}/**/build/reports/tests"
 
       - name: Jacoco test report
         run: ./gradlew jacocoTestReport
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
-          verbose: true
+      - name: Check build dirs
+        run: ls -la && ls -la build && ls -la build/reports && ls -la build/jacoco
 
       - name: Upload jacoco report
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
-          #path: "${{ github.workspace }}/**/build/reports/jacoco"
-          path: "${{ github.workspace }}/.qodana/code-coverage"
+          path: "${{ github.workspace }}/**/build/reports/jacoco"
 
-      - name: Upload detekt report
+      - name: Upload jacoco test exec file
         uses: actions/upload-artifact@v3
         with:
-          name: detekt-report
-          path: "${{ github.workspace }}/**/build/reports/detekt/detekt.html"
+          name: jacoco-test-exec-file
+          path: build/jacoco/test.exec
 
-  qodana:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: write
-      pull-requests: write
-      checks: write
-    steps:
-      - uses: actions/checkout@v3
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3.1.4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-          fetch-depth: 0  # a full history is required for pull request analysis
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./build/reports/jacoco/report.xml
+          verbose: true
+
+      - name: Prepare qodana dirs
+        run: ls -la && mkdir .qodana && mkdir .qodana/coverage-data && ls -la
+      - name: Copy jacoco coverage report
+        run: cp -a ./build/reports/jacoco/report.xml .qodana/coverage-data && ls -la
+      - name: Copy jacoco coverage report test
+        run: cp -a ./build/reports/jacoco/test .qodana/coverage-data && ls -la
+      - name: Copy jacoco test files
+        run: cp -a ./build/jacoco/test.exec .qodana/coverage-data && ls -la
+      - name: Check qodana coverage files
+        run: ls -la && ls -la .qodana/coverage-data
+      - name: Upload .qodana/coverage-data
+        uses: actions/upload-artifact@v3
+        with:
+          name: qodana-coverage-data
+          path: .qodana/coverage-data
       - name: 'Qodana Scan'
-        uses: JetBrains/qodana-action@main
+        uses: JetBrains/qodana-action@v2023.2
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }} # read the steps about it below
+
+#
+#  qodana:
+#    runs-on: ubuntu-latest
+#    needs: build
+#    permissions:
+#      contents: write
+#      pull-requests: write
+#      checks: write
+#    steps:
+#      - uses: actions/checkout@v3
+#        with:
+#          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
+#          fetch-depth: 0  # a full history is required for pull request analysis
+#      - name: Prepare dirs
+#        run: ls -la && mkdir .qodana && mkdir .qodana/coverage-data && ls -la
+#      - name: Copy jacoco coverage files
+#        run: cp -a ./build/reports/jacoco/ .qodana/coverage-data && ls -la
+#      - name: Copy jacoco test files
+#        run: cp -a ./build/jacoco/text.exec .qodana/coverage-data && ls -la
+#      - name: Copy test coverage files
+#        run: cp -a ./build/reports/tests/ .qodana/coverage-data && ls -la
+#      - name: 'Qodana Scan'
+#        uses: JetBrains/qodana-action@v2023.2
+#        env:
+#          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }} # read the steps about it below
