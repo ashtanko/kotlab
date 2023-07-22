@@ -57,7 +57,7 @@ class Word(vararg letters: Char) : LetterComposite() {
     }
 }
 
-class Sentence(private val words: List<Word>) : LetterComposite() {
+class Sentence(words: List<Word>) : LetterComposite() {
     init {
         words.forEach(this::add)
     }

@@ -16,7 +16,7 @@
 
 package dev.shtanko.datastructures.graphs
 
-class AdjacencyListGraph<E : Comparable<E>>(private val vertices: List<Vertex<E>> = ArrayList()) {
+class AdjacencyListGraph<E : Comparable<E>>(vertices: List<Vertex<E>> = ArrayList()) {
 
     private val mVertices: MutableList<Vertex<E>> = vertices.toMutableList()
 

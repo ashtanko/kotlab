@@ -130,8 +130,8 @@ class DistanceKTreeBFS : DistanceKTree {
         val queue: Queue<IntArray> = LinkedList()
 
         // Add the target node to the queue with a distance of 0
-        queue.add(intArrayOf(target?.value ?: 0, 0))
-        visited.add(target?.value ?: 0)
+        queue.add(intArrayOf(target.value, 0))
+        visited.add(target.value)
         while (!queue.isEmpty()) {
             val cur: IntArray = queue.poll()
             val node = cur[0]
@@ -145,7 +145,7 @@ class DistanceKTreeBFS : DistanceKTree {
             }
 
             // Add all unvisited neighbors of the current node to the queue.
-            for (neighbor in graph.getOrDefault(node, ArrayList<Int>())) {
+            for (neighbor in graph.getOrDefault(node, ArrayList())) {
                 if (!visited.contains(neighbor)) {
                     visited.add(neighbor)
                     queue.add(intArrayOf(neighbor, distance + 1))

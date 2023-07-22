@@ -91,7 +91,7 @@ class CoinPathDP : CoinPath {
             }
             dp[i] = minCost
         }
-        var i: Int = 0
+        var i = 0
         while (i < a.size && next[i] > 0) {
             res.add(i + 1)
             i = next[i]

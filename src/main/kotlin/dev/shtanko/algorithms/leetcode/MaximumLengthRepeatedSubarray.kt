@@ -89,7 +89,7 @@ sealed class MaximumLengthRepeatedSubarrayStrategy {
     }
 
     /**
-     * Approach #3: Dynamic Programming [Accepted]
+     * Approach #3: Dynamic Programming (Accepted)
      */
     class DynamicProgramming : MaximumLengthRepeatedSubarray {
         override fun findLength(nums1: IntArray, nums2: IntArray): Int {

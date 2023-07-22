@@ -55,7 +55,7 @@ class MinMatrixFlipsBFS : MinMatrixFlips {
 
     private fun func(mat: Array<IntArray>, n: Int, m: Int, set: HashSet<String>, dp: HashMap<String, Int>): Int {
         if (check(mat, n, m)) return 0
-        var t: String = ""
+        var t = ""
         for (i in 0 until n) {
             for (j in 0 until m) {
                 t += mat[i][j].toString()

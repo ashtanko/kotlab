@@ -22,14 +22,14 @@ import java.time.format.DateTimeFormatter
 
 internal object CoroutinesUtils {
 
-    private const val format = "%s %s %s"
-    private const val pattern = "yyyy-MM-dd HH:mm:ss"
+    private const val FORMAT = "%s %s %s"
+    private const val PATTERN = "yyyy-MM-dd HH:mm:ss"
     private val currentThreadName = Thread.currentThread().name
-    private val currentTime = DateTimeFormatter.ofPattern(pattern).withZone(ZoneOffset.UTC).format(Instant.now())
+    private val currentTime = DateTimeFormatter.ofPattern(PATTERN).withZone(ZoneOffset.UTC).format(Instant.now())
 
     fun log(time: String, msg: String): String =
         String.format(
-            format,
+            FORMAT,
             time,
             currentThreadName,
             msg,

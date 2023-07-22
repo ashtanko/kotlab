@@ -27,7 +27,7 @@ interface GraphValidTree {
     fun validTree(n: Int, edges: Array<IntArray>): Boolean
 }
 
-private class GraphValidTreeUnionFind(val n: Int) {
+private class GraphValidTreeUnionFind(n: Int) {
     private val parent: IntArray = IntArray(n)
     private val size: IntArray = IntArray(n)
 

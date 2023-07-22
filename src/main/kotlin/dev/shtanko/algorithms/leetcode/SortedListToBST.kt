@@ -58,13 +58,13 @@ class SortedListToBSTRecursion : SortedListToBST {
     }
 
     private fun findMiddleElement(head: ListNode): ListNode? {
-        // The pointer used to disconnect the left half from the mid node.
+        // The pointer used to disconnect the left half from the mid-node.
         var prevPtr: ListNode? = null
         var slowPtr: ListNode? = head
         var fastPtr: ListNode? = head
 
         // Iterate until fastPr doesn't reach the end of the linked list.
-        while (fastPtr != null && fastPtr.next != null) {
+        while (fastPtr?.next != null) {
             prevPtr = slowPtr
             slowPtr = slowPtr!!.next
             fastPtr = fastPtr.next!!.next

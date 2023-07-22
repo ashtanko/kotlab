@@ -91,14 +91,14 @@ class MakeTheStringGreatRecursion : MakeTheStringGreat {
 class MakeTheStringGreatStack : MakeTheStringGreat {
 
     companion object {
-        private const val ASCII_A = 97
-        private const val ASCII_a = 65
+        private const val ASCII_UPPER_CASE = 97
+        private const val ASCII_LOWER_CASE = 65
     }
 
     override fun perform(s: String): String {
         val stack: Stack<Char> = Stack()
         for (i in s.indices) {
-            if (!stack.isEmpty() && abs(stack.peek() - s[i]) == ASCII_A - ASCII_a) {
+            if (!stack.isEmpty() && abs(stack.peek() - s[i]) == ASCII_UPPER_CASE - ASCII_LOWER_CASE) {
                 stack.pop()
             } else {
                 stack.push(s[i])

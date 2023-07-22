@@ -158,7 +158,7 @@ class NetworkDelayTimeDijkstra : NetworkDelayTime {
         sourceId: Int,
     ) {
         initializeSingleSource(graph, distance, sourceId)
-        val minHeap = PriorityQueue<GraphNode>(Comparator { o1, o2 -> (distance[o1.id] ?: 0) - (distance[o2.id] ?: 0) })
+        val minHeap = PriorityQueue<GraphNode> { o1, o2 -> (distance[o1.id] ?: 0) - (distance[o2.id] ?: 0) }
         minHeap.offer(graph[sourceId]!!)
         while (minHeap.isNotEmpty()) {
             val node = minHeap.poll()

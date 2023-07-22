@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.extensions.swap
 import java.util.Collections
 import java.util.LinkedList
 
@@ -30,7 +29,7 @@ class PermutationsBacktracking : Permutations {
         val output: MutableList<List<Int>> = LinkedList()
 
         // convert nums into list since the output is a list of lists
-        val numsList: MutableList<Int> = ArrayList<Int>()
+        val numsList: MutableList<Int> = ArrayList()
         for (num in nums) numsList.add(num)
         val n = nums.size
         backtrack(n, numsList, output, 0)

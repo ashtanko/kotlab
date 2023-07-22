@@ -113,7 +113,7 @@ class LFUCache<K, V>(val capacity: Int = 100) {
     /**
      * This method removes node from the cache
      *
-     * @param Node<K,V> node which is to be removed in the cache
+     * @param node which is to be removed in the cache
      */
     private fun removeNode(node: Node<K, V>?) {
         if (node?.previous != null) {

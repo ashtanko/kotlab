@@ -55,7 +55,6 @@ class CombinationSum4TopDown : CombinationSum4 {
  * Let T be the target value, and N be the number of elements in the input array.
  * Time Complexity: O(T*N)
  * Space Complexity: O(T)
- * We allocate an array dp[i] to hold all the intermediate values, which amounts to O(T) space.
  */
 class CombinationSum4BottomUp : CombinationSum4 {
     override fun perform(nums: IntArray, target: Int): Int {
