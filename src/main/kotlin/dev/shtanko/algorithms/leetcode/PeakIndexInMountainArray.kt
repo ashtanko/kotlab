@@ -20,6 +20,11 @@ interface PeakIndexInMountainArrayStrategy {
     fun perform(arr: IntArray): Int
 }
 
+/**
+ * Approach 1: Linear Scan
+ * Time complexity: O(n)
+ * Space complexity: O(1)
+ */
 class PeakIndexInMountainArrayLinearScan : PeakIndexInMountainArrayStrategy {
     override fun perform(arr: IntArray): Int {
         var i = 0
@@ -28,6 +33,11 @@ class PeakIndexInMountainArrayLinearScan : PeakIndexInMountainArrayStrategy {
     }
 }
 
+/**
+ * Approach 2: Binary Search
+ * Time complexity: O(log n)
+ * Space complexity: O(1)
+ */
 class PeakIndexInMountainArrayBinarySearch : PeakIndexInMountainArrayStrategy {
     override fun perform(arr: IntArray): Int {
         var lo = 0

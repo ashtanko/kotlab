@@ -16,29 +16,44 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class PeakIndexInMountainArrayTest<out T : PeakIndexInMountainArrayStrategy>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, Int>> {
-            return listOf(
-                intArrayOf(0, 1, 0) to 1,
-                intArrayOf(0, 2, 1, 0) to 1,
-                intArrayOf(0, 10, 5, 2) to 1,
-                intArrayOf(3, 4, 5, 1) to 2,
-                intArrayOf(24, 69, 100, 99, 79, 78, 67, 36, 26, 19) to 2,
-            )
-        }
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(0, 1, 0),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(0, 2, 1, 0),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(0, 10, 5, 2),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(3, 4, 5, 1),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(24, 69, 100, 99, 79, 78, 67, 36, 26, 19),
+                2,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `peak index in mountain test`(testCase: Pair<IntArray, Int>) {
-        val (arr, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `peak index in mountain test`(arr: IntArray, expected: Int) {
         val actual = strategy.perform(arr)
         assertEquals(expected, actual)
     }
