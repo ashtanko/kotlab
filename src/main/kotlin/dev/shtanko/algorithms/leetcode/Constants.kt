@@ -25,3 +25,4 @@ const val E_9 = 1e9
 const val BYTE = 1024
 const val HALF_OF_BYTE = 256
 const val MILLISECOND = 1000L
+const val EPSILON = 1e-5

@@ -25,8 +25,9 @@ class ConstantsTest {
         assertEquals(10, DECIMAL)
         assertEquals(8, OCTAL)
         assertEquals(16, HEXADECIMAL)
-        assertEquals(0xFFFF, SHUFFLE_CONST)
+        assertEquals(65535, SHUFFLE_CONST)
         assertEquals(1_000_000_007, MOD)
-        assertEquals(1e9, E_9)
+        assertEquals(1_000_000_000.0, E_9)
+        assertEquals(0.00001, EPSILON)
     }
 }
