@@ -61,13 +61,14 @@ class DistinctSubseq2DPConstSpace : DistinctSubseq2 {
 
         var cur = 1 // The number of subsequences till now. Include empty string: ""
 
-        val lastCount =
-            IntArray(ARR_SIZE) // The number of subsequences that end with a character till now. Not include empty string: ""
+        // The number of subsequences that end with a character till now. Not include empty string: ""
+        val lastCount = IntArray(ARR_SIZE)
 
         for (element in s) {
             val charIndex: Int = element - 'a'
             cur = pre * 2 % MOD // include-current-character  +  not-include-current-character
-            cur -= lastCount[charIndex] // Remove duplicated characters: previous subsequences that end with current character.
+            // Remove duplicated characters: previous subsequences that end with current character.
+            cur -= lastCount[charIndex]
             cur = if (cur >= 0) cur % MOD else cur + MOD
             lastCount[charIndex] = pre // The number of subsequences that end with current character.
             pre = cur

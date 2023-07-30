@@ -16,26 +16,36 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class IsomorphicStringsTest {
 
-    companion object {
-
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> = listOf(
-            "egg" to "add" to true,
-            "foo" to "bar" to false,
-            "paper" to "title" to true,
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "egg" to "add",
+                true,
+            ),
+            Arguments.of(
+                "foo" to "bar",
+                false,
+            ),
+            Arguments.of(
+                "paper" to "title",
+                true,
+            ),
         )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `is isomorphic test`(testCase: Pair<Pair<String, String>, Boolean>) {
-        val (data, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is isomorphic test`(data: Pair<String, String>, expected: Boolean) {
         val actual = data.isIsomorphic()
         assertEquals(expected, actual)
     }

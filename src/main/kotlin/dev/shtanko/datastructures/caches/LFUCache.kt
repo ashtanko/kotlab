@@ -30,7 +30,8 @@ class LFUCache<K, V>(val capacity: Int = 100) {
      * This method returns value present in the cache corresponding to the key passed as parameter
      *
      * @param <K> key for which value is to be retrieved
-     * @returns <V> object corresponding to the key passed as parameter, returns null if <K> key is not present in the cache
+     * @returns <V> object corresponding to the key passed as parameter, returns null if <K> key is not present in
+     * the cache
      */
     operator fun get(key: K): V? {
         if (map[key] == null) {

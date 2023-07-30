@@ -16,30 +16,52 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class JumpGame2Test {
 
-    companion object {
-
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, Int>> = listOf(
-            intArrayOf(2, 3, 1, 1, 4) to 2,
-            intArrayOf(4, 8, 15, 16, 23, 42) to 2,
-            intArrayOf() to 0,
-            intArrayOf(1) to 0,
-            intArrayOf(1, 1) to 1,
-            intArrayOf(1, 2) to 1,
-            intArrayOf(1, 1, 1) to 2,
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(2, 3, 1, 1, 4),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(4, 8, 15, 16, 23, 42),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                2,
+            ),
         )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `jump test`(testCase: Pair<IntArray, Int>) {
-        val (arr, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `jump test`(arr: IntArray, expected: Int) {
         val actual = arr.jumpGame2()
         assertEquals(expected, actual)
     }

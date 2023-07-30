@@ -92,7 +92,8 @@ class ShortestPalindromeMP : ShortestPalindromeStrategy {
                 // prefix part that we used to match postfix ended at i - 1
                 index = table[i - 1]
                 while (index > 0 && s[index] != s[i]) {
-                    // we will try to shorten the match string length until we revert to the beginning of match (index 1)
+                    // we will try to shorten the match string length until we revert to the beginning of
+                    // match (index 1)
                     index = table[index - 1]
                 }
 

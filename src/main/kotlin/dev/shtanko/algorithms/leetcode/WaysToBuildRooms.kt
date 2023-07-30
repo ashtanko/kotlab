@@ -33,7 +33,8 @@ class WaysToBuildRoomsDFS : WaysToBuildRooms {
         }
 
         // Add the directed edges
-        // Here each edge will be directed from room[i] to i. Denoting that we need to build room[i] first before room 'i'.
+        // Here each edge will be directed from room[i] to i. Denoting that we need to build room[i]
+        // first before room 'i'.
         for (i in 1 until prevRoom.size) {
             tree[prevRoom[i]].add(i)
         }
@@ -55,7 +56,8 @@ class WaysToBuildRoomsDFS : WaysToBuildRooms {
         }
         val d = den.toInt()
 
-        // To divide two number using modulo we find modulo inverse of denominator with mod and then multiply it with the numerator.
+        // To divide two number using modulo we find modulo inverse of denominator with mod and then multiply it with
+        // the numerator.
         val inverse = modInverse(d)
 
         return (nFact * inverse % MOD).toInt()

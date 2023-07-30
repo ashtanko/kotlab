@@ -59,7 +59,8 @@ data class Quintuple<out A, out B, out C, out D, out E>(
 ) : Serializable {
 
     /**
-     * Returns string representation of the [Quadruple] including its [first], [second] and [third] and [fourth] and [fifth] values.
+     * Returns string representation of the [Quadruple] including its [first], [second] and [third] and [fourth]
+     * and [fifth] values.
      */
     override fun toString(): String = "($first, $second, $third, $fourth), $fifth)"
 

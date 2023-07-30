@@ -147,7 +147,8 @@ class TopKFrequentTrie : TopKFrequent {
         val ans: MutableList<String> = LinkedList()
 
         for (i in buckets.indices.reversed()) {
-            // for trie in each bucket, get all the words with same frequency in lexicographic order. Compare with k and get the result
+            // for trie in each bucket, get all the words with same frequency in lexicographic order.
+            // Compare with k and get the result
             if (buckets[i] != null) {
                 val l: MutableList<String> = LinkedList()
                 buckets[i]?.getWords(buckets[i]?.root, l)

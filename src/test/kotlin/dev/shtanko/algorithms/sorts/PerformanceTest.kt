@@ -18,6 +18,7 @@ package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.generateRandomArray
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.Locale
 import java.util.stream.Stream
 import kotlin.system.measureTimeMillis
 import org.assertj.core.api.Assertions.assertThat
@@ -166,6 +167,7 @@ internal class PerformanceTest {
         }
         println(
             String.format(
+                Locale.getDefault(),
                 "Given arrays of length %d %s Consumed time: %d ms",
                 arr.size,
                 "Fast strategies",

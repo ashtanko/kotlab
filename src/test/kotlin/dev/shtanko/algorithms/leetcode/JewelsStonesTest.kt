@@ -16,26 +16,34 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class JewelsStonesTest<out T : NumJewelsInStonesStrategy>(private val strategy: T) {
 
-    companion object {
-
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<String, String>, Int>> = listOf(
-            "aA" to "aAAbbbb" to 3,
-            "z" to "ZZ" to 0,
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "aA",
+                "aAAbbbb",
+                3,
+            ),
+            Arguments.of(
+                "z",
+                "ZZ",
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `jewels stones test`(testCase: Pair<Pair<String, String>, Int>) {
-        val (data, expected) = testCase
-        val (a, b) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `jewels stones test`(a: String, b: String, expected: Int) {
         val actual = strategy.perform(a, b)
         assertEquals(expected, actual)
     }

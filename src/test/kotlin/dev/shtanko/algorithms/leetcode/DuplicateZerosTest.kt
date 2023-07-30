@@ -16,26 +16,33 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class DuplicateZerosTest {
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, IntArray>> {
-            return listOf(
-                intArrayOf(1, 0, 2, 3, 0, 4, 5, 0) to intArrayOf(1, 0, 0, 2, 3, 0, 0, 4),
-                intArrayOf(1, 2, 3) to intArrayOf(1, 2, 3),
-            )
-        }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(1, 0, 2, 3, 0, 4, 5, 0),
+                intArrayOf(1, 0, 0, 2, 3, 0, 0, 4),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                intArrayOf(1, 2, 3),
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `duplicate zeros test`(testCase: Pair<IntArray, IntArray>) {
-        val (arr, expected) = testCase
-        duplicateZeros(arr)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `duplicate zeros test`(arr: IntArray, expected: IntArray) {
+        arr.duplicateZeros()
         assertArrayEquals(expected, arr)
     }
 }

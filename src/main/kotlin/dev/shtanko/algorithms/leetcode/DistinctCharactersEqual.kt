@@ -67,7 +67,8 @@ class DistinctCharactersEqualMap : DistinctCharactersEqual {
         // made this helper fxn for easy removal from hashmap
         mp[toInsert] = mp.getOrDefault(toInsert, 0) + 1 // increment freq for char to be inserted
         mp[toRemove] = mp.getOrDefault(toRemove, 0) - 1 // decrement freq for char to be removed
-        if (mp[toRemove] == 0) mp.remove(toRemove) // if freq of that char reaches zero, then remove the key from hashmap
+        // if freq of that char reaches zero, then remove the key from hashmap
+        if (mp[toRemove] == 0) mp.remove(toRemove)
     }
 }
 

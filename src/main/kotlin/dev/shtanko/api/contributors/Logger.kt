@@ -41,7 +41,9 @@ fun logRepos(req: RequestData, response: Response<List<Repo>>) {
 fun logUsers(repo: Repo, response: Response<List<User>>) {
     val users = response.body()
     if (!response.isSuccessful || users == null) {
-        log.error("Failed loading contributors for ${repo.name} with response '${response.code()}: ${response.message()}'")
+        log.error(
+            "Failed loading contributors for ${repo.name} with response '${response.code()}: ${response.message()}'",
+        )
     } else {
         log.info("${repo.name}: loaded ${users.size} contributors")
     }

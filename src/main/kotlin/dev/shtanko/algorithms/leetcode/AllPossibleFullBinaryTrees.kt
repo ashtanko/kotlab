@@ -90,11 +90,13 @@ class AllPossibleFullBinaryTreesRecursive : AllPossibleFullBinaryTrees {
                         val right = rightIter.next()
                         val tree = TreeNode(0)
 
-                        // If we're using the last right branch, then this will be the last time this left branch is used and can hence
+                        // If we're using the last right branch, then this will be the last time this left branch is
+                        // used and can hence
                         // be shallow copied, otherwise the tree will have to be cloned
                         tree.left = if (rightIter.hasNext()) left.clone() else left
 
-                        // If we're using the last left branch, then this will be the last time this right branch is used and can hence
+                        // If we're using the last left branch, then this will be the last time this right branch is
+                        // used and can hence
                         // be shallow copied, otherwise the tree will have to be cloned
                         tree.right = if (leftIter.hasNext()) right.clone() else right
                         ret.add(tree)

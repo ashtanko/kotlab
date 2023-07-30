@@ -58,8 +58,8 @@ class NumberOfCombinationsBottomUp : NumberOfCombinations {
             dp[j][len] = 1
             var i = len - 1
             while (1 <= i) {
-                // dp[j][i] means the valid number that can start from j and the length of the first number is at least i
-                // thus here I aggregate dp[j][i + 1] into dp[j][i]
+                // dp[j][i] means the valid number that can start from j and the length of the first number
+                // is at least i thus here I aggregate dp[j][i + 1] into dp[j][i]
                 dp[j][i] = dp[j][i + 1]
                 val next = i + j
                 if (next >= n || next + i > n) {

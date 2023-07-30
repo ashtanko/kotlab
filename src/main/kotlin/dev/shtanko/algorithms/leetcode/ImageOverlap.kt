@@ -36,7 +36,8 @@ class ImageOverlapShiftAndCount : ImageOverlap {
             for (xShift in img1.indices) {
                 // move the matrix A to the up-right and up-left directions.
                 maxOverlaps = max(maxOverlaps, shiftAndCount(xShift, yShift, img1, img2))
-                // move the matrix B to the up-right and up-left directions, which is equivalent to moving A to the down-right and down-left directions
+                // move the matrix B to the up-right and up-left directions, which is equivalent to moving A to the
+                // down-right and down-left directions
                 maxOverlaps = max(maxOverlaps, shiftAndCount(xShift, yShift, img2, img1))
             }
         }

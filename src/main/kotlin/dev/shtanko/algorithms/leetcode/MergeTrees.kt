@@ -20,16 +20,29 @@ package dev.shtanko.algorithms.leetcode
  * Merge Two Binary Trees
  */
 fun Pair<TreeNode?, TreeNode?>.mergeTrees(): TreeNode? {
-    return if (first == null && second == null) {
-        null
-    } else if (second == null) {
-        first
-    } else if (first == null) {
-        second
-    } else {
-        val t = second?.value?.let { it -> first?.value?.plus(it)?.let { TreeNode(it) } }
-        t?.left = (first?.left to second?.left).mergeTrees()
-        t?.right = (first?.right to second?.right).mergeTrees()
-        t
+    // If both nodes are null, return null
+    if (first == null && second == null) {
+        return null
     }
+
+    // If one of the nodes is null, return the non-null node
+    if (second == null) {
+        return first
+    }
+
+    if (first == null) {
+        return second
+    }
+
+    // If both nodes have values, merge them
+    val mergedValue = first!!.value + second!!.value
+    val mergedNode = TreeNode(mergedValue)
+
+    // Merge left subtrees
+    mergedNode.left = (first!!.left to second!!.left).mergeTrees()
+
+    // Merge right subtrees
+    mergedNode.right = (first!!.right to second!!.right).mergeTrees()
+
+    return mergedNode
 }

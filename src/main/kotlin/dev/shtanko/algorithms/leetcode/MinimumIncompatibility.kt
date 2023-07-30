@@ -37,7 +37,8 @@ class MinimumIncompatibilityDFS : MinimumIncompatibility {
         k0 = k
         val count = IntArray(LIMIT)
         for (num in nums) if (++count[num] > k) return -1
-        // if same number more than k times, we can not answer the question cause there must be one bucket with same number twice
+        // if same number more than k times, we can not answer the question cause there must be one bucket with same
+        // number twice
         n = nums.size / k // n is the number of element in each bucket
         return dfs(HashSet(), count)
     }

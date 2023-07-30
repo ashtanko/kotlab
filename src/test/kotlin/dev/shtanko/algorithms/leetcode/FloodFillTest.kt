@@ -16,39 +16,31 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
-
-data class FloodFillTestCase(
-    val image: List<IntArray>,
-    val sr: Int,
-    val sc: Int,
-    val newColor: Int,
-    val output: List<IntArray>,
-)
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class FloodFillTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<FloodFillTestCase> {
-            return listOf(
-                FloodFillTestCase(
-                    listOf(intArrayOf(1, 1, 1), intArrayOf(1, 1, 0), intArrayOf(1, 0, 1)),
-                    1,
-                    1,
-                    2,
-                    listOf(intArrayOf(2, 2, 2), intArrayOf(2, 2, 0), intArrayOf(2, 0, 1)),
-                ),
-            )
-        }
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                listOf(intArrayOf(1, 1, 1), intArrayOf(1, 1, 0), intArrayOf(1, 0, 1)),
+                1,
+                1,
+                2,
+                listOf(intArrayOf(2, 2, 2), intArrayOf(2, 2, 0), intArrayOf(2, 0, 1)),
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `flood fill test`(testCase: FloodFillTestCase) {
-        val (image, sr, sc, newColor, output) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `flood fill test`(image: List<IntArray>, sr: Int, sc: Int, newColor: Int, output: List<IntArray>) {
         val actual = FloodFill.perform(image.toTypedArray(), sr, sc, newColor)
         val expected = output.toTypedArray()
         assertArrayEquals(expected, actual)

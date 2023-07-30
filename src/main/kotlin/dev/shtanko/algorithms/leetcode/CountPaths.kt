@@ -115,7 +115,10 @@ class CountPathsDFSMemo : CountPaths {
         for (d in directions) {
             val prevI = i + d[0]
             val prevJ = j + d[1]
-            if (0 <= prevI && prevI < grid.size && 0 <= prevJ && prevJ < grid[0].size && grid[prevI][prevJ] < grid[i][j]) {
+            if (0 <= prevI && prevI < grid.size &&
+                0 <= prevJ && prevJ < grid[0].size &&
+                grid[prevI][prevJ] < grid[i][j]
+            ) {
                 answer += dfs(grid, prevI, prevJ)
                 answer %= MOD
             }

@@ -34,7 +34,7 @@ object MockGithubService : GitHubService {
     }
 
     override suspend fun getOrgRepos(org: String): Response<List<Repo>> {
-        delay(reposDelay)
+        delay(REPOS_DELAY)
         return Response.success(repos)
     }
 

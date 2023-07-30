@@ -41,7 +41,8 @@ class RemoveBoxesTopDown : RemoveBoxes {
         if (i0 > j) return 0
         if (dp[i0][j][k0] > 0) return dp[i0][j][k0]
         while (i0 + 1 <= j && boxes[i0 + 1] == boxes[i0]) {
-            // optimization: all boxes of the same color counted continuously from the first box should be grouped together
+            // optimization: all boxes of the same color counted continuously from the first box should be
+            // grouped together
             i0++
             k0++
         }

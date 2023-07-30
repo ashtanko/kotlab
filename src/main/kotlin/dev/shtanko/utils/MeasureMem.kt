@@ -16,6 +16,8 @@
 
 package dev.shtanko.utils
 
+import java.util.Locale
+
 /**
  * Measures memory usage
  * @param task
@@ -33,9 +35,9 @@ inline fun <T> measureMemFormatted(taskName: String = "", task: () -> T): Pair<S
     val (bytes, res) = measureMemWithResult(task)
     val consumed = bytes.toHumanReadableByteCountBin()
     val s = if (taskName.isEmpty()) {
-        String.format("Memory Usage: %s", consumed)
+        String.format(Locale.getDefault(), "Memory Usage: %s", consumed)
     } else {
-        String.format(" Memory Usage: task: %s consumed %s", taskName, consumed)
+        String.format(Locale.getDefault(), " Memory Usage: task: %s consumed %s", taskName, consumed)
     }
     return s to res
 }

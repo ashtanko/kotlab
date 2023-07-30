@@ -47,7 +47,8 @@ class KthSmallestPathImpl : KthSmallestPath {
         }
 
         // in each (i, j), we have dp[i][j] kind of instructions, which equal to dp[i][j+1] + dp[i+1][j]
-        // all dp[i][j+1] kinds of instructions are lexicographically smaller than the left dp[i+1][j] kinds of instructions.
+        // all dp[i][j+1] kinds of instructions are lexicographically smaller than the left dp[i+1][j]
+        // kinds of instructions.
         // we can just compare k with dp[i][j+1] to determine how to choose next step.
         val sb = StringBuilder()
         helper(dp, 0, 0, k, sb)

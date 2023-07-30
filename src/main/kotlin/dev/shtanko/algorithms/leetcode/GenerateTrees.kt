@@ -39,7 +39,8 @@ fun generateTrees(n: Int): MutableList<TreeNode?> {
             /* Other Cases: put n on root.left, root.left.left, root.left....left,
              * the root of the new tree is still @node,
              * i put on insertParent.left,
-             * and the original left tree of the insertParent is set as the right subtree of the new node since i is small than values in the subtree.
+             * and the original left tree of the insertParent is set as the right subtree of the new node since i is
+             * small than values in the subtree.
              */
             var insertParent = node
             while (insertParent != null) {

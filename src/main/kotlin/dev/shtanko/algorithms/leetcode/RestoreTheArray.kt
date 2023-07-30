@@ -101,7 +101,8 @@ class RestoreTheArrayMemoization : RestoreTheArray {
 
     private fun dfs(s: String, k: Long, i: Int, dp: Array<Int?>): Int {
         if (i == s.length) return 1 // base case -> Found a valid way
-        if (s[i] == '0') return 0 // all numbers are in range [1, k] and there are no leading zeros -> So numbers starting with 0 mean invalid!
+        if (s[i] == '0') return 0 // all numbers are in range [1, k] and there are no leading zeros ->
+        // So numbers starting with 0 mean invalid!
         if (dp[i] != null) return dp[i] ?: -1
         var ans = 0
         var num: Long = 0

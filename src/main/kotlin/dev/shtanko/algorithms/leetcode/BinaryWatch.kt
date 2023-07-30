@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.Locale
+
 /**
  * Binary Watch
  * @link https://leetcode.com/problems/binary-watch/
@@ -29,7 +31,7 @@ object BinaryWatch {
         for (i in 0..SKIP_HOUR_1) {
             for (j in 0..SKIP_HOUR_2) {
                 if (Integer.bitCount(i) + Integer.bitCount(j) == num) {
-                    result.add(String.format("%d:%02d", i, j))
+                    result.add(String.format(Locale.getDefault(), "%d:%02d", i, j))
                 }
             }
         }

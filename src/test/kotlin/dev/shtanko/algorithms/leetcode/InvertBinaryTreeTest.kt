@@ -16,50 +16,61 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>(val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<TreeNode, List<List<Int>>>> = listOf(
-            TreeNode(4).apply {
-                left = TreeNode(2).apply {
-                    left = TreeNode(1)
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                TreeNode(4).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(1)
+                        right = TreeNode(3)
+                    }
+                    right = TreeNode(7).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(9)
+                    }
+                },
+                listOf(
+                    listOf(4),
+                    listOf(7, 2),
+                    listOf(9, 6, 3, 1),
+                ),
+            ),
+            Arguments.of(
+                TreeNode(4).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(7)
+                },
+                listOf(
+                    listOf(4),
+                    listOf(7, 2),
+                ),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
                     right = TreeNode(3)
-                }
-                right = TreeNode(7).apply {
-                    left = TreeNode(6)
-                    right = TreeNode(9)
-                }
-            } to listOf(
-                listOf(4),
-                listOf(7, 2),
-                listOf(9, 6, 3, 1),
-            ),
-            TreeNode(4).apply {
-                left = TreeNode(2)
-                right = TreeNode(7)
-            } to listOf(
-                listOf(4),
-                listOf(7, 2),
-            ),
-            TreeNode(1).apply {
-                left = TreeNode(2)
-                right = TreeNode(3)
-            } to listOf(
-                listOf(1),
-                listOf(3, 2),
+                },
+                listOf(
+                    listOf(1),
+                    listOf(3, 2),
+                ),
             ),
         )
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `invert binary tree test`(testCase: Pair<TreeNode, List<List<Int>>>) {
-        val (tree, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `invert binary tree test`(tree: TreeNode, expected: List<List<Int>>) {
         val invertedTree = strategy.perform(tree)
         val actual = invertedTree.levelOrder()
         assertEquals(expected, actual)
