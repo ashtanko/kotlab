@@ -58,20 +58,11 @@ jobs:
       - name: Jacoco test report
         run: ./gradlew jacocoTestReport
 
-      - name: Check build dirs
-        run: ls -la && ls -la build && ls -la build/reports && ls -la build/jacoco
-
       - name: Upload jacoco report
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
           path: "${{ github.workspace }}/**/build/reports/jacoco"
-
-      - name: Upload jacoco test exec file
-        uses: actions/upload-artifact@v3
-        with:
-          name: jacoco-test-exec-file
-          path: build/jacoco/test.exec
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.4
