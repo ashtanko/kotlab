@@ -1,6 +1,7 @@
 [versions]
 coroutines = "1.7.2"
-junit = "5.9.2"
+# https://junit.org/junit5/
+junit = "5.10.0-RC1"
 kotlin = "1.8.21"
 detekt = "1.23.0"
 dokka = "1.8.20"
