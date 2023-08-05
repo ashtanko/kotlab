@@ -19,11 +19,23 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.ceil
 import kotlin.math.floor
 
+/**
+ * Represents a node in a binary tree.
+ *
+ * @property value The value stored in the node.
+ * @property left The left child of the node.
+ * @property right The right child of the node.
+ */
 data class TreeNode(var value: Int) {
     var left: TreeNode? = null
     var right: TreeNode? = null
 }
 
+/**
+ * Creates a deep copy of the current binary tree.
+ *
+ * @return The cloned binary tree.
+ */
 fun TreeNode?.clone(): TreeNode? {
     if (this == null) return null
     val node = TreeNode(value)
@@ -32,6 +44,12 @@ fun TreeNode?.clone(): TreeNode? {
     return node
 }
 
+/**
+ * Creates a deep copy of the current binary tree with each node's value increased by a specified offset.
+ *
+ * @param offset The value to add to each node's value.
+ * @return The cloned binary tree with adjusted values.
+ */
 fun TreeNode?.clone(offset: Int): TreeNode? {
     if (this == null) {
         return null
@@ -43,7 +61,9 @@ fun TreeNode?.clone(offset: Int): TreeNode? {
 }
 
 /**
- * Print a tree
+ * Extension function to generate a pretty-printed representation of the binary tree.
+ *
+ * @return A string containing the pretty-printed binary tree.
  */
 fun TreeNode.prettyPrinted(): String {
     val lines: MutableList<List<String?>> = ArrayList()
@@ -137,7 +157,9 @@ fun TreeNode.prettyPrinted(): String {
 }
 
 /**
- * @return left height of the tree
+ * Extension function to calculate the height of the binary tree.
+ *
+ * @return The height of the binary tree. Returns -1 if the tree is empty.
  */
 fun TreeNode?.height(): Int {
     return if (this == null) -1 else 1 + this.left.height()
