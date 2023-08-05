@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class TreeNodeTest {
@@ -115,5 +116,71 @@ class TreeNodeTest {
             "   ┌──┘     \n" +
             "   9        \n"
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `clone single node test`() {
+        val original = TreeNode(5)
+        val cloned = original.clone()
+
+        Assertions.assertEquals(original.value, cloned?.value)
+        Assertions.assertEquals(original.left, cloned?.left)
+        Assertions.assertEquals(original.right, cloned?.right)
+    }
+
+    @Test
+    fun `clone tree test`() {
+        val original = TreeNode(1)
+        original.left = TreeNode(2)
+        original.right = TreeNode(3)
+        original.left?.left = TreeNode(4)
+        original.left?.right = TreeNode(5)
+        original.right?.left = TreeNode(6)
+        original.right?.right = TreeNode(7)
+
+        val cloned = original.clone()
+
+        assertTreesEqual(original, cloned)
+    }
+
+    @Test
+    fun `clone single node with offset test`() {
+        val original = TreeNode(5)
+        val offset = 10
+        val cloned = original.clone(offset)
+
+        Assertions.assertEquals(original.value + offset, cloned?.value)
+        Assertions.assertEquals(original.left, cloned?.left)
+        Assertions.assertEquals(original.right, cloned?.right)
+    }
+
+    @Test
+    fun `clone tree with offset test`() {
+        val original = TreeNode(1)
+        original.left = TreeNode(2)
+        original.right = TreeNode(3)
+        original.left?.left = TreeNode(4)
+        original.left?.right = TreeNode(5)
+        original.right?.left = TreeNode(6)
+        original.right?.right = TreeNode(7)
+        val offset = 10
+
+        val cloned = original.clone(offset)
+
+        assertTreesEqualWithOffset(original, cloned, offset)
+    }
+
+    private fun assertTreesEqual(expected: TreeNode?, actual: TreeNode?) {
+        if (expected == null && actual == null) return
+        Assertions.assertEquals(expected?.value, actual?.value)
+        assertTreesEqual(expected?.left, actual?.left)
+        assertTreesEqual(expected?.right, actual?.right)
+    }
+
+    private fun assertTreesEqualWithOffset(expected: TreeNode?, actual: TreeNode?, offset: Int) {
+        if (expected == null && actual == null) return
+        Assertions.assertEquals(expected?.value?.plus(offset), actual?.value)
+        assertTreesEqualWithOffset(expected?.left, actual?.left, offset)
+        assertTreesEqualWithOffset(expected?.right, actual?.right, offset)
     }
 }

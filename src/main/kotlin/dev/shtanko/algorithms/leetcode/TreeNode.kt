@@ -32,6 +32,16 @@ fun TreeNode?.clone(): TreeNode? {
     return node
 }
 
+fun TreeNode?.clone(offset: Int): TreeNode? {
+    if (this == null) {
+        return null
+    }
+    val clonedNode = TreeNode(this.value + offset)
+    clonedNode.left = this.left.clone(offset)
+    clonedNode.right = this.right.clone(offset)
+    return clonedNode
+}
+
 /**
  * Print a tree
  */
