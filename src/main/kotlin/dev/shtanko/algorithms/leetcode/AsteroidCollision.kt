@@ -37,7 +37,7 @@ class AsteroidCollisionStack : AsteroidCollision {
 
         for (asteroid in asteroids) {
             var flag = true
-            while (!st.isEmpty() && st.peek() > 0 && asteroid < 0) {
+            while (st.isNotEmpty() && st.peek() > 0 && asteroid < 0) {
                 // If the top asteroid in the stack is smaller, then it will explode.
                 // Hence, pop it from the stack, also continue with the next asteroid in the stack.
                 if (abs(st.peek()) < abs(asteroid)) {
