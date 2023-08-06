@@ -16,18 +16,21 @@
 
 package dev.shtanko.datastructures.graphs
 
+/**
+ * Represents a graph using an adjacency list data structure.
+ *
+ * @param <E> the type of data held in the graph's vertices, must be comparable.
+ */
 class AdjacencyListGraph<E : Comparable<E>>(vertices: List<Vertex<E>> = ArrayList()) {
 
     private val mVertices: MutableList<Vertex<E>> = vertices.toMutableList()
 
     /**
-     * this method removes an edge from the graph between two specified
-     * vertices
+     * Removes an edge between two vertices in the graph.
      *
-     * @param from the data of the vertex the edge is from
-     * @param to the data of the vertex the edge is going to
-     * @return returns false if the edge doesn't exist, returns true if the edge
-     * exists and is removed
+     * @param from the data of the source vertex.
+     * @param to   the data of the target vertex.
+     * @return true if the edge was removed, false otherwise.
      */
     fun removeEdge(from: E, to: E): Boolean {
         var fromV: Vertex<E>? = null
@@ -41,12 +44,11 @@ class AdjacencyListGraph<E : Comparable<E>>(vertices: List<Vertex<E>> = ArrayLis
     }
 
     /**
-     * this method adds an edge to the graph between two specified vertices
+     * Adds an edge between two vertices in the graph.
      *
-     * @param from the data of the vertex the edge is from
-     * @param to the data of the vertex the edge is going to
-     * @return returns true if the edge did not exist, return false if it
-     * already did
+     * @param from the data of the source vertex.
+     * @param to   the data of the target vertex.
+     * @return true if the edge was added, false otherwise.
      */
     fun addEdge(from: E, to: E): Boolean {
         var fromV: Vertex<E>? = null
@@ -72,6 +74,11 @@ class AdjacencyListGraph<E : Comparable<E>>(vertices: List<Vertex<E>> = ArrayLis
         return fromV.addAdjacentVertex(toV)
     }
 
+    /**
+     * Returns a string representation of the graph.
+     *
+     * @return a string representing the graph's vertices and their adjacent vertices.
+     */
     override fun toString(): String {
         val sb = StringBuilder()
         for ((data, adjacentVertices) in mVertices) {
@@ -88,11 +95,22 @@ class AdjacencyListGraph<E : Comparable<E>>(vertices: List<Vertex<E>> = ArrayLis
         return sb.toString()
     }
 
+    /**
+     * Represents a vertex in the graph.
+     *
+     * @param <E> the type of data held in the vertex, must be comparable.
+     */
     data class Vertex<E : Comparable<E>>(
         var data: E,
         var adjacentVertices: MutableList<Vertex<E>> = ArrayList(),
     ) {
 
+        /**
+         * Adds an adjacent vertex to this vertex.
+         *
+         * @param to the vertex to be added as an adjacent vertex.
+         * @return true if the vertex was added, false if the edge already exists.
+         */
         fun addAdjacentVertex(to: Vertex<E>): Boolean {
             for (v in adjacentVertices) {
                 if (v.data.compareTo(to.data) == 0) {
@@ -102,6 +120,12 @@ class AdjacencyListGraph<E : Comparable<E>>(vertices: List<Vertex<E>> = ArrayLis
             return adjacentVertices.add(to) // this will return true;
         }
 
+        /**
+         * Removes an adjacent vertex from this vertex.
+         *
+         * @param to the data of the vertex to be removed.
+         * @return true if the vertex was removed, false if it was not found.
+         */
         fun removeAdjacentVertex(to: E): Boolean {
             // use indexes here, so it is possible to
             // remove easily without implementing

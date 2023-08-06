@@ -18,6 +18,11 @@ package dev.shtanko.ext
 
 import java.math.BigInteger
 
+/**
+ * Calculates the sum of all elements in the iterable collection.
+ *
+ * @return The sum of all elements in the iterable collection.
+ */
 fun Iterable<BigInteger>.sum(): BigInteger {
     var sum: BigInteger = BigInteger.ZERO
     for (element in this) {

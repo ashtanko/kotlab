@@ -18,6 +18,12 @@ package dev.shtanko.kotlinlang.collections
 
 import dev.shtanko.algorithms.extensions.isEven
 
+/**
+ * Retrieves the first element from a list after applying a series of transformations.
+ *
+ * @param list The input list of integers.
+ * @return A [Triple] containing the counts of map, filter, and forEach operations performed.
+ */
 fun getFirstFromList(list: IntRange): Triple<Int, Int, Int> {
     var mapCount = 0
     var filterCount = 0
@@ -30,6 +36,12 @@ fun getFirstFromList(list: IntRange): Triple<Int, Int, Int> {
     return Triple(mapCount, filterCount, forEachCount)
 }
 
+/**
+ * Retrieves the first element from a sequence after applying a series of transformations.
+ *
+ * @param sequence The input sequence of integers.
+ * @return A [Triple] containing the counts of map, filter, and forEach operations performed.
+ */
 fun getFirstFromSequence(sequence: Sequence<Int>): Triple<Int, Int, Int> {
     var mapCount = 0
     var filterCount = 0
