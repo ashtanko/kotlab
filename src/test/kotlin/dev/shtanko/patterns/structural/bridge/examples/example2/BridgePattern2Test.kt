@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class BridgePatternTest {
+class BridgePattern2Test {
     private val originalOut = System.out
     private val outputStream = ByteArrayOutputStream()
 
