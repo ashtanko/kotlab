@@ -33,6 +33,29 @@ abstract class SimilarStringGroupsTest<out T : SimilarStringGroups>(private val 
             Arguments.of(arrayOf("one"), 1),
             Arguments.of(arrayOf("tars", "rats", "arts", "star"), 2),
             Arguments.of(arrayOf("omv", "ovm"), 1),
+            Arguments.of(arrayOf("abc", "bac", "cab", "xyz", "yzx", "zxy"), 4),
+            Arguments.of(arrayOf("abc", "bac", "cab", "xyz", "yzx", "zxy", "def", "edf", "fde"), 5),
+            Arguments.of(
+                arrayOf("abc", "bad", "cda", "xyz", "yzx", "zxy"),
+                6,
+            ),
+            Arguments.of(
+                arrayOf("abc", "abc", "abc", "xyz", "xyz", "xyz"),
+                2,
+            ),
+            Arguments.of(
+                arrayOf("abcdefghijklmnopqrstuvwxyza", "bcdefghijklmnopqrstuvwxyzab", "cdefghijklmnopqrstuvwxyzabc"),
+                3,
+            ),
+            Arguments.of(
+                arrayOf(
+                    "abc",
+                    "bcdefghijklmnopqrstuvwxyzab",
+                    "cdefghijklmnopqrstuvwxyzabc",
+                    "defghijklmnopqrstuvwxyzabcd",
+                ),
+                4,
+            ),
         )
     }
 
