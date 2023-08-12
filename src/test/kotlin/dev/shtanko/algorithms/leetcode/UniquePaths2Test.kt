@@ -120,3 +120,4 @@ abstract class UniquePaths2Test<out T : UniquePaths2>(private val strategy: T) {
 }
 
 class UniquePaths2DPTest : UniquePaths2Test<UniquePaths2DP>(UniquePaths2DP())
+class UniquePaths2ShortTest : UniquePaths2Test<UniquePaths2DP>(UniquePaths2DP())
