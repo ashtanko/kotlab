@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * Triangle
- * @link https://leetcode.com/problems/triangle/
+ * @see <a href="https://leetcode.com/problems/triangle/">leetcode page</a>
  */
 interface Triangle {
     fun perform(triangle: List<List<Int>>): Int

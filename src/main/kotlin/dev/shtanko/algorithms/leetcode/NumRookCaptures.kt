@@ -23,7 +23,7 @@ private const val BOARD_MAX_SIZE = 8
 
 /**
  * 999. Available Captures for Rook
- * @link https://leetcode.com/problems/available-captures-for-rook/
+ * @see <a href="https://leetcode.com/problems/available-captures-for-rook/">leetcode page</a>
  */
 interface NumRookCaptures {
     fun perform(board: Array<CharArray>): Int

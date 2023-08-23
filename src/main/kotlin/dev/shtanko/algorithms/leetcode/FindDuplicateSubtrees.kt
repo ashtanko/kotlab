@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 652. Find Duplicate Subtrees
- * @link https://leetcode.com/problems/find-duplicate-subtrees/
+ * @see <a href="https://leetcode.com/problems/find-duplicate-subtrees/">leetcode page</a>
  */
 interface FindDuplicateSubtrees {
     fun perform(root: TreeNode): List<TreeNode>

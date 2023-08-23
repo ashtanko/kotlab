@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 1818. Minimum Absolute Sum Difference
- * @link https://leetcode.com/problems/minimum-absolute-sum-difference/
+ * @see <a href="https://leetcode.com/problems/minimum-absolute-sum-difference/">leetcode page</a>
  */
 fun interface MinAbsoluteSumDiff {
     fun perform(nums1: IntArray, nums2: IntArray): Int

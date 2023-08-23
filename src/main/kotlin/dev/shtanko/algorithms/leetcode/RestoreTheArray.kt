@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1416. Restore The Array
- * @link https://leetcode.com/problems/restore-the-array/
+ * @see <a href="https://leetcode.com/problems/restore-the-array/">leetcode page</a>
  */
 interface RestoreTheArray {
     fun numberOfArrays(s: String, k: Int): Int

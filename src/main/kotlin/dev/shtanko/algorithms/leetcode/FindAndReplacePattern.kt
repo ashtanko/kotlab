@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Find and Replace Pattern
- * @link https://leetcode.com/problems/find-and-replace-pattern/
+ * @see <a href="https://leetcode.com/problems/find-and-replace-pattern/">leetcode page</a>
  */
 interface FindAndReplacePattern {
     fun perform(words: Array<String>, pattern: String): List<String>

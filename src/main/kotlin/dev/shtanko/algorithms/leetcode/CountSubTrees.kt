@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1519. Number of Nodes in the Sub-Tree With the Same Label
- * @link https://leetcode.com/problems/number-of-nodes-in-the-sub-tree-with-the-same-label/
+ * @see <a href="https://leetcode.com/problems/number-of-nodes-in-the-sub-tree-with-the-same-label/">leetcode page</a>
  */
 interface CountSubTrees {
     fun perform(n: Int, edges: Array<IntArray>, labels: String): IntArray

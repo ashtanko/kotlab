@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * Put Boxes Into the Warehouse I
- * @link https://leetcode.com/problems/put-boxes-into-the-warehouse-i/solution/
+ * @see <a href="https://leetcode.com/problems/put-boxes-into-the-warehouse-i/solution/">leetcode page</a>
  */
 interface MaxBoxesInWarehouse {
     fun perform(boxes: IntArray, warehouse: IntArray): Int

@@ -22,7 +22,7 @@ import java.util.Queue
 
 /**
  * 1514. Path with Maximum Probability
- * @link https://leetcode.com/problems/path-with-maximum-probability/
+ * @see <a href="https://leetcode.com/problems/path-with-maximum-probability/">leetcode page</a>
  */
 interface MaxProbability {
     fun perform(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double

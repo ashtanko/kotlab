@@ -20,7 +20,7 @@ import java.util.ArrayDeque
 import java.util.Deque
 
 /**
- * @link https://leetcode.com/problems/deepest-leaves-sum/solution/
+ * @see <a href="https://leetcode.com/problems/deepest-leaves-sum/solution/">leetcode page</a>
  */
 interface DeepestLeavesSum {
     fun perform(root: TreeNode): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1301. Number of Paths with Max Score
- * @link https://leetcode.com/problems/number-of-paths-with-max-score/
+ * @see <a href="https://leetcode.com/problems/number-of-paths-with-max-score/">leetcode page</a>
  */
 interface PathsWithMaxScore {
     fun perform(board: List<String>): IntArray

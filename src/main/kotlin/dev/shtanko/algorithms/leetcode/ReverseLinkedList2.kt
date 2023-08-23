@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 92. Reverse Linked List II
- * @link https://leetcode.com/problems/reverse-linked-list-ii/
+ * @see <a href="https://leetcode.com/problems/reverse-linked-list-ii/">leetcode page</a>
  */
 interface ReverseLinkedList2 {
     fun reverseBetween(head: ListNode?, left: Int, right: Int): ListNode?

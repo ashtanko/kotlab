@@ -28,7 +28,7 @@ private const val GHI = "GHI"
 
 /**
  * Multibindings
- * @link https://dagger.dev/dev-guide/multibindings
+ * @see <a href="https://dagger.dev/dev-guide/multibindings">leetcode page</a>
  */
 @Component(modules = [ModuleA::class, ModuleB::class])
 interface MComponent {

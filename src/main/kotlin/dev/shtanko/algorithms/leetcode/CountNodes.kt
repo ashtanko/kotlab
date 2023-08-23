@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 222. Count Complete Tree Nodes
- * @link https://leetcode.com/problems/count-complete-tree-nodes/
+ * @see <a href="https://leetcode.com/problems/count-complete-tree-nodes/">leetcode page</a>
  */
 fun interface CountNodes {
     fun perform(root: TreeNode?): Int

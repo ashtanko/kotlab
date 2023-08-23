@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1397. Find All Good Strings
- * @link https://leetcode.com/problems/find-all-good-strings/
+ * @see <a href="https://leetcode.com/problems/find-all-good-strings/">leetcode page</a>
  */
 interface FindGoodStrings {
     fun perform(n: Int, s1: String, s2: String, evil: String): Int

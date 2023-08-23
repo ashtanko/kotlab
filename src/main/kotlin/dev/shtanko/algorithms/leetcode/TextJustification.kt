@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 68. Text Justification
- * @link https://leetcode.com/problems/text-justification/
+ * @see <a href="https://leetcode.com/problems/text-justification/">leetcode page</a>
  */
 interface TextJustification {
     fun perform(words: Array<String>, maxWidth: Int): List<String>

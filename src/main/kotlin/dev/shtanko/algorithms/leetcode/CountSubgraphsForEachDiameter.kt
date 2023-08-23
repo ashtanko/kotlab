@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1617. Count Subtrees With Max Distance Between Cities
- * @link https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/
+ * @see <a href="https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/">leetcode page</a>
  */
 interface CountSubgraphsForEachDiameter {
     fun perform(n: Int, edges: Array<IntArray>): IntArray

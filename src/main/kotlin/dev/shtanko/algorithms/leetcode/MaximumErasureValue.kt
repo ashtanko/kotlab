@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * Maximum Erasure Value
- * @link https://leetcode.com/problems/maximum-erasure-value/
+ * @see <a href="https://leetcode.com/problems/maximum-erasure-value/">leetcode page</a>
  */
 interface MaximumErasureValue {
     fun maximumUniqueSubarray(nums: IntArray): Int

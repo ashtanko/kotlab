@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1816. Truncate Sentence
- * @link https://leetcode.com/problems/truncate-sentence/
+ * @see <a href="https://leetcode.com/problems/truncate-sentence/">leetcode page</a>
  */
 interface TruncateSentence {
     fun perform(s: String, k: Int): String

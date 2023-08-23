@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 86. Partition List
- * @link https://leetcode.com/problems/partition-list/description/
+ * @see <a href="https://leetcode.com/problems/partition-list/description/">leetcode page</a>
  */
 fun interface PartitionList {
     operator fun invoke(head: ListNode?, x: Int): ListNode?

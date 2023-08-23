@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 886. Possible Bipartition
- * @link https://leetcode.com/problems/possible-bipartition/description/
+ * @see <a href="https://leetcode.com/problems/possible-bipartition/description/">leetcode page</a>
  */
 interface PossibleBipartition {
     fun perform(n: Int, dislikes: Array<IntArray>): Boolean

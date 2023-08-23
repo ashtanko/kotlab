@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1824. Minimum Sideway Jumps
- * @link https://leetcode.com/problems/minimum-sideway-jumps/
+ * @see <a href="https://leetcode.com/problems/minimum-sideway-jumps/">leetcode page</a>
  */
 interface MinimumSidewayJumps {
     fun perform(obstacles: IntArray): Int

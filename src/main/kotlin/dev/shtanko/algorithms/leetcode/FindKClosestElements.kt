@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 658. Find K Closest Elements
- * @link https://leetcode.com/problems/find-k-closest-elements/
+ * @see <a href="https://leetcode.com/problems/find-k-closest-elements/">leetcode page</a>
  */
 object FindKClosestElements {
 

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1814. Count Nice Pairs in an Array
- * @link https://leetcode.com/problems/count-nice-pairs-in-an-array/description/
+ * @see <a href="https://leetcode.com/problems/count-nice-pairs-in-an-array/description/">leetcode page</a>
  */
 interface CountNicePairs {
     fun perform(nums: IntArray): Int

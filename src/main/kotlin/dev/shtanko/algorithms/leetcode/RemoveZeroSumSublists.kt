@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1171. Remove Zero Sum Consecutive Nodes from Linked List
- * @link https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/
+ * @see <a href="https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/">leetcode page</a>
  */
 fun interface RemoveZeroSumSublists {
     operator fun invoke(head: ListNode?): ListNode?

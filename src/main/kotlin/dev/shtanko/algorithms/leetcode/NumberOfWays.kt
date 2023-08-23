@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2147. Number of Ways to Divide a Long Corridor
- * @link https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/
+ * @see <a href="https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/">leetcode page</a>
  */
 interface NumberOfWays {
     fun perform(corridor: String): Int

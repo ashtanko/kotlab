@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1719. Number Of Ways To Reconstruct A Tree
- * @link https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/
+ * @see <a href="https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/">leetcode page</a>
  */
 interface CheckWays {
     fun perform(pairs: Array<IntArray>): Int

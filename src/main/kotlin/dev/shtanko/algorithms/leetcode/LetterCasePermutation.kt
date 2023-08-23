@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 784. Letter Case Permutation
- * @link https://leetcode.com/problems/letter-case-permutation/
+ * @see <a href="https://leetcode.com/problems/letter-case-permutation/">leetcode page</a>
  */
 fun interface LetterCasePermutation {
     fun perform(s: String): List<String>

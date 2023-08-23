@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 958. Check Completeness of a Binary Tree
- * @link https://leetcode.com/problems/check-completeness-of-a-binary-tree/
+ * @see <a href="https://leetcode.com/problems/check-completeness-of-a-binary-tree/">leetcode page</a>
  */
 interface CheckCompletenessOfBinaryTree {
     fun isCompleteTree(root: TreeNode?): Boolean

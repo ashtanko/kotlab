@@ -20,7 +20,7 @@ import java.util.Locale
 
 /**
  * Binary Watch
- * @link https://leetcode.com/problems/binary-watch/
+ * @see <a href="https://leetcode.com/problems/binary-watch/">leetcode page</a>
  */
 object BinaryWatch {
     private const val SKIP_HOUR_1 = 11

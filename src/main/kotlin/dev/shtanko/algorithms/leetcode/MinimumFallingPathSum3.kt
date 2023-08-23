@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1289. Minimum Falling Path Sum II
- * @link https://leetcode.com/problems/minimum-falling-path-sum-ii/
+ * @see <a href="https://leetcode.com/problems/minimum-falling-path-sum-ii/">leetcode page</a>
  */
 interface MinimumFallingPathSum3 {
     fun minFallingPathSum(grid: Array<IntArray>): Int

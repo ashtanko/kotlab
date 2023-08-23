@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 2188. Minimum Time to Finish the Race
- * @link https://leetcode.com/problems/minimum-time-to-finish-the-race/
+ * @see <a href="https://leetcode.com/problems/minimum-time-to-finish-the-race/">leetcode page</a>
  */
 interface MinimumFinishTime {
     fun perform(tires: Array<IntArray>, changeTime: Int, numLaps: Int): Int

@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 3. Longest Substring Without Repeating Characters
- * @link https://leetcode.com/problems/longest-substring-without-repeating-characters/
+ * @see <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">leetcode page</a>
  */
 interface LengthOfLongestSubstring {
     fun perform(s: String): Int

@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 583. Delete Operation for Two Strings
- * @link https://leetcode.com/problems/delete-operation-for-two-strings/
+ * @see <a href="https://leetcode.com/problems/delete-operation-for-two-strings/">leetcode page</a>
  */
 interface MinDistance {
     fun perform(word1: String, word2: String): Int

@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 1020. Number of Enclaves
- * @link https://leetcode.com/problems/number-of-enclaves/
+ * @see <a href="https://leetcode.com/problems/number-of-enclaves/">leetcode page</a>
  */
 fun interface NumberOfEnclaves {
     fun invoke(grid: Array<IntArray>): Int

@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.extensions.swap
 
 /**
  * Implementation of Shell Sort
- * @link https://en.wikipedia.org/wiki/Shellsort
+ * @see <a href="https://en.wikipedia.org/wiki/Shellsort">leetcode page</a>
  * Best complexity: O(n log n)
  * Average complexity: O(n^4/3)
  * Worst complexity: O(n^4/3)

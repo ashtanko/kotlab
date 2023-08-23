@@ -21,7 +21,8 @@ import kotlin.math.min
 
 /**
  * 1981. Minimize the Difference Between Target and Chosen Elements
- * @link https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/
+ * @see <a href="https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements">
+ *     leetcode page</a>
  */
 interface MinimizeTheDifference {
     fun perform(mat: Array<IntArray>, target: Int): Int

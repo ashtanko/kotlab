@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1685. Sum of Absolute Differences in a Sorted Array
- * @link https://leetcode.com/problems/sum-of-absolute-differences-in-a-sorted-array/
+ * @see <a href="https://leetcode.com/problems/sum-of-absolute-differences-in-a-sorted-array/">leetcode page</a>
  */
 interface GetSumAbsoluteDifferences {
     fun perform(nums: IntArray): IntArray

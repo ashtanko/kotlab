@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1923. Longest Common Subpath
- * @link https://leetcode.com/problems/longest-common-subpath/description/
+ * @see <a href="https://leetcode.com/problems/longest-common-subpath/description/">leetcode page</a>
  */
 fun interface LongestCommonSubPath {
     fun perform(n: Int, paths: Array<IntArray>): Int

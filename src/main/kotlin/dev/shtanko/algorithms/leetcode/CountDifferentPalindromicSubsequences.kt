@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 730. Count Different Palindromic Subsequences
- * @link https://leetcode.com/problems/count-different-palindromic-subsequences/
+ * @see <a href="https://leetcode.com/problems/count-different-palindromic-subsequences/">leetcode page</a>
  */
 interface CountDifferentPalindromicSubsequences {
     fun countPalindromicSubsequences(s: String): Int

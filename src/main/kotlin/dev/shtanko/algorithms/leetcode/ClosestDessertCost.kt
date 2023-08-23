@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 /**
  * 1774. Closest Dessert Cost
- * @link https://leetcode.com/problems/closest-dessert-cost/
+ * @see <a href="https://leetcode.com/problems/closest-dessert-cost/">leetcode page</a>
  */
 interface ClosestDessertCost {
     fun perform(baseCosts: IntArray, toppingCosts: IntArray, target: Int): Int

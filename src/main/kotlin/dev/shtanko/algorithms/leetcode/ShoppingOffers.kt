@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 638. Shopping Offers
- * @link https://leetcode.com/problems/shopping-offers/
+ * @see <a href="https://leetcode.com/problems/shopping-offers/">leetcode page</a>
  */
 interface ShoppingOffers {
     fun perform(price: List<Int>, special: List<List<Int>>, needs: List<Int>): Int

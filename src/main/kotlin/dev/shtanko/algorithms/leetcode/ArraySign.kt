@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1822. Sign of the Product of an Array
- * @link https://leetcode.com/problems/sign-of-the-product-of-an-array/
+ * @see <a href="https://leetcode.com/problems/sign-of-the-product-of-an-array/">leetcode page</a>
  */
 interface ArraySign {
     fun perform(nums: IntArray): Int

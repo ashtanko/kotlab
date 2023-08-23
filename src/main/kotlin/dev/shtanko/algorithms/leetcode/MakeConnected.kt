@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 1319. Number of Operations to Make Network Connected
- * @link https://leetcode.com/problems/number-of-operations-to-make-network-connected/
+ * @see <a href="https://leetcode.com/problems/number-of-operations-to-make-network-connected/">leetcode page</a>
  */
 interface MakeConnected {
     fun perform(n: Int, connections: Array<IntArray>): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Find the Town Judge.
- * @link https://leetcode.com/problems/find-the-town-judge/
+ * @see <a href="https://leetcode.com/problems/find-the-town-judge/">leetcode page</a>
  */
 interface FindJudge {
     fun perform(n: Int, trust: Array<IntArray>): Int

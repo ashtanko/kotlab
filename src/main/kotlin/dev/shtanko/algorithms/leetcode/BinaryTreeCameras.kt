@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 968. Binary Tree Cameras
- * @link https://leetcode.com/problems/binary-tree-cameras/
+ * @see <a href="https://leetcode.com/problems/binary-tree-cameras/">leetcode page</a>
  */
 interface BinaryTreeCamerasStrategy {
 

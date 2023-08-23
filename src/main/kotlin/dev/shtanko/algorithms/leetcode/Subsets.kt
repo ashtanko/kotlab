@@ -20,7 +20,7 @@ import kotlin.math.pow
 
 /**
  * 78. Subsets
- * @link https://leetcode.com/problems/subsets/
+ * @see <a href="https://leetcode.com/problems/subsets/">leetcode page</a>
  */
 fun interface Subsets {
     fun perform(nums: IntArray): List<List<Int>>

@@ -18,7 +18,8 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1456. Maximum Number of Vowels in a Substring of Given Length
- * @link https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/
+ * @see <a href="https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length">
+ *     leetcode page</a>
  */
 interface MaxVowels {
     fun perform(s: String, k: Int): Int

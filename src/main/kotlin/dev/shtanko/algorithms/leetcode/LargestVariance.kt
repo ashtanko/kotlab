@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 2272. Substring With Largest Variance
- * @link https://leetcode.com/problems/substring-with-largest-variance/
+ * @see <a href="https://leetcode.com/problems/substring-with-largest-variance/">leetcode page</a>
  */
 interface LargestVariance {
     fun perform(s: String): Int

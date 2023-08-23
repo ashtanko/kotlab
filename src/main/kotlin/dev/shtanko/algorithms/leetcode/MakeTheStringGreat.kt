@@ -21,7 +21,7 @@ import kotlin.math.abs
 
 /**
  * Make The String Great.
- * @link https://leetcode.com/problems/make-the-string-great/
+ * @see <a href="https://leetcode.com/problems/make-the-string-great/">leetcode page</a>
  */
 fun interface MakeTheStringGreat {
     fun perform(s: String): String

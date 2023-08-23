@@ -18,7 +18,8 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1689. Partitioning Into Minimum Number Of Deci-Binary Numbers
- * @link https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/
+ * @see <a href="https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers">
+ *     leetcode page</a>
  */
 fun String.minPartitions(): Int {
     var maximum = 0

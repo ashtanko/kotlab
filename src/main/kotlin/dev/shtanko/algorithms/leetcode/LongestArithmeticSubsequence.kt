@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1027. Longest Arithmetic Subsequence
- * @link https://leetcode.com/problems/longest-arithmetic-subsequence/
+ * @see <a href="https://leetcode.com/problems/longest-arithmetic-subsequence/">leetcode page</a>
  */
 interface LongestArithmeticSubsequence {
     fun longestArithSeqLength(nums: IntArray): Int

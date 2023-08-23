@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 389. Find the Difference
- * @link https://leetcode.com/problems/find-the-difference/
+ * @see <a href="https://leetcode.com/problems/find-the-difference/">leetcode page</a>
  */
 interface FindDifference {
     fun perform(s: String, t: String): Char

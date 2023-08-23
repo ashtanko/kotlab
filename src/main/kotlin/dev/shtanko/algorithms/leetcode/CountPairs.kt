@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1711. Count Good Meals
- * @link https://leetcode.com/problems/count-good-meals/
+ * @see <a href="https://leetcode.com/problems/count-good-meals/">leetcode page</a>
  */
 interface CountPairs {
     fun perform(deliciousness: IntArray): Int

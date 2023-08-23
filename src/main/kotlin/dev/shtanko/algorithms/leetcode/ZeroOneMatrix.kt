@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 542. 01 Matrix
- * @link https://leetcode.com/problems/01-matrix/
+ * @see <a href="https://leetcode.com/problems/01-matrix/">leetcode page</a>
  */
 interface ZeroOneMatrix {
     fun updateMatrix(mat: Array<IntArray>): Array<IntArray>

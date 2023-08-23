@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 518. Coin Change II
- * @link https://leetcode.com/problems/coin-change-ii/
+ * @see <a href="https://leetcode.com/problems/coin-change-ii/">leetcode page</a>
  */
 interface CoinChange2 {
     fun change(amount: Int, coins: IntArray): Int

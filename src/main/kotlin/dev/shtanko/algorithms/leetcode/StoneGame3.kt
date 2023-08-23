@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1406. Stone Game III
- * @link https://leetcode.com/problems/stone-game-iii/
+ * @see <a href="https://leetcode.com/problems/stone-game-iii/">leetcode page</a>
  */
 interface StoneGame3 {
     fun perform(stoneValue: IntArray): String

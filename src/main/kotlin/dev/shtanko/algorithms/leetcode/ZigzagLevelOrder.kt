@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 103. Binary Tree Zigzag Level Order Traversal
- * @link https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+ * @see <a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/">leetcode page</a>
  */
 interface ZigzagLevelOrder {
     fun perform(root: TreeNode?): List<List<Int>>

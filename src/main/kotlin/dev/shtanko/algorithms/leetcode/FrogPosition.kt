@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 1377. Frog Position After T Seconds
- * @link https://leetcode.com/problems/frog-position-after-t-seconds/
+ * @see <a href="https://leetcode.com/problems/frog-position-after-t-seconds/">leetcode page</a>
  */
 interface FrogPosition {
     fun proceed(n: Int, edges: Array<IntArray>, t: Int, target: Int): Double

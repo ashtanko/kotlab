@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Unique Paths II
- * @link https://leetcode.com/problems/unique-paths-ii/
+ * @see <a href="https://leetcode.com/problems/unique-paths-ii/">leetcode page</a>
  */
 interface UniquePaths2 {
     /**

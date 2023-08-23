@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1547. Minimum Cost to Cut a Stick
- * @link https://leetcode.com/problems/minimum-cost-to-cut-a-stick/description/
+ * @see <a href="https://leetcode.com/problems/minimum-cost-to-cut-a-stick/description/">leetcode page</a>
  */
 interface MinimumCostToCutStick {
     fun minCost(n: Int, cuts: IntArray): Int

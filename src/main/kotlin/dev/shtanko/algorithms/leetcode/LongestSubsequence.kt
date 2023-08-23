@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1218. Longest Arithmetic Subsequence of Given Difference
- * @link https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/
+ * @see <a href="https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/">leetcode page</a>
  */
 interface LongestSubsequence {
     fun perform(arr: IntArray, difference: Int): Int

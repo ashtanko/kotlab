@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 1926. Nearest Exit from Entrance in Maze
- * @link https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
+ * @see <a href="https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/">leetcode page</a>
  */
 fun interface NearestExit {
     fun perform(maze: Array<CharArray>, entrance: IntArray): Int

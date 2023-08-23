@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.extensions.isEven
 
 /**
  * 1523. Count Odd Numbers in an Interval Range
- * @link https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/
+ * @see <a href="https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/">leetcode page</a>
  */
 object CountOdds {
     fun perform(low: Int, high: Int): Int {

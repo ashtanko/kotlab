@@ -22,7 +22,7 @@ import java.util.Random
 
 /**
  * 347. Top K Frequent Elements
- * @link https://leetcode.com/problems/top-k-frequent-elements/
+ * @see <a href="https://leetcode.com/problems/top-k-frequent-elements/">leetcode page</a>
  */
 interface TopKFrequentElements {
     fun topKFrequent(nums: IntArray, k: Int): IntArray

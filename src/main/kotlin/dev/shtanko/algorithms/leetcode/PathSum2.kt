@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 113. Path Sum II
- * @link https://leetcode.com/problems/path-sum-ii/
+ * @see <a href="https://leetcode.com/problems/path-sum-ii/">leetcode page</a>
  */
 interface PathSum2 {
     fun perform(root: TreeNode?, targetSum: Int): List<List<Int>>

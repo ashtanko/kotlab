@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1444. Number of Ways of Cutting a Pizza
- * @link https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/
+ * @see <a href="https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/">leetcode page</a>
  */
 interface NumberOfWaysOfCuttingPizza {
     fun ways(pizza: Array<String>, k: Int): Int

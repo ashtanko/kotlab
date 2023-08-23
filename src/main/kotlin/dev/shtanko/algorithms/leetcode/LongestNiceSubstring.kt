@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1763. Longest Nice Substring
- * @link https://leetcode.com/problems/longest-nice-substring/
+ * @see <a href="https://leetcode.com/problems/longest-nice-substring/">leetcode page</a>
  */
 interface LongestNiceSubstring {
     fun perform(s: String): String

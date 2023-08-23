@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 1036. Escape a Large Maze
- * @link https://leetcode.com/problems/escape-a-large-maze/description/
+ * @see <a href="https://leetcode.com/problems/escape-a-large-maze/description/">leetcode page</a>
  */
 interface EscapeLargeMaze {
     fun isEscapePossible(blocked: Array<IntArray>, source: IntArray, target: IntArray): Boolean

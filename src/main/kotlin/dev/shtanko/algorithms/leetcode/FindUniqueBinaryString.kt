@@ -21,7 +21,7 @@ import java.util.stream.IntStream
 
 /**
  * 1980. Find Unique Binary String
- * @link https://leetcode.com/problems/find-unique-binary-string/
+ * @see <a href="https://leetcode.com/problems/find-unique-binary-string/">leetcode page</a>
  */
 interface FindUniqueBinaryString {
     fun perform(nums: Array<String>): String

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * N-Repeated Element in Size 2N Array
- * @link https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
+ * @see <a href="https://leetcode.com/problems/n-repeated-element-in-size-2n-array/">leetcode page</a>
  */
 interface RepeatedNTimes {
     fun perform(arr: IntArray): Int

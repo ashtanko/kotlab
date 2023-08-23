@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2369. Check if There is a Valid Partition For The Array
- * @link https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
+ * @see <a href="https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/">leetcode page</a>
  */
 fun interface ValidPartition {
     operator fun invoke(nums: IntArray): Boolean

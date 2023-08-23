@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 77. Combinations
- * @link https://leetcode.com/problems/combinations/
+ * @see <a href="https://leetcode.com/problems/combinations/">leetcode page</a>
  */
 fun interface Combinations {
     fun combine(n: Int, k: Int): List<List<Int>>

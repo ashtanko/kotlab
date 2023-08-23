@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2405. Optimal Partition of String
- * @link https://leetcode.com/problems/optimal-partition-of-string/
+ * @see <a href="https://leetcode.com/problems/optimal-partition-of-string/">leetcode page</a>
  */
 interface PartitionString {
     fun perform(s: String): Int

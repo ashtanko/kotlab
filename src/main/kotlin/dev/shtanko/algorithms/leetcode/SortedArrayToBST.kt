@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 108. Convert Sorted Array to Binary Search Tree
- * @link https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+ * @see <a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/">leetcode page</a>
  */
 interface SortedArrayToBST {
     fun perform(nums: IntArray): TreeNode?

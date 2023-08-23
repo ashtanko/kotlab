@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 131. Palindrome Partitioning
- * @link https://leetcode.com/problems/palindrome-partitioning/
+ * @see <a href="https://leetcode.com/problems/palindrome-partitioning/">leetcode page</a>
  */
 interface PalindromePartitioning {
     fun perform(s: String): List<List<String>>

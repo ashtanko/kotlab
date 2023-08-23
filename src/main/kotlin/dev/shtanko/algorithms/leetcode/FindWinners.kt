@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2225. Find Players With Zero or One Losses
- * @link https://leetcode.com/problems/find-players-with-zero-or-one-losses/
+ * @see <a href="https://leetcode.com/problems/find-players-with-zero-or-one-losses/">leetcode page</a>
  */
 fun interface FindWinners {
     fun perform(matches: Array<IntArray>): List<List<Int>>

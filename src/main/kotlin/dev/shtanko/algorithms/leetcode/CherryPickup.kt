@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 741. Cherry Pickup
- * @link https://leetcode.com/problems/cherry-pickup/
+ * @see <a href="https://leetcode.com/problems/cherry-pickup/">leetcode page</a>
  */
 interface CherryPickup {
     fun perform(grid: Array<IntArray>): Int

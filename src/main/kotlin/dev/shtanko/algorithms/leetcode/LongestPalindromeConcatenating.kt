@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 2131. Longest Palindrome by Concatenating Two-Letter Words
- * @link https://leetcode.com/problems/longest-palindrome-by-concatenating-two-letter-words/
+ * @see <a href="https://leetcode.com/problems/longest-palindrome-by-concatenating-two-letter-words/">leetcode page</a>
  */
 fun interface LongestPalindromeConcatenating {
     fun longestPalindrome(words: Array<String>): Int

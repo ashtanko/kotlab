@@ -23,7 +23,7 @@ import kotlin.math.max
 
 /**
  * 2101. Detonate the Maximum Bombs
- * @link https://leetcode.com/problems/detonate-the-maximum-bombs/
+ * @see <a href="https://leetcode.com/problems/detonate-the-maximum-bombs/">leetcode page</a>
  */
 interface MaxDetonation {
     fun maximumDetonation(bombs: Array<IntArray>): Int

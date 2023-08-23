@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 2289. Steps to Make Array Non-decreasing
- * @link https://leetcode.com/problems/steps-to-make-array-non-decreasing/
+ * @see <a href="https://leetcode.com/problems/steps-to-make-array-non-decreasing/">leetcode page</a>
  */
 interface TotalSteps {
     fun perform(nums: IntArray): Int

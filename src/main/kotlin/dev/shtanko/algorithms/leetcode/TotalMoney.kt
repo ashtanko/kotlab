@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1716. Calculate Money in Leetcode Bank
- * @link https://leetcode.com/problems/calculate-money-in-leetcode-bank/
+ * @see <a href="https://leetcode.com/problems/calculate-money-in-leetcode-bank/">leetcode page</a>
  */
 object TotalMoney {
 

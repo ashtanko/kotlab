@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 974. Subarray Sums Divisible by K
- * @link https://leetcode.com/problems/subarray-sums-divisible-by-k/
+ * @see <a href="https://leetcode.com/problems/subarray-sums-divisible-by-k/">leetcode page</a>
  */
 interface SubarraysDivByK {
     fun perform(nums: IntArray, k: Int): Int

@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.math.gcd
 
 /**
  * 1071. Greatest Common Divisor of Strings
- * @link https://leetcode.com/problems/greatest-common-divisor-of-strings/
+ * @see <a href="https://leetcode.com/problems/greatest-common-divisor-of-strings/">leetcode page</a>
  */
 interface GcdOfStrings {
     fun perform(str1: String, str2: String): String

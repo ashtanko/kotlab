@@ -20,7 +20,7 @@ import java.util.PriorityQueue
 
 /**
  * 1977. Number of Ways to Separate Numbers
- * @link https://leetcode.com/problems/number-of-ways-to-separate-numbers/
+ * @see <a href="https://leetcode.com/problems/number-of-ways-to-separate-numbers/">leetcode page</a>
  */
 fun interface NumberOfCombinations {
     fun invoke(num: String): Int

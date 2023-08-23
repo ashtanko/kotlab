@@ -22,7 +22,7 @@ import java.util.Stack
 
 /**
  * 739. Daily Temperatures
- * @link https://leetcode.com/problems/daily-temperatures/description/
+ * @see <a href="https://leetcode.com/problems/daily-temperatures/description/">leetcode page</a>
  */
 interface DailyTemperatures {
     fun perform(temperatures: IntArray): IntArray

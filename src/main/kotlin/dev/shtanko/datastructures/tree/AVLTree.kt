@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory
 
 /**
  * AVL Tree
- * @link https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+ * @see <a href="https://www.geeksforgeeks.org/avl-tree-set-1-insertion/">leetcode page</a>
  */
 class AVLTree {
 

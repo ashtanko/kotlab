@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1318. Minimum Flips to Make a OR b Equal to c
- * @link https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/
+ * @see <a href="https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/">leetcode page</a>
  */
 interface MinFlips {
     fun perform(a: Int, b: Int, c: Int): Int

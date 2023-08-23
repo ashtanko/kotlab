@@ -20,7 +20,7 @@ import java.util.PriorityQueue
 
 /**
  * 767. Reorganize String
- * @see <a href="https://leetcode.com/problems/reorganize-string/">label</a>
+ * @see <a href="https://leetcode.com/problems/reorganize-string/">leetcode page</a>
  */
 internal fun interface ReorganizeString {
     operator fun invoke(s: String): String

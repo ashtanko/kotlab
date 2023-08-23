@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1219. Path with Maximum Gold
- * @link https://leetcode.com/problems/path-with-maximum-gold/
+ * @see <a href="https://leetcode.com/problems/path-with-maximum-gold/">leetcode page</a>
  */
 fun interface GetMaximumGold {
     fun invoke(grid: Array<IntArray>): Int

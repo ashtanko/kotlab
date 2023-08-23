@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1531. String Compression II
- * @link https://leetcode.com/problems/string-compression-ii/
+ * @see <a href="https://leetcode.com/problems/string-compression-ii/">leetcode page</a>
  */
 interface StringCompression2 {
     fun getLengthOfOptimalCompression(s: String, k: Int): Int

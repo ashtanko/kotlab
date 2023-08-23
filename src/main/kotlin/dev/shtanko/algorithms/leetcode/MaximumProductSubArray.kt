@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * Maximum Product Subarray
- * @link https://leetcode.com/problems/maximum-product-subarray/
+ * @see <a href="https://leetcode.com/problems/maximum-product-subarray/">leetcode page</a>
  */
 interface MaximumProductSubArray {
     fun maxProduct(nums: IntArray): Int

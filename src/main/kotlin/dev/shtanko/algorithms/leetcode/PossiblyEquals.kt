@@ -20,7 +20,8 @@ import java.lang.Character.isDigit
 
 /**
  * 2060. Check if an Original String Exists Given Two Encoded Strings
- * @link https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
+ * @see <a href="https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings">
+ *     leetcode page</a>
  */
 interface PossiblyEquals {
     fun perform(s1: String, s2: String): Boolean

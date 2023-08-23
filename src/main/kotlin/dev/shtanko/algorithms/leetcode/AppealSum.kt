@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2262. Total Appeal of A String
- * @link https://leetcode.com/problems/total-appeal-of-a-string/
+ * @see <a href="https://leetcode.com/problems/total-appeal-of-a-string/">leetcode page</a>
  */
 fun interface AppealSum {
     fun perform(s: String): Long

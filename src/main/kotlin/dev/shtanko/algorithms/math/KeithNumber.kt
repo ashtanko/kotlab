@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.leetcode.DECIMAL
 
 /**
  * Keith Number
- * @link https://en.wikipedia.org/wiki/Keith_number
+ * @see <a href="https://en.wikipedia.org/wiki/Keith_number">leetcode page</a>
  */
 interface KeithNumber {
     fun isKeith(num: Int): Boolean

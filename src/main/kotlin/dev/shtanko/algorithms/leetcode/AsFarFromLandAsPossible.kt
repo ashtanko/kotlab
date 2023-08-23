@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1162. As Far from Land as Possible
- * @link https://leetcode.com/problems/as-far-from-land-as-possible/
+ * @see <a href="https://leetcode.com/problems/as-far-from-land-as-possible/">leetcode page</a>
  */
 interface AsFarFromLandAsPossible {
     fun maxDistance(grid: Array<IntArray>): Int

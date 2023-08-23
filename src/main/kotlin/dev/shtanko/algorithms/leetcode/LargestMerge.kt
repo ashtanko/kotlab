@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1754. Largest Merge Of Two Strings
- * @link https://leetcode.com/problems/largest-merge-of-two-strings/
+ * @see <a href="https://leetcode.com/problems/largest-merge-of-two-strings/">leetcode page</a>
  */
 interface LargestMerge {
     fun perform(word1: String, word2: String): String

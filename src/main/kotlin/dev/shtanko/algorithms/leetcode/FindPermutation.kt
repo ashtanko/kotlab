@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 
 /**
- * @link https://leetcode.com/problems/find-permutation/
+ * @see <a href="https://leetcode.com/problems/find-permutation/">leetcode page</a>
  */
 interface FindPermutation {
     fun perform(s: String): IntArray

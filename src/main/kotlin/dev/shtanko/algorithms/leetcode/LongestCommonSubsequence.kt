@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1143. Longest Common Subsequence
- * @link https://leetcode.com/problems/longest-common-subsequence/description/
+ * @see <a href="https://leetcode.com/problems/longest-common-subsequence/description/">leetcode page</a>
  */
 interface LongestCommonSubsequence {
     fun perform(text1: String, text2: String): Int

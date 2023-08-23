@@ -20,7 +20,7 @@ import kotlin.math.ln
 
 /**
  * Given an integer n, return true if it is a power of four. Otherwise, return false.
- * @link https://leetcode.com/problems/power-of-four/
+ * @see <a href="https://leetcode.com/problems/power-of-four/">leetcode page</a>
  */
 interface PowOfFour {
     fun isPow4(n: Int): Boolean

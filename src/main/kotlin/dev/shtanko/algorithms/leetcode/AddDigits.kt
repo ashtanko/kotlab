@@ -20,7 +20,7 @@ private const val MAX = 9
 
 /**
  * Add Digits
- * @link https://leetcode.com/problems/add-digits/
+ * @see <a href="https://leetcode.com/problems/add-digits/">leetcode page</a>
  */
 interface AddDigits {
     fun perform(num: Int): Int

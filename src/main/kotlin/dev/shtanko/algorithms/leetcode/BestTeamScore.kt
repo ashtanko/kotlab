@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1626. Best Team With No Conflicts
- * @link https://leetcode.com/problems/best-team-with-no-conflicts/
+ * @see <a href="https://leetcode.com/problems/best-team-with-no-conflicts/">leetcode page</a>
  */
 interface BestTeamScore {
     fun perform(scores: IntArray, ages: IntArray): Int

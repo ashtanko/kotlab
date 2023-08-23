@@ -20,7 +20,8 @@ import kotlin.math.min
 
 /**
  * 1284. Minimum Number of Flips to Convert Binary Matrix to Zero Matrix
- * @link https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/
+ * @see <a href="https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix">
+ *     leetcode page</a>
  */
 interface MinMatrixFlips {
     fun perform(mat: Array<IntArray>): Int

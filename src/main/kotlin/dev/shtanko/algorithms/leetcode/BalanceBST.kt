@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1382. Balance a Binary Search Tree
- * @link https://leetcode.com/problems/balance-a-binary-search-tree/
+ * @see <a href="https://leetcode.com/problems/balance-a-binary-search-tree/">leetcode page</a>
  */
 interface BalanceBST {
     fun perform(root: TreeNode?): TreeNode?

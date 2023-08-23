@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 814. Binary Tree Pruning
- * @link https://leetcode.com/problems/binary-tree-pruning/
+ * @see <a href="https://leetcode.com/problems/binary-tree-pruning/">leetcode page</a>
  */
 interface BinaryTreePruning {
     fun pruneTree(root: TreeNode?): TreeNode?

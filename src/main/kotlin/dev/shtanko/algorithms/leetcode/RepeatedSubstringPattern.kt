@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 459. Repeated Substring Pattern
- * @link https://leetcode.com/problems/repeated-substring-pattern/
+ * @see <a href="https://leetcode.com/problems/repeated-substring-pattern/">leetcode page</a>
  */
 fun interface RepeatedSubstringPattern {
     operator fun invoke(s: String): Boolean

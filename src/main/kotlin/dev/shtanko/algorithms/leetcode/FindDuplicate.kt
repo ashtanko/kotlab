@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Find Duplicate File in System
- * @link https://leetcode.com/problems/find-duplicate-file-in-system/
+ * @see <a href="https://leetcode.com/problems/find-duplicate-file-in-system/">leetcode page</a>
  */
 interface FindDuplicate {
     fun perform(paths: Array<String>): List<List<String>>

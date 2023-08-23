@@ -20,7 +20,7 @@ import java.util.TreeMap
 
 /**
  * 2300. Successful Pairs of Spells and Potions
- * @link https://leetcode.com/problems/successful-pairs-of-spells-and-potions/
+ * @see <a href="https://leetcode.com/problems/successful-pairs-of-spells-and-potions/">leetcode page</a>
  */
 interface SuccessfulPairs {
     fun perform(spells: IntArray, potions: IntArray, success: Long): IntArray

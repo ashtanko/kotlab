@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1043. Partition Array for Maximum Sum
- * @link https://leetcode.com/problems/partition-array-for-maximum-sum/
+ * @see <a href="https://leetcode.com/problems/partition-array-for-maximum-sum/">leetcode page</a>
  */
 interface MaxSumAfterPartitioning {
     fun perform(arr: IntArray, k: Int): Int

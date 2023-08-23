@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2215. Find the Difference of Two Arrays
- * @link https://leetcode.com/problems/find-the-difference-of-two-arrays/
+ * @see <a href="https://leetcode.com/problems/find-the-difference-of-two-arrays/">leetcode page</a>
  */
 interface FindArrayDifference {
     fun findDifference(nums1: IntArray, nums2: IntArray): List<List<Int>>

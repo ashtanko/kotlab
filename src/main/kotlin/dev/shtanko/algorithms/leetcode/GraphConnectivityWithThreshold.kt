@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1627. Graph Connectivity With Threshold
- * @link https://leetcode.com/problems/graph-connectivity-with-threshold/
+ * @see <a href="https://leetcode.com/problems/graph-connectivity-with-threshold/">leetcode page</a>
  */
 interface GraphConnectivityWithThreshold {
     fun areConnected(n: Int, threshold: Int, queries: Array<IntArray>): List<Boolean>

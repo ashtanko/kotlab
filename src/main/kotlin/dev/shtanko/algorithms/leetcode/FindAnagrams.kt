@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 438. Find All Anagrams in a String
- * @link https://leetcode.com/problems/find-all-anagrams-in-a-string/
+ * @see <a href="https://leetcode.com/problems/find-all-anagrams-in-a-string/">leetcode page</a>
  */
 interface FindAnagrams {
     fun perform(s: String, p: String): List<Int>

@@ -22,7 +22,7 @@ import kotlin.math.max
 
 /**
  * 1376. Time Needed to Inform All Employees
- * @link https://leetcode.com/problems/time-needed-to-inform-all-employees/
+ * @see <a href="https://leetcode.com/problems/time-needed-to-inform-all-employees/">leetcode page</a>
  */
 interface NumOfMinutes {
     fun perform(n: Int, headID: Int, manager: IntArray, informTime: IntArray): Int

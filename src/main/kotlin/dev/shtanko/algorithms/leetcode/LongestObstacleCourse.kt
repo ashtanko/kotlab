@@ -18,7 +18,8 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1964. Find the Longest Valid Obstacle Course at Each Position
- * @link https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/
+ * @see <a href="https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position">
+ *     leetcode page</a>
  */
 interface LongestObstacleCourse {
     fun perform(obstacles: IntArray): IntArray

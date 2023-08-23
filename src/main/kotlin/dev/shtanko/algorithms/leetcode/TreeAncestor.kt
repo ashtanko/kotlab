@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1483. Kth Ancestor of a Tree Node
- * @link https://leetcode.com/problems/kth-ancestor-of-a-tree-node/
+ * @see <a href="https://leetcode.com/problems/kth-ancestor-of-a-tree-node/">leetcode page</a>
  */
 class TreeAncestor(n: Int, parent: IntArray) {
     private var tree: Array<MutableList<Int>> = Array(n) { ArrayList() }

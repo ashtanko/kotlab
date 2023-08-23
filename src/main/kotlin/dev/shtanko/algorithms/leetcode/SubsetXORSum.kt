@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1863. Sum of All Subset XOR Totals
- * @link https://leetcode.com/problems/sum-of-all-subset-xor-totals/
+ * @see <a href="https://leetcode.com/problems/sum-of-all-subset-xor-totals/">leetcode page</a>
  */
 interface SubsetXORSum {
     fun perform(nums: IntArray): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Count Sorted Vowel Strings.
- * @link https://leetcode.com/problems/count-sorted-vowel-strings
+ * @see <a href="https://leetcode.com/problems/count-sorted-vowel-strings">leetcode page</a>
  */
 interface CountSortedVowelStrings {
     fun perform(n: Int): Int

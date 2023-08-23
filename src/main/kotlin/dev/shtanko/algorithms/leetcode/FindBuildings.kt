@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1762. Buildings With an Ocean View
- * @link https://leetcode.com/problems/buildings-with-an-ocean-view/
+ * @see <a href="https://leetcode.com/problems/buildings-with-an-ocean-view/">leetcode page</a>
  */
 interface FindBuildings {
     fun perform(heights: IntArray): IntArray

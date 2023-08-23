@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Generate Parentheses.
- * @link https://leetcode.com/problems/generate-parentheses/
+ * @see <a href="https://leetcode.com/problems/generate-parentheses/">leetcode page</a>
  */
 interface GenerateParentheses {
     fun perform(n: Int): List<String>

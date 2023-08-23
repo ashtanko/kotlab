@@ -20,7 +20,7 @@ import java.util.TreeMap
 
 /**
  * 954. Array of Doubled Pairs
- * @link https://leetcode.com/problems/array-of-doubled-pairs/
+ * @see <a href="https://leetcode.com/problems/array-of-doubled-pairs/">leetcode page</a>
  */
 fun interface ArrayOfDoubledPairs {
     fun canReorderDoubled(arr: IntArray): Boolean

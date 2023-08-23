@@ -21,7 +21,7 @@ import kotlin.math.pow
 
 /**
  * 2172. Maximum AND Sum of Array
- * @link https://leetcode.com/problems/maximum-and-sum-of-array/
+ * @see <a href="https://leetcode.com/problems/maximum-and-sum-of-array/">leetcode page</a>
  */
 interface MaximumANDSum {
     fun perform(nums: IntArray, numSlots: Int): Int

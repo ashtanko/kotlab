@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1443. Minimum Time to Collect All Apples in a Tree
- * @link https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/
+ * @see <a href="https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/">leetcode page</a>
  */
 interface CollectApples {
     fun minTime(n: Int, edges: Array<IntArray>, hasApple: List<Boolean>): Int

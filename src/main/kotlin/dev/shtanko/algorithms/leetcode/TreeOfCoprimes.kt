@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1766. Tree of Coprimes
- * @link https://leetcode.com/problems/tree-of-coprimes/
+ * @see <a href="https://leetcode.com/problems/tree-of-coprimes/">leetcode page</a>
  */
 interface TreeOfCoprimes {
     fun getCoprimes(nums: IntArray, edges: Array<IntArray>): IntArray

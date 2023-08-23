@@ -20,7 +20,7 @@ import java.util.LinkedList
 
 /**
  * All Paths From Source to Target.
- * @link https://leetcode.com/problems/all-paths-from-source-to-target/
+ * @see <a href="https://leetcode.com/problems/all-paths-from-source-to-target/">leetcode page</a>
  */
 interface AllPathsSourceTarget {
     fun perform(graph: Array<IntArray>): List<List<Int>>

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 980. Unique Paths III
- * @link https://leetcode.com/problems/unique-paths-iii/
+ * @see <a href="https://leetcode.com/problems/unique-paths-iii/">leetcode page</a>
  */
 interface UniquePaths3 {
     fun perform(grid: Array<IntArray>): Int

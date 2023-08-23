@@ -22,7 +22,7 @@ import java.util.Stack
 
 /**
  * 394. Decode String
- * @link https://leetcode.com/problems/decode-string/
+ * @see <a href="https://leetcode.com/problems/decode-string/">leetcode page</a>
  */
 interface DecodeString {
     fun perform(s: String): String

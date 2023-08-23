@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 648. Replace Words
- * @link https://leetcode.com/problems/replace-words/
+ * @see <a href="https://leetcode.com/problems/replace-words/">leetcode page</a>
  */
 interface ReplaceWords {
     fun perform(dictionary: List<String>, sentence: String): String

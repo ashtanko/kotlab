@@ -20,7 +20,7 @@ import java.util.LinkedList
 
 /**
  * 491. Increasing Subsequences
- * @link https://leetcode.com/problems/increasing-subsequences/
+ * @see <a href="https://leetcode.com/problems/increasing-subsequences/">leetcode page</a>
  */
 fun interface IncreasingSubsequences {
     fun findSubsequences(nums: IntArray): List<List<Int>>

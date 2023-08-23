@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 946. Validate Stack Sequences
- * @link https://leetcode.com/problems/validate-stack-sequences/
+ * @see <a href="https://leetcode.com/problems/validate-stack-sequences/">leetcode page</a>
  */
 fun interface ValidateStackSequences {
     fun invoke(pushed: IntArray, popped: IntArray): Boolean

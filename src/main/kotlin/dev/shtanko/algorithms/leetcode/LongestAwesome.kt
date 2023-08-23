@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1542. Find Longest Awesome Substring
- * @link https://leetcode.com/problems/find-longest-awesome-substring/
+ * @see <a href="https://leetcode.com/problems/find-longest-awesome-substring/">leetcode page</a>
  */
 interface LongestAwesome {
     fun perform(s: String): Int

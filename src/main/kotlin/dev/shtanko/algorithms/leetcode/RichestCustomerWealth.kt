@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Richest Customer Wealth.
- * @link https://leetcode.com/problems/richest-customer-wealth/
+ * @see <a href="https://leetcode.com/problems/richest-customer-wealth/">leetcode page</a>
  */
 object RichestCustomerWealth {
     fun maximumWealth(accounts: Array<IntArray>): Int {

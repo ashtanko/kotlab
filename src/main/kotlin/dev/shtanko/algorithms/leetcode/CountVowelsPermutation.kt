@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1220. Count Vowels Permutation
- * @link https://leetcode.com/problems/count-vowels-permutation/
+ * @see <a href="https://leetcode.com/problems/count-vowels-permutation/">leetcode page</a>
  */
 interface CountVowelsPermutationStrategy {
     fun perform(n: Int): Int

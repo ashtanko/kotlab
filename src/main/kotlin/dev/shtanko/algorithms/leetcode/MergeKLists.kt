@@ -20,7 +20,7 @@ import java.util.PriorityQueue
 
 /**
  * 23. Merge k Sorted Lists
- * @link https://leetcode.com/problems/merge-k-sorted-lists/
+ * @see <a href="https://leetcode.com/problems/merge-k-sorted-lists/">leetcode page</a>
  */
 interface MergeKLists {
     fun perform(lists: Array<ListNode?>): ListNode?

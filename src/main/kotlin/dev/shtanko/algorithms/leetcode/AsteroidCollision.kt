@@ -21,7 +21,7 @@ import kotlin.math.abs
 
 /**
  * 735. Asteroid Collision
- * @link https://leetcode.com/problems/asteroid-collision/
+ * @see <a href="https://leetcode.com/problems/asteroid-collision/">leetcode page</a>
  */
 interface AsteroidCollision {
     fun perform(asteroids: IntArray): IntArray

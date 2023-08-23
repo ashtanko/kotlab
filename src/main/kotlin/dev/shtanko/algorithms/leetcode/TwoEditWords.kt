@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2452. Words Within Two Edits of Dictionary
- * @link https://leetcode.com/problems/words-within-two-edits-of-dictionary/
+ * @see <a href="https://leetcode.com/problems/words-within-two-edits-of-dictionary/">leetcode page</a>
  */
 interface TwoEditWords {
     fun perform(queries: Array<String>, dictionary: Array<String>): List<String>

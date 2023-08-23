@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1411. Number of Ways to Paint N × 3 Grid
- * @link https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/description/
+ * @see <a href="https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/description/">leetcode page</a>
  */
 interface NumOfWaysGrid {
     fun perform(n: Int): Int

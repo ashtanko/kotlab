@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Maximum Gap
- * @link https://leetcode.com/problems/maximum-gap/
+ * @see <a href="https://leetcode.com/problems/maximum-gap/">leetcode page</a>
  */
 interface MaximumGap {
     fun perform(nums: IntArray): Int

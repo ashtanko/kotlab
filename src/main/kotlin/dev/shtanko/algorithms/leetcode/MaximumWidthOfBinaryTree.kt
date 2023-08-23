@@ -23,7 +23,7 @@ import kotlin.math.max
 
 /**
  * 662. Maximum Width of Binary Tree
- * @link https://leetcode.com/problems/maximum-width-of-binary-tree/
+ * @see <a href="https://leetcode.com/problems/maximum-width-of-binary-tree/">leetcode page</a>
  */
 interface MaximumWidthOfBinaryTree {
     fun widthOfBinaryTree(root: TreeNode?): Int

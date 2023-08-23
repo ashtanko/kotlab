@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 304. Range Sum Query 2D - Immutable
- * @link https://leetcode.com/problems/range-sum-query-2d-immutable/
+ * @see <a href="https://leetcode.com/problems/range-sum-query-2d-immutable/">leetcode page</a>
  */
 interface NumMatrix {
     fun sumRegion(row1: Int, col1: Int, row2: Int, col2: Int): Int

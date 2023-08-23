@@ -18,7 +18,8 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1639. Number of Ways to Form a Target String Given a Dictionary
- * @link https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/
+ * @see <a href="https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary">
+ *     leetcode page</a>
  */
 interface NumWays {
     fun perform(words: Array<String>, target: String): Int

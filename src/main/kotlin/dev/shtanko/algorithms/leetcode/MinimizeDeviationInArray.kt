@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 1675. Minimize Deviation in Array
- * @link https://leetcode.com/problems/minimize-deviation-in-array/
+ * @see <a href="https://leetcode.com/problems/minimize-deviation-in-array/">leetcode page</a>
  */
 interface MinimizeDeviationInArray {
     fun minimumDeviation(nums: IntArray): Int

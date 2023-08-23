@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 540. Single Element in a Sorted Array
- * @link https://leetcode.com/problems/single-element-in-a-sorted-array/
+ * @see <a href="https://leetcode.com/problems/single-element-in-a-sorted-array/">leetcode page</a>
  */
 interface SingleElementInSortedArray {
     fun singleNonDuplicate(nums: IntArray): Int

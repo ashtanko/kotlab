@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1423. Maximum Points You Can Obtain from Cards
- * @link https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/
+ * @see <a href="https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/">leetcode page</a>
  */
 interface MaxScore {
     fun perform(cardPoints: IntArray, k: Int): Int

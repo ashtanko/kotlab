@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 686. Repeated String Match
- * @link https://leetcode.com/problems/repeated-string-match/description/
+ * @see <a href="https://leetcode.com/problems/repeated-string-match/description/">leetcode page</a>
  */
 interface RepeatedStringMatch {
     fun perform(a: String, b: String): Int

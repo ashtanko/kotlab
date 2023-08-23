@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 329. Longest Increasing Path in a Matrix
- * @link https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
+ * @see <a href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/">leetcode page</a>
  */
 interface LongestIncreasingPathInMatrix {
     fun perform(matrix: Array<IntArray>): Int

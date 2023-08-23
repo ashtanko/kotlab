@@ -21,7 +21,7 @@ import java.util.LinkedList
 
 /**
  * 1022. Sum of Root To Leaf Binary Numbers
- * @link https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
+ * @see <a href="https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/">leetcode page</a>
  */
 interface SumOfRootToLeafBinaryNumbers {
     fun sumRootToLeaf(root: TreeNode?): Int

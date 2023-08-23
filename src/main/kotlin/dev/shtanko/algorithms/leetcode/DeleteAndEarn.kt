@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 740. Delete and Earn
- * @link https://leetcode.com/problems/delete-and-earn/
+ * @see <a href="https://leetcode.com/problems/delete-and-earn/">leetcode page</a>
  */
 interface DeleteAndEarn {
     fun perform(nums: IntArray): Int

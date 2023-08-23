@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 36. Valid Sudoku
- * @link https://leetcode.com/problems/valid-sudoku/
+ * @see <a href="https://leetcode.com/problems/valid-sudoku/">leetcode page</a>
  */
 fun interface ValidSudoku {
     fun isValidSudoku(board: Array<CharArray>): Boolean

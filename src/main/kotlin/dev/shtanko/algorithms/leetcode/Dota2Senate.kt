@@ -24,7 +24,7 @@ private const val DIRE = "Dire"
 
 /**
  * 649. Dota2 Senate
- * @link https://leetcode.com/problems/dota2-senate/
+ * @see <a href="https://leetcode.com/problems/dota2-senate/">leetcode page</a>
  */
 interface Dota2Senate {
     fun predictPartyVictory(senate: String): String

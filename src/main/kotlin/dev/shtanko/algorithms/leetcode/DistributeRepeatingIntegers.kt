@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1655. Distribute Repeating Integers
- * @link https://leetcode.com/problems/distribute-repeating-integers/
+ * @see <a href="https://leetcode.com/problems/distribute-repeating-integers/">leetcode page</a>
  */
 interface DistributeRepeatingIntegers {
     fun canDistribute(nums: IntArray, quantity: IntArray): Boolean

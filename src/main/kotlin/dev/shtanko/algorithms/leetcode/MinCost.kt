@@ -20,7 +20,7 @@ import java.util.PriorityQueue
 
 /**
  * 1928. Minimum Cost to Reach Destination in Time
- * @link https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
+ * @see <a href="https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/">leetcode page</a>
  */
 interface MinCost {
     fun perform(maxTime: Int, edges: Array<IntArray>, passingFees: IntArray): Int

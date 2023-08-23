@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1833. Maximum Ice Cream Bars
- * @link https://leetcode.com/problems/maximum-ice-cream-bars/
+ * @see <a href="https://leetcode.com/problems/maximum-ice-cream-bars/">leetcode page</a>
  */
 interface MaxIceCream {
     fun perform(costs: IntArray, coins: Int): Int

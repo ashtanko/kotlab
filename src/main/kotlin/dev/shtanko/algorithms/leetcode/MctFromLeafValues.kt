@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1130. Minimum Cost Tree From Leaf Values
- * @link https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/
+ * @see <a href="https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/">leetcode page</a>
  */
 interface MctFromLeafValues {
     fun perform(arr: IntArray): Int

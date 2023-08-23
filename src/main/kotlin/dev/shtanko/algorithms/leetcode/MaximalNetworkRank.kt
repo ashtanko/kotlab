@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1615. Maximal Network Rank
- * @link https://leetcode.com/problems/maximal-network-rank/
+ * @see <a href="https://leetcode.com/problems/maximal-network-rank/">leetcode page</a>
  */
 fun interface MaximalNetworkRank {
     operator fun invoke(n: Int, roads: Array<IntArray>): Int

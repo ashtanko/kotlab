@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 143. Reorder List
- * @link https://leetcode.com/problems/reorder-list/
+ * @see <a href="https://leetcode.com/problems/reorder-list/">leetcode page</a>
  */
 interface ReorderList {
     fun reorderList(head: ListNode?)

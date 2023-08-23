@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1074. Number of Submatrices That Sum to Target
- * @link https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/
+ * @see <a href="https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/">leetcode page</a>
  */
 interface NumSubmatrixSumTarget {
     fun perform(matrix: Array<IntArray>, target: Int): Int

@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 907. Sum of Subarray Minimums
- * @link https://leetcode.com/problems/sum-of-subarray-minimums/
+ * @see <a href="https://leetcode.com/problems/sum-of-subarray-minimums/">leetcode page</a>
  */
 interface SumSubarrayMins {
     fun perform(arr: IntArray): Int

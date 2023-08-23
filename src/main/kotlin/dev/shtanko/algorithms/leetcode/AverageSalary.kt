@@ -18,7 +18,8 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1491. Average Salary Excluding the Minimum and Maximum Salary
- * @link https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/description/
+ * @see <a href="https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary">
+ *     leetcode page</a>
  */
 interface AverageSalary {
     fun average(salary: IntArray): Double

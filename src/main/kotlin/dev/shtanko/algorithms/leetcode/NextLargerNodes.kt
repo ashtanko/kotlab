@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 1019. Next Greater Node In Linked List
- * @link https://leetcode.com/problems/next-greater-node-in-linked-list/
+ * @see <a href="https://leetcode.com/problems/next-greater-node-in-linked-list/">leetcode page</a>
  */
 interface NextLargerNodes {
     fun perform(head: ListNode?): IntArray

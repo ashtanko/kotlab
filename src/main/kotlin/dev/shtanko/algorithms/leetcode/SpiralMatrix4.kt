@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2326. Spiral Matrix IV
- * @link https://leetcode.com/problems/spiral-matrix-iv/
+ * @see <a href="https://leetcode.com/problems/spiral-matrix-iv/">leetcode page</a>
  */
 fun interface SpiralMatrix4 {
     fun perform(m: Int, n: Int, head: ListNode?): Array<IntArray>

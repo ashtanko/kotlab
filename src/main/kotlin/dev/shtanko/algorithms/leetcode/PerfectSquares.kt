@@ -23,7 +23,7 @@ import kotlin.math.min
 
 /**
  * 279. Perfect Squares
- * @link https://leetcode.com/problems/perfect-squares/
+ * @see <a href="https://leetcode.com/problems/perfect-squares/">leetcode page</a>
  */
 fun interface PerfectSquares {
     fun numSquares(n: Int): Int

@@ -20,7 +20,7 @@ import kotlin.math.sqrt
 
 /**
  * 319. Bulb Switcher
- * @link https://leetcode.com/problems/bulb-switcher/
+ * @see <a href="https://leetcode.com/problems/bulb-switcher/">leetcode page</a>
  */
 interface BulbSwitcher {
     fun bulbSwitch(n: Int): Int

@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 566. Reshape the Matrix
- * @link https://leetcode.com/problems/reshape-the-matrix/
+ * @see <a href="https://leetcode.com/problems/reshape-the-matrix/">leetcode page</a>
  */
 interface MatrixReshape {
     fun perform(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray>

@@ -21,7 +21,7 @@ import java.util.Stack
 
 /**
  * 101. Symmetric Tree
- * @link https://leetcode.com/problems/symmetric-tree/
+ * @see <a href="https://leetcode.com/problems/symmetric-tree/">leetcode page</a>
  */
 interface SymmetricTree {
     fun isSymmetric(root: TreeNode?): Boolean

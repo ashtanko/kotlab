@@ -20,7 +20,7 @@ import kotlin.random.Random
 
 /**
  * 382. Linked List Random Node
- * @link https://leetcode.com/problems/linked-list-random-node/
+ * @see <a href="https://leetcode.com/problems/linked-list-random-node/">leetcode page</a>
  */
 class LinkedListRandomNode(val head: ListNode) {
     fun getRandom(): Int {

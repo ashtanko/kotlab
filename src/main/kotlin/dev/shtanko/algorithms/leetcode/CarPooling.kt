@@ -21,7 +21,7 @@ import java.util.TreeMap
 
 /**
  * 1094. Car Pooling
- * @link https://leetcode.com/problems/car-pooling/
+ * @see <a href="https://leetcode.com/problems/car-pooling/">leetcode page</a>
  */
 fun interface CarPooling {
     fun invoke(trips: Array<IntArray>, capacity: Int): Boolean

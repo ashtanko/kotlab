@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 944. Delete Columns to Make Sorted
- * @link https://leetcode.com/problems/delete-columns-to-make-sorted/
+ * @see <a href="https://leetcode.com/problems/delete-columns-to-make-sorted/">leetcode page</a>
  */
 interface MinDeletionSize {
     fun perform(strs: Array<String>): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 203. Remove Linked List Elements
- * @link https://leetcode.com/problems/remove-linked-list-elements/
+ * @see <a href="https://leetcode.com/problems/remove-linked-list-elements/">leetcode page</a>
  */
 interface RemoveElements {
     fun perform(head: ListNode?, value: Int): ListNode?

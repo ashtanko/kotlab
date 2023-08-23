@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 827. Making A Large Island
- * @link https://leetcode.com/problems/making-a-large-island/
+ * @see <a href="https://leetcode.com/problems/making-a-large-island/">leetcode page</a>
  */
 interface LargestIsland {
     fun perform(grid: Array<IntArray>): Int

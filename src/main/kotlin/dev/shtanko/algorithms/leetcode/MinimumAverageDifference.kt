@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 /**
  * 2256. Minimum Average Difference
- * @link https://leetcode.com/problems/minimum-average-difference/
+ * @see <a href="https://leetcode.com/problems/minimum-average-difference/">leetcode page</a>
  */
 interface MinimumAverageDifference {
     fun perform(nums: IntArray): Int

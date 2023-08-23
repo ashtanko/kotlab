@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 2458. Height of Binary Tree After Subtree Removal Queries
- * @link https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
+ * @see <a href="https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/">leetcode page</a>
  */
 interface TreeQueries {
     fun invoke(root: TreeNode, queries: IntArray): IntArray

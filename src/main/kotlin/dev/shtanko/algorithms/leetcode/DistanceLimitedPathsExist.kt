@@ -20,7 +20,7 @@ import java.util.Arrays
 
 /**
  * 1697. Checking Existence of Edge Length Limited Paths
- * @link https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
+ * @see <a href="https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/">leetcode page</a>
  */
 interface DistanceLimitedPathsExist {
     fun perform(n: Int, edgeList: Array<IntArray>, queries: Array<IntArray>): BooleanArray

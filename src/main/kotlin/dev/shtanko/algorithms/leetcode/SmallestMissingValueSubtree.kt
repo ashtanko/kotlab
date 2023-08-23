@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2003. Smallest Missing Genetic Value in Each Subtree
- * @link https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/
+ * @see <a href="https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/">leetcode page</a>
  */
 interface SmallestMissingValueSubtree {
     fun perform(parents: IntArray, nums: IntArray): IntArray

@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 1129. Shortest Path with Alternating Colors
- * @link https://leetcode.com/problems/shortest-path-with-alternating-colors/
+ * @see <a href="https://leetcode.com/problems/shortest-path-with-alternating-colors/">leetcode page</a>
  */
 interface ShortestAlternatingPaths {
     fun perform(n: Int, redEdges: Array<IntArray>, blueEdges: Array<IntArray>): IntArray

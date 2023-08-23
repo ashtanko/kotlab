@@ -20,7 +20,8 @@ import kotlin.math.min
 
 /**
  * 2167. Minimum Time to Remove All Cars Containing Illegal Goods
- * @link https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/
+ * @see <a href="https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods">
+ *     leetcode page</a>
  */
 interface MinimumTime {
     fun perform(s: String): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 3 Sum.
- * @link https://leetcode.com/problems/3sum/
+ * @see <a href="https://leetcode.com/problems/3sum/">leetcode page</a>
  */
 interface ThreeSum {
     fun perform(nums: IntArray): List<List<Int>>

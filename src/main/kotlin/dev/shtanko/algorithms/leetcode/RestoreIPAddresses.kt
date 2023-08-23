@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 93. Restore IP Addresses
- * @link https://leetcode.com/problems/restore-ip-addresses/
+ * @see <a href="https://leetcode.com/problems/restore-ip-addresses/">leetcode page</a>
  */
 interface RestoreIPAddresses {
     fun perform(s: String): List<String>

@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 678. Valid Parenthesis String
- * @link https://leetcode.com/problems/valid-parenthesis-string/
+ * @see <a href="https://leetcode.com/problems/valid-parenthesis-string/">leetcode page</a>
  */
 interface ValidParenthesisString {
     fun checkValidString(s: String): Boolean

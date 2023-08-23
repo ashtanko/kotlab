@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 35. Search Insert Position
- * @link https://leetcode.com/problems/search-insert-position/description/
+ * @see <a href="https://leetcode.com/problems/search-insert-position/description/">leetcode page</a>
  */
 interface SearchInsertPosition {
     fun searchInsert(nums: IntArray, target: Int): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 761. Special Binary String
- * @link https://leetcode.com/problems/special-binary-string/
+ * @see <a href="https://leetcode.com/problems/special-binary-string/">leetcode page</a>
  */
 fun makeLargestSpecial(s: String): String {
     var count = 0

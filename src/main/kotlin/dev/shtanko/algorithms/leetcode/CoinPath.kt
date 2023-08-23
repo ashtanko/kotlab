@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Coin Path.
- * @link https://leetcode.com/problems/coin-path/
+ * @see <a href="https://leetcode.com/problems/coin-path/">leetcode page</a>
  */
 interface CoinPath {
     fun cheapestJump(a: IntArray, b: Int): List<Int>

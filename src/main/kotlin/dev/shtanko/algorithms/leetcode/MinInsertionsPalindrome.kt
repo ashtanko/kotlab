@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1312. Minimum Insertion Steps to Make a String Palindrome
- * @link https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/
+ * @see <a href="https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/">leetcode page</a>
  */
 interface MinInsertionsPalindrome {
     fun minInsertions(s: String): Int

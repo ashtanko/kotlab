@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 947. Most Stones Removed with Same Row or Column
- * @link https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
+ * @see <a href="https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/">leetcode page</a>
  */
 fun interface RemoveStones {
     fun perform(stones: Array<IntArray>): Int

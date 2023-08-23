@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1745. Palindrome Partitioning IV
- * @link https://leetcode.com/problems/palindrome-partitioning-iv/
+ * @see <a href="https://leetcode.com/problems/palindrome-partitioning-iv/">leetcode page</a>
  */
 interface PalindromePartitioning4 {
     fun checkPartitioning(s: String): Boolean

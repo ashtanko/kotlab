@@ -22,7 +22,7 @@ import java.util.Queue
 
 /**
  * 815. Bus Routes
- * @link https://leetcode.com/problems/bus-routes/
+ * @see <a href="https://leetcode.com/problems/bus-routes/">leetcode page</a>
  */
 interface BusRoutes {
     fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int

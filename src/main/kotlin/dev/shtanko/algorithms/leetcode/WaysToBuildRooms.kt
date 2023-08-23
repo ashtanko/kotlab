@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1916. Count Ways to Build Rooms in an Ant Colony
- * @link https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/
+ * @see <a href="https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/">leetcode page</a>
  */
 interface WaysToBuildRooms {
     fun perform(prevRoom: IntArray): Int

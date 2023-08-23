@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 837. New 21 Game
- * @link https://leetcode.com/problems/new-21-game/
+ * @see <a href="https://leetcode.com/problems/new-21-game/">leetcode page</a>
  */
 interface New21Game {
     fun perform(n: Int, k: Int, maxPts: Int): Double

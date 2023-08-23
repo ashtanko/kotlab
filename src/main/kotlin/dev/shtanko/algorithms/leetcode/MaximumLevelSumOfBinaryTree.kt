@@ -22,7 +22,7 @@ import java.util.stream.IntStream
 
 /**
  * 1161. Maximum Level Sum of a Binary Tree
- * @link https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
+ * @see <a href="https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/">leetcode page</a>
  */
 interface MaximumLevelSumOfBinaryTree {
     fun maxLevelSum(root: TreeNode?): Int

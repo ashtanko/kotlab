@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1906. Minimum Absolute Difference Queries
- * @link https://leetcode.com/problems/minimum-absolute-difference-queries/
+ * @see <a href="https://leetcode.com/problems/minimum-absolute-difference-queries/">leetcode page</a>
  */
 interface MinDifference {
     fun perform(nums: IntArray, queries: Array<IntArray>): IntArray

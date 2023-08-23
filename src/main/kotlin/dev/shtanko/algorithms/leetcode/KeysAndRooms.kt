@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 841. Keys and Rooms
- * @link https://leetcode.com/problems/keys-and-rooms/description/
+ * @see <a href="https://leetcode.com/problems/keys-and-rooms/description/">leetcode page</a>
  */
 interface KeysAndRooms {
     fun canVisitAllRooms(rooms: List<List<Int>>): Boolean

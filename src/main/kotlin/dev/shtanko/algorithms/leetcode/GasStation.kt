@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 134. Gas Station
- * @link https://leetcode.com/problems/gas-station/
+ * @see <a href="https://leetcode.com/problems/gas-station/">leetcode page</a>
  */
 interface GasStation {
     fun canCompleteCircuit(gas: IntArray, cost: IntArray): Int

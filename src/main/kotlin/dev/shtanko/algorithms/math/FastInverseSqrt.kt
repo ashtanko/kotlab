@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.math
 
 /**
  * Fast inverse square root
- * @link https://en.wikipedia.org/wiki/Fast_inverse_square_root
+ * @see <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">leetcode page</a>
  */
 interface FastInverseSqrt {
 

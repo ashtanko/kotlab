@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1570. Dot Product of Two Sparse Vectors
- * @link https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
+ * @see <a href="https://leetcode.com/problems/dot-product-of-two-sparse-vectors/">leetcode page</a>
  */
 interface SparseVector<T> {
     fun dotProduct(vec: T): Int

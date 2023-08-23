@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Counting Elements
- * @link https://leetcode.com/problems/counting-elements/
+ * @see <a href="https://leetcode.com/problems/counting-elements/">leetcode page</a>
  */
 interface CountingElements {
     fun perform(arr: IntArray): Int

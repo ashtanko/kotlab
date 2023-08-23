@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 605. Can Place Flowers
- * @link https://leetcode.com/problems/can-place-flowers/
+ * @see <a href="https://leetcode.com/problems/can-place-flowers/">leetcode page</a>
  */
 interface CanPlaceFlowers {
     fun perform(flowerbed: IntArray, n: Int): Boolean

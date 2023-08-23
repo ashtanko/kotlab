@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2616. Minimize the Maximum Difference of Pairs
- * @link https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
+ * @see <a href="https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/">leetcode page</a>
  */
 interface MinimizeMax {
     fun perform(nums: IntArray, p: Int): Int

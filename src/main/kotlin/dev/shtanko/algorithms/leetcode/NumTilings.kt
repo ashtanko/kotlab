@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 790. Domino and Tromino Tiling
- * @link https://leetcode.com/problems/domino-and-tromino-tiling/
+ * @see <a href="https://leetcode.com/problems/domino-and-tromino-tiling/">leetcode page</a>
  */
 interface NumTilings {
     fun perform(n: Int): Int

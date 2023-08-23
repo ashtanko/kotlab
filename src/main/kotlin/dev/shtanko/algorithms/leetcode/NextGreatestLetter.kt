@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 744. Find Smallest Letter Greater Than Target
- * @link https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+ * @see <a href="https://leetcode.com/problems/find-smallest-letter-greater-than-target/">leetcode page</a>
  */
 interface NextGreatestLetter {
     fun perform(letters: CharArray, target: Char): Char

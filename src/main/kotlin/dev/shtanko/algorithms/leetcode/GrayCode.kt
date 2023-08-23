@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 89. Gray Code
- * @link https://leetcode.com/problems/gray-code/
+ * @see <a href="https://leetcode.com/problems/gray-code/">leetcode page</a>
  */
 object GrayCode {
 

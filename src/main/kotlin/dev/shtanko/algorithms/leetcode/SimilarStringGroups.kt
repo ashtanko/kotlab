@@ -22,7 +22,7 @@ import java.util.Queue
 
 /**
  * 839. Similar String Groups
- * @link https://leetcode.com/problems/similar-string-groups/description/
+ * @see <a href="https://leetcode.com/problems/similar-string-groups/description/">leetcode page</a>
  */
 interface SimilarStringGroups {
     fun numSimilarGroups(strings: Array<String>): Int

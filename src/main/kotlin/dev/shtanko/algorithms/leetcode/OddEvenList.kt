@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 328. Odd Even Linked List
- * @link https://leetcode.com/problems/odd-even-linked-list/description/
+ * @see <a href="https://leetcode.com/problems/odd-even-linked-list/description/">leetcode page</a>
  */
 interface OddEvenList {
     fun perform(head: ListNode): ListNode

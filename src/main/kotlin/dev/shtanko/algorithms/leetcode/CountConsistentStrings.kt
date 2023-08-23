@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1684. Count the Number of Consistent Strings
- * @link https://leetcode.com/problems/count-the-number-of-consistent-strings/
+ * @see <a href="https://leetcode.com/problems/count-the-number-of-consistent-strings/">leetcode page</a>
  */
 interface CountConsistentStrings {
     fun perform(allowed: String, words: Array<String>): Int

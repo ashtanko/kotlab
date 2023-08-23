@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 904. Fruit Into Baskets
- * @link https://leetcode.com/problems/fruit-into-baskets/
+ * @see <a href="https://leetcode.com/problems/fruit-into-baskets/">leetcode page</a>
  */
 interface FruitIntoBaskets {
     fun totalFruit(fruits: IntArray): Int

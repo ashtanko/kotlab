@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.extensions.commonPrefix
 
 /**
  * Longest Common Prefix.
- * @link https://leetcode.com/problems/longest-common-prefix/
+ * @see <a href="https://leetcode.com/problems/longest-common-prefix/">leetcode page</a>
  */
 interface LongestCommonPrefix {
     fun perform(strs: Array<String>): String

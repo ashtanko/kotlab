@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1987. Number of Unique Good Subsequences
- * @link https://leetcode.com/problems/number-of-unique-good-subsequences/
+ * @see <a href="https://leetcode.com/problems/number-of-unique-good-subsequences/">leetcode page</a>
  */
 fun numberOfUniqueGoodSubsequences(binary: String): Int {
     val mod = E + 7

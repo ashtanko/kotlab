@@ -24,7 +24,7 @@ import kotlin.math.min
 
 /**
  * Minimum Knight Moves
- * @link https://leetcode.com/problems/minimum-knight-moves/solution/
+ * @see <a href="https://leetcode.com/problems/minimum-knight-moves/solution/">leetcode page</a>
  */
 interface MinimumKnightMoves {
     fun perform(x: Int, y: Int): Int

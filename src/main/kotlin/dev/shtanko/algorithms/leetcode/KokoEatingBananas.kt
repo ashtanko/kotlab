@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 875. Koko Eating Bananas
- * @link https://leetcode.com/problems/koko-eating-bananas/
+ * @see <a href="https://leetcode.com/problems/koko-eating-bananas/">leetcode page</a>
  */
 interface KokoEatingBananas {
     fun minEatingSpeed(piles: IntArray, h: Int): Int

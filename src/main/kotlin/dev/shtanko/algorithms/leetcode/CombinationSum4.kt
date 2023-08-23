@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Combination Sum IV
- * @link https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/595/week-3-april-15th-april-21st/3713/
+ * @see <a href="https://leetcode.com/problems/combination-sum-iv/">leetcode page</a>
  */
 interface CombinationSum4 {
     fun perform(nums: IntArray, target: Int): Int

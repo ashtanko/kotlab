@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 926. Flip String to Monotone Increasing
- * @link https://leetcode.com/problems/flip-string-to-monotone-increasing/
+ * @see <a href="https://leetcode.com/problems/flip-string-to-monotone-increasing/">leetcode page</a>
  */
 interface MinFlipsMonoIncr {
     fun perform(s: String): Int

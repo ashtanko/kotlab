@@ -20,7 +20,7 @@ import java.util.TreeMap
 
 /**
  * 2421. Number of Good Paths
- * @link https://leetcode.com/problems/number-of-good-paths/
+ * @see <a href="https://leetcode.com/problems/number-of-good-paths/">leetcode page</a>
  */
 interface NumberOfGoodPaths {
     fun perform(vals: IntArray, edges: Array<IntArray>): Int

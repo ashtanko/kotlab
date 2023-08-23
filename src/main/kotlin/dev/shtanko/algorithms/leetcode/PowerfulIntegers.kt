@@ -21,7 +21,7 @@ import kotlin.math.pow
 
 /**
  * 970. Powerful Integers
- * @link https://leetcode.com/problems/powerful-integers/
+ * @see <a href="https://leetcode.com/problems/powerful-integers/">leetcode page</a>
  */
 interface PowerfulIntegers {
     fun perform(x: Int, y: Int, bound: Int): List<Int>

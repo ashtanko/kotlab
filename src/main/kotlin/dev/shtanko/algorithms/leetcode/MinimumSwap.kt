@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1247. Minimum Swaps to Make Strings Equal
- * @link https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/
+ * @see <a href="https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/">leetcode page</a>
  */
 interface MinimumSwap {
     fun perform(s1: String, s2: String): Int

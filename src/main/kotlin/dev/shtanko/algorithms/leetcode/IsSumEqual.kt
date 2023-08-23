@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.extensions.getNumberOfLetter
 
 /**
  * 1880. Check if Word Equals Summation of Two Words
- * @link https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/
+ * @see <a href="https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/">leetcode page</a>
  */
 interface IsSumEqual {
     fun perform(firstWord: String, secondWord: String, targetWord: String): Boolean

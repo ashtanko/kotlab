@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 211. Design Add and Search Words Data Structure
- * @link https://leetcode.com/problems/design-add-and-search-words-data-structure/
+ * @see <a href="https://leetcode.com/problems/design-add-and-search-words-data-structure/">leetcode page</a>
  */
 interface WordDictionary {
     fun addWord(word: String)

@@ -22,7 +22,7 @@ private const val BITS = 31
 
 /**
  * 29. Divide Two Integers
- * @link https://leetcode.com/problems/divide-two-integers/
+ * @see <a href="https://leetcode.com/problems/divide-two-integers/">leetcode page</a>
  */
 interface DivideTwoIntegers {
     fun divide(dividend: Int, divisor: Int): Int

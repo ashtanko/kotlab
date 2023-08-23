@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * Shortest Unsorted Continuous Subarray
- * @link https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
+ * @see <a href="https://leetcode.com/problems/shortest-unsorted-continuous-subarray/">leetcode page</a>
  */
 interface FindUnsortedSubArray {
     fun perform(nums: IntArray): Int

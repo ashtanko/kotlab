@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2384. Largest Palindromic Number
- * @link https://leetcode.com/problems/largest-palindromic-number/
+ * @see <a href="https://leetcode.com/problems/largest-palindromic-number/">leetcode page</a>
  */
 interface LargestPalindromicNumber {
     fun perform(num: String): String

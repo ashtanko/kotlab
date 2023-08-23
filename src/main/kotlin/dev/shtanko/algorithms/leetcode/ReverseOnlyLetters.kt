@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 917. Reverse Only Letters
- * @link https://leetcode.com/problems/reverse-only-letters/
+ * @see <a href="https://leetcode.com/problems/reverse-only-letters/">leetcode page</a>
  */
 interface ReverseOnlyLetters {
     fun perform(s: String): String

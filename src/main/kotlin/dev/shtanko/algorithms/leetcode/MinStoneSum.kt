@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 1962. Remove Stones to Minimize the Total
- * @link https://leetcode.com/problems/remove-stones-to-minimize-the-total/
+ * @see <a href="https://leetcode.com/problems/remove-stones-to-minimize-the-total/">leetcode page</a>
  */
 interface MinStoneSum {
     fun perform(piles: IntArray, k: Int): Int

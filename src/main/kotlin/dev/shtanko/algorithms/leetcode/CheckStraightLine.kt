@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1232. Check If It Is a Straight Line
- * @link https://leetcode.com/problems/check-if-it-is-a-straight-line/
+ * @see <a href="https://leetcode.com/problems/check-if-it-is-a-straight-line/">leetcode page</a>
  */
 interface CheckStraightLine {
     fun perform(coordinates: Array<IntArray>): Boolean

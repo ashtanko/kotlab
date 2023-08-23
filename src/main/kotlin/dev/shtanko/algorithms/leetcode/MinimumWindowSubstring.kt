@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 76. Minimum Window Substring
- * @link https://leetcode.com/problems/minimum-window-substring/
+ * @see <a href="https://leetcode.com/problems/minimum-window-substring/">leetcode page</a>
  */
 interface MinimumWindowSubstring {
     fun minWindow(s: String, t: String): String

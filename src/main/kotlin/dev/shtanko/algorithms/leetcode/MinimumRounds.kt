@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2244. Minimum Rounds to Complete All Tasks
- * @link https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/
+ * @see <a href="https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/">leetcode page</a>
  */
 interface MinimumRounds {
     fun perform(tasks: IntArray): Int

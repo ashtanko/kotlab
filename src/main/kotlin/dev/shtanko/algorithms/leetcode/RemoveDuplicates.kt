@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 26. Remove Duplicates from Sorted Array
- * @link https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+ * @see <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">leetcode page</a>
  * Given a sorted array nums, remove the duplicates in-place such that each element appear only once
  * and return the new length.
  * Do not allocate extra space for another array, you must do this by modifying the input array in-place

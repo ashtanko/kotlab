@@ -20,7 +20,7 @@ import java.util.PriorityQueue
 
 /**
  * 451. Sort Characters By Frequency
- * @link https://leetcode.com/problems/sort-characters-by-frequency/
+ * @see <a href="https://leetcode.com/problems/sort-characters-by-frequency/">leetcode page</a>
  */
 interface FrequencySort {
     fun perform(s: String): String

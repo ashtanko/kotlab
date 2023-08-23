@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2110. Number of Smooth Descent Periods of a Stock
- * @link https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
+ * @see <a href="https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/">leetcode page</a>
  */
 interface GetDescentPeriods {
     fun perform(prices: IntArray): Long

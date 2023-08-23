@@ -20,7 +20,7 @@ import java.util.TreeMap
 
 /**
  * 2007. Find Original Array From Doubled Array
- * @link https://leetcode.com/problems/find-original-array-from-doubled-array/
+ * @see <a href="https://leetcode.com/problems/find-original-array-from-doubled-array/">leetcode page</a>
  */
 interface FindOriginalArray {
     fun findOriginalArray(changed: IntArray): IntArray

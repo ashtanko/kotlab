@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 630. Course Schedule III
- * @link https://leetcode.com/problems/course-schedule-iii/
+ * @see <a href="https://leetcode.com/problems/course-schedule-iii/">leetcode page</a>
  */
 interface ScheduleCourse3 {
     fun perform(courses: Array<IntArray>): Int

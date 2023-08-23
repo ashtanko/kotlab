@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 1192. Critical Connections in a Network
- * @link https://leetcode.com/problems/critical-connections-in-a-network
+ * @see <a href="https://leetcode.com/problems/critical-connections-in-a-network">leetcode page</a>
  */
 interface CriticalConnections {
     fun perform(n: Int, connections: List<List<Int>>): List<List<Int>>

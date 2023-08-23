@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * Global and Local Inversions
- * @link https://leetcode.com/problems/global-and-local-inversions/
+ * @see <a href="https://leetcode.com/problems/global-and-local-inversions/">leetcode page</a>
  */
 interface GlobalAndLocalInversions {
     fun isIdealPermutation(a: IntArray): Boolean

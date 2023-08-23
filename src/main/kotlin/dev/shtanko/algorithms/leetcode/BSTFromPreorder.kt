@@ -18,7 +18,8 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1008. Construct Binary Search Tree from Preorder Traversal
- * @link https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/description/
+ * @see <a href="https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/description/">
+ *     leetcode page</a>
  */
 interface BSTFromPreorder {
     fun perform(preorder: IntArray): TreeNode?

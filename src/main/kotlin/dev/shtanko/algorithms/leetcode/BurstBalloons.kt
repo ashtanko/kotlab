@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 312. Burst Balloons
- * @link https://leetcode.com/problems/burst-balloons/
+ * @see <a href="https://leetcode.com/problems/burst-balloons/">leetcode page</a>
  */
 interface BurstBalloons {
     fun maxCoins(nums: IntArray): Int

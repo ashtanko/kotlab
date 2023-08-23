@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 397. Integer Replacement
- * @link https://leetcode.com/problems/integer-replacement/
+ * @see <a href="https://leetcode.com/problems/integer-replacement/">leetcode page</a>
  */
 fun interface IntegerReplacement {
     fun invoke(n: Int): Int

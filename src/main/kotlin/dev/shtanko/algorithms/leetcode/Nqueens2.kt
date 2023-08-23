@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 52. N-Queens II
- * @link https://leetcode.com/problems/n-queens-ii/
+ * @see <a href="https://leetcode.com/problems/n-queens-ii/">leetcode page</a>
  */
 interface TotalNQueensStrategy {
     fun perform(n: Int): Int

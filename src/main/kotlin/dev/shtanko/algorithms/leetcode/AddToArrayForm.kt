@@ -20,7 +20,7 @@ import java.util.LinkedList
 
 /**
  * 989. Add to Array-Form of Integer
- * @link https://leetcode.com/problems/add-to-array-form-of-integer/
+ * @see <a href="https://leetcode.com/problems/add-to-array-form-of-integer/">leetcode page</a>
  */
 interface AddToArrayForm {
     fun perform(num: IntArray, k: Int): List<Int>

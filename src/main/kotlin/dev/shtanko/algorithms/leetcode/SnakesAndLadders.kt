@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 909. Snakes and Ladders
- * @link https://leetcode.com/problems/snakes-and-ladders/
+ * @see <a href="https://leetcode.com/problems/snakes-and-ladders/">leetcode page</a>
  */
 interface SnakesAndLadders {
     fun perform(board: Array<IntArray>): Int

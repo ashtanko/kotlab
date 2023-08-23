@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2126. Destroying Asteroids
- * @link https://leetcode.com/problems/destroying-asteroids/
+ * @see <a href="https://leetcode.com/problems/destroying-asteroids/">leetcode page</a>
  */
 interface DestroyingAsteroids {
     fun perform(mass: Int, asteroids: IntArray): Boolean

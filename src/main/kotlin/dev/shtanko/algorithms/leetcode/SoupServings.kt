@@ -23,7 +23,7 @@ import kotlin.math.max
 
 /**
  * 808. Soup Servings
- * @link https://leetcode.com/problems/soup-servings/
+ * @see <a href="https://leetcode.com/problems/soup-servings/">leetcode page</a>
  */
 interface SoupServings {
     companion object {

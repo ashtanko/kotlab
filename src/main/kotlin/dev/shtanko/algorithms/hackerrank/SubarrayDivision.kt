@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.hackerrank
 
 /**
  * Subarray Division
- * @link https://www.hackerrank.com/challenges/the-birthday-bar/problem?isFullScreen=true
+ * @see <a href="https://www.hackerrank.com/challenges/the-birthday-bar/problem?isFullScreen=true">leetcode page</a>
  */
 class SubarrayDivision {
     // TODO

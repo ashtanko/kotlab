@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1721. Swapping Nodes in a Linked List
- * @link https://leetcode.com/problems/swapping-nodes-in-a-linked-list/description/
+ * @see <a href="https://leetcode.com/problems/swapping-nodes-in-a-linked-list/description/">leetcode page</a>
  */
 interface SwapNodes {
     fun perform(head: ListNode?, k: Int): ListNode?

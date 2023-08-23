@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 547. Number of Provinces
- * @link https://leetcode.com/problems/number-of-provinces/
+ * @see <a href="https://leetcode.com/problems/number-of-provinces/">leetcode page</a>
  */
 interface NumberOfProvinces {
     fun findCircleNum(isConnected: Array<IntArray>): Int
