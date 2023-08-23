@@ -26,7 +26,7 @@ interface VerifyingAlienDictionary {
 
 class VerifyingAlienDictionaryCompare : VerifyingAlienDictionary {
     override fun isAlienSorted(words: Array<String>, order: String): Boolean {
-        val orderMap = IntArray(SIZE)
+        val orderMap = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in order.indices) {
             orderMap[order[i] - 'a'] = i
         }
@@ -44,9 +44,5 @@ class VerifyingAlienDictionaryCompare : VerifyingAlienDictionary {
             }
         }
         return true
-    }
-
-    companion object {
-        private const val SIZE = 26
     }
 }

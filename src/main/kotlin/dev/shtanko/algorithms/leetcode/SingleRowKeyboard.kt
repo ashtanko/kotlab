@@ -24,7 +24,7 @@ interface SingleRowKeyboard {
 
 class SingleRowKeyboardNaive : SingleRowKeyboard {
     override fun perform(keyboard: String, word: String): Int {
-        val map = IntArray(LIMIT)
+        val map = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in keyboard.indices) {
             map[keyboard[i] - 'a'] = i
         }
@@ -37,9 +37,5 @@ class SingleRowKeyboardNaive : SingleRowKeyboard {
         }
 
         return res
-    }
-
-    companion object {
-        private const val LIMIT = 26
     }
 }

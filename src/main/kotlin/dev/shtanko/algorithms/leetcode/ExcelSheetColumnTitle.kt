@@ -26,18 +26,14 @@ fun interface ExcelSheetColumnTitle {
 
 class ExcelSheetColumnTitleSB : ExcelSheetColumnTitle {
 
-    companion object {
-        private const val LIMIT = 26
-    }
-
     override fun invoke(columnNumber: Int): String {
         val ans = StringBuilder()
         var mun = columnNumber
         while (mun > 0) {
             mun--
             // Get the last character and append it at the end of the string.
-            ans.append((mun % LIMIT + 'A'.code).toChar())
-            mun /= LIMIT
+            ans.append((mun % ALPHABET_LETTERS_COUNT + 'A'.code).toChar())
+            mun /= ALPHABET_LETTERS_COUNT
         }
 
         // Reverse it, as we appended characters in reverse order.

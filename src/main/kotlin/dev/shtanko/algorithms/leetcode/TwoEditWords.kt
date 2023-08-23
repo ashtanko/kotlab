@@ -97,7 +97,7 @@ class TwoEditWordsTrie : TwoEditWords {
     }
 
     private data class TNode(private var data: Char, var isEnd: Boolean = false) {
-        val children: Array<TNode?> = arrayOfNulls(26)
+        val children: Array<TNode?> = arrayOfNulls(ALPHABET_LETTERS_COUNT)
     }
 
     private val root = TNode('/')

@@ -74,8 +74,8 @@ class DistinctCharactersEqualMap : DistinctCharactersEqual {
 
 class DistinctCharactersEqualArray : DistinctCharactersEqual {
     override fun isItPossible(word1: String, word2: String): Boolean {
-        val map1 = IntArray(ARR_SIZE)
-        val map2 = IntArray(ARR_SIZE)
+        val map1 = IntArray(ALPHABET_LETTERS_COUNT)
+        val map2 = IntArray(ALPHABET_LETTERS_COUNT)
 
         // store frequency of characters
         for (element in word1) map1[element - 'a']++
@@ -84,7 +84,7 @@ class DistinctCharactersEqualArray : DistinctCharactersEqual {
         var count1 = 0
         var count2 = 0
         // count no of distinct characters in each string
-        for (i in 0 until ARR_SIZE) {
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
             if (map1[i] > 0) count1++
             if (map2[i] > 0) count2++
         }
@@ -92,8 +92,8 @@ class DistinctCharactersEqualArray : DistinctCharactersEqual {
         // as explained in step 3
         if (count1 == count2 && word1.length == word2.length) return true
 
-        for (i in 0 until ARR_SIZE) {
-            for (j in 0 until ARR_SIZE) {
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
+            for (j in 0 until ALPHABET_LETTERS_COUNT) {
                 if (map1[i] == 0 || map2[j] == 0) continue
                 var uniqueCharInMap1 = count1
                 var uniqueCharInMap2 = count2
@@ -120,9 +120,5 @@ class DistinctCharactersEqualArray : DistinctCharactersEqual {
         }
 
         return false
-    }
-
-    companion object {
-        private const val ARR_SIZE = 26
     }
 }

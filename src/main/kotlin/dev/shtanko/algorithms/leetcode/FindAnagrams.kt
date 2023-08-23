@@ -51,7 +51,7 @@ class FindAnagramsHashTable : FindAnagrams {
     }
 
     private fun areSame(x: IntArray, y: IntArray): Boolean {
-        for (i in 0 until LIMIT) {
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
             // compare all the frequency & doesn't find any di-similar frequency return true otherwise false
             if (x[i] != y[i]) {
                 return false
@@ -61,14 +61,10 @@ class FindAnagramsHashTable : FindAnagrams {
     }
 
     private fun freq(s: String): IntArray {
-        val count = IntArray(LIMIT) // create array of size 26
+        val count = IntArray(ALPHABET_LETTERS_COUNT) // create array of size 26
         for (element in s) {
             count[element.code - 'a'.code]++ // update acc. to it's frequency
         }
         return count // and return count
-    }
-
-    companion object {
-        private const val LIMIT = 26
     }
 }

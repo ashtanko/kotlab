@@ -141,10 +141,6 @@ class SSSTrie : SearchSuggestionsSystem {
 
     class TrieNode {
         var word: String? = null
-        var next = arrayOfNulls<TrieNode>(LETTERS_COUNT)
-
-        companion object {
-            private const val LETTERS_COUNT = 26
-        }
+        var next = arrayOfNulls<TrieNode>(ALPHABET_LETTERS_COUNT)
     }
 }

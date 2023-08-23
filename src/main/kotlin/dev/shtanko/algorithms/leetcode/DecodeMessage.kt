@@ -42,10 +42,10 @@ class DecodeMessageBruteForce : DecodeMessage {
 
 class DecodeMessageSB : DecodeMessage {
     override fun perform(key: String, message: String): String {
-        val table = CharArray(LIMIT)
+        val table = CharArray(ALPHABET_LETTERS_COUNT)
         var index = 0
         for (c in key.toCharArray()) {
-            if (index < LIMIT && c != ' ' && table[c.code - 'a'.code].code == 0) {
+            if (index < ALPHABET_LETTERS_COUNT && c != ' ' && table[c.code - 'a'.code].code == 0) {
                 table[c.code - 'a'.code] = (index + 'a'.code).toChar()
                 index++
             }
@@ -55,9 +55,5 @@ class DecodeMessageSB : DecodeMessage {
             sb.append(if (c == ' ') ' ' else table[c.code - 'a'.code])
         }
         return sb.toString()
-    }
-
-    companion object {
-        private const val LIMIT = 26
     }
 }

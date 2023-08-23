@@ -42,7 +42,7 @@ class PalindromePairsTrie : PalindromePairs {
     }
 
     private class TrieNode {
-        var next: Array<TrieNode?> = arrayOfNulls(26)
+        var next: Array<TrieNode?> = arrayOfNulls(ALPHABET_LETTERS_COUNT)
         var index: Int = -1
         var list: MutableList<Int> = ArrayList()
     }

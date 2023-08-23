@@ -26,8 +26,8 @@ interface SmallestEquivalentString {
 
 class SmallestEquivalentStringUnion : SmallestEquivalentString {
     override fun perform(s1: String, s2: String, baseStr: String): String {
-        val graph = IntArray(LIMIT)
-        for (i in 0 until LIMIT) {
+        val graph = IntArray(ALPHABET_LETTERS_COUNT)
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
             graph[i] = i
         }
         for (i in s1.indices) {
@@ -55,9 +55,5 @@ class SmallestEquivalentStringUnion : SmallestEquivalentString {
             i = graph[i]
         }
         return i
-    }
-
-    private companion object {
-        private const val LIMIT = 26
     }
 }

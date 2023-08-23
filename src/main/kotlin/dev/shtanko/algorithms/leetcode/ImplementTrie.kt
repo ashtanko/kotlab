@@ -63,7 +63,7 @@ class TrieArray : Trie {
 
     data class TrieNode(var isEnd: Boolean = false) {
 
-        private val links: Array<TrieNode?> = Array(R) { null }
+        private val links: Array<TrieNode?> = Array(ALPHABET_LETTERS_COUNT) { null }
 
         fun containsKey(ch: Char): Boolean {
             return links[ch - 'a'] != null
@@ -75,10 +75,6 @@ class TrieArray : Trie {
 
         fun put(ch: Char, node: TrieNode?) {
             links[ch - 'a'] = node
-        }
-
-        companion object {
-            private const val R = 26
         }
     }
 }

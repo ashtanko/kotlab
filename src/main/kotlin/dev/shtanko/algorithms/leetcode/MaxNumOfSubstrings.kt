@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.MaxNumOfSubstrings.Companion.ARR_SIZE
 import java.util.Stack
 import kotlin.math.max
 import kotlin.math.min
@@ -27,17 +26,13 @@ import kotlin.math.min
  */
 interface MaxNumOfSubstrings {
     fun perform(s: String): List<String>
-
-    companion object {
-        const val ARR_SIZE = 26
-    }
 }
 
 class MaxNumOfSubstringsGreedy : MaxNumOfSubstrings {
     override fun perform(s: String): List<String> {
         val len: Int = s.length
-        val range = Array(ARR_SIZE) { IntArray(2) }
-        for (i in 0 until ARR_SIZE) range[i] = intArrayOf(len, 0)
+        val range = Array(ALPHABET_LETTERS_COUNT) { IntArray(2) }
+        for (i in 0 until ALPHABET_LETTERS_COUNT) range[i] = intArrayOf(len, 0)
         val st: Stack<IntArray> = Stack()
         val res: MutableList<String> = ArrayList()
         for (i in 0 until len) {
@@ -73,26 +68,26 @@ class MaxNumOfSubstringsGreedy : MaxNumOfSubstrings {
 class MaxNumOfSubstringsKosaraju : MaxNumOfSubstrings {
     override fun perform(s: String): List<String> {
         // some nasty pre-compute in order to build the graph in O(N) time
-        val mins = IntArray(ARR_SIZE) { Int.MAX_VALUE }
-        val maxs = IntArray(ARR_SIZE) { -1 }
-        val exists = BooleanArray(ARR_SIZE)
+        val mins = IntArray(ALPHABET_LETTERS_COUNT) { Int.MAX_VALUE }
+        val maxs = IntArray(ALPHABET_LETTERS_COUNT) { -1 }
+        val exists = BooleanArray(ALPHABET_LETTERS_COUNT)
         val prefixSum = Array(s.length + 1) {
             IntArray(
-                ARR_SIZE,
+                ALPHABET_LETTERS_COUNT,
             )
         }
         for (i in s.indices) {
-            System.arraycopy(prefixSum[i], 0, prefixSum[i + 1], 0, ARR_SIZE)
+            System.arraycopy(prefixSum[i], 0, prefixSum[i + 1], 0, ALPHABET_LETTERS_COUNT)
             prefixSum[i + 1][s[i] - 'a'] += 1
             mins[s[i] - 'a'] = min(mins[s[i] - 'a'], i)
             maxs[s[i] - 'a'] = maxs[s[i] - 'a'].coerceAtLeast(i)
             exists[s[i] - 'a'] = true
         }
         // build graph, using adjacency matrix
-        val graph = Array(ARR_SIZE) { BooleanArray(ARR_SIZE) }
-        for (i in 0 until ARR_SIZE) {
+        val graph = Array(ALPHABET_LETTERS_COUNT) { BooleanArray(ALPHABET_LETTERS_COUNT) }
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
             if (exists[i]) {
-                for (j in 0 until ARR_SIZE) {
+                for (j in 0 until ALPHABET_LETTERS_COUNT) {
                     if (prefixSum[maxs[i] + 1][j] - prefixSum[mins[i]][j] > 0) {
                         graph[i][j] = true
                     }
@@ -102,16 +97,16 @@ class MaxNumOfSubstringsKosaraju : MaxNumOfSubstrings {
 
         // kosaraju algorithm to find scc
         val stack = Stack()
-        val visited = BooleanArray(ARR_SIZE)
-        for (i in 0 until ARR_SIZE) {
+        val visited = BooleanArray(ALPHABET_LETTERS_COUNT)
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
             if (exists[i] && !visited[i]) {
                 dfs(i, graph, stack, visited)
             }
         }
         var batch = 0 // 'id' of each SCC
 
-        val batches = IntArray(ARR_SIZE) { -1 }
-        val degree = IntArray(ARR_SIZE) // out-degree of each SCC
+        val batches = IntArray(ALPHABET_LETTERS_COUNT) { -1 }
+        val degree = IntArray(ALPHABET_LETTERS_COUNT) // out-degree of each SCC
 
         while (!stack.isEmpty) {
             val v = stack.pop()
@@ -126,7 +121,7 @@ class MaxNumOfSubstringsKosaraju : MaxNumOfSubstrings {
             if (degree[i] == 0) {
                 var min = Int.MAX_VALUE
                 var max = -1
-                for (j in 0 until ARR_SIZE) {
+                for (j in 0 until ALPHABET_LETTERS_COUNT) {
                     if (batches[j] == i) {
                         min = min(mins[j], min)
                         max = max(maxs[j], max)
@@ -142,7 +137,7 @@ class MaxNumOfSubstringsKosaraju : MaxNumOfSubstrings {
     private fun dfs(v: Int, graph: Array<BooleanArray>, stack: Stack, visited: BooleanArray) {
         if (!visited[v]) {
             visited[v] = true
-            for (i in 0 until ARR_SIZE) {
+            for (i in 0 until ALPHABET_LETTERS_COUNT) {
                 if (graph[v][i] && !visited[i]) {
                     dfs(i, graph, stack, visited)
                 }
@@ -154,7 +149,7 @@ class MaxNumOfSubstringsKosaraju : MaxNumOfSubstrings {
     private fun dfs(v: Int, graph: Array<BooleanArray>, batches: IntArray, batch: Int, degree: IntArray) {
         if (batches[v] < 0) {
             batches[v] = batch
-            for (i in 0 until ARR_SIZE) {
+            for (i in 0 until ALPHABET_LETTERS_COUNT) {
                 if (graph[i][v]) {
                     dfs(i, graph, batches, batch, degree)
                 }
@@ -167,7 +162,7 @@ class MaxNumOfSubstringsKosaraju : MaxNumOfSubstrings {
     }
 
     private class Stack {
-        var values = IntArray(ARR_SIZE)
+        var values = IntArray(ALPHABET_LETTERS_COUNT)
         var top = 0
         fun push(value: Int) {
             values[top++] = value

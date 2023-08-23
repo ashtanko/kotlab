@@ -47,7 +47,7 @@ class LargestColorValueInDirectedGraphSet : LargestColorValueInDirectedGraph {
                 zeroIndegree.add(i)
             }
         }
-        val counts = Array(n) { IntArray(K) }
+        val counts = Array(n) { IntArray(ALPHABET_LETTERS_COUNT) }
         for (i in 0 until n) {
             counts[i][colors[i] - 'a']++
         }
@@ -58,7 +58,7 @@ class LargestColorValueInDirectedGraphSet : LargestColorValueInDirectedGraph {
             zeroIndegree.remove(u)
             visited++
             for (v in graph[u]) {
-                for (i in 0 until K) {
+                for (i in 0 until ALPHABET_LETTERS_COUNT) {
                     counts[v][i] = max(counts[v][i], counts[u][i] + if (colors[v] - 'a' == i) 1 else 0)
                 }
                 indegrees[v]--
@@ -69,9 +69,5 @@ class LargestColorValueInDirectedGraphSet : LargestColorValueInDirectedGraph {
             maxCount = max(maxCount, Arrays.stream(counts[u]).max().asInt)
         }
         return if (visited == n) maxCount else -1
-    }
-
-    companion object {
-        private const val K = 26
     }
 }

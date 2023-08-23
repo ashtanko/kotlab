@@ -16,11 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
-private const val COUNT_ARRAY_SIZE = 26
 private const val OUT_ARRAY_SIZE = 10
 
 fun originalDigits(s: String): String {
-    val count = CharArray(COUNT_ARRAY_SIZE + 'a'.code)
+    val count = CharArray(ALPHABET_LETTERS_COUNT + 'a'.code)
     for (letter in s.toCharArray()) {
         count[letter.code]++
     }

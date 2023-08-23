@@ -80,7 +80,7 @@ class WordFilterTrie(words: Array<String>) : WordFilter {
     }
 
     class WFTrieNode {
-        var children: Array<WFTrieNode?> = arrayOfNulls(26)
+        var children: Array<WFTrieNode?> = arrayOfNulls(ALPHABET_LETTERS_COUNT)
         var weight: MutableSet<Int> = HashSet()
     }
 }

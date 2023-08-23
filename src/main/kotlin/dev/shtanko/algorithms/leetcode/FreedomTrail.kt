@@ -46,20 +46,16 @@ class FreedomTrailDP : FreedomTrail {
 
     private fun preproc(r: String, inc: Int): Array<IntArray> {
         val n = r.length
-        val ans = Array(n) { IntArray(SIZE) }
-        val map = IntArray(SIZE)
+        val ans = Array(n) { IntArray(ALPHABET_LETTERS_COUNT) }
+        val map = IntArray(ALPHABET_LETTERS_COUNT)
         var i = 0
         var j = 0
         while (j < n * 2 - 1) {
             map[r[i] - 'a'] = i
-            System.arraycopy(map, 0, ans[i], 0, SIZE)
+            System.arraycopy(map, 0, ans[i], 0, ALPHABET_LETTERS_COUNT)
             i = (i + inc + n) % n
             ++j
         }
         return ans
-    }
-
-    companion object {
-        private const val SIZE = 26
     }
 }

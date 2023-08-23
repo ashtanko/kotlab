@@ -71,29 +71,23 @@ class LongestPalindromeConcatenatingMap : LongestPalindromeConcatenating {
  */
 class LongestPalindromeConcatenatingArr : LongestPalindromeConcatenating {
 
-    companion object {
-        private const val ALPHABET_SIZE = 26
-    }
-
     override fun longestPalindrome(words: Array<String>): Int {
-        val count = Array(ALPHABET_SIZE) {
-            IntArray(
-                ALPHABET_SIZE,
-            )
+        val count = Array(ALPHABET_LETTERS_COUNT) {
+            IntArray(ALPHABET_LETTERS_COUNT)
         }
         for (word in words) {
             count[word[0].code - 'a'.code][word[1].code - 'a'.code]++
         }
         var answer = 0
         var central = false
-        for (i in 0 until ALPHABET_SIZE) {
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
             if (count[i][i] % 2 == 0) {
                 answer += count[i][i]
             } else {
                 answer += count[i][i] - 1
                 central = true
             }
-            for (j in i + 1 until ALPHABET_SIZE) {
+            for (j in i + 1 until ALPHABET_LETTERS_COUNT) {
                 answer += 2 * min(count[i][j], count[j][i])
             }
         }

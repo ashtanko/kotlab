@@ -37,12 +37,12 @@ class CountSubTreesDFS : CountSubTrees {
     }
 
     private fun dfs(g: Map<Int, List<Int>>, node: Int, parent: Int, labels: String, ans: IntArray): IntArray {
-        val cnt = IntArray(ARR_SIZE)
+        val cnt = IntArray(ALPHABET_LETTERS_COUNT)
         val c = labels[node]
         for (child in g[node] ?: emptyList()) {
             if (child != parent) {
                 val sub = dfs(g, child, node, labels, ans)
-                for (i in 0 until ARR_SIZE) {
+                for (i in 0 until ALPHABET_LETTERS_COUNT) {
                     cnt[i] += sub[i]
                 }
             }
@@ -50,9 +50,5 @@ class CountSubTreesDFS : CountSubTrees {
         ++cnt[c.code - 'a'.code]
         ans[node] = cnt[c.code - 'a'.code]
         return cnt
-    }
-
-    private companion object {
-        private const val ARR_SIZE = 26
     }
 }

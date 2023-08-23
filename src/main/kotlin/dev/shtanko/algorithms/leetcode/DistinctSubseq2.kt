@@ -16,18 +16,12 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.DistinctSubseq2.Companion.ARR_SIZE
-
 /**
  * 940. Distinct Subsequences II
  * @link https://leetcode.com/problems/distinct-subsequences-ii/
  */
 interface DistinctSubseq2 {
     fun distinctSubseqII(s: String): Int
-
-    companion object {
-        const val ARR_SIZE = 26
-    }
 }
 
 /**
@@ -39,7 +33,7 @@ class DistinctSubseq2DP : DistinctSubseq2 {
         val dp = IntArray(n + 1)
         dp[0] = 1
 
-        val last = IntArray(ARR_SIZE) { -1 }
+        val last = IntArray(ALPHABET_LETTERS_COUNT) { -1 }
 
         for (i in 0 until n) {
             val x: Int = s[i] - 'a'
@@ -62,7 +56,7 @@ class DistinctSubseq2DPConstSpace : DistinctSubseq2 {
         var cur = 1 // The number of subsequences till now. Include empty string: ""
 
         // The number of subsequences that end with a character till now. Not include empty string: ""
-        val lastCount = IntArray(ARR_SIZE)
+        val lastCount = IntArray(ALPHABET_LETTERS_COUNT)
 
         for (element in s) {
             val charIndex: Int = element - 'a'

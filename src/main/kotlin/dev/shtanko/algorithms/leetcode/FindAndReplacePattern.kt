@@ -60,15 +60,11 @@ class FRPOneMap : FindAndReplacePattern {
             if (!m.containsKey(w)) m[w] = p
             if (m[w] != p) return false
         }
-        val seen = BooleanArray(ARRAY_SIZE)
+        val seen = BooleanArray(ALPHABET_LETTERS_COUNT)
         for (p in m.values) {
             if (seen[p?.minus('a')!!]) return false
             seen[p - 'a'] = true
         }
         return true
-    }
-
-    companion object {
-        private const val ARRAY_SIZE = 26
     }
 }

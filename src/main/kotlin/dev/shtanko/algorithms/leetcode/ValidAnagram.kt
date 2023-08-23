@@ -47,7 +47,7 @@ class ValidAnagramHashMap : ValidAnagram {
 
 class ValidAnagramImpl : ValidAnagram {
     override fun isAnagram(s: String, t: String): Boolean {
-        val alphabet = IntArray(ALPHABET_SIZE)
+        val alphabet = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in s.indices) {
             alphabet[s[i] - ALPHABET_FIRST_LETTER]++
         }
@@ -66,7 +66,6 @@ class ValidAnagramImpl : ValidAnagram {
     }
 
     companion object {
-        private const val ALPHABET_SIZE = 26
         private const val ALPHABET_FIRST_LETTER = 'a'
     }
 }

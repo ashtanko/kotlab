@@ -96,12 +96,12 @@ class AlienDictionaryBFS : AlienDictionary {
 class AlienDictionaryDFS : AlienDictionary {
 
     override fun alienOrder(words: Array<String>): String {
-        val adj = Array(N) { BooleanArray(N) }
-        val visited = IntArray(N) { -1 }
+        val adj = Array(ALPHABET_LETTERS_COUNT) { BooleanArray(ALPHABET_LETTERS_COUNT) }
+        val visited = IntArray(ALPHABET_LETTERS_COUNT) { -1 }
         buildGraph(words, adj, visited)
 
         val sb = StringBuilder()
-        for (i in 0 until N) {
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
             // unvisited
             if (visited[i] == 0) {
                 if (!dfs(adj, visited, sb, i)) return ""
@@ -112,7 +112,7 @@ class AlienDictionaryDFS : AlienDictionary {
 
     fun dfs(adj: Array<BooleanArray>, visited: IntArray, sb: StringBuilder, i: Int): Boolean {
         visited[i] = 1 // 1 = visiting
-        for (j in 0 until N) {
+        for (j in 0 until ALPHABET_LETTERS_COUNT) {
             if (adj[i][j]) {
                 if (visited[j] == 1) return false
                 if (visited[j] == 0) {
@@ -141,9 +141,5 @@ class AlienDictionaryDFS : AlienDictionary {
             }
             pre = cur
         }
-    }
-
-    companion object {
-        private const val N = 26
     }
 }

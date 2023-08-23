@@ -31,19 +31,15 @@ interface LargestVariance {
  */
 class LargestVarianceKadane : LargestVariance {
 
-    companion object {
-        private const val LIMIT = 26
-    }
-
     override fun perform(s: String): Int {
-        val counter = IntArray(LIMIT)
+        val counter = IntArray(ALPHABET_LETTERS_COUNT)
         for (ch in s.toCharArray()) {
             counter[ch.code.minus('a'.code)]++
         }
         var globalMax = 0
 
-        for (i in 0 until LIMIT) {
-            for (j in 0 until LIMIT) {
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
+            for (j in 0 until ALPHABET_LETTERS_COUNT) {
                 // major and minor cannot be the same, and both must appear in s.
                 if (i == j || counter[i] == 0 || counter[j] == 0) {
                     continue

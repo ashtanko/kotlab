@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-private const val LIMIT = 26
-
 /**
  * 2262. Total Appeal of A String
  * @link https://leetcode.com/problems/total-appeal-of-a-string/
@@ -31,7 +29,7 @@ class AppealSumDP : AppealSum {
     override fun perform(s: String): Long {
         var res: Long = 0
         var cur: Long = 0
-        val prev = LongArray(LIMIT)
+        val prev = LongArray(ALPHABET_LETTERS_COUNT)
         for (i in s.indices) {
             cur += i + 1 - prev[s[i] - 'a']
             prev[s[i] - 'a'] = (i + 1).toLong()
@@ -44,7 +42,7 @@ class AppealSumDP : AppealSum {
 class AppealSumDPKt : AppealSum {
     override fun perform(s: String): Long {
         var cur: Long = 0
-        val prev = LongArray(LIMIT)
+        val prev = LongArray(ALPHABET_LETTERS_COUNT)
         return s.mapIndexed { index, c ->
             cur += index + 1 - prev[c - 'a']
             prev[c - 'a'] = index.toLong() + 1

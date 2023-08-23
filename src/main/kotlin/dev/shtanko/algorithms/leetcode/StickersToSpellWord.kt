@@ -33,7 +33,7 @@ interface StickersToSpellWord {
 class StickersToSpellWordDP : StickersToSpellWord {
     override fun minStickers(stickers: Array<String>, target: String): Int {
         val m: Int = stickers.size
-        val mp = Array(m) { IntArray(CHARS) }
+        val mp = Array(m) { IntArray(ALPHABET_LETTERS_COUNT) }
         val dp: MutableMap<String, Int> = HashMap()
         for (i in 0 until m) for (c in stickers[i].toCharArray()) mp[i][c - 'a']++
         dp[""] = 0
@@ -44,7 +44,7 @@ class StickersToSpellWordDP : StickersToSpellWord {
         if (dp.containsKey(target)) return dp[target] ?: -1
         var ans = Int.MAX_VALUE
         val n = mp.size
-        val tar = IntArray(CHARS)
+        val tar = IntArray(ALPHABET_LETTERS_COUNT)
         for (c in target.toCharArray()) tar[c - 'a']++
         // try every sticker
         for (i in 0 until n) {
@@ -52,7 +52,7 @@ class StickersToSpellWordDP : StickersToSpellWord {
             if (mp[i][target[0] - 'a'] == 0) continue
             val sb = StringBuilder()
             // apply a sticker on every character a-z
-            for (j in 0 until CHARS) {
+            for (j in 0 until ALPHABET_LETTERS_COUNT) {
                 if (tar[j] > 0) for (k in 0 until max(0, tar[j] - mp[i][j])) sb.append(('a'.code + j).toChar())
             }
             val s = sb.toString()
@@ -61,9 +61,5 @@ class StickersToSpellWordDP : StickersToSpellWord {
         }
         dp[target] = if (ans == Int.MAX_VALUE) -1 else ans
         return dp[target] ?: -1
-    }
-
-    companion object {
-        private const val CHARS = 26
     }
 }

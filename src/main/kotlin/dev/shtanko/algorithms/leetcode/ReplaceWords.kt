@@ -71,11 +71,7 @@ class ReplaceWordsTrie : ReplaceWords {
     }
 
     private class TrieNode {
-        var children: Array<TrieNode?> = arrayOfNulls(LIMIT)
+        var children: Array<TrieNode?> = arrayOfNulls(ALPHABET_LETTERS_COUNT)
         var word: String? = null
-
-        companion object {
-            private const val LIMIT = 26
-        }
     }
 }

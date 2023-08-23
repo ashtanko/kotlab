@@ -26,3 +26,4 @@ const val BYTE = 1024
 const val HALF_OF_BYTE = 256
 const val MILLISECOND = 1000L
 const val EPSILON = 1e-5
+const val ALPHABET_LETTERS_COUNT = 26

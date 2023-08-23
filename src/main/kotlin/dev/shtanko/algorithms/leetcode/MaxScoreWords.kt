@@ -60,7 +60,7 @@ class MaxScoreWordsBacktracking : MaxScoreWords {
 
 class MaxScoreWordsDFS : MaxScoreWords {
     override fun perform(words: Array<String>, letters: CharArray, score: IntArray): Int {
-        val memo = IntArray(ARR_SIZE)
+        val memo = IntArray(ALPHABET_LETTERS_COUNT)
         for (l in letters) {
             memo[l.code - 'a'.code]++
         }
@@ -91,9 +91,5 @@ class MaxScoreWordsDFS : MaxScoreWords {
         }
         res = max(dfs(index + 1, memo, score, words), res)
         return res
-    }
-
-    companion object {
-        private const val ARR_SIZE = 26
     }
 }

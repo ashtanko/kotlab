@@ -27,7 +27,7 @@ interface WordDictionary {
 }
 
 class WordDictionaryImpl : WordDictionary {
-    private val children: Array<WordDictionaryImpl?> = Array(SIZE) { null }
+    private val children: Array<WordDictionaryImpl?> = Array(ALPHABET_LETTERS_COUNT) { null }
     private var isEndOfWord = false
 
     // Adds a word into the data structure.
@@ -62,9 +62,5 @@ class WordDictionaryImpl : WordDictionary {
             curr = curr.children[c.code - 'a'.code] ?: return false
         }
         return curr.isEndOfWord
-    }
-
-    companion object {
-        private const val SIZE = 26
     }
 }

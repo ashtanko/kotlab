@@ -26,8 +26,8 @@ interface NumSplits {
 
 class NumSplitsSplitPointer : NumSplits {
     override fun perform(str: String): Int {
-        val l = IntArray(SIZE)
-        val r = IntArray(SIZE)
+        val l = IntArray(ALPHABET_LETTERS_COUNT) // TODO rename
+        val r = IntArray(ALPHABET_LETTERS_COUNT) // TODO rename
         var dL = 0
         var dR = 0
         var res = 0
@@ -39,10 +39,6 @@ class NumSplitsSplitPointer : NumSplits {
             res += if (dL == dR) 1 else 0
         }
         return res
-    }
-
-    companion object {
-        private const val SIZE = 26
     }
 }
 

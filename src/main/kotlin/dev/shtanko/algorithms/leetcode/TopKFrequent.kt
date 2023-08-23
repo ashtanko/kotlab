@@ -167,7 +167,7 @@ class TopKFrequentTrie : TopKFrequent {
     }
 
     class TrieNode {
-        var children = arrayOfNulls<TrieNode>(ARR_SIZE)
+        var children = arrayOfNulls<TrieNode>(ALPHABET_LETTERS_COUNT)
         var word: String? = null
     }
 
@@ -191,16 +191,12 @@ class TopKFrequentTrie : TopKFrequent {
             if (node.word != null) {
                 ans.add(node.word ?: return)
             }
-            for (i in 0 until ARR_SIZE) {
+            for (i in 0 until ALPHABET_LETTERS_COUNT) {
                 if (node.children[i] != null) {
                     getWords(node.children[i], ans)
                 }
             }
         }
-    }
-
-    companion object {
-        private const val ARR_SIZE = 26
     }
 }
 

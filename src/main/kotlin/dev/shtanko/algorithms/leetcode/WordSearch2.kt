@@ -71,11 +71,7 @@ class WordSearch2Trie : WordSearch2 {
     }
 
     class TrieNode {
-        var next = arrayOfNulls<TrieNode>(ARR_SIZE)
+        var next = arrayOfNulls<TrieNode>(ALPHABET_LETTERS_COUNT)
         var word: String? = null
-    }
-
-    companion object {
-        private const val ARR_SIZE = 26
     }
 }

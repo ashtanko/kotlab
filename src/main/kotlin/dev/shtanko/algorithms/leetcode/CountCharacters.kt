@@ -16,10 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
-private const val COUNT_CHARACTERS_COUNT = 26
-
 fun Array<String>.countCharacters(chars: String): Int {
-    val arr = IntArray(COUNT_CHARACTERS_COUNT)
+    val arr = IntArray(ALPHABET_LETTERS_COUNT)
     for (ch in chars.toCharArray()) {
         arr[ch - 'a']++
     }

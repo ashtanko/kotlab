@@ -36,16 +36,12 @@ class AreOccurrencesEqualKotlin : AreOccurrencesEqual {
 
 class AreOccurrencesEqualBF : AreOccurrencesEqual {
     override fun perform(s: String): Boolean {
-        val fr = IntArray(ARR_SIZE)
+        val fr = IntArray(ALPHABET_LETTERS_COUNT)
         s.chars().forEach { c -> fr[c - 'a'.code]++ }
         return fr.filter { f ->
             f > 0
         }.all { f ->
             f == fr.max()
         }
-    }
-
-    companion object {
-        private const val ARR_SIZE = 26
     }
 }

@@ -25,7 +25,7 @@ import kotlin.math.max
  */
 class PartitionLabels {
     fun perform(s: String): List<Int> {
-        val last = IntArray(MAX_SIZE)
+        val last = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in s.indices) {
             last[s[i] - 'a'] = i
         }
@@ -40,9 +40,5 @@ class PartitionLabels {
             }
         }
         return ans
-    }
-
-    companion object {
-        private const val MAX_SIZE = 26
     }
 }

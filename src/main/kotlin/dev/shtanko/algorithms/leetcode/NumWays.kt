@@ -30,7 +30,7 @@ class NumWaysDP : NumWays {
         val wLen: Int = words[0].length
         val tLen: Int = target.length
         val dp = Array(tLen) { LongArray(wLen) }
-        val freq = Array(wLen) { IntArray(ARR_SIZE) }
+        val freq = Array(wLen) { IntArray(ALPHABET_LETTERS_COUNT) }
         for (w in words) {
             for (i in w.indices) {
                 freq[i][w[i].code - 'a'.code]++
@@ -47,9 +47,5 @@ class NumWaysDP : NumWays {
             }
         }
         return dp[tLen - 1][wLen - 1].toInt()
-    }
-
-    companion object {
-        private const val ARR_SIZE = 26
     }
 }
