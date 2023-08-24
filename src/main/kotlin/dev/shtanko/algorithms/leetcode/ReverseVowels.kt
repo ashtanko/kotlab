@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * https://leetcode.com/problems/reverse-vowels-of-a-string/
  */
 fun interface ReverseVowels {
-    fun invoke(s: String): String
+    operator fun invoke(s: String): String
 }
 
 class ReverseVowelsTwoPointers : ReverseVowels {

@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/loud-and-rich/">leetcode page</a>
  */
 fun interface LoudAndRich {
-    fun invoke(richer: Array<IntArray>, quiet: IntArray): IntArray
+    operator fun invoke(richer: Array<IntArray>, quiet: IntArray): IntArray
 }
 
 class LoudAndRichDFS : LoudAndRich {

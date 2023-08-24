@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/count-nodes-with-the-highest-score/">leetcode page</a>
  */
 fun interface CountHighestScoreNodes {
-    fun invoke(parents: IntArray): Int
+    operator fun invoke(parents: IntArray): Int
 }
 
 class CountHighestScoreNodesDfs : CountHighestScoreNodes {

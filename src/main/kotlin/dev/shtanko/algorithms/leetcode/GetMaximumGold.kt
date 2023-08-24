@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/path-with-maximum-gold/">leetcode page</a>
  */
 fun interface GetMaximumGold {
-    fun invoke(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class GetMaximumGoldBacktracking : GetMaximumGold {

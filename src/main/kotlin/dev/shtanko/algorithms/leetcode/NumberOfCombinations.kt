@@ -23,7 +23,7 @@ import java.util.PriorityQueue
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-separate-numbers/">leetcode page</a>
  */
 fun interface NumberOfCombinations {
-    fun invoke(num: String): Int
+    operator fun invoke(num: String): Int
 }
 
 class NumberOfCombinationsBottomUp : NumberOfCombinations {

@@ -22,7 +22,7 @@ private const val FIRST_SIX = 6
 private const val CD = 3
 
 fun interface Maximum69Number {
-    fun invoke(num: Int): Int
+    operator fun invoke(num: Int): Int
 }
 
 /**

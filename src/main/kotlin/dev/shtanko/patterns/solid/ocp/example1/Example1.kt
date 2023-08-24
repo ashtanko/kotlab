@@ -34,6 +34,6 @@ class Rectangle(private val width: Double, private val height: Double) : Shape {
 
 class AreaCalculator(private val shapes: List<Shape>) {
     fun calculateTotalArea(): Double {
-        return shapes.sumByDouble { it.calculateArea() }
+        return shapes.sumOf { it.calculateArea() }
     }
 }

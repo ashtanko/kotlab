@@ -24,7 +24,7 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/number-of-enclaves/">leetcode page</a>
  */
 fun interface NumberOfEnclaves {
-    fun invoke(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class NumberOfEnclavesDFS : NumberOfEnclaves {

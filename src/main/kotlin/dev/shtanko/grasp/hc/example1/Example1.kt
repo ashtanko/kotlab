@@ -40,7 +40,7 @@ class MessageStatistics(private val messageStorage: MessageStorage) {
         val messages = messageStorage.retrieveMessages()
         if (messages.isEmpty()) return 0.0
 
-        val totalLength = messages.sumBy { it.content.length }
+        val totalLength = messages.sumOf { it.content.length }
         return totalLength.toDouble() / messages.size
     }
 }

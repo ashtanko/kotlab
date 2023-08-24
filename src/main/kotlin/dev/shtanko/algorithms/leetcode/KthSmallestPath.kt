@@ -23,7 +23,7 @@ import dev.shtanko.algorithms.extensions.second
  * @see <a href="https://leetcode.com/problems/kth-smallest-instructions/">leetcode page</a>
  */
 fun interface KthSmallestPath {
-    fun invoke(destination: IntArray, k: Int): String
+    operator fun invoke(destination: IntArray, k: Int): String
 }
 
 class KthSmallestPathImpl : KthSmallestPath {

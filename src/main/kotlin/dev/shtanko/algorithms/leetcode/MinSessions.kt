@@ -23,7 +23,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/">leetcode page</a>
  */
 fun interface MinSessions {
-    fun invoke(tasks: IntArray, sessionTime: Int): Int
+    operator fun invoke(tasks: IntArray, sessionTime: Int): Int
 }
 
 /**

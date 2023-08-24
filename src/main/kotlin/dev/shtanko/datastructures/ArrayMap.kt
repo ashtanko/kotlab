@@ -29,7 +29,7 @@ private const val ARRAY_MAP_SIZE_INDEX = 4
  * @param <V> The value type.
  */
 @Suppress("UNCHECKED_CAST")
-class ArrayMap<K, V> constructor(capacity: Int = 0) {
+class ArrayMap<K, V>(capacity: Int = 0) {
 
     private lateinit var hashes: IntArray
     private lateinit var array: Array<Any?>

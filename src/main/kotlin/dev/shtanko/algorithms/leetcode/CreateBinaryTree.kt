@@ -35,11 +35,11 @@ class CreateBinaryTreeHashMap : CreateBinaryTree {
             children.add(child)
             val node = map.getOrDefault(parent, TreeNode(parent))
             if (isLeft == 1) {
-                node!!.left = map.getOrDefault(child, TreeNode(child))
-                map[child] = node.left
+                node?.left = map.getOrDefault(child, TreeNode(child))
+                map[child] = node?.left
             } else {
-                node!!.right = map.getOrDefault(child, TreeNode(child))
-                map[child] = node.right
+                node?.right = map.getOrDefault(child, TreeNode(child))
+                map[child] = node?.right
             }
             map[parent] = node
         }

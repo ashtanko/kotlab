@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/integer-replacement/">leetcode page</a>
  */
 fun interface IntegerReplacement {
-    fun invoke(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class IntegerReplacementBitCount : IntegerReplacement {

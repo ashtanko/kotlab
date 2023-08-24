@@ -23,7 +23,7 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/validate-stack-sequences/">leetcode page</a>
  */
 fun interface ValidateStackSequences {
-    fun invoke(pushed: IntArray, popped: IntArray): Boolean
+    operator fun invoke(pushed: IntArray, popped: IntArray): Boolean
 }
 
 class ValidateStackSequencesGreedy : ValidateStackSequences {

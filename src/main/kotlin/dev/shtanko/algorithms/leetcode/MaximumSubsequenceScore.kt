@@ -38,7 +38,7 @@ class MaximumSubsequenceScorePQ : MaximumSubsequenceScore {
         for (i in 0 until n) {
             pairs[i] = intArrayOf(nums1[i], nums2[i])
         }
-        pairs.sortWith() { a: IntArray, b: IntArray -> b[1] - a[1] }
+        pairs.sortWith { a: IntArray, b: IntArray -> b[1] - a[1] }
 
         // Use a min-heap to maintain the top k elements.
         val topKHeap: PriorityQueue<Int> = PriorityQueue(k) { a, b -> a - b }

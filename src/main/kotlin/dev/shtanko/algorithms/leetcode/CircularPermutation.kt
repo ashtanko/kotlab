@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/circular-permutation-in-binary-representation/">leetcode page</a>
  */
 fun interface CircularPermutation {
-    fun invoke(n: Int, start: Int): List<Int>
+    operator fun invoke(n: Int, start: Int): List<Int>
 }
 
 class CircularPermutationGrayCode : CircularPermutation {
