@@ -37,7 +37,7 @@ abstract class InterleavingStringTest<out T : InterleavingStringStrategy>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `interleaving string test`(s1: String, s2: String, s3: String, expected: Boolean) {
-        val actual = strategy.perform(s1, s2, s3)
+        val actual = strategy.invoke(s1, s2, s3)
         assertEquals(expected, actual)
     }
 }

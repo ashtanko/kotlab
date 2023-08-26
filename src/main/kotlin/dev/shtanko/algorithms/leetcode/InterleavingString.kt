@@ -16,12 +16,16 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface InterleavingStringStrategy {
-    fun perform(s1: String, s2: String, s3: String): Boolean
+/**
+ * 97. Interleaving String
+ * @see <a href="https://leetcode.com/problems/interleaving-string/">leetcode page</a>
+ */
+fun interface InterleavingStringStrategy {
+    operator fun invoke(s1: String, s2: String, s3: String): Boolean
 }
 
 class InterleavingStringBruteForce : InterleavingStringStrategy {
-    override fun perform(s1: String, s2: String, s3: String): Boolean {
+    override fun invoke(s1: String, s2: String, s3: String): Boolean {
         return Triple(s1, s2, s3).isInterleave(0, 0, "")
     }
 
@@ -36,7 +40,7 @@ class InterleavingStringBruteForce : InterleavingStringStrategy {
 
 // Recursion with memoization
 class InterleavingStringRecursionWithMemo : InterleavingStringStrategy {
-    override fun perform(s1: String, s2: String, s3: String): Boolean {
+    override fun invoke(s1: String, s2: String, s3: String): Boolean {
         val memo = Array(s1.length) { IntArray(s2.length) }
         for (i in s1.indices) {
             for (j in s2.indices) {
@@ -76,7 +80,7 @@ class InterleavingStringRecursionWithMemo : InterleavingStringStrategy {
 
 // Using 2D Dynamic Programming
 class InterleavingString2D : InterleavingStringStrategy {
-    override fun perform(s1: String, s2: String, s3: String): Boolean {
+    override fun invoke(s1: String, s2: String, s3: String): Boolean {
         return isInterleave(s1, s2, s3)
     }
 
@@ -108,7 +112,7 @@ class InterleavingString2D : InterleavingStringStrategy {
 
 // Using 1D Dynamic Programming
 class InterleavingString1D : InterleavingStringStrategy {
-    override fun perform(s1: String, s2: String, s3: String): Boolean {
+    override fun invoke(s1: String, s2: String, s3: String): Boolean {
         return isInterleave(s1, s2, s3)
     }
 
