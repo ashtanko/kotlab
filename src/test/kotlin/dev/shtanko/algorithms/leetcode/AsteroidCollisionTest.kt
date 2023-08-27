@@ -45,7 +45,7 @@ abstract class AsteroidCollisionTest<out T : AsteroidCollision>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `asteroid collision test`(asteroids: IntArray, expected: IntArray) {
-        val actual = strategy.perform(asteroids)
+        val actual = strategy.invoke(asteroids)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

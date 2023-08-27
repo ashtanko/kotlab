@@ -36,7 +36,13 @@ class RepeatedNTimesCount : RepeatedNTimes {
             count[x] = count.getOrDefault(x, 0) + 1
         }
 
-        for (k in count.keys) if ((count[k] ?: 0) > 1) return k
+        for (k in count.keys) {
+            count[k]?.let { kCount ->
+                if (kCount > 1) {
+                    return k
+                }
+            }
+        }
         return 0
     }
 }

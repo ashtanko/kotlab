@@ -23,8 +23,8 @@ import kotlin.math.abs
  * 735. Asteroid Collision
  * @see <a href="https://leetcode.com/problems/asteroid-collision/">leetcode page</a>
  */
-interface AsteroidCollision {
-    fun perform(asteroids: IntArray): IntArray
+fun interface AsteroidCollision {
+    operator fun invoke(asteroids: IntArray): IntArray
 }
 
 /**
@@ -32,7 +32,7 @@ interface AsteroidCollision {
  */
 class AsteroidCollisionStack : AsteroidCollision {
 
-    override fun perform(asteroids: IntArray): IntArray {
+    override fun invoke(asteroids: IntArray): IntArray {
         val st: Stack<Int> = Stack<Int>()
 
         for (asteroid in asteroids) {

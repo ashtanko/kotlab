@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 920. Number of Music Playlists
- * https://leetcode.com/problems/number-of-music-playlists/
+ * @see <a href="https://leetcode.com/problems/number-of-music-playlists">leetcode page</a>
  */
 fun interface NumMusicPlaylists {
     operator fun invoke(n: Int, goal: Int, k: Int): Int
@@ -77,9 +77,9 @@ class NumMusicPlaylistsTopDown : NumMusicPlaylists {
             return dp[i][j]
         }
         // DP transition: add a new song or replay an old one
-        dp[i][j] = (numberOfPlaylists(i - 1, j - 1, k, n) * (n - j + 1)) % MOD
+        dp[i][j] = numberOfPlaylists(i - 1, j - 1, k, n) * (n - j + 1) % MOD
         if (j > k) {
-            dp[i][j] = (dp[i][j] + (numberOfPlaylists(i - 1, j, k, n) * (j - k)) % MOD) % MOD
+            dp[i][j] = (dp[i][j] + numberOfPlaylists(i - 1, j, k, n) * (j - k) % MOD) % MOD
         }
         return dp[i][j]
     }
@@ -105,8 +105,8 @@ class NumMusicPlaylistsCombinatorics : NumMusicPlaylists {
         for (i in n downTo k) {
             // Calculate temporary result for this iteration
             var temp = power(i - k.toLong(), goal - k)
-            temp = (temp * invFactorial[n - i]) % MOD
-            temp = (temp * invFactorial[i - k]) % MOD
+            temp = temp * invFactorial[n - i] % MOD
+            temp = temp * invFactorial[i - k] % MOD
 
             // Add or subtract temporary result to/from answer
             answer = (answer + sign * temp + MOD) % MOD
@@ -116,7 +116,7 @@ class NumMusicPlaylistsCombinatorics : NumMusicPlaylists {
         }
 
         // Final result is n! * answer, all under modulo
-        return ((factorial[n] * answer) % MOD).toInt()
+        return (factorial[n] * answer % MOD).toInt()
     }
 
     // Method to pre-calculate factorials and inverse factorials up to 'n'
@@ -128,9 +128,9 @@ class NumMusicPlaylistsCombinatorics : NumMusicPlaylists {
 
         // Calculate factorials and inverse factorials for each number up to 'n'
         for (i in 1..n) {
-            factorial[i] = (factorial[i - 1] * i) % MOD
+            factorial[i] = factorial[i - 1] * i % MOD
             // Inverse factorial calculated using Fermat's Little Theorem
-            invFactorial[i] = power(factorial[i], (MOD - 2).toInt())
+            invFactorial[i] = power(factorial[i], MOD - 2)
         }
     }
 
@@ -143,12 +143,12 @@ class NumMusicPlaylistsCombinatorics : NumMusicPlaylists {
         var b = base
         while (exp > 0) {
             // If exponent is odd, multiply result with base
-            if ((exp and 1) == 1) {
-                result = (result * b) % MOD
+            if (exp and 1 == 1) {
+                result = result * b % MOD
             }
             // Divide the exponent by 2 and square the base
             exp = exp shr 1
-            b = (b * b) % MOD
+            b = b * b % MOD
         }
 
         return result

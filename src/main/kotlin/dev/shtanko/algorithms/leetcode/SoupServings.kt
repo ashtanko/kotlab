@@ -16,8 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.leetcode.SoupServings.Companion.DIVISOR
-import dev.shtanko.algorithms.leetcode.SoupServings.Companion.HALF
 import kotlin.math.ceil
 import kotlin.math.max
 
@@ -26,13 +24,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/soup-servings/">leetcode page</a>
  */
 interface SoupServings {
-    companion object {
-        const val DIVISOR = 25.0
-        const val HALF = 0.5
-    }
-
     fun perform(n: Int): Double
 }
+
+private const val DIVISOR = 25.0
+private const val HALF = 0.5
 
 /**
  * Approach 1: Bottom-Up Dynamic Programming
@@ -53,8 +49,12 @@ class SoupServingsBottomUp : SoupServings {
                 dp[j]?.set(k, calculateDP(j, k, dp))
                 dp[k]?.set(j, calculateDP(k, j, dp))
             }
-            if ((dp[k]?.get(k) ?: 0.0) > 1 - EPSILON) {
-                return 1.0
+            dp[k]?.let {
+                it[k]?.let { k ->
+                    if (k > 1 - EPSILON) {
+                        return 1.0
+                    }
+                }
             }
         }
 

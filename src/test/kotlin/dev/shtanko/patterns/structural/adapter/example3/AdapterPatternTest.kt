@@ -28,7 +28,7 @@ class AdapterPatternTest {
         val client = TemperatureClient(adapter)
 
         val expectedFahrenheit =
-            (mockSensor.getTemperatureInCelsius() * TemperatureAdapter.CELSIUS_TO_FAHRENHEIT_RATIO) + TemperatureAdapter.FAHRENHEIT_OFFSET
+            mockSensor.getTemperatureInCelsius() * TemperatureAdapter.CELSIUS_TO_FAHRENHEIT_RATIO + TemperatureAdapter.FAHRENHEIT_OFFSET
 
         val output = captureOutput {
             client.displayTemperature()
