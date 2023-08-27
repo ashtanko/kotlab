@@ -25,7 +25,7 @@ class RadixSort : SortStrategy<Int> {
         // declare and initialize bucket[]
         val bucket: Array<MutableList<Int>> = Array(RADIX) { ArrayList() }
         var maxLength = false
-        var tmp = -1
+        var tmp: Int
         val placement = 1
 
         while (!maxLength) {

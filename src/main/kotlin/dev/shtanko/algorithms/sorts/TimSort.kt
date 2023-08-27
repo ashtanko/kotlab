@@ -37,10 +37,6 @@ class TimSort : AbstractSortStrategy {
         while (size < length) {
             var left = 0
             while (left < length) {
-                val mid = left + size - 1
-                val right = min(left + 2 * size - 1, length - 1)
-                // perform merge sort
-                // merge(arr, left, mid, right) // TODO
                 left += 2 * size
             }
             size *= 2

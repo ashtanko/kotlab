@@ -153,12 +153,13 @@ tasks {
     }
 
     jacocoTestReport {
+        dependsOn(test)
         reports {
             html.required.set(true)
             xml.required.set(true)
-            xml.outputLocation.set(file("$buildDir/reports/jacoco/report.xml"))
+            // xml.outputLocation.set(file("$buildDir/reports/jacoco/report.xml"))
         }
-        executionData(file("build/jacoco/test.exec"))
+        // executionData(file("build/jacoco/test.exec"))
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
@@ -203,6 +204,7 @@ tasks {
         }
         testLogging.showStandardStreams = true
         useJUnitPlatform()
+        finalizedBy(withType(JacocoReport::class.java))
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
