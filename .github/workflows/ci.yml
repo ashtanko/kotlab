@@ -48,12 +48,12 @@ jobs:
       - name: Run checks and tests
         run: ./gradlew detekt ktlintCheck test --build-cache --no-daemon --stacktrace --gradle-user-home "$GRADLE_HOME"
 
-      - name: Upload test results
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: "${{ github.workspace }}/**/build/reports/tests"
+#      - name: Upload test results
+#        if: ${{ always() }}
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: test-results
+#          path: "${{ github.workspace }}/**/build/reports/tests"
 
       - name: Jacoco test report
         run: ./gradlew jacocoTestReport
