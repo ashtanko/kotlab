@@ -19,10 +19,10 @@ package dev.shtanko.algorithms.leetcode
 /**
  * TODO
  */
-interface Template {
-    fun perform(): Int
+fun interface Template {
+    operator fun invoke(): Int
 }
 
 class TemplateImpl : Template {
-    override fun perform(): Int = 0
+    override fun invoke(): Int = 0
 }
