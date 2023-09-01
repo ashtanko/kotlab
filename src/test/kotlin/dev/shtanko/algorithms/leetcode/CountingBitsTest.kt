@@ -37,7 +37,7 @@ abstract class CountingBitsTest<out T : CountingBits>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `counting bits test`(n: Int, expected: IntArray) {
-        val actual = strategy.perform(n)
+        val actual = strategy.invoke(n)
         assertThat(actual).containsExactly(*expected)
     }
 }

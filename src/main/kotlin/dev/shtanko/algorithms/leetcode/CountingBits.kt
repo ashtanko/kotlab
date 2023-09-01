@@ -18,10 +18,10 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 338. Counting Bits
- * https://leetcode.com/problems/counting-bits/
+ * @see <a href="https://leetcode.com/problems/counting-bits">leetcode page</a>
  */
-interface CountingBits {
-    fun perform(n: Int): IntArray
+fun interface CountingBits {
+    operator fun invoke(n: Int): IntArray
 }
 
 /**
@@ -30,7 +30,7 @@ interface CountingBits {
  * Space complexity: O(1)
  */
 class CountingBitsPopCount : CountingBits {
-    override fun perform(n: Int): IntArray {
+    override fun invoke(n: Int): IntArray {
         val ans = IntArray(n + 1)
         for (x in 0..n) {
             ans[x] = popCount(x)
@@ -55,7 +55,7 @@ class CountingBitsPopCount : CountingBits {
  * Space complexity: O(1)
  */
 class MostSignificantBit : CountingBits {
-    override fun perform(n: Int): IntArray {
+    override fun invoke(n: Int): IntArray {
         val ans = IntArray(n + 1)
         var x = 0
         var b = 1
@@ -79,7 +79,7 @@ class MostSignificantBit : CountingBits {
  * Space complexity: O(1)
  */
 class LeastSignificantBit : CountingBits {
-    override fun perform(n: Int): IntArray {
+    override fun invoke(n: Int): IntArray {
         val ans = IntArray(n + 1)
         for (x in 1..n) {
             ans[x] = ans[x shr 1] + (x and 1)
@@ -94,7 +94,7 @@ class LeastSignificantBit : CountingBits {
  * Space complexity: O(1)
  */
 class LastSetBit : CountingBits {
-    override fun perform(n: Int): IntArray {
+    override fun invoke(n: Int): IntArray {
         val ans = IntArray(n + 1)
         for (x in 1..n) {
             ans[x] = ans[x and x - 1] + 1
