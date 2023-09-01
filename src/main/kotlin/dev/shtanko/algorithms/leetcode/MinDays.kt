@@ -23,18 +23,18 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/">leetcode page</a>
  */
 sealed interface MinDays {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class MinDaysSimple : MinDays {
     private var dp: MutableMap<Int, Int> = HashMap()
 
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n <= 1) {
             return n
         }
         if (!dp.containsKey(n)) {
-            dp[n] = 1 + min(n % 2 + perform(n / 2), n % 3 + perform(n / 3))
+            dp[n] = 1 + min(n % 2 + invoke(n / 2), n % 3 + invoke(n / 3))
         }
         return dp.getOrDefault(n, n)
     }
@@ -43,7 +43,7 @@ class MinDaysSimple : MinDays {
 class MinDaysDP : MinDays {
     private var dp = mutableMapOf(0 to 0, 1 to 1, 2 to 2)
 
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         return solve(n)
     }
 

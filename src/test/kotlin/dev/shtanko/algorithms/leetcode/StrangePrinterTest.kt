@@ -41,7 +41,7 @@ abstract class StrangePrinterTest<out T : StrangePrinter>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `strange printer test`(s: String, expected: Int) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

@@ -43,7 +43,7 @@ abstract class AnswerQueriesTest<out T : AnswerQueries>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvide::class)
     fun `answer queries test`(nums: IntArray, queries: IntArray, expected: IntArray) {
-        val actual = strategy.perform(nums, queries)
+        val actual = strategy.invoke(nums, queries)
         assertThat(actual).isEqualTo(expected)
     }
 }

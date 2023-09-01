@@ -24,11 +24,11 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/">leetcode page</a>
  */
 interface ZigzagLevelOrder {
-    fun perform(root: TreeNode?): List<List<Int>>
+    operator fun invoke(root: TreeNode?): List<List<Int>>
 }
 
 class ZigzagLevelOrderQueue : ZigzagLevelOrder {
-    override fun perform(root: TreeNode?): List<List<Int>> {
+    override operator fun invoke(root: TreeNode?): List<List<Int>> {
         val queue: Queue<TreeNode> = LinkedList()
         queue.add(root)
         val res: MutableList<List<Int>> = ArrayList()

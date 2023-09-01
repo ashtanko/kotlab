@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/substring-with-largest-variance/">leetcode page</a>
  */
 interface LargestVariance {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 /**
@@ -31,7 +31,7 @@ interface LargestVariance {
  */
 class LargestVarianceKadane : LargestVariance {
 
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val counter = IntArray(ALPHABET_LETTERS_COUNT)
         for (ch in s.toCharArray()) {
             counter[ch.code.minus('a'.code)]++

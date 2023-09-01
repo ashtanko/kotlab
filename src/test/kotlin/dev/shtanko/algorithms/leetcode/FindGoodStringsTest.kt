@@ -36,7 +36,7 @@ abstract class FindGoodStringsTest<out T : FindGoodStrings>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find good strings test`(n: Int, s1: String, s2: String, evil: String, expected: Int) {
-        val actual = strategy.perform(n, s1, s2, evil)
+        val actual = strategy.invoke(n, s1, s2, evil)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -33,14 +33,14 @@ fun interface FindKthLargest {
  * Approach 1: Sort
  */
 class FindKthLargestSort : FindKthLargest {
-    override fun invoke(nums: IntArray, k: Int) = nums.sorted()[nums.size - k]
+    override operator fun invoke(nums: IntArray, k: Int) = nums.sorted()[nums.size - k]
 }
 
 /**
  * Approach 2: Min-Heap
  */
 class FindKthLargestMinHeap : FindKthLargest {
-    override fun invoke(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         val heap: PriorityQueue<Int> = PriorityQueue()
         for (num in nums) {
             heap.add(num)
@@ -56,7 +56,7 @@ class FindKthLargestMinHeap : FindKthLargest {
  * Approach 3: Quickselect
  */
 class FindKthLargestQuickSelect : FindKthLargest {
-    override fun invoke(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         val list: MutableList<Int> = ArrayList()
         for (num in nums) {
             list.add(num)
@@ -94,7 +94,7 @@ class FindKthLargestQuickSelect : FindKthLargest {
  * Approach 4: Counting Sort
  */
 class FindKthLargestCountingSort : FindKthLargest {
-    override fun invoke(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         var minValue = Int.MAX_VALUE
         var maxValue = Int.MIN_VALUE
 

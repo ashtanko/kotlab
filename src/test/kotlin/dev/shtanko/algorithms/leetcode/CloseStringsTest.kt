@@ -48,7 +48,7 @@ abstract class CloseStringsTest<out T : CloseStrings>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `close strings test`(word1: String, word2: String, expected: Boolean) {
-        val actual = strategy.perform(word1, word2)
+        val actual = strategy.invoke(word1, word2)
         assertThat(actual).isEqualTo(expected)
     }
 }

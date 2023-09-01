@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.max
 
 interface WiggleSubsequence {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
@@ -28,7 +28,7 @@ interface WiggleSubsequence {
  * Space complexity : O(n).
  */
 class WSBruteForce : WiggleSubsequence {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n = nums.size
         return if (n < 2) n else 1 + max(calculate(nums, 0, true), calculate(nums, 0, false))
     }
@@ -50,7 +50,7 @@ class WSBruteForce : WiggleSubsequence {
  * Space complexity : O(n).
  */
 class WSDP : WiggleSubsequence {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n = nums.size
         if (n < 2) return n
         val up = IntArray(n)
@@ -74,7 +74,7 @@ class WSDP : WiggleSubsequence {
  * Space complexity : O(n).
  */
 class WSLinearDP : WiggleSubsequence {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n = nums.size
         if (n < 2) return n
         val up = IntArray(n)
@@ -108,7 +108,7 @@ class WSLinearDP : WiggleSubsequence {
  * Space complexity : O(1).
  */
 class WSSpaceOptimizedDP : WiggleSubsequence {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n = nums.size
         if (n < 2) return n
         var up = 1
@@ -130,7 +130,7 @@ class WSSpaceOptimizedDP : WiggleSubsequence {
  * Space complexity : O(1).
  */
 class WSGreedy : WiggleSubsequence {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n = nums.size
         if (n < 2) return n
         var diffPrev = nums[1] - nums[0]

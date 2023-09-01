@@ -39,7 +39,7 @@ abstract class RemoveAllAdjacentDuplicatesTest<out T : RemoveAllAdjacentDuplicat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `remove all adjacent duplicates in string test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertEquals(expected, actual)
     }
 }

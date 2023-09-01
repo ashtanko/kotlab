@@ -26,11 +26,11 @@ import kotlin.math.min
  *     leetcode page</a>
  */
 interface MinimizeSumDifference {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class MinimizeSumDifferenceSolution : MinimizeSumDifference {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         if (n == 2) return abs(nums[1] - nums[0])
         val lists1 = generate(nums.copyOfRange(0, n / 2))
@@ -81,7 +81,7 @@ class MinimizeSumDifferenceSolution : MinimizeSumDifference {
 }
 
 class MinimizeSumDifferenceTree : MinimizeSumDifference {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         var sum = 0
         for (i in nums) {

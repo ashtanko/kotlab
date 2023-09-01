@@ -71,7 +71,7 @@ abstract class LatestDayToCrossTest<out T : LatestDayToCross>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shortest path all keys test`(row: Int, col: Int, cells: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(row, col, cells)
+        val actual = strategy.invoke(row, col, cells)
         assertThat(actual).isEqualTo(expected)
     }
 }

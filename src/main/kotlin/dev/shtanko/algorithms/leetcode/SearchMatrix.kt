@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/search-a-2d-matrix/">leetcode page</a>
  */
 interface SearchMatrix {
-    fun perform(matrix: Array<IntArray>, target: Int): Boolean
+    operator fun invoke(matrix: Array<IntArray>, target: Int): Boolean
 }
 
 class SearchMatrixBS : SearchMatrix {
-    override fun perform(matrix: Array<IntArray>, target: Int): Boolean {
+    override operator fun invoke(matrix: Array<IntArray>, target: Int): Boolean {
         if (matrix.isEmpty()) {
             return false
         }

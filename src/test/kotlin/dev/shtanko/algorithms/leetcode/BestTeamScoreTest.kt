@@ -48,7 +48,7 @@ abstract class BestTeamScoreTest<out T : BestTeamScore>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `best team score test`(scores: IntArray, ages: IntArray, expected: Int) {
-        val actual = strategy.perform(scores, ages)
+        val actual = strategy.invoke(scores, ages)
         assertThat(actual).isEqualTo(expected)
     }
 }

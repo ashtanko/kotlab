@@ -23,11 +23,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/range-sum-of-bst/description/">leetcode page</a>
  */
 fun interface RangeSumStrategy {
-    fun perform(root: TreeNode?, left: Int, right: Int): Int
+    operator fun invoke(root: TreeNode?, left: Int, right: Int): Int
 }
 
 class RangeSumBST : RangeSumStrategy {
-    override fun perform(root: TreeNode?, left: Int, right: Int): Int {
+    override operator fun invoke(root: TreeNode?, left: Int, right: Int): Int {
         var ans = 0
         val stack: Stack<TreeNode> = Stack()
         stack.push(root)
@@ -44,7 +44,7 @@ class RangeSumBST : RangeSumStrategy {
 }
 
 class RangeSumRecursive : RangeSumStrategy {
-    override fun perform(root: TreeNode?, left: Int, right: Int): Int {
+    override operator fun invoke(root: TreeNode?, left: Int, right: Int): Int {
         return rangeSumBSTRecursive(root, left, right)
     }
 

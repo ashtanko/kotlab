@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 // Build an Array With Stack Operations
 class BuildArrayWithStackOperations {
 
-    fun perform(target: IntArray, n: Int): MutableList<String> {
+    operator fun invoke(target: IntArray, n: Int): MutableList<String> {
         val result: MutableList<String> = ArrayList()
         var j = 0
         var i = 1

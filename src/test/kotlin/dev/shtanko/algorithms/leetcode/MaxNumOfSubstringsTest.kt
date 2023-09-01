@@ -41,7 +41,7 @@ abstract class MaxNumOfSubstringsTest<out T : MaxNumOfSubstrings>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max num of substrings test`(s: String, expected: List<String>) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }

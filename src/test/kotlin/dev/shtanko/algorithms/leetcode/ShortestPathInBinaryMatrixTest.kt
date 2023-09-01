@@ -56,7 +56,7 @@ abstract class ShortestPathInBinaryMatrixTest<out T : ShortestPathInBinaryMatrix
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shortest path binary matrix test`(grid: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(grid)
+        val actual = strategy.invoke(grid)
         assertThat(actual).isEqualTo(expected)
     }
 }

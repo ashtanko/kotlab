@@ -57,7 +57,7 @@ abstract class ShortestAlternatingPathsTest<out T : ShortestAlternatingPaths>(pr
         blueEdges: Array<IntArray>,
         expected: IntArray,
     ) {
-        val actual = strategy.perform(n, redEdges, blueEdges)
+        val actual = strategy.invoke(n, redEdges, blueEdges)
         assertThat(actual).isEqualTo(expected)
     }
 }

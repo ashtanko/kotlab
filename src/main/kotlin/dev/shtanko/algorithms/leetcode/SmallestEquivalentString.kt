@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/lexicographically-smallest-equivalent-string/">leetcode page</a>
  */
 interface SmallestEquivalentString {
-    fun perform(s1: String, s2: String, baseStr: String): String
+    operator fun invoke(s1: String, s2: String, baseStr: String): String
 }
 
 class SmallestEquivalentStringUnion : SmallestEquivalentString {
-    override fun perform(s1: String, s2: String, baseStr: String): String {
+    override operator fun invoke(s1: String, s2: String, baseStr: String): String {
         val graph = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in 0 until ALPHABET_LETTERS_COUNT) {
             graph[i] = i

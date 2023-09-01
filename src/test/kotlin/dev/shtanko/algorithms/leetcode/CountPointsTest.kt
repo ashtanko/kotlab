@@ -63,7 +63,7 @@ abstract class CountPointsTest<out T : CountPoints>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count points test`(points: Array<IntArray>, queries: Array<IntArray>, expected: IntArray) {
-        val actual = strategy.perform(points, queries)
+        val actual = strategy.invoke(points, queries)
         assertThat(actual).isEqualTo(expected)
     }
 }

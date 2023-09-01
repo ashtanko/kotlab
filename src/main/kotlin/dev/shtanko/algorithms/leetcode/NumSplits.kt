@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-good-ways-to-split-a-string/">leetcode page</a>
  */
 interface NumSplits {
-    fun perform(str: String): Int
+    operator fun invoke(str: String): Int
 }
 
 class NumSplitsSplitPointer : NumSplits {
-    override fun perform(str: String): Int {
+    override operator fun invoke(str: String): Int {
         val l = IntArray(ALPHABET_LETTERS_COUNT) // TODO rename
         val r = IntArray(ALPHABET_LETTERS_COUNT) // TODO rename
         var dL = 0
@@ -43,7 +43,7 @@ class NumSplitsSplitPointer : NumSplits {
 }
 
 class NumSplitsMap : NumSplits {
-    override fun perform(str: String): Int {
+    override operator fun invoke(str: String): Int {
         val left: HashMap<Char, Int> = HashMap()
         val right: HashMap<Char, Int> = HashMap()
 

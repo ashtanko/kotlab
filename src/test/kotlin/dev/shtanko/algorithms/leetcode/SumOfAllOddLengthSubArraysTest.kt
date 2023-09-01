@@ -37,7 +37,7 @@ abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArrays
     @ParameterizedTest
     @MethodSource("dataProvider")
     fun `sum of all odd length sub arrays test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

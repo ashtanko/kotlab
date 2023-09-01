@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 object FindAnagramMappings {
-    fun perform(a: IntArray, b: IntArray): IntArray {
+    operator fun invoke(a: IntArray, b: IntArray): IntArray {
         val d: MutableMap<Int, Int> = HashMap()
         for (i in b.indices) d[b[i]] = i
 

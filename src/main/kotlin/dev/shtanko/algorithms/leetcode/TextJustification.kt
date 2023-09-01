@@ -23,12 +23,12 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/text-justification/">leetcode page</a>
  */
 interface TextJustification {
-    fun perform(words: Array<String>, maxWidth: Int): List<String>
+    operator fun invoke(words: Array<String>, maxWidth: Int): List<String>
 }
 
 class TextJustificationImpl : TextJustification {
 
-    override fun perform(words: Array<String>, maxWidth: Int): List<String> {
+    override operator fun invoke(words: Array<String>, maxWidth: Int): List<String> {
         var curr = 0
         val out: MutableList<String> = ArrayList()
         while (curr < words.size) {
@@ -76,7 +76,7 @@ class TextJustificationImpl : TextJustification {
 }
 
 class TextJustificationImpl2 : TextJustification {
-    override fun perform(words: Array<String>, maxWidth: Int): List<String> {
+    override operator fun invoke(words: Array<String>, maxWidth: Int): List<String> {
         var left = 0
         val result: MutableList<String> = ArrayList()
         while (left < words.size) {

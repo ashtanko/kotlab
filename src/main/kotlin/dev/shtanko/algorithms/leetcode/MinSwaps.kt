@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/">leetcode page</a>
  */
 interface MinSwaps {
-    fun perform(data: IntArray): Int
+    operator fun invoke(data: IntArray): Int
 }
 
 /**
@@ -32,7 +32,7 @@ interface MinSwaps {
  * Space complexity: O(1)
  */
 class MinSwapsTwoPointers : MinSwaps {
-    override fun perform(data: IntArray): Int {
+    override operator fun invoke(data: IntArray): Int {
         val ones: Int = data.sum()
         var cntOne = 0
         var maxOne = 0
@@ -60,7 +60,7 @@ class MinSwapsTwoPointers : MinSwaps {
  * Space complexity: O(n)
  */
 class MinSwapsDeque : MinSwaps {
-    override fun perform(data: IntArray): Int {
+    override operator fun invoke(data: IntArray): Int {
         val ones: Int = data.sum()
         var cntOne = 0
         var maxOne = 0

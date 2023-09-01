@@ -60,7 +60,7 @@ abstract class FindMinArrowShotsTest<out T : FindMinArrowShots>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find min arrow shots test`(points: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(points)
+        val actual = strategy.invoke(points)
         assertThat(actual).isEqualTo(expected)
     }
 }

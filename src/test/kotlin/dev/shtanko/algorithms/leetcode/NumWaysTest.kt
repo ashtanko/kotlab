@@ -43,7 +43,7 @@ abstract class NumWaysTest<out T : NumWays>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `num ways test`(words: Array<String>, target: String, expected: Int) {
-        val actual = strategy.perform(words, target)
+        val actual = strategy.invoke(words, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

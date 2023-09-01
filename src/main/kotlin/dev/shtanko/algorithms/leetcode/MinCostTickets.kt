@@ -23,7 +23,7 @@ import kotlin.math.min
  * https://leetcode.com/problems/minimum-cost-for-tickets/
  */
 interface MinCostTickets {
-    fun perform(days: IntArray, costs: IntArray): Int
+    operator fun invoke(days: IntArray, costs: IntArray): Int
 }
 
 /**
@@ -35,7 +35,7 @@ class DPDayVariant : MinCostTickets {
     private var memo: Array<Int?> = arrayOfNulls(LEAP_YEAR_DAYS)
     private var dayset: MutableSet<Int> = HashSet()
 
-    override fun perform(days: IntArray, costs: IntArray): Int {
+    override operator fun invoke(days: IntArray, costs: IntArray): Int {
         this.costs = costs
         for (d in days) dayset.add(d)
         return dp(1)
@@ -76,7 +76,7 @@ class DPWindowVariant : MinCostTickets {
     private lateinit var memo: Array<Int?>
     private var durations = intArrayOf(ONE_DAY, ONE_WEEK, ONE_MONTH)
 
-    override fun perform(days: IntArray, costs: IntArray): Int {
+    override operator fun invoke(days: IntArray, costs: IntArray): Int {
         this.days = days
         this.costs = costs
         memo = arrayOfNulls(days.size)

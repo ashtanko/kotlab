@@ -22,7 +22,7 @@ package dev.shtanko.algorithms.leetcode
  */
 object SumSubseqWidths {
 
-    fun perform(a: IntArray): Int {
+    operator fun invoke(a: IntArray): Int {
         val n: Int = a.size
         a.sort()
 

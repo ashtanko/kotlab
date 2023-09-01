@@ -21,13 +21,13 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/balance-a-binary-search-tree/">leetcode page</a>
  */
 interface BalanceBST {
-    fun perform(root: TreeNode?): TreeNode?
+    operator fun invoke(root: TreeNode?): TreeNode?
 }
 
 class BalanceBSTInorder : BalanceBST {
     private val sortedArr: MutableList<TreeNode> = ArrayList()
 
-    override fun perform(root: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?): TreeNode? {
         inorderTraverse(root)
         return sortedArrayToBST(0, sortedArr.size - 1)
     }
@@ -51,7 +51,7 @@ class BalanceBSTInorder : BalanceBST {
 
 class BalanceBSTreeDSW : BalanceBST {
 
-    override fun perform(root: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?): TreeNode? {
         val pseudoRoot = TreeNode(0)
         pseudoRoot.right = root
 

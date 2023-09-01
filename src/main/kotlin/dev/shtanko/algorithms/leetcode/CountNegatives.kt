@@ -17,14 +17,14 @@
 package dev.shtanko.algorithms.leetcode
 
 interface AbstractCountNegativesStrategy {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 /**
  *
  */
 class SimpleCountNegatives : AbstractCountNegativesStrategy {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         return grid.count()
     }
 
@@ -49,7 +49,7 @@ class SimpleCountNegatives : AbstractCountNegativesStrategy {
  *
  */
 class CountNegativesTwoPointers : AbstractCountNegativesStrategy {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         return grid.count()
     }
 
@@ -75,7 +75,7 @@ class CountNegativesTwoPointers : AbstractCountNegativesStrategy {
  *
  */
 class CountNegativesBinary : AbstractCountNegativesStrategy {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         return grid.count()
     }
 

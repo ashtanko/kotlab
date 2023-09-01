@@ -43,7 +43,7 @@ abstract class TwoEditWordsTest<out T : TwoEditWords>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `two edit words test`(queries: Array<String>, dictionary: Array<String>, expected: List<String>) {
-        val actual = strategy.perform(queries, dictionary)
+        val actual = strategy.invoke(queries, dictionary)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -62,7 +62,7 @@ abstract class AbstractRobberTest<out T : AbstractRobberStrategy>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `robber test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

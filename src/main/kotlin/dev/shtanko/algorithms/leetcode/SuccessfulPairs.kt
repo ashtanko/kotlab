@@ -23,7 +23,7 @@ import java.util.TreeMap
  * @see <a href="https://leetcode.com/problems/successful-pairs-of-spells-and-potions/">leetcode page</a>
  */
 interface SuccessfulPairs {
-    fun perform(spells: IntArray, potions: IntArray, success: Long): IntArray
+    operator fun invoke(spells: IntArray, potions: IntArray, success: Long): IntArray
 }
 
 /**
@@ -32,7 +32,7 @@ interface SuccessfulPairs {
  * Space O(n)
  */
 class SuccessfulPairsSF : SuccessfulPairs {
-    override fun perform(spells: IntArray, potions: IntArray, success: Long): IntArray {
+    override operator fun invoke(spells: IntArray, potions: IntArray, success: Long): IntArray {
         potions.sort()
         val map = TreeMap<Long, Int>()
         map[Long.MAX_VALUE] = potions.size
@@ -53,7 +53,7 @@ class SuccessfulPairsSF : SuccessfulPairs {
  * Space O(n)
  */
 class SuccessfulPairsTwoSum : SuccessfulPairs {
-    override fun perform(spells: IntArray, potions: IntArray, success: Long): IntArray {
+    override operator fun invoke(spells: IntArray, potions: IntArray, success: Long): IntArray {
         val spells0 = spells.clone()
         potions.sort()
         spells.sort()

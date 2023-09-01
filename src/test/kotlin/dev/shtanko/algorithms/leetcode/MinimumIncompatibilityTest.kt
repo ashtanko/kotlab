@@ -48,7 +48,7 @@ abstract class MinimumIncompatibilityTest<out T : MinimumIncompatibility>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum incompatibility test`(nums: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(nums, k)
+        val actual = strategy.invoke(nums, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

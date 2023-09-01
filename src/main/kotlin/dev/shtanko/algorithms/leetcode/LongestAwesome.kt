@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/find-longest-awesome-substring/">leetcode page</a>
  */
 interface LongestAwesome {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 class LongestAwesomeImpl : LongestAwesome {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val dp = IntArray(LIMIT) { s.length }
         var res = 0
         var mask = 0

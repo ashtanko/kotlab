@@ -41,7 +41,7 @@ abstract class MctFromLeafValuesTest<out T : MctFromLeafValues>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `mct from leaf values test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }

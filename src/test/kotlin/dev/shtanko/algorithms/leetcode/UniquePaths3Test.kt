@@ -56,7 +56,7 @@ abstract class UniquePaths3Test<out T : UniquePaths3>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `uniquePaths III test`(grid: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(grid)
+        val actual = strategy.invoke(grid)
         assertThat(actual).isEqualTo(expected)
     }
 }

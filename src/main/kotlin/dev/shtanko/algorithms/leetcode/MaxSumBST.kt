@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/">leetcode page</a>
  */
 interface MaxSumBST {
-    fun perform(root: TreeNode): Int
+    operator fun invoke(root: TreeNode): Int
 }
 
 class MaxSumBSTPostOrder : MaxSumBST {
-    override fun perform(root: TreeNode): Int {
+    override operator fun invoke(root: TreeNode): Int {
         val res = dfs(root)
         return max(res[3], 0)
     }

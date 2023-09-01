@@ -53,7 +53,7 @@ abstract class SumOfUniqueTest<out T : SumOfUnique>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `unique elements test`(elems: IntArray, expected: Int) {
-        val actual = strategy.perform(elems)
+        val actual = strategy.invoke(elems)
         assertThat(actual).isEqualTo(expected)
     }
 }

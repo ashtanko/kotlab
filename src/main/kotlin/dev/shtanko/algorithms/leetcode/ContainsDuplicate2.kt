@@ -24,7 +24,7 @@ import kotlin.math.max
  * such that nums of i = nums of j and the absolute difference between i and j is at most k.
  */
 interface ContainsDuplicate2 {
-    fun perform(nums: IntArray, k: Int): Boolean
+    operator fun invoke(nums: IntArray, k: Int): Boolean
 }
 
 /**
@@ -33,7 +33,7 @@ interface ContainsDuplicate2 {
  * Space complexity : O(1).
  */
 class ContainsDuplicateLinear : ContainsDuplicate2 {
-    override fun perform(nums: IntArray, k: Int): Boolean {
+    override operator fun invoke(nums: IntArray, k: Int): Boolean {
         for (i in nums.indices) {
             for (j in max(i - k, 0) until i) {
                 if (nums[i] == nums[j]) return true
@@ -57,7 +57,7 @@ class ContainsDuplicateBinarySearchTree : ContainsDuplicate2 by ContainsDuplicat
 class ContainsDuplicateHash : ContainsDuplicate2 by ContainsDuplicateBehavior(HashSet())
 
 class ContainsDuplicateBehavior(private val set: MutableSet<Int>) : ContainsDuplicate2 {
-    override fun perform(nums: IntArray, k: Int): Boolean {
+    override operator fun invoke(nums: IntArray, k: Int): Boolean {
         for (i in nums.indices) {
             if (set.contains(nums[i])) return true
             set.add(nums[i])

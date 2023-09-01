@@ -24,11 +24,11 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/snakes-and-ladders/">leetcode page</a>
  */
 interface SnakesAndLadders {
-    fun perform(board: Array<IntArray>): Int
+    operator fun invoke(board: Array<IntArray>): Int
 }
 
 class SnakesAndLaddersBFS : SnakesAndLadders {
-    override fun perform(board: Array<IntArray>): Int {
+    override operator fun invoke(board: Array<IntArray>): Int {
         if (board.isEmpty() || board[0].isEmpty()) {
             return -1
         }

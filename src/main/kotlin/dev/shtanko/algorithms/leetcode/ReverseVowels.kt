@@ -30,7 +30,7 @@ class ReverseVowelsTwoPointers : ReverseVowels {
         private const val VOWELS = "aeiouAEIOU"
     }
 
-    override fun invoke(s: String): String {
+    override operator fun invoke(s: String): String {
         if (s.isEmpty()) return s
         val chars: CharArray = s.toCharArray()
         var start = 0
@@ -53,7 +53,7 @@ class ReverseVowelsTwoPointers : ReverseVowels {
 }
 
 class ReverseVowelsSet : ReverseVowels {
-    override fun invoke(s: String): String {
+    override operator fun invoke(s: String): String {
         val set: Set<Char> = HashSet(listOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'))
         val arr: CharArray = s.toCharArray()
         var left = 0

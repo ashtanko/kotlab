@@ -41,7 +41,7 @@ abstract class MinimumRoundsTest<out T : MinimumRounds>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum rounds test`(tasks: IntArray, expected: Int) {
-        val actual = strategy.perform(tasks)
+        val actual = strategy.invoke(tasks)
         assertThat(actual).isEqualTo(expected)
     }
 }

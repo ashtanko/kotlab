@@ -26,11 +26,11 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/">leetcode page</a>
  */
 interface ReverseParentheses {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 class ReverseParenthesesBF : ReverseParentheses {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val st: Stack<Char> = Stack()
         for (c in s.toCharArray()) {
             if (c == ')') {
@@ -50,7 +50,7 @@ class ReverseParenthesesBF : ReverseParentheses {
 }
 
 class ReverseParenthesesSort : ReverseParentheses {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val dq: Deque<StringBuilder> = LinkedList()
         dq.push(java.lang.StringBuilder()) // In case the first char is NOT '(', need an empty StringBuilder.
 

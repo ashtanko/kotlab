@@ -30,7 +30,7 @@ class EqualOnes : ThreeEqualParts {
 
     private val impossible = intArrayOf(-1, -1)
 
-    override fun invoke(arr: IntArray): IntArray {
+    override operator fun invoke(arr: IntArray): IntArray {
         val n = arr.size
 
         // Count how many 1s are in arr.
@@ -94,7 +94,7 @@ class EqualOnes : ThreeEqualParts {
 }
 
 class ThreeEqualPartsSimple : ThreeEqualParts {
-    override fun invoke(arr: IntArray): IntArray {
+    override operator fun invoke(arr: IntArray): IntArray {
         var numOne = 0
         for (i in arr) {
             if (i == 1) numOne++

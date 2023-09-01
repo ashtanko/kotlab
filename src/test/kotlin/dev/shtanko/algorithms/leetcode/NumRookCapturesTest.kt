@@ -72,7 +72,7 @@ abstract class NumRookCapturesTest<out T : NumRookCaptures>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `num Rook captures test`(board: Array<CharArray>, expected: Int) {
-        val actual = strategy.perform(board)
+        val actual = strategy.invoke(board)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -43,7 +43,7 @@ abstract class SubarraysDivByKTest<out T : SubarraysDivByK>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `subarrays div by k test`(nums: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(nums, k)
+        val actual = strategy.invoke(nums, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

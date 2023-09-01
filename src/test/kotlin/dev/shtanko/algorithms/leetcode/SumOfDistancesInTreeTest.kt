@@ -50,7 +50,7 @@ class SumOfDistancesInTreeTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sum of distances in tree test`(n: Int, edges: Array<IntArray>, expected: IntArray) {
-        val actual = SumOfDistancesInTree().perform(n, edges)
+        val actual = SumOfDistancesInTree().invoke(n, edges)
         assertArrayEquals(expected, actual)
     }
 }

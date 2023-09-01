@@ -45,7 +45,7 @@ abstract class LetterCombinationsTest<out T : LetterCombinations>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `letter combinations test`(digits: String, expected: List<String>) {
-        val actual = strategy.perform(digits)
+        val actual = strategy.invoke(digits)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

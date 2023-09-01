@@ -69,7 +69,7 @@ class ReverseWordsString2Test {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `test`(s: CharArray, expected: CharArray) {
-        ReverseWordsInString2().perform(s)
+        ReverseWordsInString2().invoke(s)
         assertArrayEquals(expected, s)
     }
 

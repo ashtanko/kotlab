@@ -25,11 +25,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/shortest-path-with-alternating-colors/">leetcode page</a>
  */
 interface ShortestAlternatingPaths {
-    fun perform(n: Int, redEdges: Array<IntArray>, blueEdges: Array<IntArray>): IntArray
+    operator fun invoke(n: Int, redEdges: Array<IntArray>, blueEdges: Array<IntArray>): IntArray
 }
 
 class ShortestAlternatingPathsBFS : ShortestAlternatingPaths {
-    override fun perform(n: Int, redEdges: Array<IntArray>, blueEdges: Array<IntArray>): IntArray {
+    override operator fun invoke(n: Int, redEdges: Array<IntArray>, blueEdges: Array<IntArray>): IntArray {
         val graph: Array<Array<MutableSet<Int>>> = Array<Array<MutableSet<Int>>>(n) {
             Array(2) { HashSet() }
         }

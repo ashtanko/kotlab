@@ -25,11 +25,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/decode-string/">leetcode page</a>
  */
 interface DecodeString {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 class DecodeStringStack : DecodeString {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val numStack: Stack<Int> = Stack()
         val strBuild: Stack<StringBuilder> = Stack()
         var str = StringBuilder()
@@ -66,7 +66,7 @@ class DecodeStringStack : DecodeString {
 }
 
 class DecodeStringRecursive : DecodeString {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val queue: Deque<Char> = LinkedList()
         for (c in s.toCharArray()) {
             queue.offer(c)

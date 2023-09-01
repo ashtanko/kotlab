@@ -48,7 +48,7 @@ abstract class RemoveElementsTest<out T : RemoveElements>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `remove elements test`(head: ListNode?, value: Int, expected: ListNode?) {
-        val actual = strategy.perform(head, value)
+        val actual = strategy.invoke(head, value)
         assertThat(actual).isEqualTo(expected)
     }
 }

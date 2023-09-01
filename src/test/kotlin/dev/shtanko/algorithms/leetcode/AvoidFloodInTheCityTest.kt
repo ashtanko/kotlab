@@ -44,7 +44,7 @@ abstract class AvoidFloodInTheCityTest<out T : AvoidFloodStrategy>(private val s
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `avoid flood test`(testCase: Pair<IntArray, IntArray>) {
         val (rains, expected) = testCase
-        val actual = strategy.perform(rains)
+        val actual = strategy.invoke(rains)
         assertThat(actual, equalTo(expected))
     }
 }

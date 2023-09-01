@@ -49,7 +49,7 @@ abstract class PalindromeLinkedListTest<T : PalindromeLinkedList>(private val so
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is palindrome test`(head: ListNode, expected: Boolean) {
-        val actual = solution.perform(head)
+        val actual = solution.invoke(head)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface NumberOfStepsStrategy {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class NumberOfStepsStraightForward : NumberOfStepsStrategy {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         return n.numberOfSteps()
     }
 
@@ -44,7 +44,7 @@ class NumberOfStepsStraightForward : NumberOfStepsStrategy {
 }
 
 class NumberOfStepsBinary : NumberOfStepsStrategy {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n == 0) return 0
         var result = 0
         var a = n

@@ -24,14 +24,14 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/course-schedule-iii/">leetcode page</a>
  */
 interface ScheduleCourse3 {
-    fun perform(courses: Array<IntArray>): Int
+    operator fun invoke(courses: Array<IntArray>): Int
 }
 
 /**
  * Approach 2: Recursion with Memoization
  */
 class ScheduleCourse3Recursion : ScheduleCourse3 {
-    override fun perform(courses: Array<IntArray>): Int {
+    override operator fun invoke(courses: Array<IntArray>): Int {
         courses.sortWith { a, b -> a[1] - b[1] }
         val memo = Array(courses.size) {
             arrayOfNulls<Int>(
@@ -58,7 +58,7 @@ class ScheduleCourse3Recursion : ScheduleCourse3 {
  * Approach 3: Iterative Solution
  */
 class ScheduleCourse3Iterative : ScheduleCourse3 {
-    override fun perform(courses: Array<IntArray>): Int {
+    override operator fun invoke(courses: Array<IntArray>): Int {
         courses.sortWith { a: IntArray, b: IntArray ->
             a[1] - b[1]
         }
@@ -87,7 +87,7 @@ class ScheduleCourse3Iterative : ScheduleCourse3 {
  * Approach 4: Optimized Iterative
  */
 class ScheduleCourse3OptimizedIterative : ScheduleCourse3 {
-    override fun perform(courses: Array<IntArray>): Int {
+    override operator fun invoke(courses: Array<IntArray>): Int {
         courses.sortWith { a: IntArray, b: IntArray ->
             a[1] - b[1]
         }
@@ -116,7 +116,7 @@ class ScheduleCourse3OptimizedIterative : ScheduleCourse3 {
  * Approach 5: Extra List
  */
 class ScheduleCourse3ExtraList : ScheduleCourse3 {
-    override fun perform(courses: Array<IntArray>): Int {
+    override operator fun invoke(courses: Array<IntArray>): Int {
         courses.sortWith { a: IntArray, b: IntArray ->
             a[1] - b[1]
         }
@@ -147,7 +147,7 @@ class ScheduleCourse3ExtraList : ScheduleCourse3 {
  * Space complexity : O(n).
  */
 class ScheduleCourse3PriorityQueue : ScheduleCourse3 {
-    override fun perform(courses: Array<IntArray>): Int {
+    override operator fun invoke(courses: Array<IntArray>): Int {
         courses.sortWith { a: IntArray, b: IntArray ->
             a[1] - b[1]
         }

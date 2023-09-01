@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-unequal-triplets-in-array/">leetcode page</a>
  */
 fun interface UnequalTriplets {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class UnequalTripletsOnePass : UnequalTriplets {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var trips = 0
         var pairs = 0
         val count = IntArray(LIMIT)

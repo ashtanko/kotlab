@@ -117,7 +117,7 @@ class WordFilterTrieTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `word filter test`(strategy: WordFilter, prefix: String, suffix: String, expected: Int) {
-        val actual = strategy.perform(prefix, suffix)
+        val actual = strategy.invoke(prefix, suffix)
         assertThat(actual).isEqualTo(expected)
     }
 }

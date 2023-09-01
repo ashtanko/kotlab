@@ -24,14 +24,14 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/total-cost-to-hire-k-workers/">leetcode page</a>
  */
 interface TotalCost {
-    fun perform(costs: IntArray, k: Int, candidates: Int): Long
+    operator fun invoke(costs: IntArray, k: Int, candidates: Int): Long
 }
 
 /**
  * Approach 1: 2 Priority Queues
  */
 class TotalCostPriorityQueues : TotalCost {
-    override fun perform(costs: IntArray, k: Int, candidates: Int): Long {
+    override operator fun invoke(costs: IntArray, k: Int, candidates: Int): Long {
         val headWorkers: PriorityQueue<Int> = PriorityQueue()
         val tailWorkers: PriorityQueue<Int> = PriorityQueue()
         // headWorkers stores the first k workers.
@@ -75,7 +75,7 @@ class TotalCostPriorityQueues : TotalCost {
  * Approach 2: 1 Priority Queue
  */
 class TotalCostPriorityQueue : TotalCost {
-    override fun perform(costs: IntArray, k: Int, candidates: Int): Long {
+    override operator fun invoke(costs: IntArray, k: Int, candidates: Int): Long {
         // The worker with the lowest cost has the highest priority, if two players has the
         // same cost, break the tie by their indices (0 or 1).
         val pq = PriorityQueue(

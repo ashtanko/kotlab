@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/">leetcode page</a>
  */
 interface RangeSum {
-    fun perform(nums: IntArray, n: Int, left: Int, right: Int): Int
+    operator fun invoke(nums: IntArray, n: Int, left: Int, right: Int): Int
 }
 
 class RangeSumPrefixSum : RangeSum {
-    override fun perform(nums: IntArray, n: Int, left: Int, right: Int): Int {
+    override operator fun invoke(nums: IntArray, n: Int, left: Int, right: Int): Int {
         var res: Long = 0
         var sum: Long = 0
         val sums: MutableList<Long> = ArrayList()
@@ -47,7 +47,7 @@ class RangeSumPrefixSum : RangeSum {
 }
 
 class RangeSumBinarySearch : RangeSum {
-    override fun perform(nums: IntArray, n: Int, left: Int, right: Int): Int {
+    override operator fun invoke(nums: IntArray, n: Int, left: Int, right: Int): Int {
         val maxLeft = findMax(nums, left)
         val maxRight = findMax(nums, right)
         val rangeSumLeft = rangeSum(nums, maxLeft)

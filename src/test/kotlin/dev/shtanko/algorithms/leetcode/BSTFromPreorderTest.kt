@@ -41,7 +41,7 @@ abstract class BSTFromPreorderTest<out T : BSTFromPreorder>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `bst from preorder test`(preorder: IntArray, expected: List<Int>) {
-        val actual = strategy.perform(preorder)
+        val actual = strategy.invoke(preorder)
         println(actual?.prettyPrinted())
         assertThat(actual.preorderTraversal()).isEqualTo(expected)
     }

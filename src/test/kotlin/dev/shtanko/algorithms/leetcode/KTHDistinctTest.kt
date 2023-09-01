@@ -48,7 +48,7 @@ abstract class KTHDistinctTest<out T : KTHDistinct>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `kth distinct test`(arr: Array<String>, k: Int, expected: String) {
-        val actual = strategy.perform(arr, k)
+        val actual = strategy.invoke(arr, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

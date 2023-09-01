@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/longest-string-chain/">leetcode page</a>
  */
 interface LongestStringChain {
-    fun perform(words: Array<String>): Int
+    operator fun invoke(words: Array<String>): Int
 }
 
 /**
@@ -32,7 +32,7 @@ interface LongestStringChain {
  * Space complexity: O(N).
  */
 class LSCTopDown : LongestStringChain {
-    override fun perform(words: Array<String>): Int {
+    override operator fun invoke(words: Array<String>): Int {
         val memo: MutableMap<String, Int> = HashMap()
         val wordsPresent: MutableSet<String> = HashSet()
         wordsPresent.addAll(words)
@@ -74,7 +74,7 @@ class LSCTopDown : LongestStringChain {
  * Space complexity: O(N).
  */
 class LSCBottomUp : LongestStringChain {
-    override fun perform(words: Array<String>): Int {
+    override operator fun invoke(words: Array<String>): Int {
         val dp: MutableMap<String, Int> = HashMap()
 
         // Sorting the list in terms of the word length.

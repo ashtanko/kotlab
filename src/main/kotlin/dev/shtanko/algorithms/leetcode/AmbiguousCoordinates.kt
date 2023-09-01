@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 class AmbiguousCoordinates {
-    fun perform(s: String): List<String> {
+    operator fun invoke(s: String): List<String> {
         val ans: MutableList<String> = ArrayList()
         for (i in 2 until s.length - 1) {
             for (left in make(s, 1, i)) {

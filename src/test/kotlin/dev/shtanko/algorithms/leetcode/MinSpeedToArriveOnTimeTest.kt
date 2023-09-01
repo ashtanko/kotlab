@@ -48,7 +48,7 @@ abstract class MinSpeedToArriveOnTimeTest<out T : MinSpeedToArriveOnTime>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min speed on time test`(dist: IntArray, hour: Double, expected: Int) {
-        val actual = strategy.perform(dist, hour)
+        val actual = strategy.invoke(dist, hour)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

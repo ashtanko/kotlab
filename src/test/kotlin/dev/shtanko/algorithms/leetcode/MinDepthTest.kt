@@ -43,7 +43,7 @@ abstract class MinDepthTest<out T : MinDepth>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min deletion size test`(root: TreeNode?, expected: Int) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

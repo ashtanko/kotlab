@@ -215,7 +215,7 @@ abstract class TextJustificationTest<out T : TextJustification>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `full text justify test`(words: Array<String>, maxWidth: Int, expected: List<String>) {
-        val actual = strategy.perform(words, maxWidth)
+        val actual = strategy.invoke(words, maxWidth)
         assertThat(actual).containsAll(expected)
     }
 }

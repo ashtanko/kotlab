@@ -43,7 +43,7 @@ abstract class FindKthPositiveTest<out T : FindKthPositive>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find kth positive test`(arr: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(arr, k)
+        val actual = strategy.invoke(arr, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

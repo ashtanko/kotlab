@@ -21,11 +21,11 @@ import java.util.Queue
 import java.util.Stack
 
 interface SumOfLeftLeavesStrategy {
-    fun perform(root: TreeNode?): Int
+    operator fun invoke(root: TreeNode?): Int
 }
 
 class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
         var ans = 0
         val stack: Stack<TreeNode> = Stack<TreeNode>()
@@ -51,23 +51,23 @@ class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
 }
 
 class SumOfLeftLeavesRecursive : SumOfLeftLeavesStrategy {
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
         var ans = 0
         if (root.left != null) {
             ans += if (root.left?.left == null && root.left?.right == null) {
                 root.left?.value ?: 0
             } else {
-                perform(root.left)
+                invoke(root.left)
             }
         }
-        ans += perform(root.right)
+        ans += invoke(root.right)
         return ans
     }
 }
 
 class SumOfLeftLeavesBSF : SumOfLeftLeavesStrategy {
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
 
         val queue: Queue<TreeNode> = LinkedList()

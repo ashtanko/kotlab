@@ -45,7 +45,7 @@ abstract class PathsWithMaxScoreTest<out T : PathsWithMaxScore>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `paths with max score test`(board: List<String>, expected: IntArray) {
-        val actual = strategy.perform(board)
+        val actual = strategy.invoke(board)
         assertThat(actual).isEqualTo(expected)
     }
 }

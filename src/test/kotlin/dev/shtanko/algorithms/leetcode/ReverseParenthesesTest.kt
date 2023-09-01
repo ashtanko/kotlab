@@ -61,7 +61,7 @@ abstract class ReverseParenthesesTest<out T : ReverseParentheses>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `reverse parentheses test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

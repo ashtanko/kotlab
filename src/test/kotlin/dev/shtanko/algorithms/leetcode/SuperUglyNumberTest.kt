@@ -35,7 +35,7 @@ abstract class SuperUglyNumberTest<out T : SuperUglyNumberStrategy>(private val 
     fun `super ugly number test`(testCase: Pair<Pair<Int, IntArray>, Int>) {
         val (data, expected) = testCase
         val (n, primes) = data
-        val actual = strategy.perform(n, primes)
+        val actual = strategy.invoke(n, primes)
         assertEquals(expected, actual)
     }
 }

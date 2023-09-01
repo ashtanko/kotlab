@@ -54,7 +54,7 @@ abstract class MinMovesToMakePalindromeTest<out T : MinMovesToMakePalindrome>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min moves to make palindrome test`(s: String, expected: Int) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

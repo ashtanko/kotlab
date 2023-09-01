@@ -23,7 +23,7 @@ import kotlin.math.pow
  * @see <a href="https://leetcode.com/problems/longest-repeating-substring/">leetcode page</a>
  */
 interface LongestRepeatingSubstring {
-    fun perform(s: String): Int {
+    operator fun invoke(s: String): Int {
         val n = s.length
         var left = 1
         var right = n
@@ -85,7 +85,7 @@ class LRSHashes : LongestRepeatingSubstring {
  */
 class LRSRabinKarp : LongestRepeatingSubstring {
 
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val n = s.length
         // convert string to array of integers
         // to implement constant time slice

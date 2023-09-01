@@ -23,11 +23,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/count-fertile-pyramids-in-a-land/">leetcode page</a>
  */
 interface CountPyramids {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class CountPyramidsDP : CountPyramids {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val m: Int = grid.size
         val n: Int = grid.first().size
         val rev = Array(m) { IntArray(n) }
@@ -60,7 +60,7 @@ class CountPyramidsDP : CountPyramids {
 }
 
 class CountPyramidsDP2 : CountPyramids {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val inverseGrid = inverse(grid)
         return helper(grid) + helper(inverseGrid)
     }

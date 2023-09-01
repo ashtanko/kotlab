@@ -49,7 +49,7 @@ abstract class AbstractFindSubstringTest<T : AbstractFindSubstring>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find substring test`(str: String, words: Array<String>, expected: List<Int>) {
-        val actual = strategy.perform(str, words)
+        val actual = strategy.invoke(str, words)
         assertEquals(expected, actual)
     }
 }

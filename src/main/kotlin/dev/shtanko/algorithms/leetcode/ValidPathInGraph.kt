@@ -24,14 +24,14 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/find-if-path-exists-in-graph/description/">leetcode page</a>
  */
 interface ValidPathInGraph {
-    fun perform(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean
+    operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean
 }
 
 /**
  * 1. Simple union-find without any rank consideration
  */
 class ValidPathUnionFind : ValidPathInGraph {
-    override fun perform(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+    override operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
         val set = DisjointSetUnion(n)
         for (edge in edges) {
             set.union(edge[0], edge[1])
@@ -75,7 +75,7 @@ class ValidPathUnionFind : ValidPathInGraph {
  * 2. Disjoint Set Union by Rank
  */
 class ValidPathUnionByRank : ValidPathInGraph {
-    override fun perform(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+    override operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
         val set = DisjointSetUnion(n)
         for (edge in edges) {
             set.union(edge[0], edge[1])
@@ -135,7 +135,7 @@ class ValidPathDFS : ValidPathInGraph {
 
     private var seen = false
 
-    override fun perform(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+    override operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
         val visited = BooleanArray(n)
         val graph: Array<HashSet<Int>> = Array(n) { HashSet() }
         for (edge in edges) {
@@ -171,7 +171,7 @@ class ValidPathDFS : ValidPathInGraph {
  * 3. BFS - Breadth First Search
  */
 class ValidPathBFS : ValidPathInGraph {
-    override fun perform(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+    override operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
         val visited = BooleanArray(n)
         val graph: Array<HashSet<Int>> = Array(n) { java.util.HashSet() }
         for (edge in edges) {

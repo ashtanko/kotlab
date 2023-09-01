@@ -51,7 +51,7 @@ abstract class MinFlipsTest<out T : MinFlips>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min flips test`(a: Int, b: Int, c: Int, expected: Int) {
-        val actual = strategy.perform(a, b, c)
+        val actual = strategy.invoke(a, b, c)
         assertThat(actual).isEqualTo(expected)
     }
 }

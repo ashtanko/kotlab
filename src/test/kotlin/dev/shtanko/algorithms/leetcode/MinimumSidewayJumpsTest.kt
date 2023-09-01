@@ -45,7 +45,7 @@ abstract class MinimumSidewayJumpsTest<out T : MinimumSidewayJumps>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min side jumps test`(obstacles: IntArray, expected: Int) {
-        val actual = strategy.perform(obstacles)
+        val actual = strategy.invoke(obstacles)
         assertThat(actual).isEqualTo(expected)
     }
 }

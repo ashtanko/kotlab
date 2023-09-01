@@ -49,7 +49,7 @@ abstract class LongestNiceSubstringTest<out T : LongestNiceSubstring>(private va
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest nice substring test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

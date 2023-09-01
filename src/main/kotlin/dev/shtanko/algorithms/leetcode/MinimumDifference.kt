@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/">leetcode page</a>
  */
 interface MinimumDifference {
-    fun perform(nums: IntArray): Long
+    operator fun invoke(nums: IntArray): Long
 }
 
 class MinimumDifferencePriorityQueue : MinimumDifference {
-    override fun perform(nums: IntArray): Long {
+    override operator fun invoke(nums: IntArray): Long {
         var s1: Long = 0
         var s2: Long = 0
         val dp = LongArray(nums.size)

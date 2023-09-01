@@ -37,7 +37,7 @@ abstract class SortColorsTest<out T : SortColorsStrategy>(private val strategy: 
     @MethodSource("dataProvider")
     fun `sort colors test`(testCase: Pair<IntArray, IntArray>) {
         val (arr, expected) = testCase
-        strategy.perform(arr)
+        strategy.invoke(arr)
         assertArrayEquals(expected, arr)
     }
 }

@@ -23,7 +23,7 @@ import java.util.Arrays
  * @see <a href="https://leetcode.com/problems/count-ways-to-build-good-strings/">leetcode page</a>
  */
 interface CountGoodStrings {
-    fun perform(low: Int, high: Int, zero: Int, one: Int): Int
+    operator fun invoke(low: Int, high: Int, zero: Int, one: Int): Int
 }
 
 /**
@@ -31,7 +31,7 @@ interface CountGoodStrings {
  */
 class CountGoodStringsDPRecursive : CountGoodStrings {
 
-    override fun perform(low: Int, high: Int, zero: Int, one: Int): Int {
+    override operator fun invoke(low: Int, high: Int, zero: Int, one: Int): Int {
         // Use dp[i] to record to number of good strings of length i.
         val dp = IntArray(high + 1)
         dp[0] = 1
@@ -66,7 +66,7 @@ class CountGoodStringsDPIterative : CountGoodStrings {
     // Use dp[i] to record to number of good strings of length i.
     private lateinit var dp: IntArray
 
-    override fun perform(low: Int, high: Int, zero: Int, one: Int): Int {
+    override operator fun invoke(low: Int, high: Int, zero: Int, one: Int): Int {
         dp = IntArray(high + 1)
         Arrays.fill(dp, -1)
         dp[0] = 1

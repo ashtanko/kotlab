@@ -64,7 +64,7 @@ abstract class MeetingSchedulerTest<out T : MeetingScheduler>(private val strate
         duration: Int,
         expected: List<Int>,
     ) {
-        val actual = strategy.perform(slots1, slots2, duration)
+        val actual = strategy.invoke(slots1, slots2, duration)
         assertThat(actual).isEqualTo(expected)
     }
 }

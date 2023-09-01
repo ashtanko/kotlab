@@ -43,7 +43,7 @@ abstract class MinimumKnightMovesTest<out T : MinimumKnightMoves>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min knight moves test`(x: Int, y: Int, expected: Int) {
-        val actual = strategy.perform(x, y)
+        val actual = strategy.invoke(x, y)
         assertThat(actual).isEqualTo(expected)
     }
 }

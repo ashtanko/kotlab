@@ -41,7 +41,7 @@ abstract class CountBinarySubstringsTest<out T : CountBinarySubstrings>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count binary substrings test`(s: String, expected: Int) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

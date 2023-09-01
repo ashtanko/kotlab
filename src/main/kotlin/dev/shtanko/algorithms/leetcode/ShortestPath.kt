@@ -24,13 +24,13 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/">leetcode page</a>
  */
 interface ShortestPath {
-    fun perform(grid: Array<IntArray>, k: Int): Int
+    operator fun invoke(grid: Array<IntArray>, k: Int): Int
 }
 
 class ShortestPathBFS : ShortestPath {
 
     private val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(0, -1), intArrayOf(1, 0), intArrayOf(-1, 0))
-    override fun perform(grid: Array<IntArray>, k: Int): Int {
+    override operator fun invoke(grid: Array<IntArray>, k: Int): Int {
         val n: Int = grid.size
         val m: Int = grid[0].size
         if (n <= 1 && m <= 1) return 0
@@ -93,7 +93,7 @@ class ShortestPathBFS2 : ShortestPath {
 
     private val dirs = intArrayOf(0, 1, 0, -1, 0)
 
-    override fun perform(grid: Array<IntArray>, k: Int): Int {
+    override operator fun invoke(grid: Array<IntArray>, k: Int): Int {
         val m: Int = grid.size
         val n: Int = grid[0].size
         if (k >= m + n - 2) return m + n - 2 // if we can go by manhattan distance -> let's go

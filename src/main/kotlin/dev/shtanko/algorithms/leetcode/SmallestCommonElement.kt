@@ -28,7 +28,7 @@ private const val NO_SOLUTION = -1 // returns when solution not found
  * @see <a href="https://leetcode.com/problems/find-smallest-common-element-in-all-rows/">leetcode page</a>
  */
 interface SmallestCommonElement {
-    fun perform(mat: Array<IntArray>): Int
+    operator fun invoke(mat: Array<IntArray>): Int
 }
 
 /**
@@ -37,7 +37,7 @@ interface SmallestCommonElement {
  * Space complexity: O(k), where k is the number of unique elements.
  */
 class SCECountElements : SmallestCommonElement {
-    override fun perform(mat: Array<IntArray>): Int {
+    override operator fun invoke(mat: Array<IntArray>): Int {
         val count = IntArray(ARRAY_SIZE)
         val n: Int = mat.size
         val m: Int = mat[0].size
@@ -61,7 +61,7 @@ class SCECountElements : SmallestCommonElement {
  * Space complexity: O(1).
  */
 class SCECountElementsImproved : SmallestCommonElement {
-    override fun perform(mat: Array<IntArray>): Int {
+    override operator fun invoke(mat: Array<IntArray>): Int {
         val count = IntArray(ARRAY_SIZE)
         val n: Int = mat.size
         val m: Int = mat[0].size
@@ -82,7 +82,7 @@ class SCECountElementsImproved : SmallestCommonElement {
  * Space complexity: O(1).
  */
 class SCEBinarySearch : SmallestCommonElement {
-    override fun perform(mat: Array<IntArray>): Int {
+    override operator fun invoke(mat: Array<IntArray>): Int {
         val n: Int = mat.size
         val m: Int = mat[0].size
         for (j in 0 until m) {
@@ -106,7 +106,7 @@ class SCEBinarySearch : SmallestCommonElement {
  * Space complexity: O(n).
  */
 class SCEBinarySearchImproved : SmallestCommonElement {
-    override fun perform(mat: Array<IntArray>): Int {
+    override operator fun invoke(mat: Array<IntArray>): Int {
         val n: Int = mat.size
         val m: Int = mat[0].size
         val pos = IntArray(n)
@@ -138,7 +138,7 @@ class SCEBinarySearchImproved : SmallestCommonElement {
  * Space complexity: O(n).
  */
 class SCERowPositions : SmallestCommonElement {
-    override fun perform(mat: Array<IntArray>): Int {
+    override operator fun invoke(mat: Array<IntArray>): Int {
         val n: Int = mat.size
         val m: Int = mat[0].size
         val pos = IntArray(n)
@@ -169,7 +169,7 @@ class SCERowPositions : SmallestCommonElement {
  * Space complexity: O(n).
  */
 class SCERowPositionsImproved : SmallestCommonElement {
-    override fun perform(mat: Array<IntArray>): Int {
+    override operator fun invoke(mat: Array<IntArray>): Int {
         val n: Int = mat.size
         val m: Int = mat[0].size
         val pos = IntArray(n)

@@ -56,7 +56,7 @@ abstract class AbstractWordLadder2StrategyTest<out T : AbstractWordLadder2Strate
     @MethodSource("dataProvider")
     fun `word ladder 2 test`(testCase: WordLadderTestCase) {
         val (beginWord, endWord, wordList, expected) = testCase
-        val actual = strategy.perform(beginWord, endWord, wordList)
+        val actual = strategy.invoke(beginWord, endWord, wordList)
         assertEquals(expected, actual)
     }
 }

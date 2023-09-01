@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-the-duplicate-number/">leetcode page</a>
  */
 interface FindDuplicateNumber {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
@@ -29,7 +29,7 @@ interface FindDuplicateNumber {
  * Space complexity : O(1) or O(n)
  */
 class FindDuplicateSort : FindDuplicateNumber {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         nums.sort()
         for (i in 1 until nums.size) {
             if (nums[i] == nums[i - 1]) {
@@ -45,7 +45,7 @@ class FindDuplicateSort : FindDuplicateNumber {
  * Space complexity : O(n)
  */
 class FindDuplicateSet : FindDuplicateNumber {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val seen: MutableSet<Int> = HashSet()
         nums.forEach {
             if (seen.contains(it)) {

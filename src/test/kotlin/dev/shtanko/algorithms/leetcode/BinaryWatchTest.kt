@@ -91,7 +91,7 @@ class BinaryWatchTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `binary watch test`(n: Int, expected: List<String>) {
-        val actual = BinaryWatch.perform(n)
+        val actual = BinaryWatch.invoke(n)
         println(actual)
         assertThat(actual, containsInAnyOrder(*expected.toTypedArray()))
     }

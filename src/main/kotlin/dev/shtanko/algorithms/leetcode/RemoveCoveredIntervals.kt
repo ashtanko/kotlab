@@ -24,11 +24,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/remove-covered-intervals/">leetcode page</a>
  */
 fun interface RemoveCoveredIntervals {
-    fun perform(intervals: Array<IntArray>): Int
+    operator fun invoke(intervals: Array<IntArray>): Int
 }
 
 class RemoveCoveredIntervalsSort : RemoveCoveredIntervals {
-    override fun perform(intervals: Array<IntArray>): Int {
+    override operator fun invoke(intervals: Array<IntArray>): Int {
         var res = 0
         var left = -1
         var right = -1
@@ -45,7 +45,7 @@ class RemoveCoveredIntervalsSort : RemoveCoveredIntervals {
 }
 
 class RemoveCoveredIntervalsSortLeft : RemoveCoveredIntervals {
-    override fun perform(intervals: Array<IntArray>): Int {
+    override operator fun invoke(intervals: Array<IntArray>): Int {
         var res = 0
         var right = 0
         intervals.sortWith { a: IntArray, b: IntArray ->

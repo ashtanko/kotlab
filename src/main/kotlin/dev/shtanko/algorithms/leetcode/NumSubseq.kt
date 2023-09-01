@@ -24,11 +24,11 @@ import java.util.Arrays
  *     leetcode page</a>
  */
 interface NumSubseq {
-    fun perform(nums: IntArray, target: Int): Int
+    operator fun invoke(nums: IntArray, target: Int): Int
 }
 
 class NumSubseqBinarySearch : NumSubseq {
-    override fun perform(nums: IntArray, target: Int): Int {
+    override operator fun invoke(nums: IntArray, target: Int): Int {
         val n: Int = nums.size
         Arrays.sort(nums)
 
@@ -70,7 +70,7 @@ class NumSubseqBinarySearch : NumSubseq {
 }
 
 class NumSubseqTwoPointers : NumSubseq {
-    override fun perform(nums: IntArray, target: Int): Int {
+    override operator fun invoke(nums: IntArray, target: Int): Int {
         val n: Int = nums.size
         nums.sort()
 

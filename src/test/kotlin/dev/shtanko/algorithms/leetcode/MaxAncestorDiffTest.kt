@@ -60,7 +60,7 @@ abstract class MaxAncestorDiffTest<out T : MaxAncestorDiff>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max ancestor diff test`(root: TreeNode?, expected: Int) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

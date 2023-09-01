@@ -26,7 +26,7 @@ import kotlin.math.min
  *     leetcode page</a>
  */
 fun interface MaxAncestorDiff {
-    fun perform(root: TreeNode?): Int
+    operator fun invoke(root: TreeNode?): Int
 }
 
 /**
@@ -37,7 +37,7 @@ class MaxAncestorDiffRecursion : MaxAncestorDiff {
     // record the required maximum difference
     var result = 0
 
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) {
             return 0
         }
@@ -66,7 +66,7 @@ class MaxAncestorDiffRecursion : MaxAncestorDiff {
  * Approach #2: Maximum Minus Minimum
  */
 class MaxAncestorDiffMM : MaxAncestorDiff {
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         return if (root == null) {
             0
         } else {

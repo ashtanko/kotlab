@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/">leetcode page</a>
  */
 interface LetterCombinations {
-    fun perform(digits: String): List<String>
+    operator fun invoke(digits: String): List<String>
 }
 
 class LetterCombinationsRecursion : LetterCombinations {
@@ -29,7 +29,7 @@ class LetterCombinationsRecursion : LetterCombinations {
         private const val DIGIT_OFFSET = 50
     }
 
-    override fun perform(digits: String): List<String> {
+    override operator fun invoke(digits: String): List<String> {
         val arr = arrayOf("abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz")
         return digits.mapNotNull { arr[it.code - DIGIT_OFFSET].toList() }.getCartesianProduct()
             .map { String(it.toCharArray()) }

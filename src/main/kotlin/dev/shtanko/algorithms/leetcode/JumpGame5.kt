@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.LinkedList
 
 interface JumpGame5Strategy {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 
     fun checkNeighbors(visited: MutableSet<Int>, node: Int, n: Int, nex: MutableList<Int>) {
         if (node + 1 < n && !visited.contains(node + 1)) {
@@ -37,7 +37,7 @@ interface JumpGame5Strategy {
 }
 
 class JP5BreadthFirstSearch : JumpGame5Strategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val n: Int = arr.size
         if (n <= 1) {
             return 0
@@ -101,7 +101,7 @@ class JP5BidirectionalBFS : JumpGame5Strategy {
         visited.add(0)
     }
 
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val n: Int = arr.size
         if (n <= 1) {
             return 0
@@ -176,7 +176,7 @@ class JP5BidirectionalBFS2 : JumpGame5Strategy {
         head.add(0)
     }
 
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val totalNums = arr.size
         if (totalNums <= 1) return 0
 

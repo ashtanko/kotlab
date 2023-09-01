@@ -45,7 +45,7 @@ abstract class IsPossibleTest<out T : IsPossible>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is possible test`(target: IntArray, expected: Boolean) {
-        val actual = strategy.perform(target)
+        val actual = strategy.invoke(target)
         assertThat(actual).isEqualTo(expected)
     }
 }

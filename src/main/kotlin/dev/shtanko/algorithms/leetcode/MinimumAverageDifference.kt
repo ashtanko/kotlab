@@ -23,14 +23,14 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/minimum-average-difference/">leetcode page</a>
  */
 interface MinimumAverageDifference {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
  * Approach 1: Brute Force
  */
 class MinimumAverageDifferenceBruteForce : MinimumAverageDifference {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         var ans = -1
         var minAvgDiff = Int.MAX_VALUE
@@ -70,7 +70,7 @@ class MinimumAverageDifferenceBruteForce : MinimumAverageDifference {
  * Approach 2: Prefix Sum
  */
 class MinimumAverageDifferencePrefixSum : MinimumAverageDifference {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         var ans = -1
         var minAvgDiff = Int.MAX_VALUE
@@ -117,7 +117,7 @@ class MinimumAverageDifferencePrefixSum : MinimumAverageDifference {
  * Approach 3: Prefix Sum Optimized
  */
 class MinimumAverageDifferencePrefixSumOpt : MinimumAverageDifference {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         var ans = -1
         var minAvgDiff = Int.MAX_VALUE
@@ -158,7 +158,7 @@ class MinimumAverageDifferencePrefixSumOpt : MinimumAverageDifference {
 }
 
 class MinimumAverageDifferenceKt : MinimumAverageDifference {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var sum = 0L
         nums.forEach { sum += it.toLong() }
         var leftSum = 0L

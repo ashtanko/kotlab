@@ -101,7 +101,7 @@ abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find judge test`(n: Int, trust: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(n, trust)
+        val actual = strategy.invoke(n, trust)
         assertThat(actual, equalTo(expected))
     }
 }

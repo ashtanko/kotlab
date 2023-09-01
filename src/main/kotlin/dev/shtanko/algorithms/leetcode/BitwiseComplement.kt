@@ -23,7 +23,7 @@ import kotlin.math.ln
  * @see <a href="https://leetcode.com/problems/complement-of-base-10-integer/">leetcode page</a>
  */
 interface BitwiseComplement {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 /**
@@ -32,7 +32,7 @@ interface BitwiseComplement {
  * Space Complexity: O(1).
  */
 class BitwiseComplementFlipBit : BitwiseComplement {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n == 0) return 1
         var todo = n
         var bit = 1
@@ -52,7 +52,7 @@ class BitwiseComplementFlipBit : BitwiseComplement {
  * Space Complexity: O(1).
  */
 class BitwiseComplementBitmask : BitwiseComplement {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n == 0) return 1
         val l = ln(n.toDouble()).div(ln(2.0)).plus(1).toInt()
         val bitmask = 1.shl(l).minus(1)
@@ -66,7 +66,7 @@ class BitwiseComplementBitmask : BitwiseComplement {
  * Space Complexity: O(1).
  */
 class BitwiseComplementBuiltInFunc : BitwiseComplement {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         return if (n == 0) 1 else Integer.highestOneBit(n).shl(1).minus(n).minus(1)
     }
 }
@@ -77,7 +77,7 @@ class BitwiseComplementBuiltInFunc : BitwiseComplement {
  * Space Complexity: O(1).
  */
 class HighestOneBit : BitwiseComplement {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n == 0) return 1
         var bitmask: Int = n
         bitmask = bitmask or bitmask.shr(BIT_COUNT_POW)
@@ -99,7 +99,7 @@ class HighestOneBit : BitwiseComplement {
 }
 
 class BitwiseComplementBruteForce : BitwiseComplement {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         var x = 1
         while (n > x) x = x * 2 + 1
         return x - n

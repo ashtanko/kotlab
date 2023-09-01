@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/remove-linked-list-elements/">leetcode page</a>
  */
 interface RemoveElements {
-    fun perform(head: ListNode?, value: Int): ListNode?
+    operator fun invoke(head: ListNode?, value: Int): ListNode?
 }
 
 class RemoveElementsIterative : RemoveElements {
-    override fun perform(head: ListNode?, value: Int): ListNode? {
+    override operator fun invoke(head: ListNode?, value: Int): ListNode? {
         if (head == null) {
             return null
         }
@@ -47,13 +47,13 @@ class RemoveElementsIterative : RemoveElements {
 }
 
 class RemoveElementsRecursive : RemoveElements {
-    override fun perform(head: ListNode?, value: Int): ListNode? {
+    override operator fun invoke(head: ListNode?, value: Int): ListNode? {
         if (head == null) {
             return null
         }
 
         // Once removeElements call is done, right side of the list is solved.
-        val rightSideHead: ListNode? = perform(head.next, value)
+        val rightSideHead: ListNode? = invoke(head.next, value)
         if (head.value == value) {
             return rightSideHead
         }

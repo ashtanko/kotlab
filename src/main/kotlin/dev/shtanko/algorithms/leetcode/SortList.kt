@@ -17,15 +17,15 @@
 package dev.shtanko.algorithms.leetcode
 
 interface SortListStrategy {
-    fun perform(head: ListNode): ListNode?
+    operator fun invoke(head: ListNode): ListNode?
 }
 
 class TopDownMergeSort : SortListStrategy {
-    override fun perform(head: ListNode): ListNode? {
+    override operator fun invoke(head: ListNode): ListNode? {
         if (head.next == null) return head
         val mid = getMid(head) ?: ListNode(0)
-        val left = perform(head)
-        val right = perform(mid)
+        val left = invoke(head)
+        val right = invoke(mid)
         return merge(left, right)
     }
 
@@ -66,7 +66,7 @@ class BottomUpMergeSort : SortListStrategy {
     var tail: ListNode? = ListNode(0)
     var nextSubList: ListNode? = ListNode(0)
 
-    override fun perform(head: ListNode): ListNode? {
+    override operator fun invoke(head: ListNode): ListNode? {
         return sortList(head)
     }
 

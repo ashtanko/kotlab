@@ -24,7 +24,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/">leetcode page</a>
  */
 interface MaxScore {
-    fun perform(cardPoints: IntArray, k: Int): Int
+    operator fun invoke(cardPoints: IntArray, k: Int): Int
 }
 
 /**
@@ -33,7 +33,7 @@ interface MaxScore {
  * Space complexity: O(k).
  */
 class MaxScoreDP : MaxScore {
-    override fun perform(cardPoints: IntArray, k: Int): Int {
+    override operator fun invoke(cardPoints: IntArray, k: Int): Int {
         val n: Int = cardPoints.size
 
         val frontSetOfCards = IntArray(k + 1)
@@ -61,7 +61,7 @@ class MaxScoreDP : MaxScore {
  * Space complexity: O(1).
  */
 class MaxScoreDPSpaceOptimized : MaxScore {
-    override fun perform(cardPoints: IntArray, k: Int): Int {
+    override operator fun invoke(cardPoints: IntArray, k: Int): Int {
         var frontScore = 0
         var rearScore = 0
         val n: Int = cardPoints.size
@@ -91,7 +91,7 @@ class MaxScoreDPSpaceOptimized : MaxScore {
  * Space complexity: O(1).
  */
 class MaxScoreSlidingWindow : MaxScore {
-    override fun perform(cardPoints: IntArray, k: Int): Int {
+    override operator fun invoke(cardPoints: IntArray, k: Int): Int {
         var startingIndex = 0
         var presentSubarrayScore = 0
         val n: Int = cardPoints.size

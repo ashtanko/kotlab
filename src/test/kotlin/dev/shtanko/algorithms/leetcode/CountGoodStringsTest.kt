@@ -35,7 +35,7 @@ abstract class CountGoodStringsTest<out T : CountGoodStrings>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count good strings test`(low: Int, high: Int, zero: Int, one: Int, expected: Int) {
-        val actual = strategy.perform(low, high, zero, one)
+        val actual = strategy.invoke(low, high, zero, one)
         assertThat(actual).isEqualTo(expected)
     }
 }

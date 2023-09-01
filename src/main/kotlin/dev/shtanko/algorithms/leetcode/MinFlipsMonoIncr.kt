@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/flip-string-to-monotone-increasing/">leetcode page</a>
  */
 interface MinFlipsMonoIncr {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 class MinFlipsMonoIncrOnePass : MinFlipsMonoIncr {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         if (s.isEmpty()) return 0
 
         val sChars: CharArray = s.toCharArray()

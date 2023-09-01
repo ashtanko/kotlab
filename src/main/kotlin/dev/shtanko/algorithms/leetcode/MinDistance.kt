@@ -24,7 +24,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/delete-operation-for-two-strings/">leetcode page</a>
  */
 interface MinDistance {
-    fun perform(word1: String, word2: String): Int
+    operator fun invoke(word1: String, word2: String): Int
 }
 
 /**
@@ -33,7 +33,7 @@ interface MinDistance {
  * Space complexity : O(max (m,n))).
  */
 class MinDistanceLCS : MinDistance {
-    override fun perform(word1: String, word2: String): Int {
+    override operator fun invoke(word1: String, word2: String): Int {
         return word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length)
     }
 
@@ -53,7 +53,7 @@ class MinDistanceLCS : MinDistance {
  * Space complexity : O(m*n).
  */
 class MinDistanceLCSMemo : MinDistance {
-    override fun perform(word1: String, word2: String): Int {
+    override operator fun invoke(word1: String, word2: String): Int {
         val memo = Array(word1.length + 1) {
             IntArray(word2.length + 1)
         }
@@ -82,7 +82,7 @@ class MinDistanceLCSMemo : MinDistance {
  * Space complexity : O(m*n).
  */
 class MinDistanceLCSDP : MinDistance {
-    override fun perform(word1: String, word2: String): Int {
+    override operator fun invoke(word1: String, word2: String): Int {
         val dp = Array(word1.length + 1) { IntArray(word2.length + 1) }
         for (i in 0..word1.length) {
             for (j in 0..word2.length) {
@@ -106,7 +106,7 @@ class MinDistanceLCSDP : MinDistance {
  * Space complexity : O(m*n).
  */
 class MinDistanceDP : MinDistance {
-    override fun perform(word1: String, word2: String): Int {
+    override operator fun invoke(word1: String, word2: String): Int {
         val dp = Array(word1.length + 1) {
             IntArray(
                 word2.length + 1,
@@ -134,7 +134,7 @@ class MinDistanceDP : MinDistance {
  * Space complexity : O(n).
  */
 class MinDistance1DDP : MinDistance {
-    override fun perform(word1: String, word2: String): Int {
+    override operator fun invoke(word1: String, word2: String): Int {
         var dp = IntArray(word2.length + 1)
         for (i in 0..word1.length) {
             val temp = IntArray(word2.length + 1)

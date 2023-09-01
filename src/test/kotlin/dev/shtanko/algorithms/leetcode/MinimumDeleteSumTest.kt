@@ -58,7 +58,7 @@ abstract class MinimumDeleteSumTest<out T : MinimumDeleteSum>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `template test`(s1: String, s2: String, expected: Int) {
-        val actual = strategy.perform(s1, s2)
+        val actual = strategy.invoke(s1, s2)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

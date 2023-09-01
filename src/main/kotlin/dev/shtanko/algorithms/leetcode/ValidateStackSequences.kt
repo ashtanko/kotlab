@@ -27,7 +27,7 @@ fun interface ValidateStackSequences {
 }
 
 class ValidateStackSequencesGreedy : ValidateStackSequences {
-    override fun invoke(pushed: IntArray, popped: IntArray): Boolean {
+    override operator fun invoke(pushed: IntArray, popped: IntArray): Boolean {
         val n: Int = pushed.size
         val stack: Stack<Int> = Stack()
 

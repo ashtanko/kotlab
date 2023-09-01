@@ -39,7 +39,7 @@ class PlusOneTest {
     @ParameterizedTest
     @MethodSource("dataProvider")
     fun `plus one test`(arr: IntArray, expected: IntArray) {
-        val actual = PlusOne().perform(arr)
+        val actual = PlusOne().invoke(arr)
         assertArrayEquals(expected, actual)
     }
 }

@@ -42,7 +42,7 @@ abstract class KInversePairsArrayTest<out T : KInversePairsArray>(private val st
     @ArgumentsSource(InputArgumentsProvide::class)
     @ParameterizedTest
     fun `k inverse pairs test`(n: Int, k: Int, expected: Int) {
-        val actual = strategy.perform(n, k)
+        val actual = strategy.invoke(n, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

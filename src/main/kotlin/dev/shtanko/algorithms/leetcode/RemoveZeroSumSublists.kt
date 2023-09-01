@@ -25,7 +25,7 @@ fun interface RemoveZeroSumSublists {
 }
 
 class RemoveZeroSumSublistsMap : RemoveZeroSumSublists {
-    override fun invoke(head: ListNode?): ListNode? {
+    override operator fun invoke(head: ListNode?): ListNode? {
         val dummy = ListNode(0)
         var cur: ListNode? = dummy
         dummy.next = head
@@ -52,7 +52,7 @@ class RemoveZeroSumSublistsMap : RemoveZeroSumSublists {
 }
 
 class RemoveZeroSumSublistsTwoPasses : RemoveZeroSumSublists {
-    override fun invoke(head: ListNode?): ListNode? {
+    override operator fun invoke(head: ListNode?): ListNode? {
         var prefix = 0
         val dummy = ListNode(0)
         dummy.next = head

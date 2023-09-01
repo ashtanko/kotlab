@@ -45,7 +45,7 @@ abstract class CountPairsTest<out T : CountPairs>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count pairs test`(deliciousness: IntArray, expected: Int) {
-        val actual = strategy.perform(deliciousness)
+        val actual = strategy.invoke(deliciousness)
         assertThat(actual).isEqualTo(expected)
     }
 }

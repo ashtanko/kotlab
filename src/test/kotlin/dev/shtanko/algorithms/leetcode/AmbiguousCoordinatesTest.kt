@@ -77,7 +77,7 @@ class AmbiguousCoordinatesTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `name test`(s: String, expected: List<String>) {
-        val actual = AmbiguousCoordinates().perform(s)
+        val actual = AmbiguousCoordinates().invoke(s)
         assertThat(actual).hasSameElementsAs(expected)
     }
 }

@@ -43,7 +43,7 @@ abstract class RotateListTest<out T : RotateList>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `rotate right test`(head: List<Int>, k: Int, expected: List<Int>) {
-        val actual = strategy.perform(head.toListNode(), k)?.toList()
+        val actual = strategy.invoke(head.toListNode(), k)?.toList()
         assertThat(actual).isEqualTo(expected)
     }
 }

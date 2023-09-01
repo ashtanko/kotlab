@@ -101,7 +101,7 @@ abstract class MaxNumberOfApplesTest<out T : MaxNumberOfApples>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max number of apples test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertThat(actual, equalTo(expected))
     }
 }

@@ -20,11 +20,11 @@ import java.util.PriorityQueue
 import kotlin.math.min
 
 interface SuperUglyNumberStrategy {
-    fun perform(n: Int, primes: IntArray): Int
+    operator fun invoke(n: Int, primes: IntArray): Int
 }
 
 class SuperUglyNumberCommon : SuperUglyNumberStrategy {
-    override fun perform(n: Int, primes: IntArray): Int {
+    override operator fun invoke(n: Int, primes: IntArray): Int {
         val ugly = IntArray(n)
         val idx = IntArray(primes.size)
 
@@ -45,7 +45,7 @@ class SuperUglyNumberCommon : SuperUglyNumberStrategy {
 }
 
 class SuperUglyNumberRedundantMultiplication : SuperUglyNumberStrategy {
-    override fun perform(n: Int, primes: IntArray): Int {
+    override operator fun invoke(n: Int, primes: IntArray): Int {
         val ugly = IntArray(n)
         val idx = IntArray(primes.size)
         val values = IntArray(primes.size) { 1 }
@@ -67,7 +67,7 @@ class SuperUglyNumberRedundantMultiplication : SuperUglyNumberStrategy {
 }
 
 class SuperUglyNumberHeap : SuperUglyNumberStrategy {
-    override fun perform(n: Int, primes: IntArray): Int {
+    override operator fun invoke(n: Int, primes: IntArray): Int {
         val ugly = IntArray(n)
 
         val pq: PriorityQueue<Num> = PriorityQueue()

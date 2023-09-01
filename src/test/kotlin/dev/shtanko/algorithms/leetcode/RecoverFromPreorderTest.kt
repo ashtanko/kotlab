@@ -72,7 +72,7 @@ abstract class RecoverFromPreorderTest<out T : RecoverFromPreorder>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `recover from preorder test`(traversal: String, expected: TreeNode?) {
-        val actual = strategy.perform(traversal).preorderTraversal()
+        val actual = strategy.invoke(traversal).preorderTraversal()
         assertThat(actual).isEqualTo(expected.preorderTraversal())
     }
 }

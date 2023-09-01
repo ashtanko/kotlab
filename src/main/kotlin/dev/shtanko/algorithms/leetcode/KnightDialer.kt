@@ -23,7 +23,7 @@ import java.util.Arrays
  * @see <a href="https://leetcode.com/problems/knight-dialer/">leetcode page</a>
  */
 fun interface KnightDialer {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 /**
@@ -31,7 +31,7 @@ fun interface KnightDialer {
  */
 class KnightDialerBottomUp : KnightDialer {
 
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val dirs = arrayOf(
             intArrayOf(4, 6),
             intArrayOf(6, 8),
@@ -69,7 +69,7 @@ class KnightDialerBottomUp : KnightDialer {
  * Top down Dynamic programming solution
  */
 class KnightDialerDP : KnightDialer {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n == 1) return 10
         val jumpMap = arrayOf(
             intArrayOf(4, 6),

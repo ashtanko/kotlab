@@ -24,7 +24,7 @@ import kotlin.math.max
  * Space Complexity: O(1).
  */
 class PartitionLabels {
-    fun perform(s: String): List<Int> {
+    operator fun invoke(s: String): List<Int> {
         val last = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in s.indices) {
             last[s[i] - 'a'] = i

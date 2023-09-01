@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/sum-of-all-subset-xor-totals/">leetcode page</a>
  */
 interface SubsetXORSum {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class SubsetXORSumBitwise : SubsetXORSum {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var res = 0
         for (num in nums) {
             res = res or num

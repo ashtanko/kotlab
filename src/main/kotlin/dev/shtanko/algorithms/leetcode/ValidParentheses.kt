@@ -42,7 +42,7 @@ class ValidParentheses(private val mappings: MutableMap<Char, Char> = HashMap())
         mappings[']'] = '['
     }
 
-    fun perform(s: String): Boolean {
+    operator fun invoke(s: String): Boolean {
         // Initialize a stack to be used in the algorithm.
         val stack = Stack<Char>()
 

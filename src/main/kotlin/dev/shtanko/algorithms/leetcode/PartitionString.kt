@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/optimal-partition-of-string/">leetcode page</a>
  */
 interface PartitionString {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 class PartitionStringBit : PartitionString {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var vis = 0
         var res = 1
 
@@ -42,7 +42,7 @@ class PartitionStringBit : PartitionString {
 }
 
 class PartitionStringSet : PartitionString {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var ans = 1
         val st = HashSet<Char>()
         for (i in s.indices) {

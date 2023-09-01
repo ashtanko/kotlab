@@ -41,7 +41,7 @@ abstract class MinimumSumTest<out T : MinimumSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum sum test`(num: Int, expected: Int) {
-        val actual = strategy.perform(num)
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

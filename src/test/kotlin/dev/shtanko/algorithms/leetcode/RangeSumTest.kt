@@ -54,7 +54,7 @@ abstract class RangeSumTest<out T : RangeSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `range sum test`(nums: IntArray, n: Int, left: Int, right: Int, expected: Int) {
-        val actual = strategy.perform(nums, n, left, right)
+        val actual = strategy.invoke(nums, n, left, right)
         assertThat(actual).isEqualTo(expected)
     }
 }

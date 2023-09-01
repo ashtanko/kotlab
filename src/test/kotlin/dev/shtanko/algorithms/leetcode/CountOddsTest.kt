@@ -43,7 +43,7 @@ class CountOddsTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count odds test`(low: Int, high: Int, expected: Int) {
-        val actual = CountOdds.perform(low, high)
+        val actual = CountOdds.invoke(low, high)
         assertThat(actual).isEqualTo(expected)
     }
 }

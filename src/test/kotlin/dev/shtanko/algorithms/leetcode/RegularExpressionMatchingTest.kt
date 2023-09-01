@@ -40,7 +40,7 @@ abstract class RegularExpressionMatchingStrategyTest<out T : RegularExpressionMa
     fun `regular expression matching test`(testCase: Pair<Pair<String, String>, Boolean>) {
         val (data, expected) = testCase
         val (text, pattern) = data
-        val actual = strategy.perform(text = text, pattern = pattern)
+        val actual = strategy.invoke(text = text, pattern = pattern)
         assertEquals(expected, actual)
     }
 }

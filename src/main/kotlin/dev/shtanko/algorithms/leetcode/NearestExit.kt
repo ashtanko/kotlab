@@ -24,14 +24,14 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/">leetcode page</a>
  */
 fun interface NearestExit {
-    fun perform(maze: Array<CharArray>, entrance: IntArray): Int
+    operator fun invoke(maze: Array<CharArray>, entrance: IntArray): Int
 }
 
 /**
  * Approach 1: Breadth First Search (BFS)
  */
 class NearestExitBFS : NearestExit {
-    override fun perform(maze: Array<CharArray>, entrance: IntArray): Int {
+    override operator fun invoke(maze: Array<CharArray>, entrance: IntArray): Int {
         val rows: Int = maze.size
         val cols: Int = maze[0].size
         val dirs = arrayOf(intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, 1), intArrayOf(0, -1))

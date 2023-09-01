@@ -23,11 +23,11 @@ import java.util.PriorityQueue
  * Return the minimum size of the set so that at least half of the integers of the array are removed.
  */
 interface MinSetSizeStrategy {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 class MinSetSizeHashMap : MinSetSizeStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         return arr.minSetSize()
     }
 
@@ -66,7 +66,7 @@ class MinSetSizeHashMap : MinSetSizeStrategy {
 }
 
 class MinSetSizePriorityQueue : MinSetSizeStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         return arr.minSetSize2()
     }
 

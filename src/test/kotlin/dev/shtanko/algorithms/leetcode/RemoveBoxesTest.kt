@@ -45,7 +45,7 @@ abstract class RemoveBoxesTest<out T : RemoveBoxes>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `remove boxes test`(boxes: IntArray, expected: Int) {
-        val actual = strategy.perform(boxes)
+        val actual = strategy.invoke(boxes)
         assertThat(actual).isEqualTo(expected)
     }
 }

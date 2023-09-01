@@ -71,7 +71,7 @@ abstract class InvertBinaryTreeStrategyTest<out T : InvertTreeStrategy>(val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `invert binary tree test`(tree: TreeNode, expected: List<List<Int>>) {
-        val invertedTree = strategy.perform(tree)
+        val invertedTree = strategy.invoke(tree)
         val actual = invertedTree.levelOrder()
         assertEquals(expected, actual)
     }

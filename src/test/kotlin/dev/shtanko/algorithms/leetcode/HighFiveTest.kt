@@ -71,7 +71,7 @@ abstract class HighFiveTest<out T : HighFiveStrategy>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `high five test`(items: Array<IntArray>, expected: Array<IntArray>) {
-        val actual = strategy.perform(items)
+        val actual = strategy.invoke(items)
         assertArrayEquals(expected, actual)
     }
 }

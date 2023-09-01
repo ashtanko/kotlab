@@ -48,7 +48,7 @@ abstract class MaxConsecutiveAnswersTest<out T : MaxConsecutiveAnswers>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max consecutive answers test`(answerKey: String, k: Int, expected: Int) {
-        val actual = strategy.perform(answerKey, k)
+        val actual = strategy.invoke(answerKey, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

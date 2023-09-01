@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 interface PalindromicSubstrings {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 /**
@@ -26,7 +26,7 @@ interface PalindromicSubstrings {
  * Space Complexity: O(1)
  */
 class PalindromicSubstringsCheckAllSubstrings : PalindromicSubstrings {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var ans = 0
 
         for (start in s.indices) for (end in start until s.length) ans += if (isPalindrome(
@@ -63,7 +63,7 @@ class PalindromicSubstringsCheckAllSubstrings : PalindromicSubstrings {
  * Space Complexity: O(N^2)
  */
 class PalindromicSubstringsDP : PalindromicSubstrings {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val n: Int = s.length
         var ans = 0
 
@@ -117,7 +117,7 @@ class PalindromicSubstringsDP : PalindromicSubstrings {
  * Space Complexity: O(1)
  */
 class PalindromicSubstringsPossibleCenters : PalindromicSubstrings {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var ans = 0
 
         for (i in s.indices) {

@@ -24,11 +24,11 @@ import java.util.LinkedList
  * @see <a href="https://leetcode.com/problems/merge-bsts-to-create-single-bst/">leetcode page</a>
  */
 interface CanMergeBST {
-    fun perform(trees: List<TreeNode>): TreeNode?
+    operator fun invoke(trees: List<TreeNode>): TreeNode?
 }
 
 class CanMergeBSTImpl : CanMergeBST {
-    override fun perform(trees: List<TreeNode>): TreeNode? {
+    override operator fun invoke(trees: List<TreeNode>): TreeNode? {
         val rootMap: MutableMap<Int, TreeNode> = HashMap()
         val rootCount: MutableMap<Int, Int> = HashMap()
         for (treeNode in trees) {

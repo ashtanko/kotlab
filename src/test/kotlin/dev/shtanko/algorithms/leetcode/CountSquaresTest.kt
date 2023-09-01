@@ -50,7 +50,7 @@ class CountSquaresTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count squares test`(matrix: Array<IntArray>, expected: Int) {
-        val actual = CountSquares.perform(matrix)
+        val actual = CountSquares.invoke(matrix)
         assertThat(actual, equalTo(expected))
     }
 }

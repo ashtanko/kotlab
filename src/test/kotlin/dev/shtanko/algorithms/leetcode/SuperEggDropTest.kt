@@ -37,7 +37,7 @@ abstract class SuperEggDropStrategyTest<out T : SuperEggDropStrategy>(private va
     fun `super egg drop test`(testCase: Pair<Int, Pair<Int, Int>>) {
         val (expected, data) = testCase
         val (eggs, floors) = data
-        val actual = strategy.perform(eggs, floors)
+        val actual = strategy.invoke(eggs, floors)
         assertEquals(expected, actual)
     }
 }

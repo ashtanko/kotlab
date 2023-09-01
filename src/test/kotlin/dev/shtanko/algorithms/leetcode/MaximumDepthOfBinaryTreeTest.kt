@@ -41,7 +41,7 @@ abstract class MaximumDepthOfBinaryTreeTest<out T : MaxDepthStrategy>(private va
     @MethodSource("dataProvider")
     fun `maximum depth of binary tree test`(testCase: Pair<TreeNode, Int>) {
         val (root, expected) = testCase
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertEquals(expected, actual)
     }
 }

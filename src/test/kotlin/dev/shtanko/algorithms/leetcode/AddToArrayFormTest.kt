@@ -48,7 +48,7 @@ abstract class AddToArrayFormTest<out T : AddToArrayForm>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `add to array form test`(num: IntArray, k: Int, expected: List<Int>) {
-        val actual = strategy.perform(num, k)
+        val actual = strategy.invoke(num, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

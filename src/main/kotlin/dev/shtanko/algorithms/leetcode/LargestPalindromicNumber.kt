@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/largest-palindromic-number/">leetcode page</a>
  */
 interface LargestPalindromicNumber {
-    fun perform(num: String): String
+    operator fun invoke(num: String): String
 }
 
 class LargestPalindromicNumberGreedy : LargestPalindromicNumber {
-    override fun perform(num: String): String {
+    override operator fun invoke(num: String): String {
         val count = IntArray(10)
         for (c in num.toCharArray()) {
             count[c.code - '0'.code]++

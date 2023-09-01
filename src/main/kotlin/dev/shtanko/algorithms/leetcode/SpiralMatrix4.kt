@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/spiral-matrix-iv/">leetcode page</a>
  */
 fun interface SpiralMatrix4 {
-    fun perform(m: Int, n: Int, head: ListNode?): Array<IntArray>
+    operator fun invoke(m: Int, n: Int, head: ListNode?): Array<IntArray>
 }
 
 class WalkSpiralMatrix4 : SpiralMatrix4 {
-    override fun perform(m: Int, n: Int, head: ListNode?): Array<IntArray> {
+    override operator fun invoke(m: Int, n: Int, head: ListNode?): Array<IntArray> {
         var h = head
         val spiral = Array(m) { IntArray(n) { -1 } }
         var r = 0

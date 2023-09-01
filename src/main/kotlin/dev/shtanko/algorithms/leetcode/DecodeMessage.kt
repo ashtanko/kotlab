@@ -23,11 +23,11 @@ import java.util.stream.Collectors
  * https://leetcode.com/problems/decode-the-message/
  */
 interface DecodeMessage {
-    fun perform(key: String, message: String): String
+    operator fun invoke(key: String, message: String): String
 }
 
 class DecodeMessageBruteForce : DecodeMessage {
-    override fun perform(key: String, message: String): String {
+    override operator fun invoke(key: String, message: String): String {
         val m: MutableMap<Char, Char> = HashMap()
         m[' '] = ' '
         var to = 'a'
@@ -41,7 +41,7 @@ class DecodeMessageBruteForce : DecodeMessage {
 }
 
 class DecodeMessageSB : DecodeMessage {
-    override fun perform(key: String, message: String): String {
+    override operator fun invoke(key: String, message: String): String {
         val table = CharArray(ALPHABET_LETTERS_COUNT)
         var index = 0
         for (c in key.toCharArray()) {

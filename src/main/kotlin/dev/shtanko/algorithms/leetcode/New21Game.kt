@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/new-21-game/">leetcode page</a>
  */
 interface New21Game {
-    fun perform(n: Int, k: Int, maxPts: Int): Double
+    operator fun invoke(n: Int, k: Int, maxPts: Int): Double
 }
 
 class New21GameDP : New21Game {
-    override fun perform(n: Int, k: Int, maxPts: Int): Double {
+    override operator fun invoke(n: Int, k: Int, maxPts: Int): Double {
         val p1 = 1.0 / maxPts.toDouble()
         val cache = Array(n + 1) { -1.0 }
 

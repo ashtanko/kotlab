@@ -23,11 +23,11 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/">leetcode page</a>
  */
 interface CountKDifference {
-    fun perform(nums: IntArray, k: Int): Int
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class CountKDifferenceBruteForce : CountKDifference {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         var count = 0
         for (i in nums.indices) {
             for (j in i + 1 until nums.size) {
@@ -43,7 +43,7 @@ class CountKDifferenceBruteForce : CountKDifference {
 }
 
 class CountKDifferenceMap : CountKDifference {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         val map: MutableMap<Int, Int> = HashMap()
         var res = 0
         for (i in nums.indices) {

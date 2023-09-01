@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import dev.shtanko.datastructures.Stack
 
 interface RainWaterStrategy {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 class RainWaterStraightForward : RainWaterStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         return arr.trapRainWater()
     }
 
@@ -56,7 +56,7 @@ class RainWaterStraightForward : RainWaterStrategy {
 }
 
 class RainWaterStack : RainWaterStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         return arr.trapRainWaterUsingStack()
     }
 

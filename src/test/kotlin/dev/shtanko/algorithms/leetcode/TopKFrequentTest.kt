@@ -53,7 +53,7 @@ abstract class TopKFrequentTest<out T : TopKFrequent>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `top K frequent test`(words: Array<String>, k: Int, expected: List<String>) {
-        val actual = strategy.perform(words, k)
+        val actual = strategy.invoke(words, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

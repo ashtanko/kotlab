@@ -28,7 +28,7 @@ interface UniquePaths2 {
      * @param obstacleGrid A 2D array representing the grid with obstacles (0 for open cell, 1 for obstacle).
      * @return The number of unique paths from top-left to bottom-right.
      */
-    fun perform(obstacleGrid: Array<IntArray>): Int
+    operator fun invoke(obstacleGrid: Array<IntArray>): Int
 }
 
 /**
@@ -37,7 +37,7 @@ interface UniquePaths2 {
  * Space Complexity: O(1).
  */
 class UniquePaths2DP : UniquePaths2 {
-    override fun perform(obstacleGrid: Array<IntArray>): Int {
+    override operator fun invoke(obstacleGrid: Array<IntArray>): Int {
         val r: Int = obstacleGrid.size
         val c: Int = obstacleGrid[0].size
 
@@ -82,7 +82,7 @@ class UniquePaths2DP : UniquePaths2 {
  * A more concise approach using Kotlin features.
  */
 class UniquePaths2Short : UniquePaths2 {
-    override fun perform(obstacleGrid: Array<IntArray>): Int {
+    override operator fun invoke(obstacleGrid: Array<IntArray>): Int {
         val width = obstacleGrid[0].size
         val dp = IntArray(width) { 0 }
         dp[0] = 1

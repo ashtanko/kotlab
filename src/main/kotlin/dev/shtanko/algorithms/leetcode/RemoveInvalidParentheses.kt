@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/remove-invalid-parentheses/">leetcode page</a>
  */
 interface RemoveInvalidParentheses {
-    fun perform(s: String): List<String>
+    operator fun invoke(s: String): List<String>
 }
 
 /**
@@ -33,7 +33,7 @@ class RemoveInvalidParenthesesBacktracking : RemoveInvalidParentheses {
     private var minimumRemoved = Int.MAX_VALUE
     private val expression = StringBuilder()
 
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         recurse(s, 0, 0, 0, 0)
         return validExpressions.toList()
     }
@@ -100,7 +100,7 @@ class RemoveInvalidParenthesesLBacktracking : RemoveInvalidParentheses {
 
     private val validExpressions: MutableSet<String> = HashSet()
 
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         var left = 0
         var right = 0
 
@@ -176,7 +176,7 @@ class RemoveInvalidParenthesesLBacktracking : RemoveInvalidParentheses {
 }
 
 class RemoveInvalidParenthesesFast : RemoveInvalidParentheses {
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         val ans: MutableList<String> = ArrayList()
         remove(s, ans, 0, 0, charArrayOf('(', ')'))
         return ans

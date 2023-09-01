@@ -41,7 +41,7 @@ abstract class NumSplitsTest<out T : NumSplits>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `num splits test`(s: String, expected: Int) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

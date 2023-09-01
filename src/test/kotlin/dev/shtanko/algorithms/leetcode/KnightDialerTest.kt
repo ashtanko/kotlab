@@ -36,7 +36,7 @@ abstract class KnightDialerTest<out T : KnightDialer>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `knight dialer test`(n: Int, expected: Int) {
-        val actual = strategy.perform(n)
+        val actual = strategy.invoke(n)
         assertThat(actual).isEqualTo(expected)
     }
 }

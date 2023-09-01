@@ -38,7 +38,7 @@ abstract class FindPermutationTest<out T : FindPermutation>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find permutation test`(s: String, expected: IntArray) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual, equalTo(expected))
     }
 }

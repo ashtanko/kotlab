@@ -20,7 +20,7 @@ import java.util.Collections
 import java.util.PriorityQueue
 
 interface MinSubsequenceStrategy {
-    fun perform(arr: IntArray): List<Int>
+    operator fun invoke(arr: IntArray): List<Int>
 }
 
 /**
@@ -30,7 +30,7 @@ interface MinSubsequenceStrategy {
  */
 class MinSubsequenceCountingSort : MinSubsequenceStrategy {
 
-    override fun perform(arr: IntArray): List<Int> {
+    override operator fun invoke(arr: IntArray): List<Int> {
         val count = IntArray(ARR_SIZE)
         var totalSum = 0
         for (current in arr) {
@@ -61,7 +61,7 @@ class MinSubsequenceCountingSort : MinSubsequenceStrategy {
 }
 
 class MinSubsequencePriorityQueue : MinSubsequenceStrategy {
-    override fun perform(arr: IntArray): List<Int> {
+    override operator fun invoke(arr: IntArray): List<Int> {
         return arr.solve()
     }
 

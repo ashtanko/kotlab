@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/steps-to-make-array-non-decreasing/">leetcode page</a>
  */
 interface TotalSteps {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class TotalStepsDp : TotalSteps {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         var res = 0
         var j = -1

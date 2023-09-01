@@ -28,7 +28,7 @@ fun interface FindLongestChain {
  * Approach 1: Recursive Dynamic Programming
  */
 class FindLongestChainRecursive : FindLongestChain {
-    override fun invoke(pairs: Array<IntArray>): Int {
+    override operator fun invoke(pairs: Array<IntArray>): Int {
         val n = pairs.size
         pairs.sortWith(compareBy { it[0] })
         val memo = IntArray(n)
@@ -55,7 +55,7 @@ class FindLongestChainRecursive : FindLongestChain {
 }
 
 class FindLongestChainIterative : FindLongestChain {
-    override fun invoke(pairs: Array<IntArray>): Int {
+    override operator fun invoke(pairs: Array<IntArray>): Int {
         val n = pairs.size
         pairs.sortWith(compareBy { it[0] })
         val dp = IntArray(n) { 1 }

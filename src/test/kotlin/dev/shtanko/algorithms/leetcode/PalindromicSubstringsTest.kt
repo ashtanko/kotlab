@@ -41,7 +41,7 @@ abstract class PalindromicSubstringsTest<out T : PalindromicSubstrings>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count substrings test`(s: String, expected: Int) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

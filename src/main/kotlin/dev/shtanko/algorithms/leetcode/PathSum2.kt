@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/path-sum-ii/">leetcode page</a>
  */
 interface PathSum2 {
-    fun perform(root: TreeNode?, targetSum: Int): List<List<Int>>
+    operator fun invoke(root: TreeNode?, targetSum: Int): List<List<Int>>
 }
 
 /**
  * Approach: Depth First Traversal | Recursion
  */
 class PathSum2DFS : PathSum2 {
-    override fun perform(root: TreeNode?, targetSum: Int): List<List<Int>> {
+    override operator fun invoke(root: TreeNode?, targetSum: Int): List<List<Int>> {
         val pathsList: MutableList<List<Int>> = ArrayList()
         val pathNodes: MutableList<Int> = ArrayList()
         recurseTree(root, targetSum, pathNodes, pathsList)

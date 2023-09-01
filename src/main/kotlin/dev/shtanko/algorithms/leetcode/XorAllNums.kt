@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/bitwise-xor-of-all-pairings/">leetcode page</a>
  */
 fun interface XorAllNums {
-    fun perform(nums1: IntArray, nums2: IntArray): Int
+    operator fun invoke(nums1: IntArray, nums2: IntArray): Int
 }
 
 class XorAllNumsConcise : XorAllNums {
-    override fun perform(nums1: IntArray, nums2: IntArray): Int {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): Int {
         var x = 0
         var y = 0
         for (a in nums1) x = x xor a
@@ -35,7 +35,7 @@ class XorAllNumsConcise : XorAllNums {
 }
 
 class XorAllNumsSimple : XorAllNums {
-    override fun perform(nums1: IntArray, nums2: IntArray): Int {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): Int {
         if (nums1.size % 2 == 0 && nums2.size % 2 == 0) { // if both arrays have even length
             return 0
         }

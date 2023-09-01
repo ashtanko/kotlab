@@ -41,7 +41,7 @@ abstract class MinimumDifferenceTest<out T : MinimumDifference>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum difference test`(nums: IntArray, expected: Long) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

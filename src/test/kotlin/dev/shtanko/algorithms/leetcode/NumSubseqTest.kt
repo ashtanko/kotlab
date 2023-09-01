@@ -48,7 +48,7 @@ abstract class NumSubseqTest<out T : NumSubseq>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `num subseq test`(nums: IntArray, target: Int, expected: Int) {
-        val actual = strategy.perform(nums, target)
+        val actual = strategy.invoke(nums, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

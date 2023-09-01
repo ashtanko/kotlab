@@ -28,7 +28,7 @@ class LetterTilePossibilitiesDFS : LetterTilePossibilities {
 
     private var count = 0
 
-    override fun invoke(tiles: String): Int {
+    override operator fun invoke(tiles: String): Int {
         val chars = tiles.toCharArray()
         chars.sort()
         val visited = BooleanArray(chars.size)

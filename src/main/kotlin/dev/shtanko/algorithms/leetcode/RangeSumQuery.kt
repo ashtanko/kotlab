@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  *  @see <a href="https://leetcode.com/problems/range-sum-query-immutable/">leetcode page</a>
  */
 interface RangeSumQuery {
-    fun perform(i: Int, j: Int): Int
+    operator fun invoke(i: Int, j: Int): Int
 }
 
 class RangeSumQueryBruteForce(val nums: IntArray) : RangeSumQuery {
-    override fun perform(i: Int, j: Int): Int {
+    override operator fun invoke(i: Int, j: Int): Int {
         var sum = 0
         for (k in i..j) {
             sum += nums[k]
@@ -48,7 +48,7 @@ class RangeSumQueryCaching(val nums: IntArray) : RangeSumQuery {
         }
     }
 
-    override fun perform(i: Int, j: Int): Int {
+    override operator fun invoke(i: Int, j: Int): Int {
         return map[i to j] ?: 0
     }
 }
@@ -63,7 +63,7 @@ class RangeSumQueryCachingOptimized(val nums: IntArray) : RangeSumQuery {
         }
     }
 
-    override fun perform(i: Int, j: Int): Int {
+    override operator fun invoke(i: Int, j: Int): Int {
         return sum[j + 1] - sum[i]
     }
 }

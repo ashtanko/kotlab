@@ -51,7 +51,7 @@ abstract class PacificAtlanticWaterFlowTest<out T : PacificAtlanticWaterFlow>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `pacific atlantic test`(matrix: Array<IntArray>, expected: List<List<Int>>) {
-        val actual = strategy.perform(matrix)
+        val actual = strategy.invoke(matrix)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-number-of-nice-subarrays/">leetcode page</a>
  */
 interface NumberOfSubarrays {
-    fun perform(nums: IntArray, k: Int): Int
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class NumberOfSubarraysOnePass : NumberOfSubarrays {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         var res = 0
         var i = 0
         var count = 0
@@ -47,7 +47,7 @@ class NumberOfSubarraysOnePass : NumberOfSubarrays {
 }
 
 class NumberOfSubarraysSlidingWindow : NumberOfSubarrays {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         return atMost(nums, k) - atMost(nums, k - 1)
     }
 

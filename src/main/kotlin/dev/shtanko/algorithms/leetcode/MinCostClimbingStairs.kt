@@ -25,14 +25,14 @@ import kotlin.math.min
  * Space Complexity: O(1).
  */
 interface MinCostClimbingStairs {
-    fun perform(cost: IntArray): Int
+    operator fun invoke(cost: IntArray): Int
 }
 
 /**
  * Recursive Approach - TLE.
  */
 class MinCostClimbingStairsRecursive : MinCostClimbingStairs {
-    override fun perform(cost: IntArray): Int {
+    override operator fun invoke(cost: IntArray): Int {
         val length: Int = cost.size
         return min(recurse(cost, length - 1), recurse(cost, length - 2))
     }
@@ -51,7 +51,7 @@ class MinCostClimbingStairsRecursive : MinCostClimbingStairs {
  * Recursive Memoization.
  */
 class MinCostClimbingStairsMemoization : MinCostClimbingStairs {
-    override fun perform(cost: IntArray): Int {
+    override operator fun invoke(cost: IntArray): Int {
         val length: Int = cost.size
         val cache = IntArray(cost.size + 1)
         return min(recurse(cost, cache, length - 1), recurse(cost, cache, length - 2))
@@ -75,7 +75,7 @@ class MinCostClimbingStairsMemoization : MinCostClimbingStairs {
  * Bottom Up - DP Approach.
  */
 class MinCostClimbingStairsDPBottomUp : MinCostClimbingStairs {
-    override fun perform(cost: IntArray): Int {
+    override operator fun invoke(cost: IntArray): Int {
         if (cost.isEmpty()) return 0
         val length: Int = cost.size
         val dp = IntArray(length + 1)
@@ -94,7 +94,7 @@ class MinCostClimbingStairsDPBottomUp : MinCostClimbingStairs {
  * DP Optimized.
  */
 class MinCostClimbingStairsDPOptimized : MinCostClimbingStairs {
-    override fun perform(cost: IntArray): Int {
+    override operator fun invoke(cost: IntArray): Int {
         var f1 = 0
         var f2 = 0
         for (i in cost.size - 1 downTo 0) {

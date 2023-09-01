@@ -74,7 +74,7 @@ abstract class BinaryNumberToIntTest<out T : BinaryNumberToIntStrategy>(
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `convert binary number in a linked list to integer test`(head: ListNode, expected: Int) {
-        val actual = strategy.perform(head)
+        val actual = strategy.invoke(head)
         assertEquals(expected, actual)
     }
 }

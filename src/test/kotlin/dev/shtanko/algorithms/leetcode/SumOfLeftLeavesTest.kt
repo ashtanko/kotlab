@@ -44,7 +44,7 @@ abstract class SumOfLeftLeavesTest<out T : SumOfLeftLeavesStrategy>(val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sum of left leaves test`(tree: TreeNode, expected: Int) {
-        val actual = strategy.perform(tree)
+        val actual = strategy.invoke(tree)
         assertEquals(expected, actual)
     }
 }

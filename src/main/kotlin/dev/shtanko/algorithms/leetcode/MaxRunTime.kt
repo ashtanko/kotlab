@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/maximum-running-time-of-n-computers/">leetcode page</a>
  */
 interface MaxRunTime {
-    fun perform(n: Int, batteries: IntArray): Long
+    operator fun invoke(n: Int, batteries: IntArray): Long
 }
 
 /**
  * Approach 1: Sorting and Prefix Sum
  */
 class MaxRunTimePrefixSum : MaxRunTime {
-    override fun perform(n: Int, batteries: IntArray): Long {
+    override operator fun invoke(n: Int, batteries: IntArray): Long {
         // Get the sum of all extra batteries.
         batteries.sort()
         var extra: Long = 0
@@ -61,7 +61,7 @@ class MaxRunTimePrefixSum : MaxRunTime {
  * Approach 2: Binary Search
  */
 class MaxRunTimeBS : MaxRunTime {
-    override fun perform(n: Int, batteries: IntArray): Long {
+    override operator fun invoke(n: Int, batteries: IntArray): Long {
         var sumPower: Long = 0
         for (power in batteries)
             sumPower += power

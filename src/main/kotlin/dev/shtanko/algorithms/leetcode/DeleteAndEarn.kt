@@ -24,7 +24,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/delete-and-earn/">leetcode page</a>
  */
 interface DeleteAndEarn {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
@@ -35,7 +35,7 @@ class DeleteAndEarnTopDown : DeleteAndEarn {
     private val points = HashMap<Int, Int>()
     private val cache = HashMap<Int, Int>()
 
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var maxNumber = 0
 
         // Precompute how many points we gain from taking an element
@@ -70,7 +70,7 @@ class DeleteAndEarnTopDown : DeleteAndEarn {
  * Approach 2: Bottom-Up Dynamic Programming
  */
 class DeleteAndEarnBottomUp : DeleteAndEarn {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         if (nums.isEmpty()) return 0
         val points = HashMap<Int, Int>()
         var maxNumber = 0
@@ -99,7 +99,7 @@ class DeleteAndEarnBottomUp : DeleteAndEarn {
  * Approach 3: Space Optimized Bottom-Up Dynamic Programming
  */
 class DeleteAndEarnBottomUpOpt : DeleteAndEarn {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var maxNumber = 0
         val points = HashMap<Int, Int>()
 
@@ -127,7 +127,7 @@ class DeleteAndEarnBottomUpOpt : DeleteAndEarn {
  * Approach 4: Iterate Over Elements
  */
 class DeleteAndEarnIterative : DeleteAndEarn {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val points = HashMap<Int, Int>()
 
         // Precompute how many points we gain from taking an element
@@ -159,7 +159,7 @@ class DeleteAndEarnIterative : DeleteAndEarn {
 }
 
 class DeleteAndEarnBest : DeleteAndEarn {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var maxNumber = 0
         val points = HashMap<Int, Int>()
 

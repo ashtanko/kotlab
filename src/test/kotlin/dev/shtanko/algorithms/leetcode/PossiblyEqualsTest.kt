@@ -48,7 +48,7 @@ abstract class PossiblyEqualsTest<out T : PossiblyEquals>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `possibly equals test`(s1: String, s2: String, expected: Boolean) {
-        val actual = strategy.perform(s1, s2)
+        val actual = strategy.invoke(s1, s2)
         assertThat(actual).isEqualTo(expected)
     }
 }

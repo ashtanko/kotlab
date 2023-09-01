@@ -22,7 +22,7 @@ import kotlin.math.min
  * Approach 1: Dynamic Programming
  */
 object ShortestSuperstring {
-    fun perform(words: Array<String>): String {
+    operator fun invoke(words: Array<String>): String {
         val n = words.size
 
         // Populate overlaps

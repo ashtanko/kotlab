@@ -53,7 +53,7 @@ abstract class MissingNumberInProgressionTest<out T : MissingNumberInProgression
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `missing number test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -23,13 +23,13 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/closest-dessert-cost/">leetcode page</a>
  */
 interface ClosestDessertCost {
-    fun perform(baseCosts: IntArray, toppingCosts: IntArray, target: Int): Int
+    operator fun invoke(baseCosts: IntArray, toppingCosts: IntArray, target: Int): Int
 }
 
 class ClosestDessertCostBacktracking : ClosestDessertCost {
     private var result = 0
 
-    override fun perform(baseCosts: IntArray, toppingCosts: IntArray, target: Int): Int {
+    override operator fun invoke(baseCosts: IntArray, toppingCosts: IntArray, target: Int): Int {
         if (baseCosts.isEmpty()) return 0
         result = baseCosts[0]
         for (base in baseCosts) closestCost(base, toppingCosts, 0, target)

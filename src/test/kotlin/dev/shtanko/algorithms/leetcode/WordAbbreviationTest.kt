@@ -125,7 +125,7 @@ abstract class WordAbbreviationTest<out T : WordAbbreviation>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `words abbreviation test`(dict: List<String>, expected: List<String>) {
-        val actual = strategy.perform(dict)
+        val actual = strategy.invoke(dict)
         assertThat(actual, equalTo(expected))
     }
 }

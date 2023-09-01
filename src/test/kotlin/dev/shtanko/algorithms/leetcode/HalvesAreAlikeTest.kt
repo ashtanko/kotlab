@@ -49,7 +49,7 @@ abstract class HalvesAreAlikeTest<out T : HalvesAreAlike>(private val solution: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `halves are alike test`(s: String, expected: Boolean) {
-        val actual = solution.perform(s)
+        val actual = solution.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

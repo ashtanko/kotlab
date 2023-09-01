@@ -26,11 +26,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/">leetcode page</a>
  */
 interface FindCheapestPrice {
-    fun perform(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int
+    operator fun invoke(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int
 }
 
 class FindCheapestPriceBFS : FindCheapestPrice {
-    override fun perform(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int {
+    override operator fun invoke(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int {
         val map: MutableMap<Int, MutableList<IntArray>> = HashMap()
         for (i in flights) {
             map.putIfAbsent(i[0], ArrayList())
@@ -61,7 +61,7 @@ class FindCheapestPriceBFS : FindCheapestPrice {
 }
 
 class FindCheapestPriceBellmanFord : FindCheapestPrice {
-    override fun perform(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int {
+    override operator fun invoke(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int {
         var cost = IntArray(n) { Int.MAX_VALUE }
         cost[src] = 0
         for (i in 0..k) {
@@ -80,7 +80,7 @@ class FindCheapestPriceBellmanFord : FindCheapestPrice {
 }
 
 class FindCheapestPriceDijkstra : FindCheapestPrice {
-    override fun perform(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int {
+    override operator fun invoke(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int {
         val map: MutableMap<Int, MutableList<IntArray>> = HashMap()
         for (f in flights) {
             map.putIfAbsent(f[0], ArrayList())

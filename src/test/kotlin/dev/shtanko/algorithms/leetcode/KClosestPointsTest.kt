@@ -51,7 +51,7 @@ abstract class KClosestPointsTest<out T : KClosestPointsStrategy>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `K closest points test`(points: Array<IntArray>, k: Int, expected: Array<IntArray>) {
-        val actual = strategy.perform(points, k)
+        val actual = strategy.invoke(points, k)
         assertArrayEquals(expected, actual)
     }
 }

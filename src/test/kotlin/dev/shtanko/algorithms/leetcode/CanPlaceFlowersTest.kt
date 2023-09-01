@@ -43,7 +43,7 @@ abstract class CanPlaceFlowersTest<out T : CanPlaceFlowers>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `can place flowers test`(flowerbed: IntArray, n: Int, expected: Boolean) {
-        val actual = strategy.perform(flowerbed, n)
+        val actual = strategy.invoke(flowerbed, n)
         assertThat(actual).isEqualTo(expected)
     }
 }

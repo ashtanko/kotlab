@@ -85,7 +85,7 @@ abstract class AreOccurrencesEqualTest<out T : AreOccurrencesEqual>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `are occurrences equal test`(s: String, expected: Boolean) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

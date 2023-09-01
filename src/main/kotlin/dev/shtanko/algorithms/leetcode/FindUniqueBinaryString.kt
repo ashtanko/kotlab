@@ -24,11 +24,11 @@ import java.util.stream.IntStream
  * @see <a href="https://leetcode.com/problems/find-unique-binary-string/">leetcode page</a>
  */
 interface FindUniqueBinaryString {
-    fun perform(nums: Array<String>): String
+    operator fun invoke(nums: Array<String>): String
 }
 
 class FindUniqueBinaryStringImpl : FindUniqueBinaryString {
-    override fun perform(nums: Array<String>): String {
+    override operator fun invoke(nums: Array<String>): String {
         val ans = StringBuilder()
         for (i in nums.indices) {
             ans.append(if (nums[i][i] == '0') '1' else '0')
@@ -38,14 +38,14 @@ class FindUniqueBinaryStringImpl : FindUniqueBinaryString {
 }
 
 class FindUniqueBinaryStringStream : FindUniqueBinaryString {
-    override fun perform(nums: Array<String>): String {
+    override operator fun invoke(nums: Array<String>): String {
         return IntStream.range(0, nums.size).mapToObj { i -> if (nums[i][i] == '0') "1" else "0" }
             .collect(Collectors.joining())
     }
 }
 
 class FindUniqueBinaryStringOneLine : FindUniqueBinaryString {
-    override fun perform(nums: Array<String>): String {
+    override operator fun invoke(nums: Array<String>): String {
         return nums.indices.joinToString("") { i -> if (nums[i][i] == '0') "1" else "0" }
     }
 }

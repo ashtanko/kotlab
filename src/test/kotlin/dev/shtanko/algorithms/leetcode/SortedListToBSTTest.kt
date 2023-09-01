@@ -55,7 +55,7 @@ abstract class SortedListToBSTTest<out T : SortedListToBST>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sorted list to BST test`(head: ListNode, expected: List<Int>) {
-        val actual = strategy.perform(head).postOrderTraversal()
+        val actual = strategy.invoke(head).postOrderTraversal()
         assertThat(actual).containsAll(expected)
     }
 }

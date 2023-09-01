@@ -21,13 +21,13 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/smallest-sufficient-team/">leetcode page</a>
  */
 interface SmallestSufficientTeam {
-    fun perform(reqSkills: Array<String>, people: List<List<String>>): IntArray
+    operator fun invoke(reqSkills: Array<String>, people: List<List<String>>): IntArray
 }
 
 class SmallestSufficientTeamDFS : SmallestSufficientTeam {
     private var sol: MutableList<Int> = ArrayList()
 
-    override fun perform(reqSkills: Array<String>, people: List<List<String>>): IntArray {
+    override operator fun invoke(reqSkills: Array<String>, people: List<List<String>>): IntArray {
         val idx: MutableMap<String, Int> = HashMap()
         var n = 0
         for (s in reqSkills) idx[s] = n++ // skills are represented by 0, 1, 2....

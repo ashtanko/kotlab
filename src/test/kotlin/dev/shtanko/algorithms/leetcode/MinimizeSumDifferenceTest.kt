@@ -45,7 +45,7 @@ abstract class MinimizeSumDifferenceTest<out T : MinimizeSumDifference>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum difference test`(nums: IntArray, expected: Int) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

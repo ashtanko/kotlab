@@ -58,7 +58,7 @@ abstract class CoinChangeTest<out T : CoinChange>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `coin change test`(coins: IntArray, amount: Int, expected: Int) {
-        val actual = strategy.perform(coins, amount)
+        val actual = strategy.invoke(coins, amount)
         assertThat(actual).isEqualTo(expected)
     }
 }

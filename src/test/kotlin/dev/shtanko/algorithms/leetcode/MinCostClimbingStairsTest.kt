@@ -54,7 +54,7 @@ abstract class MinCostClimbingStairsTest<out T : MinCostClimbingStairs>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min cost climbing stairs test`(cost: IntArray, expected: Int) {
-        val actual = strategy.perform(cost)
+        val actual = strategy.invoke(cost)
         assertThat(actual, equalTo(expected))
     }
 }

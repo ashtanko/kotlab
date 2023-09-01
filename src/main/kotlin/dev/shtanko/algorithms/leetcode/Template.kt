@@ -24,5 +24,5 @@ fun interface Template {
 }
 
 class TemplateImpl : Template {
-    override fun invoke(): Int = 0
+    override operator fun invoke(): Int = 0
 }

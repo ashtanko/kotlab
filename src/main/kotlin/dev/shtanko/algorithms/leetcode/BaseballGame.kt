@@ -20,7 +20,7 @@ import java.util.Stack
 
 class BaseballGame {
 
-    fun perform(ops: Array<String>): Int {
+    operator fun invoke(ops: Array<String>): Int {
         val stack = Stack<Int>()
         for (op in ops) {
             when (op) {

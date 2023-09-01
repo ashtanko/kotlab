@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface AbstractRotateArrayStrategy {
-    fun perform(nums: IntArray, k: Int)
+    operator fun invoke(nums: IntArray, k: Int)
 }
 
 class RotateArrayBruteForce : AbstractRotateArrayStrategy {
-    override fun perform(nums: IntArray, k: Int) {
+    override operator fun invoke(nums: IntArray, k: Int) {
         var a = k
         a %= nums.size
         var temp: Int
@@ -38,7 +38,7 @@ class RotateArrayBruteForce : AbstractRotateArrayStrategy {
 }
 
 class RotateArrayUsingExtraArray : AbstractRotateArrayStrategy {
-    override fun perform(nums: IntArray, k: Int) {
+    override operator fun invoke(nums: IntArray, k: Int) {
         val a = IntArray(nums.size)
         for (i in nums.indices) {
             a[(i + k) % nums.size] = nums[i]
@@ -50,7 +50,7 @@ class RotateArrayUsingExtraArray : AbstractRotateArrayStrategy {
 }
 
 class RotateArrayUsingCyclicReplacements : AbstractRotateArrayStrategy {
-    override fun perform(nums: IntArray, k: Int) {
+    override operator fun invoke(nums: IntArray, k: Int) {
         val a: Int = k % nums.size
         var count = 0
         var start = 0
@@ -71,7 +71,7 @@ class RotateArrayUsingCyclicReplacements : AbstractRotateArrayStrategy {
 }
 
 class RotateArrayUsingReverse : AbstractRotateArrayStrategy {
-    override fun perform(nums: IntArray, k: Int) {
+    override operator fun invoke(nums: IntArray, k: Int) {
         var a = k
         a %= nums.size
         reverse(nums, 0, nums.size - 1)

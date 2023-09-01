@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface CanBeEqualStrategy {
-    fun perform(target: IntArray, arr: IntArray): Boolean
+    operator fun invoke(target: IntArray, arr: IntArray): Boolean
 }
 
 class CanBeEqualSort : CanBeEqualStrategy {
-    override fun perform(target: IntArray, arr: IntArray): Boolean {
+    override operator fun invoke(target: IntArray, arr: IntArray): Boolean {
         target.sort()
         arr.sort()
         return target.contentEquals(arr)
@@ -29,7 +29,7 @@ class CanBeEqualSort : CanBeEqualStrategy {
 }
 
 class CanBeEqualMap : CanBeEqualStrategy {
-    override fun perform(target: IntArray, arr: IntArray): Boolean {
+    override operator fun invoke(target: IntArray, arr: IntArray): Boolean {
         val n = arr.size
         val map = HashMap<Int, Int?>()
         for (i in 0 until n) {

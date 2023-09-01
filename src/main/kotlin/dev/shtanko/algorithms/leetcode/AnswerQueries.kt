@@ -24,11 +24,11 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/longest-subsequence-with-limited-sum/">leetcode page</a>
  */
 interface AnswerQueries {
-    fun perform(nums: IntArray, queries: IntArray): IntArray
+    operator fun invoke(nums: IntArray, queries: IntArray): IntArray
 }
 
 class AnswerQueriesBinarySearch : AnswerQueries {
-    override fun perform(nums: IntArray, queries: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray, queries: IntArray): IntArray {
         nums.sort()
         val n: Int = nums.size
         val m: Int = queries.size

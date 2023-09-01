@@ -23,7 +23,7 @@ class BeautifulArray {
         HashMap()
     }
 
-    fun perform(n: Int): IntArray {
+    operator fun invoke(n: Int): IntArray {
         var res = ArrayList<Int>()
         res.add(1)
         while (res.size < n) {

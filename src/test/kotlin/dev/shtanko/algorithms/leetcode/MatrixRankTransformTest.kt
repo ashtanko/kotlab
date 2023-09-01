@@ -67,7 +67,7 @@ abstract class MatrixRankTransformTest<out T : MatrixRankTransform>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `matrix rank transform test`(matrix: Array<IntArray>, expected: Array<IntArray>) {
-        val actual = strategy.perform(matrix)
+        val actual = strategy.invoke(matrix)
         assertThat(actual).isEqualTo(expected)
     }
 }

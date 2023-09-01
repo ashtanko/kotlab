@@ -27,7 +27,7 @@ interface DiffWaysToCompute {
 class DiffWaysToComputeRecursive : DiffWaysToCompute {
 
     // function to get the result of the operation
-    fun perform(x: Int, y: Int, op: Char): Int {
+    operator fun invoke(x: Int, y: Int, op: Char): Int {
         if (op == '+') return x + y
         if (op == '-') return x - y
         return if (op == '*') x * y else 0
@@ -53,7 +53,7 @@ class DiffWaysToComputeRecursive : DiffWaysToCompute {
                 // performing operations
                 for (x in left) {
                     for (y in right) {
-                        val value = perform(x, y, expression[i])
+                        val value = invoke(x, y, expression[i])
                         results.add(value)
                     }
                 }

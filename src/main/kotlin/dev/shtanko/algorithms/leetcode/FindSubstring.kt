@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface AbstractFindSubstring {
-    fun perform(s: String, words: Array<String>): List<Int>
+    operator fun invoke(s: String, words: Array<String>): List<Int>
 }
 
 class FindSubstring : AbstractFindSubstring {
-    override fun perform(s: String, words: Array<String>): List<Int> {
+    override operator fun invoke(s: String, words: Array<String>): List<Int> {
         val list: MutableList<Int> = ArrayList()
         val n = words.size
         if (n == 0) {

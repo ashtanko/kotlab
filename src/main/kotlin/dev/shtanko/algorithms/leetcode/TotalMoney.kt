@@ -25,7 +25,7 @@ object TotalMoney {
     private const val WEEK = 7
     private const val PERIOD = 3
 
-    fun perform(n: Int): Int {
+    operator fun invoke(n: Int): Int {
         var m = n / WEEK
         var ans = 0
         for (i in 1..m) {

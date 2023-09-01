@@ -19,14 +19,14 @@ package dev.shtanko.algorithms.leetcode
 import dev.shtanko.algorithms.extensions.swap
 
 interface WiggleSort {
-    fun perform(nums: IntArray)
+    operator fun invoke(nums: IntArray)
 }
 
 /**
  * Approach #1 (Sorting)
  */
 class WiggleSortBruteForce : WiggleSort {
-    override fun perform(nums: IntArray) {
+    override operator fun invoke(nums: IntArray) {
         for (i in 1 until nums.size) {
             val a = nums[i - 1]
             if (i % 2 == 1 == a > nums[i]) {
@@ -41,7 +41,7 @@ class WiggleSortBruteForce : WiggleSort {
  * Approach #2 (One-pass Swap)
  */
 class WiggleSortOnePassSwap : WiggleSort {
-    override fun perform(nums: IntArray) {
+    override operator fun invoke(nums: IntArray) {
         var less = true
         for (i in 0 until nums.size - 1) {
             if (less) {

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 // Find the Smallest Divisor Given a Threshold
 interface SmallestDivisorStrategy {
-    fun perform(nums: IntArray, threshold: Int): Int
+    operator fun invoke(nums: IntArray, threshold: Int): Int
 
     fun computeSum(nums: IntArray, x: Int): Long {
         var s: Long = 0
@@ -30,7 +30,7 @@ interface SmallestDivisorStrategy {
 }
 
 class SmallestDivisorBinarySearch : SmallestDivisorStrategy {
-    override fun perform(nums: IntArray, threshold: Int): Int {
+    override operator fun invoke(nums: IntArray, threshold: Int): Int {
         // search boundaries for the divisor
         var left = 1
         var right = 2
@@ -59,7 +59,7 @@ class SmallestDivisorBinarySearch : SmallestDivisorStrategy {
 }
 
 class SmallestDivisorMath : SmallestDivisorStrategy {
-    override fun perform(nums: IntArray, threshold: Int): Int {
+    override operator fun invoke(nums: IntArray, threshold: Int): Int {
         // binary search
         // binary search
         var left = 1

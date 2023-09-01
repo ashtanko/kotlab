@@ -68,7 +68,7 @@ abstract class ConstrainedSubsequenceSumTest<out T : ConstrainedSubsequenceSum>(
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `constrained subset sum test`(nums: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(nums, k)
+        val actual = strategy.invoke(nums, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

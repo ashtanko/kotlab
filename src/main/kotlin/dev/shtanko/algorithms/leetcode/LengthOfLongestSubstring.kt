@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">leetcode page</a>
  */
 interface LengthOfLongestSubstring {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 /**
@@ -32,7 +32,7 @@ interface LengthOfLongestSubstring {
  * Space complexity : O(min(n,m)).
  */
 class LengthOfLongestSubstringBF : LengthOfLongestSubstring {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val n: Int = s.length
         var res = 0
         for (i in 0 until n) {
@@ -69,7 +69,7 @@ class LengthOfLongestSubstringBF : LengthOfLongestSubstring {
  * Space complexity : O(min(m,n)).
  */
 class LLSSlidingWindow : LengthOfLongestSubstring {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val chars = IntArray(MAXIMUM_VALUE)
 
         var left = 0
@@ -101,7 +101,7 @@ class LLSSlidingWindow : LengthOfLongestSubstring {
  * Space complexity : O(min(m,n)).
  */
 class LLSSlidingWindowOpt : LengthOfLongestSubstring {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val chars = arrayOfNulls<Int>(MAXIMUM_VALUE)
 
         var left = 0

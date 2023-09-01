@@ -19,18 +19,18 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 
 interface MaxDepthStrategy {
-    fun perform(root: TreeNode?): Int
+    operator fun invoke(root: TreeNode?): Int
 }
 
 class MaxDepthRecursive : MaxDepthStrategy {
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
-        return 1 + perform(root.left).coerceAtLeast(perform(root.right))
+        return 1 + invoke(root.left).coerceAtLeast(invoke(root.right))
     }
 }
 
 class MaxDepthIterative : MaxDepthStrategy {
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
         val nodeStack = Stack<TreeNode>()
         val depthStack = Stack<Int>()

@@ -24,14 +24,14 @@ import kotlin.math.min
  */
 interface BinaryTreeCamerasStrategy {
 
-    fun perform(root: TreeNode?): Int
+    operator fun invoke(root: TreeNode?): Int
 }
 
 class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {
 
     private var cameras = 0
 
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
         val top = root.dfs()
         val local = if (top == NOT_MONITORED) 1 else 0
@@ -61,7 +61,7 @@ class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {
 
 class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {
 
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         val ans = solve(root)
         return min(ans[1], ans[2])
     }
@@ -89,7 +89,7 @@ class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {
 class BinaryTreeCamerasGreedy : BinaryTreeCamerasStrategy {
 
     private var res = 0
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         return (if (dfs(root) < 1) 1 else 0) + res
     }
 

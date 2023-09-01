@@ -37,7 +37,7 @@ abstract class ContainsDuplicate2Test<out T : ContainsDuplicate2>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is contains duplicate test`(arr: IntArray, k: Int, expected: Boolean) {
-        val actual = strategy.perform(arr, k)
+        val actual = strategy.invoke(arr, k)
         assertEquals(expected, actual)
     }
 }

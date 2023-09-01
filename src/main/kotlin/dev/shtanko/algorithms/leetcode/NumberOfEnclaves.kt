@@ -28,7 +28,7 @@ fun interface NumberOfEnclaves {
 }
 
 class NumberOfEnclavesDFS : NumberOfEnclaves {
-    override fun invoke(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         var result = 0
         for (i in grid.indices) {
             for (j in 0 until grid[i].size) {
@@ -62,7 +62,7 @@ class NumberOfEnclavesBFS : NumberOfEnclaves {
 
     private val directions = arrayOf(intArrayOf(-1, 0), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(0, 1))
 
-    override fun invoke(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0
         if (grid.first().isEmpty()) return 0
         val rows = grid.size

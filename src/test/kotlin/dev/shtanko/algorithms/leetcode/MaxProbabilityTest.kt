@@ -64,7 +64,7 @@ abstract class MaxProbabilityTest<out T : MaxProbability>(private val strategy: 
         end: Int,
         expected: Double,
     ) {
-        val actual = strategy.perform(n, edges, succProb, start, end)
+        val actual = strategy.invoke(n, edges, succProb, start, end)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -43,7 +43,7 @@ abstract class MakeArrayEqualTest<out T : MakeArrayEqual>(private val solution: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min operations test`(n: Int, expected: Int) {
-        val actual = solution.perform(n)
+        val actual = solution.invoke(n)
         assertThat(actual).isEqualTo(expected)
     }
 }

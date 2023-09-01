@@ -24,11 +24,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/alphabet-board-path/">leetcode page</a>
  */
 interface AlphabetBoardPath {
-    fun perform(target: String): String
+    operator fun invoke(target: String): String
 }
 
 class AlphabetBoardPathSB : AlphabetBoardPath {
-    override fun perform(target: String): String {
+    override operator fun invoke(target: String): String {
         var x = 0
         var y = 0
         val sb = StringBuilder()

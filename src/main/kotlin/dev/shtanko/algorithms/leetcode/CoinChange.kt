@@ -22,11 +22,11 @@ import kotlin.math.min
  * 322. Coin Change
  */
 interface CoinChange {
-    fun perform(coins: IntArray, amount: Int): Int
+    operator fun invoke(coins: IntArray, amount: Int): Int
 }
 
 class CoinChangeDP : CoinChange {
-    override fun perform(coins: IntArray, amount: Int): Int {
+    override operator fun invoke(coins: IntArray, amount: Int): Int {
         val dp = IntArray(amount + 1) { amount + 1 }
         dp[0] = 0
         for (j in coins.indices) {

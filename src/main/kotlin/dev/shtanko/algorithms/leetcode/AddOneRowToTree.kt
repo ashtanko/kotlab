@@ -25,14 +25,14 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/add-one-row-to-tree/">leetcode page</a>
  */
 interface AddOneRowToTree {
-    fun perform(root: TreeNode?, v: Int, d: Int): TreeNode?
+    operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode?
 }
 
 /**
  * Approach #1 Using Recursion(DFS)
  */
 class AddOneRowToTreeRec : AddOneRowToTree {
-    override fun perform(root: TreeNode?, v: Int, d: Int): TreeNode? {
+    override operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode? {
         if (d == 1) {
             return TreeNode(v).apply {
                 left = root
@@ -69,7 +69,7 @@ class AddOneRowToTreeStack : AddOneRowToTree {
 
     data class Node(val node: TreeNode?, val depth: Int)
 
-    override fun perform(root: TreeNode?, v: Int, d: Int): TreeNode? {
+    override operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode? {
         if (d == 1) {
             return TreeNode(v).apply {
                 left = root
@@ -102,7 +102,7 @@ class AddOneRowToTreeStack : AddOneRowToTree {
  * Approach #3 Using queue(BFS)
  */
 class AddOneRowToTreeQueue : AddOneRowToTree {
-    override fun perform(root: TreeNode?, v: Int, d: Int): TreeNode? {
+    override operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode? {
         if (d == 1) {
             return TreeNode(v).apply {
                 left = root

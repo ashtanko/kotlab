@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/">leetcode page</a>
  */
 interface MinMovesToMakePalindrome {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 class MinMovesToMakePalindromeGreedy : MinMovesToMakePalindrome {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var res = 0
         var s0 = s
         while (s0.isNotEmpty()) {

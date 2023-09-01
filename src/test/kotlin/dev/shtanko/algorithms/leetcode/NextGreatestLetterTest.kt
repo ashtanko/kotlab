@@ -48,7 +48,7 @@ abstract class NextGreatestLetterTest<out T : NextGreatestLetter>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `next greatest letter test`(letters: CharArray, target: Char, expected: Char) {
-        val actual = strategy.perform(letters, target)
+        val actual = strategy.invoke(letters, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

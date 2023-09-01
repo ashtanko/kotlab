@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/arithmetic-slices-ii-subsequence/">leetcode page</a>
  */
 interface NumberOfArithmeticSlices {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class NumberOfArithmeticSlicesBruteForce : NumberOfArithmeticSlices {
@@ -29,7 +29,7 @@ class NumberOfArithmeticSlicesBruteForce : NumberOfArithmeticSlices {
     private var n = 0
     private var ans = 0
 
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         n = nums.size
         ans = 0
         val cur: MutableList<Long> = ArrayList()
@@ -59,7 +59,7 @@ class NumberOfArithmeticSlicesBruteForce : NumberOfArithmeticSlices {
 }
 
 class NumberOfArithmeticSlicesDP : NumberOfArithmeticSlices {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         var ans: Long = 0
         val cnt: Array<MutableMap<Int, Int>> = Array(n) { mutableMapOf() }
@@ -81,7 +81,7 @@ class NumberOfArithmeticSlicesDP : NumberOfArithmeticSlices {
 }
 
 class NumberOfArithmeticSlicesDP2 : NumberOfArithmeticSlices {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         var ans = 0
         val dp: Array<HashMap<Long, Int>> = Array(n) { HashMap() }

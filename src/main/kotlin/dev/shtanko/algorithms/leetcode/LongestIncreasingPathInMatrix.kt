@@ -23,14 +23,14 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/">leetcode page</a>
  */
 interface LongestIncreasingPathInMatrix {
-    fun perform(matrix: Array<IntArray>): Int
+    operator fun invoke(matrix: Array<IntArray>): Int
 }
 
 class LongestIncreasingPathInMatrixDFS : LongestIncreasingPathInMatrix {
 
     private val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(-1, 0))
 
-    override fun perform(matrix: Array<IntArray>): Int {
+    override operator fun invoke(matrix: Array<IntArray>): Int {
         if (matrix.isEmpty()) return 0
         val m: Int = matrix.size
         val n: Int = matrix[0].size

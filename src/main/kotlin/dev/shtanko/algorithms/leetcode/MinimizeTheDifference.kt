@@ -25,14 +25,14 @@ import kotlin.math.min
  *     leetcode page</a>
  */
 interface MinimizeTheDifference {
-    fun perform(mat: Array<IntArray>, target: Int): Int
+    operator fun invoke(mat: Array<IntArray>, target: Int): Int
 }
 
 /**
  * DP + Memo
  */
 class MinimizeTheDifferenceDP : MinimizeTheDifference {
-    override fun perform(mat: Array<IntArray>, target: Int): Int {
+    override operator fun invoke(mat: Array<IntArray>, target: Int): Int {
         val dp = Array(mat.size) { arrayOfNulls<Int>(SIZE) }
         return minDiff(mat, 0, target, 0, dp)
     }

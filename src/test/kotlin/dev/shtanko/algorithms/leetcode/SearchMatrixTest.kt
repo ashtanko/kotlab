@@ -72,7 +72,7 @@ abstract class SearchMatrixTest<out T : SearchMatrix>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `search matrix test`(matrix: Array<IntArray>, target: Int, expected: Boolean) {
-        val actual = strategy.perform(matrix, target)
+        val actual = strategy.invoke(matrix, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

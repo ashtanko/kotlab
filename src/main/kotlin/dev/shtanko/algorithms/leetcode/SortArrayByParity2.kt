@@ -23,11 +23,11 @@ import dev.shtanko.algorithms.extensions.swap
  * Sort the array so that whenever A[i] is odd, i is odd; and whenever A[i] is even, i is even.
  */
 interface AbstractSortByParityStrategy {
-    fun perform(array: IntArray): IntArray
+    operator fun invoke(array: IntArray): IntArray
 }
 
 class SortByParityTwoPass : AbstractSortByParityStrategy {
-    override fun perform(array: IntArray): IntArray {
+    override operator fun invoke(array: IntArray): IntArray {
         val n = array.size
         val ans = IntArray(n)
         var t = 0
@@ -49,7 +49,7 @@ class SortByParityTwoPass : AbstractSortByParityStrategy {
 }
 
 class SortByParityHeads : AbstractSortByParityStrategy {
-    override fun perform(array: IntArray): IntArray {
+    override operator fun invoke(array: IntArray): IntArray {
         var j = 1
         var i = 0
         while (i < array.size) {
@@ -66,7 +66,7 @@ class SortByParityHeads : AbstractSortByParityStrategy {
 }
 
 class SortByParityStraightForward : AbstractSortByParityStrategy {
-    override fun perform(array: IntArray): IntArray {
+    override operator fun invoke(array: IntArray): IntArray {
         val n = array.size
         var e = 0
         var o = 1

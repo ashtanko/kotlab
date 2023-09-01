@@ -115,7 +115,7 @@ abstract class AllPathsSourceTargetTest<out T : AllPathsSourceTarget>(private va
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `all paths source target test`(graph: Array<IntArray>, expected: List<List<Int>>) {
-        val actual = strategy.perform(graph)
+        val actual = strategy.invoke(graph)
         assertThat(actual, equalTo(expected))
     }
 }

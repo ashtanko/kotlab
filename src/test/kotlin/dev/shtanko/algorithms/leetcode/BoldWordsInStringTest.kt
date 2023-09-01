@@ -44,7 +44,7 @@ class BoldWordsInStringTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `bold words in string test`(words: Array<String>, s: String, expected: String) {
         val solution = BoldWordsInString()
-        val actual = solution.perform(words, s)
+        val actual = solution.invoke(words, s)
         assertThat(actual, equalTo(expected))
     }
 }

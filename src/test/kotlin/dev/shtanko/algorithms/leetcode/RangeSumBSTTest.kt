@@ -39,7 +39,7 @@ abstract class RangeSumBSTTest<out T : RangeSumStrategy>(private val strategy: T
         val (arr, left, right) = data
         val tree: TreeNode? = null
         val root = insertLevelOrder(tree, arr)
-        val actual = strategy.perform(root, left, right)
+        val actual = strategy.invoke(root, left, right)
         assertEquals(expected, actual)
     }
 }

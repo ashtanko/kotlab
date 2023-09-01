@@ -68,7 +68,7 @@ abstract class CountSubTreesTest<out T : CountSubTrees>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count sub trees test`(n: Int, edges: Array<IntArray>, labels: String, expected: IntArray) {
-        val actual = strategy.perform(n, edges, labels)
+        val actual = strategy.invoke(n, edges, labels)
         assertThat(actual).isEqualTo(expected)
     }
 }

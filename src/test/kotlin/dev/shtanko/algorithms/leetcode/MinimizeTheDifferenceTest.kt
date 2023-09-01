@@ -58,7 +58,7 @@ abstract class MinimizeTheDifferenceTest<out T : MinimizeTheDifference>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimize the difference test`(mat: Array<IntArray>, target: Int, expected: Int) {
-        val actual = strategy.perform(mat, target)
+        val actual = strategy.invoke(mat, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

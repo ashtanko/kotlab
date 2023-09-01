@@ -25,7 +25,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/time-needed-to-inform-all-employees/">leetcode page</a>
  */
 interface NumOfMinutes {
-    fun perform(n: Int, headID: Int, manager: IntArray, informTime: IntArray): Int
+    operator fun invoke(n: Int, headID: Int, manager: IntArray, informTime: IntArray): Int
 }
 
 /**
@@ -35,7 +35,7 @@ class NumOfMinutesDFS : NumOfMinutes {
 
     private var maxTime = Int.MIN_VALUE
 
-    override fun perform(n: Int, headID: Int, manager: IntArray, informTime: IntArray): Int {
+    override operator fun invoke(n: Int, headID: Int, manager: IntArray, informTime: IntArray): Int {
         val adjList = ArrayList<ArrayList<Int>>(n)
 
         for (i in 0 until n) {
@@ -71,7 +71,7 @@ class NumOfMinutesDFS : NumOfMinutes {
 class NumOfMinutesBFS : NumOfMinutes {
     private var maxTime = Int.MIN_VALUE
 
-    override fun perform(n: Int, headID: Int, manager: IntArray, informTime: IntArray): Int {
+    override operator fun invoke(n: Int, headID: Int, manager: IntArray, informTime: IntArray): Int {
         val adjList = ArrayList<ArrayList<Int>>(n)
 
         for (i in 0 until n) {

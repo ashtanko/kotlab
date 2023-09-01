@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/word-break-ii/">leetcode page</a>
  */
 interface WordBreak2 {
-    fun perform(s: String, wordDict: List<String>): List<String>
+    operator fun invoke(s: String, wordDict: List<String>): List<String>
 }
 
 class WordBreak2DPDFS : WordBreak2 {
-    override fun perform(s: String, wordDict: List<String>): List<String> {
+    override operator fun invoke(s: String, wordDict: List<String>): List<String> {
         val starts: Array<MutableList<Int>?> = arrayOfNulls(s.length + 1)
 
         starts[0] = ArrayList()
@@ -84,7 +84,7 @@ class WordBreak2DPDFS : WordBreak2 {
  * Method 3: DP Prunning + Backtracking
  */
 class WordBreak2Backtracking : WordBreak2 {
-    override fun perform(s: String, wordDict: List<String>): List<String> {
+    override operator fun invoke(s: String, wordDict: List<String>): List<String> {
         val rst: MutableList<String> = ArrayList()
         val canBreak = BooleanArray(s.length) { true }
         val sb = StringBuilder()
@@ -125,7 +125,7 @@ class WordBreak2Backtracking : WordBreak2 {
 }
 
 class WordBreak2DFS : WordBreak2 {
-    override fun perform(s: String, wordDict: List<String>): List<String> {
+    override operator fun invoke(s: String, wordDict: List<String>): List<String> {
         return backtrack(s, wordDict, HashMap())
     }
 

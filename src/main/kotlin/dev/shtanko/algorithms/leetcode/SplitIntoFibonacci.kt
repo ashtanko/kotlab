@@ -30,7 +30,7 @@ fun interface SplitIntoFibonacci {
  * Approach #1: Brute Force
  */
 class SplitIntoFibonacciBruteForce : SplitIntoFibonacci {
-    override fun invoke(num: String): List<Int> {
+    override operator fun invoke(num: String): List<Int> {
         val n: Int = num.length
         for (i in 0 until min(10, n)) {
             if (num[0] == '0' && i > 0) break
@@ -66,7 +66,7 @@ class SplitIntoFibonacciBruteForce : SplitIntoFibonacci {
 }
 
 class SplitIntoFibonacciBacktracking : SplitIntoFibonacci {
-    override fun invoke(num: String): List<Int> {
+    override operator fun invoke(num: String): List<Int> {
         val ans: MutableList<Int> = ArrayList()
         helper(num, ans, 0)
         return ans

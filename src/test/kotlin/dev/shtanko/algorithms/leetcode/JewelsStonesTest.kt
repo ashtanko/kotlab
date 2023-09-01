@@ -44,7 +44,7 @@ abstract class JewelsStonesTest<out T : NumJewelsInStonesStrategy>(private val s
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `jewels stones test`(a: String, b: String, expected: Int) {
-        val actual = strategy.perform(a, b)
+        val actual = strategy.invoke(a, b)
         assertEquals(expected, actual)
     }
 }

@@ -39,7 +39,7 @@ abstract class ReduceArraySizeToTheHalfTest<out T : MinSetSizeStrategy>(private 
     @MethodSource("dataProvider")
     fun `simple test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

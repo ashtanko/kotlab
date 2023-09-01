@@ -23,7 +23,7 @@ import java.util.LinkedList
  * @see <a href="https://leetcode.com/problems/all-paths-from-source-to-target/">leetcode page</a>
  */
 interface AllPathsSourceTarget {
-    fun perform(graph: Array<IntArray>): List<List<Int>>
+    operator fun invoke(graph: Array<IntArray>): List<List<Int>>
 }
 
 /**
@@ -37,7 +37,7 @@ class AllPathsSourceBacktracking : AllPathsSourceTarget {
     private lateinit var graph: Array<IntArray>
     private val results: MutableList<List<Int>> = ArrayList()
 
-    override fun perform(graph: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(graph: Array<IntArray>): List<List<Int>> {
         this.graph = graph
         target = graph.size - 1
         this.graph = graph
@@ -76,7 +76,7 @@ class AllPathsSourceDP : AllPathsSourceTarget {
     private lateinit var graph: Array<IntArray>
     private val memo: HashMap<Int, List<List<Int>>> = HashMap()
 
-    override fun perform(graph: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(graph: Array<IntArray>): List<List<Int>> {
         this.target = graph.size - 1
         this.graph = graph
         return allPathsToTarget(0)

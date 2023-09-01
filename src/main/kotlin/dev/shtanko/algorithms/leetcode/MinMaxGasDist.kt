@@ -27,7 +27,7 @@ import kotlin.math.min
  * 774. Minimize Max Distance to Gas Station
  */
 fun interface MinMaxGasDist {
-    fun perform(stations: IntArray, k: Int): Double
+    operator fun invoke(stations: IntArray, k: Int): Double
 
     companion object {
         const val LIMIT = 999999999.0
@@ -112,7 +112,7 @@ val minMaxGasDistHeap = MinMaxGasDist { stations, station ->
  * Approach #4: Binary Search
  */
 class MinMaxGasDistBS : MinMaxGasDist {
-    override fun perform(stations: IntArray, k: Int): Double {
+    override operator fun invoke(stations: IntArray, k: Int): Double {
         if (stations.isEmpty() || k <= 0) return 0.0
 
         val n: Int = stations.size

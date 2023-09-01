@@ -68,7 +68,7 @@ abstract class MinFallingPathSumTest<out T : MinFallingPathSum>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min falling path sum test`(matrix: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(matrix)
+        val actual = strategy.invoke(matrix)
         assertThat(actual).isEqualTo(expected)
     }
 }

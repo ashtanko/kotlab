@@ -67,7 +67,7 @@ abstract class LongestCommonSubPathTest<out T : LongestCommonSubPath>(private va
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest common sub path test`(n: Int, paths: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(n, paths)
+        val actual = strategy.invoke(n, paths)
         assertThat(actual).isEqualTo(expected)
     }
 }

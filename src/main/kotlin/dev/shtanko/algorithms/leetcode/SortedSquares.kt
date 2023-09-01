@@ -25,11 +25,11 @@ import kotlin.math.abs
  * also in sorted non-decreasing order.
  */
 interface SortedSquares {
-    fun perform(nums: IntArray): IntArray
+    operator fun invoke(nums: IntArray): IntArray
 }
 
 class SortedSquaresTwoPointers : SortedSquares {
-    override fun perform(nums: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray): IntArray {
         val n = nums.size
         val result = IntArray(n)
         var i = 0

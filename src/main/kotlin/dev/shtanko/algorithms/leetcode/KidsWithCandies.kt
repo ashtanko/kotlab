@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface KidsWithCandiesStrategy {
-    fun perform(arr: IntArray, extraCandies: Int): BooleanArray
+    operator fun invoke(arr: IntArray, extraCandies: Int): BooleanArray
 }
 
 class KidsWithCandiesStraightForward : KidsWithCandiesStrategy {
-    override fun perform(arr: IntArray, extraCandies: Int): BooleanArray {
+    override operator fun invoke(arr: IntArray, extraCandies: Int): BooleanArray {
         return arr.kidsWithCandies(extraCandies)
     }
 
@@ -38,7 +38,7 @@ class KidsWithCandiesStraightForward : KidsWithCandiesStrategy {
 }
 
 class KidsWithCandiesStream : KidsWithCandiesStrategy {
-    override fun perform(arr: IntArray, extraCandies: Int): BooleanArray {
+    override operator fun invoke(arr: IntArray, extraCandies: Int): BooleanArray {
         return arr.map {
             it + extraCandies >= arr.maxOrNull()!!
         }.toBooleanArray()

@@ -41,7 +41,7 @@ abstract class OddEvenListTest<out T : OddEvenList>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `odd even list test`(head: ListNode, expected: List<Int>) {
-        val actual = strategy.perform(head).toList()
+        val actual = strategy.invoke(head).toList()
         assertThat(actual).isEqualTo(expected)
     }
 }

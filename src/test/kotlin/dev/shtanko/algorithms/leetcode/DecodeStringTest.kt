@@ -45,7 +45,7 @@ abstract class DecodeStringTest<out T : DecodeString>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `decode string test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

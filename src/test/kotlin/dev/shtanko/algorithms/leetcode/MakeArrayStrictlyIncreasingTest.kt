@@ -48,7 +48,7 @@ abstract class MakeArrayStrictlyIncreasingTest<out T : MakeArrayStrictlyIncreasi
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `make array increasing test`(arr1: IntArray, arr2: IntArray, expected: Int) {
-        val actual = strategy.perform(arr1, arr2)
+        val actual = strategy.invoke(arr1, arr2)
         assertThat(actual).isEqualTo(expected)
     }
 }

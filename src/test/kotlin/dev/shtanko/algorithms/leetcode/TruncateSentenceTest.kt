@@ -48,7 +48,7 @@ abstract class TruncateSentenceTest<out T : TruncateSentence>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `truncate sentence test`(s: String, k: Int, expected: String) {
-        val actual = strategy.perform(s, k)
+        val actual = strategy.invoke(s, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

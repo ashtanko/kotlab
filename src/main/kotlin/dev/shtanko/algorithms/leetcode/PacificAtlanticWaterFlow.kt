@@ -23,11 +23,11 @@ import java.util.Queue
 private val DIRECTIONS = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, -1))
 
 interface PacificAtlanticWaterFlow {
-    fun perform(matrix: Array<IntArray>): List<List<Int>>
+    operator fun invoke(matrix: Array<IntArray>): List<List<Int>>
 }
 
 class PacificAtlanticDFS : PacificAtlanticWaterFlow {
-    override fun perform(matrix: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(matrix: Array<IntArray>): List<List<Int>> {
         val res: MutableList<MutableList<Int>> = LinkedList()
         if (matrix.isEmpty() || matrix[0].isEmpty()) {
             return res
@@ -62,7 +62,7 @@ class PacificAtlanticDFS : PacificAtlanticWaterFlow {
 
 class PacificAtlanticBFS : PacificAtlanticWaterFlow {
 
-    override fun perform(matrix: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(matrix: Array<IntArray>): List<List<Int>> {
         val res: MutableList<MutableList<Int>> = LinkedList()
         if (matrix.isEmpty() || matrix[0].isEmpty()) {
             return res

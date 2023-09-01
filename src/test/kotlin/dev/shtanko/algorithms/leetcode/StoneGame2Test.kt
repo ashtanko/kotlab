@@ -41,7 +41,7 @@ abstract class StoneGame2Test<out T : StoneGame2>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `stone game II test`(piles: IntArray, expected: Int) {
-        val actual = strategy.perform(piles)
+        val actual = strategy.invoke(piles)
         assertThat(actual).isEqualTo(expected)
     }
 }

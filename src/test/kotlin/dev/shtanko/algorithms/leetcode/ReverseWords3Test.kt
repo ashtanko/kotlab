@@ -53,7 +53,7 @@ abstract class ReverseWords3Test<out T : ReverseWords3>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `reverse words test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

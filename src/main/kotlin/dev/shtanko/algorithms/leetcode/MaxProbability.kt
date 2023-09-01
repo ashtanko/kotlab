@@ -25,7 +25,7 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/path-with-maximum-probability/">leetcode page</a>
  */
 interface MaxProbability {
-    fun perform(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double
+    operator fun invoke(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double
 }
 
 fun Array<IntArray>.buildGraph(succProb: DoubleArray): MutableMap<Int, MutableList<Pair<Int, Double>>> {
@@ -48,7 +48,7 @@ fun Array<IntArray>.buildGraph(succProb: DoubleArray): MutableMap<Int, MutableLi
  * Approach 1: Bellman-Ford Algorithm
  */
 class MaxProbabilityBellmanFord : MaxProbability {
-    override fun perform(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double {
+    override operator fun invoke(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double {
         val maxProb = DoubleArray(n)
         maxProb[start] = 1.0
 
@@ -80,7 +80,7 @@ class MaxProbabilityBellmanFord : MaxProbability {
  * Approach 2: Shortest Path Faster Algorithm
  */
 class MaxProbabilityShortestPath : MaxProbability {
-    override fun perform(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double {
+    override operator fun invoke(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double {
         val graph = edges.buildGraph(succProb)
         val maxProb = DoubleArray(n)
         maxProb[start] = 1.0
@@ -110,7 +110,7 @@ class MaxProbabilityShortestPath : MaxProbability {
  * Approach 3: Dijkstra's Algorithm
  */
 class MaxProbabilityDijkstra : MaxProbability {
-    override fun perform(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double {
+    override operator fun invoke(n: Int, edges: Array<IntArray>, succProb: DoubleArray, start: Int, end: Int): Double {
         val graph = edges.buildGraph(succProb)
 
         val maxProb = DoubleArray(n)

@@ -21,12 +21,12 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/determine-if-two-strings-are-close/">leetcode page</a>
  */
 interface CloseStrings {
-    fun perform(word1: String, word2: String): Boolean
+    operator fun invoke(word1: String, word2: String): Boolean
 }
 
 class CloseStringsMap : CloseStrings {
 
-    override fun perform(word1: String, word2: String): Boolean {
+    override operator fun invoke(word1: String, word2: String): Boolean {
         if (word1.length != word2.length) {
             return false
         }
@@ -55,7 +55,7 @@ class CloseStringsMap : CloseStrings {
 
 class CloseStringsBitwise : CloseStrings {
 
-    override fun perform(word1: String, word2: String): Boolean {
+    override operator fun invoke(word1: String, word2: String): Boolean {
         if (word1.length != word2.length) return false
 
         val count1 = IntArray(ALPHABET_LETTERS_COUNT)
@@ -81,7 +81,7 @@ class CloseStringsBitwise : CloseStrings {
 }
 
 class CloseStringsSort : CloseStrings {
-    override fun perform(word1: String, word2: String): Boolean {
+    override operator fun invoke(word1: String, word2: String): Boolean {
         val freq1 = IntArray(ALPHABET_LETTERS_COUNT)
         val freq2 = IntArray(ALPHABET_LETTERS_COUNT)
         for (element in word1) {

@@ -20,11 +20,11 @@ package dev.shtanko.algorithms.leetcode
  * 2160. Minimum Sum of Four Digit Number After Splitting Digits
  */
 interface MinimumSum {
-    fun perform(num: Int): Int
+    operator fun invoke(num: Int): Int
 }
 
 class MinimumSumGreedy : MinimumSum {
-    override fun perform(num: Int): Int {
+    override operator fun invoke(num: Int): Int {
         val ch = num.toString().toCharArray().sorted()
         return ("" + ch[0] + ch[2]).toInt() + ("" + ch[1] + ch[3]).toInt()
     }

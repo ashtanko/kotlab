@@ -41,7 +41,7 @@ abstract class PredictTheWinnerTest<out T : PredictTheWinner>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `predict the winner test`(nums: IntArray, expected: Boolean) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

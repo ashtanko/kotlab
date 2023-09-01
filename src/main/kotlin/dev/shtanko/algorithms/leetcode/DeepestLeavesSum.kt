@@ -23,11 +23,11 @@ import java.util.Deque
  * @see <a href="https://leetcode.com/problems/deepest-leaves-sum/solution/">leetcode page</a>
  */
 interface DeepestLeavesSum {
-    fun perform(root: TreeNode): Int
+    operator fun invoke(root: TreeNode): Int
 }
 
 class DeepestLeavesSumDFS : DeepestLeavesSum {
-    override fun perform(root: TreeNode): Int {
+    override operator fun invoke(root: TreeNode): Int {
         var deepestSum = 0
         var depth = 0
         var currDepth: Int
@@ -63,7 +63,7 @@ class DeepestLeavesSumDFS : DeepestLeavesSum {
  * Approach 2: Iterative BFS Traversal.
  */
 class DeepestLeavesSumBFS : DeepestLeavesSum {
-    override fun perform(root: TreeNode): Int {
+    override operator fun invoke(root: TreeNode): Int {
         var deepestSum = 0
         var depth = 0
         var currDepth: Int
@@ -99,7 +99,7 @@ class DeepestLeavesSumBFS : DeepestLeavesSum {
  * Approach 3: Optimized Iterative BFS Traversal.
  */
 class DeepestLeavesSumOptimizedBFS : DeepestLeavesSum {
-    override fun perform(root: TreeNode): Int {
+    override operator fun invoke(root: TreeNode): Int {
         val nextLevel: ArrayDeque<TreeNode> = ArrayDeque()
         var currLevel: ArrayDeque<TreeNode> = ArrayDeque()
         nextLevel.offer(root)

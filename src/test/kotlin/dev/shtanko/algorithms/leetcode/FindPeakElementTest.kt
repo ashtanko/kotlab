@@ -46,7 +46,7 @@ abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find peek element`(nums: IntArray, expected: Int) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertEquals(expected, actual)
     }
 }

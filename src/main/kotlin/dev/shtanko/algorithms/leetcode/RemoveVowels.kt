@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import dev.shtanko.algorithms.extensions.isVowel
 
 interface RemoveVowels {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 /**
@@ -27,14 +27,14 @@ interface RemoveVowels {
  * Space complexity: O(1).
  */
 class RemoveVowelsBruteForce : RemoveVowels {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val vowels = charArrayOf('a', 'e', 'i', 'o', 'u')
         return s.filter { !vowels.contains(it) }
     }
 }
 
 class RemoveVowelsStringBuffer : RemoveVowels {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val sb = StringBuffer(s.length)
         s.filter {
             it.isVowel().not()
@@ -46,11 +46,11 @@ class RemoveVowelsStringBuffer : RemoveVowels {
 }
 
 class RemoveVowelsFilter : RemoveVowels {
-    override fun perform(s: String): String = s.filter { !it.isVowel() }
+    override operator fun invoke(s: String): String = s.filter { !it.isVowel() }
 }
 
 class RemoveVowelsReplace : RemoveVowels {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         return s.replace("[aeiou]".toRegex(), "")
     }
 }

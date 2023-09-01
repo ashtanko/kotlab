@@ -43,7 +43,7 @@ abstract class XorAllNumsTest<out T : XorAllNums>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `xor all nums test`(nums1: IntArray, nums2: IntArray, expected: Int) {
-        val actual = strategy.perform(nums1, nums2)
+        val actual = strategy.invoke(nums1, nums2)
         assertThat(actual).isEqualTo(expected)
     }
 }

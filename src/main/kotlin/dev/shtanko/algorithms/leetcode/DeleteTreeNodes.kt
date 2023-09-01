@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/delete-tree-nodes/">leetcode page</a>
  */
 interface DeleteTreeNodes {
-    fun perform(nodes: Int, parent: IntArray, value: IntArray): Int
+    operator fun invoke(nodes: Int, parent: IntArray, value: IntArray): Int
 }
 
 /**
@@ -30,7 +30,7 @@ interface DeleteTreeNodes {
  * Space O(N).
  */
 class DeleteTreeNodesBruteForce : DeleteTreeNodes {
-    override fun perform(nodes: Int, parent: IntArray, value: IntArray): Int {
+    override operator fun invoke(nodes: Int, parent: IntArray, value: IntArray): Int {
         val res = IntArray(nodes)
         for (i in nodes - 1 downTo 1) {
             value[parent[i]] += value[i]
@@ -45,7 +45,7 @@ class DeleteTreeNodesBruteForce : DeleteTreeNodes {
  * Time complexity: O(N), N is the number of nodes in the tree, N <= 10^4
  */
 class DeleteTreeNodesDFS : DeleteTreeNodes {
-    override fun perform(nodes: Int, parent: IntArray, value: IntArray): Int {
+    override operator fun invoke(nodes: Int, parent: IntArray, value: IntArray): Int {
         val graph: MutableList<MutableList<Int>> = ArrayList(nodes) // Create graph for the tree
         for (i in 0 until nodes) graph.add(ArrayList())
         for (i in 0 until nodes) {

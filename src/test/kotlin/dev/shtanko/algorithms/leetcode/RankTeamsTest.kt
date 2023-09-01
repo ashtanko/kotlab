@@ -54,7 +54,7 @@ abstract class RankTeamsTest<out T : RankTeams>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `rank teams test`(votes: Array<String>, expected: String) {
-        val actual = strategy.perform(votes)
+        val actual = strategy.invoke(votes)
         assertThat(actual).isEqualTo(expected)
     }
 }

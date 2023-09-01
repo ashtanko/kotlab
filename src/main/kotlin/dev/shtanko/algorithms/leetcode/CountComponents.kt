@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph">leetcode page</a>
  */
 interface CountComponents {
-    fun perform(n: Int, edges: Array<IntArray>): Int
+    operator fun invoke(n: Int, edges: Array<IntArray>): Int
 }
 
 class CountComponentsDFS : CountComponents {
-    override fun perform(n: Int, edges: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, edges: Array<IntArray>): Int {
         val representative = IntArray(n)
         val size = IntArray(n)
 

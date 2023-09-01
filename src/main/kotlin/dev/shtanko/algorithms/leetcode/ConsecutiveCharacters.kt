@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface ConsecutiveCharactersStrategy {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 class MaxPower1 : ConsecutiveCharactersStrategy {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val n = s.length
         var start = 0
         var end = 0
@@ -39,7 +39,7 @@ class MaxPower1 : ConsecutiveCharactersStrategy {
 }
 
 class MaxPower2 : ConsecutiveCharactersStrategy {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var res = 0
         val n = s.length
         var i = 0

@@ -25,7 +25,7 @@ fun interface CircularPermutation {
 }
 
 class CircularPermutationGrayCode : CircularPermutation {
-    override fun invoke(n: Int, start: Int): List<Int> {
+    override operator fun invoke(n: Int, start: Int): List<Int> {
         val res: MutableList<Int> = ArrayList()
         for (i in 0 until (1 shl n)) {
             res.add(start xor i xor (i shr 1))
@@ -35,7 +35,7 @@ class CircularPermutationGrayCode : CircularPermutation {
 }
 
 class OneBitDiffPermutation : CircularPermutation {
-    override fun invoke(n: Int, start: Int): List<Int> {
+    override operator fun invoke(n: Int, start: Int): List<Int> {
         val res: MutableList<Int> = ArrayList()
         val tmp = genOneBitDiffPermutation(n) // generate one bit diff permutations
 

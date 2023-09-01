@@ -66,7 +66,7 @@ abstract class DistanceLimitedPathsExistTest<out T : DistanceLimitedPathsExist>(
         queries: Array<IntArray>,
         expected: BooleanArray,
     ) {
-        val actual = strategy.perform(n, edgeList, queries)
+        val actual = strategy.invoke(n, edgeList, queries)
         assertThat(actual).isEqualTo(expected)
     }
 }

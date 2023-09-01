@@ -29,7 +29,7 @@ fun interface FindCriticalEdges {
  * Approach 1: Kruskal's Algorithm
  */
 class FindCriticalEdgesKruskal : FindCriticalEdges {
-    override fun invoke(n: Int, edges: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(n: Int, edges: Array<IntArray>): List<List<Int>> {
         val critical: MutableList<Int> = ArrayList()
         val pseudoCritical: MutableList<Int> = ArrayList()
         for (i in edges.indices) {

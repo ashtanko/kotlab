@@ -50,7 +50,7 @@ abstract class SortedSquaresTest<out T : SortedSquares>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sorted squares test`(nums: IntArray, expected: IntArray) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertArrayEquals(expected, actual)
     }
 }

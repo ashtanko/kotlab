@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.max
 
 interface IsSubsequence {
-    fun perform(source: String, target: String): Boolean
+    operator fun invoke(source: String, target: String): Boolean
 }
 
 class IsSubsequenceDP : IsSubsequence {
-    override fun perform(source: String, target: String): Boolean {
+    override operator fun invoke(source: String, target: String): Boolean {
         val rows: Int = source.length
         val cols: Int = target.length
         // the source string is empty

@@ -48,7 +48,7 @@ abstract class MaxSumAfterPartitioningTest<out T : MaxSumAfterPartitioning>(priv
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max sum after partitioning test`(arr: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(arr, k)
+        val actual = strategy.invoke(arr, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

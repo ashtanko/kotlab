@@ -43,7 +43,7 @@ abstract class MinimizeMaxTest<out T : MinimizeMax>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimize max test`(nums: IntArray, p: Int, expected: Int) {
-        val actual = strategy.perform(nums, p)
+        val actual = strategy.invoke(nums, p)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

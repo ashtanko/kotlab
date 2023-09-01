@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * https://leetcode.com/problems/number-of-zero-filled-subarrays/
  */
 interface ZeroFilledSubarray {
-    fun perform(nums: IntArray): Long
+    operator fun invoke(nums: IntArray): Long
 }
 
 class ZeroFilledSubarrayTwoPointers : ZeroFilledSubarray {
-    override fun perform(nums: IntArray): Long {
+    override operator fun invoke(nums: IntArray): Long {
         var res: Long = 0
         var i = 0
         var j = 0

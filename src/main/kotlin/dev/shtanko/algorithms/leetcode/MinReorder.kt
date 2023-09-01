@@ -24,11 +24,11 @@ import kotlin.math.abs
  *     leetcode page</a>
  */
 interface MinReorder {
-    fun perform(n: Int, connections: Array<IntArray>): Int
+    operator fun invoke(n: Int, connections: Array<IntArray>): Int
 }
 
 class MinReorderDFS : MinReorder {
-    override fun perform(n: Int, connections: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, connections: Array<IntArray>): Int {
         val al: MutableList<MutableList<Int>> = ArrayList()
         for (i in 0 until n) al.add(ArrayList())
         for (c in connections) {

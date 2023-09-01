@@ -28,7 +28,7 @@ fun interface CountHighestScoreNodes {
 
 class CountHighestScoreNodesDfs : CountHighestScoreNodes {
 
-    override fun invoke(parents: IntArray): Int {
+    override operator fun invoke(parents: IntArray): Int {
         if (parents.isEmpty()) return 0
         val al: MutableList<MutableList<Int>> = ArrayList()
         for (i in parents.indices) {

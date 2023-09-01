@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * link https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
  */
 interface AreOccurrencesEqual {
-    fun perform(s: String): Boolean
+    operator fun invoke(s: String): Boolean
 }
 
 class AreOccurrencesEqualKotlin : AreOccurrencesEqual {
-    override fun perform(s: String): Boolean {
+    override operator fun invoke(s: String): Boolean {
         val num = s.count { it == s[0] }
         for (i in 1 until s.length) {
             if (num != s.count { it == s[i] }) return false
@@ -35,7 +35,7 @@ class AreOccurrencesEqualKotlin : AreOccurrencesEqual {
 }
 
 class AreOccurrencesEqualBF : AreOccurrencesEqual {
-    override fun perform(s: String): Boolean {
+    override operator fun invoke(s: String): Boolean {
         val fr = IntArray(ALPHABET_LETTERS_COUNT)
         s.chars().forEach { c -> fr[c - 'a'.code]++ }
         return fr.filter { f ->

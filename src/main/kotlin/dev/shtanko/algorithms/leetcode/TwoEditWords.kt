@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/words-within-two-edits-of-dictionary/">leetcode page</a>
  */
 interface TwoEditWords {
-    fun perform(queries: Array<String>, dictionary: Array<String>): List<String>
+    operator fun invoke(queries: Array<String>, dictionary: Array<String>): List<String>
 }
 
 class TwoEditWordsBF : TwoEditWords {
-    override fun perform(queries: Array<String>, dictionary: Array<String>): List<String> {
+    override operator fun invoke(queries: Array<String>, dictionary: Array<String>): List<String> {
         val ans: MutableList<String> = ArrayList()
         for (query in queries) {
             for (word in dictionary) {
@@ -52,7 +52,7 @@ class TwoEditWordsBF : TwoEditWords {
 }
 
 class TwoEditWordsTrie : TwoEditWords {
-    override fun perform(queries: Array<String>, dictionary: Array<String>): List<String> {
+    override operator fun invoke(queries: Array<String>, dictionary: Array<String>): List<String> {
         val ans: MutableList<String> = ArrayList()
         for (word in dictionary) {
             insertWord(word)

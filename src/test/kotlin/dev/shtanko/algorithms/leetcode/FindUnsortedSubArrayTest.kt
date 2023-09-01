@@ -49,7 +49,7 @@ abstract class FindUnsortedSubArrayTest<out T : FindUnsortedSubArray>(private va
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find unsorted sub array test`(nums: IntArray, expected: Int) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

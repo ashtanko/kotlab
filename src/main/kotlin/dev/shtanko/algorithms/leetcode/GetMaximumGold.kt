@@ -30,7 +30,7 @@ class GetMaximumGoldBacktracking : GetMaximumGold {
 
     private val dir = intArrayOf(0, 1, 0, -1, 0)
 
-    override fun invoke(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty() || grid.first().isEmpty()) return 0
         val m: Int = grid.size
         val n: Int = grid.first().size
@@ -56,7 +56,7 @@ class GetMaximumGoldBacktracking : GetMaximumGold {
 }
 
 class GetMaximumGoldDFS : GetMaximumGold {
-    override fun invoke(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0
         val m: Int = grid.size
         val n: Int = grid[0].size

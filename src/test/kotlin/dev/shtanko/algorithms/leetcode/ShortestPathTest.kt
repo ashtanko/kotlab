@@ -53,7 +53,7 @@ abstract class ShortestPathTest<out T : ShortestPath>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shortest path test`(grid: Array<IntArray>, k: Int, expected: Int) {
-        val actual = strategy.perform(grid, k)
+        val actual = strategy.invoke(grid, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -23,11 +23,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-absolute-difference-queries/">leetcode page</a>
  */
 interface MinDifference {
-    fun perform(nums: IntArray, queries: Array<IntArray>): IntArray
+    operator fun invoke(nums: IntArray, queries: Array<IntArray>): IntArray
 }
 
 class MinDifferencePrefixSum : MinDifference {
-    override fun perform(nums: IntArray, queries: Array<IntArray>): IntArray {
+    override operator fun invoke(nums: IntArray, queries: Array<IntArray>): IntArray {
         val n: Int = nums.size
         val count = Array(n + 1) { IntArray(LIMIT) }
         val q: Int = queries.size

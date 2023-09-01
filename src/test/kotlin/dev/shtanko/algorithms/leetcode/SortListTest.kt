@@ -93,7 +93,7 @@ abstract class SortListTest<out T : SortListStrategy>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sort list test`(head: ListNode, expected: ListNode) {
-        val actual = strategy.perform(head)?.toList()
+        val actual = strategy.invoke(head)?.toList()
         assertThat(actual).containsAll(expected.toList())
     }
 }

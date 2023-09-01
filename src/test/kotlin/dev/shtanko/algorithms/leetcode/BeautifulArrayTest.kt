@@ -46,7 +46,7 @@ class BeautifulArrayTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `beautiful array test`(n: Int, expected: IntArray) {
-        val actual = BeautifulArray().perform(n)
+        val actual = BeautifulArray().invoke(n)
         assertArrayEquals(expected, actual)
     }
 

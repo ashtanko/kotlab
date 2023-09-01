@@ -24,7 +24,7 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/last-day-where-you-can-still-cross/">leetcode page</a>
  */
 interface LatestDayToCross {
-    fun perform(row: Int, col: Int, cells: Array<IntArray>): Int
+    operator fun invoke(row: Int, col: Int, cells: Array<IntArray>): Int
 }
 
 class DSU(n: Int) {
@@ -69,7 +69,7 @@ class LatestDayToCrossBSBFS : LatestDayToCross {
 
     private val directions = arrayOf(intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, 1), intArrayOf(0, -1))
 
-    override fun perform(row: Int, col: Int, cells: Array<IntArray>): Int {
+    override operator fun invoke(row: Int, col: Int, cells: Array<IntArray>): Int {
         var left = 1
         var right = row * col
         while (left < right) {
@@ -122,7 +122,7 @@ class LatestDayToCrossBSDFS : LatestDayToCross {
 
     private val directions = arrayOf(intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, 1), intArrayOf(0, -1))
 
-    override fun perform(row: Int, col: Int, cells: Array<IntArray>): Int {
+    override operator fun invoke(row: Int, col: Int, cells: Array<IntArray>): Int {
         var left = 1
         var right = row * col
         while (left < right) {
@@ -177,7 +177,7 @@ class LatestDayToCrossBSDFS : LatestDayToCross {
  * Approach 3: Disjoint Set Union (on land cells)
  */
 class LatestDayToCrossDisjoint : LatestDayToCross {
-    override fun perform(row: Int, col: Int, cells: Array<IntArray>): Int {
+    override operator fun invoke(row: Int, col: Int, cells: Array<IntArray>): Int {
         return performCross(
             row,
             col,
@@ -191,7 +191,7 @@ class LatestDayToCrossDisjoint : LatestDayToCross {
  * Approach 4: Disjoint Set Union (on water cells)
  */
 class LatestDayToCrossUnion : LatestDayToCross {
-    override fun perform(row: Int, col: Int, cells: Array<IntArray>): Int {
+    override operator fun invoke(row: Int, col: Int, cells: Array<IntArray>): Int {
         val dsu = DSU(row * col + 2)
         val grid = Array(row) { IntArray(col) }
         val directions = arrayOf(

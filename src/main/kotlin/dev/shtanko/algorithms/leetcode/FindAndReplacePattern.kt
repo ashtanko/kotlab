@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-and-replace-pattern/">leetcode page</a>
  */
 interface FindAndReplacePattern {
-    fun perform(words: Array<String>, pattern: String): List<String>
+    operator fun invoke(words: Array<String>, pattern: String): List<String>
 }
 
 class FRPTwoMaps : FindAndReplacePattern {
-    override fun perform(words: Array<String>, pattern: String): List<String> {
+    override operator fun invoke(words: Array<String>, pattern: String): List<String> {
         val ans: MutableList<String> = ArrayList()
         for (word in words) if (match(word, pattern)) ans.add(word)
         return ans
@@ -46,7 +46,7 @@ class FRPTwoMaps : FindAndReplacePattern {
 }
 
 class FRPOneMap : FindAndReplacePattern {
-    override fun perform(words: Array<String>, pattern: String): List<String> {
+    override operator fun invoke(words: Array<String>, pattern: String): List<String> {
         val ans: MutableList<String> = ArrayList()
         for (word in words) if (match(word, pattern)) ans.add(word)
         return ans

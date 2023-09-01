@@ -23,14 +23,14 @@ import dev.shtanko.algorithms.extensions.commonPrefix
  * @see <a href="https://leetcode.com/problems/longest-common-prefix/">leetcode page</a>
  */
 interface LongestCommonPrefix {
-    fun perform(strs: Array<String>): String
+    operator fun invoke(strs: Array<String>): String
 }
 
 /**
  * Approach 1: Horizontal scanning
  */
 class LCPHorizontalScanning : LongestCommonPrefix {
-    override fun perform(strs: Array<String>): String {
+    override operator fun invoke(strs: Array<String>): String {
         if (strs.isEmpty()) return ""
         var prefix: String = strs.first()
         for (i in 1 until strs.size) {
@@ -47,7 +47,7 @@ class LCPHorizontalScanning : LongestCommonPrefix {
  * Approach 2: Vertical scanning
  */
 class LCPVerticalScanning : LongestCommonPrefix {
-    override fun perform(strs: Array<String>): String {
+    override operator fun invoke(strs: Array<String>): String {
         if (strs.isEmpty()) return ""
         for (i in strs[0].indices) {
             val c: Char = strs[0][i]
@@ -63,7 +63,7 @@ class LCPVerticalScanning : LongestCommonPrefix {
  * Approach 3: Divide and conquer
  */
 class LCPDivideAndConquer : LongestCommonPrefix {
-    override fun perform(strs: Array<String>): String {
+    override operator fun invoke(strs: Array<String>): String {
         if (strs.isEmpty()) return ""
         return longestCommonPrefix(strs, 0, strs.size - 1)
     }

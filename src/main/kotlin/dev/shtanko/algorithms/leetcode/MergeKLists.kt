@@ -23,11 +23,11 @@ import java.util.PriorityQueue
  * @see <a href="https://leetcode.com/problems/merge-k-sorted-lists/">leetcode page</a>
  */
 interface MergeKLists {
-    fun perform(lists: Array<ListNode?>): ListNode?
+    operator fun invoke(lists: Array<ListNode?>): ListNode?
 }
 
 class MergeKListsPQ : MergeKLists {
-    override fun perform(lists: Array<ListNode?>): ListNode? {
+    override operator fun invoke(lists: Array<ListNode?>): ListNode? {
         if (lists.isEmpty()) return null
         val queue = PriorityQueue<ListNode>(
             lists.size,

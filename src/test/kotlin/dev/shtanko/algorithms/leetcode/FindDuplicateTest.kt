@@ -52,7 +52,7 @@ abstract class FindDuplicateTest<out T : FindDuplicate>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find duplicate test`(paths: Array<String>, expected: List<List<String>>) {
-        val actual = strategy.perform(paths).flatten().sorted()
+        val actual = strategy.invoke(paths).flatten().sorted()
         assertThat(actual).containsAll(expected.flatten().sorted())
     }
 }

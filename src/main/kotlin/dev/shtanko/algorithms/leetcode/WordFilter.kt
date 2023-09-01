@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/prefix-and-suffix-search/">leetcode page</a>
  */
 interface WordFilter {
-    fun perform(prefix: String, suffix: String): Int
+    operator fun invoke(prefix: String, suffix: String): Int
 }
 
 /**
@@ -59,7 +59,7 @@ class WordFilterTrie(words: Array<String>) : WordFilter {
         }
     }
 
-    override fun perform(prefix: String, suffix: String): Int {
+    override operator fun invoke(prefix: String, suffix: String): Int {
         var cur1: WFTrieNode = trie1
         var cur2: WFTrieNode = trie2
         for (letter in prefix.toCharArray()) {
@@ -107,7 +107,7 @@ class WordFilterWrappedWords(words: Array<String>) : WordFilter {
         }
     }
 
-    override fun perform(prefix: String, suffix: String): Int {
+    override operator fun invoke(prefix: String, suffix: String): Int {
         var cur: TrieNode = trie
         for (letter in "$suffix{$prefix".toCharArray()) {
             if (cur.children[letter - 'a'] == null) return -1

@@ -24,7 +24,7 @@ import kotlin.math.min
  * link https://leetcode.com/problems/k-inverse-pairs-array/
  */
 fun interface KInversePairsArray {
-    fun perform(n: Int, k: Int): Int
+    operator fun invoke(n: Int, k: Int): Int
 
     companion object {
         const val ARR_SIZE = 1001
@@ -37,13 +37,13 @@ fun interface KInversePairsArray {
 class KInversePairsArrayRecursion : KInversePairsArray {
     var memo = Array(ARR_SIZE) { arrayOfNulls<Int>(ARR_SIZE) }
 
-    override fun perform(n: Int, k: Int): Int {
+    override operator fun invoke(n: Int, k: Int): Int {
         if (n == 0) return 0
         if (k == 0) return 1
         if (memo[n][k] != null) return memo[n][k] ?: -1
         var inv = 0
         for (i in 0..min(k, n - 1)) {
-            inv = (inv + perform(n - 1, k - i)) % MOD
+            inv = (inv + invoke(n - 1, k - i)) % MOD
         }
         memo[n][k] = inv
         return inv
@@ -54,7 +54,7 @@ class KInversePairsArrayRecursion : KInversePairsArray {
  * Approach 3: Dynamic Programming
  */
 class KInversePairsArrayDP : KInversePairsArray {
-    override fun perform(n: Int, k: Int): Int {
+    override operator fun invoke(n: Int, k: Int): Int {
         val dp = Array(n + 1) { IntArray(k + 1) }
         for (i in 1..n) {
             for (j in 0..k) {
@@ -75,7 +75,7 @@ class KInversePairsArrayDP : KInversePairsArray {
  * Approach 4: Dynamic Programming with Cumulative Sum
  */
 class CumulativeSum : KInversePairsArray {
-    override fun perform(n: Int, k: Int): Int {
+    override operator fun invoke(n: Int, k: Int): Int {
         val dp = Array(n + 1) { IntArray(k + 1) }
         for (i in 1..n) {
             for (j in 0..k) {
@@ -101,7 +101,7 @@ class CumulativeSum : KInversePairsArray {
  * Approach 5: Another Optimized Dynamic Programming Approach
  */
 class KInversePairsArrayOptimizedDP : KInversePairsArray {
-    override fun perform(n: Int, k: Int): Int {
+    override operator fun invoke(n: Int, k: Int): Int {
         val dp = Array(n + 1) { IntArray(k + 1) }
         for (i in 1..n) {
             var j = 0
@@ -128,7 +128,7 @@ class KInversePairsArrayOptimizedDP : KInversePairsArray {
 class KInversePairsArrayMemoization : KInversePairsArray {
     var memo = Array(ARR_SIZE) { arrayOfNulls<Int>(ARR_SIZE) }
 
-    override fun perform(n: Int, k: Int): Int {
+    override operator fun invoke(n: Int, k: Int): Int {
         return (inv(n, k) + MOD - if (k > 0) inv(n, k - 1) else 0) % MOD
     }
 
@@ -146,7 +146,7 @@ class KInversePairsArrayMemoization : KInversePairsArray {
  * Approach 7: 1-D Dynamic Programming
  */
 class KInversePairsArrayDP1D : KInversePairsArray {
-    override fun perform(n: Int, k: Int): Int {
+    override operator fun invoke(n: Int, k: Int): Int {
         var dp = IntArray(k + 1)
         for (i in 1..n) {
             val temp = IntArray(k + 1)

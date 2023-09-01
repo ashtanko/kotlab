@@ -57,7 +57,7 @@ abstract class CountSubgraphsForEachDiameterTest<out T : CountSubgraphsForEachDi
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count subgraphs for each diameter test`(n: Int, edges: Array<IntArray>, expected: IntArray) {
-        val actual = strategy.perform(n, edges)
+        val actual = strategy.invoke(n, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

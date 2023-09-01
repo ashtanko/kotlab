@@ -45,7 +45,7 @@ class FindModeInBinarySearchTreeTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find mode in binary search tree test`(root: TreeNode, expected: IntArray) {
-        val actual = FindModeInBinarySearchTree().perform(root)
+        val actual = FindModeInBinarySearchTree().invoke(root)
         assertArrayEquals(actual, expected)
     }
 }

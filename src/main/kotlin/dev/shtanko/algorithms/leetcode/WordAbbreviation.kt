@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/word-abbreviation/">leetcode page</a>
  */
 interface WordAbbreviation {
-    fun perform(dict: List<String>): List<String>
+    operator fun invoke(dict: List<String>): List<String>
 
     fun abbrev(word: String, i: Int): String {
         val n = word.length
@@ -35,7 +35,7 @@ interface WordAbbreviation {
  * Approach #1: Greedy.
  */
 class WordAbbreviationGreedy : WordAbbreviation {
-    override fun perform(dict: List<String>): List<String> {
+    override operator fun invoke(dict: List<String>): List<String> {
         val wordToAbbr: MutableMap<String?, String?> = HashMap()
         val groups: MutableMap<Int, MutableList<String>> = HashMap()
 
@@ -118,7 +118,7 @@ class WordTrieNode {
  * Approach #2: Group + Least Common Prefix.
  */
 class WordAbbreviationLCP : WordAbbreviation {
-    override fun perform(dict: List<String>): List<String> {
+    override operator fun invoke(dict: List<String>): List<String> {
         val groups: MutableMap<String, MutableList<IndexedWord>> = HashMap()
         val ans = Array(dict.size) { "" }
 
@@ -156,7 +156,7 @@ class WordAbbreviationLCP : WordAbbreviation {
  * Approach #3: Group + Trie.
  */
 class WordAbbreviationTrie : WordAbbreviation {
-    override fun perform(dict: List<String>): List<String> {
+    override operator fun invoke(dict: List<String>): List<String> {
         val groups: MutableMap<String, MutableList<IndexedWord?>> = HashMap()
         val ans = Array(dict.size) { "" }
 

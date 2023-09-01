@@ -50,7 +50,7 @@ abstract class AbstractIntersectionTest<out T : IntersectionStrategy>(private va
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `intersection test`(pair: Pair<IntArray, IntArray>, expected: IntArray) {
-        val actual = strategy.perform(pair)
+        val actual = strategy.invoke(pair)
         assertArrayEquals(expected, actual)
     }
 }

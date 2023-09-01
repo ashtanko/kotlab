@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/3sum/">leetcode page</a>
  */
 interface ThreeSum {
-    fun perform(nums: IntArray): List<List<Int>>
+    operator fun invoke(nums: IntArray): List<List<Int>>
 }
 
 /**
@@ -30,7 +30,7 @@ interface ThreeSum {
  * Space Complexity: O(n^2).
  */
 class ThreeSumTwoPointers : ThreeSum {
-    override fun perform(nums: IntArray): List<List<Int>> {
+    override operator fun invoke(nums: IntArray): List<List<Int>> {
         nums.sort()
         val res: MutableList<List<Int>> = ArrayList<List<Int>>()
         var i = 0
@@ -72,7 +72,7 @@ class ThreeSumTwoPointers : ThreeSum {
  * Space Complexity: O(n^2).
  */
 class ThreeSumHashset : ThreeSum {
-    override fun perform(nums: IntArray): List<List<Int>> {
+    override operator fun invoke(nums: IntArray): List<List<Int>> {
         nums.sort()
         val res: MutableList<List<Int>> = ArrayList<List<Int>>()
         var i = 0
@@ -106,7 +106,7 @@ class ThreeSumHashset : ThreeSum {
  * Space Complexity: O(n).
  */
 class ThreeSumNoSort : ThreeSum {
-    override fun perform(nums: IntArray): List<List<Int>> {
+    override operator fun invoke(nums: IntArray): List<List<Int>> {
         val res: MutableSet<List<Int>> = HashSet()
         val dups: MutableSet<Int> = HashSet()
         val seen: MutableMap<Int, Int> = HashMap()

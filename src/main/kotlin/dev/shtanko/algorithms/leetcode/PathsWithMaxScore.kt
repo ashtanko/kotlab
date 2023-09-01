@@ -21,13 +21,13 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-paths-with-max-score/">leetcode page</a>
  */
 interface PathsWithMaxScore {
-    fun perform(board: List<String>): IntArray
+    operator fun invoke(board: List<String>): IntArray
 }
 
 class PathsWithMaxScoreDP : PathsWithMaxScore {
     private val dirs = arrayOf(intArrayOf(0, -1), intArrayOf(-1, 0), intArrayOf(-1, -1))
 
-    override fun perform(board: List<String>): IntArray {
+    override operator fun invoke(board: List<String>): IntArray {
         val m: Int = board.size
         val n: Int = board[0].length
         val dpSum = Array(m) { IntArray(n) }

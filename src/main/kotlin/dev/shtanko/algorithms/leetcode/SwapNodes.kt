@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/swapping-nodes-in-a-linked-list/description/">leetcode page</a>
  */
 interface SwapNodes {
-    fun perform(head: ListNode?, k: Int): ListNode?
+    operator fun invoke(head: ListNode?, k: Int): ListNode?
 }
 
 class SwapNodesTwoPointers : SwapNodes {
-    override fun perform(head: ListNode?, k: Int): ListNode? {
+    override operator fun invoke(head: ListNode?, k: Int): ListNode? {
         var fast = head
         var slow = head
 

@@ -26,7 +26,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/furthest-building-you-can-reach/">leetcode page</a>
  */
 interface FurthestBuilding {
-    fun perform(heights: IntArray, bricks: Int, ladders: Int): Int
+    operator fun invoke(heights: IntArray, bricks: Int, ladders: Int): Int
 }
 
 /**
@@ -35,7 +35,7 @@ interface FurthestBuilding {
  * Space complexity : O(N) or O(L).
  */
 class MinHeap : FurthestBuilding {
-    override fun perform(heights: IntArray, bricks: Int, ladders: Int): Int {
+    override operator fun invoke(heights: IntArray, bricks: Int, ladders: Int): Int {
         // Create a priority queue with a comparator that makes it behave as a min-heap.
         val ladderAllocations: Queue<Int> = PriorityQueue { a, b -> a - b }
         var b = bricks
@@ -69,7 +69,7 @@ class MinHeap : FurthestBuilding {
  * Space complexity : O(N).
  */
 class MaxHeap : FurthestBuilding {
-    override fun perform(heights: IntArray, bricks: Int, ladders: Int): Int {
+    override operator fun invoke(heights: IntArray, bricks: Int, ladders: Int): Int {
         // Create a priority queue with a comparator that makes it behave as a max-heap.
         val brickAllocations: Queue<Int> = PriorityQueue { a: Int, b: Int -> b - a }
         var b = bricks
@@ -106,7 +106,7 @@ class MaxHeap : FurthestBuilding {
  * Space complexity : O(N).
  */
 class FinalReachableBuilding : FurthestBuilding {
-    override fun perform(heights: IntArray, bricks: Int, ladders: Int): Int {
+    override operator fun invoke(heights: IntArray, bricks: Int, ladders: Int): Int {
         // Do a binary search on the heights array to find the final reachable building.
         // Do a binary search on the heights array to find the final reachable building.
         var lo = 0
@@ -167,7 +167,7 @@ class FinalReachableBuilding : FurthestBuilding {
  * Space complexity : O(N).
  */
 class ImprovedFinalReachableBuilding : FurthestBuilding {
-    override fun perform(heights: IntArray, bricks: Int, ladders: Int): Int {
+    override operator fun invoke(heights: IntArray, bricks: Int, ladders: Int): Int {
         // Make a sorted list of all the climbs.
         val sortedClimbs: MutableList<IntArray> = ArrayList()
         for (i in 0 until heights.size - 1) {
@@ -230,7 +230,7 @@ class ImprovedFinalReachableBuilding : FurthestBuilding {
  * Space complexity : O(1).
  */
 class BSThreshold : FurthestBuilding {
-    override fun perform(heights: IntArray, bricks: Int, ladders: Int): Int {
+    override operator fun invoke(heights: IntArray, bricks: Int, ladders: Int): Int {
         var lo = Int.MAX_VALUE
         var hi = Int.MIN_VALUE
         for (i in 0 until heights.size - 1) {

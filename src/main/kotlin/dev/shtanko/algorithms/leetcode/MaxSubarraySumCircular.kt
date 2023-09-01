@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/maximum-sum-circular-subarray/">leetcode page</a>
  */
 interface MaxSubarraySumCircular {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class MaxSubarraySumCircularOnePass : MaxSubarraySumCircular {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var total = 0
         var maxSum: Int = nums[0]
         var curMax = 0
@@ -46,7 +46,7 @@ class MaxSubarraySumCircularOnePass : MaxSubarraySumCircular {
 }
 
 class MaxSubarraySumCircularKadane : MaxSubarraySumCircular {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val nonCircularSum = kadaneMaxSum(nums)
         var totalSum = 0
         for (i in nums.indices) {

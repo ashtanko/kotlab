@@ -84,7 +84,7 @@ abstract class SearchSuggestionsSystemTest<out T : SearchSuggestionsSystem>(priv
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `suggested products test`(products: Array<String>, searchWord: String, expected: List<List<String>>) {
-        val actual = strategy.perform(products, searchWord)
+        val actual = strategy.invoke(products, searchWord)
         assertThat(actual).containsAll(expected)
     }
 }

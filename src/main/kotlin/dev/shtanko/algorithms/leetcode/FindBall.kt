@@ -28,7 +28,7 @@ fun interface FindBall {
  * Approach 1: Depth First Search (DFS)
  */
 class FindBallDFS : FindBall {
-    override fun invoke(grid: Array<IntArray>): IntArray {
+    override operator fun invoke(grid: Array<IntArray>): IntArray {
         if (grid.isEmpty()) return intArrayOf()
         if (grid.first().isEmpty()) return intArrayOf()
         val result = IntArray(grid.first().size)
@@ -55,7 +55,7 @@ class FindBallDFS : FindBall {
  * Approach 2: Dynamic Programming Approach
  */
 class FindBallDP : FindBall {
-    override fun invoke(grid: Array<IntArray>): IntArray {
+    override operator fun invoke(grid: Array<IntArray>): IntArray {
         if (grid.isEmpty()) return intArrayOf()
         if (grid.first().isEmpty()) return intArrayOf()
         val result = IntArray(grid[0].size)
@@ -88,7 +88,7 @@ class FindBallDP : FindBall {
  * Approach 3: Iterative Approach, Simulation
  */
 class FindBallIterative : FindBall {
-    override fun invoke(grid: Array<IntArray>): IntArray {
+    override operator fun invoke(grid: Array<IntArray>): IntArray {
         if (grid.isEmpty()) return intArrayOf()
         if (grid.first().isEmpty()) return intArrayOf()
         val result = IntArray(grid[0].size)

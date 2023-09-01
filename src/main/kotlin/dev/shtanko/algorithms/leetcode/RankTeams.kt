@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/rank-teams-by-votes/">leetcode page</a>
  */
 interface RankTeams {
-    fun perform(votes: Array<String>): String
+    operator fun invoke(votes: Array<String>): String
 }
 
 data class VoteRecord(
@@ -32,7 +32,7 @@ data class VoteRecord(
 }
 
 class RankTeamsImpl : RankTeams {
-    override fun perform(votes: Array<String>): String {
+    override operator fun invoke(votes: Array<String>): String {
         if (votes.size == 1) {
             return votes.first()
         }

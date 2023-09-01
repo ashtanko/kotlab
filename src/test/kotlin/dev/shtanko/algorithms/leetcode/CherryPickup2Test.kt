@@ -53,7 +53,7 @@ abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `cherry pickup test`(grid: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(grid)
+        val actual = strategy.invoke(grid)
         assertEquals(expected, actual)
     }
 }

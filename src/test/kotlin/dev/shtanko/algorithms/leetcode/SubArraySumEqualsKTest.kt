@@ -44,7 +44,7 @@ abstract class SubArraySumStrategyTest<out T : SubarraySumStrategy>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sub array sum test`(arr: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(arr, k)
+        val actual = strategy.invoke(arr, k)
         assertEquals(expected, actual)
     }
 }

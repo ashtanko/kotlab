@@ -25,14 +25,14 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/removing-stars-from-a-string/">leetcode page</a>
  */
 fun interface RemoveStars {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 /**
  * Approach 1 :Stack
  */
 class RemoveStarsStack : RemoveStars {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val st: Stack<Char> = Stack()
         for (ch in s.toCharArray()) {
             if (ch != '*') st.push(ch) else st.pop()
@@ -51,7 +51,7 @@ class RemoveStarsStack : RemoveStars {
  * Approach 1 :Deque
  */
 class RemoveStarsDeque : RemoveStars {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val dq: Deque<Char> = LinkedList()
         for (ch in s.toCharArray()) {
             if (ch != '*') dq.addLast(ch) else dq.removeLast()
@@ -69,7 +69,7 @@ class RemoveStarsDeque : RemoveStars {
  * Approach 3 :StringBuilder
  */
 class RemoveStarsStackSimulation : RemoveStars {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val res = StringBuilder()
         for (c in s.toCharArray()) {
             if (c == '*') {

@@ -20,11 +20,11 @@ import java.util.LinkedList
 import java.util.Queue
 
 interface EvenOddTreeStrategy {
-    fun perform(tree: TreeNode?): Boolean
+    operator fun invoke(tree: TreeNode?): Boolean
 }
 
 class EvenOddTreeBSF : EvenOddTreeStrategy {
-    override fun perform(tree: TreeNode?): Boolean {
+    override operator fun invoke(tree: TreeNode?): Boolean {
         var root: TreeNode? = tree ?: return true
         val q: Queue<TreeNode> = LinkedList()
         q.add(root)

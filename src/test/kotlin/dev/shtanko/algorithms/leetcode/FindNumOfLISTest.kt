@@ -41,7 +41,7 @@ abstract class FindNumOfLISTest<out T : FindNumOfLIS>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find number of LIS test`(nums: IntArray, expected: Int) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

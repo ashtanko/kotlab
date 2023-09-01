@@ -27,7 +27,7 @@ fun interface SortItems {
 }
 
 class TopologicalSorting : SortItems {
-    override fun invoke(n: Int, m: Int, group: IntArray, beforeItems: List<List<Int>>): IntArray {
+    override operator fun invoke(n: Int, m: Int, group: IntArray, beforeItems: List<List<Int>>): IntArray {
         // If an item belongs to zero group, assign it a unique group id.
         var groupId = m
         for (i in 0 until n) {

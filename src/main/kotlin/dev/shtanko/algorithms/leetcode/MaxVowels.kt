@@ -22,11 +22,11 @@ package dev.shtanko.algorithms.leetcode
  *     leetcode page</a>
  */
 interface MaxVowels {
-    fun perform(s: String, k: Int): Int
+    operator fun invoke(s: String, k: Int): Int
 }
 
 class MaxVowelsSlidingWindow : MaxVowels {
-    override fun perform(s: String, k: Int): Int {
+    override operator fun invoke(s: String, k: Int): Int {
         val vowels = setOf('a', 'e', 'i', 'o', 'u')
 
         // Build the window of size k, count the number of vowels it contains.

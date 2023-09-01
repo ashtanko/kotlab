@@ -25,11 +25,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/constrained-subsequence-sum/">leetcode page</a>
  */
 interface ConstrainedSubsequenceSum {
-    fun perform(nums: IntArray, k: Int): Int
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class ConstrainedSubsequenceSumDeque : ConstrainedSubsequenceSum {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         var res = nums.firstOrNull() ?: Int.MIN_VALUE
         val q: Deque<Int> = LinkedList()
         for (i in nums.indices) {
@@ -44,7 +44,7 @@ class ConstrainedSubsequenceSumDeque : ConstrainedSubsequenceSum {
 }
 
 class ConstrainedSubsequenceSumDP : ConstrainedSubsequenceSum {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         val n: Int = nums.size
         val dp = IntArray(n)
         var ans = Int.MIN_VALUE
@@ -61,7 +61,7 @@ class ConstrainedSubsequenceSumDP : ConstrainedSubsequenceSum {
 }
 
 class ConstrainedSubsequenceSumQueue : ConstrainedSubsequenceSum {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         val n: Int = nums.size
         val dp = IntArray(n)
         val deque: Deque<Int> = LinkedList()
@@ -86,7 +86,7 @@ class ConstrainedSubsequenceSumQueue : ConstrainedSubsequenceSum {
  * Solution 3: DP + Decreasing Monotonic Queue + Optimized Space
  */
 class ConstrainedSubsequenceSumQueueOpt : ConstrainedSubsequenceSum {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         val n: Int = nums.size
         val deque: Deque<Int> = LinkedList()
         var ans = Int.MIN_VALUE

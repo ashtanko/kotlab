@@ -17,19 +17,19 @@
 package dev.shtanko.algorithms.leetcode
 
 interface RegularExpressionMatchStrategy {
-    fun perform(text: String, pattern: String): Boolean
+    operator fun invoke(text: String, pattern: String): Boolean
 }
 
 class RegularExpressionMatchRecursion : RegularExpressionMatchStrategy {
-    override fun perform(text: String, pattern: String): Boolean {
+    override operator fun invoke(text: String, pattern: String): Boolean {
         if (pattern.isEmpty()) return text.isEmpty()
         val isFirstMatch = text.isNotEmpty() &&
             (pattern[0] == text[0] || pattern[0] == '.')
         return if (pattern.length >= 2 && pattern[1] == '*') {
-            perform(text, pattern.substring(2)) ||
-                isFirstMatch && perform(text.substring(1), pattern)
+            invoke(text, pattern.substring(2)) ||
+                isFirstMatch && invoke(text.substring(1), pattern)
         } else {
-            isFirstMatch && perform(text.substring(1), pattern.substring(1))
+            isFirstMatch && invoke(text.substring(1), pattern.substring(1))
         }
     }
 }
@@ -42,7 +42,7 @@ class RegularExpressionMatchDPTopDown : RegularExpressionMatchStrategy {
 
     private lateinit var memo: Array<Array<Result?>>
 
-    override fun perform(text: String, pattern: String): Boolean {
+    override operator fun invoke(text: String, pattern: String): Boolean {
         memo = Array(text.length + 1) { arrayOfNulls<Result>(pattern.length + 1) }
         return dp(0, 0, text, pattern)
     }
@@ -67,7 +67,7 @@ class RegularExpressionMatchDPTopDown : RegularExpressionMatchStrategy {
 }
 
 class RegularExpressionMatchDPBottomUp : RegularExpressionMatchStrategy {
-    override fun perform(text: String, pattern: String): Boolean {
+    override operator fun invoke(text: String, pattern: String): Boolean {
         val dp = Array(text.length + 1) { BooleanArray(pattern.length + 1) }
         dp[text.length][pattern.length] = true
         for (i in text.length downTo 0) {

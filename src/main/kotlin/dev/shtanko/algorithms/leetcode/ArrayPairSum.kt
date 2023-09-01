@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface PairSumStrategy {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 class PairSumSort1 : PairSumStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         arr.sort()
         val list = arr.toList()
         val chunks = list.chunked(2)
@@ -34,7 +34,7 @@ class PairSumSort1 : PairSumStrategy {
 }
 
 class PairSumSort2 : PairSumStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         arr.sort()
         var res = 0
         var i = 0
@@ -47,7 +47,7 @@ class PairSumSort2 : PairSumStrategy {
 }
 
 class PairSumSort3 : PairSumStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         arr.sort()
         return arr.toList().chunked(2) { it.minOrNull() ?: 0 }.sum()
     }
@@ -55,7 +55,7 @@ class PairSumSort3 : PairSumStrategy {
 
 class PairSumOdd : PairSumStrategy {
 
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val exist = IntArray(MAX_ARR_SIZE)
         for (i in arr.indices) {
             exist[arr[i] + ARR_HELPER]++

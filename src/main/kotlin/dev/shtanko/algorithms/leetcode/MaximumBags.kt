@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/">leetcode page</a>
  */
 interface MaximumBags {
-    fun perform(capacity: IntArray, rocks: IntArray, additionalRocks: Int): Int
+    operator fun invoke(capacity: IntArray, rocks: IntArray, additionalRocks: Int): Int
 }
 
 class MaximumBagsGreedy : MaximumBags {
-    override fun perform(capacity: IntArray, rocks: IntArray, additionalRocks: Int): Int {
+    override operator fun invoke(capacity: IntArray, rocks: IntArray, additionalRocks: Int): Int {
         var add = additionalRocks
         val n: Int = rocks.size
         var cnt = 0

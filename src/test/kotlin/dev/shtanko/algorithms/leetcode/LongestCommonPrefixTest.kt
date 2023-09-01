@@ -58,7 +58,7 @@ abstract class LongestCommonPrefixTest<out T : LongestCommonPrefix>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest common prefix test`(strs: Array<String>, expected: String) {
-        val actual = strategy.perform(strs)
+        val actual = strategy.invoke(strs)
         assertThat(actual, equalTo(expected))
     }
 }

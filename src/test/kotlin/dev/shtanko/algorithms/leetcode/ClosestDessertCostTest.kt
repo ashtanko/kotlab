@@ -75,7 +75,7 @@ abstract class ClosestDessertCostTest<out T : ClosestDessertCost>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `closest dessert cost test`(baseCosts: IntArray, toppingCosts: IntArray, target: Int, expected: Int) {
-        val actual = strategy.perform(baseCosts, toppingCosts, target)
+        val actual = strategy.invoke(baseCosts, toppingCosts, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

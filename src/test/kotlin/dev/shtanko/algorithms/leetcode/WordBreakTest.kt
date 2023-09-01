@@ -48,7 +48,7 @@ abstract class WordBreakTest<out T : WordBreak>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `word break test`(s: String, wordDict: List<String>, expected: Boolean) {
-        val actual = strategy.perform(s, wordDict)
+        val actual = strategy.invoke(s, wordDict)
         assertThat(actual).isEqualTo(expected)
     }
 }

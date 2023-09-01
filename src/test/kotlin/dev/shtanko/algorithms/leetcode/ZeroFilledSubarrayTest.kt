@@ -61,7 +61,7 @@ abstract class ZeroFilledSubarrayTest<out T : ZeroFilledSubarray>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `zero filled subarray test`(nums: IntArray, expected: Long) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

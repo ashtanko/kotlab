@@ -37,7 +37,7 @@ abstract class TaskSchedulerTest<out T : TaskSchedulerStrategy>(private val stra
     fun `simple test`(testCase: Pair<Pair<CharArray, Int>, Int>) {
         val (data, expected) = testCase
         val (tasks, n) = data
-        val actual = strategy.perform(tasks, n)
+        val actual = strategy.invoke(tasks, n)
         assertEquals(expected, actual)
     }
 }

@@ -24,7 +24,7 @@ import kotlin.math.min
  * Space: O(m*n).
  */
 object MatrixBlockSum {
-    fun perform(mat: Array<IntArray>, k: Int): Array<IntArray> {
+    operator fun invoke(mat: Array<IntArray>, k: Int): Array<IntArray> {
         val m: Int = mat.size
         val n: Int = mat.first().size
         val sum = Array(m + 1) { IntArray(n + 1) }

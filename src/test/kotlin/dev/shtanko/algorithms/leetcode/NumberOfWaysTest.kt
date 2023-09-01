@@ -45,7 +45,7 @@ abstract class NumberOfWaysTest<out T : NumberOfWays>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `number of ways test`(corridor: String, expected: Int) {
-        val actual = strategy.perform(corridor)
+        val actual = strategy.invoke(corridor)
         assertThat(actual).isEqualTo(expected)
     }
 }

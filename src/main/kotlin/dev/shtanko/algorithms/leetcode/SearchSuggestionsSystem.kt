@@ -23,7 +23,7 @@ import kotlin.math.min
  * Search Suggestions System
  */
 interface SearchSuggestionsSystem {
-    fun perform(products: Array<String>, searchWord: String): List<List<String>>
+    operator fun invoke(products: Array<String>, searchWord: String): List<List<String>>
 }
 
 /**
@@ -32,7 +32,7 @@ interface SearchSuggestionsSystem {
  * Space complexity : Varies between O(1)
  */
 class SSSBinarySearch : SearchSuggestionsSystem {
-    override fun perform(products: Array<String>, searchWord: String): List<List<String>> {
+    override operator fun invoke(products: Array<String>, searchWord: String): List<List<String>> {
         products.sort()
         val result: MutableList<MutableList<String>> = ArrayList()
         var start: Int
@@ -80,7 +80,7 @@ class SSSBinarySearch : SearchSuggestionsSystem {
  * Space complexity : O(26n)=O(n).
  */
 class SSSTrie : SearchSuggestionsSystem {
-    override fun perform(products: Array<String>, searchWord: String): List<List<String>> {
+    override operator fun invoke(products: Array<String>, searchWord: String): List<List<String>> {
         val result: MutableList<List<String>> = ArrayList()
         val roots: MutableList<TrieNode> = ArrayList()
         // Time O(m * l): where m == products array length and  l == max length of products

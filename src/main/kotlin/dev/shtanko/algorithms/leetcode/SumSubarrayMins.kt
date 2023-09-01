@@ -23,7 +23,7 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/sum-of-subarray-minimums/">leetcode page</a>
  */
 interface SumSubarrayMins {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -31,7 +31,7 @@ interface SumSubarrayMins {
  */
 class SumSubarrayMinsDP : SumSubarrayMins {
 
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val stack: Stack<Int> = Stack()
 
         // make a dp array of the same size as the input array `arr`

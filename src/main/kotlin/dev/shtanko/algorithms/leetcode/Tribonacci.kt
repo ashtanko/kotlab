@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/n-th-tribonacci-number/submissions/887948261/">leetcode page</a>
  */
 interface Tribonacci {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 /**
@@ -29,7 +29,7 @@ interface Tribonacci {
  * Time complexity : O(N)
  */
 class TribSpaceOptimisationDP : Tribonacci {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n < 3) return if (n == 0) 0 else 1
         var tmp: Int
         var x = 0
@@ -59,7 +59,7 @@ class TribRecursionMemo : Tribonacci {
         helper(MAX - 1)
     }
 
-    override fun perform(n: Int): Int = cache[n]
+    override operator fun invoke(n: Int): Int = cache[n]
 
     private fun helper(k: Int): Int {
         if (k == 0) return 0
@@ -89,7 +89,7 @@ class TPerformanceOptimisationDP : Tribonacci {
         }
     }
 
-    override fun perform(n: Int): Int = cache[n]
+    override operator fun invoke(n: Int): Int = cache[n]
 
     companion object {
         private const val N = 38

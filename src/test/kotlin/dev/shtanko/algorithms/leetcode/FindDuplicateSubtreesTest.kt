@@ -73,7 +73,7 @@ abstract class FindDuplicateSubtreesTest<out T : FindDuplicateSubtrees>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find duplicate subtrees test`(root: TreeNode, expected: List<IntArray>) {
-        val actual = strategy.perform(root).map {
+        val actual = strategy.invoke(root).map {
             it.preorderTraversal().toIntArray()
         }
         assertThat(actual).containsAll(expected)

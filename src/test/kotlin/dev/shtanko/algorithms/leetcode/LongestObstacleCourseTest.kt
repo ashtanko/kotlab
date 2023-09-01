@@ -45,7 +45,7 @@ abstract class LongestObstacleCourseTest<out T : LongestObstacleCourse>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longestObstacleCourseAtEachPosition test`(obstacles: IntArray, expected: IntArray) {
-        val actual = strategy.perform(obstacles)
+        val actual = strategy.invoke(obstacles)
         assertThat(actual).isEqualTo(expected)
     }
 }

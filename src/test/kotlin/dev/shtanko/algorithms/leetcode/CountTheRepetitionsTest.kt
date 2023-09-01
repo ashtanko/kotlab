@@ -37,7 +37,7 @@ abstract class CountTheRepetitionsTest<out T : CountTheRepetitionsStrategy>(priv
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count the repetitions test`(s1: String, n1: Int, s2: String, n2: Int, expected: Int) {
-        val actual = strategy.perform(s1, n1, s2, n2)
+        val actual = strategy.invoke(s1, n1, s2, n2)
         assertEquals(expected, actual)
     }
 }

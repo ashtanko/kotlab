@@ -42,7 +42,7 @@ abstract class WiggleSortTest<out T : WiggleSort>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `wiggle sort test`(nums: IntArray, expected: IntArray) {
-        strategy.perform(nums)
+        strategy.invoke(nums)
         assertArrayEquals(expected, nums)
     }
 }

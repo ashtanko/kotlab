@@ -49,7 +49,7 @@ abstract class RemoveInvalidParenthesesTest<out T : RemoveInvalidParentheses>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `remove invalid parentheses test`(s: String, expected: List<String>) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).containsAll(expected)
     }
 }

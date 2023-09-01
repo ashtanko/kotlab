@@ -52,7 +52,7 @@ abstract class RemoveStonesTest<out T : RemoveStones>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `remove stones test`(stones: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(stones)
+        val actual = strategy.invoke(stones)
         assertThat(actual).isEqualTo(expected)
     }
 }

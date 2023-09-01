@@ -25,7 +25,7 @@ fun interface CanPartitionKSubsets {
 }
 
 class CanPartitionKSubsetsDP : CanPartitionKSubsets {
-    override fun invoke(nums: IntArray, k: Int): Boolean {
+    override operator fun invoke(nums: IntArray, k: Int): Boolean {
         if (nums.isEmpty()) return false
 
         val n: Int = nums.size

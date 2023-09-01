@@ -44,7 +44,7 @@ abstract class ReplaceWordsTest<out T : ReplaceWords>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `replace words test`(dictionary: List<String>, sentence: String, expected: String) {
-        val actual = strategy.perform(dictionary, sentence)
+        val actual = strategy.invoke(dictionary, sentence)
         assertThat(actual).isEqualTo(expected)
     }
 }

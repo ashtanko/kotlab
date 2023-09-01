@@ -26,7 +26,7 @@ fun interface LoudAndRich {
 
 class LoudAndRichDFS : LoudAndRich {
 
-    override fun invoke(richer: Array<IntArray>, quiet: IntArray): IntArray {
+    override operator fun invoke(richer: Array<IntArray>, quiet: IntArray): IntArray {
         val n = quiet.size
         val res = IntArray(n) { -1 }
         val adj: Array<MutableList<Int>> = Array(n) { ArrayList() }
@@ -60,7 +60,7 @@ class LoudAndRichMap : LoudAndRich {
     private var richer2: HashMap<Int, MutableList<Int>> = HashMap()
     private lateinit var res: IntArray
 
-    override fun invoke(richer: Array<IntArray>, quiet: IntArray): IntArray {
+    override operator fun invoke(richer: Array<IntArray>, quiet: IntArray): IntArray {
         val n = quiet.size
         for (i in 0 until n) {
             richer2[i] = ArrayList()

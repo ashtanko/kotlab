@@ -25,7 +25,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix">leetcode page</a>
  */
 interface KthSmallest {
-    fun perform(matrix: Array<IntArray>, k: Int): Int
+    operator fun invoke(matrix: Array<IntArray>, k: Int): Int
 }
 
 sealed class KthSmallestStrategy {
@@ -34,7 +34,7 @@ sealed class KthSmallestStrategy {
      * Space Complexity: O(X) which is occupied by the heap.
      */
     object MinHeap : KthSmallest, KthSmallestStrategy() {
-        override fun perform(matrix: Array<IntArray>, k: Int): Int {
+        override operator fun invoke(matrix: Array<IntArray>, k: Int): Int {
             val priorityQueue = PriorityQueue<Pair<Int, Int>>(compareBy { it.first })
             val indices = MutableList(matrix.size) { 0 }
             matrix.indices.forEach { priorityQueue.add(Pair(matrix[it][indices[it]++], it)) }
@@ -55,7 +55,7 @@ sealed class KthSmallestStrategy {
      * Space Complexity: O(1)
      */
     object BinarySearch : KthSmallest, KthSmallestStrategy() {
-        override fun perform(matrix: Array<IntArray>, k: Int): Int {
+        override operator fun invoke(matrix: Array<IntArray>, k: Int): Int {
             val n: Int = matrix.size
             var start = matrix[0][0]
             var end = matrix[n - 1][n - 1]

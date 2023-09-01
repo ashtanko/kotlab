@@ -48,7 +48,7 @@ class ValidParenthesesTest {
     @MethodSource("dataProvider")
     fun `is valid parentheses mapping test`(testCase: Pair<Boolean, String>) {
         val (expected, s) = testCase
-        val actual = ValidParentheses(TreeMap()).perform(s)
+        val actual = ValidParentheses(TreeMap()).invoke(s)
         assertEquals(expected, actual)
     }
 }

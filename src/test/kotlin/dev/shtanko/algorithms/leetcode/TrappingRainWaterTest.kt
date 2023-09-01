@@ -38,7 +38,7 @@ abstract class TrappingRainWaterTest<out T : RainWaterStrategy>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `trapping rain water test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

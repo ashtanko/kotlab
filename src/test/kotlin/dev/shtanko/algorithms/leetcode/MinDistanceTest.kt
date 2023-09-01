@@ -43,7 +43,7 @@ abstract class MinDistanceTest<out T : MinDistance>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min distance test`(word1: String, word2: String, expected: Int) {
-        val actual = strategy.perform(word1, word2)
+        val actual = strategy.invoke(word1, word2)
         assertThat(actual).isEqualTo(expected)
     }
 }

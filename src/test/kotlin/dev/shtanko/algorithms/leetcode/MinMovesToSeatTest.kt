@@ -48,7 +48,7 @@ abstract class MinMovesToSeatTest<out T : MinMovesToSeat>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min moves to seat test`(seats: IntArray, students: IntArray, expected: Int) {
-        val actual = strategy.perform(seats, students)
+        val actual = strategy.invoke(seats, students)
         assertThat(actual).isEqualTo(expected)
     }
 }

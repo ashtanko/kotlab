@@ -46,7 +46,7 @@ abstract class LengthOfLongestSubstringTest<out T : LengthOfLongestSubstring>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `length of longest substring test`(s: String, expected: Int) {
-        val actual = solution.perform(s)
+        val actual = solution.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

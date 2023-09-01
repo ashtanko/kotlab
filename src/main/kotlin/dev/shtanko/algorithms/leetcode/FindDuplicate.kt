@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-duplicate-file-in-system/">leetcode page</a>
  */
 interface FindDuplicate {
-    fun perform(paths: Array<String>): List<List<String>>
+    operator fun invoke(paths: Array<String>): List<List<String>>
 }
 
 /**
@@ -30,7 +30,7 @@ interface FindDuplicate {
  * Space complexity : O(n*x).
  */
 class FindDuplicateBruteForce : FindDuplicate {
-    override fun perform(paths: Array<String>): List<List<String>> {
+    override operator fun invoke(paths: Array<String>): List<List<String>> {
         val list: MutableList<Array<String>> = ArrayList()
         for (path in paths) {
             val values = path.split(" ".toRegex()).toTypedArray()
@@ -69,7 +69,7 @@ class FindDuplicateBruteForce : FindDuplicate {
  * Approach #2 Using HashMap
  */
 class FindDuplicateHashMap : FindDuplicate {
-    override fun perform(paths: Array<String>): List<List<String>> {
+    override operator fun invoke(paths: Array<String>): List<List<String>> {
         val map = HashMap<String, MutableList<String>>()
         for (path in paths) {
             val values = path.split(" ".toRegex()).toTypedArray()

@@ -49,7 +49,7 @@ abstract class DeepestLeavesSumTest<out T : DeepestLeavesSum>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `deepest leaves sum test`(root: TreeNode, expected: Int) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

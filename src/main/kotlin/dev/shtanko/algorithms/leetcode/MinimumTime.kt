@@ -24,11 +24,11 @@ import kotlin.math.min
  *     leetcode page</a>
  */
 interface MinimumTime {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 class MinimumTimeOnePass : MinimumTime {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val n: Int = s.length
         var left = 0
         var res = n
@@ -41,7 +41,7 @@ class MinimumTimeOnePass : MinimumTime {
 }
 
 class MinimumTimePrefixSuffix : MinimumTime {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         if (s.isEmpty()) {
             return 0
         }

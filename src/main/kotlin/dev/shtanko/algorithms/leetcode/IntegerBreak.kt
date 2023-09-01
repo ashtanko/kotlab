@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/integer-break/">leetcode page</a>
  */
 interface IntegerBreak {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class IntegerBreakDP : IntegerBreak {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val dp = IntArray(n + 1)
         dp[1] = 1
         for (i in 2..n) {

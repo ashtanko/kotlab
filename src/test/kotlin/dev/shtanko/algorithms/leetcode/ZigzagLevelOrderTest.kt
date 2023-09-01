@@ -51,7 +51,7 @@ abstract class ZigzagLevelOrderTest<out T : ZigzagLevelOrder>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `zigzag level order test`(root: TreeNode?, expected: List<List<Int>>) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -43,7 +43,7 @@ abstract class LargestMergeTest<out T : LargestMerge>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `largest merge test`(word1: String, word2: String, expected: String) {
-        val actual = strategy.perform(word1, word2)
+        val actual = strategy.invoke(word1, word2)
         assertThat(actual).isEqualTo(expected)
     }
 }

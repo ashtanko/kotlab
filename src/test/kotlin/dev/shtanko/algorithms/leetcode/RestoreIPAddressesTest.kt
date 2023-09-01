@@ -45,7 +45,7 @@ abstract class RestoreIPAddressesTest<out T : RestoreIPAddresses>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `restore ip addresses test`(s: String, expected: List<String>) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

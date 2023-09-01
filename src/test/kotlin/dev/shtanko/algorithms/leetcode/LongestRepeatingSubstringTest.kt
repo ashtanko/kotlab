@@ -45,7 +45,7 @@ abstract class LongestRepeatingSubstringTest<out T : LongestRepeatingSubstring>(
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest repeating substring test`(s: String, expected: Int) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

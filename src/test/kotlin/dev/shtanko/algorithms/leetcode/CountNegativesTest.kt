@@ -68,7 +68,7 @@ abstract class AbstractCountNegativesTest<out T : AbstractCountNegativesStrategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count negatives test`(grid: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(grid)
+        val actual = strategy.invoke(grid)
         assertEquals(expected, actual)
     }
 }

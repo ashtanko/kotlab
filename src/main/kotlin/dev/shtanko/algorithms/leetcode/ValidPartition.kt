@@ -30,7 +30,7 @@ fun interface ValidPartition {
 class ValidPartitionTopDown : ValidPartition {
     private val memo: MutableMap<Int, Boolean> = HashMap()
 
-    override fun invoke(nums: IntArray): Boolean {
+    override operator fun invoke(nums: IntArray): Boolean {
         val n = nums.size
         memo[-1] = true
         return prefixIsValid(nums, n - 1)
@@ -62,7 +62,7 @@ class ValidPartitionTopDown : ValidPartition {
  * Approach 2: Bottom-Up Dynamic Programming
  */
 class ValidPartitionBottomUp : ValidPartition {
-    override fun invoke(nums: IntArray): Boolean {
+    override operator fun invoke(nums: IntArray): Boolean {
         val n: Int = nums.size
         val dp = BooleanArray(n + 1)
         dp[0] = true
@@ -91,7 +91,7 @@ class ValidPartitionBottomUp : ValidPartition {
  * Approach 3: Space Optimized Bottom-Up Dynamic Programming
  */
 class ValidPartitionBottomUpSpaceOpt : ValidPartition {
-    override fun invoke(nums: IntArray): Boolean {
+    override operator fun invoke(nums: IntArray): Boolean {
         val n: Int = nums.size
         val dp = BooleanArray(3)
         dp[0] = true

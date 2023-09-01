@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/">leetcode page</a>
  */
 sealed interface FindMinArrowShots {
-    fun perform(points: Array<IntArray>): Int
+    operator fun invoke(points: Array<IntArray>): Int
 }
 
 object FindMinArrowShotsGreedy : FindMinArrowShots {
-    override fun perform(points: Array<IntArray>): Int {
+    override operator fun invoke(points: Array<IntArray>): Int {
         if (points.isEmpty()) {
             return 0
         }
@@ -46,7 +46,7 @@ object FindMinArrowShotsGreedy : FindMinArrowShots {
 }
 
 object FindMinArrowShotsCompact : FindMinArrowShots {
-    override fun perform(points: Array<IntArray>): Int {
+    override operator fun invoke(points: Array<IntArray>): Int {
         points.sortBy { it[1] }
         var last = 0
         return 1 + (1..points.lastIndex).count { e ->

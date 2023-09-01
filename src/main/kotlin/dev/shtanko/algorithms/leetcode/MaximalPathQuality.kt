@@ -28,7 +28,7 @@ fun interface MaximalPathQuality {
 }
 
 class MaximalPathQualityDFS : MaximalPathQuality {
-    override fun invoke(values: IntArray, edges: Array<IntArray>, maxTime: Int): Int {
+    override operator fun invoke(values: IntArray, edges: Array<IntArray>, maxTime: Int): Int {
         if (values.isEmpty()) return 0
         if (edges.isEmpty()) return 0
         if (edges.first().isEmpty()) return 0

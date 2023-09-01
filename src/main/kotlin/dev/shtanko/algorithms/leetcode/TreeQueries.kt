@@ -34,7 +34,7 @@ class TreeQueriesDP : TreeQueries {
         private const val SIZE = 100001
     }
 
-    override fun invoke(root: TreeNode, queries: IntArray): IntArray {
+    override operator fun invoke(root: TreeNode, queries: IntArray): IntArray {
         dfs(root, 0, 0)
         return queries.map { q -> answer[q] }.toIntArray()
     }

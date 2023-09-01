@@ -25,7 +25,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/critical-connections-in-a-network">leetcode page</a>
  */
 interface CriticalConnections {
-    fun perform(n: Int, connections: List<List<Int>>): List<List<Int>>
+    operator fun invoke(n: Int, connections: List<List<Int>>): List<List<Int>>
 }
 
 /**
@@ -37,7 +37,7 @@ class CycleDetection : CriticalConnections {
     private var rank: MutableMap<Int, Int?> = HashMap()
     private var connDict: MutableMap<Pair<Int, Int>, Boolean> = HashMap()
 
-    override fun perform(n: Int, connections: List<List<Int>>): List<List<Int>> {
+    override operator fun invoke(n: Int, connections: List<List<Int>>): List<List<Int>> {
         formGraph(n, connections)
         this.dfs(0, 0)
 
@@ -106,7 +106,7 @@ class CriticalConnectionsGraph : CriticalConnections {
     var time = 0
     private val bridges = ArrayList<List<Int>>()
 
-    override fun perform(n: Int, connections: List<List<Int>>): List<List<Int>> {
+    override operator fun invoke(n: Int, connections: List<List<Int>>): List<List<Int>> {
         val graph = buildGraph(n, connections)
         graph.vertices.forEach {
             if (it.visited.not()) dfs(it, graph)

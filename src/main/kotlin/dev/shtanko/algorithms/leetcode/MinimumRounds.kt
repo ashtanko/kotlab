@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/">leetcode page</a>
  */
 interface MinimumRounds {
-    fun perform(tasks: IntArray): Int
+    operator fun invoke(tasks: IntArray): Int
 }
 
 class MinimumRoundsSumUp : MinimumRounds {
-    override fun perform(tasks: IntArray): Int {
+    override operator fun invoke(tasks: IntArray): Int {
         val count = HashMap<Int, Int>()
         for (a in tasks) {
             count[a] = count.getOrDefault(a, 0) + 1
@@ -39,7 +39,7 @@ class MinimumRoundsSumUp : MinimumRounds {
 }
 
 class MinimumRoundsGreedy : MinimumRounds {
-    override fun perform(tasks: IntArray): Int {
+    override operator fun invoke(tasks: IntArray): Int {
         return tasks.groupBy {
             it
         }.map {

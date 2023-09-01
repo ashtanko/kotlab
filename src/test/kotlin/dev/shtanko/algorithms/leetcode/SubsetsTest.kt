@@ -53,7 +53,7 @@ abstract class SubsetsTest<out T : Subsets>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `subsets test`(nums: IntArray, expected: List<List<Int>>) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).containsAll(expected)
     }
 }

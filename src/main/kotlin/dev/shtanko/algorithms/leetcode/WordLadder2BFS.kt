@@ -17,12 +17,12 @@
 package dev.shtanko.algorithms.leetcode
 
 interface AbstractWordLadder2Strategy {
-    fun perform(beginWord: String, endWord: String, wordList: List<String>): List<List<String>>
+    operator fun invoke(beginWord: String, endWord: String, wordList: List<String>): List<List<String>>
 }
 
 class WordLadder2 : AbstractWordLadder2Strategy {
 
-    override fun perform(beginWord: String, endWord: String, wordList: List<String>): List<List<String>> {
+    override operator fun invoke(beginWord: String, endWord: String, wordList: List<String>): List<List<String>> {
         val dict = wordList.toHashSet()
         val res: MutableList<List<String>> = ArrayList()
 

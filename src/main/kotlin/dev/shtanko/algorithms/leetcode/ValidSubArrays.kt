@@ -21,7 +21,7 @@ import java.util.LinkedList
 
 // Number of Valid Subarrays
 class ValidSubArrays {
-    fun perform(nums: IntArray): Int {
+    operator fun invoke(nums: IntArray): Int {
         var res: Int = nums.size
         if (nums.size <= 1) {
             return res

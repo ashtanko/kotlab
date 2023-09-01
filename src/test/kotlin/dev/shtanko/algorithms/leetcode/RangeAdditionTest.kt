@@ -42,7 +42,7 @@ abstract class RangeAdditionTest<out T : RangeAddition>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `range addition test`(length: Int, updates: Array<IntArray>, expected: IntArray) {
-        val actual = strategy.perform(length, updates)
+        val actual = strategy.invoke(length, updates)
         assertThat(actual).isEqualTo(expected)
     }
 }

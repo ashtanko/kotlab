@@ -90,7 +90,7 @@ abstract class BalanceBSTreeTest<out T : BalanceBST>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `balance BST test`(root: TreeNode?, expected: TreeNode?) {
-        val actual = strategy.perform(root).postOrderTraversal()
+        val actual = strategy.invoke(root).postOrderTraversal()
         assertThat(actual).containsAll(expected.postOrderTraversal())
     }
 }

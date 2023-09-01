@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.abs
 
 interface SingleRowKeyboard {
-    fun perform(keyboard: String, word: String): Int
+    operator fun invoke(keyboard: String, word: String): Int
 }
 
 class SingleRowKeyboardNaive : SingleRowKeyboard {
-    override fun perform(keyboard: String, word: String): Int {
+    override operator fun invoke(keyboard: String, word: String): Int {
         val map = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in keyboard.indices) {
             map[keyboard[i] - 'a'] = i

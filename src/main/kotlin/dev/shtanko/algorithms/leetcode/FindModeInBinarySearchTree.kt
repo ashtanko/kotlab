@@ -22,7 +22,7 @@ class FindModeInBinarySearchTree {
     var count = 1
     var max = 0
 
-    fun perform(root: TreeNode?): IntArray {
+    operator fun invoke(root: TreeNode?): IntArray {
         if (root == null) return IntArray(0)
 
         val list: MutableList<Int> = ArrayList()

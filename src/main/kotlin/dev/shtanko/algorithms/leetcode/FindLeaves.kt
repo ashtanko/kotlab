@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/find-leaves-of-binary-tree/">leetcode page</a>
  */
 interface FindLeaves {
-    fun perform(root: TreeNode?): List<List<Int>>
+    operator fun invoke(root: TreeNode?): List<List<Int>>
 }
 
 /**
@@ -33,7 +33,7 @@ class FindLeavesDFS : FindLeaves {
 
     private val pairs: MutableList<Pair<Int, Int>> = ArrayList()
 
-    override fun perform(root: TreeNode?): List<List<Int>> {
+    override operator fun invoke(root: TreeNode?): List<List<Int>> {
         getHeight(root)
 
         // sort all the (height, val) pairs
@@ -85,7 +85,7 @@ class FindLeavesDFS2 : FindLeaves {
 
     private val solution: MutableList<MutableList<Int>> = ArrayList()
 
-    override fun perform(root: TreeNode?): List<List<Int>> {
+    override operator fun invoke(root: TreeNode?): List<List<Int>> {
         getHeight(root)
         return this.solution
     }

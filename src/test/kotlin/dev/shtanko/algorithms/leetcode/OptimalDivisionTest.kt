@@ -50,7 +50,7 @@ abstract class OptimalDivisionTest<out T : OptimalDivisionStrategy>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `optimal division test`(nums: IntArray, expected: String) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertEquals(expected, actual)
     }
 }

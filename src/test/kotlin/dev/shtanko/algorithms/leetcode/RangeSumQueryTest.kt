@@ -88,7 +88,7 @@ class RangeSumQueryTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sum range test`(obj: RangeSumQuery, i: Int, j: Int, expected: Int) {
-        val actual = obj.perform(i, j)
+        val actual = obj.invoke(i, j)
         assertThat(actual).isEqualTo(expected)
     }
 }

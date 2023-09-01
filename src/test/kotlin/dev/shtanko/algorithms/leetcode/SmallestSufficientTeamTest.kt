@@ -54,7 +54,7 @@ abstract class SmallestSufficientTeamTest<out T : SmallestSufficientTeam>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `smallest sufficient team test`(reqSkills: Array<String>, people: List<List<String>>, expected: IntArray) {
-        val actual = strategy.perform(reqSkills, people)
+        val actual = strategy.invoke(reqSkills, people)
         assertThat(actual).isEqualTo(expected)
     }
 }

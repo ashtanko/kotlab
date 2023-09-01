@@ -23,11 +23,11 @@ import java.util.PriorityQueue
  * @see <a href="https://leetcode.com/problems/sort-characters-by-frequency/">leetcode page</a>
  */
 interface FrequencySort {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 class FrequencyBucketSort : FrequencySort {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val map: MutableMap<Char, Int> = HashMap()
         for (c in s.toCharArray()) {
             map[c] = map.getOrDefault(c, 0) + 1
@@ -54,7 +54,7 @@ class FrequencyBucketSort : FrequencySort {
 }
 
 class FrequencySortPQ : FrequencySort {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val map: MutableMap<Char, Int> = HashMap()
         for (c in s.toCharArray()) {
             map[c] = map.getOrDefault(c, 0) + 1

@@ -53,7 +53,7 @@ abstract class ThreeSumMultiTest<out T : ThreeSumMulti>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `three sum multi test`(arr: IntArray, target: Int, expected: Int) {
-        val actual = strategy.perform(arr, target)
+        val actual = strategy.invoke(arr, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

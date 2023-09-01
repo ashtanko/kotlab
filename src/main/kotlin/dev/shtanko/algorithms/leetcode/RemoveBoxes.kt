@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/remove-boxes/">leetcode page</a>
  */
 interface RemoveBoxes {
-    fun perform(boxes: IntArray): Int
+    operator fun invoke(boxes: IntArray): Int
 }
 
 class RemoveBoxesTopDown : RemoveBoxes {
-    override fun perform(boxes: IntArray): Int {
+    override operator fun invoke(boxes: IntArray): Int {
         val n: Int = boxes.size
         val dp = Array(n) {
             Array(n) { IntArray(n) }
@@ -63,7 +63,7 @@ class RemoveBoxesTopDown : RemoveBoxes {
 }
 
 class RemoveBoxesBottomUp : RemoveBoxes {
-    override fun perform(boxes: IntArray): Int {
+    override operator fun invoke(boxes: IntArray): Int {
         val n: Int = boxes.size
         val dp = Array(n) {
             Array(n) { IntArray(n) }

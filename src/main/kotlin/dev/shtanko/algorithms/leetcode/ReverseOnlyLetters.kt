@@ -23,14 +23,14 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/reverse-only-letters/">leetcode page</a>
  */
 interface ReverseOnlyLetters {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 /**
  * Approach 1: Stack of Letters
  */
 class ReverseOnlyLettersStack : ReverseOnlyLetters {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val letters: Stack<Char> = Stack()
         for (c in s.toCharArray()) if (Character.isLetter(c)) letters.push(c)
 
@@ -47,7 +47,7 @@ class ReverseOnlyLettersStack : ReverseOnlyLetters {
  * Approach 2: Reverse Pointer
  */
 class ReversePointer : ReverseOnlyLetters {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val ans = StringBuilder()
         var j: Int = s.length - 1
         for (i in s.indices) {

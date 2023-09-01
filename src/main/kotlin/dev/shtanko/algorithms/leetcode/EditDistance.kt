@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.min
 
 interface EditDistance {
-    fun perform(word1: String, word2: String): Int
+    operator fun invoke(word1: String, word2: String): Int
 }
 
 class EditDistanceDP : EditDistance {
-    override fun perform(word1: String, word2: String): Int {
+    override operator fun invoke(word1: String, word2: String): Int {
         val n: Int = word1.length
         val m: Int = word2.length
 

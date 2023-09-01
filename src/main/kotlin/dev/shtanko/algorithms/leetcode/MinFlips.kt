@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/">leetcode page</a>
  */
 interface MinFlips {
-    fun perform(a: Int, b: Int, c: Int): Int
+    operator fun invoke(a: Int, b: Int, c: Int): Int
 }
 
 /**
  * Approach 1: Bit Manipulation
  */
 class MinFlipsBitManipulation : MinFlips {
-    override fun perform(a: Int, b: Int, c: Int): Int {
+    override operator fun invoke(a: Int, b: Int, c: Int): Int {
         var answer = 0
         var a1 = a
         var b1 = b
@@ -54,7 +54,7 @@ class MinFlipsBitManipulation : MinFlips {
  * Approach 2: Count the Number of Set Bits Using Built-in Function
  */
 class MinFlipsSetBits : MinFlips {
-    override fun perform(a: Int, b: Int, c: Int): Int {
+    override operator fun invoke(a: Int, b: Int, c: Int): Int {
         return Integer.bitCount(a or b xor c) + Integer.bitCount(a and b and (a or b xor c))
     }
 }

@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface RunningSum {
-    fun perform(nums: IntArray): IntArray
+    operator fun invoke(nums: IntArray): IntArray
 }
 
 class RunningSumNaive : RunningSum {
-    override fun perform(nums: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray): IntArray {
         return nums.naive()
     }
 

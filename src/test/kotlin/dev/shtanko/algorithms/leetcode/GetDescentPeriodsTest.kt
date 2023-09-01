@@ -45,7 +45,7 @@ abstract class GetDescentPeriodsTest<out T : GetDescentPeriods>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `get descent periods test`(prices: IntArray, expected: Long) {
-        val actual = strategy.perform(prices)
+        val actual = strategy.invoke(prices)
         assertThat(actual).isEqualTo(expected)
     }
 }

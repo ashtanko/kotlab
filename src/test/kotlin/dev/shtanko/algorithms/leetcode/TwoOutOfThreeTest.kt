@@ -51,7 +51,7 @@ abstract class TwoOutOfThreeTest<out T : TwoOutOfThree>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `two out of three test`(nums1: IntArray, nums2: IntArray, nums3: IntArray, expected: List<Int>) {
-        val actual = strategy.perform(nums1, nums2, nums3)
+        val actual = strategy.invoke(nums1, nums2, nums3)
         assertThat(actual).containsExactlyInAnyOrder(*expected.toTypedArray())
     }
 }

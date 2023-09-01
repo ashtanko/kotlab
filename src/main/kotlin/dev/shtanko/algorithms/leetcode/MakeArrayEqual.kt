@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 interface MakeArrayEqual {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 /**
@@ -26,7 +26,7 @@ interface MakeArrayEqual {
  * Space complexity: O(1).
  */
 class MakeArrayEqualBruteForce : MakeArrayEqual {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         var res = 0
         var k = n
         while (k > 0) {
@@ -43,7 +43,7 @@ class MakeArrayEqualBruteForce : MakeArrayEqual {
  * Space complexity: O(1).
  */
 class MakeArrayEqualMath : MakeArrayEqual {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         return if (n % 2 == 0) n * n / 4 else (n * n - 1) / 4
     }
 }

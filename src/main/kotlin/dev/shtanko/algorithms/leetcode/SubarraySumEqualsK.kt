@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface SubarraySumStrategy {
-    fun perform(nums: IntArray, k: Int): Int
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class SubarraySumBruteForce : SubarraySumStrategy {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         var count = 0
         for (start in nums.indices) {
             for (end in start + 1..nums.size) {
@@ -35,7 +35,7 @@ class SubarraySumBruteForce : SubarraySumStrategy {
 }
 
 class SubarraySumUsingCumulativeSum : SubarraySumStrategy {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         var count = 0
         val sum = IntArray(nums.size + 1)
         sum[0] = 0
@@ -50,7 +50,7 @@ class SubarraySumUsingCumulativeSum : SubarraySumStrategy {
 }
 
 class SubarraySumWithoutSpace : SubarraySumStrategy {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         var count = 0
         for (start in nums.indices) {
             var sum = 0
@@ -64,7 +64,7 @@ class SubarraySumWithoutSpace : SubarraySumStrategy {
 }
 
 class SubarraySumUsingHashmap : SubarraySumStrategy {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         var count = 0
         var sum = 0
         val map: HashMap<Int, Int> = HashMap()

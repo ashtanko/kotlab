@@ -44,7 +44,7 @@ class MultiplyStringsTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `multiply strings test`(num1: String, num2: String, expected: String) {
-        val actual = MultiplyStrings.perform(num1, num2)
+        val actual = MultiplyStrings.invoke(num1, num2)
         assertThat(actual, equalTo(expected))
     }
 }

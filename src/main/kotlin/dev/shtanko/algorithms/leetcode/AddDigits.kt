@@ -23,11 +23,11 @@ private const val MAX = 9
  * @see <a href="https://leetcode.com/problems/add-digits/">leetcode page</a>
  */
 interface AddDigits {
-    fun perform(num: Int): Int
+    operator fun invoke(num: Int): Int
 }
 
 class AddDigitsStraightForward : AddDigits {
-    override fun perform(num: Int): Int {
+    override operator fun invoke(num: Int): Int {
         var digitalRoot = 0
         var digits = num
         while (digits > 0) {
@@ -43,7 +43,7 @@ class AddDigitsStraightForward : AddDigits {
 }
 
 class AddDigitsMath : AddDigits {
-    override fun perform(num: Int): Int {
+    override operator fun invoke(num: Int): Int {
         if (num == 0) return 0
         if (num % MAX == 0) return MAX
         return num % MAX
@@ -51,7 +51,7 @@ class AddDigitsMath : AddDigits {
 }
 
 class AddDigitsDigitalRoot : AddDigits {
-    override fun perform(num: Int): Int {
+    override operator fun invoke(num: Int): Int {
         return if (num == 0) 0 else 1 + (num - 1) % MAX
     }
 }

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Given two arrays, write a function to compute their intersection.
  */
 interface IntersectionStrategy {
-    fun perform(p: Pair<IntArray, IntArray>): IntArray
+    operator fun invoke(p: Pair<IntArray, IntArray>): IntArray
 }
 
 /**
@@ -28,7 +28,7 @@ interface IntersectionStrategy {
  * Time complexity: O(n)
  */
 class IntersectionTwoSets : IntersectionStrategy {
-    override fun perform(p: Pair<IntArray, IntArray>): IntArray {
+    override operator fun invoke(p: Pair<IntArray, IntArray>): IntArray {
         val set = p.first.toSet()
         val intersect: MutableSet<Int> = HashSet()
 
@@ -52,7 +52,7 @@ class IntersectionTwoSets : IntersectionStrategy {
  * Time complexity: O(nlogn)
  */
 class IntersectionTwoPointers : IntersectionStrategy {
-    override fun perform(p: Pair<IntArray, IntArray>): IntArray {
+    override operator fun invoke(p: Pair<IntArray, IntArray>): IntArray {
         val set: MutableSet<Int> = HashSet()
         p.first.sort()
         p.second.sort()
@@ -88,7 +88,7 @@ class IntersectionTwoPointers : IntersectionStrategy {
  *
  */
 class IntersectionBinarySearch : IntersectionStrategy {
-    override fun perform(p: Pair<IntArray, IntArray>): IntArray {
+    override operator fun invoke(p: Pair<IntArray, IntArray>): IntArray {
         val set: MutableSet<Int> = HashSet()
         p.second.sort()
         for (num in p.first) {

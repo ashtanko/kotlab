@@ -51,7 +51,7 @@ abstract class MergeKListsTest<out T : MergeKLists>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `merge k lists test`(lists: Array<ListNode?>, expected: List<Int>) {
-        val actual = strategy.perform(lists).toListOrEmpty()
+        val actual = strategy.invoke(lists).toListOrEmpty()
         assertThat(actual).isEqualTo(expected)
     }
 }

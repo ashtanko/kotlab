@@ -51,7 +51,7 @@ abstract class FindBuildingsTest<out T : FindBuildings>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find buildings test`(heights: IntArray, expected: IntArray) {
-        val actual = strategy.perform(heights)
+        val actual = strategy.invoke(heights)
         assertThat(actual, equalTo(expected))
     }
 }

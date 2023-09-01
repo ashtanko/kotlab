@@ -23,14 +23,14 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/strange-printer/">leetcode page</a>
  */
 interface StrangePrinter {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 /**
  * Approach 1: Bottom-Up Dynamic Programming
  */
 class StrangePrinterBottomUp : StrangePrinter {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val n: Int = s.length
         val dp = Array(n) { IntArray(n) }
         for (length in 1..n) {
@@ -64,7 +64,7 @@ class StrangePrinterBottomUp : StrangePrinter {
 class StrangePrinterTopDown : StrangePrinter {
     private lateinit var dp: Array<IntArray>
 
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         val n: Int = s.length
         dp = Array(n) { IntArray(n) }
         for (left in 0 until n) {

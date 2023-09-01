@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/check-if-it-is-a-straight-line/">leetcode page</a>
  */
 interface CheckStraightLine {
-    fun perform(coordinates: Array<IntArray>): Boolean
+    operator fun invoke(coordinates: Array<IntArray>): Boolean
 }
 
 class CheckStraightLineSlopeProperty : CheckStraightLine {
-    override fun perform(coordinates: Array<IntArray>): Boolean {
+    override operator fun invoke(coordinates: Array<IntArray>): Boolean {
         val deltaY = getYDiff(coordinates[1], coordinates[0])
         val deltaX = getXDiff(coordinates[1], coordinates[0])
 

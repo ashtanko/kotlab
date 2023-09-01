@@ -45,7 +45,7 @@ abstract class MaxSubarraySumCircularTest<out T : MaxSubarraySumCircular>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max subarray sum circular test`(nums: IntArray, expected: Int) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

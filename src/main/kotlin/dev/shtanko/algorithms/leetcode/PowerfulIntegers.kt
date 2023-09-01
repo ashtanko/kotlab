@@ -24,14 +24,14 @@ import kotlin.math.pow
  * @see <a href="https://leetcode.com/problems/powerful-integers/">leetcode page</a>
  */
 interface PowerfulIntegers {
-    fun perform(x: Int, y: Int, bound: Int): List<Int>
+    operator fun invoke(x: Int, y: Int, bound: Int): List<Int>
 }
 
 /**
  * Approach: Logarithmic Bounds
  */
 class LogarithmicBounds : PowerfulIntegers {
-    override fun perform(x: Int, y: Int, bound: Int): List<Int> {
+    override operator fun invoke(x: Int, y: Int, bound: Int): List<Int> {
         val a = if (x == 1) bound else (ln(bound.toDouble()) / ln(x.toDouble())).toInt()
         val b = if (y == 1) bound else (ln(bound.toDouble()) / ln(y.toDouble())).toInt()
 

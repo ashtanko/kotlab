@@ -43,7 +43,7 @@ abstract class DistributeCookiesTest<out T : DistributeCookies>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `distribute cookies test`(cookies: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(cookies, k)
+        val actual = strategy.invoke(cookies, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

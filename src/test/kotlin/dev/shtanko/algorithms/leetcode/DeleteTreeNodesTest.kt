@@ -57,7 +57,7 @@ abstract class DeleteTreeNodesTest<out T : DeleteTreeNodes>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `delete tree nodes test`(nodes: Int, parent: IntArray, value: IntArray, expected: Int) {
-        val actual = strategy.perform(nodes, parent, value)
+        val actual = strategy.invoke(nodes, parent, value)
         assertThat(actual).isEqualTo(expected)
     }
 }

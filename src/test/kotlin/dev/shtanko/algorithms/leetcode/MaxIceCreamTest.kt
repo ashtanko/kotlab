@@ -48,7 +48,7 @@ abstract class MaxIceCreamTest<out T : MaxIceCream>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max ice cream test`(costs: IntArray, coins: Int, expected: Int) {
-        val actual = strategy.perform(costs, coins)
+        val actual = strategy.invoke(costs, coins)
         assertThat(actual).isEqualTo(expected)
     }
 }

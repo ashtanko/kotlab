@@ -39,7 +39,7 @@ class LemonadeChangeTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `lemonade change test`(bills: IntArray, expected: Boolean) {
-        val actual = LemonadeChange().perform(bills)
+        val actual = LemonadeChange().invoke(bills)
         assertThat(actual, `is`(expected))
     }
 }

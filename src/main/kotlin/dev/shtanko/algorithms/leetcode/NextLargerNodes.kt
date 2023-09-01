@@ -23,11 +23,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/next-greater-node-in-linked-list/">leetcode page</a>
  */
 interface NextLargerNodes {
-    fun perform(head: ListNode?): IntArray
+    operator fun invoke(head: ListNode?): IntArray
 }
 
 class NextLargerNodesStack : NextLargerNodes {
-    override fun perform(head: ListNode?): IntArray {
+    override operator fun invoke(head: ListNode?): IntArray {
         val arr: ArrayList<Int> = ArrayList()
         var node = head
         while (node != null) {
@@ -45,7 +45,7 @@ class NextLargerNodesStack : NextLargerNodes {
 }
 
 class NextLargerNodesOnePass : NextLargerNodes {
-    override fun perform(head: ListNode?): IntArray {
+    override operator fun invoke(head: ListNode?): IntArray {
         // Keeps track of indices of values in nums
         val stack = Stack<Int>()
 

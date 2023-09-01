@@ -20,11 +20,11 @@ import java.util.Stack
 
 // Verify Preorder Sequence in Binary Search Tree
 interface VerifyPreorderInBinarySearchTreeStrategy {
-    fun perform(preorder: IntArray): Boolean
+    operator fun invoke(preorder: IntArray): Boolean
 }
 
 class VerifyPreorderInBinarySearchTreeBF : VerifyPreorderInBinarySearchTreeStrategy {
-    override fun perform(preorder: IntArray): Boolean {
+    override operator fun invoke(preorder: IntArray): Boolean {
         var low = Int.MIN_VALUE
         var i = -1
         for (p in preorder) {
@@ -37,7 +37,7 @@ class VerifyPreorderInBinarySearchTreeBF : VerifyPreorderInBinarySearchTreeStrat
 }
 
 class VerifyPreorderInBinarySearchTreeStack : VerifyPreorderInBinarySearchTreeStrategy {
-    override fun perform(preorder: IntArray): Boolean {
+    override operator fun invoke(preorder: IntArray): Boolean {
         var low = Int.MIN_VALUE
         val path: Stack<Int> = Stack()
         for (p in preorder) {
@@ -53,7 +53,7 @@ class VerifyPreorderInBinarySearchTreeRecursion : VerifyPreorderInBinarySearchTr
 
     private var i = 1
 
-    override fun perform(preorder: IntArray): Boolean {
+    override operator fun invoke(preorder: IntArray): Boolean {
         return preorder.isEmpty() || check(preorder, Integer.MIN_VALUE, preorder.first()) && check(
             preorder,
             preorder.first(),

@@ -37,7 +37,7 @@ abstract class AbstractRotateArrayStrategyTest<out T : AbstractRotateArrayStrate
     fun `rotate array test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
         val (data, expected) = testCase
         val (arr, k) = data
-        strategy.perform(arr, k)
+        strategy.invoke(arr, k)
         assertArrayEquals(expected, arr)
     }
 }

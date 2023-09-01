@@ -23,11 +23,11 @@ import dev.shtanko.algorithms.extensions.getNumberOfLetter
  * @see <a href="https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/">leetcode page</a>
  */
 interface IsSumEqual {
-    fun perform(firstWord: String, secondWord: String, targetWord: String): Boolean
+    operator fun invoke(firstWord: String, secondWord: String, targetWord: String): Boolean
 }
 
 class IsSumEqualImpl : IsSumEqual {
-    override fun perform(firstWord: String, secondWord: String, targetWord: String): Boolean {
+    override operator fun invoke(firstWord: String, secondWord: String, targetWord: String): Boolean {
         return firstWord.getNumberOfLetter().plus(secondWord.getNumberOfLetter()) == targetWord.getNumberOfLetter()
     }
 }

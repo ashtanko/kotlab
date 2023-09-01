@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/">leetcode page</a>
  */
 interface SortedArrayToBST {
-    fun perform(nums: IntArray): TreeNode?
+    operator fun invoke(nums: IntArray): TreeNode?
 }
 
 /**
@@ -30,7 +30,7 @@ interface SortedArrayToBST {
  * Space complexity: O(N)
  */
 class SortedArrayToBSTPreorder : SortedArrayToBST {
-    override fun perform(nums: IntArray): TreeNode? {
+    override operator fun invoke(nums: IntArray): TreeNode? {
         return helper(nums = nums, right = nums.size - 1)
     }
 
@@ -50,7 +50,7 @@ class SortedArrayToBSTPreorder : SortedArrayToBST {
  * Space complexity: O(N).
  */
 class RightMiddleSortedArrayToBST : SortedArrayToBST {
-    override fun perform(nums: IntArray): TreeNode? {
+    override operator fun invoke(nums: IntArray): TreeNode? {
         return helper(nums = nums, right = nums.size - 1)
     }
 
@@ -73,7 +73,7 @@ class RightMiddleSortedArrayToBST : SortedArrayToBST {
  * Space complexity: O(N).
  */
 class RandomMiddleSortedArrayToBST : SortedArrayToBST {
-    override fun perform(nums: IntArray): TreeNode? {
+    override operator fun invoke(nums: IntArray): TreeNode? {
         return helper(nums = nums, right = nums.size - 1)
     }
 

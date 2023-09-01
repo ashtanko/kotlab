@@ -62,7 +62,7 @@ abstract class MinReorderTest<out T : MinReorder>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min reorder test`(n: Int, connections: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(n, connections)
+        val actual = strategy.invoke(n, connections)
         assertThat(actual).isEqualTo(expected)
     }
 }

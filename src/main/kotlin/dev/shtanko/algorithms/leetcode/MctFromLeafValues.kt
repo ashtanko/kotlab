@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/">leetcode page</a>
  */
 interface MctFromLeafValues {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 class MctFromLeafValuesDP : MctFromLeafValues {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         var res = 0
         val stack: Stack<Int> = Stack()
         stack.push(Int.MAX_VALUE)

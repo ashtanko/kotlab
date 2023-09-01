@@ -24,14 +24,14 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/shortest-path-to-get-all-keys/">leetcode page</a>
  */
 interface ShortestPathAllKeys {
-    fun perform(grid: Array<String>): Int
+    operator fun invoke(grid: Array<String>): Int
 }
 
 /**
  * Approach: Breadth-First Search
  */
 class ShortestPathAllKeysBFS : ShortestPathAllKeys {
-    override fun perform(grid: Array<String>): Int {
+    override operator fun invoke(grid: Array<String>): Int {
         val m: Int = grid.size
         val n: Int = grid[0].length
         val queue: Queue<IntArray> = LinkedList()

@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/stone-game-iii/">leetcode page</a>
  */
 interface StoneGame3 {
-    fun perform(stoneValue: IntArray): String
+    operator fun invoke(stoneValue: IntArray): String
 }
 
 private const val ALICE = "Alice"
@@ -35,7 +35,7 @@ private const val NOT_COMPUTED = 1000000000
  * Approach 1: Bottom-Up Dynamic Programming
  */
 class StoneGame3BottomUp : StoneGame3 {
-    override fun perform(stoneValue: IntArray): String {
+    override operator fun invoke(stoneValue: IntArray): String {
         val n: Int = stoneValue.size
         val dp = IntArray(n + 1)
         for (i in n - 1 downTo 0) {
@@ -62,7 +62,7 @@ class StoneGame3BottomUp : StoneGame3 {
  * Approach 2: Top-Down Dynamic Programming (Memoization)
  */
 class StoneGame3TopDown : StoneGame3 {
-    override fun perform(stoneValue: IntArray): String {
+    override operator fun invoke(stoneValue: IntArray): String {
         val dif = f(stoneValue, stoneValue.size, 0)
         if (dif > 0) {
             return ALICE
@@ -99,7 +99,7 @@ class StoneGame3Optimized : StoneGame3 {
 
     private lateinit var dp: IntArray
 
-    override fun perform(stoneValue: IntArray): String {
+    override operator fun invoke(stoneValue: IntArray): String {
         val n: Int = stoneValue.size
         dp = IntArray(n + 1)
         for (i in 0 until n) {

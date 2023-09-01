@@ -25,11 +25,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/daily-temperatures/description/">leetcode page</a>
  */
 interface DailyTemperatures {
-    fun perform(temperatures: IntArray): IntArray
+    operator fun invoke(temperatures: IntArray): IntArray
 }
 
 class DailyTemperaturesStack : DailyTemperatures {
-    override fun perform(temperatures: IntArray): IntArray {
+    override operator fun invoke(temperatures: IntArray): IntArray {
         val stack: Stack<Int> = Stack()
         val ret = IntArray(temperatures.size)
         for (i in temperatures.indices) {
@@ -44,7 +44,7 @@ class DailyTemperaturesStack : DailyTemperatures {
 }
 
 class DailyTemperaturesArr : DailyTemperatures {
-    override fun perform(temperatures: IntArray): IntArray {
+    override operator fun invoke(temperatures: IntArray): IntArray {
         val stack = IntArray(temperatures.size)
         var top = -1
         val ret = IntArray(temperatures.size)
@@ -60,7 +60,7 @@ class DailyTemperaturesArr : DailyTemperatures {
 }
 
 class DailyTemperaturesDeque : DailyTemperatures {
-    override fun perform(temperatures: IntArray): IntArray {
+    override operator fun invoke(temperatures: IntArray): IntArray {
         if (temperatures.isEmpty()) {
             return intArrayOf()
         }

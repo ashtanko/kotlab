@@ -50,7 +50,7 @@ abstract class KthSmallestTest<out T : KthSmallest>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `kth smallest`(matrix: Array<IntArray>, k: Int, expected: Int) {
-        val actual = strategy.perform(matrix, k)
+        val actual = strategy.invoke(matrix, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

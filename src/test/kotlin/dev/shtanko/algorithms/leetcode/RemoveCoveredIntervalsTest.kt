@@ -71,7 +71,7 @@ abstract class RemoveCoveredIntervalsTest<out T : RemoveCoveredIntervals>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `remove covered intervals test`(intervals: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(intervals)
+        val actual = strategy.invoke(intervals)
         assertThat(actual).isEqualTo(expected)
     }
 }

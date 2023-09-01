@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/">leetcode page</a>
  */
 interface CheckWays {
-    fun perform(pairs: Array<IntArray>): Int
+    operator fun invoke(pairs: Array<IntArray>): Int
 }
 
 class CheckWaysDFS : CheckWays {
 
     var result = 1
 
-    override fun perform(pairs: Array<IntArray>): Int {
+    override operator fun invoke(pairs: Array<IntArray>): Int {
         result = 1
         val graph: HashMap<Int, HashSet<Int>> = HashMap()
 

@@ -55,7 +55,7 @@ abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStringFromBina
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `construct string from binary tree test`(tree: TreeNode, expected: String) {
-        val actual = strategy.perform(tree)
+        val actual = strategy.invoke(tree)
         assertEquals(expected, actual)
     }
 }

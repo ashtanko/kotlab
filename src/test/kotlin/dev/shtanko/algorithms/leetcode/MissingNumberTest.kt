@@ -38,7 +38,7 @@ abstract class AbstractMissingNumberStrategyTest<out T : AbstractMissingNumberSt
     @MethodSource("casesProvider")
     fun `missing number test`(testCase: Pair<Int, IntArray>) {
         val (expected, arr) = testCase
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

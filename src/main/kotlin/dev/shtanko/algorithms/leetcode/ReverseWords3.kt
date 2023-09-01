@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * link https://leetcode.com/problems/reverse-words-in-a-string-iii/
  */
 interface ReverseWords3 {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 class ReverseWords3BruteForce : ReverseWords3 {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val sb = StringBuilder()
         val sp = s.split(" ")
 
@@ -38,7 +38,7 @@ class ReverseWords3BruteForce : ReverseWords3 {
 }
 
 class ReverseWords3BruteForce2 : ReverseWords3 {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val words = split(s)
         val res = StringBuilder()
         for (word in words) res.append(reverse(word) + " ")
@@ -68,7 +68,7 @@ class ReverseWords3BruteForce2 : ReverseWords3 {
 }
 
 class ReverseWords3SB : ReverseWords3 {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val result = StringBuilder()
         val word = StringBuilder()
         for (i in s.indices) {
@@ -86,7 +86,7 @@ class ReverseWords3SB : ReverseWords3 {
 }
 
 class ReverseWords3TwoPointers : ReverseWords3 {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         var i = 0
         var j: Int
         val n: Int = s.length

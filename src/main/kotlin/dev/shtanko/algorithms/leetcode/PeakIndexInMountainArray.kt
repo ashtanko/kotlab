@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 interface PeakIndexInMountainArrayStrategy {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -26,7 +26,7 @@ interface PeakIndexInMountainArrayStrategy {
  * Space complexity: O(1)
  */
 class PeakIndexInMountainArrayLinearScan : PeakIndexInMountainArrayStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         var i = 0
         while (arr[i] < arr[i + 1]) i++
         return i
@@ -39,7 +39,7 @@ class PeakIndexInMountainArrayLinearScan : PeakIndexInMountainArrayStrategy {
  * Space complexity: O(1)
  */
 class PeakIndexInMountainArrayBinarySearch : PeakIndexInMountainArrayStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         var lo = 0
         var hi: Int = arr.size - 1
         while (lo < hi) {
@@ -51,7 +51,7 @@ class PeakIndexInMountainArrayBinarySearch : PeakIndexInMountainArrayStrategy {
 }
 
 class PeakIndexInMountainArrayBetterThanBinarySearch : PeakIndexInMountainArrayStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         var i = 1
         while (i + 1 < arr.size) {
             if (arr[i] > arr[i + 1]) return i

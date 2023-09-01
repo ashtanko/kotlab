@@ -48,7 +48,7 @@ abstract class AbstractLuckyNumbersStrategyTest<out T : AbstractLuckyNumbersStra
     @MethodSource("dataProvider")
     fun `simple test`(testCase: Pair<Array<IntArray>, List<Int>>) {
         val (matrix, expected) = testCase
-        assertEquals(expected, strategy.perform(matrix))
+        assertEquals(expected, strategy.invoke(matrix))
     }
 }
 

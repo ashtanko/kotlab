@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-duplicate-subtrees/">leetcode page</a>
  */
 interface FindDuplicateSubtrees {
-    fun perform(root: TreeNode): List<TreeNode>
+    operator fun invoke(root: TreeNode): List<TreeNode>
 }
 
 class FindDuplicateSubtreesMap : FindDuplicateSubtrees {
-    override fun perform(root: TreeNode): List<TreeNode> {
+    override operator fun invoke(root: TreeNode): List<TreeNode> {
         val map: MutableMap<String, MutableList<TreeNode>> = HashMap()
         val dups: MutableList<TreeNode> = ArrayList()
         serialize(root, map)

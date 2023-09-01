@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 object StrStr {
-    fun perform(haystack: String, needle: String) = solve(haystack, needle)
+    operator fun invoke(haystack: String, needle: String) = solve(haystack, needle)
 
     private tailrec fun solve(stack: String, needle: String, count: Int = 0): Int =
         when {

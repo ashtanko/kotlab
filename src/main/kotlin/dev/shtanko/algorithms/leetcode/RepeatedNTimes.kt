@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/n-repeated-element-in-size-2n-array/">leetcode page</a>
  */
 interface RepeatedNTimes {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -30,7 +30,7 @@ interface RepeatedNTimes {
  * Space Complexity: O(N)
  */
 class RepeatedNTimesCount : RepeatedNTimes {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val count: MutableMap<Int, Int> = HashMap()
         for (x in arr) {
             count[x] = count.getOrDefault(x, 0) + 1
@@ -53,7 +53,7 @@ class RepeatedNTimesCount : RepeatedNTimes {
  * Space Complexity: O(1)
  */
 class RepeatedNTimesCompare : RepeatedNTimes {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         for (k in 1..3) for (i in 0 until arr.size - k) if (arr[i] == arr[i + k]) return arr[i]
         return 0
     }

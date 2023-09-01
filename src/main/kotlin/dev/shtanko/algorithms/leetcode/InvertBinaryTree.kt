@@ -20,11 +20,11 @@ import java.util.LinkedList
 import java.util.Queue
 
 interface InvertTreeStrategy {
-    fun perform(root: TreeNode?): TreeNode?
+    operator fun invoke(root: TreeNode?): TreeNode?
 }
 
 class InvertTree : InvertTreeStrategy {
-    override fun perform(root: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?): TreeNode? {
         if (root == null) return null
         val queue: Queue<TreeNode> = LinkedList<TreeNode>()
         queue.add(root)
@@ -41,10 +41,10 @@ class InvertTree : InvertTreeStrategy {
 }
 
 class InvertTreeRecursive : InvertTreeStrategy {
-    override fun perform(root: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?): TreeNode? {
         if (root == null) return null
-        val right: TreeNode? = perform(root.right)
-        val left: TreeNode? = perform(root.left)
+        val right: TreeNode? = invoke(root.right)
+        val left: TreeNode? = invoke(root.left)
         root.left = right
         root.right = left
         return root

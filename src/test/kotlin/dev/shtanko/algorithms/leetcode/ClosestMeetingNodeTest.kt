@@ -45,7 +45,7 @@ abstract class ClosestMeetingNodeTest<out T : ClosestMeetingNode>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `closest meeting node test`(edges: IntArray, node1: Int, node2: Int, expected: Int) {
-        val actual = strategy.perform(edges, node1, node2)
+        val actual = strategy.invoke(edges, node1, node2)
         assertThat(actual).isEqualTo(expected)
     }
 }

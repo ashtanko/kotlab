@@ -64,7 +64,7 @@ abstract class RemoveNthFromEndTest<out T : RemoveNthFromEnd>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `remove nth from end test`(head: ListNode?, n: Int, expected: ListNode?) {
-        val actual = strategy.perform(head, n)
+        val actual = strategy.invoke(head, n)
         assertThat(actual).isEqualTo(expected)
     }
 }

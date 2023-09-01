@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.max
 
 interface LongestIncreasingPath {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class LongestIncreasingPathDFS : LongestIncreasingPath {
@@ -28,7 +28,7 @@ class LongestIncreasingPathDFS : LongestIncreasingPath {
     private var m = 0
     private var n = 0
 
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0
         m = grid.size
         n = grid[0].size
@@ -54,7 +54,7 @@ class LongestIncreasingPathDFS : LongestIncreasingPath {
 class LongestIncreasingPathPeelingOnion : LongestIncreasingPath {
     private val dir = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(-1, 0))
 
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         var m: Int = grid.size
         if (m == 0) return 0
         var n: Int = grid[0].size

@@ -23,11 +23,11 @@ import java.util.Arrays
  * @see <a href="https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/">leetcode page</a>
  */
 interface DistanceLimitedPathsExist {
-    fun perform(n: Int, edgeList: Array<IntArray>, queries: Array<IntArray>): BooleanArray
+    operator fun invoke(n: Int, edgeList: Array<IntArray>, queries: Array<IntArray>): BooleanArray
 }
 
 class DisjointSetUnion : DistanceLimitedPathsExist {
-    override fun perform(n: Int, edgeList: Array<IntArray>, queries: Array<IntArray>): BooleanArray {
+    override operator fun invoke(n: Int, edgeList: Array<IntArray>, queries: Array<IntArray>): BooleanArray {
         val uf = UnionFind(n)
         val queriesCount = queries.size
         val answer = BooleanArray(queriesCount)

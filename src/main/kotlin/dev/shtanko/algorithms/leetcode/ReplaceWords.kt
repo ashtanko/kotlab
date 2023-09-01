@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/replace-words/">leetcode page</a>
  */
 interface ReplaceWords {
-    fun perform(dictionary: List<String>, sentence: String): String
+    operator fun invoke(dictionary: List<String>, sentence: String): String
 }
 
 class PrefixHash : ReplaceWords {
-    override fun perform(dictionary: List<String>, sentence: String): String {
+    override operator fun invoke(dictionary: List<String>, sentence: String): String {
         val rootSet: MutableSet<String> = HashSet(dictionary)
 
         val ans = StringBuilder()
@@ -43,7 +43,7 @@ class PrefixHash : ReplaceWords {
 }
 
 class ReplaceWordsTrie : ReplaceWords {
-    override fun perform(dictionary: List<String>, sentence: String): String {
+    override operator fun invoke(dictionary: List<String>, sentence: String): String {
         val trie = TrieNode()
         for (root in dictionary) {
             var cur = trie

@@ -45,7 +45,7 @@ abstract class TallestBillboardTest<out T : TallestBillboard>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `tallest billboard test`(rods: IntArray, expected: Int) {
-        val actual = strategy.perform(rods)
+        val actual = strategy.invoke(rods)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/create-components-with-same-value/">leetcode page</a>
  */
 fun interface ComponentValue {
-    fun perform(nums: IntArray, edges: Array<IntArray>): Int
+    operator fun invoke(nums: IntArray, edges: Array<IntArray>): Int
 }
 
 class ComponentValueImpl : ComponentValue {
-    override fun perform(nums: IntArray, edges: Array<IntArray>): Int {
+    override operator fun invoke(nums: IntArray, edges: Array<IntArray>): Int {
         val n = nums.size
         val graph: Array<MutableList<Int>> = Array(n) { ArrayList() }
         for (i in 0 until n) {

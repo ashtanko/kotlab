@@ -45,7 +45,7 @@ abstract class TotalCostTest<out T : TotalCost>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `total cost test`(costs: IntArray, k: Int, candidates: Int, expected: Long) {
-        val actual = strategy.perform(costs, k, candidates)
+        val actual = strategy.invoke(costs, k, candidates)
         assertThat(actual).isEqualTo(expected)
     }
 }

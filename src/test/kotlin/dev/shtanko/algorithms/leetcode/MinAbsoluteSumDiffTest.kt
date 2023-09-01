@@ -58,7 +58,7 @@ abstract class MinAbsoluteSumDiffTest<out T : MinAbsoluteSumDiff>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min absolute sum diff test`(nums1: IntArray, nums2: IntArray, expected: Int) {
-        val actual = strategy.perform(nums1, nums2)
+        val actual = strategy.invoke(nums1, nums2)
         assertThat(actual).isEqualTo(expected)
     }
 }

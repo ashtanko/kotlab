@@ -57,7 +57,7 @@ abstract class DailyTemperaturesTest<out T : DailyTemperatures>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `daily temperatures test`(temperatures: IntArray, expected: IntArray) {
-        val actual = strategy.perform(temperatures)
+        val actual = strategy.invoke(temperatures)
         assertThat(actual).isEqualTo(expected)
     }
 }

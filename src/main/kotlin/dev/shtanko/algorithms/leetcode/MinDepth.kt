@@ -25,14 +25,14 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/">leetcode page</a>
  */
 interface MinDepth {
-    fun perform(root: TreeNode?): Int
+    operator fun invoke(root: TreeNode?): Int
 }
 
 /**
  * Approach 1: Depth-First Search (DFS)
  */
 class MinDepthDFS : MinDepth {
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         return dfs(root)
     }
 
@@ -57,7 +57,7 @@ class MinDepthDFS : MinDepth {
  * Approach 2: Breadth-First Search (BFS)
  */
 class MinDepthBFS : MinDepth {
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) {
             return 0
         }

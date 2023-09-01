@@ -70,8 +70,8 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `can merge test`(trees: List<TreeNode>, expected: List<Int>) {
-        val actual = strategy.perform(trees).preorderTraversal()
-        println("$trees ${strategy.perform(trees)}")
+        val actual = strategy.invoke(trees).preorderTraversal()
+        println("$trees ${strategy.invoke(trees)}")
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }

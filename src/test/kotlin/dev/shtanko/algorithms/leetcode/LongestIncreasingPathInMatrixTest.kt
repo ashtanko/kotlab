@@ -55,7 +55,7 @@ abstract class LongestIncreasingPathInMatrixTest<out T : LongestIncreasingPathIn
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest increasing path test`(matrix: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(matrix)
+        val actual = strategy.invoke(matrix)
         assertThat(actual).isEqualTo(expected)
     }
 }

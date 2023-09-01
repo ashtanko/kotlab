@@ -44,7 +44,7 @@ class BuildArrayWithStackOperationsTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `build an array with stack operations test`(target: IntArray, n: Int, expected: List<String>) {
-        val actual = BuildArrayWithStackOperations().perform(target, n)
+        val actual = BuildArrayWithStackOperations().invoke(target, n)
         assertEquals(expected, actual)
     }
 }

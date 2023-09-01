@@ -55,7 +55,7 @@ abstract class ScheduleCourse3Test<out T : ScheduleCourse3>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `schedule course test`(courses: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(courses)
+        val actual = strategy.invoke(courses)
         assertThat(actual).isEqualTo(expected)
     }
 }

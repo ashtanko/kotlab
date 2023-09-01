@@ -49,7 +49,7 @@ abstract class KidsWithCandiesTest<out T : KidsWithCandiesStrategy>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `kids with candies test`(candies: IntArray, extraCandies: Int, expected: BooleanArray) {
-        val actual = strategy.perform(candies, extraCandies)
+        val actual = strategy.invoke(candies, extraCandies)
         assertArrayEquals(expected, actual)
     }
 }

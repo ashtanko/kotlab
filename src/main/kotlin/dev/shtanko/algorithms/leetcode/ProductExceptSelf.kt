@@ -25,7 +25,7 @@ fun interface ProductExceptSelf {
 }
 
 class ProductExceptSelfArr : ProductExceptSelf {
-    override fun invoke(nums: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray): IntArray {
         val n = nums.size
         val output = IntArray(n)
 
@@ -43,7 +43,7 @@ class ProductExceptSelfArr : ProductExceptSelf {
 }
 
 class ProductExceptSelfDp : ProductExceptSelf {
-    override fun invoke(nums: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray): IntArray {
         val n = nums.size
         val ans = IntArray(n)
         val leftProduct = IntArray(n)
@@ -68,7 +68,7 @@ class ProductExceptSelfDp : ProductExceptSelf {
 }
 
 class ProductExceptSelfDpOpt : ProductExceptSelf {
-    override fun invoke(nums: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray): IntArray {
         val n = nums.size
         val output = IntArray(n)
         output[0] = 1

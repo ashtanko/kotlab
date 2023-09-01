@@ -52,7 +52,7 @@ abstract class CountComponentsTest<out T : CountComponents>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count components test`(n: Int, edges: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(n, edges)
+        val actual = strategy.invoke(n, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -22,14 +22,14 @@ package dev.shtanko.algorithms.leetcode
  *     leetcode page</a>
  */
 interface BSTFromPreorder {
-    fun perform(preorder: IntArray): TreeNode?
+    operator fun invoke(preorder: IntArray): TreeNode?
 }
 
 class BSTFromPreorderRecursion : BSTFromPreorder {
 
     private var i = 0
 
-    override fun perform(preorder: IntArray): TreeNode? {
+    override operator fun invoke(preorder: IntArray): TreeNode? {
         return bstFromPreorder(preorder, Integer.MAX_VALUE)
     }
 

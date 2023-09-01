@@ -38,7 +38,7 @@ abstract class LargestUniqueNumberTest(val strategy: LargestUniqueNumber) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `largest unique number test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

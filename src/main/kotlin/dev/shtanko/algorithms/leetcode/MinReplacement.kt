@@ -25,7 +25,7 @@ fun interface MinReplacement {
 }
 
 class MinReplacementGreedy : MinReplacement {
-    override fun invoke(nums: IntArray): Long {
+    override operator fun invoke(nums: IntArray): Long {
         var answer: Long = 0
         val n: Int = nums.size
 

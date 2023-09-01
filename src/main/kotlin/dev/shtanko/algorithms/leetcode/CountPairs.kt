@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-good-meals/">leetcode page</a>
  */
 interface CountPairs {
-    fun perform(deliciousness: IntArray): Int
+    operator fun invoke(deliciousness: IntArray): Int
 }
 
 class CountPairsTwoSum : CountPairs {
-    override fun perform(deliciousness: IntArray): Int {
+    override operator fun invoke(deliciousness: IntArray): Int {
         val map: MutableMap<Int, Int> = HashMap()
         var res: Long = 0
 

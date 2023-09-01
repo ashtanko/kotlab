@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/possible-bipartition/description/">leetcode page</a>
  */
 interface PossibleBipartition {
-    fun perform(n: Int, dislikes: Array<IntArray>): Boolean
+    operator fun invoke(n: Int, dislikes: Array<IntArray>): Boolean
 }
 
 class PossibleBipartitionDFS : PossibleBipartition {
-    override fun perform(n: Int, dislikes: Array<IntArray>): Boolean {
+    override operator fun invoke(n: Int, dislikes: Array<IntArray>): Boolean {
         val graph: Array<MutableList<Int>> = Array(n + 1) { mutableListOf() }
 
         for (dislike in dislikes) {

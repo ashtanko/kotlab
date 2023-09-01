@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/fair-distribution-of-cookies/">leetcode page</a>
  */
 interface DistributeCookies {
-    fun perform(cookies: IntArray, k: Int): Int
+    operator fun invoke(cookies: IntArray, k: Int): Int
 }
 
 class DistributeCookiesBacktracking : DistributeCookies {
-    override fun perform(cookies: IntArray, k: Int): Int {
+    override operator fun invoke(cookies: IntArray, k: Int): Int {
         val distribute = IntArray(k)
         return dfs(0, distribute, cookies, k, k)
     }

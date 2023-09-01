@@ -57,7 +57,7 @@ abstract class CountingElementsTest<out T : CountingElements>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `counting elements test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }

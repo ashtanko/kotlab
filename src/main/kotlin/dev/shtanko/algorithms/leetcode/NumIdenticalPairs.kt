@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface AbstractNumIdenticalPairs {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 class NumIdenticalPairsNaive : AbstractNumIdenticalPairs {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         var count = 0
         for (i in 0 until arr.size - 1) {
             var j = i + 1
@@ -37,7 +37,7 @@ class NumIdenticalPairsNaive : AbstractNumIdenticalPairs {
 }
 
 class NumIdenticalPairsMap : AbstractNumIdenticalPairs {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val map: MutableMap<Int, Int> = HashMap()
         var count = 0
         for (num in arr) {
@@ -49,7 +49,7 @@ class NumIdenticalPairsMap : AbstractNumIdenticalPairs {
 }
 
 class NumIdenticalPairsSort : AbstractNumIdenticalPairs {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         arr.sort()
         var count = 0
         var i = 0

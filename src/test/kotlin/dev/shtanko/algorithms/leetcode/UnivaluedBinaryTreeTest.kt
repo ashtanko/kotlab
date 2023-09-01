@@ -50,7 +50,7 @@ abstract class UnivaluedBinaryTreeStrategyTest<out T : UnivaluedBinaryTreeStrate
     @MethodSource("dataProvider")
     fun `univalued binary tree test`(testCase: Pair<Boolean, TreeNode>) {
         val (expected, tree) = testCase
-        val actual = strategy.perform(tree)
+        val actual = strategy.invoke(tree)
         assertEquals(expected, actual)
     }
 }

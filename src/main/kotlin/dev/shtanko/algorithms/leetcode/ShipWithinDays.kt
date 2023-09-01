@@ -23,14 +23,14 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/">leetcode page</a>
  */
 interface ShipWithinDays {
-    fun perform(weights: IntArray, days: Int): Int
+    operator fun invoke(weights: IntArray, days: Int): Int
 }
 
 /**
  * BINARY Search
  */
 class ShipWithinDaysBS : ShipWithinDays {
-    override fun perform(weights: IntArray, days: Int): Int {
+    override operator fun invoke(weights: IntArray, days: Int): Int {
         var left = 0
         var right = 0
         for (i in weights) {

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/">leetcode page</a>
  */
 interface MinimumSwap {
-    fun perform(s1: String, s2: String): Int
+    operator fun invoke(s1: String, s2: String): Int
 }
 
 class MinimumSwapSimple : MinimumSwap {
-    override fun perform(s1: String, s2: String): Int {
+    override operator fun invoke(s1: String, s2: String): Int {
         val n: Int = s1.length
         var x = 0
         var y = 0

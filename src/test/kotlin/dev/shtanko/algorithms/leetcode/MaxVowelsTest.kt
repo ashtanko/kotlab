@@ -48,7 +48,7 @@ abstract class MaxVowelsTest<out T : MaxVowels>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max vowels test`(s: String, k: Int, expected: Int) {
-        val actual = strategy.perform(s, k)
+        val actual = strategy.invoke(s, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

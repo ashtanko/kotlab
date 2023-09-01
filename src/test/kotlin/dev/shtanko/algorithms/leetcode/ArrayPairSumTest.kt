@@ -40,7 +40,7 @@ abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `array pair sum test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertThat(actual, equalTo(expected))
     }
 }

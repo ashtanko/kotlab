@@ -24,11 +24,11 @@ import kotlin.math.max
  * https://leetcode.com/problems/longest-valid-parentheses/
  */
 interface LongestValidParenthesesStrategy {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 class LongestValidParenthesesBruteForce : LongestValidParenthesesStrategy {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var maxLen = 0
         for (i in s.indices) {
             var j = i + 2
@@ -59,7 +59,7 @@ class LongestValidParenthesesBruteForce : LongestValidParenthesesStrategy {
 }
 
 class LongestValidParenthesesDP : LongestValidParenthesesStrategy {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var maxAns = 0
         val dp = IntArray(s.length)
         for (i in 1 until s.length) {
@@ -77,7 +77,7 @@ class LongestValidParenthesesDP : LongestValidParenthesesStrategy {
 }
 
 class LongestValidParenthesesStack : LongestValidParenthesesStrategy {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var maxAns = 0
         val stack = Stack<Int>()
         stack.push(-1)
@@ -98,7 +98,7 @@ class LongestValidParenthesesStack : LongestValidParenthesesStrategy {
 }
 
 class LongestValidParenthesesWithoutExtraSpace : LongestValidParenthesesStrategy {
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         var left = 0
         var right = 0
         var maxLength = 0

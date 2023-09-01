@@ -57,7 +57,7 @@ class FindSmallestSetOfVerticesTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find smallest set of vertices test`(n: Int, edges: List<List<Int>>, expected: List<Int>) {
-        val actual = FindSmallestSetOfVertices.perform(n, edges)
+        val actual = FindSmallestSetOfVertices.invoke(n, edges)
         assertThat(actual, equalTo(expected))
     }
 }

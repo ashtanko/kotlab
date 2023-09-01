@@ -43,7 +43,7 @@ abstract class NextGreaterElement1Test<out T : NextGreaterElement1>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `next greater element test`(nums1: IntArray, nums2: IntArray, expected: IntArray) {
-        val actual = strategy.perform(nums1, nums2)
+        val actual = strategy.invoke(nums1, nums2)
         assertThat(actual).isEqualTo(expected)
     }
 }

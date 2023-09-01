@@ -45,7 +45,7 @@ abstract class MinFlipsMonoIncrTest<out T : MinFlipsMonoIncr>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min flips mono incr test`(s: String, expected: Int) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

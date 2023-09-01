@@ -45,7 +45,7 @@ abstract class AlphabetBoardPathTest<out T : AlphabetBoardPath>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `alphabet board path test`(target: String, expected: String) {
-        val actual = strategy.perform(target).toCharArray()
+        val actual = strategy.invoke(target).toCharArray()
         assertThat(actual).containsExactlyInAnyOrder(*expected.toCharArray())
     }
 }

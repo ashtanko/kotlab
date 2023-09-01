@@ -26,7 +26,7 @@ fun interface ExcelSheetColumnTitle {
 
 class ExcelSheetColumnTitleSB : ExcelSheetColumnTitle {
 
-    override fun invoke(columnNumber: Int): String {
+    override operator fun invoke(columnNumber: Int): String {
         val ans = StringBuilder()
         var mun = columnNumber
         while (mun > 0) {

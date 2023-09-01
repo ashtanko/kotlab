@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/odd-even-linked-list/description/">leetcode page</a>
  */
 interface OddEvenList {
-    fun perform(head: ListNode): ListNode
+    operator fun invoke(head: ListNode): ListNode
 }
 
 class OddEvenListImpl : OddEvenList {
-    override fun perform(head: ListNode): ListNode {
+    override operator fun invoke(head: ListNode): ListNode {
         var odd: ListNode? = head
         var even = head.next
         val evenHead = even

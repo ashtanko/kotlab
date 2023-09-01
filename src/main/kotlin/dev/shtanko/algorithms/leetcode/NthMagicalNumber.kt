@@ -21,12 +21,12 @@ import kotlin.math.ceil
 import kotlin.math.min
 
 interface NthMagicalNumberStrategy {
-    fun perform(n: Int, a: Int, b: Int): Int
+    operator fun invoke(n: Int, a: Int, b: Int): Int
 }
 
 class NthMagicalNumberMath : NthMagicalNumberStrategy {
 
-    override fun perform(n: Int, a: Int, b: Int): Int {
+    override operator fun invoke(n: Int, a: Int, b: Int): Int {
         val lcm = a * b / gcd(a, b)
         val cntPerLcm = lcm / a + lcm / b - 1
         val cntLcm = n / cntPerLcm
@@ -39,7 +39,7 @@ class NthMagicalNumberMath : NthMagicalNumberStrategy {
 }
 
 class NthMagicalNumberBS : NthMagicalNumberStrategy {
-    override fun perform(n: Int, a: Int, b: Int): Int {
+    override operator fun invoke(n: Int, a: Int, b: Int): Int {
         val l: Int = a / gcd(a, b) * b
 
         var lo: Long = 0

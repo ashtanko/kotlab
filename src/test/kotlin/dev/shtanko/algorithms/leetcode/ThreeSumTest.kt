@@ -47,7 +47,7 @@ abstract class ThreeSumTest<out T : ThreeSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `three sum test`(nums: IntArray, expected: List<List<Int>>) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual.flatten().sorted(), equalTo(expected.flatten().sorted()))
     }
 }

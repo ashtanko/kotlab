@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/">leetcode page</a>
  */
 interface GetDescentPeriods {
-    fun perform(prices: IntArray): Long
+    operator fun invoke(prices: IntArray): Long
 }
 
 /**
  * O(N) Space
  */
 class GetDescentPeriodsOnePass : GetDescentPeriods {
-    override fun perform(prices: IntArray): Long {
+    override operator fun invoke(prices: IntArray): Long {
         val dp = LongArray(prices.size)
         dp[0] = 1
         var ans: Long = 1
@@ -48,7 +48,7 @@ class GetDescentPeriodsOnePass : GetDescentPeriods {
  * O(1) Space
  */
 class GetDescentPeriodsSimple : GetDescentPeriods {
-    override fun perform(prices: IntArray): Long {
+    override operator fun invoke(prices: IntArray): Long {
         var dp: Long = 1
         var ans: Long = 1
         for (i in 1 until prices.size) {

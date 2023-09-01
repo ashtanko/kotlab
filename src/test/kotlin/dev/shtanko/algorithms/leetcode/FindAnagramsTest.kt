@@ -43,7 +43,7 @@ abstract class FindAnagramsTest<out T : FindAnagrams>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find anagrams test`(s: String, p: String, expected: List<Int>) {
-        val actual = strategy.perform(s, p)
+        val actual = strategy.invoke(s, p)
         assertThat(actual).isEqualTo(expected)
     }
 }

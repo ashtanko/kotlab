@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-all-anagrams-in-a-string/">leetcode page</a>
  */
 interface FindAnagrams {
-    fun perform(s: String, p: String): List<Int>
+    operator fun invoke(s: String, p: String): List<Int>
 }
 
 class FindAnagramsHashTable : FindAnagrams {
-    override fun perform(s: String, p: String): List<Int> {
+    override operator fun invoke(s: String, p: String): List<Int> {
         val list: MutableList<Int> = ArrayList()
         if (p.length > s.length) return list // Base Condition
         val n: Int = s.length // Array1 of s

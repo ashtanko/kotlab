@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * link https://leetcode.com/problems/check-if-number-has-equal-digit-count-and-digit-value/
  */
 interface DigitCount {
-    fun perform(num: String): Boolean
+    operator fun invoke(num: String): Boolean
 }
 
 class DigitCountFreqArray : DigitCount {
-    override fun perform(num: String): Boolean {
+    override operator fun invoke(num: String): Boolean {
         val freq = IntArray(10)
         for (c in num.toCharArray()) {
             freq[c.code - '0'.code]++

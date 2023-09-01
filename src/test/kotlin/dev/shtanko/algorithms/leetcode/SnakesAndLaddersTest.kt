@@ -51,7 +51,7 @@ abstract class SnakesAndLaddersTest<out T : SnakesAndLadders>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `snakes and ladders test`(board: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(board)
+        val actual = strategy.invoke(board)
         assertThat(actual).isEqualTo(expected)
     }
 }

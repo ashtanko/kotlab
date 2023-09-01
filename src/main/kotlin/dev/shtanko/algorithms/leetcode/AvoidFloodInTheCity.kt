@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import java.util.TreeSet
 
 interface AvoidFloodStrategy {
-    fun perform(rains: IntArray): IntArray
+    operator fun invoke(rains: IntArray): IntArray
 }
 
 class AvoidFloodTree : AvoidFloodStrategy {
-    override fun perform(rains: IntArray): IntArray {
+    override operator fun invoke(rains: IntArray): IntArray {
         val full: MutableMap<Int, Int> = HashMap() // last days that is full
 
         val drain: TreeSet<Int> = TreeSet() // storage days to be used for drain
@@ -55,7 +55,7 @@ class AvoidFloodSimple : AvoidFloodStrategy {
 
     private val empty = IntArray(0)
 
-    override fun perform(rains: IntArray): IntArray {
+    override operator fun invoke(rains: IntArray): IntArray {
         val ans = IntArray(rains.size)
         val n: Int = rains.size
         val fullLakes: MutableMap<Int, Int> = HashMap()

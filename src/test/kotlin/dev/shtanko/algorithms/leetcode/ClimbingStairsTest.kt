@@ -45,7 +45,7 @@ abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `climb stairs test`(n: Int, expected: Int) {
-        val actual = strategy.perform(n)
+        val actual = strategy.invoke(n)
         assertEquals(expected, actual)
     }
 }

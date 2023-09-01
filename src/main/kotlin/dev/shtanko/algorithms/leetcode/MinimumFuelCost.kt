@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/minimum-fuel-cost-to-report-to-the-capital/">leetcode page</a>
  */
 interface MinimumFuelCost {
-    fun perform(roads: Array<IntArray>, seats: Int): Long
+    operator fun invoke(roads: Array<IntArray>, seats: Int): Long
 }
 
 class MinimumFuelCostDFS : MinimumFuelCost {
@@ -29,7 +29,7 @@ class MinimumFuelCostDFS : MinimumFuelCost {
     private var ans: Long = 0
     private var s: Int = 0
 
-    override fun perform(roads: Array<IntArray>, seats: Int): Long {
+    override operator fun invoke(roads: Array<IntArray>, seats: Int): Long {
         val graph: MutableList<MutableList<Int>> = ArrayList()
         s = seats
         for (i in 0 until roads.size + 1) {

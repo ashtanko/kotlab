@@ -44,7 +44,7 @@ abstract class VerifyPreorderInBinarySearchTreeTest<out T : VerifyPreorderInBina
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `verify test`(preorder: IntArray, expected: Boolean) {
-        val actual = strategy.perform(preorder)
+        val actual = strategy.invoke(preorder)
         assertEquals(expected, actual)
     }
 }

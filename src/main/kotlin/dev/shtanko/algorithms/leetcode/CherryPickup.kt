@@ -24,7 +24,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/cherry-pickup/">leetcode page</a>
  */
 interface CherryPickup {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 /**
@@ -35,7 +35,7 @@ class CherryPickupTopDown : CherryPickup {
     private lateinit var grid: Array<IntArray>
     var n = 0
 
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         this.grid = grid
         n = grid.size
         memo = Array(n) { Array(n) { IntArray(n) { Int.MIN_VALUE } } }
@@ -75,7 +75,7 @@ class CherryPickupTopDown : CherryPickup {
  * Approach #3: Dynamic Programming (Bottom Up)
  */
 class CherryPickupBottomUp : CherryPickup {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0
         val n: Int = grid.size
         var dp = Array(n) { IntArray(n) { Int.MIN_VALUE } }

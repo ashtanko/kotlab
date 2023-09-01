@@ -61,7 +61,7 @@ abstract class MaxPointsTest<out T : MaxPoints>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max points test`(points: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(points)
+        val actual = strategy.invoke(points)
         assertEquals(expected, actual)
     }
 }

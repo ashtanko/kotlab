@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.PriorityQueue
 
 interface KClosestPointsStrategy {
-    fun perform(points: Array<IntArray>, k: Int): Array<IntArray>
+    operator fun invoke(points: Array<IntArray>, k: Int): Array<IntArray>
 
     fun IntArray.getDistance(): Int {
         return this[0] * this[0] + this[1] * this[1]
@@ -27,7 +27,7 @@ interface KClosestPointsStrategy {
 }
 
 class KClosestPointsQueue : KClosestPointsStrategy {
-    override fun perform(points: Array<IntArray>, k: Int): Array<IntArray> {
+    override operator fun invoke(points: Array<IntArray>, k: Int): Array<IntArray> {
         var n = k
         val heap = PriorityQueue(Comparator<IntArray> { left, right -> right.getDistance() - left.getDistance() })
         for (point in points) {
@@ -41,7 +41,7 @@ class KClosestPointsQueue : KClosestPointsStrategy {
 }
 
 class KClosestPointsSort : KClosestPointsStrategy {
-    override fun perform(points: Array<IntArray>, k: Int): Array<IntArray> {
+    override operator fun invoke(points: Array<IntArray>, k: Int): Array<IntArray> {
         val n = points.size
         val dists = IntArray(n)
         for (i in 0 until n) dists[i] = points[i].getDistance()

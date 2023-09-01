@@ -44,7 +44,7 @@ abstract class MergeIntervalsStrategyTest<out T : MergeIntervalsStrategy>(privat
     @MethodSource("casesProvider")
     fun `merge intervals test`(testCase: Pair<Array<IntArray>, Array<IntArray>>) {
         val (intervals, expected) = testCase
-        val actual = strategy.perform(intervals)
+        val actual = strategy.invoke(intervals)
         assertArrayEquals(expected, actual)
     }
 }

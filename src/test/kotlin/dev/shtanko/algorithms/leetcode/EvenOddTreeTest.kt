@@ -73,7 +73,7 @@ abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `even odd tree test`(root: TreeNode, expected: Boolean) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertEquals(expected, actual)
     }
 }

@@ -84,7 +84,7 @@ abstract class FibonacciNumberTest<out T : FibonacciStrategy>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `fibonacci test`(n: Int, expected: Long) {
-        val actual = strategy.perform(n)
+        val actual = strategy.invoke(n)
         assertEquals(expected, actual)
     }
 }

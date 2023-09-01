@@ -51,7 +51,7 @@ abstract class New21GameTest<out T : New21Game>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `new 21 game test`(n: Int, k: Int, maxPts: Int, expected: Double) {
-        val actual = strategy.perform(n, k, maxPts)
+        val actual = strategy.invoke(n, k, maxPts)
         assertThat(actual).isEqualTo(expected)
     }
 }

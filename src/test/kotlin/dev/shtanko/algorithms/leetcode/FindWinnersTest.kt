@@ -63,7 +63,7 @@ abstract class FindWinnersTest<out T : FindWinners>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find winners test`(matches: Array<IntArray>, expected: List<List<Int>>) {
-        val actual = strategy.perform(matches)
+        val actual = strategy.invoke(matches)
         assertThat(actual).isEqualTo(expected)
     }
 }

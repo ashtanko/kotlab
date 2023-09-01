@@ -21,12 +21,12 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/total-appeal-of-a-string/">leetcode page</a>
  */
 fun interface AppealSum {
-    fun perform(s: String): Long
+    operator fun invoke(s: String): Long
 }
 
 class AppealSumDP : AppealSum {
 
-    override fun perform(s: String): Long {
+    override operator fun invoke(s: String): Long {
         var res: Long = 0
         var cur: Long = 0
         val prev = LongArray(ALPHABET_LETTERS_COUNT)
@@ -40,7 +40,7 @@ class AppealSumDP : AppealSum {
 }
 
 class AppealSumDPKt : AppealSum {
-    override fun perform(s: String): Long {
+    override operator fun invoke(s: String): Long {
         var cur: Long = 0
         val prev = LongArray(ALPHABET_LETTERS_COUNT)
         return s.mapIndexed { index, c ->

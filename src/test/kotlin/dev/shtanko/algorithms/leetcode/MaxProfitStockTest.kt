@@ -41,7 +41,7 @@ abstract class MaxProfitStockTest<out T : MaxProfitStock>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max profit test`(prices: IntArray, expected: Int) {
-        val actual = strategy.perform(prices)
+        val actual = strategy.invoke(prices)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -45,7 +45,7 @@ abstract class FindUniqueBinaryStringTest<out T : FindUniqueBinaryString>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find different binary string test`(nums: Array<String>, expected: String) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

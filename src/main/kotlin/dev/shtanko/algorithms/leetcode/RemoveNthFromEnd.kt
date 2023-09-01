@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">leetcode page</a>
  */
 interface RemoveNthFromEnd {
-    fun perform(head: ListNode?, n: Int): ListNode?
+    operator fun invoke(head: ListNode?, n: Int): ListNode?
 }
 
 /**
@@ -30,7 +30,7 @@ interface RemoveNthFromEnd {
  * Space complexity : O(1)
  */
 class RemoveNthFromEndTwoPass : RemoveNthFromEnd {
-    override fun perform(head: ListNode?, n: Int): ListNode? {
+    override operator fun invoke(head: ListNode?, n: Int): ListNode? {
         val dummy = ListNode(0)
         dummy.next = head
         var length = 0
@@ -56,7 +56,7 @@ class RemoveNthFromEndTwoPass : RemoveNthFromEnd {
  * Space complexity : O(1)
  */
 class RemoveNthFromEndOnePass : RemoveNthFromEnd {
-    override fun perform(head: ListNode?, n: Int): ListNode? {
+    override operator fun invoke(head: ListNode?, n: Int): ListNode? {
         val dummy = ListNode(0)
         dummy.next = head
         var first: ListNode? = dummy

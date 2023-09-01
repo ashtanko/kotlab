@@ -24,11 +24,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/remove-stones-to-minimize-the-total/">leetcode page</a>
  */
 interface MinStoneSum {
-    fun perform(piles: IntArray, k: Int): Int
+    operator fun invoke(piles: IntArray, k: Int): Int
 }
 
 class MinStoneSumHeap : MinStoneSum {
-    override fun perform(piles: IntArray, k: Int): Int {
+    override operator fun invoke(piles: IntArray, k: Int): Int {
         val pq: PriorityQueue<Int> = PriorityQueue { a, b -> b - a }
         var res = 0
         piles.forEach {
@@ -45,7 +45,7 @@ class MinStoneSumHeap : MinStoneSum {
 }
 
 class MinStoneSumFast : MinStoneSum {
-    override fun perform(piles: IntArray, k: Int): Int {
+    override operator fun invoke(piles: IntArray, k: Int): Int {
         val frequency = IntArray(FREQ)
         var max = -1
         for (p in piles) {

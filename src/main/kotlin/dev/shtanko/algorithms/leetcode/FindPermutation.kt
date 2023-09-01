@@ -22,7 +22,7 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/find-permutation/">leetcode page</a>
  */
 interface FindPermutation {
-    fun perform(s: String): IntArray
+    operator fun invoke(s: String): IntArray
 }
 
 /**
@@ -31,7 +31,7 @@ interface FindPermutation {
  * Space complexity : O(n).
  */
 class FindPermutationStack : FindPermutation {
-    override fun perform(s: String): IntArray {
+    override operator fun invoke(s: String): IntArray {
         val res = IntArray(s.length + 1)
         val stack: Stack<Int> = Stack()
         var j = 0
@@ -59,7 +59,7 @@ class FindPermutationStack : FindPermutation {
  * Space complexity : O(1).
  */
 class FindPermutationReversing : FindPermutation {
-    override fun perform(s: String): IntArray {
+    override operator fun invoke(s: String): IntArray {
         val res = IntArray(s.length + 1)
         for (i in res.indices) res[i] = i + 1
         var i = 1
@@ -79,7 +79,7 @@ class FindPermutationReversing : FindPermutation {
  * Space complexity : O(1).
  */
 class FindPermutationTwoPointers : FindPermutation {
-    override fun perform(s: String): IntArray {
+    override operator fun invoke(s: String): IntArray {
         val res = IntArray(s.length + 1)
         res[0] = 1
         var i = 1

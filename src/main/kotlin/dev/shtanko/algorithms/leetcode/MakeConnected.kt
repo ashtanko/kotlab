@@ -24,7 +24,7 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/number-of-operations-to-make-network-connected/">leetcode page</a>
  */
 interface MakeConnected {
-    fun perform(n: Int, connections: Array<IntArray>): Int
+    operator fun invoke(n: Int, connections: Array<IntArray>): Int
 
     fun findParent(parent: IntArray, i: Int): Int {
         var i0 = i
@@ -37,7 +37,7 @@ interface MakeConnected {
  * ✔️ Solution 1a: Naive Union-Find ~ 23ms
  */
 class MakeConnectedNaiveUnionFind : MakeConnected {
-    override fun perform(n: Int, connections: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, connections: Array<IntArray>): Int {
         if (connections.size < n - 1) return -1 // To connect all nodes need at least n-1 edges
         val parent = IntArray(n)
         for (i in 0 until n) parent[i] = i
@@ -58,7 +58,7 @@ class MakeConnectedNaiveUnionFind : MakeConnected {
  * ✔️ Solution 1c: Union-Find with Path Compression and Union by Size ~ 3ms
  */
 class UnionBySizeMakeConnected : MakeConnected {
-    override fun perform(n: Int, connections: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, connections: Array<IntArray>): Int {
         if (connections.size < n - 1) return -1 // to connect all nodes need at least n-1 edges
 
         val parent = IntArray(n)
@@ -90,7 +90,7 @@ class UnionBySizeMakeConnected : MakeConnected {
  * ✔️ Solution 2: DFS ~ 11ms
  */
 class MakeConnectedDFS : MakeConnected {
-    override fun perform(n: Int, connections: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, connections: Array<IntArray>): Int {
         if (connections.size < n - 1) return -1 // To connect all nodes need at least n-1 edges
 
         val graph: Array<MutableList<Int>> = Array(n) { mutableListOf() }
@@ -119,7 +119,7 @@ class MakeConnectedDFS : MakeConnected {
  * ✔️ Solution 3: BFS ~ 12ms
  */
 class MakeConnectedBFS : MakeConnected {
-    override fun perform(n: Int, connections: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, connections: Array<IntArray>): Int {
         if (connections.size < n - 1) {
             return -1 // To connect all nodes need at least n-1 edges
         }

@@ -26,7 +26,7 @@ import kotlin.math.min
 private const val LIMIT = 101
 
 interface ProfitableSchemes {
-    fun perform(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int
+    operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int
 }
 
 /**
@@ -35,7 +35,7 @@ interface ProfitableSchemes {
 class ProfitableSchemesTopDown : ProfitableSchemes {
     private val memo = Array(LIMIT) { Array(LIMIT) { IntArray(LIMIT) { -1 } } }
 
-    override fun perform(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
+    override operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
         return find(0, 0, 0, n, minProfit, group, profits)
     }
 
@@ -71,7 +71,7 @@ class ProfitableSchemesBottomUp : ProfitableSchemes {
 
     private val dp = Array(LIMIT) { Array(LIMIT) { IntArray(LIMIT) } }
 
-    override fun perform(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
+    override operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
         // Initializing the base case.
         for (count in 0..n) {
             dp[group.size][count][minProfit] = 1
@@ -96,7 +96,7 @@ class ProfitableSchemesBottomUp : ProfitableSchemes {
 }
 
 class ProfitableSchemesDP : ProfitableSchemes {
-    override fun perform(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
+    override operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
         val dp = Array(n + 1) { IntArray(minProfit + 1) }
         dp[0][0] = 1
         for (i in group.indices) {

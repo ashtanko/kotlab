@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/maximum-score-words-formed-by-letters/">leetcode page</a>
  */
 interface MaxScoreWords {
-    fun perform(words: Array<String>, letters: CharArray, score: IntArray): Int
+    operator fun invoke(words: Array<String>, letters: CharArray, score: IntArray): Int
 }
 
 class MaxScoreWordsBacktracking : MaxScoreWords {
-    override fun perform(words: Array<String>, letters: CharArray, score: IntArray): Int {
+    override operator fun invoke(words: Array<String>, letters: CharArray, score: IntArray): Int {
         if (words.isEmpty() || letters.isEmpty() || score.isEmpty()) return 0
         val count = IntArray(score.size)
         for (ch in letters) {
@@ -59,7 +59,7 @@ class MaxScoreWordsBacktracking : MaxScoreWords {
 }
 
 class MaxScoreWordsDFS : MaxScoreWords {
-    override fun perform(words: Array<String>, letters: CharArray, score: IntArray): Int {
+    override operator fun invoke(words: Array<String>, letters: CharArray, score: IntArray): Int {
         val memo = IntArray(ALPHABET_LETTERS_COUNT)
         for (l in letters) {
             memo[l.code - 'a'.code]++

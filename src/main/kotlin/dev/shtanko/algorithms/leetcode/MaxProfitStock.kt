@@ -24,11 +24,11 @@ import kotlin.math.max
  *     leetcode page</a>
  */
 interface MaxProfitStock {
-    fun perform(prices: IntArray): Int
+    operator fun invoke(prices: IntArray): Int
 }
 
 class MaxProfitStockImpl : MaxProfitStock {
-    override fun perform(prices: IntArray): Int {
+    override operator fun invoke(prices: IntArray): Int {
         var coolDown = 0
         var sell = 0
         var hold = Int.MIN_VALUE

@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/generate-parentheses/">leetcode page</a>
  */
 interface GenerateParentheses {
-    fun perform(n: Int): List<String>
+    operator fun invoke(n: Int): List<String>
 }
 
 /**
  * Approach 1: Brute Force
  */
 class GenerateParenthesesBruteForce : GenerateParentheses {
-    override fun perform(n: Int): List<String> {
+    override operator fun invoke(n: Int): List<String> {
         val combinations: MutableList<String> = ArrayList()
         generateAll(CharArray(2 * n), 0, combinations)
         return combinations
@@ -59,7 +59,7 @@ class GenerateParenthesesBruteForce : GenerateParentheses {
  * Approach 2: Backtracking
  */
 class GenerateParenthesesBacktracking : GenerateParentheses {
-    override fun perform(n: Int): List<String> {
+    override operator fun invoke(n: Int): List<String> {
         val ans: MutableList<String> = ArrayList()
         backtrack(ans, "", 0, 0, n)
         return ans
@@ -79,12 +79,12 @@ class GenerateParenthesesBacktracking : GenerateParentheses {
  * Approach 3: Closure Number
  */
 class GenerateParenthesesClosureNumber : GenerateParentheses {
-    override fun perform(n: Int): List<String> {
+    override operator fun invoke(n: Int): List<String> {
         val ans: MutableList<String> = ArrayList()
         if (n == 0) {
             ans.add("")
         } else {
-            for (c in 0 until n) for (left in perform(c)) for (right in perform(n - 1 - c)) ans.add(
+            for (c in 0 until n) for (left in invoke(c)) for (right in invoke(n - 1 - c)) ans.add(
                 "($left)$right",
             )
         }

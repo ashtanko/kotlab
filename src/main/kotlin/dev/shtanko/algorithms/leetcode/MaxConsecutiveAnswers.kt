@@ -27,14 +27,14 @@ private const val SYMBOL_F = 'F'
  * @see <a href="https://leetcode.com/problems/maximize-the-confusion-of-an-exam/">leetcode page</a>
  */
 interface MaxConsecutiveAnswers {
-    fun perform(answerKey: String, k: Int): Int
+    operator fun invoke(answerKey: String, k: Int): Int
 }
 
 /**
  * Approach 1: Binary Search + Fixed Size Sliding Window
  */
 class MaxConsecutiveAnswersBS : MaxConsecutiveAnswers {
-    override fun perform(answerKey: String, k: Int): Int {
+    override operator fun invoke(answerKey: String, k: Int): Int {
         val n: Int = answerKey.length
         var left = k
         var right = n
@@ -78,7 +78,7 @@ class MaxConsecutiveAnswersBS : MaxConsecutiveAnswers {
  * Approach 2: Sliding Window
  */
 class MaxConsecutiveAnswersSlidingWindow : MaxConsecutiveAnswers {
-    override fun perform(answerKey: String, k: Int): Int {
+    override operator fun invoke(answerKey: String, k: Int): Int {
         var maxSize = k
         val count: MutableMap<Char, Int> = HashMap()
         for (i in 0 until k) {
@@ -103,7 +103,7 @@ class MaxConsecutiveAnswersSlidingWindow : MaxConsecutiveAnswers {
  * Approach 3: Advanced Sliding Window
  */
 class MaxConsecutiveAnswersSlidingWindow2 : MaxConsecutiveAnswers {
-    override fun perform(answerKey: String, k: Int): Int {
+    override operator fun invoke(answerKey: String, k: Int): Int {
         var maxSize = 0
         val count: MutableMap<Char, Int> = HashMap()
 

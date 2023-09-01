@@ -42,7 +42,7 @@ abstract class TagValidatorTest<out T : TagValidatorStrategy>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `tag validator test`(str: String, expected: Boolean) {
-        val actual = strategy.perform(str)
+        val actual = strategy.invoke(str)
         assertEquals(expected, actual)
     }
 }

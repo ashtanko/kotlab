@@ -25,7 +25,7 @@ fun interface CreateBinaryTree {
 }
 
 class CreateBinaryTreeHashMap : CreateBinaryTree {
-    override fun invoke(descriptions: Array<IntArray>): TreeNode? {
+    override operator fun invoke(descriptions: Array<IntArray>): TreeNode? {
         val map = HashMap<Int, TreeNode?>()
         val children: MutableSet<Int> = HashSet()
         for (arr in descriptions) {

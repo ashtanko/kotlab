@@ -23,14 +23,14 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/">leetcode page</a>
  */
 interface LongestSubarray {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
  * Sliding window with at most one 0 inside.
  */
 class LongestSubarraySlidingWindow : LongestSubarray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var i = 0
         var k = 1
         var res = 0
@@ -56,7 +56,7 @@ class LongestSubarraySlidingWindow : LongestSubarray {
  * Sliding window that size doesn't shrink.
  */
 class LongestSubarraySlidingWindow2 : LongestSubarray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var i = 0
         var k = 1
         var j = 0

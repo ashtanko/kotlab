@@ -48,7 +48,7 @@ abstract class ShipWithinDaysTest<out T : ShipWithinDays>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `ship within days test`(weights: IntArray, days: Int, expected: Int) {
-        val actual = strategy.perform(weights, days)
+        val actual = strategy.invoke(weights, days)
         assertThat(actual).isEqualTo(expected)
     }
 }

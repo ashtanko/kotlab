@@ -57,7 +57,7 @@ abstract class LargestPalindromicNumberTest<out T : LargestPalindromicNumber>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `largest palindromic test`(num: String, expected: String) {
-        val actual = strategy.perform(num)
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

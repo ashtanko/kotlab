@@ -31,7 +31,7 @@ fun interface NumMusicPlaylists {
  * Approach 1: Bottom-up Dynamic Programming
  */
 class NumMusicPlaylistsBottomUp : NumMusicPlaylists {
-    override fun invoke(n: Int, goal: Int, k: Int): Int {
+    override operator fun invoke(n: Int, goal: Int, k: Int): Int {
         // Initialize the DP table
         val dp = Array(goal + 1) { LongArray(n + 1) }
         dp[0][0] = 1
@@ -57,7 +57,7 @@ class NumMusicPlaylistsBottomUp : NumMusicPlaylists {
 class NumMusicPlaylistsTopDown : NumMusicPlaylists {
     private lateinit var dp: Array<LongArray>
 
-    override fun invoke(n: Int, goal: Int, k: Int): Int {
+    override operator fun invoke(n: Int, goal: Int, k: Int): Int {
         dp = Array(goal + 1) { LongArray(n + 1) }
         for (row in dp) {
             Arrays.fill(row, -1L)
@@ -93,7 +93,7 @@ class NumMusicPlaylistsCombinatorics : NumMusicPlaylists {
     private lateinit var factorial: LongArray
     private lateinit var invFactorial: LongArray
 
-    override fun invoke(n: Int, goal: Int, k: Int): Int {
+    override operator fun invoke(n: Int, goal: Int, k: Int): Int {
         // Pre-calculate factorials and inverse factorials
         precalculateFactorials(n)
 

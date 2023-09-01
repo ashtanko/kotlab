@@ -75,7 +75,7 @@ abstract class PowerfulIntegersTest<out T : PowerfulIntegers>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max product test`(x: Int, y: Int, bound: Int, expected: List<Int>) {
-        val actual = strategy.perform(x, y, bound)
+        val actual = strategy.invoke(x, y, bound)
         assertThat(actual).isEqualTo(expected)
     }
 }

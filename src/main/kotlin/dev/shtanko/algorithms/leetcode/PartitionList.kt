@@ -25,7 +25,7 @@ fun interface PartitionList {
 }
 
 class PartitionListOnePass : PartitionList {
-    override fun invoke(head: ListNode?, x: Int): ListNode? {
+    override operator fun invoke(head: ListNode?, x: Int): ListNode? {
         val smallerHead = ListNode(0)
         val biggerHead = ListNode(0)
         var smaller: ListNode? = smallerHead

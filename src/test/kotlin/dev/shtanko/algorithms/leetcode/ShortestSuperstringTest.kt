@@ -41,7 +41,7 @@ class ShortestSuperstringTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shortest super string test`(words: Array<String>, expected: String) {
-        val actual = ShortestSuperstring.perform(words)
+        val actual = ShortestSuperstring.invoke(words)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -43,7 +43,7 @@ abstract class MinStoneSumTest<out T : MinStoneSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min stone sum test`(piles: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(piles, k)
+        val actual = strategy.invoke(piles, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-subarrays-with-median-k/">leetcode page</a>
  */
 interface CountSubarrays {
-    fun perform(nums: IntArray, k: Int): Int
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class CountSubarraysMap : CountSubarrays {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         val prefixSumOfBalance: MutableMap<Int, Int> = HashMap()
         prefixSumOfBalance[0] = 1 // Dummy value of 0's frequency is 1.
         var ans = 0

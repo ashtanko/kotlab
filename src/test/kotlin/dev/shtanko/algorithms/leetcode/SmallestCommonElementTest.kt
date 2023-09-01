@@ -64,7 +64,7 @@ abstract class SmallestCommonElementTest<out T : SmallestCommonElement>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `Find Smallest Common Element in All Rows Test`(param: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(param)
+        val actual = strategy.invoke(param)
         assertThat(actual).isEqualTo(expected)
     }
 }

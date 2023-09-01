@@ -27,7 +27,7 @@ fun interface MaximalNetworkRank {
 }
 
 class MaximalNetworkRankInDegree : MaximalNetworkRank {
-    override fun invoke(n: Int, roads: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, roads: Array<IntArray>): Int {
         var maxRank = 0
         val adj: MutableMap<Int, MutableSet<Int>> = HashMap()
         // Construct adjacency list 'adj', where adj[node] stores all nodes connected to 'node'.

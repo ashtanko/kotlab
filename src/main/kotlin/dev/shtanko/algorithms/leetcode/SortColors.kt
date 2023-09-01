@@ -21,11 +21,11 @@ private const val WHITE = 1
 private const val BLUE = 2
 
 interface SortColorsStrategy {
-    fun perform(nums: IntArray)
+    operator fun invoke(nums: IntArray)
 }
 
 class SortColorsOnePass : SortColorsStrategy {
-    override fun perform(nums: IntArray) {
+    override operator fun invoke(nums: IntArray) {
         var p1 = 0
         var p2 = nums.size - 1
         var index = 0
@@ -47,7 +47,7 @@ class SortColorsOnePass : SortColorsStrategy {
 }
 
 class SortColorsTwoPass : SortColorsStrategy {
-    override fun perform(nums: IntArray) {
+    override operator fun invoke(nums: IntArray) {
         var red = 0
         var white = 0
         var blue = 0

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * link https://leetcode.com/problems/keep-multiplying-found-values-by-two/
  */
 interface FindFinalValue {
-    fun perform(nums: IntArray, original: Int): Int
+    operator fun invoke(nums: IntArray, original: Int): Int
 }
 
 class FindFinalValueHashMap : FindFinalValue {
-    override fun perform(nums: IntArray, original: Int): Int {
+    override operator fun invoke(nums: IntArray, original: Int): Int {
         var o = original
         val set = HashSet<Int>()
         for (i in nums) if (i >= o) set.add(i)

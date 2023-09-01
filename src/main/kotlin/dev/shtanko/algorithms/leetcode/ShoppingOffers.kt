@@ -23,11 +23,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/shopping-offers/">leetcode page</a>
  */
 interface ShoppingOffers {
-    fun perform(price: List<Int>, special: List<List<Int>>, needs: List<Int>): Int
+    operator fun invoke(price: List<Int>, special: List<List<Int>>, needs: List<Int>): Int
 }
 
 class ShoppingOffersRecursive : ShoppingOffers {
-    override fun perform(price: List<Int>, special: List<List<Int>>, needs: List<Int>): Int {
+    override operator fun invoke(price: List<Int>, special: List<List<Int>>, needs: List<Int>): Int {
         return backTrace(price, special, needs, 0)
     }
 

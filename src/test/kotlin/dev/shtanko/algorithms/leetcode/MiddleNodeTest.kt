@@ -59,7 +59,7 @@ abstract class MiddleNodeTest<out T : MiddleNode>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `middle node test`(head: ListNode, expected: List<Int>) {
-        val actual = strategy.perform(head)?.toList()
+        val actual = strategy.invoke(head)?.toList()
         assertThat(actual).isEqualTo(expected)
     }
 }

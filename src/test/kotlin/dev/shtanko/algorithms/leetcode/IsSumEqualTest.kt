@@ -51,7 +51,7 @@ abstract class IsSumEqualTest<out T : IsSumEqual>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentProvider::class)
     fun `is sum equal test`(firstWord: String, secondWord: String, targetWord: String, expected: Boolean) {
-        val actual = strategy.perform(firstWord, secondWord, targetWord)
+        val actual = strategy.invoke(firstWord, secondWord, targetWord)
         assertThat(actual).isEqualTo(expected)
     }
 }

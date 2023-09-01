@@ -41,7 +41,7 @@ class FloodFillTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `flood fill test`(image: List<IntArray>, sr: Int, sc: Int, newColor: Int, output: List<IntArray>) {
-        val actual = FloodFill.perform(image.toTypedArray(), sr, sc, newColor)
+        val actual = FloodFill.invoke(image.toTypedArray(), sr, sc, newColor)
         val expected = output.toTypedArray()
         assertArrayEquals(expected, actual)
     }

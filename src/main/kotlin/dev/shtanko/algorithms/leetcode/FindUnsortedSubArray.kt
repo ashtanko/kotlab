@@ -25,7 +25,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/shortest-unsorted-continuous-subarray/">leetcode page</a>
  */
 interface FindUnsortedSubArray {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
@@ -34,7 +34,7 @@ interface FindUnsortedSubArray {
  * Space complexity : O(1)
  */
 class FindUnsortedSubArrayBruteForce : FindUnsortedSubArray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var res: Int = nums.size
         for (i in nums.indices) {
             for (j in i..nums.size) {
@@ -74,7 +74,7 @@ class FindUnsortedSubArrayBruteForce : FindUnsortedSubArray {
  * Space complexity : O(1)
  */
 class FindUnsortedSubArrayBetterBruteForce : FindUnsortedSubArray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var l: Int = nums.size
         var r = 0
         for (i in 0 until nums.size - 1) {
@@ -95,7 +95,7 @@ class FindUnsortedSubArrayBetterBruteForce : FindUnsortedSubArray {
  * Space complexity : O(n)
  */
 class FindUnsortedSubArraySort : FindUnsortedSubArray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val snums = nums.clone().sorted()
         var start = snums.size
         var end = 0
@@ -115,7 +115,7 @@ class FindUnsortedSubArraySort : FindUnsortedSubArray {
  * Space complexity : O(n)
  */
 class FindUnsortedSubArrayStack : FindUnsortedSubArray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val stack: Stack<Int> = Stack<Int>()
         var l: Int = nums.size
         var r = 0
@@ -138,7 +138,7 @@ class FindUnsortedSubArrayStack : FindUnsortedSubArray {
  * Space complexity : O(1)
  */
 class FindUnsortedSubArrayConstSpace : FindUnsortedSubArray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var min = Int.MAX_VALUE
         var max = Int.MIN_VALUE
         var flag = false

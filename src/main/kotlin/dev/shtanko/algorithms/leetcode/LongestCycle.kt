@@ -25,7 +25,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/longest-cycle-in-a-graph/">leetcode page</a>
  */
 interface LongestCycle {
-    fun perform(edges: IntArray): Int
+    operator fun invoke(edges: IntArray): Int
 }
 
 /**
@@ -34,7 +34,7 @@ interface LongestCycle {
 class LongestCycleDFS : LongestCycle {
     private var answer = -1
 
-    override fun perform(edges: IntArray): Int {
+    override operator fun invoke(edges: IntArray): Int {
         val n: Int = edges.size
         val visit = BooleanArray(n)
 
@@ -64,7 +64,7 @@ class LongestCycleDFS : LongestCycle {
  * Approach 2: Kahn's Algorithm
  */
 class LongestCycleKahnsAlgorithm : LongestCycle {
-    override fun perform(edges: IntArray): Int {
+    override operator fun invoke(edges: IntArray): Int {
         val n: Int = edges.size
         val visit = BooleanArray(n)
         val inDegree = IntArray(n)

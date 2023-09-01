@@ -49,7 +49,7 @@ abstract class TriangleTest<out T : Triangle>(private val solution: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum total test`(triangle: List<List<Int>>, expected: Int) {
-        val actual = solution.perform(triangle)
+        val actual = solution.invoke(triangle)
         assertEquals(expected, actual)
     }
 }

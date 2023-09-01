@@ -20,12 +20,12 @@ import java.util.PriorityQueue
 import kotlin.math.max
 
 interface TaskSchedulerStrategy {
-    fun perform(tasks: CharArray, n: Int): Int
+    operator fun invoke(tasks: CharArray, n: Int): Int
 }
 
 class TaskSchedulerSimple : TaskSchedulerStrategy {
 
-    override fun perform(tasks: CharArray, n: Int): Int {
+    override operator fun invoke(tasks: CharArray, n: Int): Int {
         val counter = IntArray(ALPHABET_LETTERS_COUNT)
         var max = 0
         var maxCount = 0
@@ -50,7 +50,7 @@ class TaskSchedulerSimple : TaskSchedulerStrategy {
 }
 
 class TaskSchedulerPriorityQueue : TaskSchedulerStrategy {
-    override fun perform(tasks: CharArray, n: Int): Int {
+    override operator fun invoke(tasks: CharArray, n: Int): Int {
         val map: MutableMap<Char, Int> = HashMap()
         for (i in tasks.indices) {
             map[tasks[i]] =

@@ -51,7 +51,7 @@ abstract class SmallestEquivalentStringTest<out T : SmallestEquivalentString>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `smallest equivalent string test`(s1: String, s2: String, baseStr: String, expected: String) {
-        val actual = strategy.perform(s1, s2, baseStr)
+        val actual = strategy.invoke(s1, s2, baseStr)
         assertThat(actual).isEqualTo(expected)
     }
 }

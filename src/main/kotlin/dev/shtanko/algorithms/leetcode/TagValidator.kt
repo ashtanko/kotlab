@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 
 interface TagValidatorStrategy {
-    fun perform(code: String): Boolean
+    operator fun invoke(code: String): Boolean
 }
 
 class TagValidatorStack : TagValidatorStrategy {
@@ -27,7 +27,7 @@ class TagValidatorStack : TagValidatorStrategy {
     private val stack: Stack<String> = Stack()
     private var containsTag = false
 
-    override fun perform(code: String): Boolean {
+    override operator fun invoke(code: String): Boolean {
         if (code[0] != '<' || code[code.length - 1] != '>') {
             return false
         }
@@ -90,7 +90,7 @@ class TagValidatorStack : TagValidatorStrategy {
 
 class TagValidatorRegex : TagValidatorStrategy {
 
-    override fun perform(code: String): Boolean {
+    override operator fun invoke(code: String): Boolean {
         val st = Stack<String>()
         var i = 0
         while (i < code.length) {

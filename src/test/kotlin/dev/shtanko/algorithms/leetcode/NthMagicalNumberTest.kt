@@ -37,7 +37,7 @@ abstract class NthMagicalNumberTest<out T : NthMagicalNumberStrategy>(private va
     @ParameterizedTest
     @MethodSource("numbersDataProvider")
     fun `nth magical number test`(n: Int, a: Int, b: Int, expected: Int) {
-        val actual = strategy.perform(n, a, b)
+        val actual = strategy.invoke(n, a, b)
         assertEquals(expected, actual)
     }
 }

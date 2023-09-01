@@ -56,7 +56,7 @@ abstract class CountPyramidsTest<out T : CountPyramids>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InoutArgumentsProvider::class)
     fun `count pyramids test`(grid: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(grid)
+        val actual = strategy.invoke(grid)
         assertThat(actual).isEqualTo(expected)
     }
 }

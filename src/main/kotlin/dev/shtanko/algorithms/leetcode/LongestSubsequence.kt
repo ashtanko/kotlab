@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/">leetcode page</a>
  */
 interface LongestSubsequence {
-    fun perform(arr: IntArray, difference: Int): Int
+    operator fun invoke(arr: IntArray, difference: Int): Int
 }
 
 class LongestSubsequenceDP : LongestSubsequence {
-    override fun perform(arr: IntArray, difference: Int): Int {
+    override operator fun invoke(arr: IntArray, difference: Int): Int {
         val map: MutableMap<Int, Int> = HashMap()
         var res = 1
         for (num in arr) {

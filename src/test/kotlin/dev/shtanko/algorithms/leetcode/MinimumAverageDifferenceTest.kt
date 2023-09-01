@@ -41,7 +41,7 @@ abstract class MinimumAverageDifferenceTest<out T : MinimumAverageDifference>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum average difference test`(nums: IntArray, expected: Int) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

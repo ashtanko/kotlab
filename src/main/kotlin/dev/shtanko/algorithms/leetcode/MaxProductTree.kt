@@ -23,13 +23,13 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/description/">leetcode page</a>
  */
 fun interface MaxProductTree {
-    fun perform(root: TreeNode?): Int
+    operator fun invoke(root: TreeNode?): Int
 }
 
 class MaxProductTreeInorder : MaxProductTree {
     private var res = 0
 
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         val sum = allSum(root)
         inorder(root, sum)
         val num1 = res

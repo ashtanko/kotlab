@@ -48,7 +48,7 @@ abstract class CountBallsTest<out T : CountBalls>(private val strategy: T) {
     @ArgumentsSource(InputArgumentsProvider::class)
     @ParameterizedTest
     fun `count balls test`(lowLimit: Int, highLimit: Int, expected: Int) {
-        val actual = strategy.perform(lowLimit, highLimit)
+        val actual = strategy.invoke(lowLimit, highLimit)
         assertThat(actual).isEqualTo(expected)
     }
 }

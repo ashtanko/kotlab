@@ -18,11 +18,11 @@ package dev.shtanko.algorithms.leetcode
 
 // 3Sum Smaller
 interface ThreeSumSmallerStrategy {
-    fun perform(nums: IntArray, target: Int): Int
+    operator fun invoke(nums: IntArray, target: Int): Int
 }
 
 class ThreeSumSmallerBinarySearch : ThreeSumSmallerStrategy {
-    override fun perform(nums: IntArray, target: Int): Int {
+    override operator fun invoke(nums: IntArray, target: Int): Int {
         nums.sort()
         var sum = 0
         for (i in 0 until nums.size - 2) {
@@ -56,7 +56,7 @@ class ThreeSumSmallerBinarySearch : ThreeSumSmallerStrategy {
 }
 
 class ThreeSumSmallerTwoPointers : ThreeSumSmallerStrategy {
-    override fun perform(nums: IntArray, target: Int): Int {
+    override operator fun invoke(nums: IntArray, target: Int): Int {
         nums.sort()
         var sum = 0
         for (i in 0 until nums.size - 2) {

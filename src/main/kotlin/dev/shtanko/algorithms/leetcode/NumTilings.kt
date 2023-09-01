@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/domino-and-tromino-tiling/">leetcode page</a>
  */
 interface NumTilings {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class NumTilingsDP : NumTilings {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val dp = LongArray(n + 2)
         dp[0] = 1; dp[1] = 2
         val dpa = LongArray(n + 2)

@@ -30,7 +30,7 @@ internal fun interface ReorganizeString {
  * Approach 1: Counting and Priority Queue
  */
 class ReorganizeStringPQ : ReorganizeString {
-    override fun invoke(s: String): String {
+    override operator fun invoke(s: String): String {
         val charCounts = IntArray(ALPHABET_LETTERS_COUNT)
         for (c in s.toCharArray()) {
             charCounts[c.code - 'a'.code] = charCounts[c.code - 'a'.code] + 1
@@ -75,7 +75,7 @@ class ReorganizeStringPQ : ReorganizeString {
  * Approach 2: Counting and Odd/Even
  */
 class ReorganizeStringCounting : ReorganizeString {
-    override fun invoke(s: String): String {
+    override operator fun invoke(s: String): String {
         val charCounts = IntArray(ALPHABET_LETTERS_COUNT)
         for (c in s.toCharArray()) {
             charCounts[c.code - 'a'.code]++

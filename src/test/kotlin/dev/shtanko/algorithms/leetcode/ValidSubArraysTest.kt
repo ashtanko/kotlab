@@ -37,7 +37,7 @@ class ValidSubArraysTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `valid sub arrays test`(nums: IntArray, expected: Int) {
-        val actual = ValidSubArrays().perform(nums)
+        val actual = ValidSubArrays().invoke(nums)
         assertEquals(expected, actual)
     }
 }

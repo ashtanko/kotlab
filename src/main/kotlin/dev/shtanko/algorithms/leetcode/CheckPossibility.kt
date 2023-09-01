@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * https://leetcode.com/problems/non-decreasing-array/
  */
 interface CheckPossibility {
-    fun perform(nums: IntArray): Boolean
+    operator fun invoke(nums: IntArray): Boolean
 }
 
 /**
  * Approach: Greedy
  */
 class CheckPossibilityGreedy : CheckPossibility {
-    override fun perform(nums: IntArray): Boolean {
+    override operator fun invoke(nums: IntArray): Boolean {
         var numViolations = 0
         for (i in 1 until nums.size) {
             if (nums[i - 1] > nums[i]) {

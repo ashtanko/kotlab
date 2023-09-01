@@ -41,7 +41,7 @@ abstract class LongestStringChainTest<out T : LongestStringChain>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest string chain test`(words: Array<String>, expected: Int) {
-        val actual = strategy.perform(words)
+        val actual = strategy.invoke(words)
         assertThat(actual).isEqualTo(expected)
     }
 }

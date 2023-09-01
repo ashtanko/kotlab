@@ -80,7 +80,7 @@ abstract class ValidPathInGraphTest<out T : ValidPathInGraph>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InoutArgumentsProvider::class)
     fun `valid path test`(n: Int, edges: Array<IntArray>, source: Int, destination: Int, expected: Boolean) {
-        val actual = strategy.perform(n, edges, source, destination)
+        val actual = strategy.invoke(n, edges, source, destination)
         assertThat(actual).isEqualTo(expected)
     }
 }

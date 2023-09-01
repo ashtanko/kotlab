@@ -27,7 +27,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-knight-moves/solution/">leetcode page</a>
  */
 interface MinimumKnightMoves {
-    fun perform(x: Int, y: Int): Int
+    operator fun invoke(x: Int, y: Int): Int
 
     companion object {
         val offsets = arrayOf(
@@ -47,7 +47,7 @@ interface MinimumKnightMoves {
  * Approach 1: BFS (Breadth-First Search)
  */
 class MinimumKnightMovesBFS : MinimumKnightMoves {
-    override fun perform(x: Int, y: Int): Int {
+    override operator fun invoke(x: Int, y: Int): Int {
         // - Rather than using the inefficient HashSet, we use the bitmap
         //     otherwise we would run out of time for the test cases.
         // - We create a bitmap that is sufficient to cover all the possible
@@ -91,7 +91,7 @@ class MinimumKnightMovesBFS : MinimumKnightMoves {
  * Approach 2: Bidirectional BFS
  */
 class MinimumKnightMovesBidirectional : MinimumKnightMoves {
-    override fun perform(x: Int, y: Int): Int {
+    override operator fun invoke(x: Int, y: Int): Int {
         // data structures needed to move from the origin point
         val originQueue: Deque<IntArray> = LinkedList()
         originQueue.addLast(intArrayOf(0, 0, 0))
@@ -171,7 +171,7 @@ class MinimumKnightMovesMemoization : MinimumKnightMoves {
         }
     }
 
-    override fun perform(x: Int, y: Int): Int {
+    override operator fun invoke(x: Int, y: Int): Int {
         return dfs(abs(x), abs(y))
     }
 }

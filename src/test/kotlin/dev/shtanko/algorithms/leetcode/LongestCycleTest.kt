@@ -41,7 +41,7 @@ abstract class LongestCycleTest<out T : LongestCycle>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest cycle test`(edges: IntArray, expected: Int) {
-        val actual = strategy.perform(edges)
+        val actual = strategy.invoke(edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

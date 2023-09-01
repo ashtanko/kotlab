@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/word-pattern/">leetcode page</a>
  */
 interface WordPattern {
-    fun perform(pattern: String, s: String): Boolean
+    operator fun invoke(pattern: String, s: String): Boolean
 }
 
 class WordPatternSimple : WordPattern {
-    override fun perform(pattern: String, s: String): Boolean {
+    override operator fun invoke(pattern: String, s: String): Boolean {
         val words: Array<String> = s.split(" ").toTypedArray()
         if (words.size != pattern.length) {
             return false

@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 private const val MAX_ARR_SIZE = 500
 
 interface FindLuckyStrategy {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 class FindLuckyStraightForward : FindLuckyStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val cnt = IntArray(MAX_ARR_SIZE + 1)
         for (a in arr) {
             ++cnt[a]
@@ -38,7 +38,7 @@ class FindLuckyStraightForward : FindLuckyStrategy {
 }
 
 class FindLuckyMap : FindLuckyStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val freq: MutableMap<Int, Int> = HashMap()
         for (a in arr) {
             freq[a] = 1 + freq.getOrDefault(a, 0) // Accumulate the occurrence of a.

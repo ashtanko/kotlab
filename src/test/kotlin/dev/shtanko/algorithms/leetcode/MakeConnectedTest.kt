@@ -63,7 +63,7 @@ abstract class MakeConnectedTest<out T : MakeConnected>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `make connection test`(n: Int, connections: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(n, connections)
+        val actual = strategy.invoke(n, connections)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -96,7 +96,7 @@ abstract class AddOneRowToTreeTest<out T : AddOneRowToTree>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `add one row test`(tree: TreeNode, value: Int, depth: Int, expected: TreeNode) {
-        val actual = strategy.perform(tree, value, depth)
+        val actual = strategy.invoke(tree, value, depth)
         assertThat(actual.postOrderTraversal()).isEqualTo(expected.postOrderTraversal())
     }
 }

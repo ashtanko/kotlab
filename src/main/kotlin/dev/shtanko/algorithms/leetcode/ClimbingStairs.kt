@@ -24,11 +24,11 @@ import kotlin.math.sqrt
  * @see <a href="https://leetcode.com/problems/climbing-stairs/description/">leetcode page</a>
  */
 fun interface ClimbingStairsStrategy {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class ClimbingStairsBruteForce : ClimbingStairsStrategy {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         return climbStairs(0, n)
     }
 
@@ -45,7 +45,7 @@ class ClimbingStairsBruteForce : ClimbingStairsStrategy {
 }
 
 class ClimbingStairsRecursionMemo : ClimbingStairsStrategy {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val memo = IntArray(n + 1)
         return climbStairs(0, n, memo)
     }
@@ -66,7 +66,7 @@ class ClimbingStairsRecursionMemo : ClimbingStairsStrategy {
 }
 
 class ClimbingStairsDP : ClimbingStairsStrategy {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n == 1) {
             return 1
         } else if (n == 0) {
@@ -83,7 +83,7 @@ class ClimbingStairsDP : ClimbingStairsStrategy {
 }
 
 class ClimbingStairsFibonacci : ClimbingStairsStrategy {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         if (n == 1) {
             return 1
         }
@@ -99,7 +99,7 @@ class ClimbingStairsFibonacci : ClimbingStairsStrategy {
 }
 
 class ClimbingStairsBinetsMethod : ClimbingStairsStrategy {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val q = arrayOf(intArrayOf(1, 1), intArrayOf(1, 0))
         val res = pow(q, n)
         return res[0][0]
@@ -132,7 +132,7 @@ class ClimbingStairsBinetsMethod : ClimbingStairsStrategy {
 
 class ClimbingStairsFibonacciFormula : ClimbingStairsStrategy {
 
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val sqrt5 = sqrt(FIB_FORMULA_VALUE)
         val firstPart = 1.plus(sqrt5).div(2).pow(n.plus(1).toDouble())
         val secondPart = 1.minus(sqrt5).div(2).pow((n + 1).toDouble())

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-all-good-strings/">leetcode page</a>
  */
 interface FindGoodStrings {
-    fun perform(n: Int, s1: String, s2: String, evil: String): Int
+    operator fun invoke(n: Int, s1: String, s2: String, evil: String): Int
 }
 
 class FindGoodStringsDFS : FindGoodStrings {
-    override fun perform(n: Int, s1: String, s2: String, evil: String): Int {
+    override operator fun invoke(n: Int, s1: String, s2: String, evil: String): Int {
         val dp = IntArray(1 shl BITS) // Need total 17 bits, can check getKey() function
 
         return dfs(

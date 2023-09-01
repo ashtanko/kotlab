@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/">leetcode page</a>
  */
 interface NumSubmatrixSumTarget {
-    fun perform(matrix: Array<IntArray>, target: Int): Int
+    operator fun invoke(matrix: Array<IntArray>, target: Int): Int
 }
 
 /**
@@ -30,7 +30,7 @@ interface NumSubmatrixSumTarget {
  * Space complexity: O(RC)
  */
 class HorizontalPrefixSum : NumSubmatrixSumTarget {
-    override fun perform(matrix: Array<IntArray>, target: Int): Int {
+    override operator fun invoke(matrix: Array<IntArray>, target: Int): Int {
         val r: Int = matrix.size
         val c: Int = matrix[0].size
 
@@ -75,7 +75,7 @@ class HorizontalPrefixSum : NumSubmatrixSumTarget {
  * Space complexity: O(RC)
  */
 class VerticalPrefixSum : NumSubmatrixSumTarget {
-    override fun perform(matrix: Array<IntArray>, target: Int): Int {
+    override operator fun invoke(matrix: Array<IntArray>, target: Int): Int {
         val r: Int = matrix.size
         val c: Int = matrix[0].size
 

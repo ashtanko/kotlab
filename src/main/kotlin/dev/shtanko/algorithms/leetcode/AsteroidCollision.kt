@@ -32,7 +32,7 @@ fun interface AsteroidCollision {
  */
 class AsteroidCollisionStack : AsteroidCollision {
 
-    override fun invoke(asteroids: IntArray): IntArray {
+    override operator fun invoke(asteroids: IntArray): IntArray {
         val st: Stack<Int> = Stack<Int>()
 
         for (asteroid in asteroids) {

@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 
 interface ConstructStringFromBinaryTreeStrategy {
-    fun perform(t: TreeNode?): String
+    operator fun invoke(t: TreeNode?): String
 }
 
 class ConstructStringFromBinaryTreeRecursion : ConstructStringFromBinaryTreeStrategy {
-    override fun perform(t: TreeNode?): String {
+    override operator fun invoke(t: TreeNode?): String {
         if (t == null) {
             return ""
         }
@@ -32,8 +32,8 @@ class ConstructStringFromBinaryTreeRecursion : ConstructStringFromBinaryTreeStra
         }
         val leftFormat = "%s(%s)"
         val leftToRightValueFormat = "%s(%s)(%s)"
-        val leftValue = String.format(leftFormat, "${t.value}", perform(t.left))
-        val leftToRightValue = String.format(leftToRightValueFormat, "${t.value}", perform(t.left), perform(t.right))
+        val leftValue = String.format(leftFormat, "${t.value}", invoke(t.left))
+        val leftToRightValue = String.format(leftToRightValueFormat, "${t.value}", invoke(t.left), invoke(t.right))
         return if (t.right == null) {
             leftValue
         } else {
@@ -43,7 +43,7 @@ class ConstructStringFromBinaryTreeRecursion : ConstructStringFromBinaryTreeStra
 }
 
 class ConstructStringFromBinaryTreeStack : ConstructStringFromBinaryTreeStrategy {
-    override fun perform(t: TreeNode?): String {
+    override operator fun invoke(t: TreeNode?): String {
         var tree: TreeNode? = t ?: return ""
         val stack: Stack<TreeNode> = Stack()
         stack.push(tree)

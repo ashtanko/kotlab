@@ -71,7 +71,7 @@ abstract class FindCheapestPriceTest<out T : FindCheapestPrice>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find cheapest price test`(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int, expected: Int) {
-        val actual = strategy.perform(n, flights, src, dst, k)
+        val actual = strategy.invoke(n, flights, src, dst, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -26,14 +26,14 @@ import kotlin.math.sqrt
  * @see <a href="https://leetcode.com/problems/fibonacci-number/">leetcode page</a>
  */
 interface FibonacciStrategy {
-    fun perform(n: Int): Long
+    operator fun invoke(n: Int): Long
 }
 
 /**
  * Solution 1: Iterative
  */
 class FibonacciIterative : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         var n1: Long = n.toLong()
         if (n1 <= 1) return n1
         var a = 0
@@ -52,16 +52,16 @@ class FibonacciIterative : FibonacciStrategy {
  * Solution 2: Recursive
  */
 class FibonacciRecursion : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
-        return perform(n - 1) + perform(n - 2)
+        return invoke(n - 1) + invoke(n - 2)
     }
 }
 
 class FibonacciOptimizedRecursion : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         return fibonacciAt(n)
     }
 }
@@ -70,7 +70,7 @@ class FibonacciOptimizedRecursion : FibonacciStrategy {
  * Solution 4: Dynamic Programming - Bottom Up Approach
  */
 class FibonacciBottomUp : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
@@ -94,7 +94,7 @@ class FibonacciTopDown : FibonacciStrategy {
 
     private val cache = arrayOfNulls<Long>(60)
 
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
@@ -113,7 +113,7 @@ class FibonacciTopDown : FibonacciStrategy {
 }
 
 class FibonacciIterativeTopDown : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
@@ -135,7 +135,7 @@ class FibonacciIterativeTopDown : FibonacciStrategy {
 }
 
 class FibonacciMatrixExponentiation : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
@@ -171,7 +171,7 @@ class FibonacciMatrixExponentiation : FibonacciStrategy {
 
 class FibonacciMath : FibonacciStrategy {
 
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         val goldenRatio = 1.plus(sqrt(GOLDEN_RATIO_VALUE)) / 2
         return goldenRatio.pow(n).div(sqrt(GOLDEN_RATIO_VALUE)).roundToLong()
     }

@@ -66,7 +66,7 @@ abstract class PalindromePartitioningTest<out T : PalindromePartitioning>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `partition test`(s: String, expected: List<List<String>>) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).containsAll(expected)
     }
 }

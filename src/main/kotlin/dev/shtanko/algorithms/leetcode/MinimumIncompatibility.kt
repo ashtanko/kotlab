@@ -23,7 +23,7 @@ import kotlin.math.min
  * link https://leetcode.com/problems/minimum-incompatibility/
  */
 interface MinimumIncompatibility {
-    fun perform(nums: IntArray, k: Int): Int
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class MinimumIncompatibilityDFS : MinimumIncompatibility {
@@ -32,7 +32,7 @@ class MinimumIncompatibilityDFS : MinimumIncompatibility {
     private val memo: MutableMap<String, Int> = HashMap()
     private var k0 = 0
 
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         nums.sort()
         k0 = k
         val count = IntArray(LIMIT)

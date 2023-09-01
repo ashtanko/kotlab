@@ -26,7 +26,7 @@ private const val BOARD_MAX_SIZE = 8
  * @see <a href="https://leetcode.com/problems/available-captures-for-rook/">leetcode page</a>
  */
 interface NumRookCaptures {
-    fun perform(board: Array<CharArray>): Int
+    operator fun invoke(board: Array<CharArray>): Int
 }
 
 /**
@@ -35,7 +35,7 @@ interface NumRookCaptures {
  * Space O(1)
  */
 class NumRookCapturesSF : NumRookCaptures {
-    override fun perform(board: Array<CharArray>): Int {
+    override operator fun invoke(board: Array<CharArray>): Int {
         var x0 = 0
         var y0 = 0
         var res = 0
@@ -67,7 +67,7 @@ class NumRookCapturesSF : NumRookCaptures {
  * Memory: O(1)
  */
 class NumRookCapturesSearch : NumRookCaptures {
-    override fun perform(board: Array<CharArray>): Int {
+    override operator fun invoke(board: Array<CharArray>): Int {
         for (i in board.indices) {
             for (j in board[i].indices) {
                 if (board[i][j] == ROOK) {

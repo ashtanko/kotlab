@@ -45,7 +45,7 @@ abstract class ReverseOnlyLettersTest<out T : ReverseOnlyLetters>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `reverse only letters test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

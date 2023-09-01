@@ -63,7 +63,7 @@ abstract class BinaryTreeCamerasTest<out T : BinaryTreeCamerasStrategy>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `binary tree cameras test`(root: TreeNode, expected: Int) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertEquals(expected, actual)
     }
 }

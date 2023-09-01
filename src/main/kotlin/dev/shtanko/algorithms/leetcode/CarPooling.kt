@@ -32,7 +32,7 @@ class ThousandOneStops : CarPooling {
         private const val STOPS = 1001
     }
 
-    override fun invoke(trips: Array<IntArray>, capacity: Int): Boolean {
+    override operator fun invoke(trips: Array<IntArray>, capacity: Int): Boolean {
         val nums = IntArray(STOPS)
         for (trip in trips) {
             if (trip.isEmpty()) return false
@@ -48,7 +48,7 @@ class ThousandOneStops : CarPooling {
 }
 
 class CarPoolingMeetingRoom : CarPooling {
-    override fun invoke(trips: Array<IntArray>, capacity: Int): Boolean {
+    override operator fun invoke(trips: Array<IntArray>, capacity: Int): Boolean {
         var c = capacity
         val m: MutableMap<Int, Int> = TreeMap()
         for (t in trips) {
@@ -67,7 +67,7 @@ class CarPoolingMeetingRoom : CarPooling {
 }
 
 class CarPoolingInterval : CarPooling {
-    override fun invoke(trips: Array<IntArray>, capacity: Int): Boolean {
+    override operator fun invoke(trips: Array<IntArray>, capacity: Int): Boolean {
         if (trips.isEmpty() || capacity == 0) return false
         trips.sortWith(compareBy({ it[1] }, { it[2] }))
         val pq = PriorityQueue<IntArray>(compareBy({ it.first() }, { it.last() })).apply {
@@ -91,7 +91,7 @@ class CarPoolingStream : CarPooling {
         private const val STOPS = 1001
     }
 
-    override fun invoke(trips: Array<IntArray>, capacity: Int): Boolean {
+    override operator fun invoke(trips: Array<IntArray>, capacity: Int): Boolean {
         val count = IntArray(STOPS)
         for (t in trips) {
             if (t.isEmpty()) return false

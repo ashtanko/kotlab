@@ -23,14 +23,14 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/number-of-longest-increasing-subsequence/">leetcode page</a>
  */
 interface FindNumOfLIS {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
  * Approach 1: Bottom-up Dynamic Programming
  */
 class FindNumOfLISBottomUp : FindNumOfLIS {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         val length = IntArray(n) { 1 }
         val count = IntArray(n) { 1 }
@@ -70,7 +70,7 @@ class FindNumOfLISBottomUp : FindNumOfLIS {
  * Approach 2: Top-down Dynamic Programming (Memoization)
  */
 class FindNumOfLISTopDown : FindNumOfLIS {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         val length = IntArray(n)
         val count = IntArray(n)

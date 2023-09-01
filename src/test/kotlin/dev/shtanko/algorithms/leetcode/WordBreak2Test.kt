@@ -49,7 +49,7 @@ abstract class WordBreak2Test<out T : WordBreak2>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `word break test`(s: String, wordDict: List<String>, expected: List<String>) {
-        val actual = strategy.perform(s, wordDict)
+        val actual = strategy.invoke(s, wordDict)
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }

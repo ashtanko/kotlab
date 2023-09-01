@@ -25,11 +25,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-absolute-sum-difference/">leetcode page</a>
  */
 fun interface MinAbsoluteSumDiff {
-    fun perform(nums1: IntArray, nums2: IntArray): Int
+    operator fun invoke(nums1: IntArray, nums2: IntArray): Int
 }
 
 class MinAbsoluteSumDiffSimple : MinAbsoluteSumDiff {
-    override fun perform(nums1: IntArray, nums2: IntArray): Int {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): Int {
         var res: Long = 0
         var maxIdx = -1
         var maxDiff = Int.MIN_VALUE
@@ -53,7 +53,7 @@ class MinAbsoluteSumDiffSimple : MinAbsoluteSumDiff {
 }
 
 class MinAbsoluteSumDiffBinarySearch : MinAbsoluteSumDiff {
-    override fun perform(nums1: IntArray, nums2: IntArray): Int {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): Int {
         var total = 0
         var best = 0
         val n = nums1.size
@@ -93,7 +93,7 @@ class MinAbsoluteSumDiffBinarySearch : MinAbsoluteSumDiff {
 }
 
 class MinAbsoluteSumDiffBinarySearch2 : MinAbsoluteSumDiff {
-    override fun perform(nums1: IntArray, nums2: IntArray): Int {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): Int {
         val len: Int = nums1.size
         var sum: Long = 0
         val diffArray = IntArray(len)

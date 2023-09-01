@@ -24,7 +24,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/">leetcode page</a>
  */
 interface MaxValue2 {
-    fun perform(events: Array<IntArray>, k: Int): Int
+    operator fun invoke(events: Array<IntArray>, k: Int): Int
 }
 
 /**
@@ -33,7 +33,7 @@ interface MaxValue2 {
 class MaxValue2TopDown : MaxValue2 {
     private lateinit var dp: Array<IntArray>
 
-    override fun perform(events: Array<IntArray>, k: Int): Int {
+    override operator fun invoke(events: Array<IntArray>, k: Int): Int {
         events.sortWith { a: IntArray, b: IntArray -> a[0] - b[0] }
 
         val n = events.size
@@ -68,7 +68,7 @@ class MaxValue2TopDown : MaxValue2 {
  * Approach 2: Bottom-up Dynamic Programming + Binary Search
  */
 class MaxValue2BottomUp : MaxValue2 {
-    override fun perform(events: Array<IntArray>, k: Int): Int {
+    override operator fun invoke(events: Array<IntArray>, k: Int): Int {
         val n: Int = events.size
         val dp = Array(k + 1) { IntArray(n + 1) }
         events.sortWith { a: IntArray, b: IntArray -> a[0] - b[0] }
@@ -90,7 +90,7 @@ class MaxValue2TopDownBS : MaxValue2 {
     private lateinit var dp: Array<IntArray>
     private lateinit var nextIndices: IntArray
 
-    override fun perform(events: Array<IntArray>, k: Int): Int {
+    override operator fun invoke(events: Array<IntArray>, k: Int): Int {
         events.sortWith { a: IntArray, b: IntArray -> a[0] - b[0] }
         val n = events.size
         nextIndices = IntArray(n)
@@ -126,7 +126,7 @@ class MaxValue2TopDownBS : MaxValue2 {
 class MaxValue2SimpleTopDown : MaxValue2 {
     lateinit var dp: Array<IntArray>
 
-    override fun perform(events: Array<IntArray>, k: Int): Int {
+    override operator fun invoke(events: Array<IntArray>, k: Int): Int {
         Arrays.sort(
             events,
         ) { a: IntArray, b: IntArray -> a[0] - b[0] }

@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/powx-n/">leetcode page</a>
  */
 interface Pow {
-    fun perform(x: Double, n: Int): Double
+    operator fun invoke(x: Double, n: Int): Double
 }
 
 /**
@@ -30,7 +30,7 @@ interface Pow {
  * Space complexity : O(1).
  */
 class PowBruteForce : Pow {
-    override fun perform(x: Double, n: Int): Double {
+    override operator fun invoke(x: Double, n: Int): Double {
         var a = n.toLong()
         var b = x
         if (a < 0) {
@@ -51,7 +51,7 @@ class PowBruteForce : Pow {
  * Space complexity : O(log n).
  */
 class PowFastRecursive : Pow {
-    override fun perform(x: Double, n: Int): Double {
+    override operator fun invoke(x: Double, n: Int): Double {
         var a = n.toLong()
         var b = x
         if (a < 0) {
@@ -81,7 +81,7 @@ class PowFastRecursive : Pow {
  * Space complexity : O(1).
  */
 class PowFastIterative : Pow {
-    override fun perform(x: Double, n: Int): Double {
+    override operator fun invoke(x: Double, n: Int): Double {
         var a = n.toLong()
         var b = x
         if (a < 0) {

@@ -27,7 +27,7 @@ fun interface KthSmallestPath {
 }
 
 class KthSmallestPathImpl : KthSmallestPath {
-    override fun invoke(destination: IntArray, k: Int): String {
+    override operator fun invoke(destination: IntArray, k: Int): String {
         if (destination.isEmpty()) return ""
         val ti = destination.first()
         val tj = destination.second()

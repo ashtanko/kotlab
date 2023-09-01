@@ -57,7 +57,7 @@ abstract class FindDuplicateNumberTest<out T : FindDuplicateNumber>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find duplicate number in array test`(nums: IntArray, expected: Int) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

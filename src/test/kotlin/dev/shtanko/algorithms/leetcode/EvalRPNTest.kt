@@ -53,7 +53,7 @@ abstract class EvalRPNTest<out T : EvalRPN>(private val solution: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `eval RPN test`(tokens: Array<String>, expected: Int) {
-        val actual = solution.perform(tokens)
+        val actual = solution.invoke(tokens)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -61,7 +61,7 @@ abstract class MaxValue2Test<out T : MaxValue2>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max value test`(events: Array<IntArray>, k: Int, expected: Int) {
-        val actual = strategy.perform(events, k)
+        val actual = strategy.invoke(events, k)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

@@ -45,7 +45,7 @@ abstract class CriticalConnectionsTest<out T : CriticalConnections>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `critical connections test`(n: Int, connections: List<List<Int>>, expected: List<List<Int>>) {
-        val actual = strategy.perform(n, connections)
+        val actual = strategy.invoke(n, connections)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -52,7 +52,7 @@ abstract class MinimumFinishTimeTest<out T : MinimumFinishTime>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum finish time test`(tires: Array<IntArray>, changeTime: Int, numLaps: Int, expected: Int) {
-        val actual = strategy.perform(tires, changeTime, numLaps)
+        val actual = strategy.invoke(tires, changeTime, numLaps)
         assertThat(actual).isEqualTo(expected)
     }
 }

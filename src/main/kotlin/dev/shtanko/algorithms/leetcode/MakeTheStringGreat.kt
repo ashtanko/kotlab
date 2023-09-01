@@ -24,7 +24,7 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/make-the-string-great/">leetcode page</a>
  */
 fun interface MakeTheStringGreat {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 /**
@@ -36,7 +36,7 @@ class MakeTheStringGreatIteration : MakeTheStringGreat {
         private const val SIZE = 32
     }
 
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val newS = StringBuilder(s)
 
         // if s has less than 2 characters, we just return itself.
@@ -74,12 +74,12 @@ class MakeTheStringGreatRecursion : MakeTheStringGreat {
         private const val SIZE = 32
     }
 
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         // If we find a pair in 's', remove this pair from 's'
         // and solve the remaining string recursively.
         for (i in 0 until s.length - 1) {
             if (abs(s[i] - s[i + 1]) == SIZE) {
-                return perform(s.substring(0, i) + s.substring(i + 2))
+                return invoke(s.substring(0, i) + s.substring(i + 2))
             }
         }
 
@@ -95,7 +95,7 @@ class MakeTheStringGreatStack : MakeTheStringGreat {
         private const val ASCII_LOWER_CASE = 65
     }
 
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val stack: Stack<Char> = Stack()
         for (i in s.indices) {
             if (!stack.isEmpty() && abs(stack.peek() - s[i]) == ASCII_UPPER_CASE - ASCII_LOWER_CASE) {

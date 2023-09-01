@@ -25,14 +25,14 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/meeting-scheduler/">leetcode page</a>
  */
 interface MeetingScheduler {
-    fun perform(slots1: Array<IntArray>, slots2: Array<IntArray>, duration: Int): List<Int>
+    operator fun invoke(slots1: Array<IntArray>, slots2: Array<IntArray>, duration: Int): List<Int>
 }
 
 /**
  * Approach 1: Two pointers
  */
 class MSTwoPointers : MeetingScheduler {
-    override fun perform(slots1: Array<IntArray>, slots2: Array<IntArray>, duration: Int): List<Int> {
+    override operator fun invoke(slots1: Array<IntArray>, slots2: Array<IntArray>, duration: Int): List<Int> {
         slots1.sortWith { a, b -> a[0] - b[0] }
         slots2.sortWith { a, b -> a[0] - b[0] }
 
@@ -61,7 +61,7 @@ class MSTwoPointers : MeetingScheduler {
  * Approach 2: Heap
  */
 class MSHeap : MeetingScheduler {
-    override fun perform(slots1: Array<IntArray>, slots2: Array<IntArray>, duration: Int): List<Int> {
+    override operator fun invoke(slots1: Array<IntArray>, slots2: Array<IntArray>, duration: Int): List<Int> {
         val timeslots: PriorityQueue<IntArray> = PriorityQueue { slot1, slot2 -> slot1[0] - slot2[0] }
 
         for (slot in slots1) {

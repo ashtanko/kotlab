@@ -21,12 +21,12 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/shortest-path-in-binary-matrix/">leetcode page</a>
  */
 interface ShortestPathInBinaryMatrix {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class ShortestPathInBinaryMatrixBFS : ShortestPathInBinaryMatrix {
 
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val queue: java.util.ArrayDeque<Pair<Int, Int>> = java.util.ArrayDeque()
         queue.addLast(Pair(0, 0))
 

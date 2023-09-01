@@ -48,7 +48,7 @@ abstract class BrickWallTest<out T : BrickWall>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `least bricks test`(wall: List<List<Int>>, expected: Int) {
-        val actual = strategy.perform(wall)
+        val actual = strategy.invoke(wall)
         assertThat(actual).isEqualTo(expected)
     }
 }

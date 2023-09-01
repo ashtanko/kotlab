@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/kth-missing-positive-number/">leetcode page</a>
  */
 interface FindKthPositive {
-    fun perform(arr: IntArray, k: Int): Int
+    operator fun invoke(arr: IntArray, k: Int): Int
 }
 
 class FindKthPositiveImpl : FindKthPositive {
-    override fun perform(arr: IntArray, k: Int): Int {
+    override operator fun invoke(arr: IntArray, k: Int): Int {
         var l = 0
         var r: Int = arr.size
         var m: Int

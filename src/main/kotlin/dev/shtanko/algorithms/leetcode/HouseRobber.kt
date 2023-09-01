@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 interface AbstractRobberStrategy {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -34,7 +34,7 @@ interface AbstractRobberStrategy {
  *  Recursive (top-down)
  */
 class RecursiveRobber : AbstractRobberStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         return arr.rob(arr.size - 1)
     }
 
@@ -52,7 +52,7 @@ class RecursiveRobberMemo : AbstractRobberStrategy {
 
     private lateinit var memo: IntArray
 
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         memo = IntArray(arr.size + 1) { -1 }
         return arr.rob(arr.size - 1)
     }
@@ -76,7 +76,7 @@ class RecursiveRobberMemo : AbstractRobberStrategy {
  * Iterative + memo (bottom-up)
  */
 class IterativeRobberMemo : AbstractRobberStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         if (arr.isEmpty()) return 0
         val memo = IntArray(arr.size + 1)
         memo[0] = 0
@@ -98,7 +98,7 @@ class IterativeRobberMemo : AbstractRobberStrategy {
  * creation and some other problems
  */
 class IterativeRobber : AbstractRobberStrategy {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         if (arr.isEmpty()) return 0
 
         var prev1 = 0

@@ -17,14 +17,14 @@
 package dev.shtanko.algorithms.leetcode
 
 interface UnivaluedBinaryTreeStrategy {
-    fun perform(root: TreeNode?): Boolean
+    operator fun invoke(root: TreeNode?): Boolean
 }
 
 class UnivaluedBinaryTreeDFS : UnivaluedBinaryTreeStrategy {
 
     private var values: MutableList<Int> = mutableListOf()
 
-    override fun perform(root: TreeNode?): Boolean {
+    override operator fun invoke(root: TreeNode?): Boolean {
         dfs(root)
         for (value in values) {
             if (value != values.first()) return false
@@ -42,9 +42,9 @@ class UnivaluedBinaryTreeDFS : UnivaluedBinaryTreeStrategy {
 }
 
 class UnivaluedBinaryTreeRecursive : UnivaluedBinaryTreeStrategy {
-    override fun perform(root: TreeNode?): Boolean {
-        val isLeftCorrect = root?.left == null || root.value == root.left?.value && perform(root.left)
-        val isRightCorrect = root?.right == null || root.value == root.right?.value && perform(root.right)
+    override operator fun invoke(root: TreeNode?): Boolean {
+        val isLeftCorrect = root?.left == null || root.value == root.left?.value && invoke(root.left)
+        val isRightCorrect = root?.right == null || root.value == root.right?.value && invoke(root.right)
         return isLeftCorrect && isRightCorrect
     }
 }

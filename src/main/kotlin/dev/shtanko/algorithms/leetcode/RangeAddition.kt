@@ -23,7 +23,7 @@ import dev.shtanko.algorithms.extensions.second
  * @see <a href="https://leetcode.com/problems/range-addition/">leetcode page</a>
  */
 interface RangeAddition {
-    fun perform(length: Int, updates: Array<IntArray>): IntArray
+    operator fun invoke(length: Int, updates: Array<IntArray>): IntArray
 }
 
 /**
@@ -32,7 +32,7 @@ interface RangeAddition {
  * Space complexity : O(1)
  */
 class RangeAdditionBruteForce : RangeAddition {
-    override fun perform(length: Int, updates: Array<IntArray>): IntArray {
+    override operator fun invoke(length: Int, updates: Array<IntArray>): IntArray {
         val ans = IntArray(length) { 0 }
         for (triplet in updates) {
             val startIndex = triplet.first()
@@ -52,7 +52,7 @@ class RangeAdditionBruteForce : RangeAddition {
  * Space complexity : O(1)
  */
 class RangeAdditionCaching : RangeAddition {
-    override fun perform(length: Int, updates: Array<IntArray>): IntArray {
+    override operator fun invoke(length: Int, updates: Array<IntArray>): IntArray {
         val ans = IntArray(length) { 0 }
         for (triplet in updates) {
             val startIndex = triplet.first()

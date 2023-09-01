@@ -43,7 +43,7 @@ abstract class VowelSpellcheckerTest<out T : VowelSpellchecker>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `spellchecker test`(wordlist: Array<String>, queries: Array<String>, expected: Array<String>) {
-        val actual = strategy.perform(wordlist, queries)
+        val actual = strategy.invoke(wordlist, queries)
         assertThat(actual).isEqualTo(expected)
     }
 }

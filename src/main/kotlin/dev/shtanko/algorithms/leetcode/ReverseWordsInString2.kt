@@ -23,7 +23,7 @@ import dev.shtanko.algorithms.utils.reverse
  * Space complexity: O(1).
  */
 class ReverseWordsInString2 {
-    fun perform(s: CharArray) {
+    operator fun invoke(s: CharArray) {
         // reverse the whole string
         s.reverse(0, s.size - 1)
 

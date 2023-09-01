@@ -43,7 +43,7 @@ abstract class MinMaxGasDistTest<out T : MinMaxGasDist>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min max gas dist`(stations: IntArray, k: Int, expected: Double) {
-        val actual = strategy.perform(stations, k)
+        val actual = strategy.invoke(stations, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

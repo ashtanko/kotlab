@@ -41,7 +41,7 @@ abstract class WaysToBuildRoomsTest<out T : WaysToBuildRooms>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `ways to build rooms test`(prevRoom: IntArray, expected: Int) {
-        val actual = strategy.perform(prevRoom)
+        val actual = strategy.invoke(prevRoom)
         assertThat(actual).isEqualTo(expected)
     }
 }

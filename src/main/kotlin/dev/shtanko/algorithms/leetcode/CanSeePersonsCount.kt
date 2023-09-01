@@ -23,11 +23,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/number-of-visible-people-in-a-queue/">leetcode page</a>
  */
 interface CanSeePersonsCount {
-    fun perform(heights: IntArray): IntArray
+    operator fun invoke(heights: IntArray): IntArray
 }
 
 class CanSeePersonsCountStack : CanSeePersonsCount {
-    override fun perform(heights: IntArray): IntArray {
+    override operator fun invoke(heights: IntArray): IntArray {
         val n: Int = heights.size
         val ans = IntArray(n)
         val st: Stack<Int> = Stack()

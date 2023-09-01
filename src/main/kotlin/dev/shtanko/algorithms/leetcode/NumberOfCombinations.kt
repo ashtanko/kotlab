@@ -27,7 +27,7 @@ fun interface NumberOfCombinations {
 }
 
 class NumberOfCombinationsBottomUp : NumberOfCombinations {
-    override fun invoke(num: String): Int {
+    override operator fun invoke(num: String): Int {
         val cs = num.toCharArray()
         val n = cs.size
         val rank = Array(n) { IntArray(n + 1) }

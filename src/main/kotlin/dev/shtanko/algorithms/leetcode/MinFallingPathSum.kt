@@ -23,11 +23,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-falling-path-sum/description/">leetcode page</a>
  */
 interface MinFallingPathSum {
-    fun perform(matrix: Array<IntArray>): Int
+    operator fun invoke(matrix: Array<IntArray>): Int
 }
 
 class MinFallingPathSumTopDown : MinFallingPathSum {
-    override fun perform(matrix: Array<IntArray>): Int {
+    override operator fun invoke(matrix: Array<IntArray>): Int {
         val (m, n) = listOf(matrix.size, matrix[0].size)
         fun go(i: Int, j: Int): Int {
             if (j < 0 || j == n) {
@@ -50,7 +50,7 @@ class MinFallingPathSumTopDown : MinFallingPathSum {
 }
 
 class MinFallingPathSumDPMemo : MinFallingPathSum {
-    override fun perform(matrix: Array<IntArray>): Int {
+    override operator fun invoke(matrix: Array<IntArray>): Int {
         val memo = mutableMapOf<String, Int>()
         val (m, n) = listOf(matrix.size, matrix[0].size)
         fun go(i: Int, j: Int): Int {
@@ -78,7 +78,7 @@ class MinFallingPathSumDPMemo : MinFallingPathSum {
 }
 
 class MinFallingPathSumBottomUp : MinFallingPathSum {
-    override fun perform(matrix: Array<IntArray>): Int {
+    override operator fun invoke(matrix: Array<IntArray>): Int {
         val (m, n) = listOf(matrix.size, matrix[0].size)
         for (i in 1 until m) {
             for (j in 0 until n) {

@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/longest-common-subsequence/description/">leetcode page</a>
  */
 interface LongestCommonSubsequence {
-    fun perform(text1: String, text2: String): Int
+    operator fun invoke(text1: String, text2: String): Int
 }
 
 class LongestCommonSubsequenceDP : LongestCommonSubsequence {
-    override fun perform(text1: String, text2: String): Int {
+    override operator fun invoke(text1: String, text2: String): Int {
         if (text1.length < text2.length) {
             return lcp(text1, text2)
         }

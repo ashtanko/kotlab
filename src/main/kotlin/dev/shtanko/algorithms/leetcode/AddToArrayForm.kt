@@ -23,11 +23,11 @@ import java.util.LinkedList
  * @see <a href="https://leetcode.com/problems/add-to-array-form-of-integer/">leetcode page</a>
  */
 interface AddToArrayForm {
-    fun perform(num: IntArray, k: Int): List<Int>
+    operator fun invoke(num: IntArray, k: Int): List<Int>
 }
 
 class AddToArrayFormSimple : AddToArrayForm {
-    override fun perform(num: IntArray, k: Int): List<Int> {
+    override operator fun invoke(num: IntArray, k: Int): List<Int> {
         val res: MutableList<Int> = LinkedList()
         var k0 = k
         for (i in num.size - 1 downTo 0) {
@@ -43,7 +43,7 @@ class AddToArrayFormSimple : AddToArrayForm {
 }
 
 class AddToArrayFormOnePass : AddToArrayForm {
-    override fun perform(num: IntArray, k: Int): List<Int> {
+    override operator fun invoke(num: IntArray, k: Int): List<Int> {
         val res: MutableList<Int> = LinkedList()
         var i: Int = num.size - 1
         var k0 = k

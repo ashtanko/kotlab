@@ -25,11 +25,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-score-of-a-path-between-two-cities/">leetcode page</a>
  */
 interface MinScore {
-    fun perform(n: Int, roads: Array<IntArray>): Int
+    operator fun invoke(n: Int, roads: Array<IntArray>): Int
 }
 
 class MinScoreBFS : MinScore {
-    override fun perform(n: Int, roads: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, roads: Array<IntArray>): Int {
         var ans = Int.MAX_VALUE
         val gr: MutableList<MutableList<Pair<Int, Int>>> = ArrayList()
         for (i in 0 until n + 1) {
@@ -65,7 +65,7 @@ class MinScoreBFS : MinScore {
 class MinScoreDFS : MinScore {
     private var ans = Int.MAX_VALUE
 
-    override fun perform(n: Int, roads: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, roads: Array<IntArray>): Int {
         val adj: MutableList<MutableList<IntArray>> = ArrayList()
         for (i in 0..n) adj.add(ArrayList())
         for (k in roads) {

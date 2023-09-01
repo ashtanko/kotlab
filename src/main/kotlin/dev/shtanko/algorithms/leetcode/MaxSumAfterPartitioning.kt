@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/partition-array-for-maximum-sum/">leetcode page</a>
  */
 interface MaxSumAfterPartitioning {
-    fun perform(arr: IntArray, k: Int): Int
+    operator fun invoke(arr: IntArray, k: Int): Int
 }
 
 class MaxSumAfterPartitioningDP : MaxSumAfterPartitioning {
-    override fun perform(arr: IntArray, k: Int): Int {
+    override operator fun invoke(arr: IntArray, k: Int): Int {
         val dp = IntArray(arr.size)
         for (to in arr.indices) {
             var currMax = 0
@@ -54,7 +54,7 @@ class MaxSumAfterPartitioningDP : MaxSumAfterPartitioning {
 }
 
 class MaxSumAfterPartitioningMemo : MaxSumAfterPartitioning {
-    override fun perform(arr: IntArray, k: Int): Int {
+    override operator fun invoke(arr: IntArray, k: Int): Int {
         val memo = arrayOfNulls<Int>(arr.size)
         return maxSumAfterPartitioning(arr, k, 0, memo)
     }

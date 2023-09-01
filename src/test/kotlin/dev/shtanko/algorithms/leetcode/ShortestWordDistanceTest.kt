@@ -45,7 +45,7 @@ abstract class ShortestWordDistanceTest<out T : ShortestWordDistanceStrategy>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shortest distance test`(words: Array<String>, word1: String, word2: String, expected: Int) {
-        val actual = strategy.perform(words, word1, word2)
+        val actual = strategy.invoke(words, word1, word2)
         assertEquals(expected, actual)
     }
 }

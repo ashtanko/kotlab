@@ -53,7 +53,7 @@ abstract class RepeatedStringMatchTest<out T : RepeatedStringMatch>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `repeated string match test`(a: String, b: String, expected: Int) {
-        val actual = strategy.perform(a, b)
+        val actual = strategy.invoke(a, b)
         assertThat(actual).isEqualTo(expected)
     }
 }

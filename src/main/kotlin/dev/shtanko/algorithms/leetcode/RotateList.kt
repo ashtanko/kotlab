@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * link https://leetcode.com/problems/rotate-list/
  */
 interface RotateList {
-    fun perform(head: ListNode?, k: Int): ListNode?
+    operator fun invoke(head: ListNode?, k: Int): ListNode?
 }
 
 /**
  * Time Limit Exceeded
  */
 class RotateListBruteForce : RotateList {
-    override fun perform(head: ListNode?, k: Int): ListNode? {
+    override operator fun invoke(head: ListNode?, k: Int): ListNode? {
         var node = head
         if (node?.next == null) return node
         for (i in 0 until k) {
@@ -44,7 +44,7 @@ class RotateListBruteForce : RotateList {
 }
 
 class RotateListOptimized : RotateList {
-    override fun perform(head: ListNode?, k: Int): ListNode? {
+    override operator fun invoke(head: ListNode?, k: Int): ListNode? {
         var node = head
         if (node?.next == null || k == 0) {
             return node

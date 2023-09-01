@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/can-place-flowers/">leetcode page</a>
  */
 interface CanPlaceFlowers {
-    fun perform(flowerbed: IntArray, n: Int): Boolean
+    operator fun invoke(flowerbed: IntArray, n: Int): Boolean
 }
 
 class CanPlaceFlowersGreedy : CanPlaceFlowers {
-    override fun perform(flowerbed: IntArray, n: Int): Boolean {
+    override operator fun invoke(flowerbed: IntArray, n: Int): Boolean {
         var count = 0
         var i = 0
         while (i < flowerbed.size && count < n) {

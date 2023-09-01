@@ -71,7 +71,7 @@ abstract class FindNearestRightNodeTest<out T : FindNearestRightNodeStrategy>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find nearest right node in binary tree test`(root: TreeNode?, u: TreeNode?, expected: TreeNode?) {
-        val actual = strategy.perform(root, u).levelOrder().flatten()
+        val actual = strategy.invoke(root, u).levelOrder().flatten()
         assertEquals(expected.levelOrder().flatten(), actual)
     }
 }

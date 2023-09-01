@@ -58,7 +58,7 @@ abstract class NearestExitTest<out T : NearestExit>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `nearest exit test`(maze: Array<CharArray>, entrance: IntArray, expected: Int) {
-        val actual = strategy.perform(maze, entrance)
+        val actual = strategy.invoke(maze, entrance)
         assertThat(actual).isEqualTo(expected)
     }
 }

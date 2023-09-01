@@ -59,7 +59,7 @@ abstract class MinimumFuelCostTest<out T : MinimumFuelCost>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `minimum fuel cost test`(roads: Array<IntArray>, seats: Int, expected: Long) {
-        val actual = strategy.perform(roads, seats)
+        val actual = strategy.invoke(roads, seats)
         assertThat(actual).isEqualTo(expected)
     }
 }

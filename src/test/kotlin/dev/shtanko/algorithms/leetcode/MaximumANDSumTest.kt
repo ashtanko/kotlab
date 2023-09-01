@@ -43,7 +43,7 @@ abstract class MaximumANDSumTest<out T : MaximumANDSum>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `maximum AND sum test`(nums: IntArray, numSlots: Int, expected: Int) {
-        val actual = strategy.perform(nums, numSlots)
+        val actual = strategy.invoke(nums, numSlots)
         assertThat(actual).isEqualTo(expected)
     }
 }

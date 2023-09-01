@@ -49,7 +49,7 @@ abstract class ThreeSumSmallerTest<out T : ThreeSumSmallerStrategy>(val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `3 sum test`(nums: IntArray, target: Int, expected: Int) {
-        val actual = strategy.perform(nums, target)
+        val actual = strategy.invoke(nums, target)
         assertEquals(expected, actual)
     }
 }

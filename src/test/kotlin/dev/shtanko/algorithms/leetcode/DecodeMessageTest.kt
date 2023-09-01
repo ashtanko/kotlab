@@ -43,7 +43,7 @@ abstract class DecodeMessageTest<out T : DecodeMessage>(private val strategy: T)
     @ArgumentsSource(InputArgumentsProvider::class)
     @ParameterizedTest
     fun `ugly numbers test`(key: String, message: String, expected: String) {
-        val actual = strategy.perform(key, message)
+        val actual = strategy.invoke(key, message)
         assertThat(actual).isEqualTo(expected)
     }
 }

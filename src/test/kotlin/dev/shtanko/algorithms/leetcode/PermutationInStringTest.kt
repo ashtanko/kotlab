@@ -37,7 +37,7 @@ abstract class PermutationInStringStrategyTest<out T : StringPermutationStrategy
     fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
         val (data, expected) = testCase
         val (s1, s2) = data
-        val actual = strategy.perform(s1, s2)
+        val actual = strategy.invoke(s1, s2)
         assertEquals(expected, actual)
     }
 }

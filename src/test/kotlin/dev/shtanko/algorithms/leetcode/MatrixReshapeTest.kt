@@ -56,7 +56,7 @@ abstract class MatrixReshapeTest<out T : MatrixReshape>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `matrix reshape test`(mat: Array<IntArray>, r: Int, c: Int, expected: Array<IntArray>) {
-        val actual = strategy.perform(mat, r, c)
+        val actual = strategy.invoke(mat, r, c)
         assertThat(actual).isDeepEqualTo(expected)
     }
 }

@@ -37,7 +37,7 @@ abstract class AbstractNumIdenticalPairsTest<T : AbstractNumIdenticalPairs>(priv
     @MethodSource("dataProvider")
     fun `abstract num identical pairs test`(testCase: Pair<IntArray, Int>) {
         val (arr, expected) = testCase
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

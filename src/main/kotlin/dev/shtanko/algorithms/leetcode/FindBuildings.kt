@@ -21,12 +21,12 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/buildings-with-an-ocean-view/">leetcode page</a>
  */
 interface FindBuildings {
-    fun perform(heights: IntArray): IntArray
+    operator fun invoke(heights: IntArray): IntArray
 }
 
 sealed class FindBuildingStrategy {
     object BruteForce : FindBuildings, FindBuildingStrategy() {
-        override fun perform(heights: IntArray): IntArray {
+        override operator fun invoke(heights: IntArray): IntArray {
             var last = Int.MIN_VALUE
             val indexes: MutableList<Int> = ArrayList()
             for (i in heights.size - 1 downTo 0) {

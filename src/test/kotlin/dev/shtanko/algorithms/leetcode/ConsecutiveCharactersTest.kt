@@ -40,7 +40,7 @@ abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersStrategy>(
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `consecutive characters test`(s: String, expected: Int) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertEquals(expected, actual)
     }
 }

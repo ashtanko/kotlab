@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-players-with-zero-or-one-losses/">leetcode page</a>
  */
 fun interface FindWinners {
-    fun perform(matches: Array<IntArray>): List<List<Int>>
+    operator fun invoke(matches: Array<IntArray>): List<List<Int>>
 }
 
 /**
  * Approach 1: Hash Set
  */
 class FindWinnersHashSet : FindWinners {
-    override fun perform(matches: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(matches: Array<IntArray>): List<List<Int>> {
         val zeroLoss: MutableSet<Int> = HashSet()
         val oneLoss: MutableSet<Int> = HashSet()
         val moreLosses: MutableSet<Int> = HashSet()
@@ -65,7 +65,7 @@ class FindWinnersHashSet : FindWinners {
  * Approach 2: Hash Set + Hash Map
  */
 class FindWinnersSetMap : FindWinners {
-    override fun perform(matches: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(matches: Array<IntArray>): List<List<Int>> {
         val seen: MutableSet<Int> = HashSet()
         val lossesCount: MutableMap<Int, Int> = HashMap()
 
@@ -98,7 +98,7 @@ class FindWinnersSetMap : FindWinners {
  * Approach 3: Hash Map
  */
 class FindWinnersMap : FindWinners {
-    override fun perform(matches: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(matches: Array<IntArray>): List<List<Int>> {
         val lossesCount: MutableMap<Int, Int> = HashMap()
         for (match in matches) {
             val winner = match[0]
@@ -130,7 +130,7 @@ class FindWinnersCounting : FindWinners {
         private const val LIMIT = 100001
     }
 
-    override fun perform(matches: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(matches: Array<IntArray>): List<List<Int>> {
         val lossesCount = IntArray(LIMIT) { -1 }
 
         for (match in matches) {

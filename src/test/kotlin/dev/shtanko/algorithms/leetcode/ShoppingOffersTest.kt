@@ -51,7 +51,7 @@ abstract class ShoppingOffersTest<out T : ShoppingOffers>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shopping offers test`(price: List<Int>, special: List<List<Int>>, needs: List<Int>, expected: Int) {
-        val actual = strategy.perform(price, special, needs)
+        val actual = strategy.invoke(price, special, needs)
         assertThat(actual).isEqualTo(expected)
     }
 }

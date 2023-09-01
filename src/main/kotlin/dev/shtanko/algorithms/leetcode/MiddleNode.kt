@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/middle-of-the-linked-list/">leetcode page</a>
  */
 interface MiddleNode {
-    fun perform(head: ListNode?): ListNode?
+    operator fun invoke(head: ListNode?): ListNode?
 }
 
 class MiddleNodePointers : MiddleNode {
-    override fun perform(head: ListNode?): ListNode? {
+    override operator fun invoke(head: ListNode?): ListNode? {
         var slow: ListNode? = head
         var fast: ListNode? = head
         while (fast?.next != null) {

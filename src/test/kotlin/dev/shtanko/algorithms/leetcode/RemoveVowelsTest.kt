@@ -37,7 +37,7 @@ abstract class RemoveVowelsTest<out T : RemoveVowels>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `remove vowels test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual, equalTo(expected))
     }
 }

@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/maximum-subarray/">leetcode page</a>
  */
 interface MaximumSubarray {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
@@ -32,7 +32,7 @@ interface MaximumSubarray {
  * Space complexity: O(1)
  */
 class MaximumSubarrayBruteForce : MaximumSubarray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var maxSubarray = Int.MIN_VALUE
         for (i in nums.indices) {
             var currentSubarray = 0
@@ -51,7 +51,7 @@ class MaximumSubarrayBruteForce : MaximumSubarray {
  * Space complexity: O(1)
  */
 class DPKadanesAlgorithm : MaximumSubarray {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         if (nums.isEmpty()) return Int.MIN_VALUE
         var currentSubarray = nums.first()
         var maxSubarray = nums.first()
@@ -73,7 +73,7 @@ class DPKadanesAlgorithm : MaximumSubarray {
  */
 class MSDivideAndConquer : MaximumSubarray {
 
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         // Our helper function is designed to solve this problem for
         // any array - so just call it using the entire input!
         return findBestSubarray(nums, 0, nums.size - 1)

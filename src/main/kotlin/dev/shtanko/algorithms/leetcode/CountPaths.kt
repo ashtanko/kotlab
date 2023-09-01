@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/">leetcode page</a>
  */
 interface CountPaths {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 /**
  * Approach 1: Sorting + DP
  */
 class CountPathsSortDP : CountPaths {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val directions = arrayOf(intArrayOf(0, 1), intArrayOf(0, -1), intArrayOf(1, 0), intArrayOf(-1, 0))
         val m: Int = grid.size
         val n: Int = grid[0].size
@@ -87,7 +87,7 @@ class CountPathsDFSMemo : CountPaths {
     private lateinit var dp: Array<IntArray>
     private var directions = arrayOf(intArrayOf(0, 1), intArrayOf(0, -1), intArrayOf(1, 0), intArrayOf(-1, 0))
 
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val m: Int = grid.size
         val n: Int = grid[0].size
         dp = Array(m) { IntArray(n) }

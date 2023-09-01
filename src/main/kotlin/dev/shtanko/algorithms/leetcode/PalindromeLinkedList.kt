@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 interface PalindromeLinkedList {
-    fun perform(head: ListNode): Boolean
+    operator fun invoke(head: ListNode): Boolean
 }
 
 /**
@@ -26,7 +26,7 @@ interface PalindromeLinkedList {
  * Space complexity : O(n)
  */
 class PalindromeLinkedListCopy : PalindromeLinkedList {
-    override fun perform(head: ListNode): Boolean {
+    override operator fun invoke(head: ListNode): Boolean {
         val vals: MutableList<Int> = ArrayList()
         var currentNode: ListNode? = head
         while (currentNode != null) {
@@ -55,7 +55,7 @@ class PalindromeLinkedListRecursive : PalindromeLinkedList {
 
     private var frontPointer: ListNode? = null
 
-    override fun perform(head: ListNode): Boolean {
+    override operator fun invoke(head: ListNode): Boolean {
         frontPointer = head
         return recursivelyCheck(head)
     }
@@ -76,7 +76,7 @@ class PalindromeLinkedListRecursive : PalindromeLinkedList {
  * Space complexity : O(n)
  */
 class PalindromeLinkedListReverse : PalindromeLinkedList {
-    override fun perform(head: ListNode): Boolean {
+    override operator fun invoke(head: ListNode): Boolean {
         val firstHalfEnd = endOfFirstHalf(head)
         val secondHalfStart = firstHalfEnd?.next?.let { reverseList(it) }
 

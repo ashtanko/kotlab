@@ -41,7 +41,7 @@ abstract class LetterCasePermutationTest<out T : LetterCasePermutation>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `letter case permutation test`(s: String, expected: List<String>) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).containsAll(expected)
     }
 }

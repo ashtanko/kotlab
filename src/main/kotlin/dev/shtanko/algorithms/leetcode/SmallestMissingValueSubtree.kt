@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/">leetcode page</a>
  */
 interface SmallestMissingValueSubtree {
-    fun perform(parents: IntArray, nums: IntArray): IntArray
+    operator fun invoke(parents: IntArray, nums: IntArray): IntArray
 }
 
 class SmallestMissingValueSubtreeStrict : SmallestMissingValueSubtree {
@@ -30,7 +30,7 @@ class SmallestMissingValueSubtreeStrict : SmallestMissingValueSubtree {
     var miss = 1
     var set: HashSet<Int> = HashSet()
 
-    override fun perform(parents: IntArray, nums: IntArray): IntArray {
+    override operator fun invoke(parents: IntArray, nums: IntArray): IntArray {
         val n: Int = parents.size
         val res = IntArray(n)
         for (i in 0 until n) {

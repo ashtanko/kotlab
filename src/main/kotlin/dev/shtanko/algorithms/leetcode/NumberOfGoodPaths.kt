@@ -23,11 +23,11 @@ import java.util.TreeMap
  * @see <a href="https://leetcode.com/problems/number-of-good-paths/">leetcode page</a>
  */
 interface NumberOfGoodPaths {
-    fun perform(vals: IntArray, edges: Array<IntArray>): Int
+    operator fun invoke(vals: IntArray, edges: Array<IntArray>): Int
 }
 
 class NumberOfGoodPathsUnionFind : NumberOfGoodPaths {
-    override fun perform(vals: IntArray, edges: Array<IntArray>): Int {
+    override operator fun invoke(vals: IntArray, edges: Array<IntArray>): Int {
         val n = vals.size
         val adj: Array<MutableList<Int>> = Array(n) { ArrayList() }
         val sameValues = TreeMap<Int, ArrayList<Int>>()

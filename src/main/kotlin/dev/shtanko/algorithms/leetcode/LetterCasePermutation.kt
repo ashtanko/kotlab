@@ -24,11 +24,11 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/letter-case-permutation/">leetcode page</a>
  */
 fun interface LetterCasePermutation {
-    fun perform(s: String): List<String>
+    operator fun invoke(s: String): List<String>
 }
 
 class LetterCasePermutationBFS : LetterCasePermutation {
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         if (s.isBlank()) {
             return LinkedList()
         }
@@ -53,7 +53,7 @@ class LetterCasePermutationBFS : LetterCasePermutation {
 }
 
 class LetterCasePermutationDFS : LetterCasePermutation {
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         if (s.isBlank()) {
             return LinkedList()
         }

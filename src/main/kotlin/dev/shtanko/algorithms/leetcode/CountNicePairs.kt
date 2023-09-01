@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-nice-pairs-in-an-array/description/">leetcode page</a>
  */
 interface CountNicePairs {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 
     fun rev(a: Int): Int {
         var a0 = a
@@ -38,7 +38,7 @@ interface CountNicePairs {
  * Straight Forward solution
  */
 class CountNicePairsSF : CountNicePairs {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var res = 0
         val count: MutableMap<Int, Int> = HashMap()
         for (a in nums) {
@@ -52,7 +52,7 @@ class CountNicePairsSF : CountNicePairs {
 }
 
 class CountNicePairsTwoSum : CountNicePairs {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val m: MutableMap<Int, Int> = HashMap()
         var res = 0
         for (n in nums) {

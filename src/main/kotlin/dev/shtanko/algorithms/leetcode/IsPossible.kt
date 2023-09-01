@@ -24,7 +24,7 @@ import java.util.PriorityQueue
  * @see <a href="https://leetcode.com/problems/construct-target-array-with-multiple-sums/">leetcode page</a>
  */
 interface IsPossible {
-    fun perform(target: IntArray): Boolean
+    operator fun invoke(target: IntArray): Boolean
 }
 
 /**
@@ -33,7 +33,7 @@ interface IsPossible {
  * Space Complexity : O(n).
  */
 class IPWorkingBackward : IsPossible {
-    override fun perform(target: IntArray): Boolean {
+    override operator fun invoke(target: IntArray): Boolean {
         // Handle the n = 1 case.
         if (target.size == 1) {
             return target[0] == 1
@@ -63,7 +63,7 @@ class IPWorkingBackward : IsPossible {
  * Space Complexity : O(n).
  */
 class IPWorkingBackwardOptmz : IsPossible {
-    override fun perform(target: IntArray): Boolean {
+    override operator fun invoke(target: IntArray): Boolean {
         // Handle the n = 1 case.
         if (target.size == 1) {
             return target[0] == 1

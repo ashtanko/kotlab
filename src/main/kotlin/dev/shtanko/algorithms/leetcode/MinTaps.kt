@@ -31,7 +31,7 @@ fun interface MinTaps {
  * Approach 1: Dynamic Programming
  */
 class MinTapsDP : MinTaps {
-    override fun invoke(n: Int, ranges: IntArray): Int {
+    override operator fun invoke(n: Int, ranges: IntArray): Int {
         // Create an array to store the minimum number of taps needed for each position
         val dp = IntArray(n + 1) { E_9.toInt() }
 
@@ -64,7 +64,7 @@ class MinTapsDP : MinTaps {
  * Approach 2: Greedy
  */
 class MinTapsGreedy : MinTaps {
-    override fun invoke(n: Int, ranges: IntArray): Int {
+    override operator fun invoke(n: Int, ranges: IntArray): Int {
         // Create an array to track the maximum reach for each position
         val maxReach = IntArray(n + 1)
 

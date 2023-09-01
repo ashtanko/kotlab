@@ -23,11 +23,11 @@ package dev.shtanko.algorithms.leetcode
  * so "a" is considered a different type of stone from "A".
  */
 interface NumJewelsInStonesStrategy {
-    fun perform(a: String, b: String): Int
+    operator fun invoke(a: String, b: String): Int
 }
 
 class NumJewelsInStonesMap : NumJewelsInStonesStrategy {
-    override fun perform(a: String, b: String): Int {
+    override operator fun invoke(a: String, b: String): Int {
         var res = 0
         val setJ = hashSetOf<Char>()
         for (jewel in a) {
@@ -43,7 +43,7 @@ class NumJewelsInStonesMap : NumJewelsInStonesStrategy {
 }
 
 class NumJewelsInStonesRegex : NumJewelsInStonesStrategy {
-    override fun perform(a: String, b: String): Int {
+    override operator fun invoke(a: String, b: String): Int {
         return b.replace("[^$a]".toRegex(), "").length
     }
 }

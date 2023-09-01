@@ -29,7 +29,7 @@ abstract class CountSortedVowelStringsTest<out T : CountSortedVowelStrings>(priv
         33 to 66045,
     ).map { (input, expected) ->
         DynamicTest.dynamicTest("count vowel strings of $input then get $expected") {
-            val actual = strategy.perform(input)
+            val actual = strategy.invoke(input)
             assertThat(actual).isEqualTo(expected)
         }
     }

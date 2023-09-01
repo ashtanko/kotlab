@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/best-team-with-no-conflicts/">leetcode page</a>
  */
 interface BestTeamScore {
-    fun perform(scores: IntArray, ages: IntArray): Int
+    operator fun invoke(scores: IntArray, ages: IntArray): Int
 }
 
 class BestTeamScoreDP : BestTeamScore {
-    override fun perform(scores: IntArray, ages: IntArray): Int {
+    override operator fun invoke(scores: IntArray, ages: IntArray): Int {
         val n: Int = ages.size
         val candidate = Array(n) { IntArray(2) }
 

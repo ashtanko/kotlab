@@ -23,11 +23,11 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/">leetcode page</a>
  */
 interface MinMovesToSeat {
-    fun perform(seats: IntArray, students: IntArray): Int
+    operator fun invoke(seats: IntArray, students: IntArray): Int
 }
 
 class MinMovesToSeatBruteForce : MinMovesToSeat {
-    override fun perform(seats: IntArray, students: IntArray): Int {
+    override operator fun invoke(seats: IntArray, students: IntArray): Int {
         var moves = 0
         seats.sort()
         students.sort()
@@ -45,7 +45,7 @@ class MinMovesToSeatBruteForce : MinMovesToSeat {
 }
 
 class MinMovesToSeatMath : MinMovesToSeat {
-    override fun perform(seats: IntArray, students: IntArray): Int {
+    override operator fun invoke(seats: IntArray, students: IntArray): Int {
         var moves = 0
         seats.sort()
         students.sort()

@@ -23,11 +23,11 @@ import dev.shtanko.algorithms.math.gcd
  * @see <a href="https://leetcode.com/problems/greatest-common-divisor-of-strings/">leetcode page</a>
  */
 interface GcdOfStrings {
-    fun perform(str1: String, str2: String): String
+    operator fun invoke(str1: String, str2: String): String
 }
 
 class GcdOfStringsImpl : GcdOfStrings {
-    override fun perform(str1: String, str2: String): String {
+    override operator fun invoke(str1: String, str2: String): String {
         if (str1.plus(str2) != str2.plus(str1)) return ""
         val gcdVal: Int = gcd(str1.length, str2.length)
         return str2.substring(0, gcdVal)

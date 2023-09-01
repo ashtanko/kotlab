@@ -63,7 +63,7 @@ abstract class FindFinalValueTest<out T : FindFinalValue>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find final value test`(nums: IntArray, original: Int, expected: Int) {
-        val actual = strategy.perform(nums, original)
+        val actual = strategy.invoke(nums, original)
         assertThat(actual).isEqualTo(expected)
     }
 }

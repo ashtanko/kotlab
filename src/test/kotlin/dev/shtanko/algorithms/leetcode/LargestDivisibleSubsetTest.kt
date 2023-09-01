@@ -45,7 +45,7 @@ abstract class LargestDivisibleSubsetTest<out T : LargestDivisibleSubset>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `largest divisible subset test`(nums: IntArray, expected: List<Int>) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }

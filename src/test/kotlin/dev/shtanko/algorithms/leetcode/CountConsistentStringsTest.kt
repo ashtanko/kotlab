@@ -48,7 +48,7 @@ abstract class CountConsistentStringsTest<out T : CountConsistentStrings>(privat
     @ParameterizedTest
     @ArgumentsSource(InoutArgumentsProvider::class)
     fun `count consistent strings test`(allowed: String, words: Array<String>, expected: Int) {
-        val actual = strategy.perform(allowed, words)
+        val actual = strategy.invoke(allowed, words)
         assertThat(actual).isEqualTo(expected)
     }
 }

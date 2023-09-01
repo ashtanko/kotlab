@@ -55,7 +55,7 @@ abstract class CheckStraightLineTest<out T : CheckStraightLine>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `check straight line test`(coordinates: Array<IntArray>, expected: Boolean) {
-        val actual = strategy.perform(coordinates)
+        val actual = strategy.invoke(coordinates)
         assertThat(actual).isEqualTo(expected)
     }
 }

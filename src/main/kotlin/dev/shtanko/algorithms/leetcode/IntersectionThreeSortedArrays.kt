@@ -22,7 +22,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/intersection-of-three-sorted-arrays/">leetcode page</a>
  */
 interface IntersectionThreeSortedArrays {
-    fun perform(arr1: IntArray, arr2: IntArray, arr3: IntArray): List<Int>
+    operator fun invoke(arr1: IntArray, arr2: IntArray, arr3: IntArray): List<Int>
 }
 
 /**
@@ -30,7 +30,7 @@ interface IntersectionThreeSortedArrays {
  * Space Complexity: O(n)
  */
 class IntersectionThreeSortedBruteForce : IntersectionThreeSortedArrays {
-    override fun perform(arr1: IntArray, arr2: IntArray, arr3: IntArray): List<Int> {
+    override operator fun invoke(arr1: IntArray, arr2: IntArray, arr3: IntArray): List<Int> {
         val ans: MutableList<Int> = ArrayList()
         val counter: MutableMap<Int, Int> = HashMap()
         // iterate through arr1, arr2, and arr3 to count the frequencies
@@ -58,7 +58,7 @@ class IntersectionThreeSortedBruteForce : IntersectionThreeSortedArrays {
  * Space Complexity: O(1)
  */
 class IntersectionThreeSortedThreePointers : IntersectionThreeSortedArrays {
-    override fun perform(arr1: IntArray, arr2: IntArray, arr3: IntArray): List<Int> {
+    override operator fun invoke(arr1: IntArray, arr2: IntArray, arr3: IntArray): List<Int> {
         val ans: MutableList<Int> = ArrayList()
         // prepare three pointers to iterate through three arrays
         // p1, p2, and p3 point to the beginning of arr1, arr2, and arr3 accordingly

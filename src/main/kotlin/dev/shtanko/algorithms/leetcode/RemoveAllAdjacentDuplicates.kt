@@ -23,11 +23,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/">leetcode page</a>
  */
 fun interface RemoveAllAdjacentDuplicatesStrategy {
-    fun perform(s: String): String
+    operator fun invoke(s: String): String
 }
 
 class RemoveAllAdjacentDuplicatesArray : RemoveAllAdjacentDuplicatesStrategy {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         var i = 0
         val n = s.length
         val res = s.toCharArray()
@@ -45,7 +45,7 @@ class RemoveAllAdjacentDuplicatesArray : RemoveAllAdjacentDuplicatesStrategy {
 }
 
 class RemoveAllAdjacentDuplicatesStack : RemoveAllAdjacentDuplicatesStrategy {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val stack: Stack<Char> = Stack()
         for (c in s) {
             if (stack.isNotEmpty() && stack.peek() == c) {
@@ -62,7 +62,7 @@ class RemoveAllAdjacentDuplicatesStack : RemoveAllAdjacentDuplicatesStrategy {
 
 // Using StringBuilder
 class RemoveAllAdjacentDuplicatesSB : RemoveAllAdjacentDuplicatesStrategy {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val sb = StringBuilder()
         for (c in s) {
             val size = sb.length

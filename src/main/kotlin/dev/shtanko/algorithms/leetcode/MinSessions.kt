@@ -39,7 +39,7 @@ class MinSessionsSfBitmaskDP : MinSessions {
         )
     }
 
-    override fun invoke(tasks: IntArray, sessionTime: Int): Int {
+    override operator fun invoke(tasks: IntArray, sessionTime: Int): Int {
         n = tasks.size
         this.sessionTime = sessionTime
         return dp(tasks, (1 shl n) - 1, 0)
@@ -74,7 +74,7 @@ class MinSessionsBitmask : MinSessions {
     var sessionTime: Int = 0
     var memo: Array<Pair<Int, Int>?> = arrayOfNulls(1 shl 14)
 
-    override fun invoke(tasks: IntArray, sessionTime: Int): Int {
+    override operator fun invoke(tasks: IntArray, sessionTime: Int): Int {
         n = tasks.size
         this.sessionTime = sessionTime
         return dp(tasks, (1 shl n) - 1).first

@@ -23,7 +23,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/brick-wall/">leetcode page</a>
  */
 interface BrickWall {
-    fun perform(wall: List<List<Int>>): Int
+    operator fun invoke(wall: List<List<Int>>): Int
 }
 
 /**
@@ -32,7 +32,7 @@ interface BrickWall {
  * Space complexity : O(m)
  */
 class BrickWallBruteForce : BrickWall {
-    override fun perform(wall: List<List<Int>>): Int {
+    override operator fun invoke(wall: List<List<Int>>): Int {
         if (wall.isEmpty()) return 0
         val pos = IntArray(wall.size)
         var sum = 0
@@ -60,7 +60,7 @@ class BrickWallBruteForce : BrickWall {
  * Space complexity : O(m)
  */
 class BrickWallBetterBruteForce : BrickWall {
-    override fun perform(wall: List<List<Int>>): Int {
+    override operator fun invoke(wall: List<List<Int>>): Int {
         if (wall.isEmpty()) return 0
         val pos = IntArray(wall.size)
         var sum = 0
@@ -97,7 +97,7 @@ class BrickWallBetterBruteForce : BrickWall {
  * Space complexity : O(m)
  */
 class BrickWallHashMap : BrickWall {
-    override fun perform(wall: List<List<Int>>): Int {
+    override operator fun invoke(wall: List<List<Int>>): Int {
         val map: HashMap<Int, Int> = HashMap()
         for (row in wall) {
             var sum = 0

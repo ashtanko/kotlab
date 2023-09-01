@@ -58,7 +58,7 @@ abstract class NumberOfGoodPathsTest<out T : NumberOfGoodPaths>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `number of good paths test`(vals: IntArray, edges: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(vals, edges)
+        val actual = strategy.invoke(vals, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

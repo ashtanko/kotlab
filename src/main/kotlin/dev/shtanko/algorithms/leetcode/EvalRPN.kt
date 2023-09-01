@@ -24,14 +24,14 @@ import java.util.function.BiFunction
  * @see <a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/solution/">leetcode page</a>
  */
 interface EvalRPN {
-    fun perform(tokens: Array<String>): Int
+    operator fun invoke(tokens: Array<String>): Int
 }
 
 /**
  * Approach 1: Reducing the List In-place
  */
 class RPNInPlace : EvalRPN {
-    override fun perform(tokens: Array<String>): Int {
+    override operator fun invoke(tokens: Array<String>): Int {
         var currentPosition = 0
         var length: Int = tokens.size // We need to keep track of this ourselves.
 
@@ -83,7 +83,7 @@ class RPNInPlace : EvalRPN {
  * Approach 2: Evaluate with Stack
  */
 class RPNStack : EvalRPN {
-    override fun perform(tokens: Array<String>): Int {
+    override operator fun invoke(tokens: Array<String>): Int {
         val stack: Stack<Int> = Stack()
         for (token in tokens) {
             if (!"+-*/".contains(token)) {

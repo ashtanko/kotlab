@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * link https://leetcode.com/problems/kth-distinct-string-in-an-array/
  */
 interface KTHDistinct {
-    fun perform(arr: Array<String>, k: Int): String
+    operator fun invoke(arr: Array<String>, k: Int): String
 }
 
 class KTHDistinctImpl : KTHDistinct {
-    override fun perform(arr: Array<String>, k: Int): String {
+    override operator fun invoke(arr: Array<String>, k: Int): String {
         val map: MutableMap<String, Boolean> = HashMap()
         var k0 = k
         for (s in arr) {

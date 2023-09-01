@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/delete-columns-to-make-sorted/">leetcode page</a>
  */
 interface MinDeletionSize {
-    fun perform(strs: Array<String>): Int
+    operator fun invoke(strs: Array<String>): Int
 }
 
 class MinDeletionSizeBruteForce : MinDeletionSize {
-    override fun perform(strs: Array<String>): Int {
+    override operator fun invoke(strs: Array<String>): Int {
         var count = 0
         for (i in 0 until strs[0].length) {
             for (j in 1 until strs.size) {
@@ -40,7 +40,7 @@ class MinDeletionSizeBruteForce : MinDeletionSize {
 }
 
 class MinDeletionSizeFast : MinDeletionSize {
-    override fun perform(strs: Array<String>): Int {
+    override operator fun invoke(strs: Array<String>): Int {
         val len: Int = strs.size
         val wordLen: Int = strs[0].length
         var ans = 0

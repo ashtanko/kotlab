@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-the-town-judge/">leetcode page</a>
  */
 interface FindJudge {
-    fun perform(n: Int, trust: Array<IntArray>): Int
+    operator fun invoke(n: Int, trust: Array<IntArray>): Int
 }
 
 class FindJudgeTwoArrays : FindJudge {
-    override fun perform(n: Int, trust: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, trust: Array<IntArray>): Int {
         if (trust.size < n - 1) {
             return -1
         }
@@ -46,7 +46,7 @@ class FindJudgeTwoArrays : FindJudge {
 }
 
 class FindJudgeOneArray : FindJudge {
-    override fun perform(n: Int, trust: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, trust: Array<IntArray>): Int {
         if (trust.size < n - 1) {
             return -1
         }

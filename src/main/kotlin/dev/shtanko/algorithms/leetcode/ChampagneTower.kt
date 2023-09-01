@@ -23,11 +23,11 @@ import kotlin.math.min
  * https://leetcode.com/problems/champagne-tower/
  */
 interface ChampagneTower {
-    fun perform(poured: Int, queryRow: Int, queryGlass: Int): Double
+    operator fun invoke(poured: Int, queryRow: Int, queryGlass: Int): Double
 }
 
 class ChampagneTowerSimulation : ChampagneTower {
-    override fun perform(poured: Int, queryRow: Int, queryGlass: Int): Double {
+    override operator fun invoke(poured: Int, queryRow: Int, queryGlass: Int): Double {
         val arr = Array(SIZE) { DoubleArray(SIZE) }
         arr[0][0] = poured.toDouble()
         for (r in 0..queryRow) {

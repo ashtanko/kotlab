@@ -51,7 +51,7 @@ abstract class BeautifulPartitionsTest<out T : BeautifulPartitions>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `beautiful partitions test`(s: String, k: Int, minLength: Int, expected: Int) {
-        val actual = strategy.perform(s, k, minLength)
+        val actual = strategy.invoke(s, k, minLength)
         assertThat(actual).isEqualTo(expected)
     }
 }

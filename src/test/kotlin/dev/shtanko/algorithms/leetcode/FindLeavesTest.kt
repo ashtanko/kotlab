@@ -47,7 +47,7 @@ abstract class FindLeavesTest<out T : FindLeaves>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find leaves test`(root: TreeNode, expected: List<List<Int>>) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).containsExactlyElementsOf(expected)
     }
 }

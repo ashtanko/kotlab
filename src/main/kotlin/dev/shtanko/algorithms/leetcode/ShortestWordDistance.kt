@@ -20,11 +20,11 @@ import kotlin.math.abs
 import kotlin.math.min
 
 interface ShortestWordDistanceStrategy {
-    fun perform(words: Array<String>, word1: String, word2: String): Int
+    operator fun invoke(words: Array<String>, word1: String, word2: String): Int
 }
 
 class ShortestWordDistanceBruteForce : ShortestWordDistanceStrategy {
-    override fun perform(words: Array<String>, word1: String, word2: String): Int {
+    override operator fun invoke(words: Array<String>, word1: String, word2: String): Int {
         var minDistance: Int = words.size
         for (i in words.indices) {
             if (words[i] == word1) {
@@ -40,7 +40,7 @@ class ShortestWordDistanceBruteForce : ShortestWordDistanceStrategy {
 }
 
 class ShortestWordDistanceOnePass : ShortestWordDistanceStrategy {
-    override fun perform(words: Array<String>, word1: String, word2: String): Int {
+    override operator fun invoke(words: Array<String>, word1: String, word2: String): Int {
         var i1 = -1
         var i2 = -1
         var minDistance: Int = words.size

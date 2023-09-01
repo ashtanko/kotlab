@@ -62,7 +62,7 @@ abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageOfLevelsIn
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `average of levels in binary tree test`(tree: TreeNode, expected: DoubleArray) {
-        val actual = strategy.perform(tree)
+        val actual = strategy.invoke(tree)
         assertThat(actual, equalTo(expected))
     }
 }

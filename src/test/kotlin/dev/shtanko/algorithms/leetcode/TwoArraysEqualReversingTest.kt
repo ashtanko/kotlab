@@ -38,7 +38,7 @@ abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private v
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `can be equal test`(arr: IntArray, target: IntArray, expected: Boolean) {
-        val actual = strategy.perform(target, arr)
+        val actual = strategy.invoke(target, arr)
         assertEquals(expected, actual)
     }
 }

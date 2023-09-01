@@ -48,7 +48,7 @@ abstract class ComponentValueTest<out T : ComponentValue>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `component value test`(nums: IntArray, edges: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(nums, edges)
+        val actual = strategy.invoke(nums, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

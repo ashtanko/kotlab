@@ -27,7 +27,7 @@ class SumOfDistancesInTree {
     private var graph: MutableList<MutableSet<Int>> = ArrayList()
     private var n = 0
 
-    fun perform(n: Int, edges: Array<IntArray>): IntArray {
+    operator fun invoke(n: Int, edges: Array<IntArray>): IntArray {
         this.n = n
         ans = IntArray(n)
         count = IntArray(n) { 1 }

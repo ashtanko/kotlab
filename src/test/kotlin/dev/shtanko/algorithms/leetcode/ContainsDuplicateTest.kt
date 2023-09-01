@@ -37,7 +37,7 @@ abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `duplicate items test`(arr: IntArray, expected: Boolean) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

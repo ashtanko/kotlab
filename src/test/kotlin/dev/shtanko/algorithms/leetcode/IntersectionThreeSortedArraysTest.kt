@@ -45,7 +45,7 @@ abstract class IntersectionThreeSortedArraysTest<out T : IntersectionThreeSorted
         arr3: IntArray,
         expected: List<Int>,
     ) {
-        val actual = strategy.perform(arr1, arr2, arr3)
+        val actual = strategy.invoke(arr1, arr2, arr3)
         assertEquals(expected, actual)
     }
 }

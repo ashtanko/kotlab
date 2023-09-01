@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/multiply-strings/">leetcode page</a>
  */
 object MultiplyStrings {
-    fun perform(num1: String, num2: String): String {
+    operator fun invoke(num1: String, num2: String): String {
         val m: Int = num1.length
         val n: Int = num2.length
         val pos = IntArray(m + n)

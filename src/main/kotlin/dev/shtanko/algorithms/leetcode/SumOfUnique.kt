@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/sum-of-unique-elements">leetcode page</a>
  */
 interface SumOfUnique {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
  * Brute Force
  */
 class SumOfUniqueBruteForce : SumOfUnique {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val unique = IntArray(LIMIT) { 0 }
         var ans = 0
         for (num in nums) {
@@ -52,7 +52,7 @@ class SumOfUniqueBruteForce : SumOfUnique {
  * Hashmap, single loop
  */
 class SumOfUniqueHashMap : SumOfUnique {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var sum = 0
         val map: MutableMap<Int, Int> = HashMap()
         for (num in nums) {
@@ -75,5 +75,5 @@ class SumOfUniqueHashMap : SumOfUnique {
  * Filter
  */
 class SumOfUniqueFilter : SumOfUnique {
-    override fun perform(nums: IntArray): Int = nums.filter { n -> nums.count { it == n } < 2 }.sum()
+    override operator fun invoke(nums: IntArray): Int = nums.filter { n -> nums.count { it == n } < 2 }.sum()
 }

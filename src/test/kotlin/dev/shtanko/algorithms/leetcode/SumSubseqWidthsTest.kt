@@ -39,7 +39,7 @@ class SumSubseqWidthsTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sum sub seq widths test`(a: IntArray, expected: Int) {
-        val actual = SumSubseqWidths.perform(a)
+        val actual = SumSubseqWidths.invoke(a)
         assertThat(actual, equalTo(expected))
     }
 }

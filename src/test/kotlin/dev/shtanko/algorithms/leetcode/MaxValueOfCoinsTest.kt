@@ -54,7 +54,7 @@ abstract class MaxValueOfCoinsTest<out T : MaxValueOfCoins>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max value of coins test`(piles: List<List<Int>>, k: Int, expected: Int) {
-        val actual = strategy.perform(piles, k)
+        val actual = strategy.invoke(piles, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

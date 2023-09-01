@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 object FloodFill {
 
-    fun perform(image: Array<IntArray>, sr: Int, sc: Int, newColor: Int): Array<IntArray> {
+    operator fun invoke(image: Array<IntArray>, sr: Int, sc: Int, newColor: Int): Array<IntArray> {
         val color = image[sr][sc]
         if (color != newColor) dfs(image, sr, sc, color, newColor)
         return image

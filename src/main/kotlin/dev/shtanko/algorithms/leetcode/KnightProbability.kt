@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/knight-probability-in-chessboard/">leetcode page</a>
  */
 interface KnightProbability {
-    fun perform(n: Int, k: Int, row: Int, column: Int): Double
+    operator fun invoke(n: Int, k: Int, row: Int, column: Int): Double
 }
 
 /**
  * Approach #1: Dynamic Programming
  */
 class KnightProbabilityDP : KnightProbability {
-    override fun perform(n: Int, k: Int, row: Int, column: Int): Double {
+    override operator fun invoke(n: Int, k: Int, row: Int, column: Int): Double {
         var dp = Array(n) { DoubleArray(n) }
         val dr = intArrayOf(2, 2, 1, 1, -1, -1, -2, -2)
         val dc = intArrayOf(1, -1, 2, -2, 2, -2, 1, -1)
@@ -65,7 +65,7 @@ class KnightProbabilityDP : KnightProbability {
  * Approach #2: Matrix Exponentiation
  */
 class KnightProbabilityMatrixExpo : KnightProbability {
-    override fun perform(n: Int, k: Int, row: Int, column: Int): Double {
+    override operator fun invoke(n: Int, k: Int, row: Int, column: Int): Double {
         val dr = intArrayOf(-1, -1, 1, 1, -2, -2, 2, 2)
         val dc = intArrayOf(2, -2, 2, -2, 1, -1, 1, -1)
 

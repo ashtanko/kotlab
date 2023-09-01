@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface DestinationCityStrategy {
-    fun perform(paths: List<List<String>>): String
+    operator fun invoke(paths: List<List<String>>): String
 }
 
 class DestinationCitySet : DestinationCityStrategy {
-    override fun perform(paths: List<List<String>>): String {
+    override operator fun invoke(paths: List<List<String>>): String {
         val set: MutableSet<String?> = HashSet()
         for (l in paths) set.add(l[1])
         for (l in paths) set.remove(l[0])
@@ -30,7 +30,7 @@ class DestinationCitySet : DestinationCityStrategy {
 }
 
 class DestinationCityHashMap : DestinationCityStrategy {
-    override fun perform(paths: List<List<String>>): String {
+    override operator fun invoke(paths: List<List<String>>): String {
         val map: MutableMap<String?, String?> = HashMap()
         for (path in paths) {
             map[path[0]] = path[1]

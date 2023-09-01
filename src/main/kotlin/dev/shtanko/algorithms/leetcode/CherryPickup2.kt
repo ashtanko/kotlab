@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.max
 
 interface CherryPickup2Strategy {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class CherryPickup2DPTopDown : CherryPickup2Strategy {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0
         val m: Int = grid.size
         val n: Int = grid[0].size
@@ -75,7 +75,7 @@ class CherryPickup2DPTopDown : CherryPickup2Strategy {
 }
 
 class CherryPickup2DPBottomUp : CherryPickup2Strategy {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0
         val m: Int = grid.size
         val n: Int = grid[0].size

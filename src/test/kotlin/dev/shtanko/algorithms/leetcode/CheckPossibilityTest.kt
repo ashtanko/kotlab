@@ -53,7 +53,7 @@ abstract class CheckPossibilityTest<out T : CheckPossibility>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `check possibility test`(nums: IntArray, expected: Boolean) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

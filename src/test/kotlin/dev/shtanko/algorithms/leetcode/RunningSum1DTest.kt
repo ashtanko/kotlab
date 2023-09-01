@@ -67,7 +67,7 @@ abstract class RunningSum1DTest<out T : RunningSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `running sum naive test`(arr: IntArray, expected: IntArray) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertThat(actual).isEqualTo(expected)
         assertArrayEquals(expected, actual)
     }

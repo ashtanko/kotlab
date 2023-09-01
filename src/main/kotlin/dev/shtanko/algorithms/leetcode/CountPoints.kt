@@ -23,11 +23,11 @@ import java.util.Arrays
  * @see <a href="https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/">leetcode page</a>
  */
 interface CountPoints {
-    fun perform(points: Array<IntArray>, queries: Array<IntArray>): IntArray
+    operator fun invoke(points: Array<IntArray>, queries: Array<IntArray>): IntArray
 }
 
 class CountPointsSort : CountPoints {
-    override fun perform(points: Array<IntArray>, queries: Array<IntArray>): IntArray {
+    override operator fun invoke(points: Array<IntArray>, queries: Array<IntArray>): IntArray {
         Arrays.sort(points) { a, b -> a[0] - b[0] }
         val n = queries.size
         val ans = IntArray(n)

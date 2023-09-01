@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Arrays
 
 class BoldWordsInString {
-    fun perform(words: Array<String>, s: String): String {
+    operator fun invoke(words: Array<String>, s: String): String {
         val bold = BooleanArray(s.length + 1)
         for (w in words) {
             var start: Int = s.indexOf(w, 0)

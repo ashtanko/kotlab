@@ -65,7 +65,7 @@ abstract class MaxSumBSTTest<out T : MaxSumBST>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max sum BST test`(root: TreeNode, expected: Int) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

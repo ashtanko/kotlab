@@ -51,7 +51,7 @@ abstract class KSmallestPairsTest<out T : KSmallestPairs>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `getAverages test`(nums1: IntArray, nums2: IntArray, k: Int, expected: List<List<Int>>) {
-        val actual = strategy.perform(nums1, nums2, k)
+        val actual = strategy.invoke(nums1, nums2, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

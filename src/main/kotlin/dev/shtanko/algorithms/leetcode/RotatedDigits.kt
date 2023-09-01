@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/rotated-digits/">leetcode page</a>
  */
 interface RotatedDigits {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class RotatedDigitsBruteForce : RotatedDigits {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         // Count how many n in [1, N] are good.
         var ans = 0
         for (i in 1..n) if (good(i, false)) ans++
@@ -48,7 +48,7 @@ class RotatedDigitsBruteForce : RotatedDigits {
 }
 
 class RotatedDigitsDP : RotatedDigits {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val a = n.toString().toCharArray()
         val k = a.size
         val memo = Array(k + 1) { Array(2) { IntArray(2) } }

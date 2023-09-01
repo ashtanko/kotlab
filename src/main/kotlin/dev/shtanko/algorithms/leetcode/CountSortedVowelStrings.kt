@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-sorted-vowel-strings">leetcode page</a>
  */
 interface CountSortedVowelStrings {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 private const val VOWEL_COUNT = 5
@@ -32,7 +32,7 @@ private const val VOWEL_COUNT = 5
  * Space Complexity: O(n).
  */
 class CountSortedVowelBruteForce : CountSortedVowelStrings {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         return countVowelStringUtil(n, 1)
     }
 
@@ -52,7 +52,7 @@ class CountSortedVowelBruteForce : CountSortedVowelStrings {
  * Space Complexity: O(n).
  */
 class CountSortedVowelRecursion : CountSortedVowelStrings {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         return countVowelStringUtil(n, VOWEL_COUNT)
     }
 
@@ -72,7 +72,7 @@ class CountSortedVowelRecursion : CountSortedVowelStrings {
  * Space Complexity: O(n).
  */
 class CountSortedVowelTopDynamic : CountSortedVowelStrings {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val memo = Array(n + 1) { IntArray(VOWEL_COUNT + 1) }
         return countVowelStringUtil(n, VOWEL_COUNT, memo)
     }
@@ -88,7 +88,7 @@ class CountSortedVowelTopDynamic : CountSortedVowelStrings {
 }
 
 class CountSortedVowelBottomUp : CountSortedVowelStrings {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val dp = Array(n + 1) { IntArray(VOWEL_COUNT + 1) }
         for (vowels in 1..VOWEL_COUNT) dp[1][vowels] = vowels
         for (nValue in 2..n) {
@@ -107,7 +107,7 @@ class CountSortedVowelBottomUp : CountSortedVowelStrings {
  * Space Complexity: O(1).
  */
 class CountSortedVowelMath : CountSortedVowelStrings {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         return (n + 4) * (n + 3) * (n + 2) * (n + 1) / DENOMINATOR
     }
 

@@ -23,7 +23,7 @@ import dev.shtanko.algorithms.extensions.isEven
  * @see <a href="https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/">leetcode page</a>
  */
 object CountOdds {
-    fun perform(low: Int, high: Int): Int {
+    operator fun invoke(low: Int, high: Int): Int {
         var count = high.minus(low).div(2)
         if (low.isEven.not() || high.isEven.not()) {
             count++

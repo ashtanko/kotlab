@@ -48,7 +48,7 @@ abstract class SmallestMissingValueSubtreeTest<out T : SmallestMissingValueSubtr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `smallest missing value subtree test`(parents: IntArray, nums: IntArray, expected: IntArray) {
-        val actual = strategy.perform(parents, nums)
+        val actual = strategy.invoke(parents, nums)
         assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

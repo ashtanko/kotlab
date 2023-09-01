@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/">leetcode page</a>
  */
 interface NumOfWays {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class NumOfWaysTriangle : NumOfWays {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val len: Int = nums.size
         val arr: MutableList<Int> = ArrayList()
         for (n in nums) {
@@ -75,7 +75,7 @@ class NumOfWaysTriangle : NumOfWays {
 class NumOfWaysImpl : NumOfWays {
     private lateinit var arr: Array<LongArray>
 
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         arr = Array(n + 1) { longArrayOf() }
 

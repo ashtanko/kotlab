@@ -20,14 +20,14 @@ import java.util.Stack
 
 // Remove All Adjacent Duplicates In String
 interface RemoveAllAdjacentDuplicatesStrategy2 {
-    fun perform(s: String, k: Int): String
+    operator fun invoke(s: String, k: Int): String
 }
 
 /**
  * Approach 1: Brute Force
  */
 class RemoveDuplicates2BruteForce : RemoveAllAdjacentDuplicatesStrategy2 {
-    override fun perform(s: String, k: Int): String {
+    override operator fun invoke(s: String, k: Int): String {
         val sb = StringBuilder(s)
         var length = -1
         while (length != sb.length) {
@@ -52,7 +52,7 @@ class RemoveDuplicates2BruteForce : RemoveAllAdjacentDuplicatesStrategy2 {
  * Approach 2: Memoise Count
  */
 class RemoveDuplicates2Memoise : RemoveAllAdjacentDuplicatesStrategy2 {
-    override fun perform(s: String, k: Int): String {
+    override operator fun invoke(s: String, k: Int): String {
         val sb = StringBuilder(s)
         val count = IntArray(sb.length)
         var i = 0
@@ -76,7 +76,7 @@ class RemoveDuplicates2Memoise : RemoveAllAdjacentDuplicatesStrategy2 {
  * Approach 3: Stack
  */
 class RemoveDuplicates2Stack : RemoveAllAdjacentDuplicatesStrategy2 {
-    override fun perform(s: String, k: Int): String {
+    override operator fun invoke(s: String, k: Int): String {
         val sb = StringBuilder(s)
         val counts: Stack<Int> = Stack()
         var i = 0
@@ -102,7 +102,7 @@ class RemoveDuplicates2Stack : RemoveAllAdjacentDuplicatesStrategy2 {
  * Approach 4: Stack with Reconstruction
  */
 class RemoveDuplicates2StackReconstruction : RemoveAllAdjacentDuplicatesStrategy2 {
-    override fun perform(s: String, k: Int): String {
+    override operator fun invoke(s: String, k: Int): String {
         val counts = Stack<Pair>()
         for (i in s.indices) {
             if (counts.empty() || s[i] != counts.peek().ch) {
@@ -130,7 +130,7 @@ class RemoveDuplicates2StackReconstruction : RemoveAllAdjacentDuplicatesStrategy
  * Approach 5: Two Pointers
  */
 class RemoveDuplicates2TwoPointers : RemoveAllAdjacentDuplicatesStrategy2 {
-    override fun perform(s: String, k: Int): String {
+    override operator fun invoke(s: String, k: Int): String {
         val counts = Stack<Int>()
         val sa: CharArray = s.toCharArray()
         var j = 0

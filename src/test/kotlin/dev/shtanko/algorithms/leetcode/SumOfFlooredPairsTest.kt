@@ -45,7 +45,7 @@ abstract class SumOfFlooredPairsTest<out T : SumOfFlooredPairs>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sum of floored pairs test`(nums: IntArray, expected: Int) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

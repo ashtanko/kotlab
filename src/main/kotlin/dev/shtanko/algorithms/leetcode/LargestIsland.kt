@@ -24,7 +24,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/making-a-large-island/">leetcode page</a>
  */
 interface LargestIsland {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 /**
@@ -34,7 +34,7 @@ class LargestIslandDFS : LargestIsland {
     private val dr = intArrayOf(-1, 0, 1, 0)
     private val dc = intArrayOf(0, -1, 0, 1)
 
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val n: Int = grid.size
 
         var ans = 0
@@ -83,7 +83,7 @@ class LargestIslandComponentSizes : LargestIsland {
     private var grid: Array<IntArray> = arrayOf()
     private var n = 0
 
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         this.grid = grid
         n = grid.size
 
@@ -142,7 +142,7 @@ class LargestIslandComponentSizes : LargestIsland {
 }
 
 class LargestIslandUnionFind : LargestIsland {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val rows: Int = grid.size
         val cols: Int = grid.first().size
 

@@ -53,7 +53,7 @@ abstract class StrobogrammaticNumberTest<out T : StrobogrammaticNumber>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is strobogrammatic number test`(num: String, expected: Boolean) {
-        val actual = strategy.perform(num)
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

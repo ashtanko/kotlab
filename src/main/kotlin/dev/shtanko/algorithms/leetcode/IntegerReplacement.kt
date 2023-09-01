@@ -25,7 +25,7 @@ fun interface IntegerReplacement {
 }
 
 class IntegerReplacementBitCount : IntegerReplacement {
-    override fun invoke(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         var n0 = n
         var c = 0
         while (n0 != 1) {
@@ -43,7 +43,7 @@ class IntegerReplacementBitCount : IntegerReplacement {
 }
 
 class IntegerReplacementBinary : IntegerReplacement {
-    override fun invoke(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         var c = 0
         var n0 = n
         while (n0 != 1) {

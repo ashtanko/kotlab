@@ -39,7 +39,7 @@ class FindAnagramMappingsTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `test`(a: IntArray, b: IntArray, expected: IntArray) {
-        val actual = FindAnagramMappings.perform(a, b)
+        val actual = FindAnagramMappings.invoke(a, b)
         assertArrayEquals(expected, actual)
     }
 }

@@ -42,7 +42,7 @@ abstract class AbstractMaximumProductStrategyTest<out T : AbstractMaximumProduct
     @MethodSource("casesProvider")
     fun `maximum product test`(testCase: Pair<Int, IntArray>) {
         val (expected, products) = testCase
-        val actual = strategy.perform(products)
+        val actual = strategy.invoke(products)
         assertEquals(expected, actual)
     }
 }

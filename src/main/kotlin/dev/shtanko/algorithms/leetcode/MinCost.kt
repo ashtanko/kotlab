@@ -23,11 +23,11 @@ import java.util.PriorityQueue
  * @see <a href="https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/">leetcode page</a>
  */
 interface MinCost {
-    fun perform(maxTime: Int, edges: Array<IntArray>, passingFees: IntArray): Int
+    operator fun invoke(maxTime: Int, edges: Array<IntArray>, passingFees: IntArray): Int
 }
 
 class MinCostQueue : MinCost {
-    override fun perform(maxTime: Int, edges: Array<IntArray>, passingFees: IntArray): Int {
+    override operator fun invoke(maxTime: Int, edges: Array<IntArray>, passingFees: IntArray): Int {
         val map: MutableMap<Int, MutableList<IntArray>> = HashMap()
         for (e in edges) {
             val from = e[0]

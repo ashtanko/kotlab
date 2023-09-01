@@ -61,7 +61,7 @@ abstract class DigitCountTest<out T : DigitCount>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `digit count test`(num: String, expected: Boolean) {
-        val actual = strategy.perform(num)
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

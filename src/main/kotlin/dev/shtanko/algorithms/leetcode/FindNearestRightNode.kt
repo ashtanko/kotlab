@@ -23,13 +23,13 @@ import java.util.Queue
 
 // Find Nearest Right Node in Binary Tree
 interface FindNearestRightNodeStrategy {
-    fun perform(root: TreeNode?, u: TreeNode?): TreeNode?
+    operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode?
 }
 
 // Approach 1: BFS: Two Queues
 class FindNearestRightNodeTwoQueues : FindNearestRightNodeStrategy {
 
-    override fun perform(root: TreeNode?, u: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode? {
         val nextLevel: ArrayDeque<TreeNode?> = ArrayDeque()
         root?.let {
             nextLevel.offer(it)
@@ -59,7 +59,7 @@ class FindNearestRightNodeTwoQueues : FindNearestRightNodeStrategy {
 
 // Approach 2: BFS: One Queue + Sentinel
 class FindNearestRightNodeSentinel : FindNearestRightNodeStrategy {
-    override fun perform(root: TreeNode?, u: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode? {
         val queue: Queue<TreeNode?> = LinkedList()
         root?.let {
             queue.offer(it)
@@ -92,7 +92,7 @@ class FindNearestRightNodeSentinel : FindNearestRightNodeStrategy {
 
 // Approach 3: BFS: One Queue + Level Size Measurements
 class FindNearestRightNodeSizeMeasurements : FindNearestRightNodeStrategy {
-    override fun perform(root: TreeNode?, u: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode? {
         val queue: Deque<TreeNode> = ArrayDeque()
         root?.let {
             queue.offer(it)
@@ -126,7 +126,7 @@ class FindNearestRightNodeSizePreorderTraversal : FindNearestRightNodeStrategy {
     private var nextNode: TreeNode? = null
     private var u: TreeNode? = null
 
-    override fun perform(root: TreeNode?, u: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode? {
         this.u = u
         preorder(root, 0)
         return nextNode

@@ -49,7 +49,7 @@ abstract class CountNodesTest<out T : CountNodes>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count nodes test`(root: TreeNode?, expected: Int) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

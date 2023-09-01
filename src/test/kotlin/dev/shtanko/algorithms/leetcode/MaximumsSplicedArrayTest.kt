@@ -48,7 +48,7 @@ abstract class MaximumsSplicedArrayTest<out T : MaximumsSplicedArray>(private va
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `maximums spliced array test`(nums1: IntArray, nums2: IntArray, expected: Int) {
-        val actual = strategy.perform(nums1, nums2)
+        val actual = strategy.invoke(nums1, nums2)
         assertThat(actual).isEqualTo(expected)
     }
 }

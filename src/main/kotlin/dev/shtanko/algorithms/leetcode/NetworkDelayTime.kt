@@ -26,11 +26,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/network-delay-time/">leetcode page</a>
  */
 fun interface NetworkDelayTime {
-    fun perform(times: Array<IntArray>, n: Int, k: Int): Int
+    operator fun invoke(times: Array<IntArray>, n: Int, k: Int): Int
 }
 
 class NetworkDelayTimeDFS : NetworkDelayTime {
-    override fun perform(times: Array<IntArray>, n: Int, k: Int): Int {
+    override operator fun invoke(times: Array<IntArray>, n: Int, k: Int): Int {
         // Build the adjacency list
         for (time in times) {
             val source = time[0]
@@ -82,7 +82,7 @@ class NetworkDelayTimeDFS : NetworkDelayTime {
 }
 
 class NetworkDelayTimeBFS : NetworkDelayTime {
-    override fun perform(times: Array<IntArray>, n: Int, k: Int): Int {
+    override operator fun invoke(times: Array<IntArray>, n: Int, k: Int): Int {
         // Build the adjacency list
         for (time in times) {
             val source = time[0]
@@ -138,7 +138,7 @@ class NetworkDelayTimeBFS : NetworkDelayTime {
 class NetworkDelayTimeDijkstra : NetworkDelayTime {
     data class GraphNode(val id: Int, val neighbors: MutableList<GraphNode> = mutableListOf())
 
-    override fun perform(times: Array<IntArray>, n: Int, k: Int): Int {
+    override operator fun invoke(times: Array<IntArray>, n: Int, k: Int): Int {
         val graph = (1..n).associateWith { GraphNode(it) }
         val weight = mutableMapOf<Pair<Int, Int>, Int>()
         val distance = mutableMapOf<Int, Int>()

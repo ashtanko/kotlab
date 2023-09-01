@@ -24,7 +24,7 @@ import java.util.TreeMap
  * 692. Top K Frequent Words
  */
 interface TopKFrequent {
-    fun perform(words: Array<String>, k: Int): List<String>
+    operator fun invoke(words: Array<String>, k: Int): List<String>
 }
 
 private class Comparator1 : Comparator<Map.Entry<String, Int>> {
@@ -56,7 +56,7 @@ class Comparator2 : Comparator<Map.Entry<String, Int>> {
 }
 
 class TopKFrequentSorting : TopKFrequent {
-    override fun perform(words: Array<String>, k: Int): List<String> {
+    override operator fun invoke(words: Array<String>, k: Int): List<String> {
         val map: MutableMap<String, Int> = HashMap()
         for (word in words) {
             map[word] = map.getOrDefault(word, 0) + 1
@@ -76,7 +76,7 @@ class TopKFrequentSorting : TopKFrequent {
 }
 
 class TopKFrequentMinHeap : TopKFrequent {
-    override fun perform(words: Array<String>, k: Int): List<String> {
+    override operator fun invoke(words: Array<String>, k: Int): List<String> {
         val map: MutableMap<String, Int> = HashMap()
         for (word in words) {
             map[word] = map.getOrDefault(word, 0) + 1
@@ -103,7 +103,7 @@ class TopKFrequentMinHeap : TopKFrequent {
 }
 
 class TopKFrequentMap : TopKFrequent {
-    override fun perform(words: Array<String>, k: Int): List<String> {
+    override operator fun invoke(words: Array<String>, k: Int): List<String> {
         val result: MutableList<String> = LinkedList()
         val map: MutableMap<String, Int> = HashMap()
         for (i in words.indices) {
@@ -129,7 +129,7 @@ class TopKFrequentMap : TopKFrequent {
 
 class TopKFrequentTrie : TopKFrequent {
 
-    override fun perform(words: Array<String>, k: Int): List<String> {
+    override operator fun invoke(words: Array<String>, k: Int): List<String> {
         val map: MutableMap<String, Int> = HashMap()
         for (word in words) {
             map[word] = map.getOrDefault(word, 0) + 1
@@ -201,7 +201,7 @@ class TopKFrequentTrie : TopKFrequent {
 }
 
 class TopKFrequentBucketSort : TopKFrequent {
-    override fun perform(words: Array<String>, k: Int): List<String> {
+    override operator fun invoke(words: Array<String>, k: Int): List<String> {
         val map: MutableMap<String, Int> = HashMap()
         for (word in words) {
             map[word] = map.getOrDefault(word, 0) + 1

@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/">leetcode page</a>
  */
 interface MaxValueOfCoins {
-    fun perform(piles: List<List<Int>>, k: Int): Int
+    operator fun invoke(piles: List<List<Int>>, k: Int): Int
 }
 
 class MaxValueOfCoinsTopDown : MaxValueOfCoins {
-    override fun perform(piles: List<List<Int>>, k: Int): Int {
+    override operator fun invoke(piles: List<List<Int>>, k: Int): Int {
         val memo = Array(piles.size + 1) {
             arrayOfNulls<Int>(k + 1)
         }

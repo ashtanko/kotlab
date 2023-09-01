@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 interface VowelSpellchecker {
-    fun perform(wordlist: Array<String>, queries: Array<String>): Array<String>
+    operator fun invoke(wordlist: Array<String>, queries: Array<String>): Array<String>
 }
 
 class VowelSpellcheckerImpl : VowelSpellchecker {
@@ -26,7 +26,7 @@ class VowelSpellcheckerImpl : VowelSpellchecker {
     private val wordsCap: MutableMap<String, String> = HashMap()
     private val wordsVow: MutableMap<String, String> = HashMap()
 
-    override fun perform(wordlist: Array<String>, queries: Array<String>): Array<String> {
+    override operator fun invoke(wordlist: Array<String>, queries: Array<String>): Array<String> {
         for (word in wordlist) {
             wordsPerfect.add(word)
             val wordlow = word.lowercase()

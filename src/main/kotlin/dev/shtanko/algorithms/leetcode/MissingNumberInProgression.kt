@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/missing-number-in-arithmetic-progression/">leetcode page</a>
  */
 interface MissingNumberInProgression {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -30,7 +30,7 @@ interface MissingNumberInProgression {
  * Space complexity : O(1).
  */
 class MNLinearSearch : MissingNumberInProgression {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         if (arr.isEmpty() || arr.size < 2) return 0
         val n = arr.size
         val diff = arr.last().minus(arr.first()).div(n)
@@ -50,7 +50,7 @@ class MNLinearSearch : MissingNumberInProgression {
  * Space complexity : O(1).
  */
 class MNBinarySearch : MissingNumberInProgression {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         if (arr.isEmpty() || arr.size < 2) return 0
         val n = arr.size
         val diff = arr.last().minus(arr.first()).div(n)

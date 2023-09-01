@@ -24,13 +24,13 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/longest-path-with-different-adjacent-characters/">leetcode page</a>
  */
 interface LongestPath {
-    fun perform(parent: IntArray, s: String): Int
+    operator fun invoke(parent: IntArray, s: String): Int
 }
 
 class LongestPathDFS : LongestPath {
     var res = 0
 
-    override fun perform(parent: IntArray, s: String): Int {
+    override operator fun invoke(parent: IntArray, s: String): Int {
         res = 0
         val children: Array<ArrayList<Int>> = Array(parent.size) { ArrayList() }
         for (i in 1 until parent.size) {

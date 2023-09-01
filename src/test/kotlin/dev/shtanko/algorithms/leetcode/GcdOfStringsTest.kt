@@ -53,7 +53,7 @@ abstract class GcdOfStringsTest<out T : GcdOfStrings>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `gcd of strings test`(str1: String, str2: String, expected: String) {
-        val actual = strategy.perform(str1, str2)
+        val actual = strategy.invoke(str1, str2)
         assertThat(actual).isEqualTo(expected)
     }
 }

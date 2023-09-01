@@ -49,7 +49,7 @@ abstract class FrequencySortTest<out T : FrequencySort>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `frequency sort test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).hasToString(expected)
     }
 }

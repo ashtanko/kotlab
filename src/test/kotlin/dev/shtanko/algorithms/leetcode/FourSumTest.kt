@@ -44,7 +44,7 @@ abstract class FourSumTest<out T : FourSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `4 sum test`(nums: IntArray, target: Int, expected: List<List<Int>>) {
-        val actual = strategy.perform(nums, target).flatten().sorted()
+        val actual = strategy.invoke(nums, target).flatten().sorted()
         assertThat(actual, equalTo(expected.flatten().sorted()))
     }
 }

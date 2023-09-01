@@ -73,7 +73,7 @@ abstract class MinCostTest<out T : MinCost>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min cost test`(maxTime: Int, edges: Array<IntArray>, passingFees: IntArray, expected: Int) {
-        val actual = strategy.perform(maxTime, edges, passingFees)
+        val actual = strategy.invoke(maxTime, edges, passingFees)
         assertThat(actual).isEqualTo(expected)
     }
 }

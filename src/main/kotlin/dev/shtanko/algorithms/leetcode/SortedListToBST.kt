@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  *
  */
 interface SortedListToBST {
-    fun perform(head: ListNode?): TreeNode?
+    operator fun invoke(head: ListNode?): TreeNode?
 }
 
 /**
@@ -28,7 +28,7 @@ interface SortedListToBST {
  */
 class SortedListToBSTRecursion : SortedListToBST {
 
-    override fun perform(head: ListNode?): TreeNode? {
+    override operator fun invoke(head: ListNode?): TreeNode? {
         // If the head doesn't exist, then the linked list is empty
         if (head == null) {
             return null
@@ -52,8 +52,8 @@ class SortedListToBSTRecursion : SortedListToBST {
         // Recursively form balanced BSTs using the left and right halves of the original list.
 
         // Recursively form balanced BSTs using the left and right halves of the original list.
-        node.left = this.perform(head)
-        node.right = this.perform(mid.next)
+        node.left = this.invoke(head)
+        node.right = this.invoke(mid.next)
         return node
     }
 
@@ -84,7 +84,7 @@ class SortedListToBSTRecursion : SortedListToBST {
 class SortedListToBSTArray : SortedListToBST {
     private val values: MutableList<Int> = ArrayList()
 
-    override fun perform(head: ListNode?): TreeNode {
+    override operator fun invoke(head: ListNode?): TreeNode {
         this.mapListToValues(head)
         // Convert the array to
         return convertListToBST(0, this.values.size - 1)!!
@@ -127,7 +127,7 @@ class SortedListToBSTInorder : SortedListToBST {
 
     private var head: ListNode? = null
 
-    override fun perform(head: ListNode?): TreeNode? {
+    override operator fun invoke(head: ListNode?): TreeNode? {
         // Get the size of the linked list first
         val size = findSize(head)
         this.head = head

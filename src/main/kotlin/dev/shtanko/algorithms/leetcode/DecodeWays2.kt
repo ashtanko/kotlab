@@ -24,12 +24,12 @@ private const val SIX = 6
 private const val FIFTEEN = 15
 
 interface DecodeWays2Strategy {
-    fun perform(s: String): Int
+    operator fun invoke(s: String): Int
 }
 
 class DecodeWays2RecursionWithMemoization : DecodeWays2Strategy {
 
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         if (s.isBlank()) return 0
         val memo = arrayOfNulls<Int>(s.length)
         return ways(s, s.length - 1, memo)
@@ -95,7 +95,7 @@ class DecodeWays2RecursionWithMemoization : DecodeWays2Strategy {
 
 class DecodeWays2DynamicProgramming : DecodeWays2Strategy {
 
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         if (s.isBlank()) return 0
         val dp = LongArray(s.length + 1)
         dp[0] = 1
@@ -154,7 +154,7 @@ class DecodeWays2DynamicProgramming : DecodeWays2Strategy {
 
 class DecodeWays2ConstantSpaceDynamicProgramming : DecodeWays2Strategy {
 
-    override fun perform(s: String): Int {
+    override operator fun invoke(s: String): Int {
         if (s.isBlank()) return 0
         var first: Long = 1
         var second = if (s[0] == '*') NINE.toLong() else if (s[0] == '0') 0 else 1.toLong()

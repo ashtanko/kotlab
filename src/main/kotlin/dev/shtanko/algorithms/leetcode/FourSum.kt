@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 interface FourSum {
-    fun perform(nums: IntArray, target: Int): List<List<Int>>
+    operator fun invoke(nums: IntArray, target: Int): List<List<Int>>
 }
 
 /**
@@ -26,7 +26,7 @@ interface FourSum {
  * Space Complexity: O(n).
  */
 class FourSumTwoPointers : FourSum {
-    override fun perform(nums: IntArray, target: Int): List<List<Int>> {
+    override operator fun invoke(nums: IntArray, target: Int): List<List<Int>> {
         nums.sort()
         return kSum(nums, target, 0, 4)
     }
@@ -69,7 +69,7 @@ class FourSumTwoPointers : FourSum {
  * Space Complexity: O(n).
  */
 class FourSumHashSet : FourSum {
-    override fun perform(nums: IntArray, target: Int): List<List<Int>> {
+    override operator fun invoke(nums: IntArray, target: Int): List<List<Int>> {
         nums.sort()
         return kSum(nums, target, 0, 4)
     }

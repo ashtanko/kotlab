@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/">leetcode page</a>
  */
 interface NumberOfWays {
-    fun perform(corridor: String): Int
+    operator fun invoke(corridor: String): Int
 }
 
 class NumberOfWaysDP : NumberOfWays {
-    override fun perform(corridor: String): Int {
+    override operator fun invoke(corridor: String): Int {
         var res: Long = 1
         var j: Long = 0
         var k: Long = 0

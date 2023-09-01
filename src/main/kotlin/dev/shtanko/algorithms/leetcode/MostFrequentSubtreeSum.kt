@@ -22,7 +22,7 @@ class MostFrequentSubtreeSum {
     private val count: MutableMap<Int, Int> = HashMap()
     private var maxCount = 0
 
-    fun perform(root: TreeNode?): IntArray {
+    operator fun invoke(root: TreeNode?): IntArray {
         dfs(root)
         val res: MutableList<Int> = ArrayList()
         for (s in count.keys) {

@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/unique-paths-iii/">leetcode page</a>
  */
 interface UniquePaths3 {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class UniquePaths3Backtracking : UniquePaths3 {
@@ -29,7 +29,7 @@ class UniquePaths3Backtracking : UniquePaths3 {
     private var empty: Int = 1
     private var sx: Int = 0
     private var sy: Int = 0
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val m: Int = grid.size
         val n: Int = grid[0].size
         for (i in 0 until m) {

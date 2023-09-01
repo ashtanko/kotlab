@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/restore-ip-addresses/">leetcode page</a>
  */
 interface RestoreIPAddresses {
-    fun perform(s: String): List<String>
+    operator fun invoke(s: String): List<String>
 }
 
 class RestoreIPAddressesDFS : RestoreIPAddresses {
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         val solutions: MutableList<String> = ArrayList()
         restoreIp(s, solutions, 0, "", 0)
         return solutions
@@ -44,7 +44,7 @@ class RestoreIPAddressesDFS : RestoreIPAddresses {
 }
 
 class RestoreIPAddressesFast : RestoreIPAddresses {
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         val ret: MutableList<String> = ArrayList()
 
         val ip = StringBuffer()

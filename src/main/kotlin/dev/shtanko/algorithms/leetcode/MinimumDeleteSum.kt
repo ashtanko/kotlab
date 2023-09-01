@@ -23,14 +23,14 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/">leetcode page</a>
  */
 interface MinimumDeleteSum {
-    fun perform(s1: String, s2: String): Int
+    operator fun invoke(s1: String, s2: String): Int
 }
 
 /**
  * Approach 1: Recursion
  */
 class MinimumDeleteSumRecursion : MinimumDeleteSum {
-    override fun perform(s1: String, s2: String): Int {
+    override operator fun invoke(s1: String, s2: String): Int {
         return computeCost(s1, s2, s1.length - 1, s2.length - 1)
     }
 
@@ -77,7 +77,7 @@ class MinimumDeleteSumTopDown : MinimumDeleteSum {
     // Hash Map to store the result of each sub-problem.
     private val savedResult: MutableMap<Pair<Int, Int>, Int> = HashMap()
 
-    override fun perform(s1: String, s2: String): Int {
+    override operator fun invoke(s1: String, s2: String): Int {
         // Return minimum cost to make s1[0...i] and s2[0...j] equal
         return computeCost(s1, s2, s1.length - 1, s2.length - 1)
     }
@@ -127,7 +127,7 @@ class MinimumDeleteSumTopDown : MinimumDeleteSum {
  * Approach 3: Bottom-up Dynamic Programming
  */
 class MinimumDeleteSumBottomUp : MinimumDeleteSum {
-    override fun perform(s1: String, s2: String): Int {
+    override operator fun invoke(s1: String, s2: String): Int {
         // Prepare the two-dimensional array
         val m: Int = s1.length
         val n: Int = s2.length
@@ -164,10 +164,10 @@ class MinimumDeleteSumBottomUp : MinimumDeleteSum {
  * Approach 4: Space-Optimized Bottom-up Dynamic Programming
  */
 class MinimumDeleteSumBottomUpOtp : MinimumDeleteSum {
-    override fun perform(s1: String, s2: String): Int {
+    override operator fun invoke(s1: String, s2: String): Int {
         // Make sure s2 is smaller string
         if (s1.length < s2.length) {
-            return perform(s2, s1)
+            return invoke(s2, s1)
         }
 
         // Case for empty s1

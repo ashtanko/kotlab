@@ -23,11 +23,11 @@ import dev.shtanko.algorithms.math.gcd
  * @see <a href="https://leetcode.com/problems/max-points-on-a-line/">leetcode page</a>
  */
 interface MaxPoints {
-    fun perform(points: Array<IntArray>): Int
+    operator fun invoke(points: Array<IntArray>): Int
 }
 
 class MaxPointsMap : MaxPoints {
-    override fun perform(points: Array<IntArray>): Int {
+    override operator fun invoke(points: Array<IntArray>): Int {
         if (points.size < SAME_LINE) return points.size
         var maxRes = 0
         for (i in points.indices) {

@@ -23,14 +23,14 @@ import java.util.PriorityQueue
  * @see <a href="https://leetcode.com/problems/find-k-pairs-with-smallest-sums/">leetcode page</a>
  */
 interface KSmallestPairs {
-    fun perform(nums1: IntArray, nums2: IntArray, k: Int): List<List<Int>>
+    operator fun invoke(nums1: IntArray, nums2: IntArray, k: Int): List<List<Int>>
 }
 
 /**
  * Approach: Using Heap
  */
 class KSmallestPairsHeap : KSmallestPairs {
-    override fun perform(nums1: IntArray, nums2: IntArray, k: Int): List<List<Int>> {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray, k: Int): List<List<Int>> {
         val m: Int = nums1.size
         val n: Int = nums2.size
 

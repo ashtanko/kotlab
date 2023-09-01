@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/counting-elements/">leetcode page</a>
  */
 interface CountingElements {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -30,7 +30,7 @@ interface CountingElements {
  * Space complexity : O(1)
  */
 class CESearchWithArray : CountingElements {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         var count = 0
         for (x in arr) {
             if (x.plus(1).isInArray(arr)) {
@@ -60,7 +60,7 @@ class CESearchWithArray : CountingElements {
  * Space complexity : O(N).
  */
 class CESearchingWithHashSet : CountingElements {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val set = arr.toHashSet()
         var count = 0
         for (x in arr) {
@@ -79,7 +79,7 @@ class CESearchingWithHashSet : CountingElements {
  * Space complexity : varies from O(N) to O(1).
  */
 class CESearchingWithSortedArray : CountingElements {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         arr.sort()
         var count = 0
         var runLength = 1

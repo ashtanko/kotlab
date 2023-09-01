@@ -53,7 +53,7 @@ abstract class BitwiseComplementTest<out T : BitwiseComplement>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `bitwise complement test`(n: Int, expected: Int) {
-        val actual = strategy.perform(n)
+        val actual = strategy.invoke(n)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-the-number-of-consistent-strings/">leetcode page</a>
  */
 interface CountConsistentStrings {
-    fun perform(allowed: String, words: Array<String>): Int
+    operator fun invoke(allowed: String, words: Array<String>): Int
 }
 
 class CountConsistentStringsMap : CountConsistentStrings {
-    override fun perform(allowed: String, words: Array<String>): Int {
+    override operator fun invoke(allowed: String, words: Array<String>): Int {
         var ans = 0
         val map = HashSet<Char>()
         for (ch in allowed.toCharArray()) {

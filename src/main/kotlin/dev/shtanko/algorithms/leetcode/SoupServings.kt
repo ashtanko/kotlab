@@ -24,7 +24,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/soup-servings/">leetcode page</a>
  */
 interface SoupServings {
-    fun perform(n: Int): Double
+    operator fun invoke(n: Int): Double
 }
 
 private const val DIVISOR = 25.0
@@ -35,7 +35,7 @@ private const val HALF = 0.5
  */
 class SoupServingsBottomUp : SoupServings {
 
-    override fun perform(n: Int): Double {
+    override operator fun invoke(n: Int): Double {
         val m = ceil(n / DIVISOR).toInt()
         val dp = mutableMapOf<Int, MutableMap<Int, Double>>()
         dp[0] = mutableMapOf()
@@ -82,7 +82,7 @@ class SoupServingsBottomUp : SoupServings {
  * Approach 2: Top-Down Dynamic Programming (Memoization)
  */
 class SoupServingsTopDown : SoupServings {
-    override fun perform(n: Int): Double {
+    override operator fun invoke(n: Int): Double {
         val m = ceil(n / DIVISOR).toInt()
         val dp: MutableMap<Int, MutableMap<Int, Double>> = HashMap()
 

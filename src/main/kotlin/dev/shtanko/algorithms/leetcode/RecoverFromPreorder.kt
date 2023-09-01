@@ -23,11 +23,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/">leetcode page</a>
  */
 interface RecoverFromPreorder {
-    fun perform(traversal: String): TreeNode?
+    operator fun invoke(traversal: String): TreeNode?
 }
 
 class RecoverFromPreorderIterative : RecoverFromPreorder {
-    override fun perform(traversal: String): TreeNode? {
+    override operator fun invoke(traversal: String): TreeNode? {
         var level: Int
         var value: Int
         val stack: Stack<TreeNode> = Stack()
@@ -67,7 +67,7 @@ class RecoverFromPreorderIterative : RecoverFromPreorder {
 
 class RecoverFromPreorderRecursive : RecoverFromPreorder {
     var i = 0
-    override fun perform(traversal: String): TreeNode? {
+    override operator fun invoke(traversal: String): TreeNode? {
         return helper(traversal, -1)
     }
 

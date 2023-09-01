@@ -61,7 +61,7 @@ abstract class CheckWaysTest<out T : CheckWays>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `check ways test`(pairs: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(pairs)
+        val actual = strategy.invoke(pairs)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -36,7 +36,7 @@ class StrStrTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `str str test`(haystack: String, needle: String, expected: Int) {
-        val actual = StrStr.perform(haystack, needle)
+        val actual = StrStr.invoke(haystack, needle)
         assertThat(actual).isEqualTo(expected)
     }
 }

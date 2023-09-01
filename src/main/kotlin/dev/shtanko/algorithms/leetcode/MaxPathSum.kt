@@ -23,13 +23,13 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/">leetcode page</a>
  */
 interface MaxPathSum {
-    fun perform(root: TreeNode?): Int
+    operator fun invoke(root: TreeNode?): Int
 }
 
 class MaxPathSumRecursion : MaxPathSum {
     private var maxSum = Int.MIN_VALUE
 
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         maxGain(root)
         return maxSum
     }

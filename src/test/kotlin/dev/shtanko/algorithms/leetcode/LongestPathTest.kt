@@ -43,7 +43,7 @@ abstract class LongestPathTest<out T : LongestPath>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest path test`(parent: IntArray, s: String, expected: Int) {
-        val actual = strategy.perform(parent, s)
+        val actual = strategy.invoke(parent, s)
         assertThat(actual).isEqualTo(expected)
     }
 }

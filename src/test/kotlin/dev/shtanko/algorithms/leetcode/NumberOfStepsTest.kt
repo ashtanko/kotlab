@@ -37,7 +37,7 @@ abstract class NumberOfStepsTest<out T : NumberOfStepsStrategy>(private val stra
     @MethodSource("dataProvider")
     fun `number of steps test`(testCase: Pair<Int, Int>) {
         val (n, expected) = testCase
-        val actual = strategy.perform(n)
+        val actual = strategy.invoke(n)
         assertEquals(expected, actual)
     }
 }

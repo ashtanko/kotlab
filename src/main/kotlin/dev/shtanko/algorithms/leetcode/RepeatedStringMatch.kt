@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/repeated-string-match/description/">leetcode page</a>
  */
 interface RepeatedStringMatch {
-    fun perform(a: String, b: String): Int
+    operator fun invoke(a: String, b: String): Int
 }
 
 class RepeatedStringMatchSB : RepeatedStringMatch {
-    override fun perform(a: String, b: String): Int {
+    override operator fun invoke(a: String, b: String): Int {
         val sb = StringBuilder().apply {
             append(a)
         }

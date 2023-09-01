@@ -24,11 +24,11 @@ import kotlin.math.pow
  * @see <a href="https://leetcode.com/problems/maximum-and-sum-of-array/">leetcode page</a>
  */
 interface MaximumANDSum {
-    fun perform(nums: IntArray, numSlots: Int): Int
+    operator fun invoke(nums: IntArray, numSlots: Int): Int
 }
 
 class MaximumANDSumDP : MaximumANDSum {
-    override fun perform(nums: IntArray, numSlots: Int): Int {
+    override operator fun invoke(nums: IntArray, numSlots: Int): Int {
         val mask = 3.0.pow(numSlots.toDouble()).toInt() - 1
         val memo = IntArray(mask + 1)
         return dp(nums.size - 1, mask, numSlots, memo, nums)

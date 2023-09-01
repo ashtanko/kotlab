@@ -24,7 +24,7 @@ import kotlin.math.pow
  * @see <a href="https://leetcode.com/problems/prime-palindrome/">leetcode page</a>
  */
 interface PrimePalindrome {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 /**
@@ -33,7 +33,7 @@ interface PrimePalindrome {
  * Space Complexity: O(logN).
  */
 class IteratePalindromes : PrimePalindrome {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         for (L in 1..MAX) {
             // Check for odd-length palindromes
             val local = DECIMAL.toDouble().pow((L - 1).toDouble()).toInt()
@@ -67,7 +67,7 @@ class IteratePalindromes : PrimePalindrome {
  * Space Complexity: O(1).
  */
 class PrimePalindromeBruteForce : PrimePalindrome {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         var x = n
         while (true) {
             if (x == reverse(x) && x.isPrime()) {

@@ -48,7 +48,7 @@ abstract class SmallestDivisorStrategyTest<out T : SmallestDivisorStrategy>(priv
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find the smallest divisor given a threshold test`(nums: IntArray, threshold: Int, expected: Int) {
-        val actual = strategy.perform(nums, threshold)
+        val actual = strategy.invoke(nums, threshold)
         assertEquals(expected, actual)
     }
 }

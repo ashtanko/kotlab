@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/description/">leetcode page</a>
  */
 interface NumOfWaysGrid {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class NumOfWaysGridDP : NumOfWaysGrid {
-    override fun perform(n: Int): Int {
+    override operator fun invoke(n: Int): Int {
         val dp = Array(2) { LongArray(2) { 6 } }
         for (i in 1 until n) {
             dp[i % 2][0] = (dp[(i - 1) % 2][0] * 3 + dp[(i - 1) % 2][1] * 2) % MOD

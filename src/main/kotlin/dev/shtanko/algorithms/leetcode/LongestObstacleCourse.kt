@@ -22,11 +22,11 @@ package dev.shtanko.algorithms.leetcode
  *     leetcode page</a>
  */
 interface LongestObstacleCourse {
-    fun perform(obstacles: IntArray): IntArray
+    operator fun invoke(obstacles: IntArray): IntArray
 }
 
 class LongestObstacleCourseGreedyBS : LongestObstacleCourse {
-    override fun perform(obstacles: IntArray): IntArray {
+    override operator fun invoke(obstacles: IntArray): IntArray {
         val n = obstacles.size
         var lisLength = 0
         // lis[i] records the lowest increasing sequence of length i + 1.

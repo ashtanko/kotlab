@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/palindrome-partitioning/">leetcode page</a>
  */
 interface PalindromePartitioning {
-    fun perform(s: String): List<List<String>>
+    operator fun invoke(s: String): List<List<String>>
 }
 
 /**
  * Approach 1: Backtracking
  */
 class PPBacktracking : PalindromePartitioning {
-    override fun perform(s: String): List<List<String>> {
+    override operator fun invoke(s: String): List<List<String>> {
         val result: MutableList<List<String>> = ArrayList()
         dfs(0, result, ArrayList(), s)
         return result
@@ -63,7 +63,7 @@ class PPBacktracking : PalindromePartitioning {
  * Approach 2: Backtracking with Dynamic Programming
  */
 class PPBacktrackingDP : PalindromePartitioning {
-    override fun perform(s: String): List<List<String>> {
+    override operator fun invoke(s: String): List<List<String>> {
         val len: Int = s.length
         val dp = Array(len) { BooleanArray(len) }
         val result: MutableList<List<String>> = ArrayList()

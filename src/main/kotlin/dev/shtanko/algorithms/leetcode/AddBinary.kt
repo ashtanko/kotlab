@@ -22,7 +22,7 @@ import java.math.BigInteger
  * Given two binary strings a and b, return their sum as a binary string.
  */
 interface AddBinaryStrategy {
-    fun perform(a: String, b: String): String
+    operator fun invoke(a: String, b: String): String
 }
 
 /**
@@ -30,7 +30,7 @@ interface AddBinaryStrategy {
  * Space complexity: O(max(N,M)) to keep the answer.
  */
 class AddBinaryBitByBitComputation : AddBinaryStrategy {
-    override fun perform(a: String, b: String): String {
+    override operator fun invoke(a: String, b: String): String {
         val sb = StringBuilder()
         var i: Int = a.length - 1
         var j: Int = b.length - 1
@@ -52,7 +52,7 @@ class AddBinaryBitByBitComputation : AddBinaryStrategy {
  * Space complexity: O(max(N,M)) to keep the answer.
  */
 class AddBinaryBitManipulation : AddBinaryStrategy {
-    override fun perform(a: String, b: String): String {
+    override operator fun invoke(a: String, b: String): String {
         if (a.isEmpty() || b.isEmpty()) return ""
         var x = BigInteger(a, 2)
         var y = BigInteger(b, 2)

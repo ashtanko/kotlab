@@ -36,7 +36,7 @@ abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val strategy
         1_000_000 to 78498,
     ).map { (input, expected) ->
         DynamicTest.dynamicTest("count primes of $input then get $expected") {
-            val actual = strategy.perform(input)
+            val actual = strategy.invoke(input)
             Assertions.assertThat(actual).isEqualTo(expected)
         }
     }

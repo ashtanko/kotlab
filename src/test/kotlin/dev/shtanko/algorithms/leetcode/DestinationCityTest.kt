@@ -53,7 +53,7 @@ abstract class DestinationCityTest<out T : DestinationCityStrategy>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `destination city test`(paths: List<List<String>>, expected: String) {
-        val actual = strategy.perform(paths)
+        val actual = strategy.invoke(paths)
         assertEquals(expected, actual)
     }
 }

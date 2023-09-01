@@ -25,14 +25,14 @@ import java.util.Arrays
  * followed by all the odd elements of A.
  */
 interface SortArrayByParity {
-    fun perform(nums: IntArray): IntArray
+    operator fun invoke(nums: IntArray): IntArray
 }
 
 /**
  * Approach 1: Stream
  */
 class SortArrayByParityStream : SortArrayByParity {
-    override fun perform(nums: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray): IntArray {
         return Arrays.stream(nums)
             .boxed()
             .sorted { a, b -> (a % 2).compareTo(b % 2) }
@@ -45,13 +45,13 @@ class SortArrayByParityStream : SortArrayByParity {
  * Approach 1: Kotlin
  */
 class SortArrayByParityKotlin : SortArrayByParity {
-    override fun perform(nums: IntArray): IntArray = nums
+    override operator fun invoke(nums: IntArray): IntArray = nums
         .sortedWith { a, b -> (a % 2).compareTo(b % 2) }
         .toIntArray()
 }
 
 class SortArrayByParityTwoPass : SortArrayByParity {
-    override fun perform(nums: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray): IntArray {
         val ans = IntArray(nums.size)
         var t = 0
 
@@ -68,7 +68,7 @@ class SortArrayByParityTwoPass : SortArrayByParity {
 }
 
 class SortArrayByParityInPlace : SortArrayByParity {
-    override fun perform(nums: IntArray): IntArray = nums.sortArrayByParity()
+    override operator fun invoke(nums: IntArray): IntArray = nums.sortArrayByParity()
 }
 
 fun IntArray.sortArrayByParity(): IntArray {

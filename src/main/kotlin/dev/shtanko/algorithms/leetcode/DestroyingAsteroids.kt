@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/destroying-asteroids/">leetcode page</a>
  */
 interface DestroyingAsteroids {
-    fun perform(mass: Int, asteroids: IntArray): Boolean
+    operator fun invoke(mass: Int, asteroids: IntArray): Boolean
 }
 
 class DestroyingAsteroidsGreedy : DestroyingAsteroids {
-    override fun perform(mass: Int, asteroids: IntArray): Boolean {
+    override operator fun invoke(mass: Int, asteroids: IntArray): Boolean {
         var m = mass.toLong()
         asteroids.sort()
         for (ast in asteroids) {

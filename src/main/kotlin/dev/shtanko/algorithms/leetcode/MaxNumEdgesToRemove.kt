@@ -22,11 +22,11 @@ package dev.shtanko.algorithms.leetcode
  *     leetcode page</a>
  */
 interface MaxNumEdgesToRemove {
-    fun perform(n: Int, edges: Array<IntArray>): Int
+    operator fun invoke(n: Int, edges: Array<IntArray>): Int
 }
 
 class MaxNumEdgesToRemoveDSU : MaxNumEdgesToRemove {
-    override fun perform(n: Int, edges: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, edges: Array<IntArray>): Int {
         // Different objects for Alice and Bob.
         val alice = UnionFind(n)
         val bob = UnionFind(n)

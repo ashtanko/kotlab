@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/find-closest-node-to-given-two-nodes/">leetcode page</a>
  */
 interface ClosestMeetingNode {
-    fun perform(edges: IntArray, node1: Int, node2: Int): Int
+    operator fun invoke(edges: IntArray, node1: Int, node2: Int): Int
 }
 
 class ClosestMeetingNodeDFS : ClosestMeetingNode {
-    override fun perform(edges: IntArray, node1: Int, node2: Int): Int {
+    override operator fun invoke(edges: IntArray, node1: Int, node2: Int): Int {
         val n = edges.size
         // d1[i]: shortest dist to node i starting from node 1
         val d1 = IntArray(n) { Int.MAX_VALUE }

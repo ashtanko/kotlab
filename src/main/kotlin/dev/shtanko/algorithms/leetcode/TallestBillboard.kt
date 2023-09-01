@@ -24,14 +24,14 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/tallest-billboard/">leetcode page</a>
  */
 interface TallestBillboard {
-    fun perform(rods: IntArray): Int
+    operator fun invoke(rods: IntArray): Int
 }
 
 /**
  * Approach 1: Meet in the Middle
  */
 class TallestBillboardMiddle : TallestBillboard {
-    override fun perform(rods: IntArray): Int {
+    override operator fun invoke(rods: IntArray): Int {
         val n: Int = rods.size
         val firstHalf = helper(rods, 0, n / 2)
         val secondHalf = helper(rods, n / 2, n)
@@ -72,7 +72,7 @@ class TallestBillboardMiddle : TallestBillboard {
  * Approach 2: Dynamic Programming
  */
 class TallestBillboardDP : TallestBillboard {
-    override fun perform(rods: IntArray): Int {
+    override operator fun invoke(rods: IntArray): Int {
         // dp[taller - shorter] = taller
         var dp: MutableMap<Int, Int> = HashMap()
         dp[0] = 0

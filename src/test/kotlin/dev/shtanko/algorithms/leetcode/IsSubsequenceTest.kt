@@ -43,7 +43,7 @@ abstract class IsSubsequenceTest<out T : IsSubsequence>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is subsequence test`(source: String, target: String, expected: Boolean) {
-        val actual = strategy.perform(source, target)
+        val actual = strategy.invoke(source, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/">leetcode page</a>
  */
 interface MinimizeMax {
-    fun perform(nums: IntArray, p: Int): Int
+    operator fun invoke(nums: IntArray, p: Int): Int
 }
 
 /**
  * Greedy + Binary Search
  */
 class MinimizeMaxGreedyBS : MinimizeMax {
-    override fun perform(nums: IntArray, p: Int): Int {
+    override operator fun invoke(nums: IntArray, p: Int): Int {
         nums.sort()
         val n = nums.size
         var left = 0

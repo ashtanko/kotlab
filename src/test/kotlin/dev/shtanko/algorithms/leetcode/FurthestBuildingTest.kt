@@ -51,7 +51,7 @@ abstract class FurthestBuildingTest<out T : FurthestBuilding>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `furthest building test`(heights: IntArray, bricks: Int, ladders: Int, expected: Int) {
-        val actual = strategy.perform(heights, bricks, ladders)
+        val actual = strategy.invoke(heights, bricks, ladders)
         assertThat(actual).isEqualTo(expected)
     }
 }

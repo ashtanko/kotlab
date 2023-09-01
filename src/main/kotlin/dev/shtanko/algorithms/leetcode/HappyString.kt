@@ -22,11 +22,11 @@ package dev.shtanko.algorithms.leetcode
  *     leetcode page</a>
  */
 interface HappyString {
-    fun perform(n: Int, k: Int): String
+    operator fun invoke(n: Int, k: Int): String
 }
 
 class HappyStringDFS : HappyString {
-    override fun perform(n: Int, k: Int): String {
+    override operator fun invoke(n: Int, k: Int): String {
         val str = charArrayOf('a', 'b', 'c')
         val kArr = IntArray(1)
         kArr[0] = k
@@ -49,7 +49,7 @@ class HappyStringDFS : HappyString {
 }
 
 class HappyStringMath : HappyString {
-    override fun perform(n: Int, k: Int): String {
+    override operator fun invoke(n: Int, k: Int): String {
         var kk = k
         var prem = 1 shl n - 1
         if (kk > 3 * prem) {

@@ -45,7 +45,7 @@ abstract class MaximumBagsTest<out T : MaximumBags>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `maximum bags test`(capacity: IntArray, rocks: IntArray, additionalRocks: Int, expected: Int) {
-        val actual = strategy.perform(capacity, rocks, additionalRocks)
+        val actual = strategy.invoke(capacity, rocks, additionalRocks)
         assertThat(actual).isEqualTo(expected)
     }
 }

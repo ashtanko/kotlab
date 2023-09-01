@@ -53,7 +53,7 @@ abstract class MaxBoxesInWarehouseTest<out T : MaxBoxesInWarehouse>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max boxes in warehouse test`(boxes: IntArray, warehouse: IntArray, expected: Int) {
-        val actual = strategy.perform(boxes, warehouse)
+        val actual = strategy.invoke(boxes, warehouse)
         assertThat(actual).isEqualTo(expected)
     }
 }

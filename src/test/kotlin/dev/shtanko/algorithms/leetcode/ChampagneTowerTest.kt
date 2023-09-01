@@ -63,7 +63,7 @@ abstract class ChampagneTowerTest<out T : ChampagneTower>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `champagne tower test`(poured: Int, queryRow: Int, queryGlass: Int, expected: Double) {
-        val actual = strategy.perform(poured, queryRow, queryGlass)
+        val actual = strategy.invoke(poured, queryRow, queryGlass)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/largest-merge-of-two-strings/">leetcode page</a>
  */
 interface LargestMerge {
-    fun perform(word1: String, word2: String): String
+    operator fun invoke(word1: String, word2: String): String
 }
 
 class LargestMergeGreedy : LargestMerge {
-    override fun perform(word1: String, word2: String): String {
+    override operator fun invoke(word1: String, word2: String): String {
         return largestMerge(word1, word2)
     }
 

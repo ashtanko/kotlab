@@ -41,7 +41,7 @@ abstract class NextLargerNodesTest<out T : NextLargerNodes>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `next larger nodes test`(head: ListNode?, expected: IntArray) {
-        val actual = strategy.perform(head)
+        val actual = strategy.invoke(head)
         assertThat(actual).isEqualTo(expected)
     }
 }

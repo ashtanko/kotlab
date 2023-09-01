@@ -55,7 +55,7 @@ abstract class AbstractDecodeWays2StrategyTest<out T : DecodeWays2Strategy>(priv
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `simple test`(str: String, expected: Int) {
-        val actual = strategy.perform(str)
+        val actual = strategy.invoke(str)
         assertEquals(expected, actual)
     }
 }

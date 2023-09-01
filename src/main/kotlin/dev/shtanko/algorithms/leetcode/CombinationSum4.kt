@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/combination-sum-iv/">leetcode page</a>
  */
 interface CombinationSum4 {
-    fun perform(nums: IntArray, target: Int): Int
+    operator fun invoke(nums: IntArray, target: Int): Int
 }
 
 /**
@@ -34,7 +34,7 @@ class CombinationSum4TopDown : CombinationSum4 {
 
     private val memo: MutableMap<Int, Int> = HashMap()
 
-    override fun perform(nums: IntArray, target: Int): Int {
+    override operator fun invoke(nums: IntArray, target: Int): Int {
         return combs(nums, target)
     }
 
@@ -57,7 +57,7 @@ class CombinationSum4TopDown : CombinationSum4 {
  * Space Complexity: O(T)
  */
 class CombinationSum4BottomUp : CombinationSum4 {
-    override fun perform(nums: IntArray, target: Int): Int {
+    override operator fun invoke(nums: IntArray, target: Int): Int {
         // minor optimization
         val dp = IntArray(target + 1)
         dp[0] = 1

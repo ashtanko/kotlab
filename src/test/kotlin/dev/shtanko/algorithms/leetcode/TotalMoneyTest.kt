@@ -49,7 +49,7 @@ class TotalMoneyTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `name test`(n: Int, expected: Int) {
-        val actual = TotalMoney.perform(n)
+        val actual = TotalMoney.invoke(n)
         assertThat(actual).isEqualTo(expected)
     }
 }

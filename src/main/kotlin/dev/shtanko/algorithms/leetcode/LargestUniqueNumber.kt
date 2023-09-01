@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 interface LargestUniqueNumber {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -26,7 +26,7 @@ interface LargestUniqueNumber {
  */
 class LargestUniqueNumberBruteForce : LargestUniqueNumber {
 
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         var res = -1
         val temp = IntArray(ARR_SIZE)
         for (i in arr.indices) {
@@ -51,7 +51,7 @@ class LargestUniqueNumberBruteForce : LargestUniqueNumber {
  * Space complexity: O(n).
  */
 class LargestUniqueNumberHashMap : LargestUniqueNumber {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val seen: MutableMap<Int, Int> = HashMap()
         for (i in arr.indices) {
             seen[arr[i]] = seen.getOrDefault(arr[i], 0) + 1

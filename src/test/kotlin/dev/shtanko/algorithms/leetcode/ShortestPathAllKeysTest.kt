@@ -45,7 +45,7 @@ abstract class ShortestPathAllKeysTest<out T : ShortestPathAllKeys>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shortest path all keys test`(grid: Array<String>, expected: Int) {
-        val actual = strategy.perform(grid)
+        val actual = strategy.invoke(grid)
         assertThat(actual).isEqualTo(expected)
     }
 }

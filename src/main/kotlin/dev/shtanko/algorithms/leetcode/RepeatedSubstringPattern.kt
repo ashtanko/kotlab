@@ -28,7 +28,7 @@ fun interface RepeatedSubstringPattern {
  * Approach 1: Using Divisors
  */
 class RepeatedSubstringPatternDivisors : RepeatedSubstringPattern {
-    override fun invoke(s: String): Boolean {
+    override operator fun invoke(s: String): Boolean {
         val n: Int = s.length
         for (i in 1..n / 2) {
             if (n % i == 0) {
@@ -49,7 +49,7 @@ class RepeatedSubstringPatternDivisors : RepeatedSubstringPattern {
  * Approach 2: String Concatenation
  */
 class RepeatedSubstringPatternConcat : RepeatedSubstringPattern {
-    override fun invoke(s: String): Boolean {
+    override operator fun invoke(s: String): Boolean {
         val combined = s.plus(s)
         return combined.substring(1, combined.length - 1).contains(s)
     }

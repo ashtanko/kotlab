@@ -23,12 +23,12 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/longest-common-subpath/description/">leetcode page</a>
  */
 fun interface LongestCommonSubPath {
-    fun perform(n: Int, paths: Array<IntArray>): Int
+    operator fun invoke(n: Int, paths: Array<IntArray>): Int
 }
 
 class RollingHash : LongestCommonSubPath {
 
-    override fun perform(n: Int, paths: Array<IntArray>): Int {
+    override operator fun invoke(n: Int, paths: Array<IntArray>): Int {
         var s = 0
         var length = paths[0].size
         for (i in paths.indices) {

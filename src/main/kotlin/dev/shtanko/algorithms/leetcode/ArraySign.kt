@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/sign-of-the-product-of-an-array/">leetcode page</a>
  */
 interface ArraySign {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 /**
  * Approach 1: Counting Negative Numbers
  */
 class ArraySignCountingNegativeNumbers : ArraySign {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var countNegativeNumbers = 0
         for (num in nums) {
             if (num == 0) {
@@ -47,7 +47,7 @@ class ArraySignCountingNegativeNumbers : ArraySign {
  * Approach 2: Tracking the Sign of the Product
  */
 class ArraySignTracking : ArraySign {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var sign = 1
         for (num in nums) {
             if (num == 0) {
@@ -65,7 +65,7 @@ class ArraySignTracking : ArraySign {
  * Approach 3: Tracking the Sign of the Product
  */
 class ArraySignSimple : ArraySign {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var sign = 1
         for (n in nums) {
             if (n == 0) {

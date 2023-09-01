@@ -35,7 +35,7 @@ class FrogJumpTopDownDp : FrogJump {
     private val mark = HashMap<Int, Int>()
     private val dp = Array(LIMIT + 1) { IntArray(LIMIT + 1) }
 
-    override fun invoke(stones: IntArray): Boolean {
+    override operator fun invoke(stones: IntArray): Boolean {
         // Mark stones in the map to identify if such stone exists or not.
         for (i in stones.indices) {
             mark[stones[i]] = i
@@ -80,7 +80,7 @@ class FrogJumpBottomUpDp : FrogJump {
     private val mark = HashMap<Int, Int>()
     private val dp = Array(LIMIT + 1) { BooleanArray(LIMIT + 1) }
 
-    override fun invoke(stones: IntArray): Boolean {
+    override operator fun invoke(stones: IntArray): Boolean {
         val n = stones.size
         // Mark stones in the map to identify if such stone exists or not.
         for (i in 0 until n) {

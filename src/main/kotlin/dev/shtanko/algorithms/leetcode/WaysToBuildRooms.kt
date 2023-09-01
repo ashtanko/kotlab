@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/">leetcode page</a>
  */
 interface WaysToBuildRooms {
-    fun perform(prevRoom: IntArray): Int
+    operator fun invoke(prevRoom: IntArray): Int
 }
 
 class WaysToBuildRoomsDFS : WaysToBuildRooms {
-    override fun perform(prevRoom: IntArray): Int {
+    override operator fun invoke(prevRoom: IntArray): Int {
         val n: Int = prevRoom.size
         val tree: Array<ArrayList<Int>> = Array(n) { ArrayList() }
         for (i in 0 until n) {

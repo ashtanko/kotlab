@@ -48,7 +48,7 @@ abstract class WordPatternTest<out T : WordPattern>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `word pattern test`(pattern: String, s: String, expected: Boolean) {
-        val actual = strategy.perform(pattern, s)
+        val actual = strategy.invoke(pattern, s)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -45,7 +45,7 @@ abstract class MinDeletionSizeTest<out T : MinDeletionSize>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min deletion size test`(strs: Array<String>, expected: Int) {
-        val actual = strategy.perform(strs)
+        val actual = strategy.invoke(strs)
         assertThat(actual).isEqualTo(expected)
     }
 }

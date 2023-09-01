@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/number-of-beautiful-partitions/description/">leetcode page</a>
  */
 interface BeautifulPartitions {
-    fun perform(s: String, k: Int, minLength: Int): Int
+    operator fun invoke(s: String, k: Int, minLength: Int): Int
 }
 
 class BeautifulPartitionsDP : BeautifulPartitions {
-    override fun perform(s: String, k: Int, minLength: Int): Int {
+    override operator fun invoke(s: String, k: Int, minLength: Int): Int {
         val cs: CharArray = s.toCharArray()
         val n = cs.size
         // make sure the input is valid

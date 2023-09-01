@@ -72,7 +72,7 @@ abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T)
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `add binary test`(a: String, b: String, expected: String) {
         measureTime("Add binary a: $a b: $b") {
-            val actual = strategy.perform(a, b)
+            val actual = strategy.invoke(a, b)
             assertThat(actual, equalTo(expected))
         }
     }

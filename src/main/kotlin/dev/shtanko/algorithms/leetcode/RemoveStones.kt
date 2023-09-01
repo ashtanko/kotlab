@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/">leetcode page</a>
  */
 fun interface RemoveStones {
-    fun perform(stones: Array<IntArray>): Int
+    operator fun invoke(stones: Array<IntArray>): Int
 }
 
 class RemoveStonesMap : RemoveStones {
@@ -29,7 +29,7 @@ class RemoveStonesMap : RemoveStones {
     private val f: MutableMap<Int, Int> = HashMap()
     private var islands = 0
 
-    override fun perform(stones: Array<IntArray>): Int {
+    override operator fun invoke(stones: Array<IntArray>): Int {
         for (i in stones.indices) union(stones[i][0], stones[i][1].inv())
         return stones.size - islands
     }
@@ -59,7 +59,7 @@ class RemoveStonesMap : RemoveStones {
 }
 
 class RemoveStonesDFS : RemoveStones {
-    override fun perform(stones: Array<IntArray>): Int {
+    override operator fun invoke(stones: Array<IntArray>): Int {
         val graph: MutableMap<Int, MutableList<Int>> = HashMap()
         for (stone in stones) {
             graph.computeIfAbsent(stone[0]) { ArrayList() }.add(stone[1].inv())

@@ -17,14 +17,14 @@
 package dev.shtanko.algorithms.leetcode
 
 interface SuperEggDropStrategy {
-    fun perform(eggs: Int, floors: Int): Int
+    operator fun invoke(eggs: Int, floors: Int): Int
 }
 
 class SuperEggDropDPBinarySearch : SuperEggDropStrategy {
 
     private var memo: MutableMap<Int, Int?> = HashMap()
 
-    override fun perform(eggs: Int, floors: Int): Int {
+    override operator fun invoke(eggs: Int, floors: Int): Int {
         return calculate(eggs, floors)
     }
 
@@ -65,7 +65,7 @@ class SuperEggDropDPBinarySearch : SuperEggDropStrategy {
 }
 
 class SuperEggDropDPOptimalityCriterion : SuperEggDropStrategy {
-    override fun perform(eggs: Int, floors: Int): Int {
+    override operator fun invoke(eggs: Int, floors: Int): Int {
         // Right now, dp[i] represents dp(1, i)
         // Right now, dp[i] represents dp(1, i)
         var dp = IntArray(floors + 1)
@@ -95,7 +95,7 @@ class SuperEggDropDPOptimalityCriterion : SuperEggDropStrategy {
 }
 
 class SuperEggDropMathematical : SuperEggDropStrategy {
-    override fun perform(eggs: Int, floors: Int): Int {
+    override operator fun invoke(eggs: Int, floors: Int): Int {
         var lo = 1
         var hi: Int = floors
         while (lo < hi) {

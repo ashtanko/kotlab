@@ -23,11 +23,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-time-to-finish-the-race/">leetcode page</a>
  */
 interface MinimumFinishTime {
-    fun perform(tires: Array<IntArray>, changeTime: Int, numLaps: Int): Int
+    operator fun invoke(tires: Array<IntArray>, changeTime: Int, numLaps: Int): Int
 }
 
 class MinimumFinishTimeDP : MinimumFinishTime {
-    override fun perform(tires: Array<IntArray>, changeTime: Int, numLaps: Int): Int {
+    override operator fun invoke(tires: Array<IntArray>, changeTime: Int, numLaps: Int): Int {
         val minTime = IntArray(numLaps + 1) { Int.MAX_VALUE }
         for (tire in tires) {
             checkMinTime(tire, minTime, changeTime, numLaps)

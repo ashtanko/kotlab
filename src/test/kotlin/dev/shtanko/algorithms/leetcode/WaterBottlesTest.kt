@@ -38,7 +38,7 @@ class WaterBottlesTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `num water bottles test`(numBottles: Int, numExchange: Int, expected: Int) {
-        val actual = WaterBottles().perform(numBottles, numExchange)
+        val actual = WaterBottles().invoke(numBottles, numExchange)
         assertThat(actual, `is`(expected))
     }
 }

@@ -23,11 +23,11 @@ import java.util.LinkedList
  * @see <a href="https://leetcode.com/problems/combination-sum-ii/">leetcode page</a>
  */
 fun interface CombinationSum2 {
-    fun perform(candidates: IntArray, target: Int): List<List<Int>>
+    operator fun invoke(candidates: IntArray, target: Int): List<List<Int>>
 }
 
 class BacktrackingWithCounters : CombinationSum2 {
-    override fun perform(candidates: IntArray, target: Int): List<List<Int>> {
+    override operator fun invoke(candidates: IntArray, target: Int): List<List<Int>> {
         // container to hold the final combinations
         val results: MutableList<List<Int>> = ArrayList()
         val comb = LinkedList<Int>()
@@ -84,7 +84,7 @@ class BacktrackingWithCounters : CombinationSum2 {
 }
 
 class BacktrackingWithIndex : CombinationSum2 {
-    override fun perform(candidates: IntArray, target: Int): List<List<Int>> {
+    override operator fun invoke(candidates: IntArray, target: Int): List<List<Int>> {
         val results: MutableList<List<Int>> = ArrayList()
         val comb = LinkedList<Int>()
         candidates.sort()

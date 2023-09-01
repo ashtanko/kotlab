@@ -24,12 +24,12 @@ private const val CAPACITY = 5
 private const val SIZE = 2
 
 interface HighFiveStrategy {
-    fun perform(items: Array<IntArray>): Array<IntArray>
+    operator fun invoke(items: Array<IntArray>): Array<IntArray>
 }
 
 class HighFivePriorityQueue : HighFiveStrategy {
 
-    override fun perform(items: Array<IntArray>): Array<IntArray> {
+    override operator fun invoke(items: Array<IntArray>): Array<IntArray> {
         val map: TreeMap<Int, PriorityQueue<Int>> = TreeMap<Int, PriorityQueue<Int>>()
 
         for (item in items) {
@@ -68,7 +68,7 @@ class HighFivePriorityQueue : HighFiveStrategy {
 
 class HighFiveSort : HighFiveStrategy {
 
-    override fun perform(items: Array<IntArray>): Array<IntArray> {
+    override operator fun invoke(items: Array<IntArray>): Array<IntArray> {
         items.sortWith { t1, t2 ->
             // put item[id, score] with same id together
             // for each id/student, item[id, score] is ordered by score (increasing)

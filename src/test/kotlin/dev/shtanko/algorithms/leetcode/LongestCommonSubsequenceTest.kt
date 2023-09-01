@@ -73,7 +73,7 @@ abstract class LongestCommonSubsequenceTest<out T : LongestCommonSubsequence>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest common subsequence test`(text1: String, text2: String, expected: Int) {
-        val actual = strategy.perform(text1, text2)
+        val actual = strategy.invoke(text1, text2)
         assertThat(actual).isEqualTo(expected)
     }
 }

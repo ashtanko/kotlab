@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 class LemonadeChange {
 
-    fun perform(bills: IntArray): Boolean {
+    operator fun invoke(bills: IntArray): Boolean {
         var five = 0
         var ten = 0
         for (i in bills) {

@@ -114,7 +114,7 @@ abstract class UniquePaths2Test<out T : UniquePaths2>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `unique paths with obstacles test`(obstacleGrid: Array<IntArray>, expected: Int) {
-        val actual = strategy.perform(obstacleGrid)
+        val actual = strategy.invoke(obstacleGrid)
         assertThat(actual).isEqualTo(expected)
     }
 }

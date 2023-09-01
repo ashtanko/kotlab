@@ -45,7 +45,7 @@ abstract class CountRangeSumTest<out T : CountRangeSum>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count range sum test`(nums: IntArray, lower: Int, upper: Int, expected: Int) {
-        val actual = strategy.perform(nums, lower, upper)
+        val actual = strategy.invoke(nums, lower, upper)
         assertThat(actual).isEqualTo(expected)
     }
 }

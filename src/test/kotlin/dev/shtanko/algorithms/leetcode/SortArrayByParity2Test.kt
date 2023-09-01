@@ -37,7 +37,7 @@ abstract class AbstractSortByParityStrategyTest<out T : AbstractSortByParityStra
     @MethodSource("dataProvider")
     fun `sort by parity test`(testCase: Pair<IntArray, IntArray>) {
         val (arr, expected) = testCase
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertArrayEquals(expected, actual)
     }
 }

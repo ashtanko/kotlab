@@ -23,7 +23,7 @@ import kotlin.math.ceil
  * @see <a href="https://leetcode.com/problems/minimum-speed-to-arrive-on-time/">leetcode page</a>
  */
 fun interface MinSpeedToArriveOnTime {
-    fun perform(dist: IntArray, hour: Double): Int
+    operator fun invoke(dist: IntArray, hour: Double): Int
 }
 
 /**
@@ -35,7 +35,7 @@ class MinSpeedToArriveOnTimeBS : MinSpeedToArriveOnTime {
         private const val UPPER_BOUND = 10000000
     }
 
-    override fun perform(dist: IntArray, hour: Double): Int {
+    override operator fun invoke(dist: IntArray, hour: Double): Int {
         var left = 1
         var right = UPPER_BOUND
         var minSpeed = -1

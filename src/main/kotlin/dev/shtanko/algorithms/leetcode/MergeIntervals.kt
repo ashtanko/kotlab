@@ -20,7 +20,7 @@ import java.util.LinkedList
 import java.util.Stack
 
 interface MergeIntervalsStrategy {
-    fun perform(intervals: Array<IntArray>): Array<IntArray>
+    operator fun invoke(intervals: Array<IntArray>): Array<IntArray>
 }
 
 class MergeIntervalsConnectedComponents : MergeIntervalsStrategy {
@@ -29,7 +29,7 @@ class MergeIntervalsConnectedComponents : MergeIntervalsStrategy {
     private var nodesInComp: MutableMap<Int, MutableList<IntArray>> = HashMap()
     private var visited: MutableSet<IntArray> = HashSet()
 
-    override fun perform(intervals: Array<IntArray>): Array<IntArray> {
+    override operator fun invoke(intervals: Array<IntArray>): Array<IntArray> {
         return merge(intervals)
     }
 
@@ -115,7 +115,7 @@ class MergeIntervalsConnectedComponents : MergeIntervalsStrategy {
 
 class MergeIntervalsSorting : MergeIntervalsStrategy {
 
-    override fun perform(intervals: Array<IntArray>): Array<IntArray> {
+    override operator fun invoke(intervals: Array<IntArray>): Array<IntArray> {
         val i = intervals.toList().sortedWith(IntervalComparator())
         val merged = LinkedList<IntArray>()
         for (interval in i) {

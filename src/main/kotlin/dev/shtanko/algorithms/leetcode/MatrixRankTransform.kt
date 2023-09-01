@@ -24,11 +24,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/rank-transform-of-a-matrix/">leetcode page</a>
  */
 interface MatrixRankTransform {
-    fun perform(matrix: Array<IntArray>): Array<IntArray>
+    operator fun invoke(matrix: Array<IntArray>): Array<IntArray>
 }
 
 class MatrixRankTransformMap : MatrixRankTransform {
-    override fun perform(matrix: Array<IntArray>): Array<IntArray> {
+    override operator fun invoke(matrix: Array<IntArray>): Array<IntArray> {
         val m: Int = matrix.size
         val n: Int = matrix[0].size
         val map = TreeMap<Int, MutableList<IntArray>>()

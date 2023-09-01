@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-vowels-permutation/">leetcode page</a>
  */
 interface CountVowelsPermutationStrategy {
-    fun perform(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 sealed class CountVowelsPermutation {
@@ -30,7 +30,7 @@ sealed class CountVowelsPermutation {
      * Approach 1: Dynamic Programming (Bottom-up)
      */
     class BottomUp : CountVowelsPermutationStrategy {
-        override fun perform(n: Int): Int {
+        override operator fun invoke(n: Int): Int {
             val aVowelPermutationCount = LongArray(n)
             val eVowelPermutationCount = LongArray(n)
             val iVowelPermutationCount = LongArray(n)
@@ -63,7 +63,7 @@ sealed class CountVowelsPermutation {
     }
 
     class OptimizedSpace : CountVowelsPermutationStrategy {
-        override fun perform(n: Int): Int {
+        override operator fun invoke(n: Int): Int {
             var aCount: Long = 1
             var eCount: Long = 1
             var iCount: Long = 1
@@ -99,7 +99,7 @@ sealed class CountVowelsPermutation {
 
         private lateinit var memo: Array<LongArray>
 
-        override fun perform(n: Int): Int {
+        override operator fun invoke(n: Int): Int {
             // each row stands for the length of string
             // each column indicates the vowels
             // specifically, a: 0, e: 1, i: 2, o: 3, u: 4

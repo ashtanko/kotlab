@@ -86,7 +86,7 @@ abstract class MinSwapsTestTest<out T : MinSwaps>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min swaps test`(data: IntArray, expected: Int) {
-        val actual = strategy.perform(data)
+        val actual = strategy.invoke(data)
         assertThat(actual).isEqualTo(expected)
     }
 }

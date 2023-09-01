@@ -30,7 +30,7 @@ private const val BASKET_SIZE = 5000
  * Return the maximum number of apples you can put in the basket.
  */
 interface MaxNumberOfApples {
-    fun perform(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -38,7 +38,7 @@ interface MaxNumberOfApples {
  * Space Complexity: O(1).
  */
 class MaxNumberOfApplesSort : MaxNumberOfApples {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         arr.sort()
         var apples = 0
         var units = 0
@@ -58,7 +58,7 @@ class MaxNumberOfApplesSort : MaxNumberOfApples {
  * Space Complexity: O(1).
  */
 class MaxNumberOfApplesMinHeap : MaxNumberOfApples {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         val heap: Queue<Int> = PriorityQueue()
         var apples = 0
         var units = 0
@@ -81,7 +81,7 @@ class MaxNumberOfApplesMinHeap : MaxNumberOfApples {
  * Space Complexity: O(W). This is because we initialize an array bucket with the size of max(arr).
  */
 class MaxNumberOfApplesBucketSort : MaxNumberOfApples {
-    override fun perform(arr: IntArray): Int {
+    override operator fun invoke(arr: IntArray): Int {
         // initialize the bucket to store all elements
         var size = -1
         for (weight in arr) {

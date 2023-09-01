@@ -28,7 +28,7 @@ fun interface SlidingWindowMax {
 }
 
 class MonotonicDeque : SlidingWindowMax {
-    override fun invoke(nums: IntArray, k: Int): IntArray {
+    override operator fun invoke(nums: IntArray, k: Int): IntArray {
         val dq: Deque<Int> = LinkedList()
         val res: MutableList<Int> = ArrayList()
 

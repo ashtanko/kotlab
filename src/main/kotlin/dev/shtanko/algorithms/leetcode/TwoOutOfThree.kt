@@ -24,7 +24,7 @@ import java.util.stream.IntStream
  * link https://leetcode.com/problems/two-out-of-three/
  */
 interface TwoOutOfThree {
-    fun perform(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int>
+    operator fun invoke(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int>
 
     companion object {
         const val ARR_SIZE = 101
@@ -32,7 +32,7 @@ interface TwoOutOfThree {
 }
 
 class TwoOutOfThreeImpl : TwoOutOfThree {
-    override fun perform(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int> {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int> {
         val list: MutableList<Int> = ArrayList()
         val count = Array(3) { IntArray(TwoOutOfThree.ARR_SIZE) }
         for (n in nums1) count[0][n] = 1
@@ -47,7 +47,7 @@ class TwoOutOfThreeImpl : TwoOutOfThree {
 }
 
 class TwoOutOfThreeStream : TwoOutOfThree {
-    override fun perform(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int> {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int> {
         val a = arrayOf(nums1, nums2, nums3)
         val c = Array(3) { IntArray(TwoOutOfThree.ARR_SIZE) }
         for (i in a.indices) for (n in a[i]) c[i][n] = 1

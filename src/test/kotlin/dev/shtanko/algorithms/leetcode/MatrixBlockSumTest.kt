@@ -59,7 +59,7 @@ class MatrixBlockSumTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `matrix block sum test`(mat: Array<IntArray>, k: Int, expected: Array<IntArray>) {
-        val actual = MatrixBlockSum.perform(mat, k)
+        val actual = MatrixBlockSum.invoke(mat, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

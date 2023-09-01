@@ -29,7 +29,7 @@ fun interface Maximum69Number {
  * Approach 1: Convert the integer to an iterable object
  */
 class Max69NumberIterable : Maximum69Number {
-    override fun invoke(num: Int): Int {
+    override operator fun invoke(num: Int): Int {
         // Convert the input 'num' to a string builder 'numSB'.
         val numSB = StringBuilder()
         numSB.append(num)
@@ -52,7 +52,7 @@ class Max69NumberIterable : Maximum69Number {
  * Approach 2: Use built-in function
  */
 class Max69NumberBuildIn : Maximum69Number {
-    override fun invoke(num: Int): Int {
+    override operator fun invoke(num: Int): Int {
         // Use the built-in function to replace the first '6' with '9'.
         // Return the integer converted from the modified 'numString'.
         return "$num".replaceFirst("6".toRegex(), "9").toInt()
@@ -63,7 +63,7 @@ class Max69NumberBuildIn : Maximum69Number {
  * Approach 3: Check the remainder
  */
 class Max69NumberRem : Maximum69Number {
-    override fun invoke(num: Int): Int {
+    override operator fun invoke(num: Int): Int {
         var firstSix = -1
         var number: Int = num
         var i = 0

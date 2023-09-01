@@ -55,7 +55,7 @@ abstract class CanSeePersonsCountTest<out T : CanSeePersonsCount>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun canSeePersonsCount(heights: IntArray, expected: IntArray) {
-        val actual = strategy.perform(heights)
+        val actual = strategy.invoke(heights)
         assertThat(actual).isEqualTo(expected)
     }
 }

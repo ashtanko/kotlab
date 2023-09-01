@@ -23,7 +23,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/count-square-submatrices-with-all-ones/">leetcode page</a>
  */
 object CountSquares {
-    fun perform(matrix: Array<IntArray>): Int {
+    operator fun invoke(matrix: Array<IntArray>): Int {
         var res = 0
         for (i in matrix.indices) {
             for (j in matrix.first().indices) {

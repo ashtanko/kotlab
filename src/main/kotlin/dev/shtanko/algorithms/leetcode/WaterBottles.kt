@@ -24,7 +24,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/water-bottles/">leetcode page</a>
  */
 class WaterBottles {
-    fun perform(numBottles: Int, numExchange: Int): Int {
+    operator fun invoke(numBottles: Int, numExchange: Int): Int {
         if (numExchange == 0) return numBottles
         var nBottles = numBottles
         var ans = nBottles

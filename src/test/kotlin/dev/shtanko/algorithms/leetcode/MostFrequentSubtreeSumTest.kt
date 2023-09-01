@@ -48,7 +48,7 @@ class MostFrequentSubtreeSumTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `most frequent subtree sum test`(root: TreeNode, expected: IntArray) {
-        val actual = MostFrequentSubtreeSum().perform(root)
+        val actual = MostFrequentSubtreeSum().invoke(root)
         assertArrayEquals(expected, actual)
     }
 }

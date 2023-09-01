@@ -28,7 +28,7 @@ interface ShortestBridge {
 }
 
 class ShortestBridgeDP : ShortestBridge {
-    override fun invoke(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val queue: Queue<IntArray> = LinkedList()
         var flag = false
         for (i in grid.indices) {
@@ -84,7 +84,7 @@ class ShortestBridgeDP : ShortestBridge {
 }
 
 class ShortestBridgeDFS : ShortestBridge {
-    override fun invoke(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         return shortestBridge(grid)
     }
 

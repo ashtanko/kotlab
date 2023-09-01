@@ -23,11 +23,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/simplify-path/">leetcode page</a>
  */
 interface SimplifyPath {
-    fun perform(path: String): String
+    operator fun invoke(path: String): String
 }
 
 class SimplifyPathStack : SimplifyPath {
-    override fun perform(path: String): String {
+    override operator fun invoke(path: String): String {
         val stack: Stack<String> = Stack()
         for (cur in path.split("/")) {
             if (cur == "..") {

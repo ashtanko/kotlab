@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 private const val MAX = 25
 
 interface StringPermutationStrategy {
-    fun perform(s1: String, s2: String): Boolean
+    operator fun invoke(s1: String, s2: String): Boolean
 
     fun matches(s1map: IntArray, s2map: IntArray): Boolean {
         for (i in 0..MAX) {
@@ -33,7 +33,7 @@ class PermutationBruteForce : StringPermutationStrategy {
 
     private var flag = false
 
-    override fun perform(s1: String, s2: String): Boolean {
+    override operator fun invoke(s1: String, s2: String): Boolean {
         permute(s1, s2, 0)
         return flag
     }
@@ -61,7 +61,7 @@ class PermutationBruteForce : StringPermutationStrategy {
 }
 
 class PermutationSorting : StringPermutationStrategy {
-    override fun perform(s1: String, s2: String): Boolean {
+    override operator fun invoke(s1: String, s2: String): Boolean {
         for (i in 0..s2.length - s1.length) {
             if (s1 == sort(s2.substring(i, i + s1.length))) return true
         }
@@ -76,7 +76,7 @@ class PermutationSorting : StringPermutationStrategy {
 }
 
 class PermutationHashmap : StringPermutationStrategy {
-    override fun perform(s1: String, s2: String): Boolean {
+    override operator fun invoke(s1: String, s2: String): Boolean {
         if (s1.length > s2.length) return false
 
         val s1map: HashMap<Char?, Int?> = HashMap()
@@ -106,7 +106,7 @@ class PermutationHashmap : StringPermutationStrategy {
 
 class PermutationArray : StringPermutationStrategy {
 
-    override fun perform(s1: String, s2: String): Boolean {
+    override operator fun invoke(s1: String, s2: String): Boolean {
         if (s1.length > s2.length) return false
         val s1map = IntArray(MAX + 1)
         for (i in s1.indices) s1map[s1[i] - 'a']++
@@ -123,7 +123,7 @@ class PermutationArray : StringPermutationStrategy {
 
 class PermutationSlidingWindow : StringPermutationStrategy {
 
-    override fun perform(s1: String, s2: String): Boolean {
+    override operator fun invoke(s1: String, s2: String): Boolean {
         if (s1.length > s2.length) return false
         val s1map = IntArray(MAX + 1)
         val s2map = IntArray(MAX + 1)
@@ -141,7 +141,7 @@ class PermutationSlidingWindow : StringPermutationStrategy {
 }
 
 class PermutationOptimizedSlidingWindow : StringPermutationStrategy {
-    override fun perform(s1: String, s2: String): Boolean {
+    override operator fun invoke(s1: String, s2: String): Boolean {
         if (s1.length > s2.length) return false
         val s1map = IntArray(MAX + 1)
         val s2map = IntArray(MAX + 1)

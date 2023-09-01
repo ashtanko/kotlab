@@ -18,12 +18,12 @@ package dev.shtanko.algorithms.leetcode
 
 // Convert Binary Number in a Linked List to Integer
 interface BinaryNumberToIntStrategy {
-    fun perform(head: ListNode?): Int
+    operator fun invoke(head: ListNode?): Int
 }
 
 // Approach 1: Binary Representation
 class BinaryNumberToIntBinary : BinaryNumberToIntStrategy {
-    override fun perform(head: ListNode?): Int {
+    override operator fun invoke(head: ListNode?): Int {
         var h: ListNode = head ?: return 0
         var num: Int = h.value
         while (h.next != null) {
@@ -36,7 +36,7 @@ class BinaryNumberToIntBinary : BinaryNumberToIntStrategy {
 
 // Approach 2: Bit Manipulation
 class BinaryNumberToIntBit : BinaryNumberToIntStrategy {
-    override fun perform(head: ListNode?): Int {
+    override operator fun invoke(head: ListNode?): Int {
         var h: ListNode = head ?: return 0
         var num: Int = h.value
         while (h.next != null) {

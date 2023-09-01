@@ -43,7 +43,7 @@ abstract class SingleRowKeyboardTest<out T : SingleRowKeyboard>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `single row keyboard test`(keyboard: String, word: String, expected: Int) {
-        val actual = strategy.perform(keyboard, word)
+        val actual = strategy.invoke(keyboard, word)
         assertThat(actual).isEqualTo(expected)
     }
 }

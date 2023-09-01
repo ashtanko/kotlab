@@ -54,7 +54,7 @@ abstract class PeakIndexInMountainArrayTest<out T : PeakIndexInMountainArrayStra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `peak index in mountain test`(arr: IntArray, expected: Int) {
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

@@ -63,7 +63,7 @@ abstract class CombinationSum2Test<out T : CombinationSum2>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `combination sum 2 test`(candidates: IntArray, target: Int, expected: List<List<Int>>) {
-        val actual = strategy.perform(candidates, target)
+        val actual = strategy.invoke(candidates, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

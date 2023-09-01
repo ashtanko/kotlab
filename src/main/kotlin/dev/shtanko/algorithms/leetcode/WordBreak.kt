@@ -22,11 +22,11 @@ import dev.shtanko.algorithms.utils.Dp
  * 139. Word Break
  */
 interface WordBreak {
-    fun perform(s: String, wordDict: List<String>): Boolean
+    operator fun invoke(s: String, wordDict: List<String>): Boolean
 }
 
 class WordBreakBruteForce : WordBreak {
-    override fun perform(s: String, wordDict: List<String>): Boolean {
+    override operator fun invoke(s: String, wordDict: List<String>): Boolean {
         return wb(s, HashSet(wordDict))
     }
 
@@ -46,7 +46,7 @@ class WordBreakBruteForce : WordBreak {
 
 @Dp
 class WordBreakDP : WordBreak {
-    override fun perform(s: String, wordDict: List<String>): Boolean {
+    override operator fun invoke(s: String, wordDict: List<String>): Boolean {
         val dp = BooleanArray(s.length + 1)
         val set: MutableSet<String> = HashSet()
         set.addAll(wordDict)
@@ -72,7 +72,7 @@ class WordBreakDP : WordBreak {
  *  https://leetcode.com/problems/word-break/discuss/43819/DFS-with-Path-Memorizing-Java-Solution
  */
 class WordBreakDFS : WordBreak {
-    override fun perform(s: String, wordDict: List<String>): Boolean {
+    override operator fun invoke(s: String, wordDict: List<String>): Boolean {
         if (s.isEmpty()) return false
 
         val wordSet = HashSet(wordDict)
@@ -113,7 +113,7 @@ class WordBreakDFS : WordBreak {
  * Space Complexity:    O(N)
  */
 class WordBreakBFS : WordBreak {
-    override fun perform(s: String, wordDict: List<String>): Boolean {
+    override operator fun invoke(s: String, wordDict: List<String>): Boolean {
         if (s.isEmpty()) return false
 
         val wordSet = HashSet(wordDict)
@@ -157,7 +157,7 @@ class WordBreakBFS : WordBreak {
  *  https://leetcode.com/problems/word-break/discuss/43790/Java-implementation-using-DP-in-two-ways
  */
 class WordBreakDP2 : WordBreak {
-    override fun perform(s: String, wordDict: List<String>): Boolean {
+    override operator fun invoke(s: String, wordDict: List<String>): Boolean {
         if (s.isEmpty()) return false
 
         val len = s.length

@@ -42,7 +42,7 @@ abstract class ShortestPalindromeTest<out T : ShortestPalindromeStrategy>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shortest palindrome test`(s: String, expected: String) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertEquals(expected, actual)
     }
 }

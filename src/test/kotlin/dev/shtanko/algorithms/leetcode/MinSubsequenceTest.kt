@@ -39,7 +39,7 @@ abstract class AbstractMinSubsequenceStrategyTest<T : MinSubsequenceStrategy>(va
     @MethodSource("casesProvider")
     fun `min subsequence test`(testCase: Pair<List<Int>, IntArray>) {
         val (expected, arr) = testCase
-        val actual = strategy.perform(arr)
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }

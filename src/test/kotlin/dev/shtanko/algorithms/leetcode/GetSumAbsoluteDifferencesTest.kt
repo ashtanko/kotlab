@@ -41,7 +41,7 @@ abstract class GetSumAbsoluteDifferencesTest<out T : GetSumAbsoluteDifferences>(
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `get sum absolute differences test`(nums: IntArray, expected: IntArray) {
-        val actual = strategy.perform(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

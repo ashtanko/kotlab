@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/solving-questions-with-brainpower/">leetcode page</a>
  */
 interface MostPoints {
-    fun perform(questions: Array<IntArray>): Long
+    operator fun invoke(questions: Array<IntArray>): Long
 }
 
 class MostPointsDP : MostPoints {
-    override fun perform(questions: Array<IntArray>): Long {
+    override operator fun invoke(questions: Array<IntArray>): Long {
         val n: Int = questions.size
         val dp = LongArray(n)
         dp[n - 1] = questions[n - 1][0].toLong()

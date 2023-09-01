@@ -23,14 +23,14 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/put-boxes-into-the-warehouse-i/solution/">leetcode page</a>
  */
 interface MaxBoxesInWarehouse {
-    fun perform(boxes: IntArray, warehouse: IntArray): Int
+    operator fun invoke(boxes: IntArray, warehouse: IntArray): Int
 }
 
 /**
  * Approach 1: Add Smallest Boxes to the Rightmost Warehouse Rooms
  */
 class MaxBoxesInWarehouseAdd : MaxBoxesInWarehouse {
-    override fun perform(boxes: IntArray, warehouse: IntArray): Int {
+    override operator fun invoke(boxes: IntArray, warehouse: IntArray): Int {
         // Preprocess the height of the warehouse rooms to get usable heights
         for (i in 1 until warehouse.size) {
             warehouse[i] = min(warehouse[i - 1], warehouse[i])
@@ -55,7 +55,7 @@ class MaxBoxesInWarehouseAdd : MaxBoxesInWarehouse {
  * Approach 2: Add Largest Possible Boxes from Left to Right
  */
 class MaxBoxesInWarehouseLPB : MaxBoxesInWarehouse {
-    override fun perform(boxes: IntArray, warehouse: IntArray): Int {
+    override operator fun invoke(boxes: IntArray, warehouse: IntArray): Int {
         var i: Int = boxes.size - 1
         var count = 0
         boxes.sort()

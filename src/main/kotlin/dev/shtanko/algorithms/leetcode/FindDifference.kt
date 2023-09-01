@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-the-difference/">leetcode page</a>
  */
 interface FindDifference {
-    fun perform(s: String, t: String): Char
+    operator fun invoke(s: String, t: String): Char
 }
 
 class FindDifferenceSimple : FindDifference {
-    override fun perform(s: String, t: String): Char {
+    override operator fun invoke(s: String, t: String): Char {
         var charCode = t[s.length]
         // Iterate through both strings and char codes
         for (i in s.indices) {
@@ -37,7 +37,7 @@ class FindDifferenceSimple : FindDifference {
 }
 
 class FindDifferenceBitwise : FindDifference {
-    override fun perform(s: String, t: String): Char {
+    override operator fun invoke(s: String, t: String): Char {
         val n = t.length
         var c = t[n - 1].code
         for (i in 0 until n - 1) {

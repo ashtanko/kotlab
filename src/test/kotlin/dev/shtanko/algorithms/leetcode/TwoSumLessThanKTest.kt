@@ -44,7 +44,7 @@ abstract class TwoSumLessThanKTest<out T : TwoSumLessThanKStrategy>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `two sum less than K test`(nums: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(nums, k)
+        val actual = strategy.invoke(nums, k)
         assertEquals(expected, actual)
     }
 }

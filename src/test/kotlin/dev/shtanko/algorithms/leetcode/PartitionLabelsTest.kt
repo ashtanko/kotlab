@@ -39,7 +39,7 @@ class PartitionLabelsTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `partition labels test`(s: String, expected: List<Int>) {
-        val actual = PartitionLabels().perform(s)
+        val actual = PartitionLabels().invoke(s)
         assertThat(actual, equalTo(expected))
     }
 }

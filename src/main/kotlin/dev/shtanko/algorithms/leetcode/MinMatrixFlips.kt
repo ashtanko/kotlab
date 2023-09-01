@@ -24,12 +24,12 @@ import kotlin.math.min
  *     leetcode page</a>
  */
 interface MinMatrixFlips {
-    fun perform(mat: Array<IntArray>): Int
+    operator fun invoke(mat: Array<IntArray>): Int
 }
 
 class MinMatrixFlipsBFS : MinMatrixFlips {
 
-    override fun perform(mat: Array<IntArray>): Int {
+    override operator fun invoke(mat: Array<IntArray>): Int {
         val n = mat.size
         val m = mat[0].size
         val dp: HashMap<String, Int> = HashMap()

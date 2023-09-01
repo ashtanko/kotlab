@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 
 interface NextGreaterElement1 {
-    fun perform(nums1: IntArray, nums2: IntArray): IntArray
+    operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray
 }
 
 class NGBruteForce : NextGreaterElement1 {
-    override fun perform(nums1: IntArray, nums2: IntArray): IntArray {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray {
         val res = IntArray(nums1.size)
         var j: Int
         for (i in nums1.indices) {
@@ -48,7 +48,7 @@ class NGBruteForce : NextGreaterElement1 {
 }
 
 class NGBetterForce : NextGreaterElement1 {
-    override fun perform(nums1: IntArray, nums2: IntArray): IntArray {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray {
         val hash: HashMap<Int, Int> = HashMap()
         val res = IntArray(nums1.size)
         var j: Int
@@ -73,7 +73,7 @@ class NGBetterForce : NextGreaterElement1 {
 }
 
 class NGStack : NextGreaterElement1 {
-    override fun perform(nums1: IntArray, nums2: IntArray): IntArray {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray {
         val stack: Stack<Int> = Stack()
         val map: HashMap<Int, Int> = HashMap()
         val res = IntArray(nums1.size)

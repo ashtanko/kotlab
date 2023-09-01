@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/largest-divisible-subset/">leetcode page</a>
  */
 interface LargestDivisibleSubset {
-    fun perform(nums: IntArray): List<Int>
+    operator fun invoke(nums: IntArray): List<Int>
 }
 
 class LargestDivisibleSubsetDFS : LargestDivisibleSubset {
 
     private val mem: MutableMap<Int, List<Int>> = HashMap()
 
-    override fun perform(nums: IntArray): List<Int> {
+    override operator fun invoke(nums: IntArray): List<Int> {
         nums.sort()
         return helper(nums, 0)
     }

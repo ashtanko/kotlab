@@ -23,11 +23,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-sideway-jumps/">leetcode page</a>
  */
 interface MinimumSidewayJumps {
-    fun perform(obstacles: IntArray): Int
+    operator fun invoke(obstacles: IntArray): Int
 }
 
 class MinimumSidewayJumpsDP : MinimumSidewayJumps {
-    override fun perform(obstacles: IntArray): Int {
+    override operator fun invoke(obstacles: IntArray): Int {
         val dp = intArrayOf(1, 0, 1)
         for (a in obstacles) {
             if (a > 0) dp[a - 1] = LIMIT

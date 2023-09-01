@@ -50,7 +50,7 @@ abstract class MaxPathSumTest<out T : MaxPathSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max path sum test`(root: TreeNode?, expected: Int) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

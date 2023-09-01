@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-smallest-letter-greater-than-target/">leetcode page</a>
  */
 interface NextGreatestLetter {
-    fun perform(letters: CharArray, target: Char): Char
+    operator fun invoke(letters: CharArray, target: Char): Char
 }
 
 /**
  * Approach 1: Brute Force
  */
 class NextGreatestLetterBruteForce : NextGreatestLetter {
-    override fun perform(letters: CharArray, target: Char): Char {
+    override operator fun invoke(letters: CharArray, target: Char): Char {
         for (letter in letters) {
             if (letter > target) {
                 return letter
@@ -42,7 +42,7 @@ class NextGreatestLetterBruteForce : NextGreatestLetter {
  * Approach 2: Binary Search
  */
 class NextGreatestLetterBinarySearch : NextGreatestLetter {
-    override fun perform(letters: CharArray, target: Char): Char {
+    override operator fun invoke(letters: CharArray, target: Char): Char {
         var left = 0
         var right: Int = letters.size - 1
         var mid: Int

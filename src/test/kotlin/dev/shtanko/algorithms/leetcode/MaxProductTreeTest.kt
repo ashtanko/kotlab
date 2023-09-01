@@ -57,7 +57,7 @@ abstract class MaxProductTreeTest<out T : MaxProductTree>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max product test`(root: TreeNode?, expected: Int) {
-        val actual = strategy.perform(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

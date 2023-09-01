@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface MinimumPathSum {
-    fun perform(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class MinimumPathSumDP : MinimumPathSum {
-    override fun perform(grid: Array<IntArray>): Int {
+    override operator fun invoke(grid: Array<IntArray>): Int {
         val m: Int = grid.size
         val n: Int = grid.first().size
         for (i in 1 until n) {

@@ -57,7 +57,7 @@ abstract class LongestValidParenthesesTest<out T : LongestValidParenthesesStrate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `longest valid parentheses brute force test`(s: String, expected: Int) {
-        val actual = LongestValidParenthesesBruteForce().perform(s)
+        val actual = LongestValidParenthesesBruteForce().invoke(s)
         assertEquals(expected, actual)
     }
 
@@ -65,7 +65,7 @@ abstract class LongestValidParenthesesTest<out T : LongestValidParenthesesStrate
     @MethodSource("dataProvider")
     fun `longest valid parentheses test`(testCase: Pair<String, Int>) {
         val (s, expected) = testCase
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertEquals(expected, actual)
     }
 }

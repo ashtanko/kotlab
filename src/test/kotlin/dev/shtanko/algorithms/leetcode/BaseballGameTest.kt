@@ -43,7 +43,7 @@ class BaseballGameTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `calculate points`(ops: Array<String>, expected: Int) {
-        val actual = BaseballGame().perform(ops)
+        val actual = BaseballGame().invoke(ops)
         assertEquals(expected, actual)
     }
 }

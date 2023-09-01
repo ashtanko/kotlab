@@ -46,7 +46,7 @@ abstract class AddDigitsTest<out T : AddDigits>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `add digits test`(digits: Int, expected: Int) {
-        val actual = strategy.perform(digits)
+        val actual = strategy.invoke(digits)
         assertThat(actual, equalTo(expected))
     }
 }

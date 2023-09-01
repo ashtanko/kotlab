@@ -57,7 +57,7 @@ abstract class NumSubmatrixSumTargetTest<out T : NumSubmatrixSumTarget>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `num submatrix sum target test`(matrix: Array<IntArray>, target: Int, expected: Int) {
-        val actual = strategy.perform(matrix, target)
+        val actual = strategy.invoke(matrix, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

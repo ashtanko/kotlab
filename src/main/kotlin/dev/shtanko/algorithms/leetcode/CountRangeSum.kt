@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-of-range-sum/description/">leetcode page</a>
  */
 interface CountRangeSum {
-    fun perform(nums: IntArray, lower: Int, upper: Int): Int
+    operator fun invoke(nums: IntArray, lower: Int, upper: Int): Int
 }
 
 class CountRangeSumSegmentTree : CountRangeSum {
-    override fun perform(nums: IntArray, lower: Int, upper: Int): Int {
+    override operator fun invoke(nums: IntArray, lower: Int, upper: Int): Int {
         if (nums.isEmpty()) return 0
         var ans = 0
         val valSet: MutableSet<Long> = HashSet()

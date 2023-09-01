@@ -53,7 +53,7 @@ abstract class SimplifyPathTest<out T : SimplifyPath>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `simplify path test`(path: String, expected: String) {
-        val actual = strategy.perform(path)
+        val actual = strategy.invoke(path)
         assertThat(actual).isEqualTo(expected)
     }
 }

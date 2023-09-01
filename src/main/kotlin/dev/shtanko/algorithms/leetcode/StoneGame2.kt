@@ -24,14 +24,14 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/stone-game-ii/">leetcode page</a>
  */
 interface StoneGame2 {
-    fun perform(piles: IntArray): Int
+    operator fun invoke(piles: IntArray): Int
 }
 
 /**
  * Approach 1: Memoization
  */
 class StoneGame2Memoization : StoneGame2 {
-    override fun perform(piles: IntArray): Int {
+    override operator fun invoke(piles: IntArray): Int {
         val dp = Array(2) {
             Array(piles.size + 1) { IntArray(piles.size + 1) }
         }

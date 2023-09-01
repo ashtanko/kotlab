@@ -20,7 +20,7 @@ private const val LIMIT = 100
 private const val ARR_SIZE = LIMIT + 1
 
 interface ThreeSumMulti {
-    fun perform(arr: IntArray, target: Int): Int
+    operator fun invoke(arr: IntArray, target: Int): Int
 }
 
 /**
@@ -29,7 +29,7 @@ interface ThreeSumMulti {
  * Space Complexity: O(1).
  */
 class TSMThreePointer : ThreeSumMulti {
-    override fun perform(arr: IntArray, target: Int): Int {
+    override operator fun invoke(arr: IntArray, target: Int): Int {
         var ans: Long = 0
         arr.sort()
         for (i in arr.indices) {
@@ -74,7 +74,7 @@ class TSMThreePointer : ThreeSumMulti {
  * Space Complexity: O(W).
  */
 class TSMCountingCases : ThreeSumMulti {
-    override fun perform(arr: IntArray, target: Int): Int {
+    override operator fun invoke(arr: IntArray, target: Int): Int {
         val count = LongArray(ARR_SIZE)
         for (x in arr) count[x]++
 
@@ -123,7 +123,7 @@ class TSMCountingCases : ThreeSumMulti {
  * Space Complexity: O(1).
  */
 class TSMAdapt : ThreeSumMulti {
-    override fun perform(arr: IntArray, target: Int): Int {
+    override operator fun invoke(arr: IntArray, target: Int): Int {
         val count = LongArray(ARR_SIZE)
         var uniq = 0
         for (x in arr) {

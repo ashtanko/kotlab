@@ -43,7 +43,7 @@ abstract class FindAndReplacePatternTest<out T : FindAndReplacePattern>(private 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `findAndReplacePattern test`(words: Array<String>, pattern: String, expected: List<String>) {
-        val actual = strategy.perform(words, pattern)
+        val actual = strategy.invoke(words, pattern)
         assertThat(actual).containsAll(expected)
     }
 }

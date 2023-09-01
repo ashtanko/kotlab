@@ -58,7 +58,7 @@ abstract class MaxScoreTest<out T : MaxScore>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max product test`(cardPoints: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(cardPoints, k)
+        val actual = strategy.invoke(cardPoints, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

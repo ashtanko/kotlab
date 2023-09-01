@@ -24,7 +24,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/make-array-strictly-increasing/">leetcode page</a>
  */
 interface MakeArrayStrictlyIncreasing {
-    fun perform(arr1: IntArray, arr2: IntArray): Int
+    operator fun invoke(arr1: IntArray, arr2: IntArray): Int
 
     fun bisectRight(arr: IntArray, value: Int): Int {
         var left = 0
@@ -49,7 +49,7 @@ class MakeArrayStrictlyIncreasingTopDown : MakeArrayStrictlyIncreasing {
         private const val COST_LIMIT = 2001
     }
 
-    override fun perform(arr1: IntArray, arr2: IntArray): Int {
+    override operator fun invoke(arr1: IntArray, arr2: IntArray): Int {
         arr2.sort()
         val answer = dfs(0, -1, arr1, arr2)
         return if (answer < COST_LIMIT) answer else -1
@@ -82,7 +82,7 @@ class MakeArrayStrictlyIncreasingTopDown : MakeArrayStrictlyIncreasing {
 }
 
 class MakeArrayStrictlyIncreasingBottomUp : MakeArrayStrictlyIncreasing {
-    override fun perform(arr1: IntArray, arr2: IntArray): Int {
+    override operator fun invoke(arr1: IntArray, arr2: IntArray): Int {
         var dp: MutableMap<Int, Int> = HashMap()
         Arrays.sort(arr2)
         val n: Int = arr2.size

@@ -24,14 +24,14 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/maximum-ice-cream-bars/">leetcode page</a>
  */
 interface MaxIceCream {
-    fun perform(costs: IntArray, coins: Int): Int
+    operator fun invoke(costs: IntArray, coins: Int): Int
 }
 
 /**
  * Approach 1 (Greedy)
  */
 class MaxIceCreamGreedy : MaxIceCream {
-    override fun perform(costs: IntArray, coins: Int): Int {
+    override operator fun invoke(costs: IntArray, coins: Int): Int {
         var c = coins
         // Store ice cream costs in increasing order.
         costs.sort()
@@ -51,7 +51,7 @@ class MaxIceCreamGreedy : MaxIceCream {
  * Approach 2 (Bucket Sort)
  */
 class MaxIceCreamBucketSort : MaxIceCream {
-    override fun perform(costs: IntArray, coins: Int): Int {
+    override operator fun invoke(costs: IntArray, coins: Int): Int {
         var c = coins
         // get the maximum cost available
         var max = costs[0]
@@ -84,7 +84,7 @@ class MaxIceCreamBucketSort : MaxIceCream {
  * Approach 3 (DP)
  */
 class MaxIceCreamDP : MaxIceCream {
-    override fun perform(costs: IntArray, coins: Int): Int {
+    override operator fun invoke(costs: IntArray, coins: Int): Int {
         var cns = coins
         var maxc = 0
 

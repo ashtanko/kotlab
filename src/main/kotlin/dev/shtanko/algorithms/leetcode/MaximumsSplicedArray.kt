@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/maximum-score-of-spliced-array/">leetcode page</a>
  */
 interface MaximumsSplicedArray {
-    fun perform(nums1: IntArray, nums2: IntArray): Int
+    operator fun invoke(nums1: IntArray, nums2: IntArray): Int
 }
 
 class MaximumsSplicedArrayKadane : MaximumsSplicedArray {
-    override fun perform(nums1: IntArray, nums2: IntArray): Int {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): Int {
         val n: Int = nums1.size
         var sum1 = 0
         var sum2 = 0

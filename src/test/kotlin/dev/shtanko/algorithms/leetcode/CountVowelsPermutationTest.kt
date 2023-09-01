@@ -29,7 +29,7 @@ abstract class CountVowelsPermutationTest<out T : CountVowelsPermutationStrategy
         5 to 68,
     ).map { (input, expected) ->
         DynamicTest.dynamicTest("dp $strategy count vowel permutation of $input then get $expected") {
-            Assertions.assertEquals(expected, strategy.perform(input))
+            Assertions.assertEquals(expected, strategy.invoke(input))
         }
     }
 }

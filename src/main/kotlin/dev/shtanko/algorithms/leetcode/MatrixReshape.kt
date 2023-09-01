@@ -24,7 +24,7 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/reshape-the-matrix/">leetcode page</a>
  */
 interface MatrixReshape {
-    fun perform(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray>
+    operator fun invoke(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray>
 }
 
 sealed class MatrixReshapeStrategy {
@@ -35,7 +35,7 @@ sealed class MatrixReshapeStrategy {
      * Space complexity : O(m * n).
      */
     class UsingQueue : MatrixReshape {
-        override fun perform(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray> {
+        override operator fun invoke(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray> {
             val res = Array(r) { IntArray(c) }
             if (mat.isEmpty() || r * c != mat.size * mat[0].size
             ) {
@@ -62,7 +62,7 @@ sealed class MatrixReshapeStrategy {
      * Space complexity : O(m * n).
      */
     class WithoutUsingExtraSpace : MatrixReshape {
-        override fun perform(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray> {
+        override operator fun invoke(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray> {
             val res = Array(r) { IntArray(c) }
             if (mat.isEmpty() || r * c != mat.size * mat[0].size) {
                 return mat
@@ -89,7 +89,7 @@ sealed class MatrixReshapeStrategy {
      * Space complexity : O(m * n).
      */
     class UsingDivision : MatrixReshape {
-        override fun perform(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray> {
+        override operator fun invoke(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray> {
             val res = Array(r) { IntArray(c) }
             if (mat.isEmpty() || r * c != mat.size * mat[0].size) {
                 return mat

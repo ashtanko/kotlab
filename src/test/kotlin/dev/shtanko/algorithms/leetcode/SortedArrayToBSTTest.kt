@@ -50,7 +50,7 @@ abstract class SortedArrayToBSTTest<out T : SortedArrayToBST>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sortedArrayToBST test`(nums: IntArray, expected: TreeNode?) {
-        val actual = strategy.perform(nums).postOrderTraversal()
+        val actual = strategy.invoke(nums).postOrderTraversal()
         assertThat(actual).containsAll(expected.postOrderTraversal())
     }
 }

@@ -38,7 +38,7 @@ abstract class MaximumAverageSubArray1Test<out T : FindMaxAverageStrategy>(priva
     fun `simple test`(testCase: Pair<Pair<IntArray, Int>, Double>) {
         val (data, expected) = testCase
         val (nums, k) = data
-        val actual = strategy.perform(nums, k)
+        val actual = strategy.invoke(nums, k)
         assertEquals(expected, actual)
     }
 }

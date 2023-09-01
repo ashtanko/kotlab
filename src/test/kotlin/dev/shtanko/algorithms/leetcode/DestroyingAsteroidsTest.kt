@@ -43,7 +43,7 @@ abstract class DestroyingAsteroidsTest<out T : DestroyingAsteroids>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `asteroids destroyed test`(mass: Int, asteroids: IntArray, expected: Boolean) {
-        val actual = strategy.perform(mass, asteroids)
+        val actual = strategy.invoke(mass, asteroids)
         assertThat(actual).isEqualTo(expected)
     }
 }

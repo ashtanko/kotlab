@@ -88,7 +88,7 @@ abstract class CanBeValidTest<out T : CanBeValid>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `can be valid test`(s: String, locked: String, expected: Boolean) {
-        val actual = strategy.perform(s, locked)
+        val actual = strategy.invoke(s, locked)
         assertThat(actual).isEqualTo(expected)
     }
 }

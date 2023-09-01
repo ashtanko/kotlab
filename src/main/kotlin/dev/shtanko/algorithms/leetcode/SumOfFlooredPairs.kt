@@ -23,11 +23,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/sum-of-floored-pairs/">leetcode page</a>
  */
 interface SumOfFlooredPairs {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class SumOfFlooredPairsBF : SumOfFlooredPairs {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val counts = IntArray(MAX + 1)
         for (num in nums) {
             ++counts[num]
@@ -59,7 +59,7 @@ class SumOfFlooredPairsBF : SumOfFlooredPairs {
 }
 
 class SumOfFlooredPairsBF2 : SumOfFlooredPairs {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         val max: Int = nums.max()
         val preSum = IntArray(max + 1)
         for (num in nums) preSum[num]++

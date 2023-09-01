@@ -23,11 +23,11 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/">leetcode page</a>
  */
 interface CanBeValid {
-    fun perform(s: String, locked: String): Boolean
+    operator fun invoke(s: String, locked: String): Boolean
 }
 
 class CanBeValidLeftRight : CanBeValid {
-    override fun perform(s: String, locked: String): Boolean {
+    override operator fun invoke(s: String, locked: String): Boolean {
         return s.length % 2 == 0 && validate(s, locked, '(') && validate(s, locked, ')')
     }
 
@@ -47,7 +47,7 @@ class CanBeValidLeftRight : CanBeValid {
 }
 
 class CanBeValidCountingBrackets : CanBeValid {
-    override fun perform(s: String, locked: String): Boolean {
+    override operator fun invoke(s: String, locked: String): Boolean {
         if (s.length % 2 == 1) return false
         var total = 0
         var open = 0

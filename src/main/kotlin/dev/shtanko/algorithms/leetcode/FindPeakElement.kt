@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 interface FindPeakElementStrategy {
-    fun perform(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class FindPeakElementLinear : FindPeakElementStrategy {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         return helper(nums, 0, nums.lastIndex)
     }
 
@@ -46,7 +46,7 @@ class FindPeakElementLinear : FindPeakElementStrategy {
 }
 
 class FindPeakElementRecursiveBinarySearch : FindPeakElementStrategy {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         return search(nums, 0, nums.lastIndex)
     }
 
@@ -59,7 +59,7 @@ class FindPeakElementRecursiveBinarySearch : FindPeakElementStrategy {
 }
 
 class FindPeakElementIterativeBinarySearch : FindPeakElementStrategy {
-    override fun perform(nums: IntArray): Int {
+    override operator fun invoke(nums: IntArray): Int {
         var l = 0
         var r: Int = nums.lastIndex
         while (l < r) {

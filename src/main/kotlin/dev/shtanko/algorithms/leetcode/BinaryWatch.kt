@@ -26,7 +26,7 @@ object BinaryWatch {
     private const val SKIP_HOUR_1 = 11
     private const val SKIP_HOUR_2 = 59
 
-    fun perform(num: Int): List<String> {
+    operator fun invoke(num: Int): List<String> {
         val result = ArrayList<String>()
         for (i in 0..SKIP_HOUR_1) {
             for (j in 0..SKIP_HOUR_2) {

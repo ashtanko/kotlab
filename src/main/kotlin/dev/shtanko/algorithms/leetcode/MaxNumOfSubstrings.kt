@@ -25,11 +25,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/">leetcode page</a>
  */
 interface MaxNumOfSubstrings {
-    fun perform(s: String): List<String>
+    operator fun invoke(s: String): List<String>
 }
 
 class MaxNumOfSubstringsGreedy : MaxNumOfSubstrings {
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         val len: Int = s.length
         val range = Array(ALPHABET_LETTERS_COUNT) { IntArray(2) }
         for (i in 0 until ALPHABET_LETTERS_COUNT) range[i] = intArrayOf(len, 0)
@@ -66,7 +66,7 @@ class MaxNumOfSubstringsGreedy : MaxNumOfSubstrings {
 }
 
 class MaxNumOfSubstringsKosaraju : MaxNumOfSubstrings {
-    override fun perform(s: String): List<String> {
+    override operator fun invoke(s: String): List<String> {
         // some nasty pre-compute in order to build the graph in O(N) time
         val mins = IntArray(ALPHABET_LETTERS_COUNT) { Int.MAX_VALUE }
         val maxs = IntArray(ALPHABET_LETTERS_COUNT) { -1 }

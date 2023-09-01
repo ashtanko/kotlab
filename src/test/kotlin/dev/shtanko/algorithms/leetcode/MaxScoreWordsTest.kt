@@ -51,7 +51,7 @@ abstract class MaxScoreWordsTest<out T : MaxScoreWords>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max score words test`(words: Array<String>, letters: CharArray, score: IntArray, expected: Int) {
-        val actual = strategy.perform(words, letters, score)
+        val actual = strategy.invoke(words, letters, score)
         assertThat(actual).isEqualTo(expected)
     }
 }

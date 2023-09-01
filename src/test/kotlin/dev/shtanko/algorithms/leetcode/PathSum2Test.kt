@@ -88,7 +88,7 @@ abstract class PathSum2Test<out T : PathSum2>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `path sum test`(root: TreeNode?, targetSum: Int, expected: List<List<Int>>) {
-        val actual = strategy.perform(root, targetSum)
+        val actual = strategy.invoke(root, targetSum)
         assertThat(actual).containsAll(expected)
     }
 }

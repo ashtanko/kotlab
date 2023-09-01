@@ -23,11 +23,11 @@ private const val VOWELS = "aeiouAEIOU"
  * @see <a href="https://leetcode.com/problems/determine-if-string-halves-are-alike/">leetcode page</a>
  */
 fun interface HalvesAreAlike {
-    fun perform(s: String): Boolean
+    operator fun invoke(s: String): Boolean
 }
 
 class HalvesAreAlikeBruteForce : HalvesAreAlike {
-    override fun perform(s: String): Boolean {
+    override operator fun invoke(s: String): Boolean {
         val n = s.length
         val mid = n / 2
         val a = s.substring(0, mid)
@@ -45,7 +45,7 @@ class HalvesAreAlikeBruteForce : HalvesAreAlike {
 }
 
 class HalvesAreAlikeCount : HalvesAreAlike {
-    override fun perform(s: String): Boolean {
+    override operator fun invoke(s: String): Boolean {
         val n = s.length
         val mid = n / 2
         return countVowel(0 until mid, s) == countVowel(mid until n, s)

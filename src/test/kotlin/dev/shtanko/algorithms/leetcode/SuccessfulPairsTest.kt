@@ -45,7 +45,7 @@ abstract class SuccessfulPairsTest<out T : SuccessfulPairs>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `successful pairs test`(spells: IntArray, potions: IntArray, success: Long, expected: IntArray) {
-        val actual = strategy.perform(spells, potions, success)
+        val actual = strategy.invoke(spells, potions, success)
         assertThat(actual).isEqualTo(expected)
     }
 }

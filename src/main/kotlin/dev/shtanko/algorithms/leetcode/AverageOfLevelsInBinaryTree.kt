@@ -20,12 +20,12 @@ import java.util.LinkedList
 import java.util.Queue
 
 interface AverageOfLevelsInBinaryTreeStrategy {
-    fun perform(root: TreeNode?): DoubleArray
+    operator fun invoke(root: TreeNode?): DoubleArray
 }
 
 // Using Depth First Search
 class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {
-    override fun perform(root: TreeNode?): DoubleArray {
+    override operator fun invoke(root: TreeNode?): DoubleArray {
         val count: MutableList<Int> = ArrayList()
         val res: MutableList<Double> = ArrayList()
         average(root, 0, res, count)
@@ -49,7 +49,7 @@ class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {
 
 // Using Breadth First Search
 class AverageOfLevelsInBinaryTreeBFS : AverageOfLevelsInBinaryTreeStrategy {
-    override fun perform(root: TreeNode?): DoubleArray {
+    override operator fun invoke(root: TreeNode?): DoubleArray {
         val res: MutableList<Double> = ArrayList()
         var queue: Queue<TreeNode?> = LinkedList()
         queue.add(root)

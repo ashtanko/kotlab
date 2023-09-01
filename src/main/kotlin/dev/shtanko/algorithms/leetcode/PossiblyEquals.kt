@@ -24,11 +24,11 @@ import java.lang.Character.isDigit
  *     leetcode page</a>
  */
 interface PossiblyEquals {
-    fun perform(s1: String, s2: String): Boolean
+    operator fun invoke(s1: String, s2: String): Boolean
 }
 
 class PossiblyEqualsDFS : PossiblyEquals {
-    override fun perform(s1: String, s2: String): Boolean {
+    override operator fun invoke(s1: String, s2: String): Boolean {
         val l1: Int = s1.length
         val l2: Int = s2.length
 

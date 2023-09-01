@@ -53,7 +53,7 @@ abstract class AppealSumTest<out T : AppealSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `appeal sum test`(s: String, expected: Long) {
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

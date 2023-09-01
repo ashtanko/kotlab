@@ -22,12 +22,12 @@ package dev.shtanko.algorithms.leetcode
  *     leetcode page</a>
  */
 interface NumWays {
-    fun perform(words: Array<String>, target: String): Int
+    operator fun invoke(words: Array<String>, target: String): Int
 }
 
 class NumWaysDP : NumWays {
 
-    override fun perform(words: Array<String>, target: String): Int {
+    override operator fun invoke(words: Array<String>, target: String): Int {
         val wLen: Int = words[0].length
         val tLen: Int = target.length
         val dp = Array(tLen) { LongArray(wLen) }
