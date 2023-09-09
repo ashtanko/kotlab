@@ -8,8 +8,8 @@ on:
   pull_request:
     types: [ opened, synchronize, reopened ]
 
-env:
-  GRADLE_HOME: ${{ github.workspace }}/gradle-home
+#env:
+#  GRADLE_HOME: ${{ github.workspace }}/gradle-home
 
 jobs:
   build:
