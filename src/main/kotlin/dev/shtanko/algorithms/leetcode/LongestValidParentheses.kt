@@ -23,7 +23,7 @@ import kotlin.math.max
  * 32. Longest Valid Parentheses
  * https://leetcode.com/problems/longest-valid-parentheses/
  */
-interface LongestValidParenthesesStrategy {
+fun interface LongestValidParenthesesStrategy {
     operator fun invoke(s: String): Int
 }
 

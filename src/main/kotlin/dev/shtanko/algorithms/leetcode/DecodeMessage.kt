@@ -22,7 +22,7 @@ import java.util.stream.Collectors
  * 2325. Decode the Message
  * https://leetcode.com/problems/decode-the-message/
  */
-interface DecodeMessage {
+fun interface DecodeMessage {
     operator fun invoke(key: String, message: String): String
 }
 

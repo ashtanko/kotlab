@@ -24,7 +24,7 @@ import kotlin.math.min
  * 1520. Maximum Number of Non-Overlapping Substrings
  * @see <a href="https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/">leetcode page</a>
  */
-interface MaxNumOfSubstrings {
+fun interface MaxNumOfSubstrings {
     operator fun invoke(s: String): List<String>
 }
 

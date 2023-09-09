@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal">
  *     leetcode page</a>
  */
-interface ConstructBinaryTree2 {
+fun interface ConstructBinaryTree2 {
     fun buildTree(inorder: IntArray, postorder: IntArray): TreeNode?
 }
 

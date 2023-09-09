@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface GoalParser {
+fun interface GoalParser {
     fun interpret(command: String): String
 }
 

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2141. Maximum Running Time of N Computers
  * @see <a href="https://leetcode.com/problems/maximum-running-time-of-n-computers/">leetcode page</a>
  */
-interface MaxRunTime {
+fun interface MaxRunTime {
     operator fun invoke(n: Int, batteries: IntArray): Long
 }
 

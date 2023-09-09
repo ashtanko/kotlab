@@ -22,7 +22,7 @@ import kotlin.math.max
  * 300. Longest Increasing Subsequence
  * https://leetcode.com/problems/longest-increasing-subsequence/
  */
-interface LengthOfLIS {
+fun interface LengthOfLIS {
     operator fun invoke(nums: IntArray): Int
 }
 

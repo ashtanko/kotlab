@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 3 Sum.
  * @see <a href="https://leetcode.com/problems/3sum/">leetcode page</a>
  */
-interface ThreeSum {
+fun interface ThreeSum {
     operator fun invoke(nums: IntArray): List<List<Int>>
 }
 

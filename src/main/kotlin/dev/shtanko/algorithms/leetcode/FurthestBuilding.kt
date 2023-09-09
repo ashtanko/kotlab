@@ -25,7 +25,7 @@ import kotlin.math.min
  * Furthest Building You Can Reach
  * @see <a href="https://leetcode.com/problems/furthest-building-you-can-reach/">leetcode page</a>
  */
-interface FurthestBuilding {
+fun interface FurthestBuilding {
     operator fun invoke(heights: IntArray, bricks: Int, ladders: Int): Int
 }
 

@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface PowerOfTwoStrategy {
+fun interface PowerOfTwoStrategy {
     fun isPowerOfTwo(n: Int): Boolean
 }
 

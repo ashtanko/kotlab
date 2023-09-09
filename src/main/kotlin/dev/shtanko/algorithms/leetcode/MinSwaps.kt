@@ -22,7 +22,7 @@ import kotlin.math.max
  * Minimum Swaps to Group All 1's Together
  * @see <a href="https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/">leetcode page</a>
  */
-interface MinSwaps {
+fun interface MinSwaps {
     operator fun invoke(data: IntArray): Int
 }
 

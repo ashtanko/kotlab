@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Paint Fence.
  */
-interface PaintFence {
+fun interface PaintFence {
     fun numWays(n: Int, k: Int): Int
 }
 

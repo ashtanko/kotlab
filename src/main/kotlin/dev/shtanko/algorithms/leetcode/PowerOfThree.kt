@@ -20,7 +20,7 @@ import kotlin.math.log10
 
 private const val POWER = 3
 
-interface PowerOfThreeStrategy {
+fun interface PowerOfThreeStrategy {
     fun isPowerOfThree(n: Int): Boolean
 }
 

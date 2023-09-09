@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 private const val LIMIT = 100
 private const val ARR_SIZE = LIMIT + 1
 
-interface ThreeSumMulti {
+fun interface ThreeSumMulti {
     operator fun invoke(arr: IntArray, target: Int): Int
 }
 

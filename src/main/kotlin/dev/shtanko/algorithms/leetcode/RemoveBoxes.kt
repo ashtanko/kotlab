@@ -22,7 +22,7 @@ import kotlin.math.max
  * 546. Remove Boxes
  * @see <a href="https://leetcode.com/problems/remove-boxes/">leetcode page</a>
  */
-interface RemoveBoxes {
+fun interface RemoveBoxes {
     operator fun invoke(boxes: IntArray): Int
 }
 

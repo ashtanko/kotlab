@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface RegularExpressionMatchStrategy {
+fun interface RegularExpressionMatchStrategy {
     operator fun invoke(text: String, pattern: String): Boolean
 }
 

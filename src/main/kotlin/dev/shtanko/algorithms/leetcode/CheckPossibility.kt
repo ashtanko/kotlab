@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 665. Non-decreasing Array
  * https://leetcode.com/problems/non-decreasing-array/
  */
-interface CheckPossibility {
+fun interface CheckPossibility {
     operator fun invoke(nums: IntArray): Boolean
 }
 

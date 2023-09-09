@@ -23,7 +23,7 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero">
  *     leetcode page</a>
  */
-interface MinReorder {
+fun interface MinReorder {
     operator fun invoke(n: Int, connections: Array<IntArray>): Int
 }
 

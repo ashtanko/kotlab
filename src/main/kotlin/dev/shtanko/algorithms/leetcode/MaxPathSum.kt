@@ -22,7 +22,7 @@ import kotlin.math.max
  * 124. Binary Tree Maximum Path Sum
  * @see <a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/">leetcode page</a>
  */
-interface MaxPathSum {
+fun interface MaxPathSum {
     operator fun invoke(root: TreeNode?): Int
 }
 

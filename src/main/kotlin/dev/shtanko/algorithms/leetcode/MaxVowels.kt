@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length">
  *     leetcode page</a>
  */
-interface MaxVowels {
+fun interface MaxVowels {
     operator fun invoke(s: String, k: Int): Int
 }
 

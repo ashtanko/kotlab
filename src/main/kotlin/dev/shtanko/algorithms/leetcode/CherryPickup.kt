@@ -23,7 +23,7 @@ import kotlin.math.min
  * 741. Cherry Pickup
  * @see <a href="https://leetcode.com/problems/cherry-pickup/">leetcode page</a>
  */
-interface CherryPickup {
+fun interface CherryPickup {
     operator fun invoke(grid: Array<IntArray>): Int
 }
 

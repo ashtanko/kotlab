@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary">
  *     leetcode page</a>
  */
-interface NumWays {
+fun interface NumWays {
     operator fun invoke(words: Array<String>, target: String): Int
 }
 

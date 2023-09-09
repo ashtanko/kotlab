@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface SqrtStrategy {
+fun interface SqrtStrategy {
     fun mySqrt(x: Int): Int
 }
 

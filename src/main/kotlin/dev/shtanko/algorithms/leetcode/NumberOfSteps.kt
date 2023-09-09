@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface NumberOfStepsStrategy {
+fun interface NumberOfStepsStrategy {
     operator fun invoke(n: Int): Int
 }
 

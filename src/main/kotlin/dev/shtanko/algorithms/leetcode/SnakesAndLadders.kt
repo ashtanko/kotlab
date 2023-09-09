@@ -23,7 +23,7 @@ import java.util.Queue
  * 909. Snakes and Ladders
  * @see <a href="https://leetcode.com/problems/snakes-and-ladders/">leetcode page</a>
  */
-interface SnakesAndLadders {
+fun interface SnakesAndLadders {
     operator fun invoke(board: Array<IntArray>): Int
 }
 

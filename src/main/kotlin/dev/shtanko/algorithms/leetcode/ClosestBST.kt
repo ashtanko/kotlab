@@ -23,7 +23,7 @@ import kotlin.math.abs
  * 270. Closest Binary Search Tree Value
  * https://leetcode.com/problems/closest-binary-search-tree-value/
  */
-interface ClosestBST {
+fun interface ClosestBST {
     fun closestValue(root: TreeNode?, target: Double): Int
 }
 

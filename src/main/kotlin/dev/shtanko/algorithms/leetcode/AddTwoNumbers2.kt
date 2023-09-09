@@ -22,7 +22,7 @@ import java.util.Stack
  * 445. Add Two Numbers II
  * @see <a href="https://leetcode.com/problems/add-two-numbers-ii/">leetcode page</a>
  */
-interface AddTwoNumbers2 {
+fun interface AddTwoNumbers2 {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode?
 }
 

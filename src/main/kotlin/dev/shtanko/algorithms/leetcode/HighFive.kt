@@ -23,7 +23,7 @@ import java.util.TreeMap
 private const val CAPACITY = 5
 private const val SIZE = 2
 
-interface HighFiveStrategy {
+fun interface HighFiveStrategy {
     operator fun invoke(items: Array<IntArray>): Array<IntArray>
 }
 

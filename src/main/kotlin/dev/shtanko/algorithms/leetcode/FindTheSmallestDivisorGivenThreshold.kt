@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 // Find the Smallest Divisor Given a Threshold
-interface SmallestDivisorStrategy {
+fun interface SmallestDivisorStrategy {
     operator fun invoke(nums: IntArray, threshold: Int): Int
 
     fun computeSum(nums: IntArray, x: Int): Long {

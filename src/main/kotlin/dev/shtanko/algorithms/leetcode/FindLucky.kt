@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 private const val MAX_ARR_SIZE = 500
 
-interface FindLuckyStrategy {
+fun interface FindLuckyStrategy {
     operator fun invoke(arr: IntArray): Int
 }
 

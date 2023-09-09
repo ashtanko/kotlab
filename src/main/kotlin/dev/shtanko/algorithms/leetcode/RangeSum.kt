@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1508. Range Sum of Sorted Subarray Sums
  * @see <a href="https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/">leetcode page</a>
  */
-interface RangeSum {
+fun interface RangeSum {
     operator fun invoke(nums: IntArray, n: Int, left: Int, right: Int): Int
 }
 

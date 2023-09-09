@@ -23,7 +23,7 @@ import kotlin.math.max
  * 2542. Maximum Subsequence Score
  * @see <a href="https://leetcode.com/problems/maximum-subsequence-score/">leetcode page</a>
  */
-interface MaximumSubsequenceScore {
+fun interface MaximumSubsequenceScore {
     fun maxScore(nums1: IntArray, nums2: IntArray, k: Int): Long
 }
 

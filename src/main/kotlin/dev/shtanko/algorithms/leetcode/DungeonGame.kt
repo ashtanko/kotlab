@@ -22,7 +22,7 @@ import kotlin.math.min
  * 174. Dungeon Game
  * link https://leetcode.com/problems/dungeon-game/
  */
-interface DungeonGame {
+fun interface DungeonGame {
     fun calculateMinimumHP(dungeon: Array<IntArray>): Int
 }
 

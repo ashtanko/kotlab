@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Find the Town Judge.
  * @see <a href="https://leetcode.com/problems/find-the-town-judge/">leetcode page</a>
  */
-interface FindJudge {
+fun interface FindJudge {
     operator fun invoke(n: Int, trust: Array<IntArray>): Int
 }
 

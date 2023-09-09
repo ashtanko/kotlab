@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Given two arrays, write a function to compute their intersection.
  */
-interface IntersectionStrategy {
+fun interface IntersectionStrategy {
     operator fun invoke(p: Pair<IntArray, IntArray>): IntArray
 }
 

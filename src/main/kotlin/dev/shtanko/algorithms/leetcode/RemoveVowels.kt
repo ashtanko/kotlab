@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.isVowel
 
-interface RemoveVowels {
+fun interface RemoveVowels {
     operator fun invoke(s: String): String
 }
 

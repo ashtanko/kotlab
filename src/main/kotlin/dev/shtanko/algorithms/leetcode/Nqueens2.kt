@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 52. N-Queens II
  * @see <a href="https://leetcode.com/problems/n-queens-ii/">leetcode page</a>
  */
-interface TotalNQueensStrategy {
+fun interface TotalNQueensStrategy {
     operator fun invoke(n: Int): Int
 }
 

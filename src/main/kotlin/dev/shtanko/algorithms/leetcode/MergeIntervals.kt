@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.LinkedList
 import java.util.Stack
 
-interface MergeIntervalsStrategy {
+fun interface MergeIntervalsStrategy {
     operator fun invoke(intervals: Array<IntArray>): Array<IntArray>
 }
 

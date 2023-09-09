@@ -22,7 +22,7 @@ import kotlin.math.min
  * 931. Minimum Falling Path Sum
  * @see <a href="https://leetcode.com/problems/minimum-falling-path-sum/description/">leetcode page</a>
  */
-interface MinFallingPathSum {
+fun interface MinFallingPathSum {
     operator fun invoke(matrix: Array<IntArray>): Int
 }
 

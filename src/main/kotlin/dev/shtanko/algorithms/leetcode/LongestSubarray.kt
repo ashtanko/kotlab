@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1493. Longest Subarray of 1's After Deleting One Element
  * @see <a href="https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/">leetcode page</a>
  */
-interface LongestSubarray {
+fun interface LongestSubarray {
     operator fun invoke(nums: IntArray): Int
 }
 

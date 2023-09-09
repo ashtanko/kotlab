@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-interface NextGreaterElement1 {
+fun interface NextGreaterElement1 {
     operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray
 }
 

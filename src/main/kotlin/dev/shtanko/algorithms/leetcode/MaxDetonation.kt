@@ -25,7 +25,7 @@ import kotlin.math.max
  * 2101. Detonate the Maximum Bombs
  * @see <a href="https://leetcode.com/problems/detonate-the-maximum-bombs/">leetcode page</a>
  */
-interface MaxDetonation {
+fun interface MaxDetonation {
     fun maximumDetonation(bombs: Array<IntArray>): Int
 
     fun getGraph(bombs: Array<IntArray>): Pair<MutableMap<Int, MutableList<Int>>, Int> {

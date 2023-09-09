@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1768. Merge Strings Alternately
  * @see <a href="https://leetcode.com/problems/merge-strings-alternately/">leetcode page</a>
  */
-interface MergeStringsAlternately {
+fun interface MergeStringsAlternately {
     fun mergeAlternately(word1: String, word2: String): String
 }
 

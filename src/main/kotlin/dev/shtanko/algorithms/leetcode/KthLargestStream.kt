@@ -21,7 +21,7 @@ import java.util.PriorityQueue
 /**
  * 703. Kth Largest Element in a Stream
  */
-interface KthLargestStream {
+fun interface KthLargestStream {
     fun add(n: Int): Int
 }
 

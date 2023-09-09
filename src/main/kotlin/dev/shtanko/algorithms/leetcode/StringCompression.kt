@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 443. String Compression
  * @see <a href="https://leetcode.com/problems/string-compression/">leetcode page</a>
  */
-interface StringCompression {
+fun interface StringCompression {
     fun compress(chars: CharArray): Int
 }
 

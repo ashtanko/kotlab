@@ -22,7 +22,7 @@ import kotlin.math.max
  * 2272. Substring With Largest Variance
  * @see <a href="https://leetcode.com/problems/substring-with-largest-variance/">leetcode page</a>
  */
-interface LargestVariance {
+fun interface LargestVariance {
     operator fun invoke(s: String): Int
 }
 

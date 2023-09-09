@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * 246. Strobogrammatic Number
  */
-interface StrobogrammaticNumber {
+fun interface StrobogrammaticNumber {
     operator fun invoke(num: String): Boolean
 }
 

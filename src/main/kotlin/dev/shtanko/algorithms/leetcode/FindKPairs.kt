@@ -21,7 +21,7 @@ import kotlin.math.abs
 /**
  * 532. K-diff Pairs in an Array
  */
-interface FindKPairs {
+fun interface FindKPairs {
     operator fun invoke(nums: IntArray, k: Int): Int
 }
 

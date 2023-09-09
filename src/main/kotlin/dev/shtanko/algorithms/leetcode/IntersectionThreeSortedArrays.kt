@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * return a sorted array of only the integers that appeared in all three arrays.
  * @see <a href="https://leetcode.com/problems/intersection-of-three-sorted-arrays/">leetcode page</a>
  */
-interface IntersectionThreeSortedArrays {
+fun interface IntersectionThreeSortedArrays {
     operator fun invoke(arr1: IntArray, arr2: IntArray, arr3: IntArray): List<Int>
 }
 

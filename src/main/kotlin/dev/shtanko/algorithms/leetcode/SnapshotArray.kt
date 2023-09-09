@@ -22,7 +22,7 @@ import java.util.TreeMap
  * 1146. Snapshot Array
  * @see <a href="https://leetcode.com/problems/snapshot-array/description/">leetcode page</a>
  */
-interface SnapshotArray {
+sealed interface SnapshotArray {
     fun set(index: Int, value: Int)
 
     fun snap(): Int

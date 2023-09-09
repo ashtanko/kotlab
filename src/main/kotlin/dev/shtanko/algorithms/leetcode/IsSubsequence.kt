@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.max
 
-interface IsSubsequence {
+fun interface IsSubsequence {
     operator fun invoke(source: String, target: String): Boolean
 }
 

@@ -23,7 +23,7 @@ import java.util.Queue
  * 1319. Number of Operations to Make Network Connected
  * @see <a href="https://leetcode.com/problems/number-of-operations-to-make-network-connected/">leetcode page</a>
  */
-interface MakeConnected {
+fun interface MakeConnected {
     operator fun invoke(n: Int, connections: Array<IntArray>): Int
 
     fun findParent(parent: IntArray, i: Int): Int {

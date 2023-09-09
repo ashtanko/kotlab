@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface AbstractCountNegativesStrategy {
+fun interface AbstractCountNegativesStrategy {
     operator fun invoke(grid: Array<IntArray>): Int
 }
 

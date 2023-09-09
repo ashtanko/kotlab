@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 50. Pow(x, n)
  * @see <a href="https://leetcode.com/problems/powx-n/">leetcode page</a>
  */
-interface Pow {
+fun interface Pow {
     operator fun invoke(x: Double, n: Int): Double
 }
 

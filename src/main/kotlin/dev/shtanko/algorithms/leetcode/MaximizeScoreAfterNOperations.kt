@@ -23,7 +23,7 @@ import kotlin.math.max
  * 1799. Maximize Score After N Operations
  * @see <a href="https://leetcode.com/problems/maximize-score-after-n-operations/">leetcode page</a>
  */
-interface MaximizeScoreAfterNOperations {
+fun interface MaximizeScoreAfterNOperations {
     fun maxScore(nums: IntArray): Int
 }
 

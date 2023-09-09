@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Parallel Courses
  * @see <a href="https://leetcode.com/problems/parallel-courses/">leetcode page</a>
  */
-interface ParallelCourses {
+fun interface ParallelCourses {
     fun minimumSemesters(n: Int, relations: Array<IntArray>): Int
 }
 

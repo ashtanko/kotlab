@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.sqrt
 
-interface ArrangingCoinsStrategy {
+fun interface ArrangingCoinsStrategy {
     fun arrangeCoins(n: Int): Int
 }
 

@@ -24,7 +24,7 @@ import java.util.Queue
  * 815. Bus Routes
  * @see <a href="https://leetcode.com/problems/bus-routes/">leetcode page</a>
  */
-interface BusRoutes {
+fun interface BusRoutes {
     fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int
 }
 

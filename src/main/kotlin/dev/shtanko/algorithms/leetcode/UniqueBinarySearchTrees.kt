@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 96. Unique Binary Search Trees
  * @see <a href="https://leetcode.com/problems/unique-binary-search-trees/">leetcode page</a>
  */
-interface UniqueBinarySearchTrees {
+fun interface UniqueBinarySearchTrees {
     fun numTrees(n: Int): Int
 }
 

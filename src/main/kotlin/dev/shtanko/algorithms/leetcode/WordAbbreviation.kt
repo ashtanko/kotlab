@@ -22,7 +22,7 @@ import kotlin.math.max
  * Word Abbreviation.
  * @see <a href="https://leetcode.com/problems/word-abbreviation/">leetcode page</a>
  */
-interface WordAbbreviation {
+fun interface WordAbbreviation {
     operator fun invoke(dict: List<String>): List<String>
 
     fun abbrev(word: String, i: Int): String {

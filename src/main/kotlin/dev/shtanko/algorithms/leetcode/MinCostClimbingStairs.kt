@@ -24,7 +24,7 @@ import kotlin.math.min
  * Time Complexity: O(N).
  * Space Complexity: O(1).
  */
-interface MinCostClimbingStairs {
+fun interface MinCostClimbingStairs {
     operator fun invoke(cost: IntArray): Int
 }
 

@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface SubarraySumStrategy {
+fun interface SubarraySumStrategy {
     operator fun invoke(nums: IntArray, k: Int): Int
 }
 

@@ -23,7 +23,7 @@ import kotlin.math.pow
  * Prime Palindrome
  * @see <a href="https://leetcode.com/problems/prime-palindrome/">leetcode page</a>
  */
-interface PrimePalindrome {
+fun interface PrimePalindrome {
     operator fun invoke(n: Int): Int
 }
 

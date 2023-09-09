@@ -22,7 +22,7 @@ import java.util.Queue
 /**
  * Split Array into Consecutive Subsequences.
  */
-interface SplitArrayIntoConsecutiveSubsequences {
+fun interface SplitArrayIntoConsecutiveSubsequences {
     fun isPossible(nums: IntArray): Boolean
 }
 

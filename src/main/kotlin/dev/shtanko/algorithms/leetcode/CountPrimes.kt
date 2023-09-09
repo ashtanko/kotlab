@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface CountPrimesStrategy {
+fun interface CountPrimesStrategy {
     operator fun invoke(n: Int): Int
 }
 

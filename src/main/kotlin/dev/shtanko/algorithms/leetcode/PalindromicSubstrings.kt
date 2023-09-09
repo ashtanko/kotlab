@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface PalindromicSubstrings {
+fun interface PalindromicSubstrings {
     operator fun invoke(s: String): Int
 }
 

@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Arrays
 import kotlin.math.max
 
-interface TwoSumLessThanKStrategy {
+fun interface TwoSumLessThanKStrategy {
     operator fun invoke(nums: IntArray, k: Int): Int
 }
 

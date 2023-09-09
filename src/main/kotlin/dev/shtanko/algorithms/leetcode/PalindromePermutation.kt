@@ -20,7 +20,7 @@ import java.util.TreeSet
 
 private const val MAX_VALUE = 128
 
-interface PalindromePermutationBehavior {
+fun interface PalindromePermutationBehavior {
     fun canPermutePalindrome(s: String): Boolean
 }
 

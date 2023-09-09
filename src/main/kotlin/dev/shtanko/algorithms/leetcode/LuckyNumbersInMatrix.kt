@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface AbstractLuckyNumbersStrategy {
+fun interface AbstractLuckyNumbersStrategy {
     operator fun invoke(matrix: Array<IntArray>): List<Int>
 }
 

@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface CanBeEqualStrategy {
+fun interface CanBeEqualStrategy {
     operator fun invoke(target: IntArray, arr: IntArray): Boolean
 }
 

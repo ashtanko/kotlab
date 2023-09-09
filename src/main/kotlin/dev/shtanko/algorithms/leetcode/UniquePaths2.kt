@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Unique Paths II
  * @see <a href="https://leetcode.com/problems/unique-paths-ii/">leetcode page</a>
  */
-interface UniquePaths2 {
+fun interface UniquePaths2 {
     /**
      * Calculates the number of unique paths from the top-left corner to the bottom-right corner
      * of a grid, considering obstacles.

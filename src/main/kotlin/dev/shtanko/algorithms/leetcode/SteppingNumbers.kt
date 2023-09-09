@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1215. Stepping Numbers
  * https://leetcode.com/problems/stepping-numbers/
  */
-interface SteppingNumbers {
+fun interface SteppingNumbers {
     fun countSteppingNumbers(low: Int, high: Int): List<Int>
 }
 

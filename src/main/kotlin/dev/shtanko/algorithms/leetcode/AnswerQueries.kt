@@ -23,7 +23,7 @@ import kotlin.math.abs
  * 2389. Longest Subsequence With Limited Sum
  * @see <a href="https://leetcode.com/problems/longest-subsequence-with-limited-sum/">leetcode page</a>
  */
-interface AnswerQueries {
+fun interface AnswerQueries {
     operator fun invoke(nums: IntArray, queries: IntArray): IntArray
 }
 

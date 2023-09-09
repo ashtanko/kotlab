@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface MakeArrayEqual {
+fun interface MakeArrayEqual {
     operator fun invoke(n: Int): Int
 }
 

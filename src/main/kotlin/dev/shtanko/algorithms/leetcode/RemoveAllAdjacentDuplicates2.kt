@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 
 // Remove All Adjacent Duplicates In String
-interface RemoveAllAdjacentDuplicatesStrategy2 {
+fun interface RemoveAllAdjacentDuplicatesStrategy2 {
     operator fun invoke(s: String, k: Int): String
 }
 

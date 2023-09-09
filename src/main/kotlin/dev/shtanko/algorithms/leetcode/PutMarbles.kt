@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2551. Put Marbles in Bags
  * @see <a href="https://leetcode.com/problems/put-marbles-in-bags/">leetcode page</a>
  */
-interface PutMarbles {
+fun interface PutMarbles {
     fun putMarblesInBags(weights: IntArray, k: Int): Long
 }
 

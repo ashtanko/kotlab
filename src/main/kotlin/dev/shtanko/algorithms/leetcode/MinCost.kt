@@ -22,7 +22,7 @@ import java.util.PriorityQueue
  * 1928. Minimum Cost to Reach Destination in Time
  * @see <a href="https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/">leetcode page</a>
  */
-interface MinCost {
+fun interface MinCost {
     operator fun invoke(maxTime: Int, edges: Array<IntArray>, passingFees: IntArray): Int
 }
 

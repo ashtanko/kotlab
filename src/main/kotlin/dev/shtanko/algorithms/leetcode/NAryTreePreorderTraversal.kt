@@ -22,7 +22,7 @@ class NAryNode(var value: Int) {
     var children: List<NAryNode?> = listOf()
 }
 
-interface NAryTreePreorderTraversalStrategy {
+fun interface NAryTreePreorderTraversalStrategy {
     fun preorder(root: NAryNode?): List<Int>
 }
 

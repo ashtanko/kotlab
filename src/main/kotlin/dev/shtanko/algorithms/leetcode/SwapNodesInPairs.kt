@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 24. Swap Nodes in Pairs
  * @see <a href="https://leetcode.com/problems/swap-nodes-in-pairs/description/">leetcode page</a>
  */
-interface SwapNodesInPairs {
+fun interface SwapNodesInPairs {
     fun swapPairs(head: ListNode?): ListNode?
 }
 

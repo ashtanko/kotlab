@@ -22,7 +22,7 @@ package dev.shtanko.algorithms.leetcode
  * The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive,
  * so "a" is considered a different type of stone from "A".
  */
-interface NumJewelsInStonesStrategy {
+fun interface NumJewelsInStonesStrategy {
     operator fun invoke(a: String, b: String): Int
 }
 

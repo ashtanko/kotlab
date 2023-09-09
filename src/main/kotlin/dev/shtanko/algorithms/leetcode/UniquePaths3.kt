@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 980. Unique Paths III
  * @see <a href="https://leetcode.com/problems/unique-paths-iii/">leetcode page</a>
  */
-interface UniquePaths3 {
+fun interface UniquePaths3 {
     operator fun invoke(grid: Array<IntArray>): Int
 }
 

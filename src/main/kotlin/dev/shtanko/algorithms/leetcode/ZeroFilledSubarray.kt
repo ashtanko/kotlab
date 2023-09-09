@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2348. Number of Zero-Filled Subarrays
  * https://leetcode.com/problems/number-of-zero-filled-subarrays/
  */
-interface ZeroFilledSubarray {
+fun interface ZeroFilledSubarray {
     operator fun invoke(nums: IntArray): Long
 }
 

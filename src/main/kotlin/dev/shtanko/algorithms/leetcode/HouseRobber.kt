@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface AbstractRobberStrategy {
+fun interface AbstractRobberStrategy {
     operator fun invoke(arr: IntArray): Int
 }
 

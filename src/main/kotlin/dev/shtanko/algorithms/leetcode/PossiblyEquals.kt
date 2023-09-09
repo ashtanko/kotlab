@@ -23,7 +23,7 @@ import java.lang.Character.isDigit
  * @see <a href="https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings">
  *     leetcode page</a>
  */
-interface PossiblyEquals {
+fun interface PossiblyEquals {
     operator fun invoke(s1: String, s2: String): Boolean
 }
 

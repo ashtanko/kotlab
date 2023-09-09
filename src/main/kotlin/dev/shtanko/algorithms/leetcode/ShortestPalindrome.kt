@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface ShortestPalindromeStrategy {
+fun interface ShortestPalindromeStrategy {
     operator fun invoke(s: String): String
 }
 

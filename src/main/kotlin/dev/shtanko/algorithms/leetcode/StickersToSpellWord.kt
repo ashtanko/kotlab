@@ -23,7 +23,7 @@ import kotlin.math.min
  * 691. Stickers to Spell Word
  * @see <a href="https://leetcode.com/problems/stickers-to-spell-word/">leetcode page</a>
  */
-interface StickersToSpellWord {
+fun interface StickersToSpellWord {
     fun minStickers(stickers: Array<String>, target: String): Int
 }
 

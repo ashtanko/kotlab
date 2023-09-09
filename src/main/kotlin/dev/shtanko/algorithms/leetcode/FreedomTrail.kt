@@ -22,7 +22,7 @@ import kotlin.math.min
  * 514. Freedom Trail
  * @see <a href="https://leetcode.com/problems/freedom-trail/">leetcode page</a>
  */
-interface FreedomTrail {
+fun interface FreedomTrail {
     fun findRotateSteps(ring: String, key: String): Int
 }
 

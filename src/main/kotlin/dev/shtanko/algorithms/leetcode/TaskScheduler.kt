@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.PriorityQueue
 import kotlin.math.max
 
-interface TaskSchedulerStrategy {
+fun interface TaskSchedulerStrategy {
     operator fun invoke(tasks: CharArray, n: Int): Int
 }
 

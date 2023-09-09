@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1402. Reducing Dishes
  * @see <a href="https://leetcode.com/problems/reducing-dishes/">leetcode page</a>
  */
-interface ReducingDishes {
+fun interface ReducingDishes {
     fun maxSatisfaction(satisfaction: IntArray): Int
 }
 

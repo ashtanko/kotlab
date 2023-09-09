@@ -20,7 +20,7 @@ import java.util.LinkedList
 import java.util.Queue
 import java.util.Stack
 
-interface SumOfLeftLeavesStrategy {
+fun interface SumOfLeftLeavesStrategy {
     operator fun invoke(root: TreeNode?): Int
 }
 

@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1838. Frequency of the Most Frequent Element
  * @see <a href="https://leetcode.com/problems/frequency-of-the-most-frequent-element/">leetcode page</a>
  */
-interface MaxFrequency {
+fun interface MaxFrequency {
     fun maxFrequency(nums: IntArray, k: Int): Int
 }
 

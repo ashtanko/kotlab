@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface UnivaluedBinaryTreeStrategy {
+fun interface UnivaluedBinaryTreeStrategy {
     operator fun invoke(root: TreeNode?): Boolean
 }
 

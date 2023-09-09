@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface MinimumPathSum {
+fun interface MinimumPathSum {
     operator fun invoke(grid: Array<IntArray>): Int
 }
 

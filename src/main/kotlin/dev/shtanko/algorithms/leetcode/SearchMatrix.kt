@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 74. Search a 2D Matrix
  * @see <a href="https://leetcode.com/problems/search-a-2d-matrix/">leetcode page</a>
  */
-interface SearchMatrix {
+fun interface SearchMatrix {
     operator fun invoke(matrix: Array<IntArray>, target: Int): Boolean
 }
 

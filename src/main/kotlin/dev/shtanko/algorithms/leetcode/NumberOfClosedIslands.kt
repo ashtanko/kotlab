@@ -23,7 +23,7 @@ import java.util.Queue
  * 1254. Number of Closed Islands
  * @see <a href="https://leetcode.com/problems/number-of-closed-islands/">leetcode page</a>
  */
-interface NumberOfClosedIslands {
+fun interface NumberOfClosedIslands {
     fun closedIsland(grid: Array<IntArray>): Int
 }
 

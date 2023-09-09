@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 242. Valid Anagram
  * @see <a href="https://leetcode.com/problems/valid-anagram/">leetcode page</a>
  */
-interface ValidAnagram {
+fun interface ValidAnagram {
     fun isAnagram(s: String, t: String): Boolean
 }
 

@@ -21,7 +21,7 @@ import java.util.Stack
 /**
  * @see <a href="https://leetcode.com/problems/find-permutation/">leetcode page</a>
  */
-interface FindPermutation {
+fun interface FindPermutation {
     operator fun invoke(s: String): IntArray
 }
 

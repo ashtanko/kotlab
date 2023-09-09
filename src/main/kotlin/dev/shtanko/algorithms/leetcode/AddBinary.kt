@@ -21,7 +21,7 @@ import java.math.BigInteger
 /**
  * Given two binary strings a and b, return their sum as a binary string.
  */
-interface AddBinaryStrategy {
+fun interface AddBinaryStrategy {
     operator fun invoke(a: String, b: String): String
 }
 

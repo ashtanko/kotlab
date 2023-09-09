@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.datastructures.Stack
 
-interface RainWaterStrategy {
+fun interface RainWaterStrategy {
     operator fun invoke(arr: IntArray): Int
 }
 

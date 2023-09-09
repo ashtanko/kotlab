@@ -22,7 +22,7 @@ import kotlin.math.max
  * Uncrossed Lines
  * @see <a href="https://leetcode.com/problems/uncrossed-lines/">leetcode page</a>
  */
-interface UncrossedLines {
+fun interface UncrossedLines {
     fun maxUncrossedLines(nums1: IntArray, nums2: IntArray): Int
 }
 

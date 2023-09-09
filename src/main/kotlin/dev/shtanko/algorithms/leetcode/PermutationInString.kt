@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 private const val MAX = 25
 
-interface StringPermutationStrategy {
+fun interface StringPermutationStrategy {
     operator fun invoke(s1: String, s2: String): Boolean
 
     fun matches(s1map: IntArray, s2map: IntArray): Boolean {

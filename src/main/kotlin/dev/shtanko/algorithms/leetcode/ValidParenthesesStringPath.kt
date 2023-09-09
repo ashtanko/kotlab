@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2267. Check if There Is a Valid Parentheses String Path
  * link https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/
  */
-interface ValidParenthesesStringPath {
+fun interface ValidParenthesesStringPath {
     fun hasValidPath(grid: Array<CharArray>): Boolean
 }
 

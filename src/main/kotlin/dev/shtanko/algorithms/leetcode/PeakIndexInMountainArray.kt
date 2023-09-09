@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface PeakIndexInMountainArrayStrategy {
+fun interface PeakIndexInMountainArrayStrategy {
     operator fun invoke(arr: IntArray): Int
 }
 

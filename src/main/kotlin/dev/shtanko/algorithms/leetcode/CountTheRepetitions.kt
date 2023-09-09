@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface CountTheRepetitionsStrategy {
+fun interface CountTheRepetitionsStrategy {
     operator fun invoke(s1: String, n1: Int, s2: String, n2: Int): Int
 }
 

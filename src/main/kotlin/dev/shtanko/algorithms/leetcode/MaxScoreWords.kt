@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1255. Maximum Score Words Formed by Letters
  * @see <a href="https://leetcode.com/problems/maximum-score-words-formed-by-letters/">leetcode page</a>
  */
-interface MaxScoreWords {
+fun interface MaxScoreWords {
     operator fun invoke(words: Array<String>, letters: CharArray, score: IntArray): Int
 }
 

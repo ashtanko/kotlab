@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 81. Search in Rotated Sorted Array II
  * @see <a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii/">leetcode page</a>
  */
-interface SearchInRotatedSortedArray2 {
+fun interface SearchInRotatedSortedArray2 {
     fun search(nums: IntArray, target: Int): Boolean
 }
 

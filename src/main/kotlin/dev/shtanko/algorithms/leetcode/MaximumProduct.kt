@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Given an integer array, find three numbers whose product is maximum and output the maximum product.
  */
-interface AbstractMaximumProductStrategy {
+fun interface AbstractMaximumProductStrategy {
     operator fun invoke(products: IntArray): Int
 }
 

@@ -20,7 +20,7 @@ private const val RED = 0
 private const val WHITE = 1
 private const val BLUE = 2
 
-interface SortColorsStrategy {
+fun interface SortColorsStrategy {
     operator fun invoke(nums: IntArray)
 }
 

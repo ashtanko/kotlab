@@ -22,7 +22,7 @@ import kotlin.math.min
  * 712. Minimum ASCII Delete Sum for Two Strings
  * @see <a href="https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/">leetcode page</a>
  */
-interface MinimumDeleteSum {
+fun interface MinimumDeleteSum {
     operator fun invoke(s1: String, s2: String): Int
 }
 

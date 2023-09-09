@@ -22,7 +22,7 @@ import kotlin.math.min
  * 638. Shopping Offers
  * @see <a href="https://leetcode.com/problems/shopping-offers/">leetcode page</a>
  */
-interface ShoppingOffers {
+fun interface ShoppingOffers {
     operator fun invoke(price: List<Int>, special: List<List<Int>>, needs: List<Int>): Int
 }
 

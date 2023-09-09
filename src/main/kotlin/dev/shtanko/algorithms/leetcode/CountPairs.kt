@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1711. Count Good Meals
  * @see <a href="https://leetcode.com/problems/count-good-meals/">leetcode page</a>
  */
-interface CountPairs {
+fun interface CountPairs {
     operator fun invoke(deliciousness: IntArray): Int
 }
 

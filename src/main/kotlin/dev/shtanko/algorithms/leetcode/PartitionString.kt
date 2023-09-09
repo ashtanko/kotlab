@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2405. Optimal Partition of String
  * @see <a href="https://leetcode.com/problems/optimal-partition-of-string/">leetcode page</a>
  */
-interface PartitionString {
+fun interface PartitionString {
     operator fun invoke(s: String): Int
 }
 

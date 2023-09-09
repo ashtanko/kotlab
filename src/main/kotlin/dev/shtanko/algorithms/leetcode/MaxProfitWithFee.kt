@@ -22,7 +22,7 @@ import kotlin.math.max
  * 714. Best Time to Buy and Sell Stock with Transaction Fee
  * @see <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee">leetcode page</a>
  */
-interface MaxProfitWithFee {
+fun interface MaxProfitWithFee {
     fun maxProfit(prices: IntArray, fee: Int): Int
 }
 

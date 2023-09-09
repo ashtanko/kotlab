@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.LinkedList
 
-interface JumpGame5Strategy {
+fun interface JumpGame5Strategy {
     operator fun invoke(arr: IntArray): Int
 
     fun checkNeighbors(visited: MutableSet<Int>, node: Int, n: Int, nex: MutableList<Int>) {

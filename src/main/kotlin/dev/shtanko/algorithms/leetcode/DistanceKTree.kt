@@ -23,7 +23,7 @@ import java.util.Queue
  * 863. All Nodes Distance K in Binary Tree
  * @see <a href="https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/">leetcode page</a>
  */
-interface DistanceKTree {
+fun interface DistanceKTree {
     fun distanceK(root: TreeNode, target: TreeNode, k: Int): List<Int>
 }
 

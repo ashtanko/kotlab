@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2187. Minimum Time to Complete Trips
  * @see <a href="https://leetcode.com/problems/minimum-time-to-complete-trips/">leetcode page</a>
  */
-interface MinimumTimeToCompleteTrips {
+fun interface MinimumTimeToCompleteTrips {
     fun minimumTime(time: IntArray, totalTrips: Int): Long
 }
 

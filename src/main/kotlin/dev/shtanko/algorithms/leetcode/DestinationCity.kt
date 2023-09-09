@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface DestinationCityStrategy {
+fun interface DestinationCityStrategy {
     operator fun invoke(paths: List<List<String>>): String
 }
 

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1273. Delete Tree Nodes
  * @see <a href="https://leetcode.com/problems/delete-tree-nodes/">leetcode page</a>
  */
-interface DeleteTreeNodes {
+fun interface DeleteTreeNodes {
     operator fun invoke(nodes: Int, parent: IntArray, value: IntArray): Int
 }
 

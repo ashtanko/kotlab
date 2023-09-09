@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1525. Number of Good Ways to Split a String
  * @see <a href="https://leetcode.com/problems/number-of-good-ways-to-split-a-string/">leetcode page</a>
  */
-interface NumSplits {
+fun interface NumSplits {
     operator fun invoke(str: String): Int
 }
 

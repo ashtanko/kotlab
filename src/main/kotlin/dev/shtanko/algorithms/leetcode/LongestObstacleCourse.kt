@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position">
  *     leetcode page</a>
  */
-interface LongestObstacleCourse {
+fun interface LongestObstacleCourse {
     operator fun invoke(obstacles: IntArray): IntArray
 }
 

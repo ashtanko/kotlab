@@ -29,7 +29,7 @@ private const val BASKET_SIZE = 5000
  * You also have a basket that can carry up to 5000 units of weight.
  * Return the maximum number of apples you can put in the basket.
  */
-interface MaxNumberOfApples {
+fun interface MaxNumberOfApples {
     operator fun invoke(arr: IntArray): Int
 }
 

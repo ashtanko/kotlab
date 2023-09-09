@@ -25,7 +25,7 @@ import kotlin.math.min
 
 private const val LIMIT = 101
 
-interface ProfitableSchemes {
+fun interface ProfitableSchemes {
     operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int
 }
 

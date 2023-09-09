@@ -22,7 +22,7 @@ import kotlin.math.min
 /**
  * Search Suggestions System
  */
-interface SearchSuggestionsSystem {
+fun interface SearchSuggestionsSystem {
     operator fun invoke(products: Array<String>, searchWord: String): List<List<String>>
 }
 

@@ -23,7 +23,7 @@ import java.util.Stack
 private const val FORMAT = "%s%s%s"
 private const val ARROW = "->"
 
-interface BinaryTreePathsStrategy {
+fun interface BinaryTreePathsStrategy {
     fun binaryTreePaths(root: TreeNode?): List<String>
 }
 

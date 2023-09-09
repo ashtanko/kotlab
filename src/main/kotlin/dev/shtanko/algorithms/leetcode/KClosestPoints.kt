@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.PriorityQueue
 
-interface KClosestPointsStrategy {
+fun interface KClosestPointsStrategy {
     operator fun invoke(points: Array<IntArray>, k: Int): Array<IntArray>
 
     fun IntArray.getDistance(): Int {

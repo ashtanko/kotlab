@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface BeautifulArrangement2 {
+fun interface BeautifulArrangement2 {
     fun constructArray(n: Int, k: Int): IntArray
 }
 

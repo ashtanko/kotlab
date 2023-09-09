@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 61. Rotate List
  * link https://leetcode.com/problems/rotate-list/
  */
-interface RotateList {
+fun interface RotateList {
     operator fun invoke(head: ListNode?, k: Int): ListNode?
 }
 

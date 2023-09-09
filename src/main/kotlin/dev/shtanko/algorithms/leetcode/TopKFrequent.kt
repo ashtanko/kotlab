@@ -23,7 +23,7 @@ import java.util.TreeMap
 /**
  * 692. Top K Frequent Words
  */
-interface TopKFrequent {
+fun interface TopKFrequent {
     operator fun invoke(words: Array<String>, k: Int): List<String>
 }
 

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 472. Concatenated Words
  * @see <a href="https://leetcode.com/problems/concatenated-words/">leetcode page</a>
  */
-interface ConcatenatedWords {
+fun interface ConcatenatedWords {
     fun findAllConcatenatedWordsInADict(words: Array<String>): List<String>
 }
 

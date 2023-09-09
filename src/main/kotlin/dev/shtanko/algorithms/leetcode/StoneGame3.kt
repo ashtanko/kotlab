@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1406. Stone Game III
  * @see <a href="https://leetcode.com/problems/stone-game-iii/">leetcode page</a>
  */
-interface StoneGame3 {
+fun interface StoneGame3 {
     operator fun invoke(stoneValue: IntArray): String
 }
 

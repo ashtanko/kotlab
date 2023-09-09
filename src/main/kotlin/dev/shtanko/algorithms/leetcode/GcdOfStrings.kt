@@ -22,7 +22,7 @@ import dev.shtanko.algorithms.math.gcd
  * 1071. Greatest Common Divisor of Strings
  * @see <a href="https://leetcode.com/problems/greatest-common-divisor-of-strings/">leetcode page</a>
  */
-interface GcdOfStrings {
+fun interface GcdOfStrings {
     operator fun invoke(str1: String, str2: String): String
 }
 

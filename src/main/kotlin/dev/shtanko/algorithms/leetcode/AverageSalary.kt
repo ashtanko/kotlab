@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary">
  *     leetcode page</a>
  */
-interface AverageSalary {
+fun interface AverageSalary {
     fun average(salary: IntArray): Double
 }
 

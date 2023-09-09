@@ -23,7 +23,7 @@ import java.util.Queue
  * 1096. Brace Expansion II
  * @see <a href="https://leetcode.com/problems/brace-expansion-ii/">leetcode page</a>
  */
-interface BraceExpansion2 {
+fun interface BraceExpansion2 {
     fun braceExpansion2(expression: String): List<String>
 }
 

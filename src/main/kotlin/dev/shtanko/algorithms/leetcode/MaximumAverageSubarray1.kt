@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.lang.Double.NaN
 
-interface FindMaxAverageStrategy {
+fun interface FindMaxAverageStrategy {
     operator fun invoke(nums: IntArray, k: Int): Double
 }
 

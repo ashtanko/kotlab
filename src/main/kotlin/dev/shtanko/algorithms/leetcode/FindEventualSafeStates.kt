@@ -23,7 +23,7 @@ import java.util.Queue
  * 802. Find Eventual Safe States
  * @see <a href="https://leetcode.com/problems/find-eventual-safe-states/">leetcode page</a>
  */
-interface FindEventualSafeStates {
+fun interface FindEventualSafeStates {
     fun eventualSafeNodes(graph: Array<IntArray>): List<Int>
 }
 

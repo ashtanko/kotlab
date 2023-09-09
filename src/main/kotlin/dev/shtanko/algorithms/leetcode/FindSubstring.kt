@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface AbstractFindSubstring {
+fun interface AbstractFindSubstring {
     operator fun invoke(s: String, words: Array<String>): List<Int>
 }
 

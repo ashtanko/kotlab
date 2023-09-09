@@ -22,7 +22,7 @@ import kotlin.math.max
  * 318. Maximum Product of Word Lengths
  * @see <a href="https://leetcode.com/problems/maximum-product-of-word-lengths/">leetcode page</a>
  */
-interface MaximumProductOfWordLengths {
+fun interface MaximumProductOfWordLengths {
     fun maxProduct(words: Array<String>): Int
 }
 

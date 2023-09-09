@@ -22,7 +22,7 @@ import kotlin.math.abs
  * 2256. Minimum Average Difference
  * @see <a href="https://leetcode.com/problems/minimum-average-difference/">leetcode page</a>
  */
-interface MinimumAverageDifference {
+fun interface MinimumAverageDifference {
     operator fun invoke(nums: IntArray): Int
 }
 

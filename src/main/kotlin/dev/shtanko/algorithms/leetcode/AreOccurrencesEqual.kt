@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1941. Check if All Characters Have Equal Number of Occurrences
  * link https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
  */
-interface AreOccurrencesEqual {
+fun interface AreOccurrencesEqual {
     operator fun invoke(s: String): Boolean
 }
 

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 427. Construct Quad Tree
  * @see <a href="https://leetcode.com/problems/construct-quad-tree/">leetcode page</a>
  */
-interface ConstructQuadTree {
+fun interface ConstructQuadTree {
     fun construct(grid: Array<IntArray>): QuadTreeNode?
 }
 

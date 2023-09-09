@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1719. Number Of Ways To Reconstruct A Tree
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/">leetcode page</a>
  */
-interface CheckWays {
+fun interface CheckWays {
     operator fun invoke(pairs: Array<IntArray>): Int
 }
 

@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 import kotlin.math.pow
 
-interface CalculationStrategy {
+fun interface CalculationStrategy {
     fun calculate(s: String): Int
 }
 

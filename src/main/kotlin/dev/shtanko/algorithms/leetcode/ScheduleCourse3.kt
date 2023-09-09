@@ -23,7 +23,7 @@ import kotlin.math.max
  * 630. Course Schedule III
  * @see <a href="https://leetcode.com/problems/course-schedule-iii/">leetcode page</a>
  */
-interface ScheduleCourse3 {
+fun interface ScheduleCourse3 {
     operator fun invoke(courses: Array<IntArray>): Int
 }
 

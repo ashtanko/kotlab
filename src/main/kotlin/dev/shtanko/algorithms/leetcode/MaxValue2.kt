@@ -23,7 +23,7 @@ import kotlin.math.max
  * 1751. Maximum Number of Events That Can Be Attended II
  * @see <a href="https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/">leetcode page</a>
  */
-interface MaxValue2 {
+fun interface MaxValue2 {
     operator fun invoke(events: Array<IntArray>, k: Int): Int
 }
 

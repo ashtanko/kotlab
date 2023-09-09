@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface VowelSpellchecker {
+fun interface VowelSpellchecker {
     operator fun invoke(wordlist: Array<String>, queries: Array<String>): Array<String>
 }
 

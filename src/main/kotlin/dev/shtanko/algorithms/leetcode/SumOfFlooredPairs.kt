@@ -22,7 +22,7 @@ import kotlin.math.min
  * 1862. Sum of Floored Pairs
  * @see <a href="https://leetcode.com/problems/sum-of-floored-pairs/">leetcode page</a>
  */
-interface SumOfFlooredPairs {
+fun interface SumOfFlooredPairs {
     operator fun invoke(nums: IntArray): Int
 }
 

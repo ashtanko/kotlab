@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 // 3Sum Smaller
-interface ThreeSumSmallerStrategy {
+fun interface ThreeSumSmallerStrategy {
     operator fun invoke(nums: IntArray, target: Int): Int
 }
 

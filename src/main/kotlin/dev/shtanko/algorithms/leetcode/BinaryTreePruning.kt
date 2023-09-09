@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 814. Binary Tree Pruning
  * @see <a href="https://leetcode.com/problems/binary-tree-pruning/">leetcode page</a>
  */
-interface BinaryTreePruning {
+fun interface BinaryTreePruning {
     fun pruneTree(root: TreeNode?): TreeNode?
 }
 

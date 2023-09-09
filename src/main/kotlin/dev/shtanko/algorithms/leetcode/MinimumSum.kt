@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * 2160. Minimum Sum of Four Digit Number After Splitting Digits
  */
-interface MinimumSum {
+fun interface MinimumSum {
     operator fun invoke(num: Int): Int
 }
 

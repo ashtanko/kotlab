@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.max
 import kotlin.math.min
 
-interface MeetingRoomsStrategy {
+fun interface MeetingRoomsStrategy {
     fun canAttendMeetings(intervals: Array<IntArray>): Boolean
 }
 

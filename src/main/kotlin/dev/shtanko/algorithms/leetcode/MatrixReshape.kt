@@ -23,7 +23,7 @@ import java.util.Queue
  * 566. Reshape the Matrix
  * @see <a href="https://leetcode.com/problems/reshape-the-matrix/">leetcode page</a>
  */
-interface MatrixReshape {
+fun interface MatrixReshape {
     operator fun invoke(mat: Array<IntArray>, r: Int, c: Int): Array<IntArray>
 }
 

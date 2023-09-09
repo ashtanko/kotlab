@@ -25,7 +25,7 @@ import java.util.regex.Pattern
  * 726. Number of Atoms
  * @see <a href="https://leetcode.com/problems/number-of-atoms/">leetcode page</a>
  */
-interface NumberOfAtoms {
+fun interface NumberOfAtoms {
     fun countOfAtoms(formula: String): String
 }
 

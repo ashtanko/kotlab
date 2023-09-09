@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Generate Parentheses.
  * @see <a href="https://leetcode.com/problems/generate-parentheses/">leetcode page</a>
  */
-interface GenerateParentheses {
+fun interface GenerateParentheses {
     operator fun invoke(n: Int): List<String>
 }
 

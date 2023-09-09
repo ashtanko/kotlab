@@ -22,7 +22,7 @@ import dev.shtanko.algorithms.extensions.swap
  * https://leetcode.com/problems/beautiful-arrangement/
  * 526. Beautiful Arrangement
  */
-interface BeautifulArrangement {
+fun interface BeautifulArrangement {
     fun countArrangement(n: Int): Int
 }
 

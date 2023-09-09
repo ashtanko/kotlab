@@ -22,7 +22,7 @@ import kotlin.math.max
  * 140. Word Break II
  * @see <a href="https://leetcode.com/problems/word-break-ii/">leetcode page</a>
  */
-interface WordBreak2 {
+fun interface WordBreak2 {
     operator fun invoke(s: String, wordDict: List<String>): List<String>
 }
 

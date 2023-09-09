@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1382. Balance a Binary Search Tree
  * @see <a href="https://leetcode.com/problems/balance-a-binary-search-tree/">leetcode page</a>
  */
-interface BalanceBST {
+fun interface BalanceBST {
     operator fun invoke(root: TreeNode?): TreeNode?
 }
 

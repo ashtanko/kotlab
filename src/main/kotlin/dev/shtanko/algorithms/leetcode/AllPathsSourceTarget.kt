@@ -22,7 +22,7 @@ import java.util.LinkedList
  * All Paths From Source to Target.
  * @see <a href="https://leetcode.com/problems/all-paths-from-source-to-target/">leetcode page</a>
  */
-interface AllPathsSourceTarget {
+fun interface AllPathsSourceTarget {
     operator fun invoke(graph: Array<IntArray>): List<List<Int>>
 }
 

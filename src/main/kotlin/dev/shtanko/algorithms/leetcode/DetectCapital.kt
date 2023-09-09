@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 520. Detect Capital
  * @see <a href="https://leetcode.com/problems/detect-capital/">leetcode page</a>
  */
-interface DetectCapital {
+fun interface DetectCapital {
     fun detectCapitalUse(word: String): Boolean
 }
 

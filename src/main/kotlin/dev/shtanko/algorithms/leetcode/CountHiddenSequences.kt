@@ -23,7 +23,7 @@ import kotlin.math.min
  * 2145. Count the Hidden Sequences
  * @see <a href="https://leetcode.com/problems/count-the-hidden-sequences/">leetcode page</a>
  */
-interface CountHiddenSequences {
+fun interface CountHiddenSequences {
     fun numberOfArrays(differences: IntArray, lower: Int, upper: Int): Int
 }
 

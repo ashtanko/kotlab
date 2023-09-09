@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-interface TagValidatorStrategy {
+fun interface TagValidatorStrategy {
     operator fun invoke(code: String): Boolean
 }
 

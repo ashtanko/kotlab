@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Collections
 import java.util.PriorityQueue
 
-interface MinSubsequenceStrategy {
+fun interface MinSubsequenceStrategy {
     operator fun invoke(arr: IntArray): List<Int>
 }
 

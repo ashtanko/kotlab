@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Arithmetic Slices
  * @see <a href="https://leetcode.com/problems/arithmetic-slices/">leetcode page</a>
  */
-interface ArithmeticSlices {
+fun interface ArithmeticSlices {
     fun numberOfArithmeticSlices(arr: IntArray): Int
 }
 

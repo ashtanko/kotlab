@@ -23,7 +23,7 @@ import kotlin.math.min
  * 2218. Maximum Value of K Coins From Piles
  * @see <a href="https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/">leetcode page</a>
  */
-interface MaxValueOfCoins {
+fun interface MaxValueOfCoins {
     operator fun invoke(piles: List<List<Int>>, k: Int): Int
 }
 

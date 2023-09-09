@@ -24,7 +24,7 @@ import kotlin.math.min
  * 111. Minimum Depth of Binary Tree
  * @see <a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/">leetcode page</a>
  */
-interface MinDepth {
+fun interface MinDepth {
     operator fun invoke(root: TreeNode?): Int
 }
 

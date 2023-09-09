@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface RunningSum {
+fun interface RunningSum {
     operator fun invoke(nums: IntArray): IntArray
 }
 

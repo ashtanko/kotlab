@@ -22,7 +22,7 @@ import kotlin.math.min
  * 799. Champagne Tower
  * https://leetcode.com/problems/champagne-tower/
  */
-interface ChampagneTower {
+fun interface ChampagneTower {
     operator fun invoke(poured: Int, queryRow: Int, queryGlass: Int): Double
 }
 

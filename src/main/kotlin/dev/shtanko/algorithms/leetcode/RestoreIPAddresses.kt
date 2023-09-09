@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 93. Restore IP Addresses
  * @see <a href="https://leetcode.com/problems/restore-ip-addresses/">leetcode page</a>
  */
-interface RestoreIPAddresses {
+fun interface RestoreIPAddresses {
     operator fun invoke(s: String): List<String>
 }
 

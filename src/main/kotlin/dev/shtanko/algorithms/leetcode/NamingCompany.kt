@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2306. Naming a Company
  * @see <a href="https://leetcode.com/problems/naming-a-company/">leetcode page</a>
  */
-interface NamingCompany {
+fun interface NamingCompany {
     fun distinctNames(ideas: Array<String>): Long
 }
 

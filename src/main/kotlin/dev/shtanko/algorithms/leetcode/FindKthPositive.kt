@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1539. Kth Missing Positive Number
  * @see <a href="https://leetcode.com/problems/kth-missing-positive-number/">leetcode page</a>
  */
-interface FindKthPositive {
+fun interface FindKthPositive {
     operator fun invoke(arr: IntArray, k: Int): Int
 }
 

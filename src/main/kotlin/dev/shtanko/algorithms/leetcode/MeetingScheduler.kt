@@ -24,7 +24,7 @@ import kotlin.math.min
  * Meeting Scheduler
  * @see <a href="https://leetcode.com/problems/meeting-scheduler/">leetcode page</a>
  */
-interface MeetingScheduler {
+fun interface MeetingScheduler {
     operator fun invoke(slots1: Array<IntArray>, slots2: Array<IntArray>, duration: Int): List<Int>
 }
 

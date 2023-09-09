@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.math.gcd
 import kotlin.math.ceil
 import kotlin.math.min
 
-interface NthMagicalNumberStrategy {
+fun interface NthMagicalNumberStrategy {
     operator fun invoke(n: Int, a: Int, b: Int): Int
 }
 

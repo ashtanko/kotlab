@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Collections
 import java.util.LinkedList
 
-interface Permutations {
+fun interface Permutations {
     fun permute(nums: IntArray): List<List<Int>>
 }
 

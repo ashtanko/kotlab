@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2452. Words Within Two Edits of Dictionary
  * @see <a href="https://leetcode.com/problems/words-within-two-edits-of-dictionary/">leetcode page</a>
  */
-interface TwoEditWords {
+fun interface TwoEditWords {
     operator fun invoke(queries: Array<String>, dictionary: Array<String>): List<String>
 }
 

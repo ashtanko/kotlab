@@ -23,7 +23,7 @@ import java.util.Stack
  * 101. Symmetric Tree
  * @see <a href="https://leetcode.com/problems/symmetric-tree/">leetcode page</a>
  */
-interface SymmetricTree {
+fun interface SymmetricTree {
     fun isSymmetric(root: TreeNode?): Boolean
 }
 

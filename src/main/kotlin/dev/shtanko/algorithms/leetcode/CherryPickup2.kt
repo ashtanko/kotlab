@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.max
 
-interface CherryPickup2Strategy {
+fun interface CherryPickup2Strategy {
     operator fun invoke(grid: Array<IntArray>): Int
 }
 

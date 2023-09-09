@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.PriorityQueue
 
-interface LastStoneWeightStrategy {
+fun interface LastStoneWeightStrategy {
     operator fun invoke(arr: IntArray): Int
 }
 

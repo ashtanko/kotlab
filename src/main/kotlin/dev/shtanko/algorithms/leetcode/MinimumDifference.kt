@@ -23,7 +23,7 @@ import kotlin.math.min
  * 2163. Minimum Difference in Sums After Removal of Elements
  * @see <a href="https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/">leetcode page</a>
  */
-interface MinimumDifference {
+fun interface MinimumDifference {
     operator fun invoke(nums: IntArray): Long
 }
 

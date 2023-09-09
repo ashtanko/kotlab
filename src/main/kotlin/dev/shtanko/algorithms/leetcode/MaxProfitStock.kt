@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description">
  *     leetcode page</a>
  */
-interface MaxProfitStock {
+fun interface MaxProfitStock {
     operator fun invoke(prices: IntArray): Int
 }
 

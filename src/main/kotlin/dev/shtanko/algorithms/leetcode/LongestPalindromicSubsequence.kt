@@ -22,7 +22,7 @@ import kotlin.math.max
  * 516. Longest Palindromic Subsequence
  * @see <a href="https://leetcode.com/problems/longest-palindromic-subsequence/">leetcode page</a>
  */
-interface LongestPalindromicSubsequence {
+fun interface LongestPalindromicSubsequence {
     fun longestPalindromeSubseq(s: String): Int
 }
 

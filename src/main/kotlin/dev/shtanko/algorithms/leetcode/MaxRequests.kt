@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1601. Maximum Number of Achievable Transfer Requests
  * @see <a href="https://leetcode.com/problems/maximum-number-of-achievable-transfer-requests/">leetcode page</a>
  */
-interface MaxRequests {
+fun interface MaxRequests {
     fun maximumRequests(n: Int, requests: Array<IntArray>): Int
 }
 

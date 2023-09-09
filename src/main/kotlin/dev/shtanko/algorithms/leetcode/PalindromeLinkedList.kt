@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface PalindromeLinkedList {
+fun interface PalindromeLinkedList {
     operator fun invoke(head: ListNode): Boolean
 }
 

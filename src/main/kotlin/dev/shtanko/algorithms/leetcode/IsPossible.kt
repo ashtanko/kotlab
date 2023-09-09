@@ -23,7 +23,7 @@ import java.util.PriorityQueue
  * Construct Target Array With Multiple Sums
  * @see <a href="https://leetcode.com/problems/construct-target-array-with-multiple-sums/">leetcode page</a>
  */
-interface IsPossible {
+fun interface IsPossible {
     operator fun invoke(target: IntArray): Boolean
 }
 

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1802. Maximum Value at a Given Index in a Bounded Array
  * @see <a href="https://leetcode.com/problems/maximum-value-at-a-given-index-in-a-bounded-array/">leetcode page</a>
  */
-interface MaxValueBoundedArray {
+fun interface MaxValueBoundedArray {
     fun maxValue(n: Int, index: Int, maxSum: Int): Int
 }
 

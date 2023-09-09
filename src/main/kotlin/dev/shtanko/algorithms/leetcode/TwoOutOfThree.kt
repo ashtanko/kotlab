@@ -23,7 +23,7 @@ import java.util.stream.IntStream
  * 2032. Two Out of Three
  * link https://leetcode.com/problems/two-out-of-three/
  */
-interface TwoOutOfThree {
+fun interface TwoOutOfThree {
     operator fun invoke(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int>
 
     companion object {

@@ -22,7 +22,7 @@ import kotlin.math.min
  * 664. Strange Printer
  * @see <a href="https://leetcode.com/problems/strange-printer/">leetcode page</a>
  */
-interface StrangePrinter {
+fun interface StrangePrinter {
     operator fun invoke(s: String): Int
 }
 

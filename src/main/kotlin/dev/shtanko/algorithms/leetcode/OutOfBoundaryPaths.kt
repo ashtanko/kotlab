@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 576. Out of Boundary Paths
  * @see <a href="https://leetcode.com/problems/out-of-boundary-paths/">leetcode page</a>
  */
-interface OutOfBoundaryPaths {
+fun interface OutOfBoundaryPaths {
     fun findPaths(m: Int, n: Int, maxMove: Int, startRow: Int, startColumn: Int): Int
 }
 

@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.PriorityQueue
 import kotlin.math.min
 
-interface SuperUglyNumberStrategy {
+fun interface SuperUglyNumberStrategy {
     operator fun invoke(n: Int, primes: IntArray): Int
 }
 

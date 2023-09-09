@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2477. Minimum Fuel Cost to Report to the Capital
  * @see <a href="https://leetcode.com/problems/minimum-fuel-cost-to-report-to-the-capital/">leetcode page</a>
  */
-interface MinimumFuelCost {
+fun interface MinimumFuelCost {
     operator fun invoke(roads: Array<IntArray>, seats: Int): Long
 }
 

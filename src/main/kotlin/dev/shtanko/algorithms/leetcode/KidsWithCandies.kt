@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface KidsWithCandiesStrategy {
+fun interface KidsWithCandiesStrategy {
     operator fun invoke(arr: IntArray, extraCandies: Int): BooleanArray
 }
 

@@ -24,7 +24,7 @@ import kotlin.math.abs
  * Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number,
  * also in sorted non-decreasing order.
  */
-interface SortedSquares {
+fun interface SortedSquares {
     operator fun invoke(nums: IntArray): IntArray
 }
 

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-interface PathSumStrategy {
+fun interface PathSumStrategy {
     fun hasPathSum(root: TreeNode?, sum: Int): Boolean
 }
 

@@ -24,7 +24,7 @@ import kotlin.math.max
  * 2360. Longest Cycle in a Graph
  * @see <a href="https://leetcode.com/problems/longest-cycle-in-a-graph/">leetcode page</a>
  */
-interface LongestCycle {
+fun interface LongestCycle {
     operator fun invoke(edges: IntArray): Int
 }
 

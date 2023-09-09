@@ -23,7 +23,7 @@ import kotlin.math.min
  * 1187. Make Array Strictly Increasing
  * @see <a href="https://leetcode.com/problems/make-array-strictly-increasing/">leetcode page</a>
  */
-interface MakeArrayStrictlyIncreasing {
+fun interface MakeArrayStrictlyIncreasing {
     operator fun invoke(arr1: IntArray, arr2: IntArray): Int
 
     fun bisectRight(arr: IntArray, value: Int): Int {

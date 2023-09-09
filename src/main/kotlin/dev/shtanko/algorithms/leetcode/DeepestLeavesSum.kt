@@ -22,7 +22,7 @@ import java.util.Deque
 /**
  * @see <a href="https://leetcode.com/problems/deepest-leaves-sum/solution/">leetcode page</a>
  */
-interface DeepestLeavesSum {
+fun interface DeepestLeavesSum {
     operator fun invoke(root: TreeNode): Int
 }
 

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1248. Count Number of Nice Subarrays
  * @see <a href="https://leetcode.com/problems/count-number-of-nice-subarrays/">leetcode page</a>
  */
-interface NumberOfSubarrays {
+fun interface NumberOfSubarrays {
     operator fun invoke(nums: IntArray, k: Int): Int
 }
 

@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  *
  */
-interface SortedListToBST {
+fun interface SortedListToBST {
     operator fun invoke(head: ListNode?): TreeNode?
 }
 

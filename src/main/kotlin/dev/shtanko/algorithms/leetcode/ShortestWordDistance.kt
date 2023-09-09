@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.abs
 import kotlin.math.min
 
-interface ShortestWordDistanceStrategy {
+fun interface ShortestWordDistanceStrategy {
     operator fun invoke(words: Array<String>, word1: String, word2: String): Int
 }
 

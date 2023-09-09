@@ -23,7 +23,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix">
  *     leetcode page</a>
  */
-interface MinMatrixFlips {
+fun interface MinMatrixFlips {
     operator fun invoke(mat: Array<IntArray>): Int
 }
 

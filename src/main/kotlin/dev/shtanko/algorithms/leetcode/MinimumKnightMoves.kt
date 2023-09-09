@@ -26,7 +26,7 @@ import kotlin.math.min
  * Minimum Knight Moves
  * @see <a href="https://leetcode.com/problems/minimum-knight-moves/solution/">leetcode page</a>
  */
-interface MinimumKnightMoves {
+fun interface MinimumKnightMoves {
     operator fun invoke(x: Int, y: Int): Int
 
     companion object {

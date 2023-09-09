@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface LargestUniqueNumber {
+fun interface LargestUniqueNumber {
     operator fun invoke(arr: IntArray): Int
 }
 

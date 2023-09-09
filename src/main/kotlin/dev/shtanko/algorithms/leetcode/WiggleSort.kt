@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.swap
 
-interface WiggleSort {
+fun interface WiggleSort {
     operator fun invoke(nums: IntArray)
 }
 

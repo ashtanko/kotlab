@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface FourSum {
+fun interface FourSum {
     operator fun invoke(nums: IntArray, target: Int): List<List<Int>>
 }
 

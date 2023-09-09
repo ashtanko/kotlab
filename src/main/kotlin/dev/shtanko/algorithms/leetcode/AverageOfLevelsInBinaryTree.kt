@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.LinkedList
 import java.util.Queue
 
-interface AverageOfLevelsInBinaryTreeStrategy {
+fun interface AverageOfLevelsInBinaryTreeStrategy {
     operator fun invoke(root: TreeNode?): DoubleArray
 }
 

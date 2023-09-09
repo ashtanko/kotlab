@@ -22,7 +22,7 @@ import java.util.Stack
  * 1944. Number of Visible People in a Queue
  * @see <a href="https://leetcode.com/problems/number-of-visible-people-in-a-queue/">leetcode page</a>
  */
-interface CanSeePersonsCount {
+fun interface CanSeePersonsCount {
     operator fun invoke(heights: IntArray): IntArray
 }
 

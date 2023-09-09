@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface PairSumStrategy {
+fun interface PairSumStrategy {
     operator fun invoke(arr: IntArray): Int
 }
 

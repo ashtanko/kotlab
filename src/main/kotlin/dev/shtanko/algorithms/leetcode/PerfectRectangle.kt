@@ -25,7 +25,7 @@ import kotlin.math.min
  * 391. Perfect Rectangle
  * @see <a href="https://leetcode.com/problems/perfect-rectangle/">leetcode page</a>
  */
-interface PerfectRectangle {
+fun interface PerfectRectangle {
     fun isRectangleCover(rectangles: Array<IntArray>): Boolean
 }
 

@@ -22,7 +22,7 @@ import kotlin.math.sqrt
 /**
  * 254. Factor Combinations
  */
-interface FactorCombinations {
+fun interface FactorCombinations {
     fun getFactors(n: Int): List<List<Int>>
 }
 

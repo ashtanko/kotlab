@@ -22,7 +22,7 @@ import java.util.Queue
 
 private val DIRECTIONS = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, -1))
 
-interface PacificAtlanticWaterFlow {
+fun interface PacificAtlanticWaterFlow {
     operator fun invoke(matrix: Array<IntArray>): List<List<Int>>
 }
 

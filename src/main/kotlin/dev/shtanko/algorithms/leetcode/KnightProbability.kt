@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 688. Knight Probability in Chessboard
  * @see <a href="https://leetcode.com/problems/knight-probability-in-chessboard/">leetcode page</a>
  */
-interface KnightProbability {
+fun interface KnightProbability {
     operator fun invoke(n: Int, k: Int, row: Int, column: Int): Double
 }
 

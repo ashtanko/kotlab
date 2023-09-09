@@ -22,7 +22,7 @@ import java.util.LinkedList
 import java.util.Queue
 
 // Find Nearest Right Node in Binary Tree
-interface FindNearestRightNodeStrategy {
+fun interface FindNearestRightNodeStrategy {
     operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode?
 }
 

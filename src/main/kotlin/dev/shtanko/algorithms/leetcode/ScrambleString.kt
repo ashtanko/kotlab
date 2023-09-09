@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 87. Scramble String
  * @see <a href="https://leetcode.com/problems/scramble-string/">leetcode page</a>
  */
-interface ScrambleString {
+fun interface ScrambleString {
     fun isScramble(s1: String, s2: String): Boolean
 }
 

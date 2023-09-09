@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-interface MaxDepthStrategy {
+fun interface MaxDepthStrategy {
     operator fun invoke(root: TreeNode?): Int
 }
 

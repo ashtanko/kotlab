@@ -23,7 +23,7 @@ import kotlin.math.min
  * 1373. Maximum Sum BST in Binary Tree
  * @see <a href="https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/">leetcode page</a>
  */
-interface MaxSumBST {
+fun interface MaxSumBST {
     operator fun invoke(root: TreeNode): Int
 }
 

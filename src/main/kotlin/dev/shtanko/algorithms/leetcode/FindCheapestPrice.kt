@@ -25,7 +25,7 @@ import kotlin.math.min
  * 787. Cheapest Flights Within K Stops
  * @see <a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/">leetcode page</a>
  */
-interface FindCheapestPrice {
+fun interface FindCheapestPrice {
     operator fun invoke(n: Int, flights: Array<IntArray>, src: Int, dst: Int, k: Int): Int
 }
 

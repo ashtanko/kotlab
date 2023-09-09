@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 790. Domino and Tromino Tiling
  * @see <a href="https://leetcode.com/problems/domino-and-tromino-tiling/">leetcode page</a>
  */
-interface NumTilings {
+fun interface NumTilings {
     operator fun invoke(n: Int): Int
 }
 

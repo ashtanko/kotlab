@@ -22,7 +22,7 @@ import kotlin.math.min
  * 983. Minimum Cost For Tickets
  * https://leetcode.com/problems/minimum-cost-for-tickets/
  */
-interface MinCostTickets {
+fun interface MinCostTickets {
     operator fun invoke(days: IntArray, costs: IntArray): Int
 }
 

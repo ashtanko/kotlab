@@ -23,7 +23,7 @@ class Division {
     var maxStr: String = ""
 }
 
-interface OptimalDivisionStrategy {
+fun interface OptimalDivisionStrategy {
     operator fun invoke(nums: IntArray): String
 }
 

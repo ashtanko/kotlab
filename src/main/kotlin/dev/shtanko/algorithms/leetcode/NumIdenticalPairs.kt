@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface AbstractNumIdenticalPairs {
+fun interface AbstractNumIdenticalPairs {
     operator fun invoke(arr: IntArray): Int
 }
 

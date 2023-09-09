@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-interface ConstructStringFromBinaryTreeStrategy {
+fun interface ConstructStringFromBinaryTreeStrategy {
     operator fun invoke(t: TreeNode?): String
 }
 

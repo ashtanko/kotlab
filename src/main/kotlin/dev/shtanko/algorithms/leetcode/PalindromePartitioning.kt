@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 131. Palindrome Partitioning
  * @see <a href="https://leetcode.com/problems/palindrome-partitioning/">leetcode page</a>
  */
-interface PalindromePartitioning {
+fun interface PalindromePartitioning {
     operator fun invoke(s: String): List<List<String>>
 }
 

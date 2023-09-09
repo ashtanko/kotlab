@@ -21,7 +21,7 @@ import dev.shtanko.algorithms.utils.Dp
 /**
  * 139. Word Break
  */
-interface WordBreak {
+fun interface WordBreak {
     operator fun invoke(s: String, wordDict: List<String>): Boolean
 }
 

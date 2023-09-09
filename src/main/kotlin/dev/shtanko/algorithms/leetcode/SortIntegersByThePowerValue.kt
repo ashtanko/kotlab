@@ -22,7 +22,7 @@ import java.util.PriorityQueue
  * 1387. Sort Integers by The Power Value
  * @see <a href="https://leetcode.com/problems/sort-integers-by-the-power-value/">leetcode page</a>
  */
-interface SortIntegersByThePowerValue {
+fun interface SortIntegersByThePowerValue {
     fun getKth(lo: Int, hi: Int, k: Int): Int
 }
 

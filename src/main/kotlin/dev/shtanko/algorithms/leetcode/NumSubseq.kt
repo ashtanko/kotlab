@@ -23,7 +23,7 @@ import java.util.Arrays
  * @see <a href="https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition">
  *     leetcode page</a>
  */
-interface NumSubseq {
+fun interface NumSubseq {
     operator fun invoke(nums: IntArray, target: Int): Int
 }
 

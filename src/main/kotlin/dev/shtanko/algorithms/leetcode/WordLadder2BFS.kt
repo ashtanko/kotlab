@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface AbstractWordLadder2Strategy {
+fun interface AbstractWordLadder2Strategy {
     operator fun invoke(beginWord: String, endWord: String, wordList: List<String>): List<List<String>>
 }
 

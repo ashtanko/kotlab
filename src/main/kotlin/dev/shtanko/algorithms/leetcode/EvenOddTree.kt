@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.LinkedList
 import java.util.Queue
 
-interface EvenOddTreeStrategy {
+fun interface EvenOddTreeStrategy {
     operator fun invoke(tree: TreeNode?): Boolean
 }
 

@@ -24,7 +24,7 @@ import java.util.Stack
  * 739. Daily Temperatures
  * @see <a href="https://leetcode.com/problems/daily-temperatures/description/">leetcode page</a>
  */
-interface DailyTemperatures {
+fun interface DailyTemperatures {
     operator fun invoke(temperatures: IntArray): IntArray
 }
 

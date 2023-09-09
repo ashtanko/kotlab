@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 // Convert Binary Number in a Linked List to Integer
-interface BinaryNumberToIntStrategy {
+fun interface BinaryNumberToIntStrategy {
     operator fun invoke(head: ListNode?): Int
 }
 

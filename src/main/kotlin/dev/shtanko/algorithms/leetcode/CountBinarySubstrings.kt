@@ -22,7 +22,7 @@ import kotlin.math.min
  * Count Binary Substrings
  * @see <a href="https://leetcode.com/problems/count-binary-substrings/solution/">leetcode page</a>
  */
-interface CountBinarySubstrings {
+fun interface CountBinarySubstrings {
     operator fun invoke(s: String): Int
 }
 

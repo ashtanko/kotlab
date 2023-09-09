@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.pow
 
-interface CrackingSafeStrategy {
+fun interface CrackingSafeStrategy {
     operator fun invoke(n: Int, k: Int): String
 }
 

@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1372. Longest ZigZag Path in a Binary Tree
  * @see <a href="https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/">leetcode page</a>
  */
-interface LongestZigZagPath {
+fun interface LongestZigZagPath {
     fun longestZigZag(root: TreeNode?): Int
 }
 

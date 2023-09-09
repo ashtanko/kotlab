@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 724. Find Pivot Index
  * @see <a href="https://leetcode.com/problems/find-pivot-index/?envType=study-plan&id=level-1">leetcode page</a>
  */
-interface FindPivotIndex {
+fun interface FindPivotIndex {
     fun pivotIndex(nums: IntArray): Int
 }
 

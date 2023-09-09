@@ -21,7 +21,7 @@ import kotlin.math.min
 /**
  * 322. Coin Change
  */
-interface CoinChange {
+fun interface CoinChange {
     operator fun invoke(coins: IntArray, amount: Int): Int
 }
 

@@ -23,7 +23,7 @@ import java.util.PriorityQueue
  * 502. IPO
  * @see <a href="https://leetcode.com/problems/ipo/">leetcode page</a>
  */
-interface IPO {
+fun interface IPO {
     fun findMaximizedCapital(k: Int, w: Int, profits: IntArray, capital: IntArray): Int
 }
 

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.abs
 
-interface SingleRowKeyboard {
+fun interface SingleRowKeyboard {
     operator fun invoke(keyboard: String, word: String): Int
 }
 

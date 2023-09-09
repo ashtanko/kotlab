@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface RotateImage {
+fun interface RotateImage {
     fun rotate(matrix: Array<IntArray>)
 }
 

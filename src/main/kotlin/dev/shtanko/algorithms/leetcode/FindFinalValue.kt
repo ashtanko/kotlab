@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2154. Keep Multiplying Found Values by Two
  * link https://leetcode.com/problems/keep-multiplying-found-values-by-two/
  */
-interface FindFinalValue {
+fun interface FindFinalValue {
     operator fun invoke(nums: IntArray, original: Int): Int
 }
 

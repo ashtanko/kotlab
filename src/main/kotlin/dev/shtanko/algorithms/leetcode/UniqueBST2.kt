@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * 95. Unique Binary Search Trees II
  */
-interface UniqueBST2 {
+fun interface UniqueBST2 {
     fun generateTrees(n: Int): List<TreeNode?>
 }
 

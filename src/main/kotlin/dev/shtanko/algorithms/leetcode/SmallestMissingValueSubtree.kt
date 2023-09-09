@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2003. Smallest Missing Genetic Value in Each Subtree
  * @see <a href="https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/">leetcode page</a>
  */
-interface SmallestMissingValueSubtree {
+fun interface SmallestMissingValueSubtree {
     operator fun invoke(parents: IntArray, nums: IntArray): IntArray
 }
 

@@ -23,7 +23,7 @@ private const val NINE = 9
 private const val SIX = 6
 private const val FIFTEEN = 15
 
-interface DecodeWays2Strategy {
+fun interface DecodeWays2Strategy {
     operator fun invoke(s: String): Int
 }
 

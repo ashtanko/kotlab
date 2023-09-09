@@ -23,7 +23,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods">
  *     leetcode page</a>
  */
-interface MinimumTime {
+fun interface MinimumTime {
     operator fun invoke(s: String): Int
 }
 

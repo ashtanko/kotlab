@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface SortListStrategy {
+fun interface SortListStrategy {
     operator fun invoke(head: ListNode): ListNode?
 }
 

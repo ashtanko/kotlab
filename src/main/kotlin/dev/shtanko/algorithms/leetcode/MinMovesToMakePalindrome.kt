@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2193. Minimum Number of Moves to Make Palindrome
  * @see <a href="https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/">leetcode page</a>
  */
-interface MinMovesToMakePalindrome {
+fun interface MinMovesToMakePalindrome {
     operator fun invoke(s: String): Int
 }
 

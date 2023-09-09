@@ -22,7 +22,7 @@ import kotlin.math.abs
  * Design Tic-Tac-Toe
  * @see <a href="https://leetcode.com/problems/design-tic-tac-toe/">leetcode page</a>
  */
-interface DesignTicTacToe {
+fun interface DesignTicTacToe {
     fun move(row: Int, col: Int, player: Int): Int
 }
 

@@ -22,7 +22,7 @@ import kotlin.math.min
  * 968. Binary Tree Cameras
  * @see <a href="https://leetcode.com/problems/binary-tree-cameras/">leetcode page</a>
  */
-interface BinaryTreeCamerasStrategy {
+fun interface BinaryTreeCamerasStrategy {
 
     operator fun invoke(root: TreeNode?): Int
 }

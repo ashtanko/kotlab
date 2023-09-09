@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1572. Matrix Diagonal Sum
  * https://leetcode.com/problems/matrix-diagonal-sum/
  */
-interface MatrixDiagonalSum {
+fun interface MatrixDiagonalSum {
     fun diagonalSum(mat: Array<IntArray>): Int
 }
 

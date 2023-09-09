@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface AbstractRotateArrayStrategy {
+fun interface AbstractRotateArrayStrategy {
     operator fun invoke(nums: IntArray, k: Int)
 }
 

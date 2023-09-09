@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface ConsecutiveCharactersStrategy {
+fun interface ConsecutiveCharactersStrategy {
     operator fun invoke(s: String): Int
 }
 

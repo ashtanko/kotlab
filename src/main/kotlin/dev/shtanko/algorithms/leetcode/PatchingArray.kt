@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 330. Patching Array
  * @see <a href="https://leetcode.com/problems/patching-array/">leetcode page</a>
  */
-interface PatchingArray {
+fun interface PatchingArray {
     fun minPatches(nums: IntArray, n: Int): Int
 }
 

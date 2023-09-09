@@ -22,7 +22,7 @@ import kotlin.math.max
  * 1742. Maximum Number of Balls in a Box
  * link https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
  */
-interface CountBalls {
+fun interface CountBalls {
     operator fun invoke(lowLimit: Int, highLimit: Int): Int
 
     companion object {

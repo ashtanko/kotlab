@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Find the Duplicate Number
  * @see <a href="https://leetcode.com/problems/find-the-duplicate-number/">leetcode page</a>
  */
-interface FindDuplicateNumber {
+fun interface FindDuplicateNumber {
     operator fun invoke(nums: IntArray): Int
 }
 

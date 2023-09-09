@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 328. Odd Even Linked List
  * @see <a href="https://leetcode.com/problems/odd-even-linked-list/description/">leetcode page</a>
  */
-interface OddEvenList {
+fun interface OddEvenList {
     operator fun invoke(head: ListNode): ListNode
 }
 

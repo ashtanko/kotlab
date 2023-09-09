@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1816. Truncate Sentence
  * @see <a href="https://leetcode.com/problems/truncate-sentence/">leetcode page</a>
  */
-interface TruncateSentence {
+fun interface TruncateSentence {
     operator fun invoke(s: String, k: Int): String
 }
 

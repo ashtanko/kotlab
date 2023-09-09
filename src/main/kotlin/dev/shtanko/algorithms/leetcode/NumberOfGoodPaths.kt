@@ -22,7 +22,7 @@ import java.util.TreeMap
  * 2421. Number of Good Paths
  * @see <a href="https://leetcode.com/problems/number-of-good-paths/">leetcode page</a>
  */
-interface NumberOfGoodPaths {
+fun interface NumberOfGoodPaths {
     operator fun invoke(vals: IntArray, edges: Array<IntArray>): Int
 }
 

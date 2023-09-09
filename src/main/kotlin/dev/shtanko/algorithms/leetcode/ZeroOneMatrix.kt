@@ -24,7 +24,7 @@ import kotlin.math.min
  * 542. 01 Matrix
  * @see <a href="https://leetcode.com/problems/01-matrix/">leetcode page</a>
  */
-interface ZeroOneMatrix {
+fun interface ZeroOneMatrix {
     fun updateMatrix(mat: Array<IntArray>): Array<IntArray>
 }
 

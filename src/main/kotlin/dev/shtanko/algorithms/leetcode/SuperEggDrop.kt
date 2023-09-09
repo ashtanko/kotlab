@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface SuperEggDropStrategy {
+fun interface SuperEggDropStrategy {
     operator fun invoke(eggs: Int, floors: Int): Int
 }
 

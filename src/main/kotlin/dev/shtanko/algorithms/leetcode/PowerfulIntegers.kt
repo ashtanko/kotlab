@@ -23,7 +23,7 @@ import kotlin.math.pow
  * 970. Powerful Integers
  * @see <a href="https://leetcode.com/problems/powerful-integers/">leetcode page</a>
  */
-interface PowerfulIntegers {
+fun interface PowerfulIntegers {
     operator fun invoke(x: Int, y: Int, bound: Int): List<Int>
 }
 

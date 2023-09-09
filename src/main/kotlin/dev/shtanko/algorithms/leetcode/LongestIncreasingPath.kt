@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.max
 
-interface LongestIncreasingPath {
+fun interface LongestIncreasingPath {
     operator fun invoke(grid: Array<IntArray>): Int
 }
 

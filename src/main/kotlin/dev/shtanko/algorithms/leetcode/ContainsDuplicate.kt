@@ -23,7 +23,7 @@ import kotlin.experimental.or
  * Given an array of integers, find if the array contains any duplicates.
  * @see <a href="https://leetcode.com/problems/contains-duplicate/">leetcode page</a>
  */
-interface ContainsDuplicateStrategy {
+fun interface ContainsDuplicateStrategy {
     operator fun invoke(arr: IntArray): Boolean
 }
 

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 399. Evaluate Division
  * @see <a href="https://leetcode.com/problems/evaluate-division/">leetcode page</a>
  */
-interface EvaluateDivision {
+fun interface EvaluateDivision {
     fun calcEquation(equations: List<List<String>>, values: DoubleArray, queries: List<List<String>>): DoubleArray
 }
 

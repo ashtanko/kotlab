@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2352. Equal Row and Column Pairs
  * @see <a href="https://leetcode.com/problems/equal-row-and-column-pairs/">leetcode page</a>
  */
-interface EqualMatrixPairs {
+fun interface EqualMatrixPairs {
     fun equalPairs(grid: Array<IntArray>): Int
 }
 

@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface ContainerWithMostWaterStrategy {
+fun interface ContainerWithMostWaterStrategy {
     fun maxArea(height: IntArray): Int
 }
 

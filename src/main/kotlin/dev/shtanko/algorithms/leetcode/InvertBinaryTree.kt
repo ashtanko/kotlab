@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.LinkedList
 import java.util.Queue
 
-interface InvertTreeStrategy {
+fun interface InvertTreeStrategy {
     operator fun invoke(root: TreeNode?): TreeNode?
 }
 

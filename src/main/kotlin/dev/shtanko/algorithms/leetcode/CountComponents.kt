@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Number of Connected Components in an Undirected Graph
  * @see <a href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph">leetcode page</a>
  */
-interface CountComponents {
+fun interface CountComponents {
     operator fun invoke(n: Int, edges: Array<IntArray>): Int
 }
 

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.TreeSet
 
-interface AvoidFloodStrategy {
+fun interface AvoidFloodStrategy {
     operator fun invoke(rains: IntArray): IntArray
 }
 

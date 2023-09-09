@@ -24,7 +24,7 @@ import kotlin.math.min
  * 269. Alien Dictionary
  * @see <a href="https://leetcode.com/problems/alien-dictionary/solution/">leetcode page</a>
  */
-interface AlienDictionary {
+fun interface AlienDictionary {
     fun alienOrder(words: Array<String>): String
 }
 

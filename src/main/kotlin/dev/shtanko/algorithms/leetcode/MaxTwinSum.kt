@@ -23,7 +23,7 @@ import kotlin.math.max
  * 2130. Maximum Twin Sum of a Linked List
  * @see <a href="https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/">leetcode page</a>
  */
-interface MaxTwinSum {
+fun interface MaxTwinSum {
     fun pairSum(head: ListNode?): Int
 }
 

@@ -23,7 +23,7 @@ import kotlin.math.min
  * 583. Delete Operation for Two Strings
  * @see <a href="https://leetcode.com/problems/delete-operation-for-two-strings/">leetcode page</a>
  */
-interface MinDistance {
+fun interface MinDistance {
     operator fun invoke(word1: String, word2: String): Int
 }
 

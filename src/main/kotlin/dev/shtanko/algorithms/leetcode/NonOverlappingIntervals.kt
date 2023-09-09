@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 435. Non-overlapping Intervals
  * @see <a href="https://leetcode.com/problems/non-overlapping-intervals/">leetcode page</a>
  */
-interface NonOverlappingIntervals {
+fun interface NonOverlappingIntervals {
     fun eraseOverlapIntervals(intervals: Array<IntArray>): Int
 }
 

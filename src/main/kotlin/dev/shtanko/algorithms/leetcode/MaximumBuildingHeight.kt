@@ -23,7 +23,7 @@ import kotlin.math.min
  * 1840. Maximum Building Height
  * @see <a href="https://leetcode.com/problems/maximum-building-height/">leetcode page</a>
  */
-interface MaximumBuildingHeight {
+fun interface MaximumBuildingHeight {
     fun maxBuilding(n: Int, restrictions: Array<IntArray>): Int
 }
 

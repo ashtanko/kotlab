@@ -23,7 +23,7 @@ import kotlin.math.min
  * 1833. Maximum Ice Cream Bars
  * @see <a href="https://leetcode.com/problems/maximum-ice-cream-bars/">leetcode page</a>
  */
-interface MaxIceCream {
+fun interface MaxIceCream {
     operator fun invoke(costs: IntArray, coins: Int): Int
 }
 

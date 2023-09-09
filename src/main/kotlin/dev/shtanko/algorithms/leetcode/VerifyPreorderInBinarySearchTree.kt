@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 
 // Verify Preorder Sequence in Binary Search Tree
-interface VerifyPreorderInBinarySearchTreeStrategy {
+fun interface VerifyPreorderInBinarySearchTreeStrategy {
     operator fun invoke(preorder: IntArray): Boolean
 }
 

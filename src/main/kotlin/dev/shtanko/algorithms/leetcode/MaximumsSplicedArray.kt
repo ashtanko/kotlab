@@ -22,7 +22,7 @@ import kotlin.math.max
  * 2321. Maximum Score Of Spliced Array
  * @see <a href="https://leetcode.com/problems/maximum-score-of-spliced-array/">leetcode page</a>
  */
-interface MaximumsSplicedArray {
+fun interface MaximumsSplicedArray {
     operator fun invoke(nums1: IntArray, nums2: IntArray): Int
 }
 

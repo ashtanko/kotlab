@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 837. New 21 Game
  * @see <a href="https://leetcode.com/problems/new-21-game/">leetcode page</a>
  */
-interface New21Game {
+fun interface New21Game {
     operator fun invoke(n: Int, k: Int, maxPts: Int): Double
 }
 

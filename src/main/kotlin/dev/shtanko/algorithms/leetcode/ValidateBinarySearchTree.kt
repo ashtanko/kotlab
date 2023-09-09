@@ -24,7 +24,7 @@ import java.util.LinkedList
  * 98. Validate Binary Search Tree
  * https://leetcode.com/problems/validate-binary-search-tree/
  */
-interface ValidateBinarySearchTree {
+fun interface ValidateBinarySearchTree {
     fun isValidBST(root: TreeNode): Boolean
 }
 

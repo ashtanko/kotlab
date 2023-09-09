@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface VerbalArithmeticPuzzle {
+fun interface VerbalArithmeticPuzzle {
     fun isSolvable(words: Array<String>, result: String): Boolean
 }
 

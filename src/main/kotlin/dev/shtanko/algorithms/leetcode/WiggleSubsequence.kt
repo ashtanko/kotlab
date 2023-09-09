@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.max
 
-interface WiggleSubsequence {
+fun interface WiggleSubsequence {
     operator fun invoke(nums: IntArray): Int
 }
 

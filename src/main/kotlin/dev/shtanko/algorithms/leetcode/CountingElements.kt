@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Counting Elements
  * @see <a href="https://leetcode.com/problems/counting-elements/">leetcode page</a>
  */
-interface CountingElements {
+fun interface CountingElements {
     operator fun invoke(arr: IntArray): Int
 }
 

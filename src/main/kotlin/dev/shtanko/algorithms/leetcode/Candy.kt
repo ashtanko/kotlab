@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.max
 
-interface CandyStrategy {
+fun interface CandyStrategy {
     operator fun invoke(ratings: IntArray): Int
 }
 

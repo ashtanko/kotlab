@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2328. Number of Increasing Paths in a Grid
  * @see <a href="https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/">leetcode page</a>
  */
-interface CountPaths {
+fun interface CountPaths {
     operator fun invoke(grid: Array<IntArray>): Int
 }
 

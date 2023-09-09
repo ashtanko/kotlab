@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface FindPeakElementStrategy {
+fun interface FindPeakElementStrategy {
     operator fun invoke(nums: IntArray): Int
 }
 

@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2283. Check if Number Has Equal Digit Count and Digit Value
  * link https://leetcode.com/problems/check-if-number-has-equal-digit-count-and-digit-value/
  */
-interface DigitCount {
+fun interface DigitCount {
     operator fun invoke(num: String): Boolean
 }
 

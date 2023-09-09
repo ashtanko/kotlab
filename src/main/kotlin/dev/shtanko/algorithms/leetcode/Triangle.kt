@@ -22,7 +22,7 @@ import kotlin.math.min
  * Triangle
  * @see <a href="https://leetcode.com/problems/triangle/">leetcode page</a>
  */
-interface Triangle {
+fun interface Triangle {
     operator fun invoke(triangle: List<List<Int>>): Int
 }
 

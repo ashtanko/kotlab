@@ -22,7 +22,7 @@ import kotlin.math.ln
  * 1009. Complement of Base 10 Integer
  * @see <a href="https://leetcode.com/problems/complement-of-base-10-integer/">leetcode page</a>
  */
-interface BitwiseComplement {
+fun interface BitwiseComplement {
     operator fun invoke(n: Int): Int
 }
 

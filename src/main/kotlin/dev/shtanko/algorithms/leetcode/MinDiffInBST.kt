@@ -22,7 +22,7 @@ import kotlin.math.min
  * 783. Minimum Distance Between BST Nodes
  * @see <a href="https://leetcode.com/problems/minimum-distance-between-bst-nodes/">leetcode page</a>
  */
-interface MinDiffInBST {
+fun interface MinDiffInBST {
     fun minDiffInBST(root: TreeNode?): Int
 }
 

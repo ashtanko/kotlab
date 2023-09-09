@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.min
 
-interface EditDistance {
+fun interface EditDistance {
     operator fun invoke(word1: String, word2: String): Int
 }
 

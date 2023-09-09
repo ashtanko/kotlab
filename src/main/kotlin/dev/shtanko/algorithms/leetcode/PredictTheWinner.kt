@@ -21,7 +21,7 @@ import kotlin.math.max
 /**
  * 486. Predict the Winner
  */
-interface PredictTheWinner {
+fun interface PredictTheWinner {
     operator fun invoke(nums: IntArray): Boolean
 }
 

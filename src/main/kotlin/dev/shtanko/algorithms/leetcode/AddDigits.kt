@@ -22,7 +22,7 @@ private const val MAX = 9
  * Add Digits
  * @see <a href="https://leetcode.com/problems/add-digits/">leetcode page</a>
  */
-interface AddDigits {
+fun interface AddDigits {
     operator fun invoke(num: Int): Int
 }
 
