@@ -20,6 +20,7 @@ class SomeClass
 
 private const val LIMIT = 10000
 
+@Suppress("unused", "UNUSED_VARIABLE")
 fun createObjects() {
     for (i in 1..LIMIT) {
         val obj = SomeClass() // Object created

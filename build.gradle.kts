@@ -44,6 +44,10 @@ plugins {
     kotlin("kapt") version "1.8.10"
 }
 
+jacoco {
+    toolVersion = "0.8.10"
+}
+
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.kotlin.link") }
@@ -118,6 +122,16 @@ subprojects {
 }
 
 tasks {
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = "0.5".toBigDecimal()
+                }
+            }
+        }
+    }
+
     register<Copy>("copyGitHooks") {
         description = "Copies the git hooks from scripts/git-hooks to the .git folder."
         group = "git hooks"

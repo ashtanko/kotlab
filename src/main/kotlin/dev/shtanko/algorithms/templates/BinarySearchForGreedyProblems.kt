@@ -19,6 +19,7 @@ package dev.shtanko.algorithms.templates
 /**
  * Binary search: for greedy problems
  */
+@Suppress("UNUSED_PARAMETER", "unused")
 private fun fn(arr: IntArray?): Int {
     val minimumPossibleAnswer = Int.MAX_VALUE // TODO
     val maximumPossibleAnswer = Int.MAX_VALUE // TODO
@@ -35,6 +36,7 @@ private fun fn(arr: IntArray?): Int {
     return left
 }
 
+@Suppress("UNUSED_PARAMETER")
 private fun check(x: Int): Boolean {
     // this function is implemented depending on the problem
     val b = false // TODO

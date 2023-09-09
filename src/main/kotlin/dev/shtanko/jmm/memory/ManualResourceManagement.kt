@@ -22,6 +22,7 @@ import java.io.FileInputStream
  * Kotlin provides the use function for managing resources like streams, which automatically closes the resource
  * when it's no longer needed.
  */
+@Suppress("unused", "UNUSED_VARIABLE")
 fun readFromFile(filePath: String) {
     FileInputStream(filePath).use { stream ->
         val data = stream.readBytes()

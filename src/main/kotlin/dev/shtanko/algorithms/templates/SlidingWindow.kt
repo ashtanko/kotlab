@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.templates
 
+@Suppress("unused", "UNUSED_VARIABLE")
 fun slidingWindowTemplate(arr: IntArray): Int {
     var left = 0
     val ans = 0

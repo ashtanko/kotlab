@@ -55,8 +55,8 @@ jobs:
 #          name: test-results
 #          path: "${{ github.workspace }}/**/build/reports/tests"
 
-      - name: Jacoco test report
-        run: ./gradlew jacocoTestReport
+#      - name: Jacoco test report
+#        run: ./gradlew jacocoTestReport
 
 #      - name: Upload jacoco report
 #        uses: actions/upload-artifact@v3
@@ -66,6 +66,9 @@ jobs:
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
+        with:
+          parallel: true
+          debug: true
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.4

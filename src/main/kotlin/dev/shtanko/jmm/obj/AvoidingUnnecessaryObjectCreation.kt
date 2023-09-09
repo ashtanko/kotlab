@@ -20,6 +20,7 @@ package dev.shtanko.jmm.obj
  * Kotlin's standard library provides functions like let, apply, also, and run to help avoid unnecessary object
  * creation and promote more concise code.
  */
+@Suppress("unused", "UNUSED_VARIABLE")
 fun avoidUnnecessaryObjectCreation(someValue: SomeClass?) {
     val result = someValue?.let { transformedValue ->
         // Use 'transformedValue'
