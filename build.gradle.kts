@@ -32,6 +32,7 @@ fun isLinux(): Boolean {
 plugins {
     application
     jacoco
+    id("com.github.nbaztec.coveralls-jacoco") version "1.2.16"
     idea
     alias(libs.plugins.kt.jvm)
     alias(libs.plugins.detekt)
