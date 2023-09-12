@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,22 +18,24 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 26. Remove Duplicates from Sorted Array
- * @see <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">leetcode page</a>
- * Given a sorted array nums, remove the duplicates in-place such that each element appear only once
- * and return the new length.
- * Do not allocate extra space for another array, you must do this by modifying the input array in-place
- * with O(1) extra memory.
+ * @see <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array">leetcode page</a>
  */
-fun IntArray.removeDuplicates(): Int {
-    val n = this.size
-    if (n < 2) return n
-    var count = 0
-    for (i in 1 until n) {
-        if (this[i] == this[i - 1]) {
-            count++
-        } else {
-            this[i - count] = this[i]
+fun interface RemoveDuplicates {
+    operator fun invoke(nums: IntArray): Int
+}
+
+class RemoveDuplicatesSolution : RemoveDuplicates {
+    override fun invoke(nums: IntArray): Int {
+        val n = nums.size
+        if (n < 2) return n
+        var count = 0
+        for (i in 1 until n) {
+            if (nums[i] == nums[i - 1]) {
+                count++
+            } else {
+                nums[i - count] = nums[i]
+            }
         }
+        return n - count
     }
-    return n - count
 }
