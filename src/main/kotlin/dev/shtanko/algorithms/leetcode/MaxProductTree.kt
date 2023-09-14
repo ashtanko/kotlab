@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 /**
  * 1339. Maximum Product of Splitted Binary Tree
- * @see <a href="https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/description/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximum-product-of-splitted-binary-tree">leetcode page</a>
  */
 fun interface MaxProductTree {
     operator fun invoke(root: TreeNode?): Int

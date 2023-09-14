@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 232. Implement Queue using Stacks
- * @see <a href="https://leetcode.com/problems/implement-queue-using-stacks/description/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/implement-queue-using-stacks">leetcode page</a>
  */
 class MyQueue {
 

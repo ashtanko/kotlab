@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2. Add Two Numbers
- * @see <a href="https://leetcode.com/problems/add-two-numbers/description/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/add-two-numbers">leetcode page</a>
  */
 fun interface AddTwoNumbers {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode?

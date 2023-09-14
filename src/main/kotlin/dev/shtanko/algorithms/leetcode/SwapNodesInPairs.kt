@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 24. Swap Nodes in Pairs
- * @see <a href="https://leetcode.com/problems/swap-nodes-in-pairs/description/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/swap-nodes-in-pairs">leetcode page</a>
  */
 fun interface SwapNodesInPairs {
     fun swapPairs(head: ListNode?): ListNode?

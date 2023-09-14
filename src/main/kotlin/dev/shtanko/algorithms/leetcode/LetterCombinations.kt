@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 17. Letter Combinations of a Phone Number
- * @see <a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number">leetcode page</a>
  */
 fun interface LetterCombinations {
     operator fun invoke(digits: String): List<String>

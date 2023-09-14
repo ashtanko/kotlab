@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 /**
  * 977. Squares of a Sorted Array
- * @see <a href="https://leetcode.com/problems/squares-of-a-sorted-array/description/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/squares-of-a-sorted-array">leetcode page</a>
  * Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number,
  * also in sorted non-decreasing order.
  */
