@@ -18,11 +18,15 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.max
 
-fun interface CandyStrategy {
+/**
+ * 135. Candy
+ * @see <a href="https://leetcode.com/problems/candy">leetcode page</a>
+ */
+fun interface Candy {
     operator fun invoke(ratings: IntArray): Int
 }
 
-class CandyBruteForce : CandyStrategy {
+class CandyBruteForce : Candy {
     override operator fun invoke(ratings: IntArray): Int {
         val candies = IntArray(ratings.size) { 1 }
         var flag = true
@@ -47,7 +51,7 @@ class CandyBruteForce : CandyStrategy {
     }
 }
 
-class Candy2Arrays : CandyStrategy {
+class Candy2Arrays : Candy {
     override operator fun invoke(ratings: IntArray): Int {
         var sum = 0
         val left2right = IntArray(ratings.size) { 1 }
@@ -69,7 +73,7 @@ class Candy2Arrays : CandyStrategy {
     }
 }
 
-class CandyArray : CandyStrategy {
+class CandyArray : Candy {
     override operator fun invoke(ratings: IntArray): Int {
         if (ratings.isEmpty()) return 0
         val candies = IntArray(ratings.size) { 1 }
@@ -89,11 +93,11 @@ class CandyArray : CandyStrategy {
     }
 }
 
-class CandyMath : CandyStrategy {
-
-    fun count(n: Int) = n * n.plus(1) / 2
+class CandyMath : Candy {
 
     override operator fun invoke(ratings: IntArray): Int {
+        fun count(n: Int) = n * n.plus(1) / 2
+
         if (ratings.size <= 1) {
             return ratings.size
         }
