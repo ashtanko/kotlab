@@ -16,28 +16,70 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.PriorityQueue
+
 /**
- * The K Weakest Rows In Matrix
+ * 1337. The K Weakest Rows in a Matrix
+ * @see <a href="https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix">Source</a>
  */
-fun Pair<Array<IntArray>, Int>.kWeakestRows(): IntArray {
-    val matrix = first
-    val rows = matrix.size
-    val cols = matrix.first().size
-    val score = IntArray(rows)
-    var j: Int
-    for (i in 0 until rows) {
-        j = 0
-        while (j < cols) {
-            if (matrix[i][j] == 0) {
-                break
+fun interface KWeakestRows {
+    operator fun invoke(mat: Array<IntArray>, k: Int): IntArray
+}
+
+class KWeakestRowsPQ : KWeakestRows {
+    override fun invoke(mat: Array<IntArray>, k: Int): IntArray {
+        fun numOnes(row: IntArray): Int {
+            var lo = 0
+            var hi = row.size
+            while (lo < hi) {
+                val mid = lo + (hi - lo) / 2
+                if (row[mid] == 1) lo = mid + 1 else hi = mid
             }
-            j++
+            return lo
         }
-        score[i] = j * rows + i
+
+        val pq: PriorityQueue<IntArray> = PriorityQueue { a, b ->
+            if (a[0] != b[0]) b[0] - a[0] else b[1] - a[1]
+        }
+        var k0 = k
+        val ans = IntArray(k0)
+
+        for (i in mat.indices) {
+            pq.offer(intArrayOf(numOnes(mat[i]), i))
+            if (pq.size > k0) pq.poll()
+        }
+
+        while (k0 > 0) {
+            ans[--k0] = pq.poll()[1]
+        }
+
+        return ans
     }
-    score.sort()
-    for (i in score.indices) {
-        score[i] = score[i] % rows
+}
+
+class KWeakestRowsBF : KWeakestRows {
+    override fun invoke(mat: Array<IntArray>, k: Int) = Pair(mat, k).kWeakestRows()
+
+    private fun Pair<Array<IntArray>, Int>.kWeakestRows(): IntArray {
+        val matrix = first
+        val rows = matrix.size
+        val cols = matrix.first().size
+        val score = IntArray(rows)
+        var j: Int
+        for (i in 0 until rows) {
+            j = 0
+            while (j < cols) {
+                if (matrix[i][j] == 0) {
+                    break
+                }
+                j++
+            }
+            score[i] = j * rows + i
+        }
+        score.sort()
+        for (i in score.indices) {
+            score[i] = score[i] % rows
+        }
+        return score.copyOfRange(0, second)
     }
-    return score.copyOfRange(0, second)
 }
