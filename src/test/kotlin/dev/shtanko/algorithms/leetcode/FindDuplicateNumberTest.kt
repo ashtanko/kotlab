@@ -62,5 +62,9 @@ abstract class FindDuplicateNumberTest<out T : FindDuplicateNumber>(private val 
     }
 }
 
-class FindDuplicateSortTest : FindDuplicateNumberTest<FindDuplicateSort>(FindDuplicateSort())
-class FindDuplicateSetTest : FindDuplicateNumberTest<FindDuplicateSet>(FindDuplicateSet())
+class FindDuplicateSortTest : FindDuplicateNumberTest<FindDuplicateNumber>(FindDuplicateSort())
+class FindDuplicateSetTest : FindDuplicateNumberTest<FindDuplicateNumber>(FindDuplicateSet())
+class FindDuplicateArrayTest : FindDuplicateNumberTest<FindDuplicateNumber>(FindDuplicateArray())
+class FindDuplicateMapTest : FindDuplicateNumberTest<FindDuplicateNumber>(FindDuplicateMap())
+class FindDuplicateBSTest : FindDuplicateNumberTest<FindDuplicateNumber>(FindDuplicateBS())
+class FindDuplicateTortoiseTest : FindDuplicateNumberTest<FindDuplicateNumber>(FindDuplicateTortoise())
