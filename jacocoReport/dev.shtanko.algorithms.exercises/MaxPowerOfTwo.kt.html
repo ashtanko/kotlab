@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaxPowerOfTwo.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.exercises</a> &gt; <span class="el_source">MaxPowerOfTwo.kt</span></div><h1>MaxPowerOfTwo.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.exercises
+
+import kotlin.math.pow
+
+/**
+ * Greatest power of two
+ */
+<span class="fc" id="L24">class MaxPowerOfTwo {</span>
+
+    /**
+     * @param n the number.
+     */
+    fun perform(n: Int): Int {
+<span class="fc" id="L30">        val powers = getPowers()</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (n == 0) return 0</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (powers.contains(n)) {</span>
+<span class="fc" id="L33">            return n</span>
+        }
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        for (p in 1 until powers.size) {</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            if (n &lt; powers[p]) {</span>
+<span class="fc" id="L37">                return powers[p - 1]</span>
+            }
+        }
+<span class="nc" id="L40">        return 0</span>
+    }
+
+    /**
+     * Decompose [n] into the sum of powers of 2
+     * @param n the number.
+     */
+    fun decompose(n: Int): List&lt;Int&gt; {
+<span class="fc" id="L48">        val data = mutableListOf&lt;Int&gt;()</span>
+<span class="fc" id="L49">        var j = n</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        while (j != 0) {</span>
+<span class="fc" id="L51">            val powerOf2 = MaxPowerOfTwo().perform(j)</span>
+<span class="fc" id="L52">            data.add(powerOf2)</span>
+<span class="fc" id="L53">            j -= powerOf2</span>
+        }
+<span class="fc" id="L55">        return data</span>
+    }
+}
+
+<span class="fc" id="L59">fun getPowers(power: Double = 2.0): List&lt;Int&gt; {</span>
+<span class="fc" id="L60">    val powers = mutableListOf&lt;Int&gt;()</span>
+    var value: Int
+<span class="fc" id="L62">    var i = 0</span>
+<span class="fc" id="L63">    while (true) {</span>
+<span class="fc" id="L64">        value = power.pow(i).toInt()</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (value &gt;= Int.MAX_VALUE) {</span>
+<span class="fc" id="L66">            break</span>
+        }
+<span class="fc" id="L68">        powers.add(value)</span>
+<span class="fc" id="L69">        i++</span>
+    }
+<span class="fc" id="L71">    return powers</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

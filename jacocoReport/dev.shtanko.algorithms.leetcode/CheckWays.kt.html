@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CheckWays.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CheckWays.kt</span></div><h1>CheckWays.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1719. Number Of Ways To Reconstruct A Tree
+ * @see &lt;a href=&quot;https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface CheckWays {
+    operator fun invoke(pairs: Array&lt;IntArray&gt;): Int
+}
+
+<span class="fc" id="L27">class CheckWaysDFS : CheckWays {</span>
+
+<span class="pc" id="L29">    var result = 1</span>
+
+    override operator fun invoke(pairs: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L32">        result = 1</span>
+<span class="fc" id="L33">        val graph: HashMap&lt;Int, HashSet&lt;Int&gt;&gt; = HashMap()</span>
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (pair in pairs) {</span>
+<span class="fc" id="L36">            graph.computeIfAbsent(pair[0]) { HashSet() }.add(pair[1])</span>
+<span class="fc" id="L37">            graph.computeIfAbsent(pair[1]) { HashSet() }.add(pair[0])</span>
+        }
+
+<span class="fc" id="L40">        val nodes: ArrayList&lt;Int&gt; = ArrayList(graph.keys)</span>
+<span class="fc" id="L41">        nodes.sortWith { a, b -&gt;</span>
+<span class="fc" id="L42">            graph.getOrDefault(a, HashSet()).size - graph.getOrDefault(b, HashSet()).size</span>
+        }
+
+<span class="fc" id="L45">        val tree: HashMap&lt;Int, ArrayList&lt;Int&gt;&gt; = HashMap()</span>
+<span class="fc" id="L46">        var root = -1</span>
+
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (l in nodes.indices) {</span>
+<span class="fc" id="L49">            var p = l + 1</span>
+<span class="fc" id="L50">            val leaf = nodes[l]</span>
+<span class="fc bfc" id="L51" title="All 4 branches covered.">            while (p &lt; nodes.size &amp;&amp; !graph.getOrDefault(nodes[p], HashSet()).contains(leaf)) p++</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (p &lt; nodes.size) {</span>
+<span class="fc" id="L53">                tree.computeIfAbsent(nodes[p]) { ArrayList() }.add(leaf)</span>
+<span class="pc bpc" id="L54" title="2 of 6 branches missed.">                if (graph[nodes[p]]?.size == graph[leaf]?.size) {</span>
+<span class="fc" id="L55">                    result = 2</span>
+                }
+            } else {
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">                root = if (root == -1) {</span>
+<span class="fc" id="L59">                    leaf</span>
+                } else {
+<span class="nc" id="L61">                    return 0</span>
+                }
+            }
+        }
+
+<span class="fc" id="L66">        dfs(root, 0, tree, graph, HashSet())</span>
+
+<span class="fc" id="L68">        return result</span>
+    }
+
+    private fun dfs(
+        root: Int,
+        depth: Int,
+        tree: HashMap&lt;Int, ArrayList&lt;Int&gt;&gt;,
+        graph: HashMap&lt;Int, HashSet&lt;Int&gt;&gt;,
+        visited: HashSet&lt;Int?&gt;,
+    ): Int {
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (result == 0) return -1</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (visited.contains(root)) {</span>
+<span class="nc" id="L80">            result = 0</span>
+<span class="nc" id="L81">            return -1</span>
+        }
+<span class="fc" id="L83">        visited.add(root)</span>
+<span class="fc" id="L84">        var descendantsNum = 0</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        for (node in tree.getOrDefault(root, ArrayList())) {</span>
+<span class="fc" id="L86">            descendantsNum += dfs(</span>
+<span class="fc" id="L87">                node,</span>
+<span class="fc" id="L88">                depth + 1,</span>
+<span class="fc" id="L89">                tree,</span>
+<span class="fc" id="L90">                graph,</span>
+<span class="fc" id="L91">                visited,</span>
+            )
+        }
+<span class="fc bfc" id="L94" title="All 6 branches covered.">        if (descendantsNum + depth != graph[root]?.size) {</span>
+<span class="fc" id="L95">            result = 0</span>
+<span class="fc" id="L96">            return -1</span>
+        }
+<span class="fc" id="L98">        return descendantsNum + 1</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

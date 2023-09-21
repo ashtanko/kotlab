@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IntMap.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.datastructures</a> &gt; <span class="el_source">IntMap.kt</span></div><h1>IntMap.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.datastructures
+
+import java.util.Arrays
+
+/**
+ * The default capacity of the hash map.
+ */
+private const val INT_MAP_CAPACITY = 10
+
+/**
+ * The index of the array that specifies the minimum size of the hash map.
+ */
+private const val ARRAY_MAP_SIZE_INDEX = 4
+
+/**
+ * A simple hash map implementation that stores integer keys and arbitrary values of type [V].
+ *
+ * @property capacity the initial capacity of the hash map.
+ */
+<span class="fc" id="L36">@Suppress(&quot;UNCHECKED_CAST&quot;)</span>
+<span class="fc" id="L37">class IntMap&lt;V&gt;(capacity: Int = INT_MAP_CAPACITY) {</span>
+
+    /**
+     * An array that stores the hash codes for the keys.
+     */
+<span class="fc bfc" id="L42" title="All 2 branches covered.">    private var hashes: IntArray = IntArray(if (capacity &lt; 0) 0 else capacity)</span>
+
+    /**
+     * An array that stores the values for the keys.
+     */
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    private var array: Array&lt;Any?&gt; = arrayOfNulls(if (capacity &lt; 0) 0 else capacity)</span>
+
+    /**
+     * The number of elements in the hash map.
+     */
+<span class="pc" id="L52">    var size = 0</span>
+
+    /**
+     * Returns `true` if the hash map is empty, `false` otherwise.
+     */
+<span class="fc bfc" id="L57" title="All 2 branches covered.">    fun isEmpty() = size &lt;= 0</span>
+
+    /**
+     * Returns the value associated with the given key, or `null` if the key is not found in the hash map.
+     *
+     * @param key the key to look up in the hash map.
+     * @return the value associated with the key, or `null` if the key is not found.
+     */
+<span class="fc" id="L65">    operator fun get(key: Int) = get(key, null)</span>
+
+    /**
+     * Returns the value associated with the given key, or the specified default value if the key is not found
+     * in the hash map.
+     *
+     * @param key the key to look up in the hash map.
+     * @param valueIfKeyNotFound the default value to return if the key is not found.
+     * @return the value associated with the key, or the default value if the key is not found.
+     */
+    fun get(key: Int, valueIfKeyNotFound: V?): V? {
+<span class="fc" id="L76">        val index = Arrays.binarySearch(hashes, 0, size, key)</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        return if (index &lt; 0) valueIfKeyNotFound else array[index] as V</span>
+    }
+
+    /**
+     * Deletes the entry with the given key from the hash map.
+     *
+     * @param key the key of the entry to delete.
+     */
+    fun delete(key: Int) {
+<span class="fc" id="L86">        val index = Arrays.binarySearch(hashes, 0, size, key)</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if (index &gt;= 0) removeAt(index)</span>
+<span class="fc" id="L88">    }</span>
+
+    /**
+     * Removes the entry at the given index from the hash map.
+     *
+     * @param index the index of the entry to remove.
+     */
+    fun removeAt(index: Int) {
+<span class="fc" id="L96">        System.arraycopy(hashes, index + 1, hashes, index, size - (index + 1))</span>
+<span class="fc" id="L97">        System.arraycopy(array, index + 1, array, index, size - (index + 1))</span>
+<span class="fc" id="L98">        size--</span>
+<span class="fc" id="L99">    }</span>
+
+    /**
+     * Associates the given value with the given key in the hash map.
+     *
+     * @param key the key to associate the value with.
+     * @param value the value to associate with the key.
+     */
+    fun put(key: Int, value: V) {
+<span class="fc" id="L108">        var index = Arrays.binarySearch(hashes, 0, size, key)</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">        if (index &gt;= 0) {</span>
+<span class="nc" id="L110">            array[index] = value</span>
+        } else {
+<span class="fc" id="L112">            index = index.inv()</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">            if (size &gt;= hashes.size) {</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">                val newSize = if (size &lt; ARRAY_MAP_SIZE_INDEX) ARRAY_MAP_SIZE_INDEX else size + (size shr 1)</span>
+<span class="fc" id="L115">                val tempHashes = hashes</span>
+<span class="fc" id="L116">                val tempArray = array</span>
+<span class="fc" id="L117">                allocArrays(newSize)</span>
+
+<span class="fc" id="L119">                System.arraycopy(tempHashes, 0, hashes, 0, tempHashes.size)</span>
+<span class="fc" id="L120">                System.arraycopy(tempArray, 0, array, 0, tempArray.size)</span>
+            }
+
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">            if (index &lt; size) {</span>
+<span class="nc" id="L124">                System.arraycopy(hashes, index, hashes, index + 1, size - index)</span>
+<span class="nc" id="L125">                System.arraycopy(array, index, array, index + 1, size - index)</span>
+            }
+
+<span class="fc" id="L128">            hashes[index] = key</span>
+<span class="fc" id="L129">            array[index] = value</span>
+<span class="fc" id="L130">            size++</span>
+        }
+<span class="fc" id="L132">    }</span>
+
+    /**
+     * Returns the index of the specified key, or a negative number if the key is not in the map.
+     * The negative number returned is the bitwise complement of the index at which the key would
+     * be inserted if it were present.
+     */
+    fun indexOfKey(key: Int): Int {
+<span class="fc" id="L140">        return Arrays.binarySearch(hashes, 0, size, key)</span>
+    }
+
+    /**
+     * Returns `true` if the map contains the specified key, `false` otherwise.
+     */
+<span class="fc bfc" id="L146" title="All 2 branches covered.">    fun containsKey(key: Int) = indexOfKey(key) &gt;= 0</span>
+
+    /**
+     * Returns the key at the specified index.
+     */
+<span class="fc" id="L151">    fun keyAt(index: Int) = hashes[index]</span>
+
+    /**
+     * Returns the value at the specified index.
+     */
+<span class="fc" id="L156">    fun valueAt(index: Int) = array[index] as V</span>
+
+    /**
+     * Sets the value at the specified index.
+     */
+    fun setValueAt(index: Int, value: V) {
+<span class="fc" id="L162">        array[index] = value</span>
+<span class="fc" id="L163">    }</span>
+
+    private fun allocArrays(size: Int) {
+<span class="fc" id="L166">        hashes = IntArray(size)</span>
+<span class="fc" id="L167">        array = arrayOfNulls(size)</span>
+<span class="fc" id="L168">    }</span>
+<span class="fc" id="L169">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

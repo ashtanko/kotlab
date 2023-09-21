@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PalindromePermutation.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PalindromePermutation.kt</span></div><h1>PalindromePermutation.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.TreeSet
+
+private const val MAX_VALUE = 128
+
+fun interface PalindromePermutationBehavior {
+    fun canPermutePalindrome(s: String): Boolean
+}
+
+/**
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L31">class PalindromePermutationBruteForce : PalindromePermutationBehavior {</span>
+    override fun canPermutePalindrome(s: String): Boolean {
+<span class="fc" id="L33">        var count = 0</span>
+<span class="fc" id="L34">        var i = 0.toChar()</span>
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        while (i.code &lt; MAX_VALUE &amp;&amp; count &lt;= 1) {</span>
+<span class="fc" id="L36">            var ct = 0</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            for (j in s.indices) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">                if (s[j] == i) ct++</span>
+            }
+<span class="fc" id="L40">            count += ct % 2</span>
+<span class="fc" id="L41">            i++</span>
+        }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        return count &lt;= 1</span>
+    }
+}
+
+/**
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L51">class PalindromePermutationHashMap : PalindromePermutationBehavior {</span>
+    override fun canPermutePalindrome(s: String): Boolean {
+<span class="fc" id="L53">        val map: HashMap&lt;Char, Int&gt; = HashMap()</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        for (i in s.indices) {</span>
+<span class="fc" id="L55">            map[s[i]] = map.getOrDefault(s[i], 0) + 1</span>
+        }
+<span class="fc" id="L57">        var count = 0</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        for (key in map.keys) {</span>
+<span class="fc" id="L59">            count += map[key]!! % 2</span>
+        }
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        return count &lt;= 1</span>
+    }
+}
+
+/**
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L69">class PalindromePermutationArray : PalindromePermutationBehavior {</span>
+    override fun canPermutePalindrome(s: String): Boolean {
+<span class="fc" id="L71">        val map = IntArray(MAX_VALUE)</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for (element in s) {</span>
+<span class="fc" id="L73">            map[element.code]++</span>
+        }
+<span class="fc" id="L75">        var count = 0</span>
+<span class="fc" id="L76">        var key = 0</span>
+<span class="fc bfc" id="L77" title="All 4 branches covered.">        while (key &lt; map.size &amp;&amp; count &lt;= 1) {</span>
+<span class="fc" id="L78">            count += map[key] % 2</span>
+<span class="fc" id="L79">            key++</span>
+        }
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        return count &lt;= 1</span>
+    }
+}
+
+/**
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L89">class PalindromePermutationSinglePass : PalindromePermutationBehavior {</span>
+    override fun canPermutePalindrome(s: String): Boolean {
+<span class="fc" id="L91">        val map = IntArray(MAX_VALUE)</span>
+<span class="fc" id="L92">        var count = 0</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        for (i in s.indices) {</span>
+<span class="fc" id="L94">            map[s[i].code]++</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            if (map[s[i].code] % 2 == 0) count-- else count++</span>
+        }
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        return count &lt;= 1</span>
+    }
+}
+
+/**
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L105">class PalindromePermutationSet : PalindromePermutationBehavior by PalindromePermutationDelegate(HashSet())</span>
+
+/**
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L111">class PalindromePermutationTree : PalindromePermutationBehavior by PalindromePermutationDelegate(TreeSet())</span>
+
+<span class="fc" id="L113">class PalindromePermutationDelegate(private val set: MutableSet&lt;Char&gt;) : PalindromePermutationBehavior {</span>
+    override fun canPermutePalindrome(s: String): Boolean {
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        for (i in s.indices) {</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">            if (!set.add(s[i])) set.remove(s[i])</span>
+        }
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        return set.size &lt;= 1</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaximumErasureValue.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MaximumErasureValue.kt</span></div><h1>MaximumErasureValue.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+/**
+ * Maximum Erasure Value
+ * @see &lt;a href=&quot;https://leetcode.com/problems/maximum-erasure-value/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MaximumErasureValue {
+    fun maximumUniqueSubarray(nums: IntArray): Int
+}
+
+/**
+ * Approach 1: Brute Force
+ */
+<span class="fc" id="L32">class MEVBruteForce : MaximumErasureValue {</span>
+    override fun maximumUniqueSubarray(nums: IntArray): Int {
+<span class="fc" id="L34">        val n: Int = nums.size</span>
+<span class="fc" id="L35">        var result = 0</span>
+<span class="fc" id="L36">        val set: HashSet&lt;Int&gt; = HashSet()</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (start in 0 until n) {</span>
+            // reset set and current sum for next subarray
+<span class="fc" id="L39">            set.clear()</span>
+<span class="fc" id="L40">            var currentSum = 0</span>
+<span class="fc" id="L41">            var end = start</span>
+<span class="fc bfc" id="L42" title="All 4 branches covered.">            while (end &lt; n &amp;&amp; !set.contains(nums[end])) {</span>
+<span class="fc" id="L43">                currentSum += nums[end]</span>
+<span class="fc" id="L44">                set.add(nums[end])</span>
+<span class="fc" id="L45">                end++</span>
+            }
+            // update result with maximum sum found so far
+<span class="fc" id="L48">            result = max(result, currentSum)</span>
+        }
+<span class="fc" id="L50">        return result</span>
+    }
+}
+
+/**
+ * Approach 2: Two Pointer Approach Using Set
+ */
+<span class="fc" id="L57">class MEVTwoPointerSet : MaximumErasureValue {</span>
+    override fun maximumUniqueSubarray(nums: IntArray): Int {
+<span class="fc" id="L59">        var result = 0</span>
+<span class="fc" id="L60">        var currentSum = 0</span>
+<span class="fc" id="L61">        val set = HashSet&lt;Int&gt;()</span>
+<span class="fc" id="L62">        var start = 0</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        for (end in nums.indices) {</span>
+            // increment start until subarray has unique elements
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            while (set.contains(nums[end])) {</span>
+<span class="fc" id="L66">                set.remove(nums[start])</span>
+<span class="fc" id="L67">                currentSum -= nums[start]</span>
+<span class="fc" id="L68">                start++</span>
+            }
+<span class="fc" id="L70">            currentSum += nums[end]</span>
+<span class="fc" id="L71">            set.add(nums[end])</span>
+            // update result with maximum sum found so far
+<span class="fc" id="L73">            result = max(result, currentSum)</span>
+        }
+<span class="fc" id="L75">        return result</span>
+    }
+}
+
+/**
+ * Approach 3: Two Pointer Approach Using Boolean Array
+ */
+<span class="fc" id="L82">class MEVTwoPointerBooleanArray : MaximumErasureValue {</span>
+    override fun maximumUniqueSubarray(nums: IntArray): Int {
+<span class="fc" id="L84">        var result = 0</span>
+<span class="fc" id="L85">        var currentSum = 0</span>
+<span class="fc" id="L86">        val isPresent = BooleanArray(ARRAY_SIZE)</span>
+<span class="fc" id="L87">        var start = 0</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        for (end in nums.indices) {</span>
+            // increment start until subarray has unique elements
+<span class="fc bfc" id="L90" title="All 2 branches covered.">            while (isPresent[nums[end]]) {</span>
+<span class="fc" id="L91">                isPresent[nums[start]] = false</span>
+<span class="fc" id="L92">                currentSum -= nums[start]</span>
+<span class="fc" id="L93">                start++</span>
+            }
+<span class="fc" id="L95">            isPresent[nums[end]] = true</span>
+<span class="fc" id="L96">            currentSum += nums[end]</span>
+            // update result with maximum sum found so far
+<span class="fc" id="L98">            result = max(result, currentSum)</span>
+        }
+<span class="fc" id="L100">        return result</span>
+    }
+
+    companion object {
+        private const val ARRAY_SIZE = 10001
+    }
+}
+
+/**
+ * Approach 4: Two Pointer Approach Using Count Map
+ */
+<span class="fc" id="L111">class MEVTwoPointerCountMap : MaximumErasureValue {</span>
+    override fun maximumUniqueSubarray(nums: IntArray): Int {
+<span class="fc" id="L113">        val countMap = IntArray(ARRAY_SIZE)</span>
+<span class="fc" id="L114">        var start = 0</span>
+<span class="fc" id="L115">        var result = 0</span>
+<span class="fc" id="L116">        var currentSum = 0</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        for (end in nums.indices) {</span>
+<span class="fc" id="L118">            val currentElement = nums[end]</span>
+<span class="fc" id="L119">            countMap[currentElement]++</span>
+<span class="fc" id="L120">            currentSum += currentElement</span>
+<span class="fc bfc" id="L121" title="All 4 branches covered.">            while (start &lt; end &amp;&amp; countMap[currentElement] &gt; 1) {</span>
+<span class="fc" id="L122">                countMap[nums[start]]--</span>
+<span class="fc" id="L123">                currentSum -= nums[start]</span>
+<span class="fc" id="L124">                start++</span>
+            }
+            // update result with maximum sum found so far
+<span class="fc" id="L127">            result = max(result, currentSum)</span>
+        }
+<span class="fc" id="L129">        return result</span>
+    }
+
+    companion object {
+        private const val ARRAY_SIZE = 10001
+    }
+}
+
+/**
+ * Approach 5: Using Prefix Sum with HashMap
+ */
+<span class="fc" id="L140">class MEVPrefixSum : MaximumErasureValue {</span>
+    override fun maximumUniqueSubarray(nums: IntArray): Int {
+<span class="fc" id="L142">        val n: Int = nums.size</span>
+<span class="fc" id="L143">        val lastIndexMap = HashMap&lt;Int, Int&gt;()</span>
+<span class="fc" id="L144">        val prefixSum = IntArray(n + 1)</span>
+
+<span class="fc" id="L146">        var result = 0</span>
+<span class="fc" id="L147">        var start = 0</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        for (end in 0 until n) {</span>
+<span class="fc" id="L149">            val currentElement = nums[end]</span>
+<span class="fc" id="L150">            prefixSum[end + 1] = prefixSum[end] + currentElement</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">            if (lastIndexMap.containsKey(currentElement)) {</span>
+<span class="fc" id="L152">                start = max(start, lastIndexMap[currentElement]!! + 1)</span>
+            }
+            // update result with maximum sum found so far
+<span class="fc" id="L155">            result = max(result, prefixSum[end + 1] - prefixSum[start])</span>
+<span class="fc" id="L156">            lastIndexMap[currentElement] = end</span>
+        }
+<span class="fc" id="L158">        return result</span>
+    }
+}
+
+/**
+ * Approach 6: Using Prefix Sum with Count Array
+ */
+<span class="fc" id="L165">class MEVPrefixSumCountArray : MaximumErasureValue {</span>
+    override fun maximumUniqueSubarray(nums: IntArray): Int {
+<span class="fc" id="L167">        val n: Int = nums.size</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">        val lastIndexes = IntArray(ARRAY_SIZE) { -1 }</span>
+<span class="fc" id="L169">        val prefixSum = IntArray(n + 1)</span>
+<span class="fc" id="L170">        var result = 0</span>
+<span class="fc" id="L171">        var start = 0</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">        for (end in 0 until n) {</span>
+<span class="fc" id="L173">            val currentElement = nums[end]</span>
+<span class="fc" id="L174">            prefixSum[end + 1] = prefixSum[end] + currentElement</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">            if (lastIndexes[currentElement] != -1) {</span>
+<span class="fc" id="L176">                start = max(start, lastIndexes[currentElement] + 1)</span>
+            }
+            // update result with maximum sum found so far
+<span class="fc" id="L179">            result = max(result, prefixSum[end + 1] - prefixSum[start])</span>
+            // update last index of current element
+<span class="fc" id="L181">            lastIndexes[currentElement] = end</span>
+        }
+<span class="fc" id="L183">        return result</span>
+    }
+
+    companion object {
+        private const val ARRAY_SIZE = 10001
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

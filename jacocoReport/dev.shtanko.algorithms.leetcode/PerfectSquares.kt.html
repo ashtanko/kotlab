@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PerfectSquares.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PerfectSquares.kt</span></div><h1>PerfectSquares.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import dev.shtanko.algorithms.math.sqrt
+import java.util.LinkedList
+import java.util.Queue
+import kotlin.math.min
+
+/**
+ * 279. Perfect Squares
+ * @see &lt;a href=&quot;https://leetcode.com/problems/perfect-squares/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface PerfectSquares {
+    fun numSquares(n: Int): Int
+}
+
+/**
+ * Dynamic Programming
+ */
+<span class="fc" id="L35">class PerfectSquaresDP : PerfectSquares {</span>
+    override fun numSquares(n: Int): Int {
+<span class="fc" id="L37">        val list: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc" id="L38">        var temp = 1</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        while (temp * temp &lt;= n) {</span>
+<span class="fc" id="L40">            val square = temp * temp</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">            if (n == square) {</span>
+<span class="nc" id="L42">                return 1</span>
+            }
+<span class="fc" id="L44">            list.add(square)</span>
+<span class="fc" id="L45">            temp += 1</span>
+        }
+
+<span class="fc" id="L48">        val dp = IntArray(n + 1)</span>
+<span class="fc" id="L49">        dp[0] = 0</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (i in 1 until dp.size) {</span>
+<span class="fc" id="L51">            dp[i] = Int.MAX_VALUE</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            for (j in 0 until list.size) {</span>
+<span class="pc bpc" id="L53" title="1 of 6 branches missed.">                if (i - list[j] &gt;= 0 &amp;&amp; dp[i - list[j]] != Int.MAX_VALUE &amp;&amp; dp[i] &gt; dp[i - list[j]] + 1) {</span>
+<span class="fc" id="L54">                    dp[i] = dp[i - list[j]] + 1</span>
+                }
+            }
+        }
+
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        return if (dp[n] == Int.MAX_VALUE) -1 else dp[n]</span>
+    }
+}
+
+/**
+ * Static Dynamic Programming
+ */
+<span class="fc" id="L66">class PerfectSquaresStaticDP : PerfectSquares {</span>
+    override fun numSquares(n: Int): Int {
+<span class="fc" id="L68">        val result: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (result.isEmpty()) {</span>
+<span class="fc" id="L70">            result.add(0)</span>
+        }
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        while (result.size &lt;= n) {</span>
+<span class="fc" id="L73">            val m: Int = result.size</span>
+<span class="fc" id="L74">            var tempMin = Int.MAX_VALUE</span>
+<span class="fc" id="L75">            var j = 1</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            while (j * j &lt;= m) {</span>
+<span class="fc" id="L77">                tempMin = min(tempMin, result[m - j * j] + 1)</span>
+<span class="fc" id="L78">                j++</span>
+            }
+<span class="fc" id="L80">            result.add(tempMin)</span>
+        }
+<span class="fc" id="L82">        return result[n]</span>
+    }
+}
+
+/**
+ * Mathematical Solution
+ */
+<span class="fc" id="L89">class PerfectSquaresMath : PerfectSquares {</span>
+    override fun numSquares(n: Int): Int {
+<span class="fc" id="L91">        var n1 = n</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        if (isSquare(n1)) return 1</span>
+
+        // The result is 4 if and only if n can be written in the
+        // form of 4^k*(8*m + 7). Please refer to
+        // Legendre's three-square theorem.
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        while (n1 and 3 == 0) { // n%4 == 0</span>
+<span class="fc" id="L98">            n1 = n1 shr 2</span>
+        }
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        if (n1 and 7 == 7) { // n%8 == 7</span>
+<span class="nc" id="L101">            return 4</span>
+        }
+
+        // Check whether 2 is the result.
+<span class="fc" id="L105">        val sqrtN = sqrt(n1).toInt()</span>
+<span class="pc bpc" id="L106" title="1 of 4 branches missed.">        for (i in 1..sqrtN) {</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">            if (isSquare(n1 - i * i)) {</span>
+<span class="fc" id="L108">                return 2</span>
+            }
+        }
+
+<span class="fc" id="L112">        return 3</span>
+    }
+
+    private fun isSquare(n: Int): Boolean {
+<span class="fc" id="L116">        val sqrtN = sqrt(n)</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        return sqrtN * sqrtN == n.toDouble()</span>
+    }
+}
+
+/**
+ * Breadth-First Search
+ */
+<span class="fc" id="L124">class PerfectSquaresBFS : PerfectSquares {</span>
+    override fun numSquares(n: Int): Int {
+<span class="fc" id="L126">        val q: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="fc" id="L127">        val visited: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L128">        q.offer(0)</span>
+<span class="fc" id="L129">        visited.add(0)</span>
+<span class="fc" id="L130">        var depth = 0</span>
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">        while (!q.isEmpty()) {</span>
+<span class="fc" id="L132">            var size: Int = q.size</span>
+<span class="fc" id="L133">            depth++</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">            while (size-- &gt; 0) {</span>
+<span class="fc" id="L135">                val u: Int = q.poll()</span>
+<span class="fc" id="L136">                var i = 1</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">                while (i * i &lt;= n) {</span>
+<span class="fc" id="L138">                    val v = u + i * i</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">                    if (v == n) {</span>
+<span class="fc" id="L140">                        return depth</span>
+                    }
+<span class="fc bfc" id="L142" title="All 2 branches covered.">                    if (v &gt; n) {</span>
+<span class="fc" id="L143">                        break</span>
+                    }
+<span class="fc bfc" id="L145" title="All 2 branches covered.">                    if (!visited.contains(v)) {</span>
+<span class="fc" id="L146">                        q.offer(v)</span>
+<span class="fc" id="L147">                        visited.add(v)</span>
+                    }
+<span class="fc" id="L149">                    i++</span>
+                }
+            }
+        }
+<span class="nc" id="L153">        return depth</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

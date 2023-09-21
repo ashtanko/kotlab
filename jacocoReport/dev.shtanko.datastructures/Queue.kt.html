@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Queue.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.datastructures</a> &gt; <span class="el_source">Queue.kt</span></div><h1>Queue.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.datastructures
+
+/**
+ * @see &lt;a href=&quot;https://www.geeksforgeeks.org/queue-data-structure/&quot;&gt;leetcode page&lt;/a&gt;
+ * A Queue is a linear structure which follows a particular order in which the operations are performed.
+ * The order is First In First Out (FIFO). A good example of a queue is any queue of consumers for
+ * a resource where the consumer that came first is served first.
+ *
+ * A simple implementation of a generic Queue using a singly linked list.
+ *
+ * @param T the type of elements held in this queue.
+ */
+<span class="fc" id="L29">class Queue&lt;T&gt; : Collection&lt;T&gt; {</span>
+
+    private var head: Node&lt;T&gt;? = null
+    private var tail: Node&lt;T&gt;? = null
+
+    /**
+     * A private inner class representing a Node in the queue.
+     *
+     * @property value the value stored in the node.
+     */
+<span class="fc" id="L39">    private class Node&lt;T&gt;(val value: T) {</span>
+<span class="fc" id="L40">        var next: Node&lt;T&gt;? = null</span>
+    }
+
+<span class="fc" id="L43">    override var size: Int = 0</span>
+        private set
+
+    /**
+     * Checks if the queue contains the specified element.
+     *
+     * @param element the element to be checked for containment.
+     * @return `true` if the element is present in the queue, `false` otherwise.
+     */
+    override fun contains(element: T): Boolean {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        for (obj in this) {</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            if (obj == element) return true</span>
+        }
+<span class="fc" id="L56">        return false</span>
+    }
+
+    /**
+     * Checks if the queue contains all elements in the specified collection.
+     *
+     * @param elements the collection of elements to be checked for containment.
+     * @return `true` if all elements in the collection are present in the queue, `false` otherwise.
+     */
+    override fun containsAll(elements: Collection&lt;T&gt;): Boolean {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        for (element in elements) {</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">            if (!contains(element)) return false</span>
+        }
+<span class="fc" id="L69">        return true</span>
+    }
+
+    /**
+     * Checks if the queue is empty.
+     *
+     * @return `true` if the queue is empty, `false` otherwise.
+     */
+<span class="fc bfc" id="L77" title="All 2 branches covered.">    override fun isEmpty(): Boolean = size == 0</span>
+
+    /**
+     * Returns an iterator over the elements in the queue.
+     *
+     * @return an iterator.
+     */
+    override fun iterator(): Iterator&lt;T&gt; {
+<span class="fc" id="L85">        return object : Iterator&lt;T&gt; {</span>
+<span class="pc" id="L86">            var node = head</span>
+
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            override fun hasNext(): Boolean = node != null</span>
+
+            override fun next(): T {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">                if (!hasNext()) throw NoSuchElementException()</span>
+
+<span class="fc" id="L93">                val current = node!!</span>
+<span class="fc" id="L94">                node = current.next</span>
+<span class="fc" id="L95">                return current.value</span>
+            }
+        }
+    }
+
+    /**
+     * Retrieves, but does not remove, the head of the queue.
+     *
+     * @return the head of the queue, or `null` if the queue is empty.
+     */
+    fun peek(): T? {
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (size == 0) throw NoSuchElementException()</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">        return head?.value</span>
+    }
+
+    /**
+     * Retrieves and removes the head of the queue.
+     *
+     * @return the head of the queue.
+     * @throws NoSuchElementException if the queue is empty.
+     */
+    fun poll(): T {
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        if (size == 0) throw NoSuchElementException()</span>
+<span class="fc" id="L118">        val old = head!!</span>
+<span class="fc" id="L119">        head = old.next</span>
+<span class="fc" id="L120">        size--</span>
+<span class="fc" id="L121">        return old.value</span>
+    }
+
+    /**
+     * Adds an element to the end of the queue.
+     *
+     * @param item the element to be added to the queue.
+     */
+    fun add(item: T) {
+<span class="fc" id="L130">        val newNode = Node(item)</span>
+<span class="fc" id="L131">        val tail = this.tail</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        if (tail == null) {</span>
+<span class="fc" id="L133">            head = newNode</span>
+<span class="fc" id="L134">            this.tail = newNode</span>
+        } else {
+<span class="fc" id="L136">            tail.next = newNode</span>
+<span class="fc" id="L137">            this.tail = newNode</span>
+        }
+<span class="fc" id="L139">        size++</span>
+<span class="fc" id="L140">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

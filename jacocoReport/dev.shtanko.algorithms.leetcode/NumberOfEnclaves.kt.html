@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NumberOfEnclaves.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NumberOfEnclaves.kt</span></div><h1>NumberOfEnclaves.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+/**
+ * 1020. Number of Enclaves
+ * @see &lt;a href=&quot;https://leetcode.com/problems/number-of-enclaves/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface NumberOfEnclaves {
+    operator fun invoke(grid: Array&lt;IntArray&gt;): Int
+}
+
+<span class="fc" id="L30">class NumberOfEnclavesDFS : NumberOfEnclaves {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L32">        var result = 0</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (i in grid.indices) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            for (j in 0 until grid[i].size) {</span>
+<span class="fc bfc" id="L35" title="All 8 branches covered.">                if (i == 0 || j == 0 || i == grid.size - 1 || j == grid[i].size - 1) {</span>
+<span class="fc" id="L36">                    dfs(grid, i, j)</span>
+                }
+            }
+        }
+
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (i in grid.indices) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            for (j in 0 until grid[i].size) {</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">                if (grid[i][j] == 1) result++</span>
+            }
+        }
+
+<span class="fc" id="L47">        return result</span>
+    }
+
+    private fun dfs(a: Array&lt;IntArray&gt;, i: Int, j: Int) {
+<span class="pc bpc" id="L51" title="2 of 10 branches missed.">        if (i &gt;= 0 &amp;&amp; i &lt;= a.size - 1 &amp;&amp; j &gt;= 0 &amp;&amp; j &lt;= a[i].size - 1 &amp;&amp; a[i][j] == 1) {</span>
+<span class="fc" id="L52">            a[i][j] = 0</span>
+<span class="fc" id="L53">            dfs(a, i + 1, j)</span>
+<span class="fc" id="L54">            dfs(a, i - 1, j)</span>
+<span class="fc" id="L55">            dfs(a, i, j + 1)</span>
+<span class="fc" id="L56">            dfs(a, i, j - 1)</span>
+        }
+<span class="fc" id="L58">    }</span>
+}
+
+<span class="fc" id="L61">class NumberOfEnclavesBFS : NumberOfEnclaves {</span>
+
+<span class="fc" id="L63">    private val directions = arrayOf(intArrayOf(-1, 0), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(0, 1))</span>
+
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc bfc" id="L66" title="All 4 branches covered.">        if (grid.isEmpty()) return 0</span>
+<span class="pc bpc" id="L67" title="2 of 4 branches missed.">        if (grid.first().isEmpty()) return 0</span>
+<span class="fc" id="L68">        val rows = grid.size</span>
+<span class="fc" id="L69">        val cols = grid[0].size</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        val visited = Array(rows) { BooleanArray(cols) }</span>
+<span class="fc" id="L71">        val q = getStartPositions(grid, visited, rows, cols)</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        while (q.size &gt; 0) {</span>
+<span class="fc" id="L73">            val cell = q.poll()</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            for (i in directions.indices) {</span>
+<span class="fc" id="L75">                val row = cell[0] + directions[i][0]</span>
+<span class="fc" id="L76">                val col = cell[1] + directions[i][1]</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">                if (isValid(grid, visited, row, col, rows, cols)) {</span>
+<span class="fc" id="L78">                    visited[row][col] = true</span>
+<span class="fc" id="L79">                    q.offer(intArrayOf(row, col))</span>
+                }
+            }
+        }
+<span class="fc" id="L83">        var unvisitedCount = 0</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (i in 1 until rows - 1) {</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            for (j in 1 until cols - 1) {</span>
+<span class="fc bfc" id="L86" title="All 4 branches covered.">                if (grid[i][j] == 1 &amp;&amp; !visited[i][j]) unvisitedCount++</span>
+            }
+        }
+<span class="fc" id="L89">        return unvisitedCount</span>
+    }
+
+    private fun getStartPositions(
+        grid: Array&lt;IntArray&gt;,
+        visited: Array&lt;BooleanArray&gt;,
+        rows: Int,
+        cols: Int,
+    ): Queue&lt;IntArray&gt; {
+<span class="fc" id="L98">        val bottom = rows - 1</span>
+<span class="fc" id="L99">        val right = cols - 1</span>
+<span class="fc" id="L100">        val q: Queue&lt;IntArray&gt; = LinkedList()</span>
+<span class="fc" id="L101">        calculateTopRight(q = q, bottom = bottom, right = right, grid = grid, visited = visited)</span>
+<span class="fc" id="L102">        calculateBottomLeft(q = q, bottom = bottom, right = right, grid = grid, visited = visited)</span>
+<span class="fc" id="L103">        return q</span>
+    }
+
+    @Suppress(&quot;UNUSED_CHANGED_VALUE&quot;)
+<span class="fc" id="L107">    private fun calculateTopRight(</span>
+        q: Queue&lt;IntArray&gt;,
+<span class="fc" id="L109">        top: Int = 0,</span>
+        bottom: Int,
+<span class="fc" id="L111">        left: Int = 0,</span>
+        right: Int,
+        grid: Array&lt;IntArray&gt;,
+        visited: Array&lt;BooleanArray&gt;,
+    ) {
+<span class="fc" id="L116">        var t = top</span>
+<span class="fc" id="L117">        var r = right</span>
+        // UP
+<span class="pc bpc" id="L119" title="2 of 4 branches missed.">        if (t &lt;= bottom &amp;&amp; left &lt;= r) {</span>
+<span class="pc bpc" id="L120" title="1 of 4 branches missed.">            for (col in left..r) {</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">                if (grid[t][col] == 1) {</span>
+<span class="fc" id="L122">                    visited[t][col] = true</span>
+<span class="fc" id="L123">                    q.offer(intArrayOf(t, col))</span>
+                }
+            }
+<span class="fc" id="L126">            t++</span>
+        }
+
+        // RIGHT
+<span class="pc bpc" id="L130" title="2 of 4 branches missed.">        if (top &lt;= bottom &amp;&amp; left &lt;= r) {</span>
+<span class="pc bpc" id="L131" title="1 of 4 branches missed.">            for (row in top..bottom) {</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">                if (grid[row][r] == 1) {</span>
+<span class="nc" id="L133">                    visited[row][r] = true</span>
+<span class="nc" id="L134">                    q.offer(intArrayOf(row, r))</span>
+                }
+            }
+<span class="fc" id="L137">            r--</span>
+        }
+<span class="fc" id="L139">    }</span>
+
+    @Suppress(&quot;UNUSED_CHANGED_VALUE&quot;)
+<span class="fc" id="L142">    private fun calculateBottomLeft(</span>
+        q: Queue&lt;IntArray&gt;,
+<span class="fc" id="L144">        top: Int = 0,</span>
+        bottom: Int,
+<span class="fc" id="L146">        left: Int = 0,</span>
+        right: Int,
+        grid: Array&lt;IntArray&gt;,
+        visited: Array&lt;BooleanArray&gt;,
+    ) {
+<span class="fc" id="L151">        var b = bottom</span>
+        // DOWN
+<span class="pc bpc" id="L153" title="2 of 4 branches missed.">        if (top &lt;= b &amp;&amp; left &lt;= right) {</span>
+<span class="pc bpc" id="L154" title="1 of 4 branches missed.">            for (col in right downTo left) {</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">                if (grid[b][col] == 1) {</span>
+<span class="nc" id="L156">                    visited[b][col] = true</span>
+<span class="nc" id="L157">                    q.offer(intArrayOf(b, col))</span>
+                }
+            }
+<span class="fc" id="L160">            b--</span>
+        }
+
+        // LEFT
+<span class="pc bpc" id="L164" title="2 of 4 branches missed.">        if (top &lt;= bottom &amp;&amp; left &lt;= right) {</span>
+<span class="pc bpc" id="L165" title="1 of 4 branches missed.">            for (row in bottom downTo top) {</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">                if (grid[row][left] == 1) {</span>
+<span class="fc" id="L167">                    visited[row][left] = true</span>
+<span class="fc" id="L168">                    q.offer(intArrayOf(row, left))</span>
+                }
+            }
+        }
+<span class="fc" id="L172">    }</span>
+
+    private fun isValid(
+        grid: Array&lt;IntArray&gt;,
+        visited: Array&lt;BooleanArray&gt;,
+        row: Int,
+        col: Int,
+        rows: Int,
+        cols: Int,
+    ): Boolean {
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        if (!validCoords(row, col, rows, cols)) return false</span>
+<span class="fc bfc" id="L183" title="All 4 branches covered.">        return if (visited[row][col]) false else grid[row][col] == 1</span>
+    }
+
+    private fun validCoords(row: Int, col: Int, rows: Int, cols: Int): Boolean {
+<span class="pc bpc" id="L187" title="2 of 10 branches missed.">        return row in 0 until rows &amp;&amp; col &gt;= 0 &amp;&amp; col &lt; cols</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BitwiseComplement.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">BitwiseComplement.kt</span></div><h1>BitwiseComplement.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.ln
+
+/**
+ * 1009. Complement of Base 10 Integer
+ * @see &lt;a href=&quot;https://leetcode.com/problems/complement-of-base-10-integer/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface BitwiseComplement {
+    operator fun invoke(n: Int): Int
+}
+
+/**
+ * Approach 1: Flip Bit by Bit
+ * Time Complexity: O(1), since we're doing not more than 32 iterations here.
+ * Space Complexity: O(1).
+ */
+<span class="fc" id="L34">class BitwiseComplementFlipBit : BitwiseComplement {</span>
+    override operator fun invoke(n: Int): Int {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (n == 0) return 1</span>
+<span class="fc" id="L37">        var todo = n</span>
+<span class="fc" id="L38">        var bit = 1</span>
+<span class="fc" id="L39">        var c = n</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        while (todo != 0) {</span>
+<span class="fc" id="L41">            c = c xor bit</span>
+<span class="fc" id="L42">            bit = bit shl 1</span>
+<span class="fc" id="L43">            todo = todo shr 1</span>
+        }
+<span class="fc" id="L45">        return c</span>
+    }
+}
+
+/**
+ * Approach 2: Compute Bit Length and Construct 1-bits Bitmask
+ * Time Complexity: O(1).
+ * Space Complexity: O(1).
+ */
+<span class="fc" id="L54">class BitwiseComplementBitmask : BitwiseComplement {</span>
+    override operator fun invoke(n: Int): Int {
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (n == 0) return 1</span>
+<span class="fc" id="L57">        val l = ln(n.toDouble()).div(ln(2.0)).plus(1).toInt()</span>
+<span class="fc" id="L58">        val bitmask = 1.shl(l).minus(1)</span>
+<span class="fc" id="L59">        return bitmask xor n</span>
+    }
+}
+
+/**
+ * Approach 3: Built-in Functions to Construct 1-bits Bitmask
+ * Time Complexity: O(1), since we're doing not more than 32 iterations here.
+ * Space Complexity: O(1).
+ */
+<span class="fc" id="L68">class BitwiseComplementBuiltInFunc : BitwiseComplement {</span>
+    override operator fun invoke(n: Int): Int {
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        return if (n == 0) 1 else Integer.highestOneBit(n).shl(1).minus(n).minus(1)</span>
+    }
+}
+
+/**
+ * Approach 4: highestOneBit OpenJDK algorithm from Hacker's Delight
+ * Time Complexity: O(1).
+ * Space Complexity: O(1).
+ */
+<span class="fc" id="L79">class HighestOneBit : BitwiseComplement {</span>
+    override operator fun invoke(n: Int): Int {
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (n == 0) return 1</span>
+<span class="fc" id="L82">        var bitmask: Int = n</span>
+<span class="fc" id="L83">        bitmask = bitmask or bitmask.shr(BIT_COUNT_POW)</span>
+<span class="fc" id="L84">        bitmask = bitmask or bitmask.shr(BIT_COUNT_POW_1)</span>
+<span class="fc" id="L85">        bitmask = bitmask or bitmask.shr(BIT_COUNT_POW_2)</span>
+<span class="fc" id="L86">        bitmask = bitmask or bitmask.shr(BIT_COUNT_POW_3)</span>
+<span class="fc" id="L87">        bitmask = bitmask or bitmask.shr(BIT_COUNT_POW_4)</span>
+        // flip all bits
+<span class="fc" id="L89">        return bitmask xor n</span>
+    }
+
+    companion object {
+        private const val BIT_COUNT_POW = 1
+        private const val BIT_COUNT_POW_1 = 2
+        private const val BIT_COUNT_POW_2 = 4
+        private const val BIT_COUNT_POW_3 = 8
+        private const val BIT_COUNT_POW_4 = 16
+    }
+}
+
+<span class="fc" id="L101">class BitwiseComplementBruteForce : BitwiseComplement {</span>
+    override operator fun invoke(n: Int): Int {
+<span class="fc" id="L103">        var x = 1</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        while (n &gt; x) x = x * 2 + 1</span>
+<span class="fc" id="L105">        return x - n</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

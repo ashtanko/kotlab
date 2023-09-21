@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrimePalindrome.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PrimePalindrome.kt</span></div><h1>PrimePalindrome.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import dev.shtanko.algorithms.extensions.isPrime
+import kotlin.math.pow
+
+/**
+ * Prime Palindrome
+ * @see &lt;a href=&quot;https://leetcode.com/problems/prime-palindrome/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface PrimePalindrome {
+    operator fun invoke(n: Int): Int
+}
+
+/**
+ * Approach 1: Iterate Palindromes
+ * Time Complexity: O(N).
+ * Space Complexity: O(logN).
+ */
+<span class="fc" id="L35">class IteratePalindromes : PrimePalindrome {</span>
+    override operator fun invoke(n: Int): Int {
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        for (L in 1..MAX) {</span>
+            // Check for odd-length palindromes
+<span class="fc" id="L39">            val local = DECIMAL.toDouble().pow((L - 1).toDouble()).toInt()</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            for (root in local until DECIMAL.toDouble().pow(L.toDouble()).toInt()) {</span>
+<span class="fc" id="L41">                val sb = StringBuilder(root.toString())</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                for (k in L - 2 downTo 0) sb.append(sb[k])</span>
+<span class="fc" id="L43">                val x = Integer.valueOf(sb.toString())</span>
+<span class="fc bfc" id="L44" title="All 4 branches covered.">                if (x &gt;= n &amp;&amp; x.isPrime()) return x</span>
+            }
+
+            // Check for even-length palindromes
+<span class="fc" id="L48">            val start = DECIMAL.toDouble().pow((L - 1).toDouble()).toInt()</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            for (root in start until DECIMAL.toDouble().pow(L.toDouble()).toInt()) {</span>
+<span class="fc" id="L50">                val sb = StringBuilder(root.toString())</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">                for (k in L - 1 downTo 0) sb.append(sb[k])</span>
+<span class="fc" id="L52">                val x = Integer.valueOf(sb.toString())</span>
+<span class="fc bfc" id="L53" title="All 4 branches covered.">                if (x &gt;= n &amp;&amp; x.isPrime()) return x</span>
+            }
+        }
+<span class="nc" id="L56">        return 0</span>
+    }
+
+    companion object {
+        private const val MAX = 5
+    }
+}
+
+/**
+ * Approach 2: Brute Force with Mathematical Shortcut
+ * Time Complexity: O(N).
+ * Space Complexity: O(1).
+ */
+<span class="fc" id="L69">class PrimePalindromeBruteForce : PrimePalindrome {</span>
+    override operator fun invoke(n: Int): Int {
+<span class="fc" id="L71">        var x = n</span>
+<span class="fc" id="L72">        while (true) {</span>
+<span class="fc bfc" id="L73" title="All 4 branches covered.">            if (x == reverse(x) &amp;&amp; x.isPrime()) {</span>
+<span class="fc" id="L74">                return x</span>
+            }
+<span class="fc" id="L76">            x++</span>
+<span class="pc bpc" id="L77" title="4 of 6 branches missed.">            if (x in RANGE_START..RANGE_END) {</span>
+<span class="nc" id="L78">                x = MAX</span>
+            }
+        }
+    }
+
+    private fun reverse(n: Int): Int {
+<span class="fc" id="L84">        var x = n</span>
+<span class="fc" id="L85">        var ans = 0</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        while (x &gt; 0) {</span>
+<span class="fc" id="L87">            ans = DECIMAL * ans + x % DECIMAL</span>
+<span class="fc" id="L88">            x /= DECIMAL</span>
+        }
+<span class="fc" id="L90">        return ans</span>
+    }
+
+    companion object {
+        private const val RANGE_START = 10_000_001
+        private const val RANGE_END = 99_999_999
+        private const val MAX = 100_000_000
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

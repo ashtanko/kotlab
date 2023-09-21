@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RotateImage.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">RotateImage.kt</span></div><h1>RotateImage.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface RotateImage {
+    fun rotate(matrix: Array&lt;IntArray&gt;)
+}
+
+/**
+ * Approach 1: Rotate Groups of Four Cells
+ * Time complexity : O(M)
+ * Space complexity : O(1)
+ */
+<span class="fc" id="L28">class RotateGroups : RotateImage {</span>
+    override fun rotate(matrix: Array&lt;IntArray&gt;) {
+<span class="fc" id="L30">        val n: Int = matrix.size</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        for (i in 0 until (n + 1) / 2) {</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">            for (j in 0 until n / 2) {</span>
+<span class="fc" id="L33">                val temp = matrix[n - 1 - j][i]</span>
+<span class="fc" id="L34">                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - j - 1]</span>
+<span class="fc" id="L35">                matrix[n - 1 - i][n - j - 1] = matrix[j][n - 1 - i]</span>
+<span class="fc" id="L36">                matrix[j][n - 1 - i] = matrix[i][j]</span>
+<span class="fc" id="L37">                matrix[i][j] = temp</span>
+            }
+        }
+<span class="fc" id="L40">    }</span>
+}
+
+/**
+ * Approach 2: Reverse on Diagonal and then Reverse Left to Right
+ * Time complexity : O(M)
+ * Space complexity : O(1)
+ */
+<span class="fc" id="L48">class ReverseLeftToRight : RotateImage {</span>
+    override fun rotate(matrix: Array&lt;IntArray&gt;) {
+<span class="fc" id="L50">        transpose(matrix)</span>
+<span class="fc" id="L51">        reflect(matrix)</span>
+<span class="fc" id="L52">    }</span>
+
+    private fun transpose(matrix: Array&lt;IntArray&gt;) {
+<span class="fc" id="L55">        val n = matrix.size</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            for (j in i until n) {</span>
+<span class="fc" id="L58">                val tmp = matrix[j][i]</span>
+<span class="fc" id="L59">                matrix[j][i] = matrix[i][j]</span>
+<span class="fc" id="L60">                matrix[i][j] = tmp</span>
+            }
+        }
+<span class="fc" id="L63">    }</span>
+
+    private fun reflect(matrix: Array&lt;IntArray&gt;) {
+<span class="fc" id="L66">        val n = matrix.size</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            for (j in 0 until n / 2) {</span>
+<span class="fc" id="L69">                val tmp = matrix[i][j]</span>
+<span class="fc" id="L70">                matrix[i][j] = matrix[i][n - j - 1]</span>
+<span class="fc" id="L71">                matrix[i][n - j - 1] = tmp</span>
+            }
+        }
+<span class="fc" id="L74">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

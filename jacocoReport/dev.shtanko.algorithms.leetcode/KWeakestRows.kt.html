@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KWeakestRows.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">KWeakestRows.kt</span></div><h1>KWeakestRows.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.PriorityQueue
+
+/**
+ * 1337. The K Weakest Rows in a Matrix
+ * @see &lt;a href=&quot;https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix&quot;&gt;Source&lt;/a&gt;
+ */
+fun interface KWeakestRows {
+    operator fun invoke(mat: Array&lt;IntArray&gt;, k: Int): IntArray
+}
+
+<span class="fc" id="L29">class KWeakestRowsPQ : KWeakestRows {</span>
+    override fun invoke(mat: Array&lt;IntArray&gt;, k: Int): IntArray {
+        fun numOnes(row: IntArray): Int {
+<span class="fc" id="L32">            var lo = 0</span>
+<span class="fc" id="L33">            var hi = row.size</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            while (lo &lt; hi) {</span>
+<span class="fc" id="L35">                val mid = lo + (hi - lo) / 2</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">                if (row[mid] == 1) lo = mid + 1 else hi = mid</span>
+            }
+<span class="fc" id="L38">            return lo</span>
+        }
+
+<span class="fc" id="L41">        val pq: PriorityQueue&lt;IntArray&gt; = PriorityQueue { a, b -&gt;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            if (a[0] != b[0]) b[0] - a[0] else b[1] - a[1]</span>
+        }
+<span class="fc" id="L44">        var k0 = k</span>
+<span class="fc" id="L45">        val ans = IntArray(k0)</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (i in mat.indices) {</span>
+<span class="fc" id="L48">            pq.offer(intArrayOf(numOnes(mat[i]), i))</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            if (pq.size &gt; k0) pq.poll()</span>
+        }
+
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        while (k0 &gt; 0) {</span>
+<span class="fc" id="L53">            ans[--k0] = pq.poll()[1]</span>
+        }
+
+<span class="fc" id="L56">        return ans</span>
+    }
+}
+
+<span class="fc" id="L60">class KWeakestRowsBF : KWeakestRows {</span>
+<span class="fc" id="L61">    override fun invoke(mat: Array&lt;IntArray&gt;, k: Int) = Pair(mat, k).kWeakestRows()</span>
+
+    private fun Pair&lt;Array&lt;IntArray&gt;, Int&gt;.kWeakestRows(): IntArray {
+<span class="fc" id="L64">        val matrix = first</span>
+<span class="fc" id="L65">        val rows = matrix.size</span>
+<span class="fc" id="L66">        val cols = matrix.first().size</span>
+<span class="fc" id="L67">        val score = IntArray(rows)</span>
+        var j: Int
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        for (i in 0 until rows) {</span>
+<span class="fc" id="L70">            j = 0</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">            while (j &lt; cols) {</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">                if (matrix[i][j] == 0) {</span>
+<span class="fc" id="L73">                    break</span>
+                }
+<span class="fc" id="L75">                j++</span>
+            }
+<span class="fc" id="L77">            score[i] = j * rows + i</span>
+        }
+<span class="fc" id="L79">        score.sort()</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (i in score.indices) {</span>
+<span class="fc" id="L81">            score[i] = score[i] % rows</span>
+        }
+<span class="fc" id="L83">        return score.copyOfRange(0, second)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

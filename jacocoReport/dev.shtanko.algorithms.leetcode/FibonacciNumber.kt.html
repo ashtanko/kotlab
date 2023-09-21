@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FibonacciNumber.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FibonacciNumber.kt</span></div><h1>FibonacciNumber.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import dev.shtanko.algorithms.dp.fibonacciAt
+import kotlin.math.pow
+import kotlin.math.roundToLong
+import kotlin.math.sqrt
+
+/**
+ * 509. Fibonacci Number
+ * @see &lt;a href=&quot;https://leetcode.com/problems/fibonacci-number/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface FibonacciStrategy {
+    operator fun invoke(n: Int): Long
+}
+
+/**
+ * Solution 1: Iterative
+ */
+<span class="fc" id="L35">class FibonacciIterative : FibonacciStrategy {</span>
+    override operator fun invoke(n: Int): Long {
+<span class="fc" id="L37">        var n1: Long = n.toLong()</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (n1 &lt;= 1) return n1</span>
+<span class="fc" id="L39">        var a = 0</span>
+<span class="fc" id="L40">        var b = 1</span>
+
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        while (n1-- &gt; 1) {</span>
+<span class="fc" id="L43">            val sum = a + b</span>
+<span class="fc" id="L44">            a = b</span>
+<span class="fc" id="L45">            b = sum</span>
+        }
+<span class="fc" id="L47">        return b.toLong()</span>
+    }
+}
+
+/**
+ * Solution 2: Recursive
+ */
+<span class="fc" id="L54">class FibonacciRecursion : FibonacciStrategy {</span>
+    override operator fun invoke(n: Int): Long {
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (n &lt;= 1) {</span>
+<span class="fc" id="L57">            return n.toLong()</span>
+        }
+<span class="fc" id="L59">        return invoke(n - 1) + invoke(n - 2)</span>
+    }
+}
+
+<span class="fc" id="L63">class FibonacciOptimizedRecursion : FibonacciStrategy {</span>
+    override operator fun invoke(n: Int): Long {
+<span class="fc" id="L65">        return fibonacciAt(n)</span>
+    }
+}
+
+/**
+ * Solution 4: Dynamic Programming - Bottom Up Approach
+ */
+<span class="fc" id="L72">class FibonacciBottomUp : FibonacciStrategy {</span>
+    override operator fun invoke(n: Int): Long {
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (n &lt;= 1) {</span>
+<span class="fc" id="L75">            return n.toLong()</span>
+        }
+<span class="fc" id="L77">        return memoize(n)</span>
+    }
+
+    private fun memoize(n: Int): Long {
+<span class="fc" id="L81">        val cache = LongArray(n + 1)</span>
+<span class="fc" id="L82">        cache[1] = 1</span>
+<span class="pc bpc" id="L83" title="1 of 4 branches missed.">        for (i in 2..n) {</span>
+<span class="fc" id="L84">            cache[i] = cache[i - 1] + cache[i - 2]</span>
+        }
+<span class="fc" id="L86">        return cache[n]</span>
+    }
+}
+
+/**
+ * Solution 3: Dynamic Programming - Top-Down Approach
+ */
+<span class="fc" id="L93">class FibonacciTopDown : FibonacciStrategy {</span>
+
+<span class="fc" id="L95">    private val cache = arrayOfNulls&lt;Long&gt;(60)</span>
+
+    override operator fun invoke(n: Int): Long {
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (n &lt;= 1) {</span>
+<span class="fc" id="L99">            return n.toLong()</span>
+        }
+<span class="fc" id="L101">        cache[0] = 0</span>
+<span class="fc" id="L102">        cache[1] = 1</span>
+<span class="fc" id="L103">        return memoize(n)</span>
+    }
+
+    private fun memoize(n: Int): Long {
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        if (cache[n] != null) {</span>
+<span class="fc" id="L108">            return cache[n]!!</span>
+        }
+<span class="fc" id="L110">        cache[n] = memoize(n - 1) + memoize(n - 2)</span>
+<span class="fc" id="L111">        return memoize(n)</span>
+    }
+}
+
+<span class="fc" id="L115">class FibonacciIterativeTopDown : FibonacciStrategy {</span>
+    override operator fun invoke(n: Int): Long {
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        if (n &lt;= 1) {</span>
+<span class="fc" id="L118">            return n.toLong()</span>
+        }
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        if (n == 2) {</span>
+<span class="fc" id="L121">            return 1</span>
+        }
+
+<span class="fc" id="L124">        var current = 0</span>
+<span class="fc" id="L125">        var prev1 = 1</span>
+<span class="fc" id="L126">        var prev2 = 1</span>
+
+<span class="pc bpc" id="L128" title="1 of 4 branches missed.">        for (i in 3..n) {</span>
+<span class="fc" id="L129">            current = prev1 + prev2</span>
+<span class="fc" id="L130">            prev2 = prev1</span>
+<span class="fc" id="L131">            prev1 = current</span>
+        }
+<span class="fc" id="L133">        return current.toLong()</span>
+    }
+}
+
+<span class="fc" id="L137">class FibonacciMatrixExponentiation : FibonacciStrategy {</span>
+    override operator fun invoke(n: Int): Long {
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        if (n &lt;= 1) {</span>
+<span class="fc" id="L140">            return n.toLong()</span>
+        }
+<span class="fc" id="L142">        val a = arrayOf(intArrayOf(1, 1), intArrayOf(1, 0))</span>
+<span class="fc" id="L143">        matrixPower(a, n - 1)</span>
+
+<span class="fc" id="L145">        return a[0][0].toLong()</span>
+    }
+
+    private fun matrixPower(arr: Array&lt;IntArray&gt;, n: Int) {
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        if (n &lt;= 1) {</span>
+<span class="fc" id="L150">            return</span>
+        }
+<span class="fc" id="L152">        matrixPower(arr, n / 2)</span>
+<span class="fc" id="L153">        multiply(arr, arr)</span>
+<span class="fc" id="L154">        val b = arrayOf(intArrayOf(1, 1), intArrayOf(1, 0))</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        if (n % 2 != 0) {</span>
+<span class="fc" id="L156">            multiply(arr, b)</span>
+        }
+<span class="fc" id="L158">    }</span>
+
+    private fun multiply(matrixA: Array&lt;IntArray&gt;, matrixB: Array&lt;IntArray&gt;) {
+<span class="fc" id="L161">        val x = matrixA[0][0] * matrixB[0][0] + matrixA[0][1] * matrixB[1][0]</span>
+<span class="fc" id="L162">        val y = matrixA[0][0] * matrixB[0][1] + matrixA[0][1] * matrixB[1][1]</span>
+<span class="fc" id="L163">        val z = matrixA[1][0] * matrixB[0][0] + matrixA[1][1] * matrixB[1][0]</span>
+<span class="fc" id="L164">        val w = matrixA[1][0] * matrixB[0][1] + matrixA[1][1] * matrixB[1][1]</span>
+<span class="fc" id="L165">        matrixA[0][0] = x</span>
+<span class="fc" id="L166">        matrixA[0][1] = y</span>
+<span class="fc" id="L167">        matrixA[1][0] = z</span>
+<span class="fc" id="L168">        matrixA[1][1] = w</span>
+<span class="fc" id="L169">    }</span>
+}
+
+<span class="fc" id="L172">class FibonacciMath : FibonacciStrategy {</span>
+
+    override operator fun invoke(n: Int): Long {
+<span class="fc" id="L175">        val goldenRatio = 1.plus(sqrt(GOLDEN_RATIO_VALUE)) / 2</span>
+<span class="fc" id="L176">        return goldenRatio.pow(n).div(sqrt(GOLDEN_RATIO_VALUE)).roundToLong()</span>
+    }
+
+    companion object {
+        private const val GOLDEN_RATIO_VALUE = 5.0
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

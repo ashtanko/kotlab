@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinSpeedToArriveOnTime.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MinSpeedToArriveOnTime.kt</span></div><h1>MinSpeedToArriveOnTime.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.ceil
+
+/**
+ * 1870. Minimum Speed to Arrive on Time
+ * @see &lt;a href=&quot;https://leetcode.com/problems/minimum-speed-to-arrive-on-time/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MinSpeedToArriveOnTime {
+    operator fun invoke(dist: IntArray, hour: Double): Int
+}
+
+/**
+ * Approach: Binary Search
+ */
+<span class="fc" id="L32">class MinSpeedToArriveOnTimeBS : MinSpeedToArriveOnTime {</span>
+
+    companion object {
+        private const val UPPER_BOUND = 10000000
+    }
+
+    override operator fun invoke(dist: IntArray, hour: Double): Int {
+<span class="fc" id="L39">        var left = 1</span>
+<span class="fc" id="L40">        var right = UPPER_BOUND</span>
+<span class="fc" id="L41">        var minSpeed = -1</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        while (left &lt;= right) {</span>
+<span class="fc" id="L44">            val mid = (left + right) / 2</span>
+
+            // Move to the left half.
+<span class="fc bfc" id="L47" title="All 2 branches covered.">            if (calculateRequiredTime(dist, mid) &lt;= hour) {</span>
+<span class="fc" id="L48">                minSpeed = mid</span>
+<span class="fc" id="L49">                right = mid - 1</span>
+            } else {
+                // Move to the right half.
+<span class="fc" id="L52">                left = mid + 1</span>
+            }
+        }
+<span class="fc" id="L55">        return minSpeed</span>
+    }
+
+    private fun calculateRequiredTime(dist: IntArray, speed: Int): Double {
+<span class="fc" id="L59">        var time = 0.0</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        for (i in dist.indices) {</span>
+<span class="fc" id="L61">            val t = dist[i].toDouble() / speed.toDouble()</span>
+            // Round off to the next integer, if not the last ride.
+<span class="fc bfc" id="L63" title="All 2 branches covered.">            time += if (i == dist.size - 1) t else ceil(t)</span>
+        }
+<span class="fc" id="L65">        return time</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

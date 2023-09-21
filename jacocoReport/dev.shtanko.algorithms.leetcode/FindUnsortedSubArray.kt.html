@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindUnsortedSubArray.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FindUnsortedSubArray.kt</span></div><h1>FindUnsortedSubArray.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Stack
+import kotlin.math.max
+import kotlin.math.min
+
+/**
+ * Shortest Unsorted Continuous Subarray
+ * @see &lt;a href=&quot;https://leetcode.com/problems/shortest-unsorted-continuous-subarray/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface FindUnsortedSubArray {
+    operator fun invoke(nums: IntArray): Int
+}
+
+/**
+ * Approach 1: Brute Force
+ * Time complexity : O(n^3)
+ * Space complexity : O(1)
+ */
+<span class="fc" id="L36">class FindUnsortedSubArrayBruteForce : FindUnsortedSubArray {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L38">        var res: Int = nums.size</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        for (i in nums.indices) {</span>
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">            for (j in i..nums.size) {</span>
+<span class="fc" id="L41">                var min = Int.MAX_VALUE</span>
+<span class="fc" id="L42">                var max = Int.MIN_VALUE</span>
+<span class="fc" id="L43">                var prev = Int.MIN_VALUE</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                for (k in i until j) {</span>
+<span class="fc" id="L45">                    min = min(min, nums[k])</span>
+<span class="fc" id="L46">                    max = max(max, nums[k])</span>
+                }
+<span class="fc bfc" id="L48" title="All 4 branches covered.">                val first = i &gt; 0 &amp;&amp; nums[i - 1] &gt; min</span>
+<span class="fc bfc" id="L49" title="All 4 branches covered.">                val second = j &lt; nums.size &amp;&amp; nums[j] &lt; max</span>
+<span class="fc bfc" id="L50" title="All 4 branches covered.">                if (first || second) continue</span>
+<span class="fc" id="L51">                var k = 0</span>
+<span class="fc bfc" id="L52" title="All 4 branches covered.">                while (k &lt; i &amp;&amp; prev &lt;= nums[k]) {</span>
+<span class="fc" id="L53">                    prev = nums[k]</span>
+<span class="fc" id="L54">                    k++</span>
+                }
+<span class="fc bfc" id="L56" title="All 2 branches covered.">                if (k != i) continue</span>
+<span class="fc" id="L57">                k = j</span>
+<span class="fc bfc" id="L58" title="All 4 branches covered.">                while (k &lt; nums.size &amp;&amp; prev &lt;= nums[k]) {</span>
+<span class="fc" id="L59">                    prev = nums[k]</span>
+<span class="fc" id="L60">                    k++</span>
+                }
+<span class="fc bfc" id="L62" title="All 2 branches covered.">                if (k == nums.size) {</span>
+<span class="fc" id="L63">                    res = min(res, j - i)</span>
+                }
+            }
+        }
+<span class="fc" id="L67">        return res</span>
+    }
+}
+
+/**
+ * Approach 2: Better Brute Force
+ * Time complexity : O(n^2)
+ * Space complexity : O(1)
+ */
+<span class="fc" id="L76">class FindUnsortedSubArrayBetterBruteForce : FindUnsortedSubArray {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L78">        var l: Int = nums.size</span>
+<span class="fc" id="L79">        var r = 0</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (i in 0 until nums.size - 1) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            for (j in i + 1 until nums.size) {</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">                if (nums[j] &lt; nums[i]) {</span>
+<span class="fc" id="L83">                    r = max(r, j)</span>
+<span class="fc" id="L84">                    l = min(l, i)</span>
+                }
+            }
+        }
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        return if (r - l &lt;= 0) 0 else r - l + 1</span>
+    }
+}
+
+/**
+ * Approach 3: Using Sorting
+ * Time complexity : O(n\log n)
+ * Space complexity : O(n)
+ */
+<span class="fc" id="L97">class FindUnsortedSubArraySort : FindUnsortedSubArray {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L99">        val snums = nums.clone().sorted()</span>
+<span class="fc" id="L100">        var start = snums.size</span>
+<span class="fc" id="L101">        var end = 0</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for (i in snums.indices) {</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            if (snums[i] != nums[i]) {</span>
+<span class="fc" id="L104">                start = min(start, i)</span>
+<span class="fc" id="L105">                end = max(end, i)</span>
+            }
+        }
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        return if (end - start &gt; 0) end - start + 1 else 0</span>
+    }
+}
+
+/**
+ * Approach 4: Using Stack
+ * Time complexity : O(n)
+ * Space complexity : O(n)
+ */
+<span class="fc" id="L117">class FindUnsortedSubArrayStack : FindUnsortedSubArray {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L119">        val stack: Stack&lt;Int&gt; = Stack&lt;Int&gt;()</span>
+<span class="fc" id="L120">        var l: Int = nums.size</span>
+<span class="fc" id="L121">        var r = 0</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">        for (i in nums.indices) {</span>
+<span class="fc bfc" id="L123" title="All 4 branches covered.">            while (!stack.isEmpty() &amp;&amp; nums[stack.peek()] &gt; nums[i]) l = min(l, stack.pop())</span>
+<span class="fc" id="L124">            stack.push(i)</span>
+        }
+<span class="fc" id="L126">        stack.clear()</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        for (i in nums.size - 1 downTo 0) {</span>
+<span class="fc bfc" id="L128" title="All 4 branches covered.">            while (!stack.isEmpty() &amp;&amp; nums[stack.peek()] &lt; nums[i]) r = max(r, stack.pop())</span>
+<span class="fc" id="L129">            stack.push(i)</span>
+        }
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        return if (r - l &gt; 0) r - l + 1 else 0</span>
+    }
+}
+
+/**
+ * Approach 5: Without Using Extra Space
+ * Time complexity : O(n)
+ * Space complexity : O(1)
+ */
+<span class="fc" id="L140">class FindUnsortedSubArrayConstSpace : FindUnsortedSubArray {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L142">        var min = Int.MAX_VALUE</span>
+<span class="fc" id="L143">        var max = Int.MIN_VALUE</span>
+<span class="fc" id="L144">        var flag = false</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        for (i in 1 until nums.size) {</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">            if (nums[i] &lt; nums[i - 1]) flag = true</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">            if (flag) min = min(min, nums[i])</span>
+        }
+<span class="fc" id="L149">        flag = false</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">        for (i in nums.size - 2 downTo 0) {</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">            if (nums[i] &gt; nums[i + 1]) flag = true</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">            if (flag) max = max(max, nums[i])</span>
+        }
+<span class="fc" id="L154">        var l = 0</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        while (l &lt; nums.size) {</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">            if (min &lt; nums[l]) break</span>
+<span class="fc" id="L157">            l++</span>
+        }
+<span class="fc" id="L159">        var r: Int = nums.size - 1</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        while (r &gt;= 0) {</span>
+<span class="fc bfc" id="L161" title="All 2 branches covered.">            if (max &gt; nums[r]) break</span>
+<span class="fc" id="L162">            r--</span>
+        }
+
+<span class="fc bfc" id="L165" title="All 2 branches covered.">        return if (r - l &lt; 0) 0 else r - l + 1</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

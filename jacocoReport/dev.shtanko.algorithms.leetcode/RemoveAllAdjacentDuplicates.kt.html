@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RemoveAllAdjacentDuplicates.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">RemoveAllAdjacentDuplicates.kt</span></div><h1>RemoveAllAdjacentDuplicates.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Stack
+
+/**
+ * 1047. Remove All Adjacent Duplicates In String
+ * @see &lt;a href=&quot;https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface RemoveAllAdjacentDuplicatesStrategy {
+    operator fun invoke(s: String): String
+}
+
+<span class="fc" id="L29">class RemoveAllAdjacentDuplicatesArray : RemoveAllAdjacentDuplicatesStrategy {</span>
+    override operator fun invoke(s: String): String {
+<span class="fc" id="L31">        var i = 0</span>
+<span class="fc" id="L32">        val n = s.length</span>
+<span class="fc" id="L33">        val res = s.toCharArray()</span>
+<span class="fc" id="L34">        var j = 0</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        while (j &lt; n) {</span>
+<span class="fc" id="L36">            res[i] = res[j]</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">            if (i &gt; 0 &amp;&amp; res[i - 1] == res[i]) {</span>
+<span class="fc" id="L38">                i -= 2</span>
+            }
+<span class="fc" id="L40">            ++j</span>
+<span class="fc" id="L41">            ++i</span>
+        }
+<span class="fc" id="L43">        return String(res, 0, i)</span>
+    }
+}
+
+<span class="fc" id="L47">class RemoveAllAdjacentDuplicatesStack : RemoveAllAdjacentDuplicatesStrategy {</span>
+    override operator fun invoke(s: String): String {
+<span class="fc" id="L49">        val stack: Stack&lt;Char&gt; = Stack()</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (c in s) {</span>
+<span class="pc bpc" id="L51" title="1 of 8 branches missed.">            if (stack.isNotEmpty() &amp;&amp; stack.peek() == c) {</span>
+<span class="fc" id="L52">                stack.pop()</span>
+            } else {
+<span class="fc" id="L54">                stack.push(c)</span>
+            }
+        }
+<span class="fc" id="L57">        val sb = StringBuilder()</span>
+<span class="fc bfc" id="L58" title="All 4 branches covered.">        while (stack.isNotEmpty()) sb.append(stack.pop())</span>
+<span class="fc" id="L59">        return sb.reverse().toString()</span>
+    }
+}
+
+// Using StringBuilder
+<span class="fc" id="L64">class RemoveAllAdjacentDuplicatesSB : RemoveAllAdjacentDuplicatesStrategy {</span>
+    override operator fun invoke(s: String): String {
+<span class="fc" id="L66">        val sb = StringBuilder()</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        for (c in s) {</span>
+<span class="fc" id="L68">            val size = sb.length</span>
+<span class="fc bfc" id="L69" title="All 4 branches covered.">            if (size &gt; 0 &amp;&amp; sb[size - 1] == c) {</span>
+<span class="fc" id="L70">                sb.deleteCharAt(size - 1)</span>
+            } else {
+<span class="fc" id="L72">                sb.append(c)</span>
+            }
+        }
+<span class="fc" id="L75">        return sb.toString()</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

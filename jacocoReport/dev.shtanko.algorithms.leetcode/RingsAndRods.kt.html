@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RingsAndRods.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">RingsAndRods.kt</span></div><h1>RingsAndRods.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 2103. Rings and Rods
+ * link https://leetcode.com/problems/rings-and-rods/
+ */
+fun interface RingsAndRods {
+    fun countPoints(rings: String): Int
+}
+
+<span class="fc" id="L27">class RingsAndRodsBF : RingsAndRods {</span>
+    override fun countPoints(rings: String): Int {
+<span class="fc" id="L29">        val map = HashMap&lt;String, MutableList&lt;String&gt;&gt;()</span>
+<span class="fc" id="L30">        rings.chunked(2).forEach {</span>
+<span class="fc" id="L31">            val a = it[1].toString()</span>
+<span class="fc" id="L32">            val b = it.first().toString()</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            if (map[a] == null) {</span>
+<span class="fc" id="L34">                map[a] = mutableListOf()</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">                map[a]?.add(b)</span>
+            } else {
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">                map[a]?.add(b)</span>
+            }
+<span class="fc" id="L39">        }</span>
+<span class="fc" id="L40">        var i = 0</span>
+<span class="fc" id="L41">        map.forEach { (_, u) -&gt;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            if (u.containsAll(listOf(&quot;R&quot;, &quot;G&quot;, &quot;B&quot;))) {</span>
+<span class="fc" id="L43">                i++</span>
+            }
+<span class="fc" id="L45">        }</span>
+<span class="fc" id="L46">        return i</span>
+    }
+}
+
+<span class="fc" id="L50">class RingsAndRodsBitmask : RingsAndRods {</span>
+    override fun countPoints(rings: String): Int {
+<span class="fc" id="L52">        val rods = IntArray(10)</span>
+<span class="fc" id="L53">        var i = 0</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        while (i &lt; rings.length - 1) {</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            if (rings[i] == 'R') {</span>
+<span class="fc" id="L56">                rods[rings[i + 1] - '0'] = rods[rings[i + 1] - '0'] or (1 shl 0)</span>
+            }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            if (rings[i] == 'G') {</span>
+<span class="fc" id="L59">                rods[rings[i + 1] - '0'] = rods[rings[i + 1] - '0'] or (1 shl 1)</span>
+            }
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (rings[i] == 'B') {</span>
+<span class="fc" id="L62">                rods[rings[i + 1] - '0'] = rods[rings[i + 1] - '0'] or (1 shl 2)</span>
+            }
+<span class="fc" id="L64">            i += 2</span>
+        }
+<span class="fc" id="L66">        var total = 0</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        for (i0 in rods.indices) {</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            if (rods[i0] == 7) total++</span>
+        }
+<span class="fc" id="L70">        return total</span>
+    }
+}
+
+<span class="fc" id="L74">class RingsAndRodsArray : RingsAndRods {</span>
+<span class="fc" id="L75">    class Ring {</span>
+<span class="fc" id="L76">        var hasRead = false</span>
+<span class="fc" id="L77">        var hasGreen = false</span>
+<span class="fc" id="L78">        var hasBlue = false</span>
+    }
+
+    override fun countPoints(rings: String): Int {
+        // Initialize
+<span class="fc" id="L83">        val arr = arrayOfNulls&lt;Ring&gt;(10)</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (i in 0..9) {</span>
+<span class="fc" id="L85">            arr[i] = Ring()</span>
+        }
+
+        // Check every pair of chars
+<span class="fc" id="L89">        var index = 0</span>
+<span class="fc" id="L90">        val size: Int = rings.length</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        while (index &lt; size) {</span>
+<span class="fc" id="L92">            val target: Int = java.lang.String.valueOf(rings[index + 1]).toInt()</span>
+<span class="fc" id="L93">            when (rings[index]) {</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">                'R' -&gt; {</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">                    arr[target]?.hasRead = true</span>
+                }
+
+<span class="fc bfc" id="L98" title="All 2 branches covered.">                'G' -&gt; {</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">                    arr[target]?.hasGreen = true</span>
+                }
+
+                else -&gt; {
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">                    arr[target]?.hasBlue = true</span>
+                }
+            }
+<span class="fc" id="L106">            index += 2</span>
+        }
+
+        // Count them
+<span class="fc" id="L110">        var count = 0</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        for (i in 0..9) {</span>
+<span class="pc bpc" id="L112" title="5 of 18 branches missed.">            if (arr[i]?.hasRead == true &amp;&amp; arr[i]?.hasGreen == true &amp;&amp; arr[i]?.hasBlue == true) {</span>
+<span class="fc" id="L113">                count++</span>
+            }
+        }
+<span class="fc" id="L116">        return count</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

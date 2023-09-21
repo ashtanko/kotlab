@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArrayMap.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.datastructures</a> &gt; <span class="el_source">ArrayMap.kt</span></div><h1>ArrayMap.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.datastructures
+
+import java.util.Arrays
+
+private const val ARRAY_MAP_SIZE_INDEX = 4
+
+/**
+ * An implementation of a Map that uses an array to store key-value pairs. This
+ * implementation provides constant-time performance for the basic operations
+ * ({@code put}, {@code get}, {@code remove}, {@code containsKey}) if the
+ * number of collisions is low.
+ * @param &lt;K&gt; The key type.
+ * @param &lt;V&gt; The value type.
+ */
+<span class="fc" id="L31">@Suppress(&quot;UNCHECKED_CAST&quot;)</span>
+<span class="fc" id="L32">class ArrayMap&lt;K, V&gt;(capacity: Int = 0) {</span>
+
+    private lateinit var hashes: IntArray
+    private lateinit var array: Array&lt;Any?&gt;
+
+    private var size = 0
+
+<span class="fc" id="L39">    init {</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (capacity &lt;= 0) {</span>
+<span class="fc" id="L41">            hashes = IntArray(0)</span>
+<span class="fc" id="L42">            array = arrayOf()</span>
+        } else {
+<span class="fc" id="L44">            allocArrays(capacity)</span>
+        }
+<span class="fc" id="L46">    }</span>
+
+    /**
+     * Returns true if this map has no key-value mappings.
+     *
+     * @return True if this map has no key-value mappings.
+     */
+<span class="fc bfc" id="L53" title="All 2 branches covered.">    fun isEmpty() = size &lt;= 0</span>
+
+    /**
+     * Returns the value to which the specified key is mapped, or null if this
+     * map contains no mapping for the key.
+     *
+     * @param key The key whose associated value is to be returned.
+     * @return The value to which the specified key is mapped, or null if this
+     * map contains no mapping for the key.
+     */
+    operator fun get(key: K): V? {
+<span class="fc" id="L64">        val index = indexOfKey(key)</span>
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">        return if (index &gt;= 0) array[(index shl 1) + 1] as V? else null</span>
+    }
+
+    /**
+     * Returns the index of the specified key, or a negative number if the key
+     * is not contained in the map.
+     *
+     * @param key The key to search for.
+     * @return The index of the specified key, or a negative number if the key
+     * is not contained in the map.
+     */
+    fun indexOfKey(key: K): Int {
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        return if (key == null) indexOfNull() else indexOf(key)</span>
+    }
+
+    /**
+     * Returns true if this map contains a mapping for the specified key.
+     *
+     * @param key The key to search for.
+     * @return True if this map contains a mapping for the specified key.
+     */
+<span class="fc bfc" id="L86" title="All 2 branches covered.">    fun containsKey(key: K) = indexOfKey(key) &gt;= 0</span>
+
+    /**
+     * Returns the key at the specified index.
+     *
+     * @param index The index of the key to return.
+     * @return The key at the specified index.
+     */
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">    fun keyAt(index: Int) = array[index shl 1] as K</span>
+
+    /**
+     * Returns the value at the specified index.
+     *
+     * @param index The index of the value to return.
+     * @return The value at the specified index.
+     */
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">    fun valueAt(index: Int) = array[(index shl 1) + 1] as V</span>
+
+    /**
+     * Sets the value at the specified index.
+     *
+     * @param index The index of the value to set.
+     * @param value The new value.
+     * @return The old value at the specified index.
+     */
+    fun setValueAt(index: Int, value: V): V? {
+<span class="fc" id="L112">        val valueIndex = (index shl 1) + 1</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">        val old = array[valueIndex] as V</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        array[valueIndex] = value</span>
+<span class="fc" id="L115">        return old</span>
+    }
+
+    /**
+     * Associates the specified value with the specified key in this ArrayMap.
+     * If the ArrayMap previously contained a mapping for the key, the old value is replaced.
+     * @param key the key with which the specified value is to be associated
+     * @param value the value to be associated with the specified key
+     * @return the previous value associated with key, or null if there was no mapping for key.
+     * (A null return can also indicate that the map previously associated null with key.)
+     */
+    fun put(key: K, value: V): V? {
+        val hash: Int
+        var index: Int
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        if (key == null) {</span>
+<span class="fc" id="L130">            hash = 0</span>
+<span class="fc" id="L131">            index = indexOfNull()</span>
+        } else {
+<span class="fc" id="L133">            hash = key.hashCode()</span>
+<span class="fc" id="L134">            index = indexOf(key)</span>
+        }
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        if (index &gt;= 0) {</span>
+            // key-value pair already present
+<span class="fc" id="L138">            index = (index shl 1) + 1</span>
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">            val old = array[index] as V</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">            array[index] = value</span>
+<span class="fc" id="L141">            return old</span>
+        }
+
+<span class="fc" id="L144">        index = index.inv()</span>
+<span class="pc bpc" id="L145" title="1 of 4 branches missed.">        if (size &gt;= hashes.size) {</span>
+<span class="fc" id="L146">            val shiftedSize = size shr 1</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">            val newSize = if (size &lt; ARRAY_MAP_SIZE_INDEX) ARRAY_MAP_SIZE_INDEX else size + shiftedSize</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">            val tempHashes = hashes</span>
+<span class="pc bpc" id="L149" title="1 of 2 branches missed.">            val tempArray = array</span>
+<span class="fc" id="L150">            allocArrays(newSize)</span>
+
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">            System.arraycopy(tempHashes, 0, hashes, 0, tempHashes.size)</span>
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">            System.arraycopy(tempArray, 0, array, 0, tempArray.size)</span>
+        }
+
+<span class="fc bfc" id="L156" title="All 2 branches covered.">        if (index &lt; size) {</span>
+<span class="pc bpc" id="L157" title="2 of 4 branches missed.">            System.arraycopy(hashes, index, hashes, index + 1, size - index)</span>
+<span class="fc" id="L158">            val increasedIndex = index + 1</span>
+<span class="pc bpc" id="L159" title="2 of 4 branches missed.">            System.arraycopy(array, index shl 1, array, increasedIndex shl 1, size - index shl 1)</span>
+        }
+
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">        hashes[index] = hash</span>
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        array[index shl 1] = key</span>
+<span class="pc bpc" id="L164" title="1 of 2 branches missed.">        array[(index shl 1) + 1] = value</span>
+<span class="fc" id="L165">        size++</span>
+<span class="fc" id="L166">        return null</span>
+    }
+
+    /**
+     * Removes the mapping for a key from this ArrayMap if it is present.
+     * @param key the key whose mapping is to be removed from the map
+     * @return the previous value associated with key, or null if there was no mapping for key.
+     * (A null return can also indicate that the map previously associated null with key.)
+     */
+    fun remove(key: K): V? {
+<span class="fc" id="L176">        val index = indexOfKey(key)</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">        if (index &gt;= 0) return removeAt(index)</span>
+<span class="fc" id="L178">        return null</span>
+    }
+
+    /**
+     * Removes the mapping at the specified index from this ArrayMap.
+     * @param index the index of the mapping to be removed from the map
+     * @return the previous value associated with the removed mapping
+     */
+    private fun removeAt(index: Int): V? {
+<span class="pc bpc" id="L187" title="1 of 2 branches missed.">        val oldVal = array[(index shl 1) + 1]</span>
+<span class="fc" id="L188">        val newSize = size - 1</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">        if (size &lt;= 1) {</span>
+            // Empty Map
+<span class="fc" id="L191">            hashes = IntArray(0)</span>
+<span class="fc" id="L192">            array = arrayOf()</span>
+        } else {
+<span class="pc bpc" id="L194" title="2 of 4 branches missed.">            System.arraycopy(hashes, index + 1, hashes, index, newSize - index)</span>
+<span class="pc bpc" id="L195" title="2 of 4 branches missed.">            System.arraycopy(array, index + 1 shl 1, array, index shl 1, newSize - index shl 1)</span>
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">            array[newSize shl 1] = null</span>
+<span class="pc bpc" id="L197" title="1 of 2 branches missed.">            array[(newSize shl 1) + 1] = null</span>
+        }
+<span class="fc" id="L199">        size = newSize</span>
+<span class="fc" id="L200">        return oldVal as V</span>
+    }
+
+    /**
+     * Returns the index of the specified key in this ArrayMap, or a negative value if the key is not in the ArrayMap.
+     * @param key the key to search for
+     * @return the index of the specified key, or a negative value if the key is not in the ArrayMap.
+     */
+    private fun indexOf(key: K): Int {
+<span class="fc" id="L209">        val hash = key!!.hashCode()</span>
+
+<span class="fc bfc" id="L211" title="All 2 branches covered.">        if (size == 0) return 0.inv()</span>
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">        val index = Arrays.binarySearch(hashes, 0, size, hash)</span>
+
+        // Key not found, return -ve value
+<span class="fc bfc" id="L215" title="All 2 branches covered.">        if (index &lt; 0) return index</span>
+
+<span class="pc bpc" id="L217" title="2 of 4 branches missed.">        if (key == array[index shl 1]) return index</span>
+
+        // Search for a matching key after the index.
+<span class="nc" id="L220">        var end = index + 1</span>
+<span class="nc bnc" id="L221" title="All 6 branches missed.">        while (end &lt; size &amp;&amp; hashes[end] == hash) {</span>
+<span class="nc bnc" id="L222" title="All 4 branches missed.">            if (key == array[end shl 1]) return end</span>
+<span class="nc" id="L223">            end++</span>
+        }
+
+        // Search for a matching key before the index.
+<span class="nc" id="L227">        var i = index - 1</span>
+<span class="nc bnc" id="L228" title="All 6 branches missed.">        while (i &gt;= 0 &amp;&amp; hashes[i] == hash) {</span>
+<span class="nc bnc" id="L229" title="All 4 branches missed.">            if (key == array[i shl 1]) return i</span>
+<span class="nc" id="L230">            i--</span>
+        }
+<span class="nc" id="L232">        return end.inv()</span>
+    }
+
+    /**
+     * Returns the index of the null key in this ArrayMap, or a negative value if the null key is not in the ArrayMap.
+     * @return the index of the null key, or a negative value if the null key is not in the ArrayMap.
+     */
+    private fun indexOfNull(): Int {
+<span class="fc bfc" id="L240" title="All 2 branches covered.">        if (size == 0) return 0.inv()</span>
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">        val index = Arrays.binarySearch(hashes, 0, size, 0)</span>
+
+        // Key not found, return -ve value
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">        if (index &lt; 0) return index</span>
+
+<span class="pc bpc" id="L246" title="2 of 4 branches missed.">        if (null == array[index shl 1]) return index</span>
+
+        // Search for a matching key after the index.
+<span class="nc" id="L249">        var end = index + 1</span>
+<span class="nc bnc" id="L250" title="All 6 branches missed.">        while (end &lt; size &amp;&amp; hashes[end] == 0) {</span>
+<span class="nc bnc" id="L251" title="All 4 branches missed.">            if (null == array[end shl 1]) return end</span>
+<span class="nc" id="L252">            end++</span>
+        }
+
+        // Search for a matching key before the index.
+<span class="nc" id="L256">        var i = index - 1</span>
+<span class="nc bnc" id="L257" title="All 6 branches missed.">        while (i &gt;= 0 &amp;&amp; hashes[i] == 0) {</span>
+<span class="nc bnc" id="L258" title="All 4 branches missed.">            if (null == array[i shl 1]) return i</span>
+<span class="nc" id="L259">            i--</span>
+        }
+<span class="nc" id="L261">        return end.inv()</span>
+    }
+
+    /**
+     * Allocates the arrays needed to hold the data in this ArrayMap.
+     * @param size the minimum size of the arrays
+     */
+    private fun allocArrays(size: Int) {
+<span class="fc" id="L269">        hashes = IntArray(size)</span>
+<span class="fc" id="L270">        array = arrayOfNulls(size shl 1) // size * 2</span>
+<span class="fc" id="L271">    }</span>
+<span class="fc" id="L272">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

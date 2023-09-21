@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TimSort.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.sorts</a> &gt; <span class="el_source">TimSort.kt</span></div><h1>TimSort.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.sorts
+
+import kotlin.math.min
+
+<span class="nc" id="L21">class TimSort : AbstractSortStrategy {</span>
+
+    companion object {
+        private const val RUN = 32
+    }
+
+    override fun &lt;T : Comparable&lt;T&gt;&gt; perform(arr: Array&lt;T&gt;) {
+        // Sort individual subarrays of size THRESHOLD
+<span class="nc" id="L29">        var i = 0</span>
+<span class="nc" id="L30">        val length = arr.size</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        while (i &lt; length) {</span>
+            // perform insertion sort
+<span class="nc" id="L33">            insertionSort(arr, i, min(i + RUN - 1, length - 1))</span>
+<span class="nc" id="L34">            i += RUN</span>
+        }
+<span class="nc" id="L36">        var size: Int = RUN</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        while (size &lt; length) {</span>
+<span class="nc" id="L38">            var left = 0</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            while (left &lt; length) {</span>
+<span class="nc" id="L40">                left += 2 * size</span>
+            }
+<span class="nc" id="L42">            size *= 2</span>
+        }
+<span class="nc" id="L44">    }</span>
+
+    // this function sorts array from left index
+    // to right index which is of size almost THRESHOLD
+    private fun &lt;T : Comparable&lt;T&gt;&gt; insertionSort(arr: Array&lt;T&gt;, left: Int, right: Int) {
+<span class="nc bnc" id="L49" title="All 4 branches missed.">        for (i in left + 1..right) {</span>
+<span class="nc" id="L50">            val temp = arr[i]</span>
+<span class="nc" id="L51">            var j = i - 1</span>
+<span class="nc bnc" id="L52" title="All 6 branches missed.">            while (j &gt;= 0 &amp;&amp; arr[j] &gt; temp &amp;&amp; j &gt;= left) {</span>
+<span class="nc" id="L53">                arr[j + 1] = arr[j]</span>
+<span class="nc" id="L54">                j--</span>
+            }
+<span class="nc" id="L56">            arr[j + 1] = temp</span>
+        }
+<span class="nc" id="L58">    }</span>
+
+    // merge function merges the sorted runs
+    private inline fun &lt;reified T : Comparable&lt;T&gt;&gt; merge(arr: Array&lt;T&gt;, left: Int, mid: Int, right: Int) {
+        val leftArryLen = mid - left + 1
+        val rightArrLen = right - mid
+
+        val leftArr = arrayOfNulls&lt;T&gt;(leftArryLen)
+        val rightArr = arrayOfNulls&lt;T&gt;(rightArrLen)
+        for (x in 0 until leftArryLen) {
+            leftArr[x] = arr[left + x]
+        }
+        for (x in 0 until rightArrLen) {
+            rightArr[x] = arr[mid + 1 + x]
+        }
+        var i = 0
+        var j = 0
+        var k = left
+        while (i &lt; leftArryLen &amp;&amp; j &lt; rightArrLen) {
+            if (leftArr[i]!! &lt;= rightArr[j]!!) {
+                arr[k] = leftArr[i]!!
+                i++
+            } else {
+                arr[k] = rightArr[j]!!
+                j++
+            }
+            k++
+        }
+
+        // copy remaining elements of left, if any
+        while (i &lt; leftArryLen) {
+            arr[k] = leftArr[i]!!
+            k++
+            i++
+        }
+
+        // copy remaining element of right, if any
+        while (j &lt; rightArrLen) {
+            arr[k] = rightArr[j]!!
+            k++
+            j++
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

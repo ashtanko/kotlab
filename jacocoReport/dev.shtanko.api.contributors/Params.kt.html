@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Params.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.api.contributors</a> &gt; <span class="el_source">Params.kt</span></div><h1>Params.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.api.contributors
+
+import java.util.prefs.Preferences
+
+<span class="nc" id="L21">private fun prefNode(): Preferences = Preferences.userRoot().node(&quot;ContributorsUI&quot;)</span>
+
+<span class="nc" id="L23">data class Params(val username: String, val password: String, val org: String, val variant: Variant)</span>
+
+fun loadStoredParams(): Params {
+<span class="nc" id="L26">    return prefNode().run {</span>
+<span class="nc" id="L27">        Params(</span>
+<span class="nc" id="L28">            get(&quot;username&quot;, &quot;&quot;),</span>
+<span class="nc" id="L29">            get(&quot;password&quot;, &quot;&quot;),</span>
+<span class="nc" id="L30">            get(&quot;org&quot;, &quot;kotlin&quot;),</span>
+<span class="nc" id="L31">            Variant.valueOf(get(&quot;variant&quot;, Variant.BLOCKING.name)),</span>
+        )
+    }
+}
+
+fun removeStoredParams() {
+<span class="nc" id="L37">    prefNode().removeNode()</span>
+<span class="nc" id="L38">}</span>
+
+fun saveParams(params: Params) {
+<span class="nc" id="L41">    prefNode().apply {</span>
+<span class="nc" id="L42">        put(&quot;username&quot;, params.username)</span>
+<span class="nc" id="L43">        put(&quot;password&quot;, params.password)</span>
+<span class="nc" id="L44">        put(&quot;org&quot;, params.org)</span>
+<span class="nc" id="L45">        put(&quot;variant&quot;, params.variant.name)</span>
+<span class="nc" id="L46">        sync()</span>
+<span class="nc" id="L47">    }</span>
+<span class="nc" id="L48">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

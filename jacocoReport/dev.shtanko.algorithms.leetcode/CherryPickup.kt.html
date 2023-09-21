@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CherryPickup.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CherryPickup.kt</span></div><h1>CherryPickup.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+import kotlin.math.min
+
+/**
+ * 741. Cherry Pickup
+ * @see &lt;a href=&quot;https://leetcode.com/problems/cherry-pickup/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface CherryPickup {
+    operator fun invoke(grid: Array&lt;IntArray&gt;): Int
+}
+
+/**
+ * Approach #2: Dynamic Programming (Top Down)
+ */
+<span class="fc" id="L33">class CherryPickupTopDown : CherryPickup {</span>
+    private lateinit var memo: Array&lt;Array&lt;IntArray&gt;&gt;
+    private lateinit var grid: Array&lt;IntArray&gt;
+<span class="nc" id="L36">    var n = 0</span>
+
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L39">        this.grid = grid</span>
+<span class="fc" id="L40">        n = grid.size</span>
+<span class="fc bfc" id="L41" title="All 6 branches covered.">        memo = Array(n) { Array(n) { IntArray(n) { Int.MIN_VALUE } } }</span>
+<span class="fc" id="L42">        return max(0, dp(0, 0, 0))</span>
+    }
+
+    private fun dp(r1: Int, c1: Int, c2: Int): Int {
+<span class="fc" id="L46">        val r2 = r1 + c1 - c2</span>
+<span class="pc bpc" id="L47" title="2 of 8 branches missed.">        val helper = n == r1 || n == r2 || n == c1 || n == c2</span>
+<span class="pc bpc" id="L48" title="1 of 8 branches missed.">        if (grid.isNotEmpty()) {</span>
+<span class="pc bpc" id="L49" title="1 of 6 branches missed.">            if (grid.first().isEmpty()) return 0</span>
+        }
+<span class="pc bpc" id="L51" title="2 of 10 branches missed.">        return if (helper || grid[r1][c1] == -1 || grid[r2][c2] == -1) {</span>
+<span class="fc" id="L52">            LIMIT</span>
+<span class="fc bfc" id="L53" title="All 4 branches covered.">        } else if (r1 == n - 1 &amp;&amp; c1 == n - 1) {</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">            grid[r1][c1]</span>
+<span class="pc bpc" id="L55" title="1 of 4 branches missed.">        } else if (memo[r1][c1][c2] != Int.MIN_VALUE) {</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">            memo[r1][c1][c2]</span>
+        } else {
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">            var ans = grid[r1][c1]</span>
+<span class="pc bpc" id="L59" title="1 of 4 branches missed.">            if (c1 != c2) ans += grid[r2][c2]</span>
+<span class="fc" id="L60">            ans += max(</span>
+<span class="fc" id="L61">                max(dp(r1, c1 + 1, c2 + 1), dp(r1 + 1, c1, c2 + 1)),</span>
+<span class="fc" id="L62">                max(dp(r1, c1 + 1, c2), dp(r1 + 1, c1, c2)),</span>
+            )
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">            memo[r1][c1][c2] = ans</span>
+<span class="fc" id="L65">            ans</span>
+        }
+    }
+
+    companion object {
+        private const val LIMIT = -999999
+    }
+}
+
+/**
+ * Approach #3: Dynamic Programming (Bottom Up)
+ */
+<span class="fc" id="L77">class CherryPickupBottomUp : CherryPickup {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc bfc" id="L79" title="All 4 branches covered.">        if (grid.isEmpty()) return 0</span>
+<span class="fc" id="L80">        val n: Int = grid.size</span>
+<span class="fc bfc" id="L81" title="All 4 branches covered.">        var dp = Array(n) { IntArray(n) { Int.MIN_VALUE } }</span>
+<span class="pc bpc" id="L82" title="3 of 6 branches missed.">        if (grid.isNotEmpty()) {</span>
+<span class="fc bfc" id="L83" title="All 4 branches covered.">            if (grid.first().isEmpty()) return 0</span>
+        }
+<span class="fc" id="L85">        dp.first()[0] = grid.first().first()</span>
+
+<span class="fc bfc" id="L87" title="All 4 branches covered.">        for (t in 1..2 * n - 2) {</span>
+<span class="fc bfc" id="L88" title="All 4 branches covered.">            val dp2 = Array(n) { IntArray(n) { Int.MIN_VALUE } }</span>
+<span class="pc bpc" id="L89" title="1 of 4 branches missed.">            for (i in max(0, t - (n - 1))..min(n - 1, t)) {</span>
+<span class="pc bpc" id="L90" title="1 of 4 branches missed.">                for (j in max(0, t - (n - 1))..min(n - 1, t)) {</span>
+<span class="fc bfc" id="L91" title="All 4 branches covered.">                    if (grid[i][t - i] == -1 || grid[j][t - j] == -1) continue</span>
+<span class="fc" id="L92">                    var value = grid[i][t - i]</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">                    if (i != j) value += grid[j][t - j]</span>
+<span class="pc bpc" id="L94" title="1 of 4 branches missed.">                    for (pi in i - 1..i) {</span>
+<span class="pc bpc" id="L95" title="1 of 4 branches missed.">                        for (pj in j - 1..j) {</span>
+<span class="fc bfc" id="L96" title="All 4 branches covered.">                            if (pi &gt;= 0 &amp;&amp; pj &gt;= 0) {</span>
+<span class="fc" id="L97">                                dp2[i][j] = max(dp2[i][j], dp[pi][pj] + value)</span>
+                            }
+                        }
+                    }
+                }
+            }
+<span class="fc" id="L103">            dp = dp2</span>
+        }
+<span class="fc" id="L105">        return max(0, dp[n - 1][n - 1])</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

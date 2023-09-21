@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Sqrt.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">Sqrt.kt</span></div><h1>Sqrt.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface SqrtStrategy {
+    fun mySqrt(x: Int): Int
+}
+
+<span class="fc" id="L23">class SqrtBruteForce : SqrtStrategy {</span>
+    override fun mySqrt(x: Int): Int {
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (x == 0) return 0</span>
+<span class="fc" id="L26">        var i = 1</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        while (i &lt;= x / i) {</span>
+<span class="pc bpc" id="L28" title="1 of 4 branches missed.">            if (i &lt;= x / i &amp;&amp; i + 1 &gt; x / i.plus(1)) {</span>
+<span class="fc" id="L29">                return i</span>
+            }
+<span class="fc" id="L31">            i++</span>
+        }
+<span class="nc" id="L33">        return -1</span>
+    }
+}
+
+<span class="fc" id="L37">class SqrtBS : SqrtStrategy {</span>
+    override fun mySqrt(x: Int): Int {
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (x == 0) return 0</span>
+<span class="fc" id="L40">        var start = 1</span>
+<span class="fc" id="L41">        var end = x</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        while (start &lt; end) {</span>
+<span class="fc" id="L43">            val mid = start + end.minus(start) / 2</span>
+<span class="fc bfc" id="L44" title="All 4 branches covered.">            if (mid &lt;= x / mid &amp;&amp; mid + 1 &gt; x / mid.plus(1)) {</span>
+                // Found the result
+<span class="fc" id="L46">                return mid</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">            } else if (mid &gt; x / mid) {</span>
+                // Keep checking the left part
+<span class="fc" id="L49">                end = mid</span>
+            } else {
+                // Keep checking the right part
+<span class="fc" id="L52">                start = mid + 1</span>
+            }
+        }
+<span class="fc" id="L55">        return start</span>
+    }
+}
+
+<span class="fc" id="L59">class SqrtNewton : SqrtStrategy {</span>
+    override fun mySqrt(x: Int): Int {
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (x == 0) return 0</span>
+<span class="fc" id="L62">        var i = x.toLong()</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        while (i &gt; x / i) {</span>
+<span class="fc" id="L64">            i = i.plus(x.div(i)) / 2</span>
+        }
+<span class="fc" id="L66">        return i.toInt()</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

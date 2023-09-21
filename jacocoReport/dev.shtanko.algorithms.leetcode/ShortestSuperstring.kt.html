@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShortestSuperstring.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ShortestSuperstring.kt</span></div><h1>ShortestSuperstring.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.min
+
+/**
+ * Approach 1: Dynamic Programming
+ */
+object ShortestSuperstring {
+    operator fun invoke(words: Array&lt;String&gt;): String {
+<span class="fc" id="L26">        val n = words.size</span>
+
+        // Populate overlaps
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        val overlaps = Array(n) { IntArray(n) }</span>
+<span class="fc bfc" id="L30" title="All 6 branches covered.">        for (i in 0 until n) for (j in 0 until n) if (i != j) {</span>
+<span class="fc" id="L31">            val m = min(words[i].length, words[j].length)</span>
+<span class="pc bpc" id="L32" title="1 of 4 branches missed.">            for (k in m downTo 0) if (words[i].endsWith(words[j].substring(0, k))) {</span>
+<span class="fc" id="L33">                overlaps[i][j] = k</span>
+<span class="fc" id="L34">                break</span>
+            }
+        }
+
+        // dp[mask][i] = most overlap with mask, ending with ith element
+<span class="fc" id="L39">        val (dp, parent) = overlap(n, overlaps)</span>
+
+        // # Answer will have length sum(len(A[i]) for i) - max(dp[-1])
+        // Reconstruct answer, first as a sequence 'perm' representing
+        // the indices of each word from left to right.
+<span class="fc" id="L44">        val perm = IntArray(n)</span>
+<span class="fc" id="L45">        val seen = BooleanArray(n)</span>
+<span class="fc" id="L46">        var t = 0</span>
+<span class="fc" id="L47">        var mask = (1 shl n) - 1</span>
+
+        // p: the last element of perm (last word written left to right)
+<span class="fc" id="L50">        var p = 0</span>
+<span class="fc bfc" id="L51" title="All 4 branches covered.">        for (j in 0 until n) if (dp[(1 shl n) - 1][j] &gt; dp[(1 shl n) - 1][p]) p = j</span>
+
+        // Follow parents down backwards path that retains maximum overlap
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        while (p != -1) {</span>
+<span class="fc" id="L55">            perm[t++] = p</span>
+<span class="fc" id="L56">            seen[p] = true</span>
+<span class="fc" id="L57">            val p2 = parent[mask][p]</span>
+<span class="fc" id="L58">            mask = mask xor (1 shl p)</span>
+<span class="fc" id="L59">            p = p2</span>
+        }
+
+        // Reverse perm
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        for (i in 0 until t / 2) {</span>
+<span class="fc" id="L64">            val v = perm[i]</span>
+<span class="fc" id="L65">            perm[i] = perm[t - 1 - i]</span>
+<span class="fc" id="L66">            perm[t - 1 - i] = v</span>
+        }
+
+        // Fill in remaining words not yet added
+<span class="fc bfc" id="L70" title="All 4 branches covered.">        for (i in 0 until n) if (!seen[i]) perm[t++] = i</span>
+
+        // Reconstruct final answer given perm
+<span class="fc" id="L73">        val ans = StringBuilder(words[perm[0]])</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        for (i in 1 until n) {</span>
+<span class="fc" id="L75">            val overlap = overlaps[perm[i - 1]][perm[i]]</span>
+<span class="fc" id="L76">            ans.append(words[perm[i]].substring(overlap))</span>
+        }
+<span class="fc" id="L78">        return ans.toString()</span>
+    }
+
+    private fun overlap(n: Int, overlaps: Array&lt;IntArray&gt;): Pair&lt;Array&lt;IntArray&gt;, Array&lt;IntArray&gt;&gt; {
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        val dp = Array(1 shl n) { IntArray(n) }</span>
+<span class="fc bfc" id="L83" title="All 4 branches covered.">        val parent = Array(1 shl n) { IntArray(n) { -1 } }</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (mask in 0 until (1 shl n)) {</span>
+<span class="fc bfc" id="L85" title="All 4 branches covered.">            for (bit in 0 until n) if (mask shr bit and 1 &gt; 0) {</span>
+                // Let's try to find dp[mask][bit].  Previously, we had
+                // a collection of items represented by pmask.
+<span class="fc" id="L88">                val pmask = mask xor (1 shl bit)</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">                if (pmask == 0) continue</span>
+<span class="fc bfc" id="L90" title="All 4 branches covered.">                for (i in 0 until n) if (pmask shr i and 1 &gt; 0) {</span>
+                    // For each bit i in pmask, calculate the value
+                    // if we ended with word i, then added word 'bit'.
+<span class="fc" id="L93">                    val value = dp[pmask][i] + overlaps[i][bit]</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">                    if (value &gt; dp[mask][bit]) {</span>
+<span class="fc" id="L95">                        dp[mask][bit] = value</span>
+<span class="fc" id="L96">                        parent[mask][bit] = i</span>
+                    }
+                }
+            }
+        }
+<span class="fc" id="L101">        return dp to parent</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

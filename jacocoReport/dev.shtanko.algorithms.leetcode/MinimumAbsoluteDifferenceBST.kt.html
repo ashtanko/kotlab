@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinimumAbsoluteDifferenceBST.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MinimumAbsoluteDifferenceBST.kt</span></div><h1>MinimumAbsoluteDifferenceBST.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.min
+
+/**
+ * 530. Minimum Absolute Difference in BST
+ * @see &lt;a href=&quot;https://leetcode.com/problems/minimum-absolute-difference-in-bst/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MinimumAbsoluteDifferenceBST {
+    fun getMinimumDifference(root: TreeNode?): Int
+}
+
+/**
+ * Approach 1: Depth First Search
+ */
+<span class="fc" id="L32">class MinimumAbsoluteDifferenceBSTDFS : MinimumAbsoluteDifferenceBST {</span>
+
+    // List to store the node values.
+<span class="fc" id="L35">    private val nodeValues: MutableList&lt;Int&gt; = ArrayList()</span>
+
+    override fun getMinimumDifference(root: TreeNode?): Int {
+<span class="fc" id="L38">        dfs(root)</span>
+
+<span class="fc" id="L40">        nodeValues.sort()</span>
+<span class="fc" id="L41">        var minDifference = Int.MAX_VALUE</span>
+        // Find the diff between every two consecutive values in the list.
+        // Find the diff between every two consecutive values in the list.
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (i in 1 until nodeValues.size) {</span>
+<span class="fc" id="L45">            minDifference = min(minDifference, nodeValues[i] - nodeValues[i - 1])</span>
+        }
+
+<span class="fc" id="L48">        return minDifference</span>
+    }
+
+    private fun dfs(node: TreeNode?) {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (node == null) {</span>
+<span class="fc" id="L53">            return</span>
+        }
+<span class="fc" id="L55">        nodeValues.add(node.value)</span>
+<span class="fc" id="L56">        dfs(node.left)</span>
+<span class="fc" id="L57">        dfs(node.right)</span>
+<span class="fc" id="L58">    }</span>
+}
+
+/**
+ * Approach 2: In-order Traversal Using List
+ */
+<span class="fc" id="L64">class MinimumAbsoluteDifferenceBSTInOrder : MinimumAbsoluteDifferenceBST {</span>
+    // List to store the tree nodes in the inorder traversal.
+<span class="fc" id="L66">    private val inorderNodes: MutableList&lt;Int&gt; = ArrayList()</span>
+
+    override fun getMinimumDifference(root: TreeNode?): Int {
+<span class="fc" id="L69">        inorderTraversal(root)</span>
+
+<span class="fc" id="L71">        var minDifference = Int.MAX_VALUE</span>
+        // Find the diff between every two consecutive values in the list.
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        for (i in 1 until inorderNodes.size) {</span>
+<span class="fc" id="L74">            minDifference = min(minDifference, inorderNodes[i] - inorderNodes[i - 1])</span>
+        }
+
+<span class="fc" id="L77">        return minDifference</span>
+    }
+
+    private fun inorderTraversal(node: TreeNode?) {
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (node == null) {</span>
+<span class="fc" id="L82">            return</span>
+        }
+<span class="fc" id="L84">        inorderTraversal(node.left)</span>
+        // Store the nodes in the list.
+<span class="fc" id="L86">        inorderNodes.add(node.value)</span>
+<span class="fc" id="L87">        inorderTraversal(node.right)</span>
+<span class="fc" id="L88">    }</span>
+}
+
+/**
+ * Approach 3: In-order Traversal Without List
+ */
+<span class="fc" id="L94">class MinimumAbsoluteDifferenceBSTInOrderOpt : MinimumAbsoluteDifferenceBST {</span>
+<span class="fc" id="L95">    private var minDifference = Int.MAX_VALUE</span>
+
+    // Initially, it will be null.
+    private var prevNode: TreeNode? = null
+
+    override fun getMinimumDifference(root: TreeNode?): Int {
+<span class="fc" id="L101">        inorderTraversal(root)</span>
+<span class="fc" id="L102">        return minDifference</span>
+    }
+
+    private fun inorderTraversal(node: TreeNode?) {
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (node == null) {</span>
+<span class="fc" id="L107">            return</span>
+        }
+<span class="fc" id="L109">        inorderTraversal(node.left)</span>
+        // Find the difference with the previous value if it is there.
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (prevNode != null) {</span>
+<span class="fc" id="L112">            minDifference = min(minDifference, node.value - prevNode!!.value)</span>
+        }
+<span class="fc" id="L114">        prevNode = node</span>
+<span class="fc" id="L115">        inorderTraversal(node.right)</span>
+<span class="fc" id="L116">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

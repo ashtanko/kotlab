@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Example.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.patterns.structural.bridge</a> &gt; <span class="el_source">Example.kt</span></div><h1>Example.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.patterns.structural.bridge
+
+import org.slf4j.LoggerFactory
+
+interface Enchantment {
+    fun onActivate()
+
+    fun apply()
+
+    fun onDeactivate()
+}
+
+interface Weapon {
+    fun wield()
+
+    fun swing()
+
+    fun unWield()
+
+    val enchantment: Enchantment
+}
+
+<span class="nc" id="L39">class FlyingEnchantment : Enchantment {</span>
+
+    companion object {
+<span class="fc" id="L42">        private val LOGGER = LoggerFactory.getLogger(FlyingEnchantment::class.java)</span>
+    }
+
+    override fun onActivate() {
+<span class="nc" id="L46">        LOGGER.info(&quot;The item begins to glow faintly.&quot;)</span>
+<span class="nc" id="L47">    }</span>
+
+    override fun apply() {
+<span class="nc" id="L50">        LOGGER.info(&quot;The item flies and strikes the enemies finally returning to owner's hand.&quot;)</span>
+<span class="nc" id="L51">    }</span>
+
+    override fun onDeactivate() {
+<span class="nc" id="L54">        LOGGER.info(&quot;The item's glow fades.&quot;)</span>
+<span class="nc" id="L55">    }</span>
+}
+
+<span class="nc" id="L58">class SoulEatingEnchantment : Enchantment {</span>
+
+    companion object {
+<span class="nc" id="L61">        private val LOGGER = LoggerFactory.getLogger(SoulEatingEnchantment::class.java)</span>
+    }
+
+    override fun onActivate() {
+<span class="nc" id="L65">        LOGGER.info(&quot;The item spreads bloodlust.&quot;)</span>
+<span class="nc" id="L66">    }</span>
+
+    override fun apply() {
+<span class="nc" id="L69">        LOGGER.info(&quot;The item eats the soul of enemies.&quot;)</span>
+<span class="nc" id="L70">    }</span>
+
+    override fun onDeactivate() {
+<span class="nc" id="L73">        LOGGER.info(&quot;Bloodlust slowly disappears.&quot;)</span>
+<span class="nc" id="L74">    }</span>
+}
+
+<span class="fc" id="L77">class Hammer(override val enchantment: Enchantment) : Weapon {</span>
+
+    companion object {
+<span class="fc" id="L80">        private val LOGGER = LoggerFactory.getLogger(Hammer::class.java)</span>
+    }
+
+    override fun wield() {
+<span class="fc" id="L84">        LOGGER.info(&quot;The hammer is wielded.&quot;)</span>
+<span class="fc" id="L85">        enchantment.onActivate()</span>
+<span class="fc" id="L86">    }</span>
+
+    override fun swing() {
+<span class="fc" id="L89">        LOGGER.info(&quot;The hammer is swinged.&quot;)</span>
+<span class="fc" id="L90">        enchantment.apply()</span>
+<span class="fc" id="L91">    }</span>
+
+    override fun unWield() {
+<span class="fc" id="L94">        LOGGER.info(&quot;The hammer is unwielded.&quot;)</span>
+<span class="fc" id="L95">        enchantment.onDeactivate()</span>
+<span class="fc" id="L96">    }</span>
+}
+
+<span class="fc" id="L99">class Sword(override val enchantment: Enchantment) : Weapon {</span>
+
+    companion object {
+<span class="fc" id="L102">        private val LOGGER = LoggerFactory.getLogger(Sword::class.java)</span>
+    }
+
+    override fun wield() {
+<span class="fc" id="L106">        LOGGER.info(&quot;The sword is wielded.&quot;)</span>
+<span class="fc" id="L107">        enchantment.onActivate()</span>
+<span class="fc" id="L108">    }</span>
+
+    override fun swing() {
+<span class="fc" id="L111">        LOGGER.info(&quot;The sword is swinged.&quot;)</span>
+<span class="fc" id="L112">        enchantment.apply()</span>
+<span class="fc" id="L113">    }</span>
+
+    override fun unWield() {
+<span class="fc" id="L116">        LOGGER.info(&quot;The sword is unwielded.&quot;)</span>
+<span class="fc" id="L117">        enchantment.onDeactivate()</span>
+<span class="fc" id="L118">    }</span>
+}
+
+object App {
+<span class="nc" id="L122">    private val LOGGER = LoggerFactory.getLogger(App::class.java)</span>
+
+    @JvmStatic
+    fun main(args: Array&lt;String&gt;) {
+<span class="nc" id="L126">        LOGGER.info(&quot;The knight receives an enchanted sword.&quot;)</span>
+<span class="nc" id="L127">        val enchantedSword = Sword(SoulEatingEnchantment())</span>
+<span class="nc" id="L128">        enchantedSword.wield()</span>
+<span class="nc" id="L129">        enchantedSword.swing()</span>
+<span class="nc" id="L130">        enchantedSword.unWield()</span>
+
+<span class="nc" id="L132">        LOGGER.info(&quot;The valkyrie receives an enchanted hammer.&quot;)</span>
+<span class="nc" id="L133">        val hammer = Hammer(FlyingEnchantment())</span>
+<span class="nc" id="L134">        hammer.wield()</span>
+<span class="nc" id="L135">        hammer.swing()</span>
+<span class="nc" id="L136">        hammer.unWield()</span>
+<span class="nc" id="L137">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

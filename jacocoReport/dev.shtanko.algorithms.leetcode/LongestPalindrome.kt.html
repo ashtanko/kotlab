@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LongestPalindrome.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">LongestPalindrome.kt</span></div><h1>LongestPalindrome.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun String?.longestPalindrome(): String {
+<span class="pc bpc" id="L20" title="3 of 6 branches missed.">    if (this.isNullOrEmpty()) {</span>
+<span class="nc" id="L21">        return &quot;&quot;</span>
+    }
+<span class="fc" id="L23">    val len = this.length</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    val dp = Array(len) { BooleanArray(len) }</span>
+<span class="fc" id="L25">    var start = 0</span>
+<span class="fc" id="L26">    var end = 0</span>
+<span class="fc" id="L27">    var max = 0</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">    for (i in this.indices) {</span>
+<span class="pc bpc" id="L29" title="1 of 4 branches missed.">        for (j in 0..i) {</span>
+<span class="pc bpc" id="L30" title="3 of 6 branches missed.">            if (this[i] == this[j] &amp;&amp; (i - j &lt;= 2 || dp[j + 1][i - 1])) {</span>
+<span class="fc" id="L31">                dp[j][i] = true</span>
+            }
+<span class="fc bfc" id="L33" title="All 4 branches covered.">            if (dp[j][i] &amp;&amp; max &lt; i - j + 1) {</span>
+<span class="fc" id="L34">                max = i - j + 1</span>
+<span class="fc" id="L35">                start = j</span>
+<span class="fc" id="L36">                end = i</span>
+            }
+        }
+    }
+<span class="fc" id="L40">    return this.substring(start, end + 1)</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

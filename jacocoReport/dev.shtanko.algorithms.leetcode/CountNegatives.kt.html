@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CountNegatives.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CountNegatives.kt</span></div><h1>CountNegatives.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface AbstractCountNegativesStrategy {
+    operator fun invoke(grid: Array&lt;IntArray&gt;): Int
+}
+
+/**
+ *
+ */
+<span class="fc" id="L26">class SimpleCountNegatives : AbstractCountNegativesStrategy {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L28">        return grid.count()</span>
+    }
+
+    private fun Array&lt;IntArray&gt;.count(): Int {
+<span class="fc" id="L32">        val rows = this.size</span>
+<span class="fc" id="L33">        val cols = this[0].size</span>
+<span class="fc" id="L34">        var count = 0</span>
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (i in 0 until rows) {</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            for (j in 0 until cols) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">                if (this[i][j] &lt; 0) {</span>
+<span class="fc" id="L39">                    count += this[i].size - j</span>
+<span class="fc" id="L40">                    break</span>
+                }
+            }
+        }
+<span class="fc" id="L44">        return count</span>
+    }
+}
+
+/**
+ *
+ */
+<span class="fc" id="L51">class CountNegativesTwoPointers : AbstractCountNegativesStrategy {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L53">        return grid.count()</span>
+    }
+
+    private fun Array&lt;IntArray&gt;.count(): Int {
+<span class="fc" id="L57">        var res = 0</span>
+<span class="fc" id="L58">        val m = this.size</span>
+<span class="fc" id="L59">        val n = this[0].size</span>
+<span class="fc" id="L60">        var i = 0</span>
+<span class="fc" id="L61">        var j = n - 1</span>
+<span class="fc bfc" id="L62" title="All 4 branches covered.">        while (i &lt; m &amp;&amp; j &gt;= 0) {</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">            if (this[i][j] &lt; 0) {</span>
+<span class="fc" id="L64">                res += m - i</span>
+<span class="fc" id="L65">                j--</span>
+            } else {
+<span class="fc" id="L67">                i++</span>
+            }
+        }
+<span class="fc" id="L70">        return res</span>
+    }
+}
+
+/**
+ *
+ */
+<span class="fc" id="L77">class CountNegativesBinary : AbstractCountNegativesStrategy {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L79">        return grid.count()</span>
+    }
+
+    private fun Array&lt;IntArray&gt;.count(): Int {
+<span class="pc bpc" id="L83" title="2 of 4 branches missed.">        if (this.isEmpty()) return 0</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (this.size &lt; 2) {</span>
+<span class="fc bfc" id="L85" title="All 4 branches covered.">            if (first().isEmpty()) return 0</span>
+        }
+<span class="fc" id="L87">        var min = this[0].size - 1</span>
+<span class="fc" id="L88">        var res = 0</span>
+
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        for (arr in this) {</span>
+<span class="fc" id="L91">            min = arr.copyOfRange(0, min + 1).binarySearchToGetBigNegativeElementIndex()</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if (min == -1) {</span>
+<span class="fc" id="L93">                min = arr.size - 1</span>
+            } else {
+<span class="fc" id="L95">                res += size - min</span>
+            }
+        }
+
+<span class="fc" id="L99">        return res</span>
+    }
+
+    private fun IntArray.binarySearchToGetBigNegativeElementIndex(): Int {
+<span class="pc bpc" id="L103" title="2 of 4 branches missed.">        if (this.isEmpty()) return 0</span>
+<span class="fc" id="L104">        var low = 0</span>
+<span class="fc" id="L105">        var high = size - 1</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        while (low &lt; high) {</span>
+<span class="fc" id="L107">            val local = high - low</span>
+<span class="fc" id="L108">            val mid = low + local / 2</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">            if (this[mid] &gt; 0) {</span>
+<span class="fc" id="L110">                low = mid + 1</span>
+            } else {
+<span class="fc" id="L112">                high = mid</span>
+            }
+        }
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        return if (this[low] &gt; -1) -1 else low</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

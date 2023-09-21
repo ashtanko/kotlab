@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PalindromeLinkedList.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PalindromeLinkedList.kt</span></div><h1>PalindromeLinkedList.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface PalindromeLinkedList {
+    operator fun invoke(head: ListNode): Boolean
+}
+
+/**
+ * Approach 1: Copy into Array List and then Use Two Pointer Technique
+ * Time complexity : O(n)
+ * Space complexity : O(n)
+ */
+<span class="fc" id="L28">class PalindromeLinkedListCopy : PalindromeLinkedList {</span>
+    override operator fun invoke(head: ListNode): Boolean {
+<span class="fc" id="L30">        val vals: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc" id="L31">        var currentNode: ListNode? = head</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        while (currentNode != null) {</span>
+<span class="fc" id="L33">            vals.add(currentNode.value)</span>
+<span class="fc" id="L34">            currentNode = currentNode.next</span>
+        }
+<span class="fc" id="L36">        var front = 0</span>
+<span class="fc" id="L37">        var back = vals.size - 1</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        while (front &lt; back) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (vals[front] != vals[back]) {</span>
+<span class="fc" id="L40">                return false</span>
+            }
+<span class="fc" id="L42">            front++</span>
+<span class="fc" id="L43">            back--</span>
+        }
+<span class="fc" id="L45">        return true</span>
+    }
+}
+
+/**
+ * Approach 2: Recursive (Advanced)
+ * Time complexity : O(n)
+ * Space complexity : O(n)
+ */
+<span class="fc" id="L54">class PalindromeLinkedListRecursive : PalindromeLinkedList {</span>
+
+    private var frontPointer: ListNode? = null
+
+    override operator fun invoke(head: ListNode): Boolean {
+<span class="fc" id="L59">        frontPointer = head</span>
+<span class="fc" id="L60">        return recursivelyCheck(head)</span>
+    }
+
+    private fun recursivelyCheck(currentNode: ListNode?): Boolean {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (currentNode != null) {</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (!recursivelyCheck(currentNode.next)) return false</span>
+<span class="pc bpc" id="L66" title="1 of 6 branches missed.">            if (currentNode.value != frontPointer?.value) return false</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">            frontPointer = frontPointer?.next</span>
+        }
+<span class="fc" id="L69">        return true</span>
+    }
+}
+
+/**
+ * Approach 2: Recursive (Advanced)
+ * Time complexity : O(n)
+ * Space complexity : O(n)
+ */
+<span class="fc" id="L78">class PalindromeLinkedListReverse : PalindromeLinkedList {</span>
+    override operator fun invoke(head: ListNode): Boolean {
+<span class="fc" id="L80">        val firstHalfEnd = endOfFirstHalf(head)</span>
+<span class="pc bpc" id="L81" title="2 of 4 branches missed.">        val secondHalfStart = firstHalfEnd?.next?.let { reverseList(it) }</span>
+
+<span class="fc" id="L83">        var p1: ListNode? = head</span>
+<span class="fc" id="L84">        var p2 = secondHalfStart</span>
+<span class="fc" id="L85">        var result = true</span>
+<span class="fc bfc" id="L86" title="All 4 branches covered.">        while (result &amp;&amp; p2 != null) {</span>
+<span class="pc bpc" id="L87" title="1 of 6 branches missed.">            if (p1?.value != p2.value) result = false</span>
+<span class="fc" id="L88">            p1 = p1!!.next</span>
+<span class="fc" id="L89">            p2 = p2.next</span>
+        }
+
+<span class="pc bpc" id="L92" title="2 of 4 branches missed.">        firstHalfEnd?.next = secondHalfStart?.let { reverseList(it) }</span>
+<span class="fc" id="L93">        return result</span>
+    }
+
+    private fun reverseList(head: ListNode): ListNode? {
+<span class="fc" id="L97">        var prev: ListNode? = null</span>
+<span class="fc" id="L98">        var curr: ListNode? = head</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        while (curr != null) {</span>
+<span class="fc" id="L100">            val nextTemp = curr.next</span>
+<span class="fc" id="L101">            curr.next = prev</span>
+<span class="fc" id="L102">            prev = curr</span>
+<span class="fc" id="L103">            curr = nextTemp</span>
+        }
+<span class="fc" id="L105">        return prev</span>
+    }
+
+    private fun endOfFirstHalf(head: ListNode?): ListNode? {
+<span class="fc" id="L109">        var fast: ListNode? = head</span>
+<span class="fc" id="L110">        var slow: ListNode? = head</span>
+<span class="pc bpc" id="L111" title="3 of 8 branches missed.">        while (fast?.next != null &amp;&amp; fast.next?.next != null) {</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">            fast = fast.next?.next</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">            slow = slow?.next</span>
+        }
+<span class="fc" id="L115">        return slow</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

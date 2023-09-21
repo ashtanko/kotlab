@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BinarySort.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.sorts</a> &gt; <span class="el_source">BinarySort.kt</span></div><h1>BinarySort.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.sorts
+
+<span class="fc" id="L19">class BinarySort : AbstractSortStrategy {</span>
+    override fun &lt;T : Comparable&lt;T&gt;&gt; perform(arr: Array&lt;T&gt;) {
+<span class="fc" id="L21">        val lo = 0</span>
+<span class="fc" id="L22">        val hi = arr.size</span>
+<span class="fc" id="L23">        val initRunLen = countRunAndMakeAscending(arr, lo, hi)</span>
+<span class="fc" id="L24">        helper(arr, lo, hi, lo + initRunLen)</span>
+<span class="fc" id="L25">    }</span>
+
+    private fun &lt;T : Comparable&lt;T&gt;&gt; helper(a: Array&lt;T&gt;, lo: Int, hi: Int, start: Int) {
+<span class="fc" id="L28">        var start0 = start</span>
+<span class="pc bpc" id="L29" title="4 of 8 branches missed.">        assert(start0 in lo..hi)</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (start0 == lo) start0++</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        while (start0 &lt; hi) {</span>
+<span class="fc" id="L32">            val pivot = a[start0]</span>
+
+            // Set left (and right) to the index where a[start] (pivot) belongs
+<span class="fc" id="L35">            var left = lo</span>
+<span class="fc" id="L36">            var right = start0</span>
+<span class="pc bpc" id="L37" title="3 of 6 branches missed.">            assert(left &lt;= right)</span>
+            /*
+             * Invariants:
+             *   pivot &gt;= all in [lo, left).
+             *   pivot &lt;  all in [right, start).
+             */
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            while (left &lt; right) {</span>
+<span class="fc" id="L44">                val mid = left + right ushr 1</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                if (pivot &lt; a[mid]) right = mid else left = mid + 1</span>
+            }
+<span class="pc bpc" id="L47" title="3 of 6 branches missed.">            assert(left == right)</span>
+
+            /*
+             * The invariants still hold: pivot &gt;= all in [lo, left) and
+             * pivot &lt; all in [left, start), so pivot belongs at left.  Note
+             * that if there are elements equal to pivot, left points to the
+             * first slot after them -- that's why this sort is stable.
+             * Slide elements over to make room for pivot.
+             */
+<span class="fc bfc" id="L56" title="All 3 branches covered.">            when (val n = start0 - left) { // The number of elements to move</span>
+                2 -&gt; {
+<span class="fc" id="L58">                    a[left + 2] = a[left + 1]</span>
+<span class="fc" id="L59">                    a[left + 1] = a[left]</span>
+                }
+
+<span class="fc" id="L62">                1 -&gt; a[left + 1] = a[left]</span>
+<span class="fc" id="L63">                else -&gt; System.arraycopy(a, left, a, left + 1, n)</span>
+            }
+<span class="fc" id="L65">            a[left] = pivot</span>
+<span class="fc" id="L66">            start0++</span>
+        }
+<span class="fc" id="L68">    }</span>
+
+    private fun &lt;T : Comparable&lt;T&gt;&gt; countRunAndMakeAscending(a: Array&lt;T&gt;, lo: Int, hi: Int): Int {
+<span class="fc bfc" id="L71" title="All 4 branches covered.">        if (a.isEmpty()) return 0</span>
+<span class="fc" id="L72">        var runHi = lo + 1</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (runHi == hi) return 1</span>
+
+        // Find end of run, and reverse range if descending
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if (a[runHi++] &lt; a[lo]) { // Descending</span>
+<span class="fc bfc" id="L77" title="All 4 branches covered.">            while (runHi &lt; hi &amp;&amp; a[runHi] &lt; a[runHi - 1]) {</span>
+<span class="fc" id="L78">                runHi++</span>
+            }
+<span class="fc" id="L80">            reverseRange(a, lo, runHi)</span>
+        } else { // Ascending
+<span class="fc bfc" id="L82" title="All 4 branches covered.">            while (runHi &lt; hi &amp;&amp; a[runHi] &gt;= a[runHi - 1]) {</span>
+<span class="fc" id="L83">                runHi++</span>
+            }
+        }
+<span class="fc" id="L86">        return runHi - lo</span>
+    }
+
+    private fun &lt;T : Comparable&lt;T&gt;&gt; reverseRange(a: Array&lt;T&gt;, lo: Int, hi: Int) {
+<span class="fc" id="L90">        var lo0 = lo</span>
+<span class="fc" id="L91">        var hi0 = hi</span>
+<span class="fc" id="L92">        hi0--</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        while (lo0 &lt; hi0) {</span>
+<span class="fc" id="L94">            val t = a[lo0]</span>
+<span class="fc" id="L95">            a[lo0++] = a[hi0]</span>
+<span class="fc" id="L96">            a[hi0--] = t</span>
+        }
+<span class="fc" id="L98">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

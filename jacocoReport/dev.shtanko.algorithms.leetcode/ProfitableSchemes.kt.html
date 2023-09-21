@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfitableSchemes.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ProfitableSchemes.kt</span></div><h1>ProfitableSchemes.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.min
+
+/**
+ * 879. Profitable Schemes
+ * https://leetcode.com/problems/profitable-schemes/
+ */
+
+private const val LIMIT = 101
+
+fun interface ProfitableSchemes {
+    operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int
+}
+
+/**
+ * Approach 1: Top-Down Dynamic Programming
+ */
+<span class="fc" id="L35">class ProfitableSchemesTopDown : ProfitableSchemes {</span>
+<span class="fc bfc" id="L36" title="All 6 branches covered.">    private val memo = Array(LIMIT) { Array(LIMIT) { IntArray(LIMIT) { -1 } } }</span>
+
+    override operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
+<span class="fc" id="L39">        return find(0, 0, 0, n, minProfit, group, profits)</span>
+    }
+
+    fun find(pos: Int, count: Int, profit: Int, n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (pos == group.size) {</span>
+            // If profit exceeds the minimum required; it's a profitable scheme.
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            return if (profit &gt;= minProfit) 1 else 0</span>
+        }
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (memo[pos][count][profit] != -1) {</span>
+            // Repeated sub-problem, return the stored answer.
+<span class="nc" id="L49">            return memo[pos][count][profit]</span>
+        }
+
+        // Ways to get a profitable scheme without this crime.
+<span class="fc" id="L53">        var totalWays = find(pos + 1, count, profit, n, minProfit, group, profits)</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        if (count + group[pos] &lt;= n) {</span>
+            // Adding ways to get profitable schemes, including this crime.
+<span class="fc" id="L56">            totalWays += find(</span>
+<span class="fc" id="L57">                pos + 1,</span>
+<span class="fc" id="L58">                count + group[pos],</span>
+<span class="fc" id="L59">                min(minProfit, profit + profits[pos]),</span>
+<span class="fc" id="L60">                n,</span>
+<span class="fc" id="L61">                minProfit,</span>
+<span class="fc" id="L62">                group,</span>
+<span class="fc" id="L63">                profits,</span>
+            )
+        }
+<span class="fc" id="L66">        return totalWays % MOD.also { memo[pos][count][profit] = it }</span>
+    }
+}
+
+<span class="fc" id="L70">class ProfitableSchemesBottomUp : ProfitableSchemes {</span>
+
+<span class="fc bfc" id="L72" title="All 4 branches covered.">    private val dp = Array(LIMIT) { Array(LIMIT) { IntArray(LIMIT) } }</span>
+
+    override operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
+        // Initializing the base case.
+<span class="pc bpc" id="L76" title="1 of 4 branches missed.">        for (count in 0..n) {</span>
+<span class="fc" id="L77">            dp[group.size][count][minProfit] = 1</span>
+        }
+
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (index in group.size - 1 downTo 0) {</span>
+<span class="pc bpc" id="L81" title="1 of 4 branches missed.">            for (count in 0..n) {</span>
+<span class="pc bpc" id="L82" title="1 of 4 branches missed.">                for (profit in 0..minProfit) {</span>
+                    // Ways to get a profitable scheme without this crime.
+<span class="fc" id="L84">                    dp[index][count][profit] = dp[index + 1][count][profit]</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                    if (count + group[index] &lt;= n) {</span>
+                        // Adding ways to get profitable schemes, including this crime.
+<span class="fc" id="L87">                        val minIndex = min(minProfit, profit + profits[index])</span>
+<span class="fc" id="L88">                        val local = dp[index][count][profit].plus(dp[index + 1][count + group[index]][minIndex])</span>
+<span class="fc" id="L89">                        dp[index][count][profit] = local % MOD</span>
+                    }
+                }
+            }
+        }
+<span class="fc" id="L94">        return dp[0][0][0]</span>
+    }
+}
+
+<span class="fc" id="L98">class ProfitableSchemesDP : ProfitableSchemes {</span>
+    override operator fun invoke(n: Int, minProfit: Int, group: IntArray, profits: IntArray): Int {
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        val dp = Array(n + 1) { IntArray(minProfit + 1) }</span>
+<span class="fc" id="L101">        dp[0][0] = 1</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for (i in group.indices) {</span>
+<span class="fc" id="L103">            val need = group[i]</span>
+<span class="fc" id="L104">            val money = profits[i]</span>
+
+<span class="pc bpc" id="L106" title="1 of 4 branches missed.">            for (a in (need..n).reversed()) {</span>
+<span class="fc" id="L107">                var tmp = dp[a][minProfit]</span>
+<span class="pc bpc" id="L108" title="1 of 4 branches missed.">                for (b in maxOf(0, minProfit - money)..minProfit)</span>
+<span class="fc" id="L109">                    tmp = (tmp + dp[a - need][b]) % MOD</span>
+<span class="fc" id="L110">                dp[a][minProfit] = tmp</span>
+
+<span class="pc bpc" id="L112" title="5 of 10 branches missed.">                for (b in (money until minProfit).reversed())</span>
+<span class="fc" id="L113">                    dp[a][b] = (dp[a][b] + dp[a - need][b - money]) % MOD</span>
+            }
+        }
+<span class="fc" id="L116">        var res = 0</span>
+<span class="pc bpc" id="L117" title="1 of 4 branches missed.">        for (i in 0..n)</span>
+<span class="fc" id="L118">            res = (res + dp[i][minProfit]) % MOD</span>
+<span class="fc" id="L119">        return res</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

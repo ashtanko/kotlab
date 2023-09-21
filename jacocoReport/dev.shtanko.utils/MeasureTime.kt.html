@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MeasureTime.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.utils</a> &gt; <span class="el_source">MeasureTime.kt</span></div><h1>MeasureTime.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.utils
+
+import dev.shtanko.algorithms.leetcode.MILLISECOND
+import java.util.concurrent.TimeUnit
+import kotlin.system.measureNanoTime
+import kotlin.system.measureTimeMillis
+
+inline fun &lt;T&gt; measureTime(action: () -&gt; T, result: (result: Pair&lt;Long, T&gt;) -&gt; Unit) {
+<span class="nc" id="L25">    var a: T</span>
+<span class="nc" id="L26">    val time = measureTimeMillis {</span>
+<span class="nc" id="L27">        a = action()</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    result(time to a)</span>
+<span class="nc" id="L30">}</span>
+
+<span class="nc" id="L32">inline fun &lt;T&gt; measureTime(isPrint: Boolean = false, crossinline action: () -&gt; T): Pair&lt;String, T&gt; {</span>
+<span class="nc" id="L33">    var result: T</span>
+<span class="nc" id="L34">    val nano = measureNanoTime {</span>
+<span class="nc" id="L35">        result = action.invoke()</span>
+<span class="nc" id="L36">    }</span>
+<span class="nc" id="L37">    val millis = TimeUnit.MILLISECONDS.convert(nano, TimeUnit.NANOSECONDS)</span>
+<span class="nc" id="L38">    val sec = TimeUnit.SECONDS.convert(nano, TimeUnit.NANOSECONDS)</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">    val sb = if (sec != 0L) {</span>
+<span class="nc" id="L40">        val diff = millis - MILLISECOND</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">        val sbDiff = if (diff != 0L) {</span>
+<span class="nc" id="L42">            &quot;$diff ms&quot;</span>
+        } else {
+<span class="nc" id="L44">            &quot;&quot;</span>
+        }
+<span class="nc" id="L46">        &quot;$sec $sbDiff&quot;</span>
+    } else {
+<span class="nc" id="L48">        &quot;$millis ms&quot;</span>
+    }
+<span class="nc" id="L50">    val finalStr = &quot;Runtime: $sb&quot;</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">    if (isPrint) {</span>
+<span class="nc" id="L52">        println(finalStr)</span>
+    }
+<span class="nc" id="L54">    return finalStr to result</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindNearestRightNode.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FindNearestRightNode.kt</span></div><h1>FindNearestRightNode.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.ArrayDeque
+import java.util.Deque
+import java.util.LinkedList
+import java.util.Queue
+
+// Find Nearest Right Node in Binary Tree
+fun interface FindNearestRightNodeStrategy {
+    operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode?
+}
+
+// Approach 1: BFS: Two Queues
+<span class="fc" id="L30">class FindNearestRightNodeTwoQueues : FindNearestRightNodeStrategy {</span>
+
+    override operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode? {
+<span class="fc" id="L33">        val nextLevel: ArrayDeque&lt;TreeNode?&gt; = ArrayDeque()</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        root?.let {</span>
+<span class="fc" id="L35">            nextLevel.offer(it)</span>
+        }
+
+        var currLevel: ArrayDeque&lt;TreeNode?&gt;
+        var node: TreeNode?
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        while (!nextLevel.isEmpty()) {</span>
+            // prepare for the next level
+<span class="fc" id="L42">            currLevel = nextLevel.clone()</span>
+<span class="fc" id="L43">            nextLevel.clear()</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            while (!currLevel.isEmpty()) {</span>
+<span class="fc" id="L45">                node = currLevel.poll()</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                if (node.levelOrder().flatten() == u.levelOrder().flatten()) {</span>
+<span class="fc" id="L47">                    return currLevel.poll()</span>
+                }
+
+                // add child nodes of the current level
+                // in the queue for the next level
+<span class="pc bpc" id="L52" title="1 of 4 branches missed.">                if (node?.left != null) nextLevel.offer(node.left!!)</span>
+<span class="pc bpc" id="L53" title="1 of 4 branches missed.">                if (node?.right != null) nextLevel.offer(node.right!!)</span>
+            }
+        }
+<span class="fc" id="L56">        return null</span>
+    }
+}
+
+// Approach 2: BFS: One Queue + Sentinel
+<span class="fc" id="L61">class FindNearestRightNodeSentinel : FindNearestRightNodeStrategy {</span>
+    override operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode? {
+<span class="fc" id="L63">        val queue: Queue&lt;TreeNode?&gt; = LinkedList()</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        root?.let {</span>
+<span class="fc" id="L65">            queue.offer(it)</span>
+        }
+<span class="fc" id="L67">        queue.offer(null)</span>
+
+<span class="fc" id="L69">        var curr: TreeNode? = null</span>
+
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L72">            curr = queue.poll()</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            if (curr != null) {</span>
+                // if it's the given node
+<span class="fc bfc" id="L75" title="All 2 branches covered.">                if (curr.levelOrder().flatten() == u.levelOrder().flatten()) return queue.poll()</span>
+
+                // add child nodes in the queue
+<span class="fc bfc" id="L78" title="All 2 branches covered.">                if (curr.left != null) {</span>
+<span class="fc" id="L79">                    queue.offer(curr.left)</span>
+                }
+<span class="fc bfc" id="L81" title="All 2 branches covered.">                if (curr.right != null) {</span>
+<span class="fc" id="L82">                    queue.offer(curr.right)</span>
+                }
+            } else {
+                // add a sentinel to mark end of level
+<span class="fc bfc" id="L86" title="All 2 branches covered.">                if (!queue.isEmpty()) queue.offer(null)</span>
+            }
+        }
+<span class="fc" id="L89">        return curr</span>
+    }
+}
+
+// Approach 3: BFS: One Queue + Level Size Measurements
+<span class="fc" id="L94">class FindNearestRightNodeSizeMeasurements : FindNearestRightNodeStrategy {</span>
+    override operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode? {
+<span class="fc" id="L96">        val queue: Deque&lt;TreeNode&gt; = ArrayDeque()</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        root?.let {</span>
+<span class="fc" id="L98">            queue.offer(it)</span>
+        }
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L101">            val levelLength: Int = queue.size</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">            for (i in 0 until levelLength) {</span>
+<span class="fc" id="L103">                val node: TreeNode = queue.poll()</span>
+                // if it's the given node
+<span class="fc bfc" id="L105" title="All 2 branches covered.">                if (node.levelOrder().flatten() == u.levelOrder().flatten()) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">                    return if (i != levelLength - 1) queue.poll() else null</span>
+                }
+
+                // add child nodes in the queue
+<span class="fc bfc" id="L110" title="All 2 branches covered.">                if (node.left != null) {</span>
+<span class="fc" id="L111">                    queue.offer(node.left)</span>
+                }
+<span class="fc bfc" id="L113" title="All 2 branches covered.">                if (node.right != null) {</span>
+<span class="fc" id="L114">                    queue.offer(node.right)</span>
+                }
+            }
+        }
+<span class="fc" id="L118">        return null</span>
+    }
+}
+
+// Approach 4: Recursive DFS: Preorder Traversal
+<span class="fc" id="L123">class FindNearestRightNodeSizePreorderTraversal : FindNearestRightNodeStrategy {</span>
+
+<span class="fc" id="L125">    private var uDepth = -1</span>
+    private var nextNode: TreeNode? = null
+    private var u: TreeNode? = null
+
+    override operator fun invoke(root: TreeNode?, u: TreeNode?): TreeNode? {
+<span class="fc" id="L130">        this.u = u</span>
+<span class="fc" id="L131">        preorder(root, 0)</span>
+<span class="fc" id="L132">        return nextNode</span>
+    }
+
+    private fun preorder(node: TreeNode?, depth: Int) {
+        // the depth to look for next node is identified
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        if (node.levelOrder().flatten() == u.levelOrder().flatten()) {</span>
+<span class="fc" id="L138">            uDepth = depth</span>
+            // we're on the level to look for the next node
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        } else if (depth == uDepth) {</span>
+            // if this next node is not identified yet
+<span class="fc bfc" id="L142" title="All 2 branches covered.">            if (nextNode == null) nextNode = node</span>
+        } else {
+            // continue to traverse the tree
+<span class="fc bfc" id="L145" title="All 4 branches covered.">            if (node?.left != null) preorder(node.left!!, depth + 1)</span>
+<span class="fc bfc" id="L146" title="All 4 branches covered.">            if (node?.right != null) preorder(node.right!!, depth + 1)</span>
+        }
+<span class="fc" id="L148">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

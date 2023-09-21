@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NumberOfGoodPaths.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NumberOfGoodPaths.kt</span></div><h1>NumberOfGoodPaths.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.TreeMap
+
+/**
+ * 2421. Number of Good Paths
+ * @see &lt;a href=&quot;https://leetcode.com/problems/number-of-good-paths/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface NumberOfGoodPaths {
+    operator fun invoke(vals: IntArray, edges: Array&lt;IntArray&gt;): Int
+}
+
+<span class="fc" id="L29">class NumberOfGoodPathsUnionFind : NumberOfGoodPaths {</span>
+    override operator fun invoke(vals: IntArray, edges: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L31">        val n = vals.size</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        val adj: Array&lt;MutableList&lt;Int&gt;&gt; = Array(n) { ArrayList() }</span>
+<span class="fc" id="L33">        val sameValues = TreeMap&lt;Int, ArrayList&lt;Int&gt;&gt;()</span>
+<span class="fc" id="L34">        var ans = 0</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L36">            adj[i] = ArrayList()</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            if (!sameValues.containsKey(vals[i])) {</span>
+<span class="fc" id="L38">                sameValues[vals[i]] = ArrayList()</span>
+            }
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">            sameValues[vals[i]]?.add(i)</span>
+        }
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (e in edges) {</span>
+<span class="fc" id="L43">            val u = e[0]</span>
+<span class="fc" id="L44">            val v = e[1]</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            if (vals[u] &gt;= vals[v]) {</span>
+<span class="fc" id="L46">                adj[u].add(v)</span>
+            } else {
+<span class="fc" id="L48">                adj[v].add(u)</span>
+            }
+        }
+<span class="fc" id="L51">        val uf = UF(n)</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        for (sameValue in sameValues.keys) {</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">            val ints = sameValues[sameValue] ?: arrayListOf()</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            for (u in ints) {</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">                for (v in adj[u]) {</span>
+<span class="fc" id="L56">                    uf.union(u, v)</span>
+                }
+            }
+<span class="fc" id="L59">            val group: HashMap&lt;Int, Int&gt; = HashMap()</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            for (u in ints) {</span>
+<span class="fc" id="L61">                group[uf.find(u)] = group.getOrDefault(uf.find(u), 0) + 1</span>
+            }
+<span class="fc" id="L63">            ans += ints.size</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            for (key in group.keys) {</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">                val size = group[key] ?: 0</span>
+<span class="fc" id="L66">                ans += size * (size - 1) / 2</span>
+            }
+        }
+<span class="fc" id="L69">        return ans</span>
+    }
+
+<span class="fc" id="L72">    class UF(len: Int) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        private val parent: IntArray = IntArray(len) { -1 }</span>
+
+        fun find(a: Int): Int {
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            return if (parent[a] &gt;= 0) {</span>
+<span class="fc" id="L77">                find(parent[a]).also { parent[a] = it }</span>
+            } else {
+<span class="fc" id="L79">                a</span>
+            }
+        }
+
+        fun union(a: Int, b: Int): Boolean {
+<span class="fc" id="L84">            val pa = find(a)</span>
+<span class="fc" id="L85">            val pb = find(b)</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">            if (pa == pb) return false</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (parent[pa] &lt;= parent[pb]) {</span>
+<span class="fc" id="L88">                parent[pa] += parent[pb]</span>
+<span class="fc" id="L89">                parent[pb] = pa</span>
+            } else {
+<span class="fc" id="L91">                parent[pb] += parent[pa]</span>
+<span class="fc" id="L92">                parent[pa] = pb</span>
+            }
+<span class="fc" id="L94">            return true</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

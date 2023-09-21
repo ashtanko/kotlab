@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VerifyingAlienDictionary.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">VerifyingAlienDictionary.kt</span></div><h1>VerifyingAlienDictionary.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Verifying an Alien Dictionary
+ * @see &lt;a href=&quot;https://leetcode.com/problems/verifying-an-alien-dictionary/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface VerifyingAlienDictionary {
+    fun isAlienSorted(words: Array&lt;String&gt;, order: String): Boolean
+}
+
+<span class="fc" id="L27">class VerifyingAlienDictionaryCompare : VerifyingAlienDictionary {</span>
+    override fun isAlienSorted(words: Array&lt;String&gt;, order: String): Boolean {
+<span class="fc" id="L29">        val orderMap = IntArray(ALPHABET_LETTERS_COUNT)</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (i in order.indices) {</span>
+<span class="fc" id="L31">            orderMap[order[i] - 'a'] = i</span>
+        }
+
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (i in 0 until words.size - 1) {</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">            for (j in 0 until words[i].length) {</span>
+                // If we do not find a mismatch letter between words[i] and words[i + 1],
+                // we need to examine the case when words are like (&quot;apple&quot;, &quot;app&quot;).
+<span class="fc bfc" id="L38" title="All 2 branches covered.">                if (j &gt;= words[i + 1].length) return false</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                if (words[i][j] != words[i + 1][j]) {</span>
+<span class="fc" id="L40">                    val currentWordChar: Int = words[i][j] - 'a'</span>
+<span class="fc" id="L41">                    val nextWordChar: Int = words[i + 1][j] - 'a'</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                    return if (orderMap[currentWordChar] &gt; orderMap[nextWordChar]) false else break</span>
+                }
+            }
+        }
+<span class="fc" id="L46">        return true</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

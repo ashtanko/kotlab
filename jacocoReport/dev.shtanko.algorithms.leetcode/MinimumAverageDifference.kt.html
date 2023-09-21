@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinimumAverageDifference.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MinimumAverageDifference.kt</span></div><h1>MinimumAverageDifference.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.abs
+
+/**
+ * 2256. Minimum Average Difference
+ * @see &lt;a href=&quot;https://leetcode.com/problems/minimum-average-difference/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MinimumAverageDifference {
+    operator fun invoke(nums: IntArray): Int
+}
+
+/**
+ * Approach 1: Brute Force
+ */
+<span class="fc" id="L32">class MinimumAverageDifferenceBruteForce : MinimumAverageDifference {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L34">        val n: Int = nums.size</span>
+<span class="fc" id="L35">        var ans = -1</span>
+<span class="fc" id="L36">        var minAvgDiff = Int.MAX_VALUE</span>
+
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (index in 0 until n) {</span>
+            // Calculate average of left part of array, index 0 to i.
+<span class="fc" id="L40">            var leftPartAverage: Long = 0</span>
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">            for (i in 0..index) {</span>
+<span class="fc" id="L42">                leftPartAverage += nums[i]</span>
+            }
+<span class="fc" id="L44">            leftPartAverage /= (index + 1).toLong()</span>
+
+            // Calculate average of right part of array, index i+1 to n-1.
+<span class="fc" id="L47">            var rightPartAverage: Long = 0</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            for (j in index + 1 until n) {</span>
+<span class="fc" id="L49">                rightPartAverage += nums[j]</span>
+            }
+
+            // If right part have 0 elements, then we don't divide by 0.
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            if (index != n - 1) {</span>
+<span class="fc" id="L54">                rightPartAverage /= (n - index - 1).toLong()</span>
+            }
+<span class="fc" id="L56">            val currDifference = abs(leftPartAverage - rightPartAverage).toInt()</span>
+            // If current difference of averages is smaller,
+            // then current index can be our answer.
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            if (currDifference &lt; minAvgDiff) {</span>
+<span class="fc" id="L60">                minAvgDiff = currDifference</span>
+<span class="fc" id="L61">                ans = index</span>
+            }
+        }
+
+<span class="fc" id="L65">        return ans</span>
+    }
+}
+
+/**
+ * Approach 2: Prefix Sum
+ */
+<span class="fc" id="L72">class MinimumAverageDifferencePrefixSum : MinimumAverageDifference {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L74">        val n: Int = nums.size</span>
+<span class="fc" id="L75">        var ans = -1</span>
+<span class="fc" id="L76">        var minAvgDiff = Int.MAX_VALUE</span>
+
+        // Generate prefix and suffix sum arrays.
+
+        // Generate prefix and suffix sum arrays.
+<span class="fc" id="L81">        val prefixSum = LongArray(n + 1)</span>
+<span class="fc" id="L82">        val suffixSum = LongArray(n + 1)</span>
+
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (index in 0 until n) {</span>
+<span class="fc" id="L85">            prefixSum[index + 1] = prefixSum[index] + nums[index]</span>
+        }
+
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        for (index in n - 1 downTo 0) {</span>
+<span class="fc" id="L89">            suffixSum[index] = suffixSum[index + 1] + nums[index]</span>
+        }
+
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+            // Calculate average of left part of array, index 0 to i.
+<span class="fc" id="L94">            var leftPartAverage = prefixSum[i + 1]</span>
+<span class="fc" id="L95">            leftPartAverage /= (i + 1).toLong()</span>
+
+            // Calculate average of right part of array, index i+1 to n-1.
+<span class="fc" id="L98">            var rightPartAverage = suffixSum[i + 1]</span>
+            // If right part have 0 elements, then we don't divide by 0.
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            if (i != n - 1) {</span>
+<span class="fc" id="L101">                rightPartAverage /= (n - i - 1).toLong()</span>
+            }
+<span class="fc" id="L103">            val currDifference = abs(leftPartAverage - rightPartAverage).toInt()</span>
+            // If current difference of averages is smaller,
+            // then current index can be our answer.
+<span class="fc bfc" id="L106" title="All 2 branches covered.">            if (currDifference &lt; minAvgDiff) {</span>
+<span class="fc" id="L107">                minAvgDiff = currDifference</span>
+<span class="fc" id="L108">                ans = i</span>
+            }
+        }
+
+<span class="fc" id="L112">        return ans</span>
+    }
+}
+
+/**
+ * Approach 3: Prefix Sum Optimized
+ */
+<span class="fc" id="L119">class MinimumAverageDifferencePrefixSumOpt : MinimumAverageDifference {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L121">        val n: Int = nums.size</span>
+<span class="fc" id="L122">        var ans = -1</span>
+<span class="fc" id="L123">        var minAvgDiff = Int.MAX_VALUE</span>
+<span class="fc" id="L124">        var currPrefixSum: Long = 0</span>
+
+        // Get total sum of array.
+
+        // Get total sum of array.
+<span class="fc" id="L129">        var totalSum: Long = 0</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        for (index in 0 until n) {</span>
+<span class="fc" id="L131">            totalSum += nums[index]</span>
+        }
+
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        for (index in 0 until n) {</span>
+<span class="fc" id="L135">            currPrefixSum += nums[index]</span>
+
+            // Calculate average of left part of array, index 0 to i.
+<span class="fc" id="L138">            var leftPartAverage = currPrefixSum</span>
+<span class="fc" id="L139">            leftPartAverage /= (index + 1).toLong()</span>
+
+            // Calculate average of right part of array, index i+1 to n-1.
+<span class="fc" id="L142">            var rightPartAverage = totalSum - currPrefixSum</span>
+            // If right part have 0 elements, then we don't divide by 0.
+<span class="fc bfc" id="L144" title="All 2 branches covered.">            if (index != n - 1) {</span>
+<span class="fc" id="L145">                rightPartAverage /= (n - index - 1).toLong()</span>
+            }
+<span class="fc" id="L147">            val currDifference = abs(leftPartAverage - rightPartAverage).toInt()</span>
+            // If current difference of averages is smaller,
+            // then current index can be our answer.
+<span class="fc bfc" id="L150" title="All 2 branches covered.">            if (currDifference &lt; minAvgDiff) {</span>
+<span class="fc" id="L151">                minAvgDiff = currDifference</span>
+<span class="fc" id="L152">                ans = index</span>
+            }
+        }
+
+<span class="fc" id="L156">        return ans</span>
+    }
+}
+
+<span class="fc" id="L160">class MinimumAverageDifferenceKt : MinimumAverageDifference {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L162">        var sum = 0L</span>
+<span class="fc" id="L163">        nums.forEach { sum += it.toLong() }</span>
+<span class="fc" id="L164">        var leftSum = 0L</span>
+<span class="fc" id="L165">        var min = Long.MAX_VALUE</span>
+<span class="fc" id="L166">        var minInd = 0</span>
+<span class="pc bpc" id="L167" title="1 of 4 branches missed.">        for (i in 0..nums.lastIndex) {</span>
+<span class="fc" id="L168">            val leftCount = (i + 1).toLong()</span>
+<span class="fc" id="L169">            leftSum += nums[i].toLong()</span>
+<span class="fc" id="L170">            val front = leftSum / leftCount</span>
+<span class="fc" id="L171">            val rightCount = nums.size.toLong() - leftCount</span>
+<span class="fc" id="L172">            val rightSum = sum - leftSum</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">            val back = if (rightCount == 0L) 0L else rightSum / rightCount</span>
+<span class="fc" id="L174">            val diff = abs(front - back)</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">            if (diff &lt; min) {</span>
+<span class="fc" id="L176">                min = diff</span>
+<span class="fc" id="L177">                minInd = i</span>
+            }
+        }
+<span class="fc" id="L180">        return minInd</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepeatedSubstringPattern.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">RepeatedSubstringPattern.kt</span></div><h1>RepeatedSubstringPattern.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 459. Repeated Substring Pattern
+ * @see &lt;a href=&quot;https://leetcode.com/problems/repeated-substring-pattern/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface RepeatedSubstringPattern {
+    operator fun invoke(s: String): Boolean
+}
+
+/**
+ * Approach 1: Using Divisors
+ */
+<span class="fc" id="L30">class RepeatedSubstringPatternDivisors : RepeatedSubstringPattern {</span>
+    override operator fun invoke(s: String): Boolean {
+<span class="fc" id="L32">        val n: Int = s.length</span>
+<span class="pc bpc" id="L33" title="1 of 4 branches missed.">        for (i in 1..n / 2) {</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            if (n % i == 0) {</span>
+<span class="fc" id="L35">                val pattern = StringBuilder()</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">                for (j in 0 until n / i) {</span>
+<span class="fc" id="L37">                    pattern.append(s.substring(0, i))</span>
+                }
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                if (s == pattern.toString()) {</span>
+<span class="fc" id="L40">                    return true</span>
+                }
+            }
+        }
+<span class="fc" id="L44">        return false</span>
+    }
+}
+
+/**
+ * Approach 2: String Concatenation
+ */
+<span class="fc" id="L51">class RepeatedSubstringPatternConcat : RepeatedSubstringPattern {</span>
+    override operator fun invoke(s: String): Boolean {
+<span class="fc" id="L53">        val combined = s.plus(s)</span>
+<span class="fc" id="L54">        return combined.substring(1, combined.length - 1).contains(s)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

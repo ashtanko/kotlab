@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FrogJump.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FrogJump.kt</span></div><h1>FrogJump.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Arrays
+
+/**
+ * 403. Frog Jump
+ * @see &lt;a href=&quot;https://leetcode.com/problems/frog-jump&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface FrogJump {
+    operator fun invoke(stones: IntArray): Boolean
+}
+
+private const val LIMIT = 2000
+
+/**
+ * Approach 1: Top-Down Dynamic Programming
+ */
+<span class="fc" id="L34">class FrogJumpTopDownDp : FrogJump {</span>
+<span class="fc" id="L35">    private val mark = HashMap&lt;Int, Int&gt;()</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">    private val dp = Array(LIMIT + 1) { IntArray(LIMIT + 1) }</span>
+
+    override operator fun invoke(stones: IntArray): Boolean {
+        // Mark stones in the map to identify if such stone exists or not.
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (i in stones.indices) {</span>
+<span class="fc" id="L41">            mark[stones[i]] = i</span>
+        }
+
+        // Mark all states as -1 to denote they're not calculated.
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (i in 0 until LIMIT) {</span>
+<span class="fc" id="L46">            Arrays.fill(dp[i], -1)</span>
+        }
+<span class="fc" id="L48">        return solve(stones, stones.size, 0, 0)</span>
+    }
+
+    private fun solve(stones: IntArray, n: Int, index: Int, prevJump: Int): Boolean {
+        // If reached the last stone, return 1.
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (index == n - 1) {</span>
+<span class="fc" id="L54">            return true</span>
+        }
+
+        // If this sub-problem has already been calculated, return it.
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (dp[index][prevJump] != -1) {</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">            return dp[index][prevJump] == 1</span>
+        }
+<span class="fc" id="L61">        var ans = false</span>
+        // Iterate over the three possibilities {k - 1, k, k + 1}.
+<span class="pc bpc" id="L63" title="1 of 4 branches missed.">        for (nextJump in prevJump - 1..prevJump + 1) {</span>
+<span class="fc bfc" id="L64" title="All 4 branches covered.">            if (nextJump &gt; 0 &amp;&amp; mark.containsKey(stones[index] + nextJump)) {</span>
+<span class="fc bfc" id="L65" title="All 4 branches covered.">                ans = ans || solve(stones, n, mark[stones[index] + nextJump]!!, nextJump)</span>
+            }
+        }
+
+        // Store the result to fetch later.
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        dp[index][prevJump] = if (ans) 1 else 0</span>
+<span class="fc" id="L71">        return ans</span>
+    }
+}
+
+/**
+ * Approach 2: Bottom-up Dynamic Programming
+ */
+<span class="fc" id="L78">class FrogJumpBottomUpDp : FrogJump {</span>
+
+<span class="fc" id="L80">    private val mark = HashMap&lt;Int, Int&gt;()</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">    private val dp = Array(LIMIT + 1) { BooleanArray(LIMIT + 1) }</span>
+
+    override operator fun invoke(stones: IntArray): Boolean {
+<span class="fc" id="L84">        val n = stones.size</span>
+        // Mark stones in the map to identify if such stone exists or not.
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L87">            mark[stones[i]] = i</span>
+        }
+<span class="fc" id="L89">        dp[0][0] = true</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        for (index in 0 until n) {</span>
+<span class="pc bpc" id="L91" title="1 of 4 branches missed.">            for (prevJump in 0..n) {</span>
+                // If stone exists, mark the value with position and jump as 1.
+<span class="fc bfc" id="L93" title="All 2 branches covered.">                if (dp[index][prevJump]) {</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">                    if (mark.containsKey(stones[index] + prevJump)) {</span>
+<span class="fc" id="L95">                        dp[mark[stones[index] + prevJump]!!][prevJump] = true</span>
+                    }
+<span class="fc bfc" id="L97" title="All 2 branches covered.">                    if (mark.containsKey(stones[index] + prevJump + 1)) {</span>
+<span class="fc" id="L98">                        dp[mark[stones[index] + prevJump + 1]!!][prevJump + 1] = true</span>
+                    }
+<span class="fc bfc" id="L100" title="All 2 branches covered.">                    if (mark.containsKey(stones[index] + prevJump - 1)) {</span>
+<span class="fc" id="L101">                        dp[mark[stones[index] + prevJump - 1]!!][prevJump - 1] = true</span>
+                    }
+                }
+            }
+        }
+
+        // If any value with index as n - 1 is true, return true.
+<span class="pc bpc" id="L108" title="1 of 4 branches missed.">        for (index in 0..n) {</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">            if (dp[n - 1][index]) {</span>
+<span class="fc" id="L110">                return true</span>
+            }
+        }
+<span class="fc" id="L113">        return false</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

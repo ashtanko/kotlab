@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PermutationInString.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PermutationInString.kt</span></div><h1>PermutationInString.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+private const val MAX = 25
+
+fun interface StringPermutationStrategy {
+    operator fun invoke(s1: String, s2: String): Boolean
+
+    fun matches(s1map: IntArray, s2map: IntArray): Boolean {
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (i in 0..MAX) {</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">            if (s1map[i] != s2map[i]) return false</span>
+        }
+<span class="fc" id="L28">        return true</span>
+    }
+}
+
+<span class="pc" id="L32">class PermutationBruteForce : StringPermutationStrategy {</span>
+
+    private var flag = false
+
+    override operator fun invoke(s1: String, s2: String): Boolean {
+<span class="fc" id="L37">        permute(s1, s2, 0)</span>
+<span class="fc" id="L38">        return flag</span>
+    }
+
+    fun swap(s: String, i0: Int, i1: Int): String {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (i0 == i1) return s</span>
+<span class="fc" id="L43">        val s1 = s.substring(0, i0)</span>
+<span class="fc" id="L44">        val s2 = s.substring(i0 + 1, i1)</span>
+<span class="fc" id="L45">        val s3 = s.substring(i1 + 1)</span>
+<span class="fc" id="L46">        return s1 + s[i1] + s2 + s[i0] + s3</span>
+    }
+
+    private fun permute(str1: String, s2: String, l: Int) {
+<span class="fc" id="L50">        var s1 = str1</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (l == s1.length) {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (s2.indexOf(s1) &gt;= 0) flag = true</span>
+        } else {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            for (i in l until s1.length) {</span>
+<span class="fc" id="L55">                s1 = swap(s1, l, i)</span>
+<span class="fc" id="L56">                permute(s1, s2, l + 1)</span>
+<span class="fc" id="L57">                s1 = swap(s1, l, i)</span>
+            }
+        }
+<span class="fc" id="L60">    }</span>
+}
+
+<span class="pc" id="L63">class PermutationSorting : StringPermutationStrategy {</span>
+    override operator fun invoke(s1: String, s2: String): Boolean {
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">        for (i in 0..s2.length - s1.length) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            if (s1 == sort(s2.substring(i, i + s1.length))) return true</span>
+        }
+<span class="fc" id="L68">        return false</span>
+    }
+
+    private fun sort(s: String): String {
+<span class="fc" id="L72">        val t = s.toCharArray()</span>
+<span class="fc" id="L73">        t.sort()</span>
+<span class="fc" id="L74">        return String(t)</span>
+    }
+}
+
+<span class="pc" id="L78">class PermutationHashmap : StringPermutationStrategy {</span>
+    override operator fun invoke(s1: String, s2: String): Boolean {
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if (s1.length &gt; s2.length) return false</span>
+
+<span class="fc" id="L82">        val s1map: HashMap&lt;Char?, Int?&gt; = HashMap()</span>
+
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (i in s1.indices) s1map[s1[i]] =</span>
+<span class="fc" id="L85">            s1map.getOrDefault(s1[i], 0)!! + 1</span>
+<span class="pc bpc" id="L86" title="1 of 4 branches missed.">        for (i in 0..s2.length - s1.length) {</span>
+<span class="fc" id="L87">            val s2map: HashMap&lt;Char?, Int&gt; = HashMap()</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            for (j in s1.indices) {</span>
+<span class="fc" id="L89">                s2map[s2[i + j]] =</span>
+<span class="fc" id="L90">                    s2map.getOrDefault(s2[i + j], 0) + 1</span>
+            }
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if (matches(s1map, s2map)) return true</span>
+        }
+<span class="fc" id="L94">        return false</span>
+    }
+
+    private fun matches(s1map: HashMap&lt;Char?, Int?&gt;, s2map: HashMap&lt;Char?, Int&gt;): Boolean {
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        for (key in s1map.keys) {</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">            s1map[key]?.let {</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">                if (it - s2map.getOrDefault(key, -1) != 0) return false</span>
+<span class="fc" id="L101">            }</span>
+        }
+<span class="fc" id="L103">        return true</span>
+    }
+}
+
+<span class="fc" id="L107">class PermutationArray : StringPermutationStrategy {</span>
+
+    override operator fun invoke(s1: String, s2: String): Boolean {
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">        if (s1.length &gt; s2.length) return false</span>
+<span class="fc" id="L111">        val s1map = IntArray(MAX + 1)</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        for (i in s1.indices) s1map[s1[i] - 'a']++</span>
+<span class="pc bpc" id="L113" title="1 of 4 branches missed.">        for (i in 0..s2.length - s1.length) {</span>
+<span class="fc" id="L114">            val s2map = IntArray(MAX + 1)</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">            for (j in s1.indices) {</span>
+<span class="fc" id="L116">                s2map[s2[i + j] - 'a']++</span>
+            }
+<span class="fc bfc" id="L118" title="All 2 branches covered.">            if (matches(s1map, s2map)) return true</span>
+        }
+<span class="fc" id="L120">        return false</span>
+    }
+}
+
+<span class="fc" id="L124">class PermutationSlidingWindow : StringPermutationStrategy {</span>
+
+    override operator fun invoke(s1: String, s2: String): Boolean {
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">        if (s1.length &gt; s2.length) return false</span>
+<span class="fc" id="L128">        val s1map = IntArray(MAX + 1)</span>
+<span class="fc" id="L129">        val s2map = IntArray(MAX + 1)</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        for (i in s1.indices) {</span>
+<span class="fc" id="L131">            s1map[s1[i] - 'a']++</span>
+<span class="fc" id="L132">            s2map[s2[i] - 'a']++</span>
+        }
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        for (i in 0 until s2.length - s1.length) {</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">            if (matches(s1map, s2map)) return true</span>
+<span class="fc" id="L136">            s2map[s2[i + s1.length] - 'a']++</span>
+<span class="fc" id="L137">            s2map[s2[i] - 'a']--</span>
+        }
+<span class="fc" id="L139">        return matches(s1map, s2map)</span>
+    }
+}
+
+<span class="pc" id="L143">class PermutationOptimizedSlidingWindow : StringPermutationStrategy {</span>
+    override operator fun invoke(s1: String, s2: String): Boolean {
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">        if (s1.length &gt; s2.length) return false</span>
+<span class="fc" id="L146">        val s1map = IntArray(MAX + 1)</span>
+<span class="fc" id="L147">        val s2map = IntArray(MAX + 1)</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        for (i in s1.indices) {</span>
+<span class="fc" id="L149">            s1map[s1[i] - 'a']++</span>
+<span class="fc" id="L150">            s2map[s2[i] - 'a']++</span>
+        }
+<span class="fc" id="L152">        var count = 0</span>
+<span class="fc bfc" id="L153" title="All 4 branches covered.">        for (i in 0..MAX) if (s1map[i] == s2map[i]) count++</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        for (i in 0 until s2.length - s1.length) {</span>
+<span class="fc" id="L155">            val r: Int = s2[i + s1.length] - 'a'</span>
+<span class="fc" id="L156">            val l: Int = s2[i] - 'a'</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">            if (count == MAX + 1) return true</span>
+<span class="fc" id="L158">            s2map[r]++</span>
+<span class="fc bfc" id="L159" title="All 4 branches covered.">            if (s2map[r] == s1map[r]) count++ else if (s2map[r] == s1map[r] + 1) count--</span>
+<span class="fc" id="L160">            s2map[l]--</span>
+<span class="fc bfc" id="L161" title="All 4 branches covered.">            if (s2map[l] == s1map[l]) count++ else if (s2map[l] == s1map[l] - 1) count--</span>
+        }
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        return count == MAX + 1</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

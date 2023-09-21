@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GitHubService.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.api</a> &gt; <span class="el_source">GitHubService.kt</span></div><h1>GitHubService.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.api
+
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import java.lang.String.format
+import java.util.Base64
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.http.GET
+import retrofit2.http.Path
+
+interface GitHubService {
+    @GET(&quot;orgs/{org}/repos?per_page=100&quot;)
+    fun getOrgReposCall(
+        @Path(&quot;org&quot;) org: String,
+    ): Call&lt;List&lt;Repo&gt;&gt;
+
+    @GET(&quot;repos/{owner}/{repo}/contributors?per_page=100&quot;)
+    fun getRepoContributorsCall(
+        @Path(&quot;owner&quot;) owner: String,
+        @Path(&quot;repo&quot;) repo: String,
+    ): Call&lt;List&lt;User&gt;&gt;
+
+    @GET(&quot;orgs/{org}/repos?per_page=100&quot;)
+    suspend fun getOrgRepos(
+        @Path(&quot;org&quot;) org: String,
+    ): Response&lt;List&lt;Repo&gt;&gt;
+
+    @GET(&quot;repos/{owner}/{repo}/contributors?per_page=100&quot;)
+    suspend fun getRepoContributors(
+        @Path(&quot;owner&quot;) owner: String,
+        @Path(&quot;repo&quot;) repo: String,
+    ): Response&lt;List&lt;User&gt;&gt;
+}
+
+<span class="pc bpc" id="L59" title="2 of 8 branches missed.">@Serializable</span>
+<span class="fc" id="L60">data class Repo(</span>
+<span class="pc" id="L61">    val id: Long,</span>
+<span class="fc" id="L62">    val name: String,</span>
+<span class="fc" id="L63">)</span>
+
+<span class="pc bpc" id="L65" title="2 of 8 branches missed.">@Serializable</span>
+<span class="fc" id="L66">data class User(</span>
+<span class="fc" id="L67">    val login: String,</span>
+<span class="fc" id="L68">    val contributions: Int,</span>
+<span class="fc" id="L69">)</span>
+
+<span class="pc bnc" id="L71" title="All 9 branches missed.">@Serializable</span>
+<span class="fc" id="L72">data class RequestData(</span>
+<span class="pc" id="L73">    val username: String,</span>
+<span class="pc" id="L74">    val password: String,</span>
+<span class="fc" id="L75">    val org: String,</span>
+<span class="nc" id="L76">)</span>
+
+<span class="fc" id="L78">private val json = Json { ignoreUnknownKeys = true }</span>
+
+private const val BASE_URL = &quot;https://api.github.com/&quot;
+private const val JSON_CONTENT_TYPE = &quot;application/json&quot;
+private const val AUTH_HEADER = &quot;Authorization&quot;
+private const val ACCEPT_HEADER = &quot;Accept&quot;
+private const val ACCEPT_HEADER_VALUE = &quot;application/vnd.github.v3+json&quot;
+private const val AUTH_BASIC = &quot;Basic %s&quot;
+
+fun createHttpClient(authToken: String): OkHttpClient {
+<span class="fc" id="L88">    return OkHttpClient.Builder()</span>
+<span class="fc" id="L89">        .addInterceptor { chain -&gt;</span>
+            val original = chain.request()
+            val builder = original.newBuilder()
+                .header(ACCEPT_HEADER, ACCEPT_HEADER_VALUE)
+                .header(AUTH_HEADER, authToken)
+            val request = builder.build()
+            chain.proceed(request)
+        }
+<span class="fc" id="L97">        .build()</span>
+}
+
+@OptIn(ExperimentalSerializationApi::class)
+<span class="fc" id="L101">fun createRetrofit(httpClient: OkHttpClient, baseUrl: HttpUrl = BASE_URL.toHttpUrl()): Retrofit {</span>
+<span class="fc" id="L102">    val contentType = JSON_CONTENT_TYPE.toMediaType()</span>
+<span class="fc" id="L103">    return Retrofit.Builder()</span>
+<span class="fc" id="L104">        .baseUrl(baseUrl)</span>
+<span class="fc" id="L105">        .addConverterFactory(json.asConverterFactory(contentType))</span>
+<span class="fc" id="L106">        .client(httpClient)</span>
+<span class="fc" id="L107">        .build()</span>
+}
+
+<span class="fc" id="L110">fun createGitHubService(</span>
+    username: String,
+    password: String,
+<span class="fc" id="L113">    httpClient: OkHttpClient = createHttpClient(</span>
+<span class="fc" id="L114">        format(</span>
+<span class="fc" id="L115">            AUTH_BASIC,</span>
+<span class="fc" id="L116">            Base64.getEncoder().encode(&quot;$username:$password&quot;.toByteArray()).toString(Charsets.UTF_8),</span>
+        ),
+    ),
+<span class="nc" id="L119">    retrofit: Retrofit = createRetrofit(httpClient),</span>
+): GitHubService {
+<span class="fc" id="L121">    return retrofit.create(GitHubService::class.java)</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

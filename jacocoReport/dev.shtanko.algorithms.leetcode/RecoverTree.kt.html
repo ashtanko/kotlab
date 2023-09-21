@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecoverTree.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">RecoverTree.kt</span></div><h1>RecoverTree.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Recover Binary Search Tree
+ */
+fun recoverTree(root: TreeNode?) {
+<span class="fc" id="L23">    var rootNode = root</span>
+<span class="fc" id="L24">    var pre: TreeNode? = null</span>
+<span class="fc" id="L25">    var first: TreeNode? = null</span>
+<span class="fc" id="L26">    var second: TreeNode? = null</span>
+    // Morris Traversal
+    var temp: TreeNode?
+<span class="fc bfc" id="L29" title="All 2 branches covered.">    while (rootNode != null) {</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (rootNode.left != null) {</span>
+            // connect threading for root
+<span class="fc" id="L32">            temp = rootNode.left</span>
+<span class="fc bfc" id="L33" title="All 4 branches covered.">            while (temp!!.right != null &amp;&amp; temp.right != rootNode) temp = temp.right</span>
+            // the threading already exists
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            if (temp.right != null) {</span>
+<span class="pc bpc" id="L36" title="1 of 4 branches missed.">                if (pre != null &amp;&amp; pre.value &gt; rootNode.value) {</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">                    if (first == null) {</span>
+<span class="nc" id="L38">                        first = pre</span>
+<span class="nc" id="L39">                        second = rootNode</span>
+                    } else {
+<span class="fc" id="L41">                        second = rootNode</span>
+                    }
+                }
+<span class="fc" id="L44">                pre = rootNode</span>
+<span class="fc" id="L45">                temp.right = null</span>
+<span class="fc" id="L46">                rootNode = rootNode.right</span>
+            } else {
+                // construct the threading
+<span class="fc" id="L49">                temp.right = rootNode</span>
+<span class="fc" id="L50">                rootNode = rootNode.left</span>
+            }
+        } else {
+<span class="pc bpc" id="L53" title="1 of 4 branches missed.">            if (pre != null &amp;&amp; pre.value &gt; rootNode.value) {</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">                if (first == null) {</span>
+<span class="fc" id="L55">                    first = pre</span>
+<span class="fc" id="L56">                    second = rootNode</span>
+                } else {
+<span class="nc" id="L58">                    second = rootNode</span>
+                }
+            }
+<span class="fc" id="L61">            pre = rootNode</span>
+<span class="fc" id="L62">            rootNode = rootNode.right</span>
+        }
+    }
+    // swap two node values;
+<span class="pc bpc" id="L66" title="2 of 4 branches missed.">    if (first != null &amp;&amp; second != null) {</span>
+<span class="fc" id="L67">        val t: Int = first.value</span>
+<span class="fc" id="L68">        first.value = second.value</span>
+<span class="fc" id="L69">        second.value = t</span>
+    }
+<span class="fc" id="L71">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

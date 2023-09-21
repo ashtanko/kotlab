@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CountVowelsPermutation.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CountVowelsPermutation.kt</span></div><h1>CountVowelsPermutation.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1220. Count Vowels Permutation
+ * @see &lt;a href=&quot;https://leetcode.com/problems/count-vowels-permutation/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface CountVowelsPermutationStrategy {
+    operator fun invoke(n: Int): Int
+}
+
+sealed class CountVowelsPermutation {
+
+    /**
+     * Approach 1: Dynamic Programming (Bottom-up)
+     */
+<span class="fc" id="L32">    class BottomUp : CountVowelsPermutationStrategy {</span>
+        override operator fun invoke(n: Int): Int {
+<span class="fc" id="L34">            val aVowelPermutationCount = LongArray(n)</span>
+<span class="fc" id="L35">            val eVowelPermutationCount = LongArray(n)</span>
+<span class="fc" id="L36">            val iVowelPermutationCount = LongArray(n)</span>
+<span class="fc" id="L37">            val oVowelPermutationCount = LongArray(n)</span>
+<span class="fc" id="L38">            val uVowelPermutationCount = LongArray(n)</span>
+
+<span class="fc" id="L40">            aVowelPermutationCount[0] = 1L</span>
+<span class="fc" id="L41">            eVowelPermutationCount[0] = 1L</span>
+<span class="fc" id="L42">            iVowelPermutationCount[0] = 1L</span>
+<span class="fc" id="L43">            oVowelPermutationCount[0] = 1L</span>
+<span class="fc" id="L44">            uVowelPermutationCount[0] = 1L</span>
+
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for (i in 1 until n) {</span>
+<span class="fc" id="L47">                val eiCount = eVowelPermutationCount[i - 1].plus(iVowelPermutationCount[i - 1])</span>
+<span class="fc" id="L48">                aVowelPermutationCount[i] = eiCount.plus(uVowelPermutationCount[i - 1]).rem(MOD)</span>
+<span class="fc" id="L49">                eVowelPermutationCount[i] = aVowelPermutationCount[i - 1].plus(iVowelPermutationCount[i - 1]).rem(MOD)</span>
+<span class="fc" id="L50">                iVowelPermutationCount[i] = (eVowelPermutationCount[i - 1] + oVowelPermutationCount[i - 1]) % MOD</span>
+<span class="fc" id="L51">                oVowelPermutationCount[i] = iVowelPermutationCount[i - 1] % MOD</span>
+<span class="fc" id="L52">                uVowelPermutationCount[i] = (iVowelPermutationCount[i - 1] + oVowelPermutationCount[i - 1]) % MOD</span>
+            }
+
+<span class="fc" id="L55">            val aeCount = aVowelPermutationCount[n - 1].plus(eVowelPermutationCount[n - 1])</span>
+<span class="fc" id="L56">            val ioCount = iVowelPermutationCount[n - 1].plus(oVowelPermutationCount[n - 1])</span>
+<span class="fc" id="L57">            val result: Long = aeCount.plus(ioCount).plus(uVowelPermutationCount[n - 1]).rem(MOD)</span>
+
+<span class="fc" id="L59">            return result.toInt()</span>
+        }
+
+<span class="fc" id="L62">        override fun toString() = &quot;bottom up&quot;</span>
+    }
+
+<span class="fc" id="L65">    class OptimizedSpace : CountVowelsPermutationStrategy {</span>
+        override operator fun invoke(n: Int): Int {
+<span class="fc" id="L67">            var aCount: Long = 1</span>
+<span class="fc" id="L68">            var eCount: Long = 1</span>
+<span class="fc" id="L69">            var iCount: Long = 1</span>
+<span class="fc" id="L70">            var oCount: Long = 1</span>
+<span class="fc" id="L71">            var uCount: Long = 1</span>
+
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            for (i in 1 until n) {</span>
+<span class="fc" id="L74">                val aCountNew = eCount.plus(iCount).plus(uCount).rem(MOD)</span>
+<span class="fc" id="L75">                val eCountNew = aCount.plus(iCount).rem(MOD)</span>
+<span class="fc" id="L76">                val iCountNew = eCount.plus(oCount).rem(MOD)</span>
+<span class="fc" id="L77">                val oCountNew = iCount.rem(MOD)</span>
+<span class="fc" id="L78">                val uCountNew = iCount.plus(oCount).rem(MOD)</span>
+<span class="fc" id="L79">                aCount = aCountNew</span>
+<span class="fc" id="L80">                eCount = eCountNew</span>
+<span class="fc" id="L81">                iCount = iCountNew</span>
+<span class="fc" id="L82">                oCount = oCountNew</span>
+<span class="fc" id="L83">                uCount = uCountNew</span>
+            }
+<span class="fc" id="L85">            val aeCount = aCount + eCount</span>
+<span class="fc" id="L86">            val ioCount = iCount + oCount</span>
+
+<span class="fc" id="L88">            val result = aeCount.plus(ioCount).plus(uCount).rem(MOD)</span>
+<span class="fc" id="L89">            return result.toInt()</span>
+        }
+
+<span class="fc" id="L92">        override fun toString(): String = &quot;optimized space&quot;</span>
+    }
+
+    /**
+     * Approach 3: Dynamic Programming (Top-down, Recursion)
+     */
+<span class="fc" id="L98">    class TopDown : CountVowelsPermutationStrategy {</span>
+
+        private lateinit var memo: Array&lt;LongArray&gt;
+
+        override operator fun invoke(n: Int): Int {
+            // each row stands for the length of string
+            // each column indicates the vowels
+            // specifically, a: 0, e: 1, i: 2, o: 3, u: 4
+<span class="fc bfc" id="L106" title="All 2 branches covered.">            memo = Array(n) { LongArray(5) }</span>
+<span class="fc" id="L107">            var result: Long = 0</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">            for (i in 0..4) {</span>
+<span class="fc" id="L109">                result = (result + vowelPermutationCount(n - 1, i)) % MOD</span>
+            }
+<span class="fc" id="L111">            return result.toInt()</span>
+        }
+
+        private fun vowelPermutationCount(i: Int, vowel: Int): Long {
+<span class="pc bpc" id="L115" title="2 of 6 branches missed.">            if (memo[i][vowel] != 0L) return memo[i][vowel]</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">            if (i == 0) {</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">                memo[i][vowel] = 1</span>
+            } else {
+<span class="pc bpc" id="L119" title="1 of 6 branches missed.">                when (vowel) {</span>
+                    0 -&gt; {
+<span class="fc" id="L121">                        val local = vowelPermutationCount(i - 1, 1) + vowelPermutationCount(i - 1, 2)</span>
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">                        memo[i][vowel] = (local + vowelPermutationCount(i - 1, 4)) % MOD</span>
+                    }
+
+                    1 -&gt; {
+<span class="fc" id="L126">                        val local = vowelPermutationCount(i - 1, 0) + vowelPermutationCount(i - 1, 2)</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">                        memo[i][vowel] = local % MOD</span>
+                    }
+
+                    2 -&gt; {
+<span class="fc" id="L131">                        val local = vowelPermutationCount(i - 1, 1) + vowelPermutationCount(i - 1, 3)</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">                        memo[i][vowel] = local % MOD</span>
+                    }
+
+                    3 -&gt; {
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">                        memo[i][vowel] = vowelPermutationCount(i - 1, 2)</span>
+                    }
+
+                    4 -&gt; {
+<span class="fc" id="L140">                        val local = vowelPermutationCount(i - 1, 2) + vowelPermutationCount(i - 1, 3)</span>
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">                        memo[i][vowel] = local % MOD</span>
+                    }
+                }
+            }
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">            return memo[i][vowel]</span>
+        }
+
+<span class="fc" id="L148">        override fun toString(): String = &quot;top down&quot;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

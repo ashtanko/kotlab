@@ -1,4 +1,4 @@
-.PHONY: check run test lines md default
+.PHONY: check run test lines md default jacoco
 check:
 	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
 
@@ -16,5 +16,8 @@ test:
 
 lines:
 	find . -name '*.kt' | xargs wc -l
+
+jacoco:
+	cp -r build/reports/jacoco/test/html jacocoReport
 
 .DEFAULT_GOAL := default

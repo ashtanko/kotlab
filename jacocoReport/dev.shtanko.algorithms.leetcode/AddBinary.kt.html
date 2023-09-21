@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AddBinary.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">AddBinary.kt</span></div><h1>AddBinary.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.math.BigInteger
+
+/**
+ * Given two binary strings a and b, return their sum as a binary string.
+ */
+fun interface AddBinaryStrategy {
+    operator fun invoke(a: String, b: String): String
+}
+
+/**
+ * Time complexity: O(max(N,M)), where N and M are lengths of the input strings a and b.
+ * Space complexity: O(max(N,M)) to keep the answer.
+ */
+<span class="fc" id="L32">class AddBinaryBitByBitComputation : AddBinaryStrategy {</span>
+    override operator fun invoke(a: String, b: String): String {
+<span class="fc" id="L34">        val sb = StringBuilder()</span>
+<span class="fc" id="L35">        var i: Int = a.length - 1</span>
+<span class="fc" id="L36">        var j: Int = b.length - 1</span>
+<span class="fc" id="L37">        var carry = 0</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        while (i &gt;= 0 || j &gt;= 0) {</span>
+<span class="fc" id="L39">            var sum = carry</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (j &gt;= 0) sum += b[j--] - '0'</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">            if (i &gt;= 0) sum += a[i--] - '0'</span>
+<span class="fc" id="L42">            sb.append(sum % 2)</span>
+<span class="fc" id="L43">            carry = sum / 2</span>
+        }
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (carry != 0) sb.append(carry)</span>
+<span class="fc" id="L46">        return sb.reverse().toString()</span>
+    }
+}
+
+/**
+ * Time complexity : O(N+M), where N and M are lengths of the input strings a and b.
+ * Space complexity: O(max(N,M)) to keep the answer.
+ */
+<span class="fc" id="L54">class AddBinaryBitManipulation : AddBinaryStrategy {</span>
+    override operator fun invoke(a: String, b: String): String {
+<span class="pc bpc" id="L56" title="2 of 8 branches missed.">        if (a.isEmpty() || b.isEmpty()) return &quot;&quot;</span>
+<span class="fc" id="L57">        var x = BigInteger(a, 2)</span>
+<span class="fc" id="L58">        var y = BigInteger(b, 2)</span>
+<span class="fc" id="L59">        val zero = BigInteger(&quot;0&quot;, 2)</span>
+        var carry: BigInteger
+        var answer: BigInteger
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        while (y.compareTo(zero) != 0) {</span>
+<span class="fc" id="L63">            answer = x.xor(y)</span>
+<span class="fc" id="L64">            carry = x.and(y).shiftLeft(1)</span>
+<span class="fc" id="L65">            x = answer</span>
+<span class="fc" id="L66">            y = carry</span>
+        }
+<span class="fc" id="L68">        return x.toString(2)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

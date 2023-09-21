@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KRadiusSubarrayAverages.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">KRadiusSubarrayAverages.kt</span></div><h1>KRadiusSubarrayAverages.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 2090. K Radius Subarray Averages
+ * @see &lt;a href=&quot;https://leetcode.com/problems/k-radius-subarray-averages/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface KRadiusSubarrayAverages {
+    fun getAverages(nums: IntArray, k: Int): IntArray
+}
+
+<span class="fc" id="L27">class GetAveragesPrefixSum : KRadiusSubarrayAverages {</span>
+    override fun getAverages(nums: IntArray, k: Int): IntArray {
+        // When a single element is considered then its average will be the number itself only.
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (k == 0) {</span>
+<span class="fc" id="L31">            return nums</span>
+        }
+
+<span class="fc" id="L34">        val n: Int = nums.size</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        val averages = IntArray(n) { -1 }</span>
+        // Any index will not have 'k' elements in it's left and right.
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (2 * k + 1 &gt; n) {</span>
+<span class="fc" id="L38">            return averages</span>
+        }
+        // Generate 'prefix' array for 'nums'.
+        // 'prefix[i + 1]' will be sum of all elements of 'nums' from index '0' to 'i'.
+<span class="fc" id="L42">        val prefix = LongArray(n + 1)</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L44">            prefix[i + 1] = prefix[i] + nums[i]</span>
+        }
+        // We iterate only on those indices which have at least 'k' elements in their left and right.
+        // i.e. indices from 'k' to 'n - k'
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (i in k until n - k) {</span>
+<span class="fc" id="L49">            val leftBound = i - k</span>
+<span class="fc" id="L50">            val rightBound = i + k</span>
+<span class="fc" id="L51">            val subArraySum = prefix[rightBound + 1] - prefix[leftBound]</span>
+<span class="fc" id="L52">            val average = (subArraySum / (2 * k + 1)).toInt()</span>
+<span class="fc" id="L53">            averages[i] = average</span>
+        }
+
+<span class="fc" id="L56">        return averages</span>
+    }
+}
+
+<span class="fc" id="L60">class GetAveragesSlidingWindow : KRadiusSubarrayAverages {</span>
+    override fun getAverages(nums: IntArray, k: Int): IntArray {
+        // When a single element is considered then its average will be the number itself only.
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (k == 0) {</span>
+<span class="fc" id="L64">            return nums</span>
+        }
+
+<span class="fc" id="L67">        val n: Int = nums.size</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        val averages = IntArray(n) { -1 }</span>
+        // Any index will not have 'k' elements in its left and right.
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (2 * k + 1 &gt; n) {</span>
+<span class="fc" id="L71">            return averages</span>
+        }
+
+        // First get the sum of first window of the 'nums' array.
+<span class="fc" id="L75">        var windowSum: Long = 0</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        for (i in 0 until 2 * k + 1) {</span>
+<span class="fc" id="L77">            windowSum += nums[i]</span>
+        }
+<span class="fc" id="L79">        averages[k] = (windowSum / (2 * k + 1)).toInt()</span>
+        // Iterate on rest indices which have at least 'k' elements
+        // on its left and right sides.
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        for (i in 2 * k + 1 until n) {</span>
+            // We remove the discarded element and add the new element to get current window sum.
+            // 'i' is the index of new inserted element, and
+            // 'i - (window size)' is the index of the last removed element.
+<span class="fc" id="L86">            windowSum = windowSum - nums[i - (2 * k + 1)] + nums[i]</span>
+<span class="fc" id="L87">            averages[i - k] = (windowSum / (2 * k + 1)).toInt()</span>
+        }
+
+<span class="fc" id="L90">        return averages</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

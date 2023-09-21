@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CherryPickup2.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CherryPickup2.kt</span></div><h1>CherryPickup2.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+fun interface CherryPickup2Strategy {
+    operator fun invoke(grid: Array&lt;IntArray&gt;): Int
+}
+
+<span class="fc" id="L25">class CherryPickup2DPTopDown : CherryPickup2Strategy {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc bfc" id="L27" title="All 4 branches covered.">        if (grid.isEmpty()) return 0</span>
+<span class="fc" id="L28">        val m: Int = grid.size</span>
+<span class="fc" id="L29">        val n: Int = grid[0].size</span>
+<span class="fc bfc" id="L30" title="All 4 branches covered.">        val dpCache = Array(m) { Array(n) { IntArray(n) } }</span>
+        // initial all elements to -1 to mark unseen
+        // initial all elements to -1 to mark unseen
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (i in 0 until m) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            for (j in 0 until n) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">                for (k in 0 until n) {</span>
+<span class="fc" id="L36">                    dpCache[i][j][k] = -1</span>
+                }
+            }
+        }
+<span class="fc" id="L40">        return dp(0, 0, n - 1, grid, dpCache)</span>
+    }
+
+    private fun dp(row: Int, col1: Int, col2: Int, grid: Array&lt;IntArray&gt;, dpCache: Array&lt;Array&lt;IntArray&gt;&gt;): Int {
+<span class="fc" id="L44">        val n = grid[0].size</span>
+<span class="fc" id="L45">        val col1Predicate = colPredicate(col1, n)</span>
+<span class="fc" id="L46">        val col2Predicate = colPredicate(col2, n)</span>
+<span class="fc bfc" id="L47" title="All 4 branches covered.">        if (col1Predicate || col2Predicate) {</span>
+<span class="fc" id="L48">            return 0</span>
+        }
+        // check cache
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (dpCache[row][col1][col2] != -1) {</span>
+<span class="fc" id="L52">            return dpCache[row][col1][col2]</span>
+        }
+        // current cell
+<span class="fc" id="L55">        var result = 0</span>
+<span class="fc" id="L56">        result += grid[row][col1]</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (col1 != col2) {</span>
+<span class="fc" id="L58">            result += grid[row][col2]</span>
+        }
+        // transition
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (row != grid.size - 1) {</span>
+<span class="fc" id="L62">            var max = 0</span>
+<span class="pc bpc" id="L63" title="1 of 4 branches missed.">            for (newCol1 in col1 - 1..col1 + 1) {</span>
+<span class="pc bpc" id="L64" title="1 of 4 branches missed.">                for (newCol2 in col2 - 1..col2 + 1) {</span>
+<span class="fc" id="L65">                    max = max(max, dp(row + 1, newCol1, newCol2, grid, dpCache))</span>
+                }
+            }
+<span class="fc" id="L68">            result += max</span>
+        }
+<span class="fc" id="L70">        dpCache[row][col1][col2] = result</span>
+<span class="fc" id="L71">        return result</span>
+    }
+
+<span class="fc bfc" id="L74" title="All 4 branches covered.">    private fun colPredicate(col: Int, size: Int) = col &lt; 0 || col &gt;= size</span>
+}
+
+<span class="fc" id="L77">class CherryPickup2DPBottomUp : CherryPickup2Strategy {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc bfc" id="L79" title="All 4 branches covered.">        if (grid.isEmpty()) return 0</span>
+<span class="fc" id="L80">        val m: Int = grid.size</span>
+<span class="fc" id="L81">        val n: Int = grid[0].size</span>
+<span class="fc bfc" id="L82" title="All 4 branches covered.">        val dp = Array(m) { Array(n) { IntArray(n) } }</span>
+
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (row in m - 1 downTo 0) {</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            for (col1 in 0 until n) {</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">                for (col2 in 0 until n) {</span>
+<span class="fc" id="L87">                    var result = 0</span>
+                    // current cell
+<span class="fc" id="L89">                    result += grid[row][col1]</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">                    if (col1 != col2) {</span>
+<span class="fc" id="L91">                        result += grid[row][col2]</span>
+                    }
+                    // transition
+<span class="fc bfc" id="L94" title="All 2 branches covered.">                    if (row != m - 1) {</span>
+<span class="fc" id="L95">                        var max = 0</span>
+<span class="pc bpc" id="L96" title="1 of 4 branches missed.">                        for (newCol1 in col1 - 1..col1 + 1) {</span>
+<span class="pc bpc" id="L97" title="1 of 4 branches missed.">                            for (newCol2 in col2 - 1..col2 + 1) {</span>
+<span class="fc bfc" id="L98" title="All 10 branches covered.">                                if (newCol1 in 0 until n &amp;&amp; newCol2 &gt;= 0 &amp;&amp; newCol2 &lt; n) {</span>
+<span class="fc" id="L99">                                    max = max(max, dp[row + 1][newCol1][newCol2])</span>
+                                }
+                            }
+                        }
+<span class="fc" id="L103">                        result += max</span>
+                    }
+<span class="fc" id="L105">                    dp[row][col1][col2] = result</span>
+                }
+            }
+        }
+<span class="fc" id="L109">        return dp[0][0][n - 1]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

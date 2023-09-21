@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaxUncrossedLines.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MaxUncrossedLines.kt</span></div><h1>MaxUncrossedLines.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+/**
+ * Uncrossed Lines
+ * @see &lt;a href=&quot;https://leetcode.com/problems/uncrossed-lines/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface UncrossedLines {
+    fun maxUncrossedLines(nums1: IntArray, nums2: IntArray): Int
+}
+
+/**
+ * Approach 1: Recursive Dynamic Programming
+ */
+<span class="fc" id="L32">class UncrossedLinesRecursiveDP : UncrossedLines {</span>
+    override fun maxUncrossedLines(nums1: IntArray, nums2: IntArray): Int {
+<span class="fc" id="L34">        val n1: Int = nums1.size</span>
+<span class="fc" id="L35">        val n2: Int = nums2.size</span>
+
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        val memo = Array(n1 + 1) { IntArray(n2 + 1) { -1 } }</span>
+<span class="fc" id="L38">        return solve(n1, n2, nums1, nums2, memo)</span>
+    }
+
+    private fun solve(i: Int, j: Int, nums1: IntArray, nums2: IntArray, memo: Array&lt;IntArray&gt;): Int {
+<span class="fc bfc" id="L42" title="All 4 branches covered.">        if (i &lt;= 0 || j &lt;= 0) {</span>
+<span class="fc" id="L43">            return 0</span>
+        }
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (memo[i][j] != -1) {</span>
+<span class="fc" id="L46">            return memo[i][j]</span>
+        }
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (nums1[i - 1] == nums2[j - 1]) {</span>
+<span class="fc" id="L49">            memo[i][j] = 1 + solve(i - 1, j - 1, nums1, nums2, memo)</span>
+        } else {
+<span class="fc" id="L51">            memo[i][j] = max(solve(i, j - 1, nums1, nums2, memo), solve(i - 1, j, nums1, nums2, memo))</span>
+        }
+<span class="fc" id="L53">        return memo[i][j]</span>
+    }
+}
+
+/**
+ * Approach 2: Iterative Dynamic Programming
+ */
+<span class="fc" id="L60">class UncrossedLinesIterativeDP : UncrossedLines {</span>
+    override fun maxUncrossedLines(nums1: IntArray, nums2: IntArray): Int {
+<span class="fc" id="L62">        val n1: Int = nums1.size</span>
+<span class="fc" id="L63">        val n2: Int = nums2.size</span>
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        val dp = Array(n1 + 1) { IntArray(n2 + 1) }</span>
+
+<span class="pc bpc" id="L67" title="1 of 4 branches missed.">        for (i in 1..n1) {</span>
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">            for (j in 1..n2) {</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                if (nums1[i - 1] == nums2[j - 1]) {</span>
+<span class="fc" id="L70">                    dp[i][j] = 1 + dp[i - 1][j - 1]</span>
+                } else {
+<span class="fc" id="L72">                    dp[i][j] = max(dp[i][j - 1], dp[i - 1][j])</span>
+                }
+            }
+        }
+
+<span class="fc" id="L77">        return dp[n1][n2]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

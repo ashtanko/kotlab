@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DesignHashSet.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">DesignHashSet.kt</span></div><h1>DesignHashSet.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.BitSet
+import kotlin.math.abs
+
+interface DesignHashSet {
+    fun add(key: Int)
+    fun remove(key: Int)
+    fun contains(key: Int): Boolean
+}
+
+<span class="fc" id="L28">class DesignHashSetBitSet : DesignHashSet {</span>
+
+<span class="fc" id="L30">    private val bitSet = BitSet(BITS + 1)</span>
+    override fun add(key: Int) {
+<span class="fc" id="L32">        bitSet.set(key, true)</span>
+<span class="fc" id="L33">    }</span>
+
+    override fun remove(key: Int) {
+<span class="fc" id="L36">        bitSet.set(key, false)</span>
+<span class="fc" id="L37">    }</span>
+
+    override fun contains(key: Int): Boolean {
+<span class="fc" id="L40">        return bitSet.get(key)</span>
+    }
+
+    companion object {
+        private const val BITS = 1_000_000
+    }
+}
+
+<span class="fc" id="L48">class DesignHashSetSimple : DesignHashSet {</span>
+
+<span class="fc bfc" id="L50" title="All 2 branches covered.">    private var buckets = Array&lt;MutableList&lt;Int&gt;&gt;(INITIAL_CAPACITY) { mutableListOf() }</span>
+<span class="fc" id="L51">    private var threshold = INITIAL_CAPACITY * LOAD_FACTOR</span>
+    private var count = 0
+    override fun add(key: Int) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (!contains(key)) {</span>
+<span class="fc" id="L55">            buckets[index(key)].add(key)</span>
+<span class="fc" id="L56">            count++</span>
+
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            if (count &gt;= threshold) {</span>
+<span class="fc" id="L59">                rebalanced()</span>
+            }
+        }
+<span class="fc" id="L62">    }</span>
+
+    override fun remove(key: Int) {
+<span class="fc" id="L65">        buckets[index(key)].remove(key)</span>
+<span class="fc" id="L66">        count--</span>
+<span class="fc" id="L67">    }</span>
+
+    override fun contains(key: Int): Boolean {
+<span class="fc" id="L70">        return buckets[index(key)].contains(key)</span>
+    }
+
+    private fun index(key: Int): Int {
+<span class="fc" id="L74">        return abs(key.hashCode()) % buckets.size</span>
+    }
+
+    private fun rebalanced() {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        val newBuckets = Array&lt;MutableList&lt;Int&gt;&gt;(buckets.size * 2) { mutableListOf() }</span>
+
+<span class="fc" id="L80">        buckets.forEach { list -&gt;</span>
+<span class="fc" id="L81">            list.forEach { key -&gt;</span>
+<span class="fc" id="L82">                newBuckets[key.hashCode() % newBuckets.size].add(key)</span>
+<span class="fc" id="L83">            }</span>
+<span class="fc" id="L84">        }</span>
+
+<span class="fc" id="L86">        buckets = newBuckets</span>
+<span class="fc" id="L87">        threshold = buckets.size * LOAD_FACTOR</span>
+<span class="fc" id="L88">    }</span>
+
+    companion object {
+        private const val INITIAL_CAPACITY = 16
+        private const val LOAD_FACTOR = 0.75
+    }
+}
+
+<span class="fc" id="L96">class DesignHashSetImpl : DesignHashSet {</span>
+
+<span class="fc" id="L98">    private var capacity = DEFAULT_CAPACITY</span>
+    private var cnt = 0
+<span class="pc" id="L100">    var list = arrayOfNulls&lt;DesignList&gt;(capacity)</span>
+
+<span class="fc" id="L102">    init {</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">        for (i in 0 until capacity) {</span>
+<span class="fc" id="L104">            list[i] = DesignList()</span>
+        }
+<span class="fc" id="L106">    }</span>
+
+    override fun add(key: Int) {
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (contains(key)) return</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (cnt &lt; capacity) {</span>
+<span class="fc" id="L111">            addTail(key)</span>
+        } else { // rehash
+<span class="fc" id="L113">            capacity *= 2</span>
+<span class="fc" id="L114">            val copy = list</span>
+<span class="fc" id="L115">            val newList = arrayOfNulls&lt;DesignList&gt;(capacity)</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">            for (i in 0 until capacity) {</span>
+<span class="fc" id="L117">                newList[i] = DesignList()</span>
+            }
+<span class="fc" id="L119">            list = newList</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">            for (i in copy.indices) {</span>
+<span class="fc" id="L121">                var head: DesignListNode? = copy[i]!!.head</span>
+<span class="pc bpc" id="L122" title="2 of 6 branches missed.">                while (head!!.next != null &amp;&amp; head.next?.value != null) {</span>
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">                    addTail(head.next?.value!!)</span>
+<span class="fc" id="L124">                    head = head.next</span>
+                }
+            }
+<span class="fc" id="L127">            addTail(key)</span>
+        }
+<span class="fc" id="L129">        cnt++</span>
+<span class="fc" id="L130">    }</span>
+
+    override fun remove(key: Int) {
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">        if (!contains(key)) return</span>
+<span class="fc" id="L134">        cnt--</span>
+<span class="fc" id="L135">        val idx = key % capacity</span>
+<span class="fc" id="L136">        var head: DesignListNode? = list[idx]!!.head</span>
+<span class="pc bpc" id="L137" title="3 of 6 branches missed.">        while (head!!.next != null &amp;&amp; head.next?.value != null) {</span>
+<span class="pc bpc" id="L138" title="4 of 8 branches missed.">            if (head.next?.value == key) {</span>
+<span class="fc" id="L139">                val next = head.next</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">                next!!.next?.pre = head</span>
+<span class="fc" id="L141">                head.next = next.next</span>
+<span class="fc" id="L142">                next.pre = null</span>
+<span class="fc" id="L143">                next.next = null</span>
+<span class="fc" id="L144">                break</span>
+            }
+<span class="nc" id="L146">            head = head.next</span>
+        }
+<span class="fc" id="L148">    }</span>
+
+    override fun contains(key: Int): Boolean {
+<span class="fc" id="L151">        val idx = key % capacity</span>
+<span class="fc" id="L152">        var head: DesignListNode? = list[idx]!!.head</span>
+<span class="pc bpc" id="L153" title="2 of 6 branches missed.">        while (head!!.next != null &amp;&amp; head.next?.value != null) {</span>
+<span class="pc bpc" id="L154" title="2 of 8 branches missed.">            if (head.next?.value == key) return true</span>
+<span class="fc" id="L155">            head = head.next</span>
+        }
+<span class="fc" id="L157">        return false</span>
+    }
+
+    private fun addTail(key: Int) {
+<span class="fc" id="L161">        val idx = key % capacity</span>
+<span class="fc" id="L162">        val tail = list[idx]!!.tail</span>
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        val pre: DesignListNode = tail.pre ?: return</span>
+<span class="fc" id="L164">        val cur = DesignListNode(key)</span>
+<span class="fc" id="L165">        pre.next = cur</span>
+<span class="fc" id="L166">        cur.pre = pre</span>
+<span class="fc" id="L167">        cur.next = tail</span>
+<span class="fc" id="L168">        tail.pre = cur</span>
+<span class="fc" id="L169">    }</span>
+
+    companion object {
+        private const val DEFAULT_CAPACITY = 32
+    }
+}
+
+<span class="fc" id="L176">class DesignList {</span>
+<span class="pc" id="L177">    var head = DesignListNode()</span>
+<span class="pc" id="L178">    var tail = DesignListNode()</span>
+
+<span class="fc" id="L180">    init {</span>
+<span class="fc" id="L181">        head.next = tail</span>
+<span class="fc" id="L182">        tail.pre = head</span>
+<span class="fc" id="L183">    }</span>
+}
+
+<span class="pc" id="L186">data class DesignListNode(var value: Int? = null) {</span>
+<span class="fc" id="L187">    var next: DesignListNode? = null</span>
+<span class="fc" id="L188">    var pre: DesignListNode? = null</span>
+<span class="fc" id="L189">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

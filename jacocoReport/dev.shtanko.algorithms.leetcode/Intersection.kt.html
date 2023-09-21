@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Intersection.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">Intersection.kt</span></div><h1>Intersection.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Given two arrays, write a function to compute their intersection.
+ */
+fun interface IntersectionStrategy {
+    operator fun invoke(p: Pair&lt;IntArray, IntArray&gt;): IntArray
+}
+
+/**
+ * Use two hash sets
+ * Time complexity: O(n)
+ */
+<span class="fc" id="L30">class IntersectionTwoSets : IntersectionStrategy {</span>
+    override operator fun invoke(p: Pair&lt;IntArray, IntArray&gt;): IntArray {
+<span class="fc" id="L32">        val set = p.first.toSet()</span>
+<span class="fc" id="L33">        val intersect: MutableSet&lt;Int&gt; = HashSet()</span>
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (num in p.second) {</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            if (set.contains(num)) {</span>
+<span class="fc" id="L37">                intersect.add(num)</span>
+            }
+        }
+<span class="fc" id="L40">        val result = IntArray(intersect.size)</span>
+<span class="fc" id="L41">        var i = 0</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (num in intersect) {</span>
+<span class="fc" id="L43">            result[i++] = num</span>
+        }
+
+<span class="fc" id="L46">        return result</span>
+    }
+}
+
+/**
+ * Sort both arrays, use two pointers
+ * Time complexity: O(nlogn)
+ */
+<span class="fc" id="L54">class IntersectionTwoPointers : IntersectionStrategy {</span>
+    override operator fun invoke(p: Pair&lt;IntArray, IntArray&gt;): IntArray {
+<span class="fc" id="L56">        val set: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L57">        p.first.sort()</span>
+<span class="fc" id="L58">        p.second.sort()</span>
+<span class="fc" id="L59">        var i = 0</span>
+<span class="fc" id="L60">        var j = 0</span>
+<span class="pc bpc" id="L61" title="1 of 4 branches missed.">        while (i &lt; p.first.size &amp;&amp; j &lt; p.second.size) {</span>
+<span class="fc" id="L62">            when {</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">                p.first[i] &lt; p.second[j] -&gt; {</span>
+<span class="fc" id="L64">                    i++</span>
+                }
+
+<span class="fc bfc" id="L67" title="All 2 branches covered.">                p.first[i] &gt; p.second[j] -&gt; {</span>
+<span class="fc" id="L68">                    j++</span>
+                }
+
+                else -&gt; {
+<span class="fc" id="L72">                    set.add(p.first[i])</span>
+<span class="fc" id="L73">                    i++</span>
+<span class="fc" id="L74">                    j++</span>
+                }
+            }
+        }
+<span class="fc" id="L78">        val result = IntArray(set.size)</span>
+<span class="fc" id="L79">        var k = 0</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (num in set) {</span>
+<span class="fc" id="L81">            result[k++] = num</span>
+        }
+<span class="fc" id="L83">        return result</span>
+    }
+}
+
+/**
+ *
+ */
+<span class="fc" id="L90">class IntersectionBinarySearch : IntersectionStrategy {</span>
+    override operator fun invoke(p: Pair&lt;IntArray, IntArray&gt;): IntArray {
+<span class="fc" id="L92">        val set: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L93">        p.second.sort()</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        for (num in p.first) {</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            if (binarySearch(p.second, num)) {</span>
+<span class="fc" id="L96">                set.add(num)</span>
+            }
+        }
+<span class="fc" id="L99">        var i = 0</span>
+<span class="fc" id="L100">        val result = IntArray(set.size)</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        for (num in set) {</span>
+<span class="fc" id="L102">            result[i++] = num</span>
+        }
+<span class="fc" id="L104">        return result</span>
+    }
+
+    private fun binarySearch(nums: IntArray, target: Int): Boolean {
+<span class="fc" id="L108">        var low = 0</span>
+<span class="fc" id="L109">        var high = nums.size - 1</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        while (low &lt;= high) {</span>
+<span class="fc" id="L111">            val mid = low + (high - low) / 2</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">            if (nums[mid] == target) {</span>
+<span class="fc" id="L113">                return true</span>
+            }
+<span class="fc bfc" id="L115" title="All 2 branches covered.">            if (nums[mid] &gt; target) {</span>
+<span class="fc" id="L116">                high = mid - 1</span>
+            } else {
+<span class="fc" id="L118">                low = mid + 1</span>
+            }
+        }
+<span class="fc" id="L121">        return false</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

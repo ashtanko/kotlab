@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WordBreak.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">WordBreak.kt</span></div><h1>WordBreak.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import dev.shtanko.algorithms.utils.Dp
+
+/**
+ * 139. Word Break
+ */
+fun interface WordBreak {
+    operator fun invoke(s: String, wordDict: List&lt;String&gt;): Boolean
+}
+
+<span class="fc" id="L28">class WordBreakBruteForce : WordBreak {</span>
+    override operator fun invoke(s: String, wordDict: List&lt;String&gt;): Boolean {
+<span class="fc" id="L30">        return wb(s, HashSet(wordDict))</span>
+    }
+
+    private fun wb(s: String, set: Set&lt;String&gt;): Boolean {
+<span class="fc" id="L34">        val len = s.length</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (len == 0) {</span>
+<span class="fc" id="L36">            return true</span>
+        }
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        for (i in 1..len) {</span>
+<span class="fc bfc" id="L39" title="All 4 branches covered.">            if (set.contains(s.substring(0, i)) &amp;&amp; wb(s.substring(i), set)) {</span>
+<span class="fc" id="L40">                return true</span>
+            }
+        }
+<span class="fc" id="L43">        return false</span>
+    }
+}
+
+<span class="fc" id="L47">@Dp</span>
+<span class="fc" id="L48">class WordBreakDP : WordBreak {</span>
+    override operator fun invoke(s: String, wordDict: List&lt;String&gt;): Boolean {
+<span class="fc" id="L50">        val dp = BooleanArray(s.length + 1)</span>
+<span class="fc" id="L51">        val set: MutableSet&lt;String&gt; = HashSet()</span>
+<span class="fc" id="L52">        set.addAll(wordDict)</span>
+
+<span class="fc" id="L54">        dp[0] = true</span>
+<span class="pc bpc" id="L55" title="1 of 4 branches missed.">        for (i in 1..s.length) {</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            for (j in i - 1 downTo 0) {</span>
+<span class="fc bfc" id="L57" title="All 4 branches covered.">                dp[i] = dp[j] &amp;&amp; set.contains(s.substring(j, i))</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">                if (dp[i]) break</span>
+            }
+        }
+<span class="fc" id="L61">        return dp[s.length]</span>
+    }
+}
+
+/**
+ * https://leetcode.com/problems/word-break/
+ *
+ * Time Complexity:     O(L ^ 2)
+ * Space Complexity:    O(L)
+ *
+ * References:
+ *  https://leetcode.com/problems/word-break/discuss/43819/DFS-with-Path-Memorizing-Java-Solution
+ */
+<span class="fc" id="L74">class WordBreakDFS : WordBreak {</span>
+    override operator fun invoke(s: String, wordDict: List&lt;String&gt;): Boolean {
+<span class="pc bpc" id="L76" title="2 of 4 branches missed.">        if (s.isEmpty()) return false</span>
+
+<span class="fc" id="L78">        val wordSet = HashSet(wordDict)</span>
+<span class="fc" id="L79">        val seen = HashSet&lt;Int&gt;()</span>
+
+<span class="fc" id="L81">        return dfs(0, s, seen, wordSet)</span>
+    }
+
+    private fun dfs(
+        idx: Int,
+        s: String,
+        seen: HashSet&lt;Int&gt;,
+        wordSet: HashSet&lt;String&gt;,
+    ): Boolean {
+<span class="fc" id="L90">        val len = s.length</span>
+
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (idx == len) return true</span>
+
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (seen.contains(idx)) return false</span>
+
+<span class="pc bpc" id="L96" title="1 of 4 branches missed.">        for (i in idx + 1..len) {</span>
+<span class="fc" id="L97">            val sub = s.substring(idx, i)</span>
+
+<span class="fc bfc" id="L99" title="All 2 branches covered.">            if (!wordSet.contains(sub)) continue</span>
+
+<span class="fc bfc" id="L101" title="All 2 branches covered.">            if (dfs(i, s, seen, wordSet)) return true</span>
+        }
+
+<span class="fc" id="L104">        seen.add(idx)</span>
+<span class="fc" id="L105">        return false</span>
+    }
+}
+
+/**
+ * https://leetcode.com/problems/word-break/
+ *
+ * Time Complexity:     O(L ^ 2) + O(N * L) / O(N) ~ O(L ^ 2)
+ * Space Complexity:    O(N)
+ */
+<span class="fc" id="L115">class WordBreakBFS : WordBreak {</span>
+    override operator fun invoke(s: String, wordDict: List&lt;String&gt;): Boolean {
+<span class="pc bpc" id="L117" title="2 of 4 branches missed.">        if (s.isEmpty()) return false</span>
+
+<span class="fc" id="L119">        val wordSet = HashSet(wordDict)</span>
+
+<span class="fc" id="L121">        val queue = ArrayDeque&lt;String&gt;()</span>
+<span class="fc" id="L122">        queue.addLast(s)</span>
+
+<span class="fc" id="L124">        val seen = HashSet&lt;String&gt;()</span>
+<span class="fc" id="L125">        seen.add(s)</span>
+
+<span class="fc bfc" id="L127" title="All 4 branches covered.">        while (queue.isNotEmpty()) {</span>
+<span class="fc" id="L128">            val size = queue.size</span>
+
+<span class="fc bfc" id="L130" title="All 2 branches covered.">            for (sz in 0 until size) {</span>
+<span class="fc" id="L131">                val cur = queue.removeFirst()</span>
+<span class="fc" id="L132">                val len = cur.length</span>
+
+<span class="pc bpc" id="L134" title="1 of 4 branches missed.">                for (idx in 1..len) {</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">                    if (!wordSet.contains(cur.substring(0, idx))) continue</span>
+
+<span class="fc bfc" id="L137" title="All 2 branches covered.">                    if (idx == len) return true</span>
+
+<span class="fc" id="L139">                    val sub = cur.substring(idx)</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">                    if (!seen.add(sub)) continue</span>
+<span class="fc" id="L141">                    queue.addLast(sub)</span>
+                }
+            }
+        }
+
+<span class="fc" id="L146">        return false</span>
+    }
+}
+
+/**
+ * https://leetcode.com/problems/word-break/
+ *
+ * Time Complexity:     O(L ^ 2) + O(totalWords)
+ * Space Complexity:    O(L)
+ *
+ * References:
+ *  https://leetcode.com/problems/word-break/discuss/43790/Java-implementation-using-DP-in-two-ways
+ */
+<span class="fc" id="L159">class WordBreakDP2 : WordBreak {</span>
+    override operator fun invoke(s: String, wordDict: List&lt;String&gt;): Boolean {
+<span class="pc bpc" id="L161" title="2 of 4 branches missed.">        if (s.isEmpty()) return false</span>
+
+<span class="fc" id="L163">        val len = s.length</span>
+<span class="fc" id="L164">        val wordSet = HashSet(wordDict)</span>
+
+<span class="fc" id="L166">        val dp = BooleanArray(len + 1)</span>
+<span class="fc" id="L167">        dp[0] = true</span>
+
+<span class="pc bpc" id="L169" title="1 of 4 branches missed.">        for (hi in 1..len) {</span>
+<span class="pc bpc" id="L170" title="1 of 4 branches missed.">            for (lo in 0..hi) {</span>
+<span class="fc bfc" id="L171" title="All 4 branches covered.">                if (dp[lo] &amp;&amp; wordSet.contains(s.substring(lo, hi))) {</span>
+<span class="fc" id="L172">                    dp[hi] = true</span>
+<span class="fc" id="L173">                    break</span>
+                }
+            }
+        }
+
+<span class="fc" id="L178">        return dp[len]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

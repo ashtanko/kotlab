@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LinkedList.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.interview</a> &gt; <span class="el_source">LinkedList.kt</span></div><h1>LinkedList.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.interview
+
+import dev.shtanko.algorithms.leetcode.DECIMAL
+import java.util.Stack
+
+<span class="fc" id="L22">internal class Node(var data: Int) {</span>
+<span class="fc" id="L23">    var next: Node? = null</span>
+
+    fun dropNext() {
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        this.next = this.next?.next</span>
+<span class="fc" id="L27">    }</span>
+
+    companion object {
+        fun fromArray(arr: IntArray): Node {
+<span class="fc" id="L31">            var head: Node? = null</span>
+<span class="fc" id="L32">            var current: Node? = null</span>
+
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            for (item in arr) {</span>
+<span class="fc" id="L35">                val nextNode = Node(item)</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">                if (head == null) {</span>
+<span class="fc" id="L38">                    head = nextNode</span>
+                } else {
+<span class="fc" id="L40">                    current!!.next = nextNode</span>
+                }
+
+<span class="fc" id="L43">                current = nextNode</span>
+            }
+
+<span class="fc" id="L46">            return head!!</span>
+        }
+    }
+}
+
+<span class="fc" id="L51">internal class LinkedList(val head: Node) : Iterable&lt;Node&gt; {</span>
+<span class="fc" id="L52">    override fun iterator(): Iterator&lt;Node&gt; = LinkedListIterator(this)</span>
+
+<span class="fc" id="L54">    fun getTailNode(): Node = this.last()</span>
+
+    fun asArray(): IntArray =
+<span class="fc" id="L57">        this.asSequence()</span>
+<span class="fc" id="L58">            .map { e -&gt; e.data }</span>
+<span class="fc" id="L59">            .toList()</span>
+<span class="fc" id="L60">            .toTypedArray()</span>
+<span class="fc" id="L61">            .toIntArray()</span>
+
+    companion object {
+        fun fromArray(arr: IntArray): LinkedList {
+<span class="fc" id="L65">            val head = Node.fromArray(arr)</span>
+<span class="fc" id="L66">            return LinkedList(head)</span>
+        }
+    }
+}
+
+<span class="fc" id="L71">internal class LinkedListIterator(list: LinkedList) : Iterator&lt;Node&gt; {</span>
+<span class="fc" id="L72">    private var current: Node? = list.head</span>
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    override fun hasNext(): Boolean = current != null</span>
+
+    override fun next(): Node {
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if (!hasNext()) throw NoSuchElementException()</span>
+<span class="fc" id="L78">        val oldCurrent = current!!</span>
+<span class="fc" id="L79">        current = oldCurrent.next</span>
+
+<span class="fc" id="L81">        return oldCurrent</span>
+    }
+}
+
+internal fun removeDuplicates(list: LinkedList) {
+<span class="fc" id="L86">    val seen = HashSet&lt;Int&gt;()</span>
+<span class="fc" id="L87">    val previousNode = Node(-1)</span>
+<span class="fc" id="L88">    previousNode.next = list.head</span>
+
+<span class="fc" id="L90">    var current = previousNode</span>
+
+<span class="fc bfc" id="L92" title="All 2 branches covered.">    while (current.next != null) {</span>
+<span class="fc" id="L93">        val next: Node = current.next!!</span>
+
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (seen.contains(next.data)) {</span>
+<span class="fc" id="L96">            current.dropNext()</span>
+        } else {
+<span class="fc" id="L98">            seen.add(next.data)</span>
+        }
+
+<span class="fc" id="L101">        current = next</span>
+    }
+<span class="fc" id="L103">}</span>
+
+internal fun getKthToLast(list: LinkedList, k: Int): Int {
+<span class="fc" id="L106">    var trailingNode = list.head</span>
+<span class="fc" id="L107">    var leadingNode = list.head</span>
+
+<span class="fc bfc" id="L109" title="All 2 branches covered.">    for (i in 0 until k) {</span>
+<span class="fc" id="L110">        leadingNode = leadingNode.next!!</span>
+    }
+
+<span class="fc bfc" id="L113" title="All 2 branches covered.">    while (leadingNode.next != null) {</span>
+<span class="fc" id="L114">        leadingNode = leadingNode.next!!</span>
+<span class="fc" id="L115">        trailingNode = trailingNode.next!!</span>
+    }
+
+<span class="fc" id="L118">    return trailingNode.data</span>
+}
+
+internal fun deleteCurrentNodeValue(node: Node) {
+<span class="fc" id="L122">    var currentNode = node</span>
+
+<span class="fc bfc" id="L124" title="All 2 branches covered.">    while (currentNode.next != null) {</span>
+<span class="fc" id="L125">        val next = currentNode.next</span>
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">        currentNode.data = next?.data ?: -1</span>
+
+<span class="pc bpc" id="L128" title="1 of 4 branches missed.">        if (next?.next == null) {</span>
+<span class="fc" id="L129">            currentNode.next = null</span>
+        }
+
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">        currentNode = next ?: Node(-1)</span>
+    }
+<span class="fc" id="L134">}</span>
+
+internal fun check(pivot: Int, list: IntArray): Boolean {
+<span class="fc" id="L137">    var passedPivot = false</span>
+
+<span class="fc bfc" id="L139" title="All 2 branches covered.">    for (item in list) {</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        val itemOnRightOfPivot = item &gt;= pivot</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        if (itemOnRightOfPivot) {</span>
+<span class="fc" id="L142">            passedPivot = true</span>
+        }
+
+<span class="pc bpc" id="L145" title="1 of 4 branches missed.">        if (!passedPivot &amp;&amp; itemOnRightOfPivot) {</span>
+<span class="nc" id="L146">            return false</span>
+        }
+
+<span class="fc bfc" id="L149" title="All 4 branches covered.">        if (passedPivot &amp;&amp; !itemOnRightOfPivot) {</span>
+<span class="fc" id="L150">            return false</span>
+        }
+    }
+
+<span class="fc" id="L154">    return true</span>
+}
+
+internal fun partition(pivot: Int, list: LinkedList) {
+<span class="fc" id="L158">    val originalTail = list.getTailNode()</span>
+<span class="fc" id="L159">    var tail = originalTail</span>
+
+<span class="fc" id="L161">    var lastNode: Node? = null</span>
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">    for (node in list) {</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        if (node == originalTail) {</span>
+<span class="fc" id="L164">            break</span>
+        }
+
+<span class="fc bfc" id="L167" title="All 2 branches covered.">        if (node.data &gt;= pivot) {</span>
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">            if (lastNode != null) {</span>
+<span class="fc" id="L169">                lastNode.next = node.next</span>
+            }
+
+<span class="fc" id="L172">            tail.next = node</span>
+<span class="fc" id="L173">            node.next = null</span>
+<span class="fc" id="L174">            tail = node</span>
+        } else {
+<span class="fc" id="L176">            lastNode = node</span>
+        }
+    }
+<span class="fc" id="L179">}</span>
+
+internal fun add(a: LinkedList, b: LinkedList): LinkedList {
+<span class="fc" id="L182">    val beforeHead = Node(-1)</span>
+<span class="fc" id="L183">    var tail = beforeHead</span>
+
+<span class="fc" id="L185">    var aNode: Node? = a.head</span>
+<span class="fc" id="L186">    var bNode: Node? = b.head</span>
+<span class="fc" id="L187">    var carry = 0</span>
+
+<span class="pc bpc" id="L189" title="1 of 4 branches missed.">    while (aNode != null || bNode != null) {</span>
+<span class="fc" id="L190">        val placeSum = aNode.getData() + bNode.getData() + carry</span>
+<span class="fc" id="L191">        val place = placeSum % DECIMAL</span>
+<span class="fc" id="L192">        carry = (placeSum - place) / DECIMAL</span>
+
+<span class="fc" id="L194">        val placeNode = Node(place)</span>
+<span class="fc" id="L195">        tail.next = placeNode</span>
+<span class="fc" id="L196">        tail = placeNode</span>
+
+<span class="pc bpc" id="L198" title="1 of 2 branches missed.">        aNode = aNode?.next</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">        bNode = bNode?.next</span>
+    }
+
+<span class="fc bfc" id="L202" title="All 2 branches covered.">    if (carry != 0) {</span>
+<span class="fc" id="L203">        val placeNode = Node(carry)</span>
+<span class="fc" id="L204">        tail.next = placeNode</span>
+    }
+
+<span class="pc bpc" id="L207" title="1 of 2 branches missed.">    return LinkedList(beforeHead.next ?: throw IllegalStateException(&quot;Node shouldn't be null&quot;))</span>
+}
+
+internal fun Node?.getData(): Int {
+<span class="fc bfc" id="L211" title="All 2 branches covered.">    if (this == null) {</span>
+<span class="fc" id="L212">        return 0</span>
+    }
+
+<span class="fc" id="L215">    return this.data</span>
+}
+
+internal fun isPalindrome(list: LinkedList): Boolean {
+<span class="fc" id="L219">    val stack = Stack&lt;Int&gt;()</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">    for (node in list) {</span>
+<span class="fc" id="L221">        stack.push(node.data)</span>
+    }
+
+<span class="fc bfc" id="L224" title="All 2 branches covered.">    for (node in list) {</span>
+<span class="pc bpc" id="L225" title="1 of 4 branches missed.">        if (node.data != stack.pop()) {</span>
+<span class="fc" id="L226">            return false</span>
+        }
+    }
+
+<span class="fc" id="L230">    return true</span>
+}
+
+<span class="fc" id="L233">internal data class TraversalInformation(val size: Int, val tail: Node, val linkedList: LinkedList) {</span>
+    companion object {
+        fun getShorterLonger(
+            a: TraversalInformation,
+            b: TraversalInformation,
+        ): Pair&lt;TraversalInformation, TraversalInformation&gt; {
+<span class="fc bfc" id="L239" title="All 2 branches covered.">            return if (a.size &lt;= b.size) {</span>
+<span class="fc" id="L240">                Pair(a, b)</span>
+            } else {
+<span class="fc" id="L242">                Pair(b, a)</span>
+            }
+        }
+    }
+}
+
+internal fun LinkedList.getTail(): TraversalInformation {
+<span class="fc" id="L249">    val (size, tail) = this.asSequence()</span>
+<span class="fc" id="L250">        .withIndex()</span>
+<span class="fc" id="L251">        .map { indexedValue -&gt; Pair(indexedValue.index + 1, indexedValue.value) }</span>
+<span class="fc" id="L252">        .last()</span>
+
+<span class="fc" id="L254">    return TraversalInformation(size, tail, this)</span>
+}
+
+internal fun findFirstIntersection(a: LinkedList, b: LinkedList): Node? {
+<span class="fc" id="L258">    val aTraversal = a.getTail()</span>
+<span class="fc" id="L259">    val bTraversal = b.getTail()</span>
+
+<span class="fc bfc" id="L261" title="All 2 branches covered.">    if (aTraversal.tail != bTraversal.tail) {</span>
+<span class="fc" id="L262">        return null</span>
+    }
+
+<span class="fc" id="L265">    val (shorter, longer) = TraversalInformation.getShorterLonger(aTraversal, bTraversal)</span>
+
+<span class="fc" id="L267">    val longerDifference = longer.size - shorter.size</span>
+
+<span class="fc" id="L269">    val shorterSequence = shorter.linkedList.asSequence()</span>
+<span class="fc" id="L270">    val longerSequence = longer.linkedList.asSequence()</span>
+
+<span class="pc bpc" id="L272" title="1 of 2 branches missed.">    for ((shorterNode, longerNode) in shorterSequence zip longerSequence.drop(longerDifference)) {</span>
+<span class="fc bfc" id="L273" title="All 2 branches covered.">        if (shorterNode == longerNode) {</span>
+<span class="fc" id="L274">            return shorterNode</span>
+        }
+    }
+
+<span class="nc" id="L278">    throw IllegalStateException(&quot;Found a matching tail, but couldn't find the shared node.&quot;)</span>
+}
+
+internal fun detectLoop(list: LinkedList): Node? {
+<span class="fc" id="L282">    var slow: Node? = list.head</span>
+<span class="fc" id="L283">    var fast: Node? = list.head</span>
+
+<span class="fc bfc" id="L285" title="All 4 branches covered.">    while (fast?.next != null) {</span>
+<span class="fc" id="L286">        slow = slow!!.next</span>
+<span class="fc" id="L287">        fast = fast.next!!.next</span>
+
+<span class="fc bfc" id="L289" title="All 2 branches covered.">        if (slow == fast) {</span>
+<span class="fc" id="L290">            slow = list.head</span>
+
+<span class="fc bfc" id="L292" title="All 2 branches covered.">            while (slow != fast) {</span>
+<span class="fc" id="L293">                slow = slow!!.next</span>
+<span class="fc" id="L294">                fast = fast!!.next</span>
+            }
+
+<span class="fc" id="L297">            return fast</span>
+        }
+    }
+
+<span class="fc" id="L301">    return null</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
