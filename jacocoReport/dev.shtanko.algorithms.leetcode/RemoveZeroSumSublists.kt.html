@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RemoveZeroSumSublists.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">RemoveZeroSumSublists.kt</span></div><h1>RemoveZeroSumSublists.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1171. Remove Zero Sum Consecutive Nodes from Linked List
+ * @see &lt;a href=&quot;https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface RemoveZeroSumSublists {
+    operator fun invoke(head: ListNode?): ListNode?
+}
+
+<span class="fc" id="L27">class RemoveZeroSumSublistsMap : RemoveZeroSumSublists {</span>
+    override operator fun invoke(head: ListNode?): ListNode? {
+<span class="fc" id="L29">        val dummy = ListNode(0)</span>
+<span class="fc" id="L30">        var cur: ListNode? = dummy</span>
+<span class="fc" id="L31">        dummy.next = head</span>
+<span class="fc" id="L32">        var prefix = 0</span>
+<span class="fc" id="L33">        val m: MutableMap&lt;Int, ListNode&gt; = HashMap()</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        while (cur != null) {</span>
+<span class="fc" id="L35">            prefix += cur.value</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            if (m.containsKey(prefix)) {</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">                cur = m[prefix]?.next</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">                var p: Int = prefix + (cur?.value ?: 0)</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                while (p != prefix) {</span>
+<span class="fc" id="L40">                    m.remove(p)</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">                    cur = cur?.next</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">                    p += cur?.value ?: 0</span>
+                }
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">                m[prefix]?.next = cur!!.next</span>
+            } else {
+<span class="fc" id="L46">                m[prefix] = cur</span>
+            }
+<span class="fc" id="L48">            cur = cur.next</span>
+        }
+<span class="fc" id="L50">        return dummy.next</span>
+    }
+}
+
+<span class="fc" id="L54">class RemoveZeroSumSublistsTwoPasses : RemoveZeroSumSublists {</span>
+    override operator fun invoke(head: ListNode?): ListNode? {
+<span class="fc" id="L56">        var prefix = 0</span>
+<span class="fc" id="L57">        val dummy = ListNode(0)</span>
+<span class="fc" id="L58">        dummy.next = head</span>
+<span class="fc" id="L59">        val seen: MutableMap&lt;Int, ListNode&gt; = HashMap()</span>
+<span class="fc" id="L60">        seen[0] = dummy</span>
+<span class="fc" id="L61">        var i: ListNode? = dummy</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        while (i != null) {</span>
+<span class="fc" id="L63">            prefix += i.value</span>
+<span class="fc" id="L64">            seen[prefix] = i</span>
+<span class="fc" id="L65">            i = i.next</span>
+        }
+<span class="fc" id="L67">        prefix = 0</span>
+<span class="fc" id="L68">        i = dummy</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        while (i != null) {</span>
+<span class="fc" id="L70">            prefix += i.value</span>
+<span class="fc" id="L71">            i.next = seen[prefix]!!.next</span>
+<span class="fc" id="L72">            i = i.next</span>
+        }
+<span class="fc" id="L74">        return dummy.next</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

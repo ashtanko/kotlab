@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpiralMatrix.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">SpiralMatrix.kt</span></div><h1>SpiralMatrix.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+ */
+fun Array&lt;IntArray&gt;.spiralOrder(): List&lt;Int&gt; {
+<span class="fc" id="L23">    val res: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="pc bpc" id="L24" title="2 of 4 branches missed.">    if (this.isEmpty()) {</span>
+<span class="nc" id="L25">        return res</span>
+    }
+<span class="fc" id="L27">    var rowBegin = 0</span>
+<span class="fc" id="L28">    var rowEnd = this.size - 1</span>
+<span class="fc" id="L29">    var colBegin = 0</span>
+<span class="fc" id="L30">    var colEnd: Int = this[0].size - 1</span>
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">    while (rowBegin &lt;= rowEnd &amp;&amp; colBegin &lt;= colEnd) {</span>
+        // Traverse Right
+<span class="pc bpc" id="L33" title="1 of 4 branches missed.">        for (j in colBegin..colEnd) {</span>
+<span class="fc" id="L34">            res.add(this[rowBegin][j])</span>
+        }
+<span class="fc" id="L36">        rowBegin++</span>
+
+        // Traverse Down
+<span class="fc bfc" id="L39" title="All 4 branches covered.">        for (j in rowBegin..rowEnd) {</span>
+<span class="fc" id="L40">            res.add(this[j][colEnd])</span>
+        }
+<span class="fc" id="L42">        colEnd--</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (rowBegin &lt;= rowEnd) {</span>
+            // Traverse Left
+<span class="pc bpc" id="L45" title="1 of 4 branches missed.">            for (j in colEnd downTo colBegin) {</span>
+<span class="fc" id="L46">                res.add(this[rowEnd][j])</span>
+            }
+        }
+<span class="fc" id="L49">        rowEnd--</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (colBegin &lt;= colEnd) {</span>
+            // Traver Up
+<span class="fc bfc" id="L52" title="All 4 branches covered.">            for (j in rowEnd downTo rowBegin) {</span>
+<span class="fc" id="L53">                res.add(this[j][colBegin])</span>
+            }
+        }
+<span class="fc" id="L56">        colBegin++</span>
+    }
+<span class="fc" id="L58">    return res</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

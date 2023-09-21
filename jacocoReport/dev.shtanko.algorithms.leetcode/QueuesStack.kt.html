@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>QueuesStack.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">QueuesStack.kt</span></div><h1>QueuesStack.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+//  Implement Stack using Queues
+interface QueuesStack {
+
+    /** Push element x onto stack. */
+    fun push(x: Int)
+
+    /** Removes the element on top of the stack and returns that element. */
+    fun pop(): Int
+
+    /** Get the top element. */
+    fun top(): Int
+
+    /** Returns whether the stack is empty. */
+    fun empty(): Boolean
+}
+
+// Two Queues, push - O(1), pop O(n)
+<span class="fc" id="L39">class StackTwoQueues : QueuesStack {</span>
+
+<span class="fc" id="L41">    private var q1: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="fc" id="L42">    private var q2: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="nc" id="L43">    var top = 0</span>
+
+    override fun push(x: Int) {
+<span class="fc" id="L46">        q1.add(x)</span>
+<span class="fc" id="L47">        top = x</span>
+<span class="fc" id="L48">    }</span>
+
+    override fun pop(): Int {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        while (q1.size &gt; 1) {</span>
+<span class="fc" id="L52">            top = q1.remove()</span>
+<span class="fc" id="L53">            q2.add(top)</span>
+        }
+<span class="fc" id="L55">        q1.remove()</span>
+<span class="fc" id="L56">        val tmp = q1</span>
+<span class="fc" id="L57">        q1 = q2</span>
+<span class="fc" id="L58">        q2 = tmp</span>
+<span class="fc" id="L59">        return top</span>
+    }
+
+    override fun top(): Int {
+<span class="fc" id="L63">        return top</span>
+    }
+
+    override fun empty(): Boolean {
+<span class="pc bpc" id="L67" title="2 of 4 branches missed.">        return q1.isEmpty() &amp;&amp; q2.isEmpty()</span>
+    }
+}
+
+<span class="fc" id="L71">class StackTwoQueues2 : QueuesStack {</span>
+
+<span class="fc" id="L73">    private var q1: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="fc" id="L74">    private var q2: Queue&lt;Int&gt; = LinkedList()</span>
+
+    override fun push(x: Int) {
+<span class="fc bfc" id="L77" title="All 4 branches covered.">        while (q1.isNotEmpty()) {</span>
+<span class="fc" id="L78">            q2.add(q1.poll())</span>
+        }
+<span class="fc" id="L80">        q1.add(x)</span>
+<span class="fc bfc" id="L81" title="All 4 branches covered.">        while (q2.isNotEmpty()) {</span>
+<span class="fc" id="L82">            q1.add(q2.poll())</span>
+        }
+<span class="fc" id="L84">    }</span>
+
+    override fun pop(): Int {
+<span class="fc" id="L87">        return q1.poll()</span>
+    }
+
+    override fun top(): Int {
+<span class="fc" id="L91">        return q1.peek()</span>
+    }
+
+    override fun empty(): Boolean {
+<span class="fc" id="L95">        return q1.isEmpty()</span>
+    }
+}
+
+<span class="fc" id="L99">class StackOneQueue : QueuesStack {</span>
+
+<span class="fc" id="L101">    private var queue: Queue&lt;Int&gt; = LinkedList()</span>
+
+    override fun push(x: Int) {
+<span class="fc" id="L104">        queue.add(x)</span>
+<span class="fc" id="L105">        var sz = queue.size</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        while (sz &gt; 1) {</span>
+<span class="fc" id="L107">            queue.add(queue.remove())</span>
+<span class="fc" id="L108">            sz--</span>
+        }
+<span class="fc" id="L110">    }</span>
+
+    override fun pop(): Int {
+<span class="fc" id="L113">        return queue.remove()</span>
+    }
+
+    override fun top(): Int {
+<span class="fc" id="L117">        return queue.peek()</span>
+    }
+
+    override fun empty(): Boolean {
+<span class="fc" id="L121">        return queue.isEmpty()</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

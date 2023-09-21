@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MatrixReshape.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MatrixReshape.kt</span></div><h1>MatrixReshape.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+/**
+ * 566. Reshape the Matrix
+ * @see &lt;a href=&quot;https://leetcode.com/problems/reshape-the-matrix/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MatrixReshape {
+    operator fun invoke(mat: Array&lt;IntArray&gt;, r: Int, c: Int): Array&lt;IntArray&gt;
+}
+
+sealed class MatrixReshapeStrategy {
+
+    /**
+     * Approach 1: Using Queue
+     * Time complexity : O(m * n).
+     * Space complexity : O(m * n).
+     */
+<span class="fc" id="L37">    class UsingQueue : MatrixReshape {</span>
+        override operator fun invoke(mat: Array&lt;IntArray&gt;, r: Int, c: Int): Array&lt;IntArray&gt; {
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            val res = Array(r) { IntArray(c) }</span>
+<span class="pc bpc" id="L40" title="2 of 6 branches missed.">            if (mat.isEmpty() || r * c != mat.size * mat[0].size</span>
+            ) {
+<span class="fc" id="L42">                return mat</span>
+            }
+<span class="fc" id="L44">            val queue: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            for (i in mat.indices) {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                for (j in 0 until mat[0].size) {</span>
+<span class="fc" id="L47">                    queue.add(mat[i][j])</span>
+                }
+            }
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            for (i in 0 until r) {</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">                for (j in 0 until c) {</span>
+<span class="fc" id="L52">                    res[i][j] = queue.remove()</span>
+                }
+            }
+<span class="fc" id="L55">            return res</span>
+        }
+    }
+
+    /**
+     * Approach 2: Without Using Extra Space
+     * Time complexity : O(m * n).
+     * Space complexity : O(m * n).
+     */
+<span class="fc" id="L64">    class WithoutUsingExtraSpace : MatrixReshape {</span>
+        override operator fun invoke(mat: Array&lt;IntArray&gt;, r: Int, c: Int): Array&lt;IntArray&gt; {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            val res = Array(r) { IntArray(c) }</span>
+<span class="pc bpc" id="L67" title="2 of 6 branches missed.">            if (mat.isEmpty() || r * c != mat.size * mat[0].size) {</span>
+<span class="fc" id="L68">                return mat</span>
+            }
+<span class="fc" id="L70">            var rows = 0</span>
+<span class="fc" id="L71">            var cols = 0</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            for (i in mat.indices) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">                for (j in 0 until mat[0].size) {</span>
+<span class="fc" id="L74">                    res[rows][cols] = mat[i][j]</span>
+<span class="fc" id="L75">                    cols++</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">                    if (cols == c) {</span>
+<span class="fc" id="L77">                        rows++</span>
+<span class="fc" id="L78">                        cols = 0</span>
+                    }
+                }
+            }
+<span class="fc" id="L82">            return res</span>
+        }
+    }
+
+    /**
+     * Approach 3: Using division and modulus
+     * Time complexity : O(m * n).
+     * Space complexity : O(m * n).
+     */
+<span class="fc" id="L91">    class UsingDivision : MatrixReshape {</span>
+        override operator fun invoke(mat: Array&lt;IntArray&gt;, r: Int, c: Int): Array&lt;IntArray&gt; {
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            val res = Array(r) { IntArray(c) }</span>
+<span class="pc bpc" id="L94" title="2 of 6 branches missed.">            if (mat.isEmpty() || r * c != mat.size * mat[0].size) {</span>
+<span class="fc" id="L95">                return mat</span>
+            }
+<span class="fc" id="L97">            var count = 0</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            for (i in mat.indices) {</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">                for (j in 0 until mat[0].size) {</span>
+<span class="fc" id="L100">                    res[count / c][count % c] = mat[i][j]</span>
+<span class="fc" id="L101">                    count++</span>
+                }
+            }
+<span class="fc" id="L104">            return res</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

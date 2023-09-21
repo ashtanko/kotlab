@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NumSplits.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NumSplits.kt</span></div><h1>NumSplits.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1525. Number of Good Ways to Split a String
+ * @see &lt;a href=&quot;https://leetcode.com/problems/number-of-good-ways-to-split-a-string/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface NumSplits {
+    operator fun invoke(str: String): Int
+}
+
+<span class="fc" id="L27">class NumSplitsSplitPointer : NumSplits {</span>
+    override operator fun invoke(str: String): Int {
+<span class="fc" id="L29">        val l = IntArray(ALPHABET_LETTERS_COUNT) // TODO rename</span>
+<span class="fc" id="L30">        val r = IntArray(ALPHABET_LETTERS_COUNT) // TODO rename</span>
+<span class="fc" id="L31">        var dL = 0</span>
+<span class="fc" id="L32">        var dR = 0</span>
+<span class="fc" id="L33">        var res = 0</span>
+<span class="fc" id="L34">        val s = str.toCharArray()</span>
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        for (ch in s) dR += if (++r[ch.code - 'a'.code] == 1) 1 else 0</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (i in s.indices) {</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            dL += if (++l[s[i] - 'a'] == 1) 1 else 0</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            dR -= if (--r[s[i] - 'a'] == 0) 1 else 0</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            res += if (dL == dR) 1 else 0</span>
+        }
+<span class="fc" id="L41">        return res</span>
+    }
+}
+
+<span class="fc" id="L45">class NumSplitsMap : NumSplits {</span>
+    override operator fun invoke(str: String): Int {
+<span class="fc" id="L47">        val left: HashMap&lt;Char, Int&gt; = HashMap()</span>
+<span class="fc" id="L48">        val right: HashMap&lt;Char, Int&gt; = HashMap()</span>
+
+        // put all the characters in the right hashmap and keep track of the count
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (i in str.indices) {</span>
+<span class="fc" id="L52">            right[str[i]] = right.getOrDefault(str[i], 0) + 1</span>
+        }
+
+        // count the number of times the right is equal to the left, which is the result
+<span class="fc" id="L56">        var count = 0</span>
+
+        // loop through all the characters and add them to the left and remove them from the right
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        for (element in str) {</span>
+<span class="fc" id="L60">            val curr: Char = element</span>
+<span class="fc" id="L61">            left[curr] = left.getOrDefault(curr, 0) + 1</span>
+
+            // I put a getOrDefault() here instead of just get() as a &quot;just in case&quot;
+            // but the &quot;right&quot; should have all the characters
+            // since we added all characters at the beginning
+            // adding an if statement increases runtime but getOrDefault() did not
+<span class="fc" id="L67">            right[curr] = right.getOrDefault(curr, 0) - 1</span>
+
+            // if the count is equal to zero then remove the key/value pair
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (right[curr]!! &lt;= 0) {</span>
+<span class="fc" id="L71">                right.remove(curr)</span>
+            }
+
+            // if the two hashmaps are equal in size,
+            // which means they have the same amount of keys,
+            // which means they have the same amount of distinct characters
+            // increment the count for the result
+<span class="fc bfc" id="L78" title="All 2 branches covered.">            if (left.size == right.size) {</span>
+<span class="fc" id="L79">                count++</span>
+            }
+        }
+
+<span class="fc" id="L83">        return count</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Example1.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.patterns.structural.composite.example1</a> &gt; <span class="el_source">Example1.kt</span></div><h1>Example1.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.patterns.structural.composite.example1
+
+// Component: Abstract base class for both files and directories
+<span class="fc" id="L20">abstract class FileSystemComponent(val name: String) {</span>
+    abstract fun display(indent: String)
+}
+
+// Leaf: Represents a file
+<span class="fc" id="L25">class File(name: String) : FileSystemComponent(name) {</span>
+    override fun display(indent: String) {
+<span class="fc" id="L27">        println(&quot;$indent File: $name&quot;)</span>
+<span class="fc" id="L28">    }</span>
+}
+
+// Composite: Represents a directory that can contain files or subdirectories
+<span class="fc" id="L32">class Directory(name: String) : FileSystemComponent(name) {</span>
+<span class="fc" id="L33">    private val children = mutableListOf&lt;FileSystemComponent&gt;()</span>
+
+    fun add(component: FileSystemComponent) {
+<span class="fc" id="L36">        children.add(component)</span>
+<span class="fc" id="L37">    }</span>
+
+    override fun display(indent: String) {
+<span class="fc" id="L40">        println(&quot;$indent Directory: $name&quot;)</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (child in children) {</span>
+<span class="fc" id="L42">            child.display(&quot;$indent  &quot;)</span>
+        }
+<span class="fc" id="L44">    }</span>
+}
+
+fun main() {
+<span class="nc" id="L48">    val root = Directory(&quot;Root&quot;)</span>
+<span class="nc" id="L49">    val subDir1 = Directory(&quot;Subdirectory 1&quot;)</span>
+<span class="nc" id="L50">    val subDir2 = Directory(&quot;Subdirectory 2&quot;)</span>
+
+<span class="nc" id="L52">    val file1 = File(&quot;File 1&quot;)</span>
+<span class="nc" id="L53">    val file2 = File(&quot;File 2&quot;)</span>
+
+<span class="nc" id="L55">    root.add(subDir1)</span>
+<span class="nc" id="L56">    root.add(subDir2)</span>
+<span class="nc" id="L57">    root.add(file1)</span>
+<span class="nc" id="L58">    subDir1.add(file2)</span>
+
+<span class="nc" id="L60">    root.display(&quot;&quot;)</span>
+<span class="nc" id="L61">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

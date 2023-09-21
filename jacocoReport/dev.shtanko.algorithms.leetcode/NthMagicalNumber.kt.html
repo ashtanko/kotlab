@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NthMagicalNumber.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NthMagicalNumber.kt</span></div><h1>NthMagicalNumber.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import dev.shtanko.algorithms.math.gcd
+import kotlin.math.ceil
+import kotlin.math.min
+
+fun interface NthMagicalNumberStrategy {
+    operator fun invoke(n: Int, a: Int, b: Int): Int
+}
+
+<span class="fc" id="L27">class NthMagicalNumberMath : NthMagicalNumberStrategy {</span>
+
+    override operator fun invoke(n: Int, a: Int, b: Int): Int {
+<span class="fc" id="L30">        val lcm = a * b / gcd(a, b)</span>
+<span class="fc" id="L31">        val cntPerLcm = lcm / a + lcm / b - 1</span>
+<span class="fc" id="L32">        val cntLcm = n / cntPerLcm</span>
+<span class="fc" id="L33">        val remain = n % cntPerLcm</span>
+
+<span class="fc" id="L35">        val nearest: Double = remain.div(1.0.div(a).plus(1.0.div(b)))</span>
+<span class="fc" id="L36">        val remainIdx = min(ceil(nearest / a) * a, ceil(nearest / b) * b).toInt()</span>
+<span class="fc" id="L37">        return cntLcm.times(lcm).plus(remainIdx) % MOD</span>
+    }
+}
+
+<span class="fc" id="L41">class NthMagicalNumberBS : NthMagicalNumberStrategy {</span>
+    override operator fun invoke(n: Int, a: Int, b: Int): Int {
+<span class="fc" id="L43">        val l: Int = a / gcd(a, b) * b</span>
+
+<span class="fc" id="L45">        var lo: Long = 0</span>
+<span class="fc" id="L46">        var hi: Long = n.toLong() * min(a, b)</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        while (lo &lt; hi) {</span>
+<span class="fc" id="L48">            val mi = lo + hi.minus(lo) / 2</span>
+            // If there are not enough magic numbers below mi...
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (mi / a + mi / b - mi / l &lt; n) lo = mi + 1 else hi = mi</span>
+        }
+
+<span class="fc" id="L53">        return (lo % MOD).toInt()</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

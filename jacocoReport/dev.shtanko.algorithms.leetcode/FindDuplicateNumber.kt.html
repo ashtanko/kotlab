@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindDuplicateNumber.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FindDuplicateNumber.kt</span></div><h1>FindDuplicateNumber.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Find the Duplicate Number
+ * @see &lt;a href=&quot;https://leetcode.com/problems/find-the-duplicate-number/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface FindDuplicateNumber {
+    operator fun invoke(nums: IntArray): Int
+}
+
+/**
+ * Time complexity : O(n lg n)
+ * Space complexity : O(1) or O(n)
+ */
+<span class="fc" id="L31">class FindDuplicateSort : FindDuplicateNumber {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L33">        nums.sort()</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (i in 1 until nums.size) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            if (nums[i] == nums[i - 1]) {</span>
+<span class="fc" id="L36">                return nums[i]</span>
+            }
+        }
+<span class="fc" id="L39">        return 0</span>
+    }
+}
+
+/**
+ * Time complexity : O(n)
+ * Space complexity : O(n)
+ */
+<span class="fc" id="L47">class FindDuplicateSet : FindDuplicateNumber {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L49">        val seen: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L50">        nums.forEach {</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">            if (seen.contains(it)) {</span>
+<span class="fc" id="L52">                return it</span>
+            } else {
+<span class="fc" id="L54">                seen.add(it)</span>
+            }
+<span class="fc" id="L56">        }</span>
+<span class="fc" id="L57">        return 0</span>
+    }
+}
+
+<span class="fc" id="L61">class FindDuplicateArray : FindDuplicateNumber {</span>
+    override fun invoke(nums: IntArray): Int {
+        // Initialize a count array of size nums.size with zeros
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        val cnt = IntArray(nums.size) { 0 }</span>
+<span class="fc" id="L65">        var ind = 0</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (nums.size == 1) {</span>
+<span class="fc" id="L67">            return 0</span>
+        }
+
+        // Store the count of each value in the count array
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        for (i in nums.indices) {</span>
+<span class="fc" id="L72">            cnt[nums[i]]++</span>
+        }
+
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        for (i in cnt.indices) {</span>
+            // If cnt[i] &gt; 1, this means that the element occurs more than once in nums
+            // Return i as the duplicate value
+<span class="fc bfc" id="L78" title="All 2 branches covered.">            if (cnt[i] &gt; 1) {</span>
+<span class="fc" id="L79">                ind = i</span>
+<span class="fc" id="L80">                break</span>
+            }
+        }
+
+<span class="fc" id="L84">        return ind</span>
+    }
+}
+
+<span class="fc" id="L88">class FindDuplicateMap : FindDuplicateNumber {</span>
+    override fun invoke(nums: IntArray): Int {
+<span class="fc" id="L90">        val map = mutableMapOf&lt;Int, Int&gt;()</span>
+<span class="fc" id="L91">        var duplicate = 0</span>
+
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        for (num in nums) {</span>
+<span class="fc" id="L94">            map[num] = map.getOrDefault(num, 0) + 1</span>
+        }
+
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        for ((key, value) in map) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            if (value &gt; 1) {</span>
+<span class="fc" id="L99">                duplicate = key</span>
+<span class="fc" id="L100">                break</span>
+            }
+        }
+
+<span class="fc" id="L104">        return duplicate</span>
+    }
+}
+
+<span class="fc" id="L108">class FindDuplicateBS : FindDuplicateNumber {</span>
+    override fun invoke(nums: IntArray): Int {
+<span class="fc" id="L110">        var low = 0</span>
+<span class="fc" id="L111">        var high = nums.size - 1</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        if (nums.size == 1) {</span>
+<span class="fc" id="L113">            return 0</span>
+        }
+
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        while (low &lt;= high) {</span>
+<span class="fc" id="L117">            val mid = low + (high - low) / 2</span>
+<span class="fc" id="L118">            var cnt = 0</span>
+
+            // Count numbers less than or equal to mid
+<span class="fc bfc" id="L121" title="All 2 branches covered.">            for (n in nums) {</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">                if (n &lt;= mid) {</span>
+<span class="fc" id="L123">                    cnt++</span>
+                }
+            }
+
+            // Binary search on the left
+<span class="fc bfc" id="L128" title="All 2 branches covered.">            if (cnt &lt;= mid) {</span>
+<span class="fc" id="L129">                low = mid + 1</span>
+            } else {
+                // Binary search on the right
+<span class="fc" id="L132">                high = mid - 1</span>
+            }
+        }
+
+<span class="fc" id="L136">        return low</span>
+    }
+}
+
+<span class="fc" id="L140">class FindDuplicateTortoise : FindDuplicateNumber {</span>
+    override fun invoke(nums: IntArray): Int {
+<span class="fc bfc" id="L142" title="All 6 branches covered.">        if (nums.isEmpty() || nums.size == 1) {</span>
+<span class="fc" id="L143">            return 0</span>
+        }
+<span class="fc" id="L145">        var fast = nums[0]</span>
+<span class="fc" id="L146">        var slow = nums[0]</span>
+
+        // Phase 1: Detect intersection point of the two pointers
+        do {
+<span class="fc" id="L150">            fast = nums[nums[fast]]</span>
+<span class="fc" id="L151">            slow = nums[slow]</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">        } while (fast != slow)</span>
+
+        // Phase 2: Find the entrance to the cycle
+<span class="fc" id="L155">        fast = nums[0]</span>
+
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        while (fast != slow) {</span>
+<span class="fc" id="L158">            fast = nums[fast]</span>
+<span class="fc" id="L159">            slow = nums[slow]</span>
+        }
+
+<span class="fc" id="L162">        return slow</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

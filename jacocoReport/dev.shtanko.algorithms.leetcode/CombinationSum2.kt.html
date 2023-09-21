@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CombinationSum2.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CombinationSum2.kt</span></div><h1>CombinationSum2.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+
+/**
+ * 40. Combination Sum II
+ * @see &lt;a href=&quot;https://leetcode.com/problems/combination-sum-ii/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface CombinationSum2 {
+    operator fun invoke(candidates: IntArray, target: Int): List&lt;List&lt;Int&gt;&gt;
+}
+
+<span class="fc" id="L29">class BacktrackingWithCounters : CombinationSum2 {</span>
+    override operator fun invoke(candidates: IntArray, target: Int): List&lt;List&lt;Int&gt;&gt; {
+        // container to hold the final combinations
+<span class="fc" id="L32">        val results: MutableList&lt;List&lt;Int&gt;&gt; = ArrayList()</span>
+<span class="fc" id="L33">        val comb = LinkedList&lt;Int&gt;()</span>
+
+<span class="fc" id="L35">        val counter: HashMap&lt;Int, Int&gt; = HashMap()</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (candidate in candidates) {</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            if (counter.containsKey(candidate)) {</span>
+<span class="fc" id="L38">                counter[candidate] = counter.getOrDefault(candidate, 0) + 1</span>
+            } else {
+<span class="fc" id="L40">                counter[candidate] = 1</span>
+            }
+        }
+
+        // convert the counter table to a list of (num, count) tuples
+<span class="fc" id="L45">        val counterList: MutableList&lt;IntArray&gt; = ArrayList()</span>
+<span class="fc" id="L46">        counter.forEach { (key, value) -&gt; counterList.add(intArrayOf(key, value)) }</span>
+
+<span class="fc" id="L48">        backtrack(comb, target, 0, counterList, results)</span>
+<span class="fc" id="L49">        return results</span>
+    }
+
+    private fun backtrack(
+        comb: LinkedList&lt;Int&gt;,
+        remain: Int,
+        curr: Int,
+        counter: MutableList&lt;IntArray&gt;,
+        results: MutableList&lt;List&lt;Int&gt;&gt;,
+    ) {
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (remain &lt;= 0) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            if (remain == 0) {</span>
+                // make a deep copy of the current combination.
+<span class="fc" id="L62">                results.add(ArrayList(comb))</span>
+            }
+<span class="fc" id="L64">            return</span>
+        }
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        for (nextCurr in curr until counter.size) {</span>
+<span class="fc" id="L67">            val entry = counter[nextCurr]</span>
+<span class="fc" id="L68">            val candidate = entry[0]</span>
+<span class="fc" id="L69">            val freq = entry[1]</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (freq &lt;= 0) continue</span>
+
+            // add a new element to the current combination
+<span class="fc" id="L73">            comb.addLast(candidate)</span>
+<span class="fc" id="L74">            counter[nextCurr] = intArrayOf(candidate, freq - 1)</span>
+
+            // continue the exploration with the updated combination
+<span class="fc" id="L77">            backtrack(comb, remain - candidate, nextCurr, counter, results)</span>
+
+            // backtrack the changes, so that we can try another candidate
+<span class="fc" id="L80">            counter[nextCurr] = intArrayOf(candidate, freq)</span>
+<span class="fc" id="L81">            comb.removeLast()</span>
+        }
+<span class="fc" id="L83">    }</span>
+}
+
+<span class="fc" id="L86">class BacktrackingWithIndex : CombinationSum2 {</span>
+    override operator fun invoke(candidates: IntArray, target: Int): List&lt;List&lt;Int&gt;&gt; {
+<span class="fc" id="L88">        val results: MutableList&lt;List&lt;Int&gt;&gt; = ArrayList()</span>
+<span class="fc" id="L89">        val comb = LinkedList&lt;Int&gt;()</span>
+<span class="fc" id="L90">        candidates.sort()</span>
+<span class="fc" id="L91">        backtrack(candidates, comb, target, 0, results)</span>
+<span class="fc" id="L92">        return results</span>
+    }
+
+    private fun backtrack(
+        candidates: IntArray,
+        comb: LinkedList&lt;Int&gt;,
+        remain: Int,
+        curr: Int,
+        results: MutableList&lt;List&lt;Int&gt;&gt;,
+    ) {
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (remain == 0) {</span>
+            // copy the current combination to the final list.
+<span class="fc" id="L104">            results.add(ArrayList(comb))</span>
+<span class="fc" id="L105">            return</span>
+        }
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        for (nextCurr in curr until candidates.size) {</span>
+<span class="fc bfc" id="L108" title="All 4 branches covered.">            if (nextCurr &gt; curr &amp;&amp; candidates[nextCurr] == candidates[nextCurr - 1]) continue</span>
+<span class="fc" id="L109">            val pick = candidates[nextCurr]</span>
+            // optimization: early stopping
+<span class="fc bfc" id="L111" title="All 2 branches covered.">            if (remain - pick &lt; 0) break</span>
+<span class="fc" id="L112">            comb.addLast(pick)</span>
+<span class="fc" id="L113">            backtrack(candidates, comb, remain - pick, nextCurr + 1, results)</span>
+<span class="fc" id="L114">            comb.removeLast()</span>
+        }
+<span class="fc" id="L116">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

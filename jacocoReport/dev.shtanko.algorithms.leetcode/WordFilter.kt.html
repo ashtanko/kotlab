@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WordFilter.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">WordFilter.kt</span></div><h1>WordFilter.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Prefix and Suffix Search
+ * @see &lt;a href=&quot;https://leetcode.com/problems/prefix-and-suffix-search/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface WordFilter {
+    operator fun invoke(prefix: String, suffix: String): Int
+}
+
+/**
+ * Approach #1: Trie + Set Intersection [Time Limit Exceeded]
+ */
+<span class="fc" id="L30">class WordFilterTrie(words: Array&lt;String&gt;) : WordFilter {</span>
+
+<span class="fc" id="L32">    private var trie1: WFTrieNode = WFTrieNode()</span>
+<span class="fc" id="L33">    private var trie2: WFTrieNode = WFTrieNode()</span>
+    private var wt = 0
+
+<span class="fc" id="L36">    init {</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (word in words) {</span>
+<span class="fc" id="L38">            val ca = word.toCharArray()</span>
+<span class="fc" id="L39">            var cur: WFTrieNode = trie1</span>
+<span class="fc" id="L40">            cur.weight.add(wt)</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            for (letter in ca) {</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">                if (cur.children[letter - 'a'] == null) {</span>
+<span class="fc" id="L43">                    cur.children[letter - 'a'] = WFTrieNode()</span>
+                }
+<span class="fc" id="L45">                cur = cur.children[letter - 'a']!!</span>
+<span class="fc" id="L46">                cur.weight.add(wt)</span>
+            }
+<span class="fc" id="L48">            cur = trie2</span>
+<span class="fc" id="L49">            cur.weight.add(wt)</span>
+<span class="fc bfc" id="L50" title="All 4 branches covered.">            for (j in ca.indices.reversed()) {</span>
+<span class="fc" id="L51">                val letter = ca[j]</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">                if (cur.children[letter - 'a'] == null) {</span>
+<span class="fc" id="L53">                    cur.children[letter - 'a'] = WFTrieNode()</span>
+                }
+<span class="fc" id="L55">                cur = cur.children[letter - 'a']!!</span>
+<span class="fc" id="L56">                cur.weight.add(wt)</span>
+            }
+<span class="fc" id="L58">            wt++</span>
+        }
+<span class="fc" id="L60">    }</span>
+
+    override operator fun invoke(prefix: String, suffix: String): Int {
+<span class="fc" id="L63">        var cur1: WFTrieNode = trie1</span>
+<span class="fc" id="L64">        var cur2: WFTrieNode = trie2</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (letter in prefix.toCharArray()) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            if (cur1.children[letter - 'a'] == null) return -1</span>
+<span class="fc" id="L67">            cur1 = cur1.children[letter - 'a']!!</span>
+        }
+<span class="fc" id="L69">        val ca = suffix.toCharArray()</span>
+<span class="fc bfc" id="L70" title="All 4 branches covered.">        for (j in ca.indices.reversed()) {</span>
+<span class="fc" id="L71">            val letter = ca[j]</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            if (cur2.children[letter - 'a'] == null) return -1</span>
+<span class="fc" id="L73">            cur2 = cur2.children[letter - 'a']!!</span>
+        }
+
+<span class="fc" id="L76">        var ans = -1</span>
+<span class="pc bpc" id="L77" title="2 of 6 branches missed.">        for (w1 in cur1.weight) if (w1 &gt; ans &amp;&amp; cur2.weight.contains(w1)) ans = w1</span>
+
+<span class="fc" id="L79">        return ans</span>
+    }
+
+<span class="fc" id="L82">    class WFTrieNode {</span>
+<span class="pc" id="L83">        var children: Array&lt;WFTrieNode?&gt; = arrayOfNulls(ALPHABET_LETTERS_COUNT)</span>
+<span class="pc" id="L84">        var weight: MutableSet&lt;Int&gt; = HashSet()</span>
+    }
+}
+
+<span class="fc" id="L88">class WordFilterWrappedWords(words: Array&lt;String&gt;) : WordFilter {</span>
+
+<span class="fc" id="L90">    private var trie: TrieNode = TrieNode()</span>
+
+<span class="fc" id="L92">    init {</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        for (weight in words.indices) {</span>
+<span class="fc" id="L94">            val word: String = words[weight] + &quot;{&quot;</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            for (i in word.indices) {</span>
+<span class="fc" id="L96">                var cur: TrieNode = trie</span>
+<span class="fc" id="L97">                cur.weight = weight</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">                for (j in i until 2 * word.length - 1) {</span>
+<span class="fc" id="L99">                    val k = word[j % word.length] - 'a'</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">                    if (cur.children[k] == null) {</span>
+<span class="fc" id="L101">                        cur.children[k] = TrieNode()</span>
+                    }
+<span class="fc" id="L103">                    cur = cur.children[k]!!</span>
+<span class="fc" id="L104">                    cur.weight = weight</span>
+                }
+            }
+        }
+<span class="fc" id="L108">    }</span>
+
+    override operator fun invoke(prefix: String, suffix: String): Int {
+<span class="fc" id="L111">        var cur: TrieNode = trie</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        for (letter in &quot;$suffix{$prefix&quot;.toCharArray()) {</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">            if (cur.children[letter - 'a'] == null) return -1</span>
+<span class="fc" id="L114">            cur = cur.children[letter - 'a']!!</span>
+        }
+<span class="fc" id="L116">        return cur.weight</span>
+    }
+
+<span class="fc" id="L119">    class TrieNode {</span>
+<span class="pc" id="L120">        var children: Array&lt;TrieNode?&gt; = arrayOfNulls(27)</span>
+<span class="fc" id="L121">        var weight: Int = 0</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

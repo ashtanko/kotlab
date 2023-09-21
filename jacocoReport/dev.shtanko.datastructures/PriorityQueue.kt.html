@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriorityQueue.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.datastructures</a> &gt; <span class="el_source">PriorityQueue.kt</span></div><h1>PriorityQueue.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.datastructures
+
+import dev.shtanko.algorithms.extensions.swap
+
+/**
+ * A priority queue implementation using a binary heap.
+ *
+ * Priority queue is an abstract data type similar to regular queue or stack data structure in which each element
+ * additionally has a &quot;priority&quot; associated with it. In a priority queue, an element with high priority is served
+ * before an element with low priority. In some implementations, if two elements have the same priority, they are
+ * served according to the order in which they were enqueued, while in other implementations, ordering of elements
+ * with the same priority is undefined.
+ *
+ * @param T The type of elements in the priority queue.
+ * @property size The number of elements in the priority queue.
+ * @property comparator The comparator to compare elements in the queue (optional).
+ */
+<span class="fc" id="L34">@Suppress(&quot;UNCHECKED_CAST&quot;)</span>
+<span class="fc" id="L35">class PriorityQueue&lt;T&gt;(size: Int, private val comparator: Comparator&lt;T&gt;? = null) : Collection&lt;T&gt; {</span>
+
+<span class="fc" id="L37">    override var size: Int = 0</span>
+        private set
+
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    private var arr: Array&lt;T?&gt; = Array&lt;Comparable&lt;T&gt;?&gt;(size) { null } as Array&lt;T?&gt;</span>
+
+    /**
+     * Retrieves the element at the front of the queue without removing it.
+     *
+     * @return The element at the front of the queue.
+     * @throws NoSuchElementException if the queue is empty.
+     */
+    fun peek(): T {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (size == 0) throw NoSuchElementException()</span>
+<span class="fc" id="L50">        return arr[1]!!</span>
+    }
+
+    /**
+     * Retrieves and removes the element at the front of the queue.
+     *
+     * @return The element at the front of the queue.
+     * @throws NoSuchElementException if the queue is empty.
+     */
+    fun poll(): T {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (size == 0) throw NoSuchElementException()</span>
+<span class="fc" id="L61">        val res = peek()</span>
+<span class="fc" id="L62">        arr.swap(1, size--)</span>
+<span class="fc" id="L63">        sink()</span>
+<span class="fc" id="L64">        arr[size + 1] = null</span>
+<span class="fc" id="L65">        val last = arr.size - 1</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        val local = size == last / SQUAD</span>
+<span class="fc bfc" id="L67" title="All 4 branches covered.">        if (size &gt; 0 &amp;&amp; local) {</span>
+<span class="fc" id="L68">            resize()</span>
+        }
+<span class="fc" id="L70">        return res</span>
+    }
+
+    /**
+     * Adds an element to the priority queue.
+     *
+     * @param element The element to be added.
+     */
+    fun add(element: T) {
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if (size + 1 == arr.size) {</span>
+<span class="fc" id="L80">            resize()</span>
+        }
+<span class="fc" id="L82">        arr[++size] = element</span>
+<span class="fc" id="L83">        swim(size)</span>
+<span class="fc" id="L84">    }</span>
+
+    /**
+     * Checks if the queue contains the specified element.
+     *
+     * @param element The element to check for.
+     * @return `true` if the element is found, otherwise `false`.
+     */
+    override fun contains(element: T): Boolean {
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        for (obj in this) {</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">            if (obj == element) return true</span>
+        }
+<span class="fc" id="L96">        return false</span>
+    }
+
+    /**
+     * Checks if the queue contains all elements from the specified collection.
+     *
+     * @param elements The collection of elements to check for.
+     * @return `true` if all elements are found, otherwise `false`.
+     */
+    override fun containsAll(elements: Collection&lt;T&gt;): Boolean {
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        for (element in elements) {</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">            if (!contains(element)) return false</span>
+        }
+<span class="fc" id="L109">        return true</span>
+    }
+
+    /**
+     * Checks if the queue is empty.
+     *
+     * @return `true` if the queue is empty, otherwise `false`.
+     */
+<span class="fc bfc" id="L117" title="All 2 branches covered.">    override fun isEmpty(): Boolean = size == 0</span>
+
+    /**
+     * Returns an iterator over the elements in the queue.
+     *
+     * @return An iterator over the elements in the queue.
+     */
+    override fun iterator(): Iterator&lt;T&gt; {
+<span class="fc" id="L125">        return arr.copyOfRange(1, size + 1).map { it!! }.iterator()</span>
+    }
+
+    /**
+     * Moves an element up the heap to its proper position to maintain the heap property.
+     *
+     * @param n The index of the element to be moved.
+     */
+    private fun swim(n: Int) {
+<span class="fc" id="L134">        swim(arr, n, comparator)</span>
+<span class="fc" id="L135">    }</span>
+
+    /**
+     * Moves an element down the heap to its proper position to maintain the heap property.
+     */
+    private fun sink() {
+<span class="fc" id="L141">        sink(arr, 1, size, comparator)</span>
+<span class="fc" id="L142">    }</span>
+
+    /**
+     * Resizes the internal array to accommodate more elements.
+     */
+    private fun resize() {
+<span class="fc" id="L148">        val old = arr</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        arr = Array&lt;Comparable&lt;T&gt;?&gt;(size * 2) { null } as Array&lt;T?&gt;</span>
+<span class="fc" id="L150">        System.arraycopy(old, 0, arr, 0, size + 1)</span>
+<span class="fc" id="L151">    }</span>
+
+    companion object {
+        private const val SQUAD = 4
+
+        /**
+         * Checks if one element is greater than another.
+         *
+         * @param arr The array containing the elements.
+         * @param i The index of the first element.
+         * @param j The index of the second element.
+         * @param comparator The comparator for element comparison (optional).
+         * @return `true` if the first element is greater, otherwise `false`.
+         */
+<span class="nc" id="L165">        private fun &lt;T&gt; greater(arr: Array&lt;T?&gt;, i: Int, j: Int, comparator: Comparator&lt;T&gt;? = null): Boolean {</span>
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">            return if (comparator != null) {</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">                comparator.compare(arr[i], arr[j]) &gt; 0</span>
+            } else {
+<span class="fc" id="L169">                val left = arr[i] as Comparable&lt;T&gt;</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">                left &gt; arr[j]!!</span>
+            }
+        }
+
+        /**
+         * Moves an element down the heap to its proper position to maintain the heap property.
+         *
+         * @param arr The array containing the heap.
+         * @param a The index of the element to be moved.
+         * @param size The size of the heap.
+         * @param comparator The comparator for element comparison (optional).
+         */
+<span class="nc" id="L182">        fun &lt;T&gt; sink(arr: Array&lt;T?&gt;, a: Int, size: Int, comparator: Comparator&lt;T&gt;? = null) {</span>
+<span class="fc" id="L183">            var k = a</span>
+<span class="fc bfc" id="L184" title="All 2 branches covered.">            while (2 * k &lt;= size) {</span>
+<span class="fc" id="L185">                var j = 2 * k</span>
+<span class="fc bfc" id="L186" title="All 4 branches covered.">                if (j &lt; size &amp;&amp; greater(arr, j, j + 1, comparator)) j++</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">                if (!greater(arr, k, j, comparator)) break</span>
+<span class="fc" id="L188">                arr.swap(k, j)</span>
+<span class="fc" id="L189">                k = j</span>
+            }
+<span class="fc" id="L191">        }</span>
+
+        /**
+         * Moves an element up the heap to its proper position to maintain the heap property.
+         *
+         * @param arr The array containing the heap.
+         * @param size The size of the heap.
+         * @param comparator The comparator for element comparison (optional).
+         */
+<span class="nc" id="L200">        fun &lt;T&gt; swim(arr: Array&lt;T?&gt;, size: Int, comparator: Comparator&lt;T&gt;? = null) {</span>
+<span class="fc" id="L201">            var n = size</span>
+<span class="fc bfc" id="L202" title="All 4 branches covered.">            while (n &gt; 1 &amp;&amp; greater(arr, n / 2, n, comparator)) {</span>
+<span class="fc" id="L203">                arr.swap(n, n / 2)</span>
+<span class="fc" id="L204">                n /= 2</span>
+            }
+<span class="fc" id="L206">        }</span>
+    }
+<span class="fc" id="L208">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

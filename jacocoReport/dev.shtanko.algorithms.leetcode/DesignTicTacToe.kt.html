@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DesignTicTacToe.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">DesignTicTacToe.kt</span></div><h1>DesignTicTacToe.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.abs
+
+/**
+ * Design Tic-Tac-Toe
+ * @see &lt;a href=&quot;https://leetcode.com/problems/design-tic-tac-toe/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface DesignTicTacToe {
+    fun move(row: Int, col: Int, player: Int): Int
+}
+
+/**
+ * Time Complexity: O(n)
+ * Space Complexity: O(n^2)
+ */
+<span class="pc" id="L33">class TTTOptimizedBruteForce(val n: Int) : DesignTicTacToe {</span>
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">    private val board: Array&lt;IntArray&gt; = Array(n) { IntArray(n) }</span>
+
+    override fun move(row: Int, col: Int, player: Int): Int {
+<span class="fc" id="L38">        board[row][col] = player</span>
+        // check if the player wins
+<span class="pc bpc" id="L40" title="2 of 8 branches missed.">        val rowOrColumn = checkRow(row, player) || checkColumn(col, player) || row == col &amp;&amp; checkDiagonal(player)</span>
+<span class="pc bpc" id="L41" title="1 of 6 branches missed.">        if (rowOrColumn || col == n - row - 1 &amp;&amp; checkAntiDiagonal(player)) {</span>
+<span class="fc" id="L42">            return player</span>
+        }
+        // No one wins
+<span class="fc" id="L45">        return 0</span>
+    }
+
+    private fun checkDiagonal(player: Int): Boolean {
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        for (row in 0 until n) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (board[row][row] != player) {</span>
+<span class="fc" id="L51">                return false</span>
+            }
+        }
+<span class="nc" id="L54">        return true</span>
+    }
+
+    private fun checkAntiDiagonal(player: Int): Boolean {
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        for (row in 0 until n) {</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            if (board[row][n - row - 1] != player) {</span>
+<span class="fc" id="L60">                return false</span>
+            }
+        }
+<span class="nc" id="L63">        return true</span>
+    }
+
+    private fun checkColumn(col: Int, player: Int): Boolean {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        for (row in 0 until n) {</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            if (board[row][col] != player) {</span>
+<span class="fc" id="L69">                return false</span>
+            }
+        }
+<span class="nc" id="L72">        return true</span>
+    }
+
+    private fun checkRow(row: Int, player: Int): Boolean {
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        for (col in 0 until n) {</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            if (board[row][col] != player) {</span>
+<span class="fc" id="L78">                return false</span>
+            }
+        }
+<span class="fc" id="L81">        return true</span>
+    }
+}
+
+/**
+ * Approach 2: Optimised Approach
+ * Time Complexity: O(1)
+ * Space Complexity: O(n)
+ */
+<span class="pc" id="L90">class TTTOptimised(val n: Int) : DesignTicTacToe {</span>
+
+<span class="fc" id="L92">    private var rows: IntArray = IntArray(n)</span>
+<span class="fc" id="L93">    private var cols: IntArray = IntArray(n)</span>
+    private var diagonal = 0
+    private var antiDiagonal = 0
+
+    override fun move(row: Int, col: Int, player: Int): Int {
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        val currentPlayer = if (player == 1) 1 else -1</span>
+        // update currentPlayer in rows and cols arrays
+<span class="fc" id="L100">        rows[row] += currentPlayer</span>
+<span class="fc" id="L101">        cols[col] += currentPlayer</span>
+        // update diagonal
+<span class="fc bfc" id="L103" title="All 2 branches covered.">        if (row == col) {</span>
+<span class="fc" id="L104">            diagonal += currentPlayer</span>
+        }
+        // update anti diagonal
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        if (col == cols.size - row - 1) {</span>
+<span class="fc" id="L108">            antiDiagonal += currentPlayer</span>
+        }
+<span class="fc" id="L110">        val n: Int = rows.size</span>
+        // check if the current player wins
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">        val rowsOrCols = abs(rows[row]) == n || abs(cols[col]) == n</span>
+<span class="pc bpc" id="L113" title="2 of 6 branches missed.">        return if (rowsOrCols || abs(diagonal) == n || abs(antiDiagonal) == n) {</span>
+<span class="fc" id="L114">            player</span>
+        } else {
+<span class="fc" id="L116">            0</span>
+        }
+        // No one wins
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CoroutinesMergeSort.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.concurrency.coroutines.sort</a> &gt; <span class="el_source">CoroutinesMergeSort.kt</span></div><h1>CoroutinesMergeSort.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.concurrency.coroutines.sort
+
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
+
+<span class="fc" id="L25">class CoroutinesMergeSort {</span>
+<span class="fc" id="L26">    private val scope = CoroutineScope(Job() + Dispatchers.Default)</span>
+
+    /**
+     * @param array The array to sort.  A copy is made, so it's content is not destroyed.
+     * @param minThreshold When the array has a size smaller than this threshold, it is sorted using
+     *    a non-threaded version of merge-sort.  A parallel version of merge-sort for small
+     *    arrays would not be efficient because too many small arrays would be created.
+     */
+<span class="fc" id="L34">    fun perform(array: IntArray, minThreshold: Int = 128): IntArray {</span>
+<span class="fc" id="L35">        val arrayCopy = array.copyOf()</span>
+<span class="fc" id="L36">        return runBlocking {</span>
+<span class="fc" id="L37">            val deferred = scope.async { mergeSortRecur(arrayCopy, minThreshold) }</span>
+<span class="fc" id="L38">            deferred.await()</span>
+        }
+    }
+
+    /**
+     * @param array The input. Also used to store the output.
+     * @param minThreshold When the array has a size smaller than this, it is sorted using
+     *    a non-threaded version of merge-sort.  A parallel version of merge-sort for small
+     *    lists would not be efficient.
+     */
+    // Note: a `suspend` function cannot be an inner function.
+    private suspend fun mergeSortRecur(array: IntArray, minThreshold: Int): IntArray {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (array.size &lt;= minThreshold) {</span>
+<span class="fc" id="L51">            return mergeSortIAFast(array)</span>
+        }
+<span class="fc" id="L53">        val mid = array.size / 2</span>
+<span class="fc" id="L54">        val half1 = array.sliceArray(0 until mid)</span>
+<span class="fc" id="L55">        val half2 = array.sliceArray(mid until array.size)</span>
+<span class="fc" id="L56">        val half1Defer = scope.async { mergeSortRecur(half1, minThreshold) }</span>
+<span class="fc" id="L57">        val half2Defer = scope.async { mergeSortRecur(half2, minThreshold) }</span>
+
+<span class="fc" id="L59">        mergeSeparated(half1Defer.await(), half2Defer.await(), output = array)</span>
+<span class="fc" id="L60">        return array</span>
+    }
+
+    /**
+     * @param array The input; also used as a work array, so its content is destroyed.
+     */
+    private fun mergeSortIAFast(array: IntArray): IntArray {
+<span class="fc" id="L67">        val arrayCopy = array.copyOf()</span>
+<span class="fc" id="L68">        sortSectionIA(array, arrayCopy, 0, array.size)</span>
+<span class="fc" id="L69">        return arrayCopy</span>
+    }
+
+    private fun sortSectionIA(
+        input: IntArray,
+        output: IntArray,
+        start: Int,
+        exclusiveEnd: Int,
+    ) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (exclusiveEnd - start &lt;= 1) {</span>
+<span class="fc" id="L79">            return</span>
+        }
+<span class="fc" id="L81">        val mid = (start + exclusiveEnd) / 2</span>
+<span class="fc" id="L82">        sortSectionIA(output, input, start, mid)</span>
+<span class="fc" id="L83">        sortSectionIA(output, input, mid, exclusiveEnd)</span>
+<span class="fc" id="L84">        mergeHalvesIA(input, output, start, mid, exclusiveEnd)</span>
+<span class="fc" id="L85">    }</span>
+
+    /**
+     * Sorts the specified section of the array.
+     *
+     * @param workA Should contain identical values as workB in the specified range.
+     *              The final values in the specified range are destroyed (actually they are made
+     *              of two adjacent sorted ranged).
+     * @param workB Should contain identical values as workA in the specified range.
+     *              The final values in the specified range are the sorted values in that range.
+     */
+    private fun mergeHalvesIA(
+        workA: IntArray,
+        workB: IntArray,
+        start: Int,
+        mid: Int,
+        exclusiveEnd: Int,
+    ) {
+<span class="fc" id="L103">        var p1 = start</span>
+<span class="fc" id="L104">        var p2 = mid</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        for (i in start until exclusiveEnd) {</span>
+<span class="fc bfc" id="L106" title="All 6 branches covered.">            if (p1 &lt; mid &amp;&amp; (p2 == exclusiveEnd || workA[p1] &lt;= workA[p2])) {</span>
+<span class="fc" id="L107">                workB[i] = workA[p1]</span>
+<span class="fc" id="L108">                p1++</span>
+            } else {
+<span class="fc" id="L110">                workB[i] = workA[p2]</span>
+<span class="fc" id="L111">                p2++</span>
+            }
+        }
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Merge two sorted array in a single sorted array.
+     *
+     * @param half1 Sorted array.
+     * @param half2 Sorted array.
+     * @param output Output array of size `half1.size + half2.size`.  Its original content will be erased.
+     */
+    private fun mergeSeparated(half1: IntArray, half2: IntArray, output: IntArray) {
+<span class="pc bpc" id="L124" title="2 of 4 branches missed.">        require(half1.size + half2.size == output.size)</span>
+<span class="fc" id="L125">        var p1 = 0</span>
+<span class="fc" id="L126">        var p2 = 0</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        for (i in 0 until half1.size + half2.size) {</span>
+<span class="fc bfc" id="L128" title="All 6 branches covered.">            if (p1 &lt; half1.size &amp;&amp; (p2 == half2.size || half1[p1] &lt;= half2[p2])) {</span>
+<span class="fc" id="L129">                output[i] = half1[p1]</span>
+<span class="fc" id="L130">                p1++</span>
+            } else {
+<span class="fc" id="L132">                output[i] = half2[p2]</span>
+<span class="fc" id="L133">                p2++</span>
+            }
+        }
+<span class="fc" id="L136">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

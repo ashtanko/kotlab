@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Inline.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.kotlinlang.functions.inline</a> &gt; <span class="el_source">Inline.kt</span></div><h1>Inline.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.kotlinlang.functions.inline
+
+import kotlin.random.Random
+import kotlin.reflect.full.declaredMemberFunctions
+import kotlin.reflect.jvm.isAccessible
+
+object Env {
+    const val DEBUG = true
+<span class="fc bfc" id="L25" title="All 2 branches covered.">    val UTF8_SUPPORT: Boolean get() = Random.nextInt(5) != 0</span>
+}
+
+inline fun &lt;reified T&gt; T.callPrivateFunc(name: String, vararg args: Any?): Any? =
+    T::class
+        .declaredMemberFunctions
+        .firstOrNull { it.name == name }
+        ?.apply { isAccessible = true }
+        ?.call(this, *args)
+
+<span class="nc" id="L35">inline fun doOnDebug(</span>
+    noinline logger: (String) -&gt; Unit,
+<span class="nc" id="L37">    times: Int = 1,</span>
+    crossinline block: () -&gt; Unit,
+) {
+<span class="nc" id="L40">    if (Env.DEBUG) {</span>
+<span class="nc" id="L41">        logger(&quot;[LOG] Running doOnDebug...&quot;)</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">        repeat(times) {</span>
+<span class="nc" id="L43">            logger(&quot;[LOG] Iteration #$it...&quot;)</span>
+<span class="nc" id="L44">            block()</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc" id="L46">        logger(&quot;[LOG] Flushing the log...&quot;)</span>
+<span class="nc" id="L47">        flush(logger)</span>
+    }
+<span class="nc" id="L49">}</span>
+
+fun flush(logger: (String) -&gt; Unit) {
+<span class="fc" id="L52">    logger(&quot;[LOG] Flushing the log..&quot;)</span>
+<span class="fc" id="L53">}</span>
+
+fun main() {
+<span class="nc" id="L56">    println(&quot;START main()&quot;)</span>
+<span class="nc" id="L57">    doOnDebug(::println) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (!Env.UTF8_SUPPORT) {</span>
+<span class="nc" id="L59">            return@doOnDebug</span>
+        }
+<span class="nc" id="L61">        println(&quot;I'm on debug ¯\\_(ツ)_/¯&quot;)</span>
+<span class="nc" id="L62">    }</span>
+<span class="nc" id="L63">    println(&quot;END main()&quot;)</span>
+<span class="nc" id="L64">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

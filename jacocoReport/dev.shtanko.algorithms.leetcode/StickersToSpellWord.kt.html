@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StickersToSpellWord.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">StickersToSpellWord.kt</span></div><h1>StickersToSpellWord.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+import kotlin.math.min
+
+/**
+ * 691. Stickers to Spell Word
+ * @see &lt;a href=&quot;https://leetcode.com/problems/stickers-to-spell-word/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface StickersToSpellWord {
+    fun minStickers(stickers: Array&lt;String&gt;, target: String): Int
+}
+
+/**
+ * DP + Memoization with optimization
+ */
+<span class="fc" id="L33">class StickersToSpellWordDP : StickersToSpellWord {</span>
+    override fun minStickers(stickers: Array&lt;String&gt;, target: String): Int {
+<span class="fc" id="L35">        val m: Int = stickers.size</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        val mp = Array(m) { IntArray(ALPHABET_LETTERS_COUNT) }</span>
+<span class="fc" id="L37">        val dp: MutableMap&lt;String, Int&gt; = HashMap()</span>
+<span class="fc bfc" id="L38" title="All 4 branches covered.">        for (i in 0 until m) for (c in stickers[i].toCharArray()) mp[i][c - 'a']++</span>
+<span class="fc" id="L39">        dp[&quot;&quot;] = 0</span>
+<span class="fc" id="L40">        return helper(dp, mp, target)</span>
+    }
+
+    private fun helper(dp: MutableMap&lt;String, Int&gt;, mp: Array&lt;IntArray&gt;, target: String): Int {
+<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        if (dp.containsKey(target)) return dp[target] ?: -1</span>
+<span class="fc" id="L45">        var ans = Int.MAX_VALUE</span>
+<span class="fc" id="L46">        val n = mp.size</span>
+<span class="fc" id="L47">        val tar = IntArray(ALPHABET_LETTERS_COUNT)</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (c in target.toCharArray()) tar[c - 'a']++</span>
+        // try every sticker
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+            // optimization
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (mp[i][target[0] - 'a'] == 0) continue</span>
+<span class="fc" id="L53">            val sb = StringBuilder()</span>
+            // apply a sticker on every character a-z
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            for (j in 0 until ALPHABET_LETTERS_COUNT) {</span>
+<span class="fc bfc" id="L56" title="All 4 branches covered.">                if (tar[j] &gt; 0) for (k in 0 until max(0, tar[j] - mp[i][j])) sb.append(('a'.code + j).toChar())</span>
+            }
+<span class="fc" id="L58">            val s = sb.toString()</span>
+<span class="fc" id="L59">            val tmp = helper(dp, mp, s)</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            if (tmp != -1) ans = min(ans, 1 + tmp)</span>
+        }
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        dp[target] = if (ans == Int.MAX_VALUE) -1 else ans</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        return dp[target] ?: -1</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

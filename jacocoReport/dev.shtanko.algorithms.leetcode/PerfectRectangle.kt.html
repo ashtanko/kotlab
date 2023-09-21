@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PerfectRectangle.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PerfectRectangle.kt</span></div><h1>PerfectRectangle.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.PriorityQueue
+import java.util.TreeSet
+import kotlin.math.max
+import kotlin.math.min
+
+/**
+ * 391. Perfect Rectangle
+ * @see &lt;a href=&quot;https://leetcode.com/problems/perfect-rectangle/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface PerfectRectangle {
+    fun isRectangleCover(rectangles: Array&lt;IntArray&gt;): Boolean
+}
+
+<span class="fc" id="L32">class PerfectRectangleSweepLine : PerfectRectangle {</span>
+    override fun isRectangleCover(rectangles: Array&lt;IntArray&gt;): Boolean {
+<span class="fc" id="L34">        val pq: PriorityQueue&lt;Event&gt; = PriorityQueue&lt;Event&gt;()</span>
+        // border of y-intervals
+<span class="fc" id="L36">        val border = intArrayOf(Int.MAX_VALUE, Int.MIN_VALUE)</span>
+<span class="pc bpc" id="L37" title="2 of 6 branches missed.">        if (rectangles.size == 1 &amp;&amp; rectangles.first().isEmpty()) {</span>
+<span class="fc" id="L38">            return false</span>
+        }
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (rect in rectangles) {</span>
+<span class="fc" id="L41">            val e1 = Event(rect[0], rect)</span>
+<span class="fc" id="L42">            val e2 = Event(rect[2], rect)</span>
+<span class="fc" id="L43">            pq.add(e1)</span>
+<span class="fc" id="L44">            pq.add(e2)</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            if (rect[1] &lt; border[0]) border[0] = rect[1]</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if (rect[3] &gt; border[1]) border[1] = rect[3]</span>
+        }
+<span class="fc" id="L48">        val set = TreeSet(</span>
+            Comparator&lt;IntArray&gt; { rect1, rect2 -&gt;
+                // if two y-intervals intersects, return 0
+<span class="pc bpc" id="L51" title="1 of 4 branches missed.">                if (rect1[3] &lt;= rect2[1]) -1 else if (rect2[3] &lt;= rect1[1]) 1 else 0</span>
+            },
+        )
+<span class="fc" id="L54">        var yRange = 0</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        while (!pq.isEmpty()) {</span>
+<span class="fc" id="L56">            val time: Int = pq.peek().time</span>
+<span class="fc bfc" id="L57" title="All 4 branches covered.">            while (!pq.isEmpty() &amp;&amp; pq.peek().time == time) {</span>
+<span class="fc" id="L58">                val (_, rect) = pq.poll()</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                if (time == rect[2]) {</span>
+<span class="fc" id="L60">                    set.remove(rect)</span>
+<span class="fc" id="L61">                    yRange -= rect[3] - rect[1]</span>
+                } else {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">                    if (!set.add(rect)) return false</span>
+<span class="fc" id="L64">                    yRange += rect[3] - rect[1]</span>
+                }
+            }
+            // check intervals' range
+<span class="fc bfc" id="L68" title="All 4 branches covered.">            if (!pq.isEmpty() &amp;&amp; yRange != border[1] - border[0]) {</span>
+<span class="fc" id="L69">                return false</span>
+            }
+        }
+<span class="fc bfc" id="L72" title="All 4 branches covered.">        return rectangles.isNotEmpty()</span>
+    }
+
+<span class="pc" id="L75">    data class Event(var time: Int, var rect: IntArray) : Comparable&lt;Event&gt; {</span>
+        override operator fun compareTo(other: Event): Int {
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            return if (time != other.time) time - other.time else rect[0] - other.rect[0]</span>
+        }
+
+        override fun equals(other: Any?): Boolean {
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">            if (this === other) return true</span>
+<span class="pc bpc" id="L82" title="2 of 4 branches missed.">            if (javaClass != other?.javaClass) return false</span>
+
+<span class="fc" id="L84">            other as Event</span>
+
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">            if (time != other.time) return false</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (!rect.contentEquals(other.rect)) return false</span>
+
+<span class="fc" id="L89">            return true</span>
+        }
+
+        override fun hashCode(): Int {
+<span class="nc" id="L93">            var result = time</span>
+<span class="nc" id="L94">            result = HASH_CODE_VALUE * result + rect.contentHashCode()</span>
+<span class="nc" id="L95">            return result</span>
+        }
+
+        companion object {
+            private const val HASH_CODE_VALUE = 31
+        }
+    }
+}
+
+<span class="fc" id="L104">class PerfectRectangleEasy : PerfectRectangle {</span>
+    override fun isRectangleCover(rectangles: Array&lt;IntArray&gt;): Boolean {
+<span class="fc bfc" id="L106" title="All 8 branches covered.">        if (rectangles.isEmpty() || rectangles[0].isEmpty()) return false</span>
+
+<span class="fc" id="L108">        var x1 = Int.MAX_VALUE</span>
+<span class="fc" id="L109">        var x2 = Int.MIN_VALUE</span>
+<span class="fc" id="L110">        var y1 = Int.MAX_VALUE</span>
+<span class="fc" id="L111">        var y2 = Int.MIN_VALUE</span>
+
+<span class="fc" id="L113">        val set = HashSet&lt;String&gt;()</span>
+<span class="fc" id="L114">        var area = 0</span>
+
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        for (rect in rectangles) {</span>
+<span class="fc" id="L117">            x1 = min(rect[0], x1)</span>
+<span class="fc" id="L118">            y1 = min(rect[1], y1)</span>
+<span class="fc" id="L119">            x2 = max(rect[2], x2)</span>
+<span class="fc" id="L120">            y2 = max(rect[3], y2)</span>
+<span class="fc" id="L121">            area += (rect[2] - rect[0]) * (rect[3] - rect[1])</span>
+<span class="fc" id="L122">            val s1 = rect[0].toString() + &quot; &quot; + rect[1]</span>
+<span class="fc" id="L123">            val s2 = rect[0].toString() + &quot; &quot; + rect[3]</span>
+<span class="fc" id="L124">            val s3 = rect[2].toString() + &quot; &quot; + rect[3]</span>
+<span class="fc" id="L125">            val s4 = rect[2].toString() + &quot; &quot; + rect[1]</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            if (!set.add(s1)) set.remove(s1)</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">            if (!set.add(s2)) set.remove(s2)</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">            if (!set.add(s3)) set.remove(s3)</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">            if (!set.add(s4)) set.remove(s4)</span>
+        }
+
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">        val x1y1 = !set.contains(&quot;$x1 $y1&quot;)</span>
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">        val x1y2 = !set.contains(&quot;$x1 $y2&quot;)</span>
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">        val x2y1 = !set.contains(&quot;$x2 $y1&quot;)</span>
+<span class="pc bpc" id="L135" title="1 of 2 branches missed.">        val x2y2 = !set.contains(&quot;$x2 $y2&quot;)</span>
+<span class="pc bpc" id="L136" title="4 of 10 branches missed.">        val condition1 = x1y1 || x1y2 || x2y1 || x2y2 || set.size != 4</span>
+<span class="pc bpc" id="L137" title="1 of 4 branches missed.">        return if (condition1) false else area == (x2 - x1) * (y2 - y1)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

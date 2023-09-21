@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Star.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.patterns.behavioral.memento</a> &gt; <span class="el_source">Star.kt</span></div><h1>Star.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.patterns.behavioral.memento
+
+import dev.shtanko.patterns.behavioral.memento.StarType.DEAD
+import dev.shtanko.patterns.behavioral.memento.StarType.RED_GIANT
+import dev.shtanko.patterns.behavioral.memento.StarType.SUN
+import dev.shtanko.patterns.behavioral.memento.StarType.SUPERNOVA
+import dev.shtanko.patterns.behavioral.memento.StarType.WHITE_DWARF
+import java.util.Locale
+
+<span class="fc" id="L26">class Star(private var type: StarType, private var ageYears: Int, private var massTons: Int) {</span>
+    /**
+     * Makes time pass for the star.
+     */
+    fun timePasses() {
+<span class="fc" id="L31">        ageYears *= 2</span>
+<span class="fc" id="L32">        massTons *= 8</span>
+<span class="pc bpc" id="L33" title="1 of 6 branches missed.">        when (type) {</span>
+<span class="fc" id="L34">            RED_GIANT -&gt; type = WHITE_DWARF</span>
+<span class="fc" id="L35">            SUN -&gt; type = RED_GIANT</span>
+<span class="fc" id="L36">            SUPERNOVA -&gt; type = DEAD</span>
+<span class="fc" id="L37">            WHITE_DWARF -&gt; type = SUPERNOVA</span>
+            DEAD -&gt; {
+<span class="fc" id="L39">                ageYears *= 2</span>
+<span class="fc" id="L40">                massTons = 0</span>
+            }
+        }
+<span class="fc" id="L43">    }</span>
+
+    fun getMemento(): StarMemento {
+<span class="fc" id="L46">        return StarMementoInternal(type, ageYears, massTons)</span>
+    }
+
+    fun setMemento(memento: StarMemento) {
+<span class="fc" id="L50">        val (type1, ageYears1, massTons1) = memento as StarMementoInternal</span>
+<span class="fc" id="L51">        type = type1</span>
+<span class="fc" id="L52">        ageYears = ageYears1</span>
+<span class="fc" id="L53">        massTons = massTons1</span>
+<span class="fc" id="L54">    }</span>
+
+    override fun toString(): String =
+<span class="fc" id="L57">        String.format(Locale.getDefault(), &quot;%s age: %d years mass: %d tons&quot;, type.toString(), ageYears, massTons)</span>
+
+<span class="pc" id="L59">    private data class StarMementoInternal(val type: StarType, val ageYears: Int, val massTons: Int) : StarMemento</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

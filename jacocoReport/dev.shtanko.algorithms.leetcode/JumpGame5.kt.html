@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JumpGame5.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">JumpGame5.kt</span></div><h1>JumpGame5.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+
+fun interface JumpGame5Strategy {
+    operator fun invoke(arr: IntArray): Int
+
+    fun checkNeighbors(visited: MutableSet&lt;Int&gt;, node: Int, n: Int, nex: MutableList&lt;Int&gt;) {
+<span class="fc bfc" id="L25" title="All 4 branches covered.">        if (node + 1 &lt; n &amp;&amp; !visited.contains(node + 1)) {</span>
+<span class="fc" id="L26">            val value = node + 1</span>
+<span class="fc" id="L27">            visited.add(value)</span>
+<span class="fc" id="L28">            nex.add(value)</span>
+        }
+
+<span class="fc bfc" id="L31" title="All 4 branches covered.">        if (node - 1 &gt;= 0 &amp;&amp; !visited.contains(node - 1)) {</span>
+<span class="fc" id="L32">            val value = node - 1</span>
+<span class="fc" id="L33">            visited.add(value)</span>
+<span class="fc" id="L34">            nex.add(value)</span>
+        }
+<span class="fc" id="L36">    }</span>
+}
+
+<span class="fc" id="L39">class JP5BreadthFirstSearch : JumpGame5Strategy {</span>
+    override operator fun invoke(arr: IntArray): Int {
+<span class="fc" id="L41">        val n: Int = arr.size</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (n &lt;= 1) {</span>
+<span class="fc" id="L43">            return 0</span>
+        }
+
+<span class="fc" id="L46">        val graph: MutableMap&lt;Int, MutableList&lt;Int&gt;&gt; = HashMap()</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L48">            graph.computeIfAbsent(arr[i]) {</span>
+<span class="fc" id="L49">                LinkedList()</span>
+<span class="fc" id="L50">            }.add(i)</span>
+        }
+
+<span class="fc" id="L53">        var curs: MutableList&lt;Int&gt; = LinkedList() // store current layer</span>
+<span class="fc" id="L54">        curs.add(0)</span>
+<span class="fc" id="L55">        val visited: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L56">        var step = 0</span>
+
+        // when current layer exists
+<span class="pc bpc" id="L59" title="2 of 4 branches missed.">        while (curs.isNotEmpty()) {</span>
+<span class="fc" id="L60">            val nex: MutableList&lt;Int&gt; = LinkedList()</span>
+
+            // iterate the layer
+<span class="fc bfc" id="L63" title="All 2 branches covered.">            for (node in curs) {</span>
+                // check if reached end
+<span class="fc bfc" id="L65" title="All 2 branches covered.">                if (node == n - 1) {</span>
+<span class="fc" id="L66">                    return step</span>
+                }
+
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                for (child in graph[arr[node]]!!) {</span>
+<span class="fc" id="L70">                    checkSameValue(visited, child, nex)</span>
+                }
+                // clear the list to prevent redundant search
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">                graph[arr[node]]?.clear()</span>
+
+<span class="fc" id="L75">                checkNeighbors(visited, node, n, nex)</span>
+            }
+<span class="fc" id="L77">            curs = nex</span>
+<span class="fc" id="L78">            step++</span>
+        }
+
+<span class="nc" id="L81">        return -1</span>
+    }
+
+    private fun checkSameValue(visited: MutableSet&lt;Int&gt;, child: Int, nex: MutableList&lt;Int&gt;) {
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (!visited.contains(child)) {</span>
+<span class="fc" id="L86">            visited.add(child)</span>
+<span class="fc" id="L87">            nex.add(child)</span>
+        }
+<span class="fc" id="L89">    }</span>
+}
+
+<span class="fc" id="L92">class JP5BidirectionalBFS : JumpGame5Strategy {</span>
+
+<span class="fc" id="L94">    private var curs: MutableList&lt;Int&gt; = LinkedList() // store layers from start</span>
+<span class="fc" id="L95">    private val graph: MutableMap&lt;Int, MutableList&lt;Int&gt;&gt; = HashMap()</span>
+<span class="fc" id="L96">    private val visited: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="pc" id="L97">    var other: MutableList&lt;Int&gt; = LinkedList() // store layers from end</span>
+
+<span class="fc" id="L99">    init {</span>
+<span class="fc" id="L100">        curs.add(0)</span>
+<span class="fc" id="L101">        visited.add(0)</span>
+<span class="fc" id="L102">    }</span>
+
+    override operator fun invoke(arr: IntArray): Int {
+<span class="fc" id="L105">        val n: Int = arr.size</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (n &lt;= 1) {</span>
+<span class="fc" id="L107">            return 0</span>
+        }
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L110">            graph.computeIfAbsent(arr[i]) {</span>
+<span class="fc" id="L111">                LinkedList()</span>
+<span class="fc" id="L112">            }.add(i)</span>
+        }
+<span class="fc" id="L114">        visited.add(n - 1)</span>
+<span class="fc" id="L115">        var step = 0</span>
+<span class="fc" id="L116">        other.add(n - 1)</span>
+        // when current layer exists
+<span class="pc bpc" id="L118" title="2 of 4 branches missed.">        while (curs.isNotEmpty()) {</span>
+<span class="fc" id="L119">            searchFewerNodes()</span>
+<span class="fc" id="L120">            val nex: MutableList&lt;Int&gt; = LinkedList()</span>
+
+            // iterate the layer
+<span class="fc bfc" id="L123" title="All 2 branches covered.">            for (node in curs) {</span>
+                // check same value
+<span class="fc bfc" id="L125" title="All 2 branches covered.">                for (child in graph[arr[node]]!!) {</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">                    if (other.contains(child)) {</span>
+<span class="fc" id="L127">                        return step + 1</span>
+                    }
+<span class="fc" id="L129">                    checkNotVisited(child, nex)</span>
+                }
+
+                // clear the list to prevent redundant search
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">                graph[arr[node]]?.clear()</span>
+
+<span class="fc bfc" id="L135" title="All 2 branches covered.">                if (isOtherContains(other, node)) {</span>
+<span class="fc" id="L136">                    return step + 1</span>
+                }
+<span class="fc" id="L138">                checkNeighbors(visited, node, n, nex)</span>
+            }
+<span class="fc" id="L140">            curs = nex</span>
+<span class="fc" id="L141">            step++</span>
+        }
+
+<span class="nc" id="L144">        return -1</span>
+    }
+
+    // search from the side with fewer nodes
+    private fun searchFewerNodes() {
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        if (curs.size &gt; other.size) {</span>
+<span class="fc" id="L150">            val tmp = curs</span>
+<span class="fc" id="L151">            curs = other</span>
+<span class="fc" id="L152">            other = tmp</span>
+        }
+<span class="fc" id="L154">    }</span>
+
+    private fun checkNotVisited(child: Int, nex: MutableList&lt;Int&gt;) {
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        if (!visited.contains(child)) {</span>
+<span class="fc" id="L158">            visited.add(child)</span>
+<span class="fc" id="L159">            nex.add(child)</span>
+        }
+<span class="fc" id="L161">    }</span>
+
+    private fun isOtherContains(other: MutableList&lt;Int&gt;, node: Int): Boolean {
+<span class="fc bfc" id="L164" title="All 4 branches covered.">        return other.contains(node + 1) || other.contains(node - 1)</span>
+    }
+}
+
+<span class="pc" id="L168">@Suppress(&quot;ComplexMethod&quot;)</span>
+<span class="fc" id="L169">class JP5BidirectionalBFS2 : JumpGame5Strategy {</span>
+
+<span class="fc" id="L171">    private var head: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L172">    private var tail: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L173">    private val idxMap: MutableMap&lt;Int, MutableList&lt;Int&gt;&gt; = HashMap()</span>
+
+<span class="fc" id="L175">    init {</span>
+<span class="fc" id="L176">        head.add(0)</span>
+<span class="fc" id="L177">    }</span>
+
+    override operator fun invoke(arr: IntArray): Int {
+<span class="fc" id="L180">        val totalNums = arr.size</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">        if (totalNums &lt;= 1) return 0</span>
+
+<span class="fc bfc" id="L183" title="All 2 branches covered.">        for (idx in totalNums - 1 downTo 0) {</span>
+<span class="fc" id="L184">            idxMap.getOrPut(arr[idx]) { arrayListOf() }.add(idx)</span>
+        }
+
+<span class="fc" id="L187">        val visited = getVisitedArray(totalNums)</span>
+<span class="fc" id="L188">        tail.add(totalNums - 1)</span>
+<span class="pc bpc" id="L189" title="1 of 2 branches missed.">        if (totalNums &gt; 1) {</span>
+<span class="fc" id="L190">            visited[totalNums - 1] = true</span>
+        }
+<span class="fc" id="L192">        var steps = 0</span>
+
+<span class="pc bpc" id="L194" title="4 of 8 branches missed.">        while (head.isNotEmpty() &amp;&amp; tail.isNotEmpty()) {</span>
+<span class="fc" id="L195">            swapTwoSets()</span>
+
+<span class="fc" id="L197">            val next = HashSet&lt;Int&gt;()</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">            for (idx in head) {</span>
+<span class="fc" id="L199">                val hiNext = idx + 1</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">                if (tail.contains(hiNext)) return steps + 1</span>
+<span class="pc bpc" id="L201" title="2 of 8 branches missed.">                if (hiNext in 0 until totalNums &amp;&amp; !visited[hiNext]) {</span>
+<span class="fc" id="L202">                    next.add(hiNext)</span>
+                }
+
+<span class="fc" id="L205">                val loNext = idx - 1</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">                if (tail.contains(loNext)) return steps + 1</span>
+<span class="pc bpc" id="L207" title="1 of 8 branches missed.">                if (loNext in 0 until totalNums &amp;&amp; !visited[loNext]) {</span>
+<span class="fc" id="L208">                    next.add(loNext)</span>
+                }
+
+<span class="pc bpc" id="L211" title="1 of 2 branches missed.">                idxMap[arr[idx]]?.let {</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">                    for (equalValueNext in it) {</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">                        if (tail.contains(equalValueNext)) return steps + 1</span>
+
+<span class="fc bfc" id="L215" title="All 2 branches covered.">                        if (visited[equalValueNext]) continue</span>
+<span class="fc" id="L216">                        next.add(equalValueNext)</span>
+<span class="fc" id="L217">                        visited[equalValueNext] = true</span>
+                    }
+
+                    // to save time
+                    // there is no need to check visited/seen at all later on
+<span class="fc" id="L222">                    it.clear()</span>
+<span class="fc" id="L223">                }</span>
+            }
+
+<span class="fc" id="L226">            head = next</span>
+<span class="fc" id="L227">            ++steps</span>
+        }
+
+<span class="nc" id="L230">        return -1</span>
+    }
+
+    private fun swapTwoSets() {
+<span class="fc bfc" id="L234" title="All 2 branches covered.">        if (head.size &gt; tail.size) {</span>
+<span class="fc" id="L235">            head = tail.also { tail = head }</span>
+        }
+<span class="fc" id="L237">    }</span>
+
+    private fun getVisitedArray(totalNums: Int): BooleanArray {
+<span class="fc bfc" id="L240" title="All 2 branches covered.">        val visited = BooleanArray(totalNums) { false }</span>
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">        if (totalNums != 0) {</span>
+<span class="fc" id="L242">            visited[0] = true</span>
+        }
+<span class="fc" id="L244">        return visited</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

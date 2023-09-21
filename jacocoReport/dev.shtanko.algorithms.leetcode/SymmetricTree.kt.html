@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SymmetricTree.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">SymmetricTree.kt</span></div><h1>SymmetricTree.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import dev.shtanko.algorithms.extensions.isEven
+import java.util.Stack
+
+/**
+ * 101. Symmetric Tree
+ * @see &lt;a href=&quot;https://leetcode.com/problems/symmetric-tree/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface SymmetricTree {
+    fun isSymmetric(root: TreeNode?): Boolean
+}
+
+<span class="fc" id="L30">class SymmetricTreeRecursive : SymmetricTree {</span>
+<span class="fc" id="L31">    override fun isSymmetric(root: TreeNode?) = root.isSymmetricTree()</span>
+
+    private fun TreeNode?.isSymmetricTree(): Boolean {
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (this == null) return true</span>
+<span class="fc" id="L35">        return (left to right).isSymmetric()</span>
+    }
+
+    private fun Pair&lt;TreeNode?, TreeNode?&gt;.isSymmetric(): Boolean {
+<span class="fc bfc" id="L39" title="All 4 branches covered.">        if (first == null || second == null) {</span>
+<span class="fc" id="L40">            return first == second</span>
+        }
+<span class="pc bpc" id="L42" title="2 of 6 branches missed.">        if (first?.value != second?.value) {</span>
+<span class="fc" id="L43">            return false</span>
+        }
+<span class="pc bpc" id="L45" title="5 of 12 branches missed.">        return (first?.left to second?.right).isSymmetric() &amp;&amp; (first?.right to second?.left).isSymmetric()</span>
+    }
+}
+
+<span class="fc" id="L49">class SymmetricTreeIterative : SymmetricTree {</span>
+    override fun isSymmetric(root: TreeNode?): Boolean {
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">        if (root == null) return true</span>
+<span class="fc" id="L52">        val stack = Stack&lt;TreeNode&gt;()</span>
+        var left: TreeNode
+        var right: TreeNode
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (root.left != null) {</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            if (root.right == null) {</span>
+<span class="fc" id="L57">                return false</span>
+            }
+<span class="fc" id="L59">            stack.push(root.left)</span>
+<span class="fc" id="L60">            stack.push(root.right)</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        } else if (root.right != null) {</span>
+<span class="fc" id="L62">            return false</span>
+        }
+<span class="fc bfc" id="L64" title="All 4 branches covered.">        while (stack.isNotEmpty()) {</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">            if (stack.size.isEven.not()) {</span>
+<span class="nc" id="L66">                return false</span>
+            }
+<span class="fc" id="L68">            right = stack.pop()</span>
+<span class="fc" id="L69">            left = stack.pop()</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (right.value != left.value) {</span>
+<span class="fc" id="L71">                return false</span>
+            }
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            if (left.left != null) {</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">                if (right.right == null) {</span>
+<span class="nc" id="L75">                    return false</span>
+                }
+<span class="fc" id="L77">                stack.push(left.left)</span>
+<span class="fc" id="L78">                stack.push(right.right)</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            } else if (right.right != null) {</span>
+<span class="fc" id="L80">                return false</span>
+            }
+
+<span class="fc bfc" id="L83" title="All 2 branches covered.">            if (left.right != null) {</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">                if (right.left == null) {</span>
+<span class="nc" id="L85">                    return false</span>
+                }
+<span class="fc" id="L87">                stack.push(left.right)</span>
+<span class="fc" id="L88">                stack.push(right.left)</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">            } else if (right.left != null) {</span>
+<span class="nc" id="L90">                return false</span>
+            }
+        }
+
+<span class="fc" id="L94">        return true</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TreeNode.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">TreeNode.kt</span></div><h1>TreeNode.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.ceil
+import kotlin.math.floor
+
+/**
+ * Represents a node in a binary tree.
+ *
+ * @property value The value stored in the node.
+ * @property left The left child of the node.
+ * @property right The right child of the node.
+ */
+<span class="fc" id="L29">data class TreeNode(var value: Int) {</span>
+<span class="fc" id="L30">    var left: TreeNode? = null</span>
+<span class="fc" id="L31">    var right: TreeNode? = null</span>
+}
+
+/**
+ * Creates a deep copy of the current binary tree.
+ *
+ * @return The cloned binary tree.
+ */
+fun TreeNode?.clone(): TreeNode? {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    if (this == null) return null</span>
+<span class="fc" id="L41">    val node = TreeNode(value)</span>
+<span class="fc" id="L42">    node.left = left.clone()</span>
+<span class="fc" id="L43">    node.right = right.clone()</span>
+<span class="fc" id="L44">    return node</span>
+}
+
+/**
+ * Creates a deep copy of the current binary tree with each node's value increased by a specified offset.
+ *
+ * @param offset The value to add to each node's value.
+ * @return The cloned binary tree with adjusted values.
+ */
+fun TreeNode?.clone(offset: Int): TreeNode? {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">    if (this == null) {</span>
+<span class="fc" id="L55">        return null</span>
+    }
+<span class="fc" id="L57">    val clonedNode = TreeNode(this.value + offset)</span>
+<span class="fc" id="L58">    clonedNode.left = this.left.clone(offset)</span>
+<span class="fc" id="L59">    clonedNode.right = this.right.clone(offset)</span>
+<span class="fc" id="L60">    return clonedNode</span>
+}
+
+/**
+ * Extension function to generate a pretty-printed representation of the binary tree.
+ *
+ * @return A string containing the pretty-printed binary tree.
+ */
+fun TreeNode.prettyPrinted(): String {
+<span class="fc" id="L69">    val lines: MutableList&lt;List&lt;String?&gt;&gt; = ArrayList()</span>
+<span class="fc" id="L70">    var level: MutableList&lt;TreeNode?&gt; = ArrayList()</span>
+<span class="fc" id="L71">    var next: MutableList&lt;TreeNode?&gt; = ArrayList()</span>
+<span class="fc" id="L72">    val sb = StringBuffer()</span>
+
+<span class="fc" id="L74">    level.add(this)</span>
+<span class="fc" id="L75">    var nn = 1</span>
+<span class="fc" id="L76">    var widest = 0</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">    while (nn != 0) {</span>
+<span class="fc" id="L78">        val line: MutableList&lt;String?&gt; = ArrayList()</span>
+<span class="fc" id="L79">        nn = 0</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (n in level) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            if (n == null) {</span>
+<span class="fc" id="L82">                line.add(null)</span>
+<span class="fc" id="L83">                next.add(null)</span>
+<span class="fc" id="L84">                next.add(null)</span>
+            } else {
+<span class="fc" id="L86">                val aa = &quot;${n.value}&quot;</span>
+<span class="fc" id="L87">                line.add(aa)</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">                if (aa.length &gt; widest) widest = aa.length</span>
+<span class="fc" id="L89">                next.add(n.left)</span>
+<span class="fc" id="L90">                next.add(n.right)</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">                if (n.left != null) nn++</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">                if (n.right != null) nn++</span>
+            }
+        }
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (widest % 2 == 1) widest++</span>
+<span class="fc" id="L96">        lines.add(line)</span>
+<span class="fc" id="L97">        val tmp: MutableList&lt;TreeNode?&gt; = level</span>
+<span class="fc" id="L98">        level = next</span>
+<span class="fc" id="L99">        next = tmp</span>
+<span class="fc" id="L100">        next.clear()</span>
+    }
+<span class="fc" id="L102">    var perpiece = lines[lines.size - 1].size * (widest + 4)</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">    for (i in lines.indices) {</span>
+<span class="fc" id="L104">        val line = lines[i]</span>
+<span class="fc" id="L105">        val hpw = floor((perpiece / 2f).toDouble()).toInt() - 1</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (i &gt; 0) {</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">            for (j in line.indices) {</span>
+                // split node
+<span class="fc" id="L109">                var c = ' '</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">                if (j % 2 == 1) {</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">                    if (line[j - 1] != null) {</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">                        c = if (line[j] != null) '┴' else '┘'</span>
+                    } else {
+<span class="fc bfc" id="L114" title="All 2 branches covered.">                        if (line[j] != null) c = '└'</span>
+                    }
+                }
+<span class="fc" id="L117">                sb.append(c)</span>
+
+                // lines and spaces
+<span class="fc bfc" id="L120" title="All 2 branches covered.">                if (line[j] == null) {</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">                    for (k in 0 until perpiece - 1) {</span>
+<span class="fc" id="L122">                        sb.append(&quot; &quot;)</span>
+                    }
+                } else {
+<span class="fc bfc" id="L125" title="All 2 branches covered.">                    for (k in 0 until hpw) {</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">                        sb.append(if (j % 2 == 0) &quot; &quot; else &quot;─&quot;)</span>
+                    }
+<span class="fc bfc" id="L128" title="All 2 branches covered.">                    sb.append(if (j % 2 == 0) &quot;┌&quot; else &quot;┐&quot;)</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">                    for (k in 0 until hpw) {</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">                        sb.append(if (j % 2 == 0) &quot;─&quot; else &quot; &quot;)</span>
+                    }
+                }
+            }
+<span class="fc" id="L134">            sb.append(&quot;\n&quot;)</span>
+        }
+
+        // print line of numbers
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        for (j in line.indices) {</span>
+<span class="fc" id="L139">            var f = line[j]</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">            if (f == null) f = &quot;&quot;</span>
+<span class="fc" id="L141">            val gap1 = ceil((perpiece / 2f - f.length / 2f).toDouble()).toInt()</span>
+<span class="fc" id="L142">            val gap2 = floor((perpiece / 2f - f.length / 2f).toDouble()).toInt()</span>
+
+            // a number
+<span class="fc bfc" id="L145" title="All 2 branches covered.">            for (k in 0 until gap1) {</span>
+<span class="fc" id="L146">                sb.append(&quot; &quot;)</span>
+            }
+<span class="fc" id="L148">            sb.append(f)</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">            for (k in 0 until gap2) {</span>
+<span class="fc" id="L150">                sb.append(&quot; &quot;)</span>
+            }
+        }
+<span class="fc" id="L153">        sb.append(&quot;\n&quot;)</span>
+<span class="fc" id="L154">        perpiece /= 2</span>
+    }
+<span class="fc" id="L156">    return sb.toString()</span>
+}
+
+/**
+ * Extension function to calculate the height of the binary tree.
+ *
+ * @return The height of the binary tree. Returns -1 if the tree is empty.
+ */
+fun TreeNode?.height(): Int {
+<span class="fc bfc" id="L165" title="All 2 branches covered.">    return if (this == null) -1 else 1 + this.left.height()</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

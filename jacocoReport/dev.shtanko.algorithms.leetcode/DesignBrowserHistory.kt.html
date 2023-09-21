@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DesignBrowserHistory.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">DesignBrowserHistory.kt</span></div><h1>DesignBrowserHistory.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Stack
+
+interface BrowserHistory {
+    fun visit(url: String)
+
+    fun back(steps: Int): String
+
+    fun forward(steps: Int): String
+}
+
+<span class="fc" id="L29">class BrowserHistoryArray(homepage: String) : BrowserHistory {</span>
+
+<span class="fc" id="L31">    private var current = -1</span>
+    private var top = 0
+<span class="fc bfc" id="L33" title="All 2 branches covered.">    private val h = Array(ARRAY_SIZE) { &quot;&quot; }</span>
+
+<span class="fc" id="L35">    init {</span>
+<span class="fc" id="L36">        current++</span>
+<span class="fc" id="L37">        h[current] = homepage</span>
+<span class="fc" id="L38">        top++</span>
+<span class="fc" id="L39">    }</span>
+
+    override fun visit(url: String) {
+<span class="fc" id="L42">        current++</span>
+<span class="fc" id="L43">        h[current] = url</span>
+<span class="fc" id="L44">        top = current + 1</span>
+<span class="fc" id="L45">    }</span>
+
+    override fun back(steps: Int): String {
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (current &lt;= steps) {</span>
+<span class="fc" id="L49">            current = 0</span>
+        } else {
+<span class="fc" id="L51">            current -= steps</span>
+        }
+<span class="fc" id="L53">        return h[current]</span>
+    }
+
+    override fun forward(steps: Int): String {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (current + steps + 1 &gt;= top) {</span>
+<span class="fc" id="L58">            current = top - 1</span>
+        } else {
+<span class="fc" id="L60">            current += steps</span>
+        }
+<span class="fc" id="L62">        return h[current]</span>
+    }
+
+    companion object {
+        private const val ARRAY_SIZE = 101
+    }
+}
+
+<span class="fc" id="L70">class BrowserHistoryList(homepage: String) : BrowserHistory {</span>
+
+    private var currentIndex = 0
+<span class="fc" id="L73">    private val history = mutableListOf&lt;String&gt;()</span>
+
+<span class="fc" id="L75">    init {</span>
+<span class="fc" id="L76">        history.add(homepage)</span>
+<span class="fc" id="L77">    }</span>
+
+    override fun visit(url: String) {
+<span class="fc" id="L80">        history.subList(currentIndex.plus(1), history.size).clear()</span>
+<span class="fc" id="L81">        history.add(url)</span>
+<span class="fc" id="L82">        currentIndex++</span>
+<span class="fc" id="L83">    }</span>
+
+    override fun back(steps: Int): String {
+<span class="fc" id="L86">        currentIndex = currentIndex.minus(steps).coerceAtLeast(0)</span>
+<span class="fc" id="L87">        return history[currentIndex]</span>
+    }
+
+    override fun forward(steps: Int): String {
+<span class="fc" id="L91">        currentIndex = currentIndex.plus(steps).coerceAtMost(history.size - 1)</span>
+<span class="fc" id="L92">        return history[currentIndex]</span>
+    }
+}
+
+<span class="fc" id="L96">class BrowserHistoryStack(homepage: String) : BrowserHistory {</span>
+
+<span class="fc" id="L98">    private val history = Stack&lt;String&gt;()</span>
+    private var future: Stack&lt;String&gt;
+
+<span class="fc" id="L101">    init {</span>
+<span class="fc" id="L102">        history.push(homepage)</span>
+<span class="fc" id="L103">        future = Stack()</span>
+<span class="fc" id="L104">    }</span>
+
+    override fun visit(url: String) {
+<span class="fc" id="L107">        history.push(url)</span>
+<span class="fc" id="L108">        future = Stack()</span>
+<span class="fc" id="L109">    }</span>
+
+    override fun back(steps: Int): String {
+<span class="fc" id="L112">        var s = steps</span>
+<span class="fc bfc" id="L113" title="All 4 branches covered.">        while (s &gt; 0 &amp;&amp; history.size &gt; 1) {</span>
+<span class="fc" id="L114">            future.push(history.peek())</span>
+<span class="fc" id="L115">            history.pop()</span>
+<span class="fc" id="L116">            s--</span>
+        }
+<span class="fc" id="L118">        return history.peek()</span>
+    }
+
+    override fun forward(steps: Int): String {
+<span class="fc" id="L122">        var s = steps</span>
+<span class="fc bfc" id="L123" title="All 4 branches covered.">        while (s &gt; 0 &amp;&amp; future.size &gt; 0) {</span>
+<span class="fc" id="L124">            history.push(future.peek())</span>
+<span class="fc" id="L125">            future.pop()</span>
+<span class="fc" id="L126">            s--</span>
+        }
+<span class="fc" id="L128">        return history.peek()</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

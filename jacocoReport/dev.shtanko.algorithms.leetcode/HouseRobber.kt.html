@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HouseRobber.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">HouseRobber.kt</span></div><h1>HouseRobber.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface AbstractRobberStrategy {
+    operator fun invoke(arr: IntArray): Int
+}
+
+/**
+ * Figure out recursive relation.
+ * A robber has 2 options: a) rob current house i; b) don't rob current house.
+ * If an option &quot;a&quot; is selected it means she can't rob previous i-1 house but can safely proceed to the one before
+ * previous i-2 and gets all cumulative loot that follows.
+ * If an option &quot;b&quot; is selected the robber gets all the possible loot from robbery of i-1 and all the
+ * following buildings.
+ * So it boils down to calculating what is more profitable:
+ *  - robbery of current house + loot from houses before the previous
+ *  - loot from the previous house robbery and any loot captured before that
+ *
+ *  Recursive (top-down)
+ */
+<span class="fc" id="L36">class RecursiveRobber : AbstractRobberStrategy {</span>
+    override operator fun invoke(arr: IntArray): Int {
+<span class="fc" id="L38">        return arr.rob(arr.size - 1)</span>
+    }
+
+    private fun IntArray.rob(i: Int): Int {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (i &lt; 0) return 0</span>
+<span class="fc" id="L43">        return kotlin.math.max(this.rob(i - 2) + this[i], this.rob(i - 1))</span>
+    }
+}
+
+/**
+ * Recursive + memo (top-down).
+ * Much better, this should run in O(n) time. Space complexity is O(n) as well, because of the recursion stack
+ */
+<span class="fc" id="L51">class RecursiveRobberMemo : AbstractRobberStrategy {</span>
+
+    private lateinit var memo: IntArray
+
+    override operator fun invoke(arr: IntArray): Int {
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        memo = IntArray(arr.size + 1) { -1 }</span>
+<span class="fc" id="L57">        return arr.rob(arr.size - 1)</span>
+    }
+
+    private fun IntArray.rob(i: Int): Int {
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (i &lt; 0) {</span>
+<span class="fc" id="L62">            return 0</span>
+        }
+
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">        if (memo[i] &gt;= 0) {</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">            return memo[i]</span>
+        }
+
+<span class="fc" id="L69">        val result = kotlin.math.max(this.rob(i - 2) + this[i], this.rob(i - 1))</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        memo[i] = result</span>
+<span class="fc" id="L71">        return result</span>
+    }
+}
+
+/**
+ * Iterative + memo (bottom-up)
+ */
+<span class="fc" id="L78">class IterativeRobberMemo : AbstractRobberStrategy {</span>
+    override operator fun invoke(arr: IntArray): Int {
+<span class="fc bfc" id="L80" title="All 4 branches covered.">        if (arr.isEmpty()) return 0</span>
+<span class="fc" id="L81">        val memo = IntArray(arr.size + 1)</span>
+<span class="fc" id="L82">        memo[0] = 0</span>
+<span class="fc" id="L83">        memo[1] = arr[0]</span>
+
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        for (i in 1 until arr.size) {</span>
+<span class="fc" id="L86">            val value = arr[i]</span>
+<span class="fc" id="L87">            memo[i + 1] = kotlin.math.max(memo[i], memo[i - 1] + value)</span>
+        }
+<span class="fc" id="L89">        return memo[arr.size]</span>
+    }
+}
+
+/**
+ * Iterative + 2 variables (bottom-up)
+ *
+ * We can notice that in the previous step we use only memo[i] and memo[i-1], so going just 2 steps back.
+ * We can hold them in 2 variables instead. This optimization is met in Fibonacci sequence
+ * creation and some other problems
+ */
+<span class="fc" id="L100">class IterativeRobber : AbstractRobberStrategy {</span>
+    override operator fun invoke(arr: IntArray): Int {
+<span class="fc bfc" id="L102" title="All 4 branches covered.">        if (arr.isEmpty()) return 0</span>
+
+<span class="fc" id="L104">        var prev1 = 0</span>
+<span class="fc" id="L105">        var prev2 = 0</span>
+
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        for (num in arr) {</span>
+<span class="fc" id="L108">            val tmp = prev1</span>
+<span class="fc" id="L109">            prev1 = kotlin.math.max(prev2 + num, prev1)</span>
+<span class="fc" id="L110">            prev2 = tmp</span>
+        }
+
+<span class="fc" id="L113">        return prev1</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

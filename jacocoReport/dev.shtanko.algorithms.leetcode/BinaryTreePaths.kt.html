@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BinaryTreePaths.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">BinaryTreePaths.kt</span></div><h1>BinaryTreePaths.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+import java.util.Stack
+
+private const val FORMAT = &quot;%s%s%s&quot;
+private const val ARROW = &quot;-&gt;&quot;
+
+fun interface BinaryTreePathsStrategy {
+    fun binaryTreePaths(root: TreeNode?): List&lt;String&gt;
+}
+
+<span class="fc" id="L30">class BinaryTreePathsRecursion : BinaryTreePathsStrategy {</span>
+    override fun binaryTreePaths(root: TreeNode?): List&lt;String&gt; {
+<span class="fc" id="L32">        val sList: MutableList&lt;String&gt; = LinkedList()</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (root == null) return sList</span>
+<span class="fc bfc" id="L34" title="All 4 branches covered.">        if (root.left == null &amp;&amp; root.right == null) {</span>
+<span class="fc" id="L35">            sList.add(root.value.toString())</span>
+<span class="fc" id="L36">            return sList</span>
+        }
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (s in binaryTreePaths(root.left)) {</span>
+<span class="fc" id="L39">            sList.add(String.format(FORMAT, root.value.toString(), ARROW, s))</span>
+        }
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (s in binaryTreePaths(root.right)) {</span>
+<span class="fc" id="L42">            sList.add(String.format(FORMAT, root.value.toString(), ARROW, s))</span>
+        }
+<span class="fc" id="L44">        return sList</span>
+    }
+}
+
+<span class="fc" id="L48">class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {</span>
+
+    override fun binaryTreePaths(root: TreeNode?): List&lt;String&gt; {
+<span class="fc" id="L51">        val list: MutableList&lt;String&gt; = ArrayList()</span>
+<span class="fc" id="L52">        val qNode: Queue&lt;TreeNode&gt; = LinkedList()</span>
+<span class="fc" id="L53">        val qStr: Queue&lt;String&gt; = LinkedList()</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        if (root == null) return list</span>
+<span class="fc" id="L55">        qNode.add(root)</span>
+<span class="fc" id="L56">        qStr.add(&quot;&quot;)</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        while (!qNode.isEmpty()) {</span>
+<span class="fc" id="L58">            val curNode: TreeNode = qNode.remove()</span>
+<span class="fc" id="L59">            val curStr: String = qStr.remove()</span>
+<span class="fc bfc" id="L60" title="All 4 branches covered.">            if (curNode.left == null &amp;&amp; curNode.right == null) list.add(curStr + curNode.value)</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (curNode.left != null) {</span>
+<span class="fc" id="L62">                qNode.add(curNode.left)</span>
+<span class="fc" id="L63">                qStr.add(String.format(FORMAT, curStr, curNode.value.toString(), ARROW))</span>
+            }
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (curNode.right != null) {</span>
+<span class="fc" id="L66">                qNode.add(curNode.right)</span>
+<span class="fc" id="L67">                qStr.add(String.format(FORMAT, curStr, curNode.value.toString(), ARROW))</span>
+            }
+        }
+<span class="fc" id="L70">        return list</span>
+    }
+}
+
+<span class="fc" id="L74">class BinaryTreePathsBFSStack : BinaryTreePathsStrategy {</span>
+    override fun binaryTreePaths(root: TreeNode?): List&lt;String&gt; {
+<span class="fc" id="L76">        val list: MutableList&lt;String&gt; = ArrayList()</span>
+<span class="fc" id="L77">        val sNode: Stack&lt;TreeNode&gt; = Stack&lt;TreeNode&gt;()</span>
+<span class="fc" id="L78">        val sStr: Stack&lt;String&gt; = Stack&lt;String&gt;()</span>
+
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if (root == null) return list</span>
+<span class="fc" id="L81">        sNode.push(root)</span>
+<span class="fc" id="L82">        sStr.push(&quot;&quot;)</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        while (!sNode.isEmpty()) {</span>
+<span class="fc" id="L84">            val curNode: TreeNode = sNode.pop()</span>
+<span class="fc" id="L85">            val curStr: String = sStr.pop()</span>
+<span class="fc bfc" id="L86" title="All 4 branches covered.">            if (curNode.left == null &amp;&amp; curNode.right == null) list.add(curStr + curNode.value)</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (curNode.left != null) {</span>
+<span class="fc" id="L88">                sNode.push(curNode.left)</span>
+<span class="fc" id="L89">                sStr.push(String.format(FORMAT, curStr, curNode.value.toString(), ARROW))</span>
+            }
+<span class="fc bfc" id="L91" title="All 2 branches covered.">            if (curNode.right != null) {</span>
+<span class="fc" id="L92">                sNode.push(curNode.right)</span>
+<span class="fc" id="L93">                sStr.push(String.format(FORMAT, curStr, curNode.value.toString(), ARROW))</span>
+            }
+        }
+<span class="fc" id="L96">        return list</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

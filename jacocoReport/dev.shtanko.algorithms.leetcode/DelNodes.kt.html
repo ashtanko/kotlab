@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DelNodes.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">DelNodes.kt</span></div><h1>DelNodes.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Delete Nodes And Return Forest
+ */
+fun delNodes(root: TreeNode?, toDelete: IntArray): List&lt;TreeNode?&gt; {
+<span class="fc" id="L23">    val set: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    for (i in toDelete) set.add(i)</span>
+<span class="fc" id="L25">    val res: MutableList&lt;TreeNode?&gt; = ArrayList()</span>
+<span class="pc bpc" id="L26" title="2 of 4 branches missed.">    if (!set.contains(root?.value)) res.add(root)</span>
+<span class="fc" id="L27">    dfs(root, set, res)</span>
+<span class="fc" id="L28">    return res</span>
+}
+
+private fun dfs(node: TreeNode?, set: Set&lt;Int&gt;, res: MutableList&lt;TreeNode?&gt;): TreeNode? {
+<span class="fc bfc" id="L32" title="All 2 branches covered.">    if (node == null) {</span>
+<span class="fc" id="L33">        return null</span>
+    }
+<span class="fc" id="L35">    node.left = dfs(node.left, set, res)</span>
+<span class="fc" id="L36">    node.right = dfs(node.right, set, res)</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">    if (set.contains(node.value)) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (node.left != null) res.add(node.left)</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (node.right != null) res.add(node.right)</span>
+<span class="fc" id="L40">        return null</span>
+    }
+<span class="fc" id="L42">    return node</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

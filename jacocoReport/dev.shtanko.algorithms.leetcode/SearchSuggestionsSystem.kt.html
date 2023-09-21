@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SearchSuggestionsSystem.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">SearchSuggestionsSystem.kt</span></div><h1>SearchSuggestionsSystem.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.abs
+import kotlin.math.min
+
+/**
+ * Search Suggestions System
+ */
+fun interface SearchSuggestionsSystem {
+    operator fun invoke(products: Array&lt;String&gt;, searchWord: String): List&lt;List&lt;String&gt;&gt;
+}
+
+/**
+ * Approach 1: Binary Search
+ * Time complexity : O(n log(n))+O(m log(n)).
+ * Space complexity : Varies between O(1)
+ */
+<span class="fc" id="L34">class SSSBinarySearch : SearchSuggestionsSystem {</span>
+    override operator fun invoke(products: Array&lt;String&gt;, searchWord: String): List&lt;List&lt;String&gt;&gt; {
+<span class="fc" id="L36">        products.sort()</span>
+<span class="fc" id="L37">        val result: MutableList&lt;MutableList&lt;String&gt;&gt; = ArrayList()</span>
+        var start: Int
+<span class="fc" id="L39">        var bsStart = 0</span>
+<span class="fc" id="L40">        val n: Int = products.size</span>
+<span class="fc" id="L41">        var prefix = String()</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (c in searchWord.toCharArray()) {</span>
+<span class="fc" id="L43">            prefix += c</span>
+
+            // Get the starting index of word starting with `prefix`.
+<span class="fc" id="L46">            start = lowerBound(products, bsStart, prefix)</span>
+
+            // Add empty vector to result.
+<span class="fc" id="L49">            result.add(ArrayList())</span>
+
+            // Add the words with the same prefix to the result.
+            // Loop runs until `i` reaches the end of input or 3 times or till the
+            // prefix is same for `products[i]` Whichever comes first.
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            for (i in start until min(start + 3, n)) {</span>
+<span class="pc bpc" id="L55" title="1 of 4 branches missed.">                if (products[i].length &lt; prefix.length || products[i].substring(0, prefix.length) != prefix) break</span>
+<span class="fc" id="L56">                result[result.size - 1].add(products[i])</span>
+            }
+
+            // Reduce the size of elements to binary search on since we know
+<span class="fc" id="L60">            bsStart = abs(start)</span>
+        }
+<span class="fc" id="L62">        return result</span>
+    }
+
+    private fun lowerBound(products: Array&lt;String&gt;, start: Int, word: String?): Int {
+<span class="fc" id="L66">        var i = start</span>
+<span class="fc" id="L67">        var j = products.size</span>
+        var mid: Int
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        while (i &lt; j) {</span>
+<span class="fc" id="L70">            mid = (i + j) / 2</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">            if (products[mid] &gt;= word!!) j = mid else i = mid + 1</span>
+        }
+<span class="fc" id="L73">        return i</span>
+    }
+}
+
+/**
+ * Approach 2: Trie + DFS
+ * Time complexity : O(M).
+ * Space complexity : O(26n)=O(n).
+ */
+<span class="fc" id="L82">class SSSTrie : SearchSuggestionsSystem {</span>
+    override operator fun invoke(products: Array&lt;String&gt;, searchWord: String): List&lt;List&lt;String&gt;&gt; {
+<span class="fc" id="L84">        val result: MutableList&lt;List&lt;String&gt;&gt; = ArrayList()</span>
+<span class="fc" id="L85">        val roots: MutableList&lt;TrieNode&gt; = ArrayList()</span>
+        // Time O(m * l): where m == products array length and  l == max length of products
+        // Space O(m * l)
+<span class="fc" id="L88">        var root: TrieNode? = buildTrie(products)</span>
+
+        // O(L): where L == searchWord length
+        // Space O(L)
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        for (element in searchWord) {</span>
+<span class="pc bpc" id="L93" title="2 of 4 branches missed.">            root = root?.next?.get(element - 'a')</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">            if (root == null) break</span>
+<span class="fc" id="L95">            roots.add(root)</span>
+        }
+
+        // O(L * m * l): where L == searchWord length
+        //             : m == products array length
+        //             : l == max length of products
+        // Space O(m * l)
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for (child in roots) {</span>
+<span class="fc" id="L103">            val subList: MutableList&lt;String&gt; = ArrayList()</span>
+<span class="fc" id="L104">            search(child, subList)</span>
+<span class="fc" id="L105">            result.add(subList)</span>
+        }
+
+        // O(L): where L == searchWord length
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        while (result.size &lt; searchWord.length) result.add(ArrayList())</span>
+<span class="fc" id="L110">        return result</span>
+    }
+
+    private fun search(root: TrieNode, res: MutableList&lt;String&gt;) {
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        root.word?.let {</span>
+<span class="fc" id="L115">            res.add(it)</span>
+        }
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        if (res.size &gt;= 3) return</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        for (child in root.next) {</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">            if (child != null) {</span>
+<span class="fc" id="L120">                search(child, res)</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">                if (res.size &gt;= 3) return</span>
+            }
+        }
+<span class="fc" id="L124">    }</span>
+
+    private fun buildTrie(words: Array&lt;String&gt;): TrieNode {
+<span class="fc" id="L127">        val root = TrieNode()</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        for (word in words) {</span>
+<span class="fc" id="L129">            var p: TrieNode? = root</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">            for (ch in word.toCharArray()) {</span>
+<span class="fc" id="L131">                val index = ch - 'a'</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">                p?.let {</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">                    if (it.next[index] == null) it.next[index] = TrieNode()</span>
+<span class="fc" id="L134">                }</span>
+<span class="pc bpc" id="L135" title="2 of 4 branches missed.">                p = p?.next?.get(index)</span>
+            }
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">            p?.word = word</span>
+        }
+<span class="fc" id="L139">        return root</span>
+    }
+
+<span class="fc" id="L142">    class TrieNode {</span>
+<span class="fc" id="L143">        var word: String? = null</span>
+<span class="pc" id="L144">        var next = arrayOfNulls&lt;TrieNode&gt;(ALPHABET_LETTERS_COUNT)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

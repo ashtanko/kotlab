@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BinaryTreeCameras.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">BinaryTreeCameras.kt</span></div><h1>BinaryTreeCameras.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.min
+
+/**
+ * 968. Binary Tree Cameras
+ * @see &lt;a href=&quot;https://leetcode.com/problems/binary-tree-cameras/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface BinaryTreeCamerasStrategy {
+
+    operator fun invoke(root: TreeNode?): Int
+}
+
+<span class="fc" id="L30">class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {</span>
+
+    private var cameras = 0
+
+    override operator fun invoke(root: TreeNode?): Int {
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (root == null) return 0</span>
+<span class="fc" id="L36">        val top = root.dfs()</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        val local = if (top == NOT_MONITORED) 1 else 0</span>
+<span class="fc" id="L38">        return cameras + local</span>
+    }
+
+    private fun TreeNode?.dfs(): Int {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (this == null) return MONITORED_NO_CAM</span>
+<span class="fc" id="L43">        val left = this.left.dfs()</span>
+<span class="fc" id="L44">        val right = this.right.dfs()</span>
+<span class="fc bfc" id="L45" title="All 4 branches covered.">        return if (left == MONITORED_NO_CAM &amp;&amp; right == MONITORED_NO_CAM) {</span>
+<span class="fc" id="L46">            NOT_MONITORED</span>
+<span class="fc bfc" id="L47" title="All 4 branches covered.">        } else if (left == NOT_MONITORED || right == NOT_MONITORED) {</span>
+<span class="fc" id="L48">            cameras++</span>
+<span class="fc" id="L49">            MONITORED_WITH_CAM</span>
+        } else {
+<span class="fc" id="L51">            MONITORED_NO_CAM</span>
+        }
+    }
+
+    companion object {
+        private const val NOT_MONITORED = 0
+        private const val MONITORED_NO_CAM = 1
+        private const val MONITORED_WITH_CAM = 2
+    }
+}
+
+<span class="fc" id="L62">class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {</span>
+
+    override operator fun invoke(root: TreeNode?): Int {
+<span class="fc" id="L65">        val ans = solve(root)</span>
+<span class="fc" id="L66">        return min(ans[1], ans[2])</span>
+    }
+
+    // 0: Strict ST; All nodes below this are covered, but not this one
+    // 1: Normal ST; All nodes below and incl this are covered - no camera
+    // 2: Placed camera; All nodes below this are covered, plus camera here
+    private fun solve(node: TreeNode?): IntArray {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (node == null) return intArrayOf(0, 0, MAX_ARRAY_SIZE)</span>
+<span class="fc" id="L74">        val l = solve(node.left)</span>
+<span class="fc" id="L75">        val r = solve(node.right)</span>
+<span class="fc" id="L76">        val mL12 = min(l[1], l[2])</span>
+<span class="fc" id="L77">        val mR12 = min(r[1], r[2])</span>
+<span class="fc" id="L78">        val d0 = l[1] + l[1]</span>
+<span class="fc" id="L79">        val d1 = min(l[2] + mR12, r[2] + mL12)</span>
+<span class="fc" id="L80">        val d2 = 1 + min(l[0], mL12) + min(r[0], mR12)</span>
+<span class="fc" id="L81">        return intArrayOf(d0, d1, d2)</span>
+    }
+
+    companion object {
+        private const val MAX_ARRAY_SIZE = 99999
+    }
+}
+
+<span class="fc" id="L89">class BinaryTreeCamerasGreedy : BinaryTreeCamerasStrategy {</span>
+
+    private var res = 0
+    override operator fun invoke(root: TreeNode?): Int {
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        return (if (dfs(root) &lt; 1) 1 else 0) + res</span>
+    }
+
+    private fun dfs(root: TreeNode?): Int {
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (root == null) return 2</span>
+<span class="fc" id="L98">        val left = dfs(root.left)</span>
+<span class="fc" id="L99">        val right = dfs(root.right)</span>
+<span class="fc bfc" id="L100" title="All 4 branches covered.">        if (left == 0 || right == 0) {</span>
+<span class="fc" id="L101">            res++</span>
+<span class="fc" id="L102">            return 1</span>
+        }
+<span class="pc bpc" id="L104" title="1 of 4 branches missed.">        return if (left == 1 || right == 1) 2 else 0</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

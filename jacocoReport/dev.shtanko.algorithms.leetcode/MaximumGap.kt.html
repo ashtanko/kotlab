@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaximumGap.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MaximumGap.kt</span></div><h1>MaximumGap.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Maximum Gap
+ * @see &lt;a href=&quot;https://leetcode.com/problems/maximum-gap/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MaximumGap {
+    operator fun invoke(nums: IntArray): Int
+}
+
+/**
+ * Approach 1: Comparison Sorting
+ * Time complexity: O(n log n)
+ * Space complexity: No extra space needed, other than the input array (since sorting can usually be done in-place).
+ */
+<span class="fc" id="L32">class MaximumGapComparisonSorting : MaximumGap {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="pc bpc" id="L34" title="2 of 6 branches missed.">        if (nums.isEmpty() || nums.size &lt; 2) {</span>
+<span class="fc" id="L35">            return 0</span>
+        }
+
+<span class="fc" id="L38">        nums.sort()</span>
+<span class="fc" id="L39">        var maxGap = 0</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (i in 0 until nums.size - 1) {</span>
+<span class="fc" id="L41">            maxGap = kotlin.math.max(nums[i + 1] - nums[i], maxGap)</span>
+        }
+<span class="fc" id="L43">        return maxGap</span>
+    }
+}
+
+/**
+ * Approach 2: Radix Sort
+ * Time complexity: O(n)O(d⋅(n+k))≈O(n).
+ * Space complexity: O(n)O(n+k)≈O(n) extra space.
+ */
+<span class="fc" id="L52">class MaximumGapRadixSort : MaximumGap {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="pc bpc" id="L54" title="2 of 6 branches missed.">        if (nums.isEmpty() || nums.size &lt; 2) {</span>
+<span class="fc" id="L55">            return 0</span>
+        }
+
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        val maxVal = nums.maxOrNull() ?: 0</span>
+<span class="fc" id="L59">        var exp = 1</span>
+<span class="fc" id="L60">        val aux = IntArray(nums.size)</span>
+
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        while (maxVal / exp &gt; 0) {</span>
+<span class="fc" id="L63">            val count = IntArray(RADIX)</span>
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            for (i in nums.indices) {</span>
+<span class="fc" id="L66">                count[nums[i].div(exp) % DECIMAL]++</span>
+            }
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            for (i in 1 until count.size) {</span>
+<span class="fc" id="L69">                count[i] += count[i - 1]</span>
+            }
+<span class="fc bfc" id="L71" title="All 2 branches covered.">            for (i in nums.size - 1 downTo 0) {</span>
+<span class="fc" id="L72">                aux[--count[nums[i].div(exp) % DECIMAL]] = nums[i]</span>
+            }
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            for (i in nums.indices) {</span>
+<span class="fc" id="L75">                nums[i] = aux[i]</span>
+            }
+<span class="fc" id="L77">            exp *= DECIMAL</span>
+        }
+
+<span class="fc" id="L80">        var maxGap = 0</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        for (i in 0 until nums.size - 1) {</span>
+<span class="fc" id="L82">            maxGap = kotlin.math.max(nums[i + 1] - nums[i], maxGap)</span>
+        }
+<span class="fc" id="L84">        return maxGap</span>
+    }
+
+    companion object {
+        private const val RADIX = 10
+    }
+}
+
+/**
+ * Approach 3: Buckets and The Pigeonhole Principle
+ */
+<span class="fc" id="L95">class MaximumGapBuckets : MaximumGap {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="pc bpc" id="L97" title="2 of 6 branches missed.">        if (nums.isEmpty() || nums.size &lt; 2) {</span>
+<span class="fc" id="L98">            return 0</span>
+        }
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        val mini = nums.minOrNull() ?: 0</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        val maxi = nums.maxOrNull() ?: 0</span>
+<span class="fc" id="L102">        val bucketSize = kotlin.math.max(1, (maxi - mini) / (nums.size - 1))</span>
+<span class="fc" id="L103">        val bucketNum = (maxi - mini) / bucketSize + 1</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        val buckets = Array(bucketNum) { Bucket() }</span>
+
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        for (num in nums) {</span>
+<span class="fc" id="L107">            val bucketIdx = (num - mini) / bucketSize</span>
+<span class="fc" id="L108">            buckets[bucketIdx].used = true</span>
+<span class="fc" id="L109">            buckets[bucketIdx].minVal = kotlin.math.min(num, buckets[bucketIdx].minVal)</span>
+<span class="fc" id="L110">            buckets[bucketIdx].maxVal = kotlin.math.max(num, buckets[bucketIdx].maxVal)</span>
+        }
+
+<span class="fc" id="L113">        var prevBucketMax = mini</span>
+<span class="fc" id="L114">        var maxGap = 0</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        for (bucket in buckets) {</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">            if (!bucket.used) {</span>
+<span class="fc" id="L117">                continue</span>
+            }
+<span class="fc" id="L119">            maxGap = kotlin.math.max(maxGap, bucket.minVal - prevBucketMax)</span>
+<span class="fc" id="L120">            prevBucketMax = bucket.maxVal</span>
+        }
+
+<span class="fc" id="L123">        return maxGap</span>
+    }
+
+<span class="fc" id="L126">    private data class Bucket(</span>
+<span class="fc" id="L127">        var used: Boolean = false,</span>
+<span class="fc" id="L128">        var maxVal: Int = Int.MIN_VALUE,</span>
+<span class="fc" id="L129">        var minVal: Int = Int.MAX_VALUE,</span>
+<span class="fc" id="L130">    )</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

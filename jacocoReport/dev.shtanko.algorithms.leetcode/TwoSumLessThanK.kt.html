@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TwoSumLessThanK.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">TwoSumLessThanK.kt</span></div><h1>TwoSumLessThanK.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Arrays
+import kotlin.math.max
+
+fun interface TwoSumLessThanKStrategy {
+    operator fun invoke(nums: IntArray, k: Int): Int
+}
+
+<span class="fc" id="L26">class TwoSumLessThanKBruteForce : TwoSumLessThanKStrategy {</span>
+    override operator fun invoke(nums: IntArray, k: Int): Int {
+<span class="fc" id="L28">        var answer = -1</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (i in nums.indices) {</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            for (j in i + 1 until nums.size) {</span>
+<span class="fc" id="L31">                val sum = nums[i] + nums[j]</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">                if (sum &lt; k) {</span>
+<span class="fc" id="L33">                    answer = max(answer, sum)</span>
+                }
+            }
+        }
+<span class="fc" id="L37">        return answer</span>
+    }
+}
+
+<span class="fc" id="L41">class TwoSumLessThanKTwoPointers : TwoSumLessThanKStrategy {</span>
+    override operator fun invoke(nums: IntArray, k: Int): Int {
+<span class="fc" id="L43">        nums.sort()</span>
+<span class="fc" id="L44">        var answer = -1</span>
+<span class="fc" id="L45">        var left = 0</span>
+<span class="fc" id="L46">        var right: Int = nums.size - 1</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        while (left &lt; right) {</span>
+<span class="fc" id="L48">            val sum = nums[left] + nums[right]</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            if (sum &lt; k) {</span>
+<span class="fc" id="L50">                answer = max(answer, sum)</span>
+<span class="fc" id="L51">                left++</span>
+            } else {
+<span class="fc" id="L53">                right--</span>
+            }
+        }
+<span class="fc" id="L56">        return answer</span>
+    }
+}
+
+<span class="fc" id="L60">class TwoSumLessThanKBinarySearch : TwoSumLessThanKStrategy {</span>
+    override operator fun invoke(nums: IntArray, k: Int): Int {
+<span class="fc" id="L62">        var answer = -1</span>
+<span class="fc" id="L63">        nums.sort()</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (i in nums.indices) {</span>
+<span class="fc" id="L65">            val idx: Int = Arrays.binarySearch(nums, i + 1, nums.size, k - nums[i] - 1)</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">            var j = if (idx &gt;= 0) idx else idx.inv()</span>
+<span class="pc bpc" id="L67" title="1 of 4 branches missed.">            if (j == nums.size || nums[j] &gt; k - nums[i] - 1) {</span>
+<span class="fc" id="L68">                j--</span>
+            }
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (j &gt; i) {</span>
+<span class="fc" id="L71">                answer = max(answer, nums[i] + nums[j])</span>
+            }
+        }
+<span class="fc" id="L74">        return answer</span>
+    }
+}
+
+<span class="fc" id="L78">class TwoSumLessThanKCountingSort : TwoSumLessThanKStrategy {</span>
+
+    override operator fun invoke(nums: IntArray, k: Int): Int {
+<span class="fc" id="L81">        var answer = -1</span>
+<span class="fc" id="L82">        val count = IntArray(ARRAY_SIZE)</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        for (num in nums) {</span>
+<span class="fc" id="L84">            count[num]++</span>
+        }
+<span class="fc" id="L86">        var lo = 1</span>
+<span class="fc" id="L87">        var hi = MAX</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        while (lo &lt;= hi) {</span>
+<span class="fc bfc" id="L89" title="All 4 branches covered.">            if (lo + hi &gt;= k || count[hi] == 0) {</span>
+<span class="fc" id="L90">                hi--</span>
+            } else {
+<span class="pc bpc" id="L92" title="1 of 4 branches missed.">                if (count[lo] &gt; (if (lo &lt; hi) 0 else 1)) {</span>
+<span class="fc" id="L93">                    answer = max(answer, lo + hi)</span>
+                }
+<span class="fc" id="L95">                lo++</span>
+            }
+        }
+<span class="fc" id="L98">        return answer</span>
+    }
+
+    companion object {
+        private const val ARRAY_SIZE = 1001
+        private const val MAX = 1000
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

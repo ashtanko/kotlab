@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReverseVowels.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ReverseVowels.kt</span></div><h1>ReverseVowels.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 345. Reverse Vowels of a String
+ * https://leetcode.com/problems/reverse-vowels-of-a-string/
+ */
+fun interface ReverseVowels {
+    operator fun invoke(s: String): String
+}
+
+<span class="fc" id="L27">class ReverseVowelsTwoPointers : ReverseVowels {</span>
+
+    companion object {
+        private const val VOWELS = &quot;aeiouAEIOU&quot;
+    }
+
+    override operator fun invoke(s: String): String {
+<span class="fc bfc" id="L34" title="All 4 branches covered.">        if (s.isEmpty()) return s</span>
+<span class="fc" id="L35">        val chars: CharArray = s.toCharArray()</span>
+<span class="fc" id="L36">        var start = 0</span>
+<span class="fc" id="L37">        var end: Int = s.length - 1</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        while (start &lt; end) {</span>
+<span class="fc bfc" id="L39" title="All 4 branches covered.">            while (start &lt; end &amp;&amp; !VOWELS.contains(chars[start].toString() + &quot;&quot;)) {</span>
+<span class="fc" id="L40">                start++</span>
+            }
+<span class="fc bfc" id="L42" title="All 4 branches covered.">            while (start &lt; end &amp;&amp; !VOWELS.contains(chars[end].toString() + &quot;&quot;)) {</span>
+<span class="fc" id="L43">                end--</span>
+            }
+<span class="fc" id="L45">            val temp = chars[start]</span>
+<span class="fc" id="L46">            chars[start] = chars[end]</span>
+<span class="fc" id="L47">            chars[end] = temp</span>
+<span class="fc" id="L48">            start++</span>
+<span class="fc" id="L49">            end--</span>
+        }
+<span class="fc" id="L51">        return String(chars)</span>
+    }
+}
+
+<span class="fc" id="L55">class ReverseVowelsSet : ReverseVowels {</span>
+    override operator fun invoke(s: String): String {
+<span class="fc" id="L57">        val set: Set&lt;Char&gt; = HashSet(listOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'))</span>
+<span class="fc" id="L58">        val arr: CharArray = s.toCharArray()</span>
+<span class="fc" id="L59">        var left = 0</span>
+<span class="fc" id="L60">        var right = arr.size - 1</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        while (left &lt; right) {</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            if (!set.contains(arr[left])) {</span>
+<span class="fc" id="L63">                left++</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            } else if (!set.contains(arr[right])) {</span>
+<span class="fc" id="L65">                right--</span>
+            } else {
+<span class="fc" id="L67">                val tmp = arr[left]</span>
+<span class="fc" id="L68">                arr[left] = arr[right]</span>
+<span class="fc" id="L69">                arr[right] = tmp</span>
+<span class="fc" id="L70">                left++</span>
+<span class="fc" id="L71">                right--</span>
+            }
+        }
+<span class="fc" id="L74">        return String(arr)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

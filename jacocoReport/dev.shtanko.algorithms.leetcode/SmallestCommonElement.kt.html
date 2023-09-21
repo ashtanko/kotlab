@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SmallestCommonElement.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">SmallestCommonElement.kt</span></div><h1>SmallestCommonElement.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Arrays.binarySearch
+import kotlin.math.min
+
+private const val LIMIT = 10000
+private const val ARRAY_SIZE = LIMIT + 1
+private const val NO_SOLUTION = -1 // returns when solution not found
+
+/**
+ * Find Smallest Common Element in All Rows
+ * @see &lt;a href=&quot;https://leetcode.com/problems/find-smallest-common-element-in-all-rows/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface SmallestCommonElement {
+    operator fun invoke(mat: Array&lt;IntArray&gt;): Int
+}
+
+/**
+ * Approach 1: Count Elements
+ * Time complexity: O(nm), where nn and mm are the number of rows and columns.
+ * Space complexity: O(k), where k is the number of unique elements.
+ */
+<span class="fc" id="L39">class SCECountElements : SmallestCommonElement {</span>
+    override operator fun invoke(mat: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L41">        val count = IntArray(ARRAY_SIZE)</span>
+<span class="fc" id="L42">        val n: Int = mat.size</span>
+<span class="fc" id="L43">        val m: Int = mat[0].size</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            for (j in 0 until m) {</span>
+<span class="fc" id="L46">                ++count[mat[i][j]]</span>
+            }
+        }
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for (k in 1..LIMIT) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (count[k] == n) {</span>
+<span class="fc" id="L51">                return k</span>
+            }
+        }
+<span class="fc" id="L54">        return NO_SOLUTION</span>
+    }
+}
+
+/**
+ * Approach 1: Count Elements Improved
+ * Time complexity: O(nm), where nn and mm are the number of rows and columns.
+ * Space complexity: O(1).
+ */
+<span class="fc" id="L63">class SCECountElementsImproved : SmallestCommonElement {</span>
+    override operator fun invoke(mat: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L65">        val count = IntArray(ARRAY_SIZE)</span>
+<span class="fc" id="L66">        val n: Int = mat.size</span>
+<span class="fc" id="L67">        val m: Int = mat[0].size</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        for (j in 0 until m) {</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">            for (i in 0 until n) {</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">                if (++count[mat[i][j]] == n) {</span>
+<span class="fc" id="L71">                    return mat[i][j]</span>
+                }
+            }
+        }
+<span class="fc" id="L75">        return NO_SOLUTION</span>
+    }
+}
+
+/**
+ * Approach 2: Binary Search
+ * Time complexity: O(mn log m).
+ * Space complexity: O(1).
+ */
+<span class="fc" id="L84">class SCEBinarySearch : SmallestCommonElement {</span>
+    override operator fun invoke(mat: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L86">        val n: Int = mat.size</span>
+<span class="fc" id="L87">        val m: Int = mat[0].size</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        for (j in 0 until m) {</span>
+<span class="fc" id="L89">            var found = true</span>
+<span class="fc" id="L90">            var i = 1</span>
+<span class="fc bfc" id="L91" title="All 4 branches covered.">            while (i &lt; n &amp;&amp; found) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">                found = binarySearch(mat[i], mat[0][j]) &gt;= 0</span>
+<span class="fc" id="L93">                ++i</span>
+            }
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            if (found) {</span>
+<span class="fc" id="L96">                return mat[0][j]</span>
+            }
+        }
+<span class="fc" id="L99">        return NO_SOLUTION</span>
+    }
+}
+
+/**
+ * Approach 2: Binary Search Improved
+ * Time complexity: O(mn log m).
+ * Space complexity: O(n).
+ */
+<span class="fc" id="L108">class SCEBinarySearchImproved : SmallestCommonElement {</span>
+    override operator fun invoke(mat: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L110">        val n: Int = mat.size</span>
+<span class="fc" id="L111">        val m: Int = mat[0].size</span>
+<span class="fc" id="L112">        val pos = IntArray(n)</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        for (j in 0 until m) {</span>
+<span class="fc" id="L114">            var found = true</span>
+<span class="fc" id="L115">            var i = 1</span>
+<span class="fc bfc" id="L116" title="All 4 branches covered.">            while (i &lt; n &amp;&amp; found) {</span>
+<span class="fc" id="L117">                pos[i] = binarySearch(mat[i], pos[i], m, mat[0][j])</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">                if (pos[i] &lt; 0) {</span>
+<span class="fc" id="L119">                    found = false</span>
+<span class="fc" id="L120">                    pos[i] = -pos[i] - 1</span>
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">                    if (pos[i] &gt;= m) {</span>
+<span class="pc" id="L122">                        return NO_SOLUTION</span>
+                    }
+                }
+<span class="fc" id="L125">                ++i</span>
+            }
+<span class="fc bfc" id="L127" title="All 2 branches covered.">            if (found) {</span>
+<span class="fc" id="L128">                return mat[0][j]</span>
+            }
+        }
+<span class="fc" id="L131">        return NO_SOLUTION</span>
+    }
+}
+
+/**
+ * Approach 3: Row Positions
+ * Time complexity: O(nm).
+ * Space complexity: O(n).
+ */
+<span class="fc" id="L140">class SCERowPositions : SmallestCommonElement {</span>
+    override operator fun invoke(mat: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L142">        val n: Int = mat.size</span>
+<span class="fc" id="L143">        val m: Int = mat[0].size</span>
+<span class="fc" id="L144">        val pos = IntArray(n)</span>
+<span class="fc" id="L145">        var curMax = 0</span>
+<span class="fc" id="L146">        var cnt = 0</span>
+<span class="fc" id="L147">        while (true) {</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">            for (i in 0 until n) {</span>
+<span class="fc bfc" id="L149" title="All 4 branches covered.">                while (pos[i] &lt; m &amp;&amp; mat[i][pos[i]] &lt; curMax) {</span>
+<span class="fc" id="L150">                    ++pos[i]</span>
+                }
+<span class="fc bfc" id="L152" title="All 2 branches covered.">                if (pos[i] &gt;= m) {</span>
+<span class="fc" id="L153">                    return NO_SOLUTION</span>
+                }
+<span class="fc bfc" id="L155" title="All 2 branches covered.">                if (mat[i][pos[i]] != curMax) {</span>
+<span class="fc" id="L156">                    cnt = 1</span>
+<span class="fc" id="L157">                    curMax = mat[i][pos[i]]</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">                } else if (++cnt == n) {</span>
+<span class="fc" id="L159">                    return curMax</span>
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Approach 3: Row Positions Improved
+ * Time complexity: O(nm).
+ * Space complexity: O(n).
+ */
+<span class="fc" id="L171">class SCERowPositionsImproved : SmallestCommonElement {</span>
+    override operator fun invoke(mat: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L173">        val n: Int = mat.size</span>
+<span class="fc" id="L174">        val m: Int = mat[0].size</span>
+<span class="fc" id="L175">        val pos = IntArray(n)</span>
+<span class="fc" id="L176">        var curMax = 0</span>
+<span class="fc" id="L177">        var cnt = 0</span>
+<span class="fc" id="L178">        while (true) {</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">            for (i in 0 until n) {</span>
+<span class="fc" id="L180">                pos[i] = metaSearch(mat[i], pos[i], curMax)</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">                if (pos[i] &gt;= m) {</span>
+<span class="fc" id="L182">                    return NO_SOLUTION</span>
+                }
+<span class="fc bfc" id="L184" title="All 2 branches covered.">                if (mat[i][pos[i]] != curMax) {</span>
+<span class="fc" id="L185">                    cnt = 1</span>
+<span class="fc" id="L186">                    curMax = mat[i][pos[i]]</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">                } else if (++cnt == n) {</span>
+<span class="fc" id="L188">                    return curMax</span>
+                }
+            }
+        }
+    }
+
+    private fun metaSearch(row: IntArray, pos: Int, value: Int): Int {
+<span class="fc" id="L195">        var p = pos</span>
+<span class="fc" id="L196">        val sz = row.size</span>
+<span class="fc" id="L197">        var d = 1</span>
+<span class="fc bfc" id="L198" title="All 4 branches covered.">        while (p &lt; sz &amp;&amp; row[p] &lt; value) {</span>
+<span class="fc" id="L199">            d = d shl 1</span>
+<span class="pc bpc" id="L200" title="1 of 2 branches missed.">            if (row[min(p + d, sz - 1)] &gt;= value) {</span>
+<span class="fc" id="L201">                d = 1</span>
+            }
+<span class="fc" id="L203">            p += d</span>
+        }
+<span class="fc" id="L205">        return p</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

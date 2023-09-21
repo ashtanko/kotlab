@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NextGreaterElement1.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NextGreaterElement1.kt</span></div><h1>NextGreaterElement1.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Stack
+
+fun interface NextGreaterElement1 {
+    operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray
+}
+
+<span class="fc" id="L25">class NGBruteForce : NextGreaterElement1 {</span>
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray {
+<span class="fc" id="L27">        val res = IntArray(nums1.size)</span>
+        var j: Int
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (i in nums1.indices) {</span>
+<span class="fc" id="L30">            var found = false</span>
+<span class="fc" id="L31">            j = 0</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">            while (j &lt; nums2.size) {</span>
+<span class="fc bfc" id="L33" title="All 4 branches covered.">                if (found &amp;&amp; nums2[j] &gt; nums1[i]) {</span>
+<span class="fc" id="L34">                    res[i] = nums2[j]</span>
+<span class="fc" id="L35">                    break</span>
+                }
+<span class="fc bfc" id="L37" title="All 2 branches covered.">                if (nums2[j] == nums1[i]) {</span>
+<span class="fc" id="L38">                    found = true</span>
+                }
+<span class="fc" id="L40">                j++</span>
+            }
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            if (j == nums2.size) {</span>
+<span class="fc" id="L43">                res[i] = -1</span>
+            }
+        }
+<span class="fc" id="L46">        return res</span>
+    }
+}
+
+<span class="fc" id="L50">class NGBetterForce : NextGreaterElement1 {</span>
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray {
+<span class="fc" id="L52">        val hash: HashMap&lt;Int, Int&gt; = HashMap()</span>
+<span class="fc" id="L53">        val res = IntArray(nums1.size)</span>
+        var j: Int
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        for (i in nums2.indices) {</span>
+<span class="fc" id="L56">            hash[nums2[i]] = i</span>
+        }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        for (i in nums1.indices) {</span>
+<span class="fc" id="L59">            j = hash[nums1[i]]!! + 1</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            while (j &lt; nums2.size) {</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">                if (nums1[i] &lt; nums2[j]) {</span>
+<span class="fc" id="L62">                    res[i] = nums2[j]</span>
+<span class="fc" id="L63">                    break</span>
+                }
+<span class="fc" id="L65">                j++</span>
+            }
+<span class="fc bfc" id="L67" title="All 2 branches covered.">            if (j == nums2.size) {</span>
+<span class="fc" id="L68">                res[i] = -1</span>
+            }
+        }
+<span class="fc" id="L71">        return res</span>
+    }
+}
+
+<span class="fc" id="L75">class NGStack : NextGreaterElement1 {</span>
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): IntArray {
+<span class="fc" id="L77">        val stack: Stack&lt;Int&gt; = Stack()</span>
+<span class="fc" id="L78">        val map: HashMap&lt;Int, Int&gt; = HashMap()</span>
+<span class="fc" id="L79">        val res = IntArray(nums1.size)</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (i in nums2.indices) {</span>
+<span class="fc bfc" id="L81" title="All 4 branches covered.">            while (!stack.empty() &amp;&amp; nums2[i] &gt; stack.peek()) map[stack.pop()] = nums2[i]</span>
+<span class="fc" id="L82">            stack.push(nums2[i])</span>
+        }
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        while (!stack.empty()) map[stack.pop()] = -1</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        for (i in nums1.indices) {</span>
+<span class="fc" id="L86">            res[i] = map[nums1[i]]!!</span>
+        }
+<span class="fc" id="L88">        return res</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WordAbbreviation.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">WordAbbreviation.kt</span></div><h1>WordAbbreviation.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+/**
+ * Word Abbreviation.
+ * @see &lt;a href=&quot;https://leetcode.com/problems/word-abbreviation/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface WordAbbreviation {
+    operator fun invoke(dict: List&lt;String&gt;): List&lt;String&gt;
+
+    fun abbrev(word: String, i: Int): String {
+<span class="fc" id="L29">        val n = word.length</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        return if (n - i &lt;= 3) word else word.substring(0, i + 1) + (n - i - 2) + word[n - 1]</span>
+    }
+}
+
+/**
+ * Approach #1: Greedy.
+ */
+<span class="pc" id="L37">class WordAbbreviationGreedy : WordAbbreviation {</span>
+    override operator fun invoke(dict: List&lt;String&gt;): List&lt;String&gt; {
+<span class="fc" id="L39">        val wordToAbbr: MutableMap&lt;String?, String?&gt; = HashMap()</span>
+<span class="fc" id="L40">        val groups: MutableMap&lt;Int, MutableList&lt;String&gt;&gt; = HashMap()</span>
+
+        // Try to group words by their length. Because no point to compare words with different length.
+        // Also no point to look at words with length &lt; 4.
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (word in dict) {</span>
+<span class="fc" id="L45">            val len = word.length</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if (len &lt; 4) {</span>
+<span class="fc" id="L47">                wordToAbbr[word] = word</span>
+            } else {
+<span class="fc" id="L49">                val g = groups.getOrDefault(len, ArrayList())</span>
+<span class="fc" id="L50">                g.add(word)</span>
+<span class="fc" id="L51">                groups[len] = g</span>
+            }
+        }
+
+        // For each group of words with same length, generate a result HashMap.
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (len in groups.keys) {</span>
+<span class="fc" id="L57">            val res = getAbbr(groups[len]!!)</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            for (word in res.keys) {</span>
+<span class="fc" id="L59">                wordToAbbr[word] = res[word]</span>
+            }
+        }
+
+        // Generate the result list
+<span class="fc" id="L64">        val result: MutableList&lt;String&gt; = ArrayList()</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (word in dict) {</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">            wordToAbbr[word]?.let { result.add(it) }</span>
+        }
+
+<span class="fc" id="L69">        return result</span>
+    }
+
+    private fun getAbbr(words: List&lt;String&gt;): Map&lt;String?, String&gt; {
+<span class="fc" id="L73">        val res: MutableMap&lt;String?, String&gt; = HashMap()</span>
+<span class="fc" id="L74">        val len = words[0].length</span>
+
+        // Try to abbreviate a word from index 1 to len - 2
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        for (i in 1 until len - 2) {</span>
+<span class="fc" id="L78">            val abbrToWord: MutableMap&lt;String, String&gt; = HashMap()</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            for (s in words) {</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">                if (res.containsKey(s)) continue</span>
+                // Generate the current abbreviation
+<span class="fc" id="L82">                val abbr = s.substring(0, i) + (len - 1 - i) + s[len - 1]</span>
+                // Tick: use reversed abbreviation to word map to check if there is any duplicated abbreviation
+<span class="fc bfc" id="L84" title="All 2 branches covered.">                if (!abbrToWord.containsKey(abbr)) {</span>
+<span class="fc" id="L85">                    abbrToWord[abbr] = s</span>
+                } else {
+<span class="fc" id="L87">                    abbrToWord[abbr] = &quot;&quot;</span>
+                }
+            }
+
+            // Add unique abbreviations find during this round to result HashMap
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            for (abbr in abbrToWord.keys) {</span>
+<span class="fc" id="L93">                val s = abbrToWord[abbr]</span>
+                // Not a unique abbreviation
+<span class="fc bfc" id="L95" title="All 4 branches covered.">                if (s!!.isEmpty()) continue</span>
+<span class="fc" id="L96">                res[s] = abbr</span>
+            }
+        }
+
+        // Add all words that can't be shortened.
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        for (s in words) {</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">            if (!res.containsKey(s)) {</span>
+<span class="fc" id="L103">                res[s] = s</span>
+            }
+        }
+<span class="fc" id="L106">        return res</span>
+    }
+}
+
+<span class="pc" id="L110">class IndexedWord(var word: String, var index: Int)</span>
+
+<span class="fc" id="L112">class WordTrieNode {</span>
+<span class="pc" id="L113">    var children: Array&lt;WordTrieNode?&gt; = arrayOfNulls(ALPHABET_LETTERS_COUNT)</span>
+<span class="fc" id="L114">    var count: Int = 0</span>
+}
+
+/**
+ * Approach #2: Group + Least Common Prefix.
+ */
+<span class="fc" id="L120">class WordAbbreviationLCP : WordAbbreviation {</span>
+    override operator fun invoke(dict: List&lt;String&gt;): List&lt;String&gt; {
+<span class="fc" id="L122">        val groups: MutableMap&lt;String, MutableList&lt;IndexedWord&gt;&gt; = HashMap()</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        val ans = Array(dict.size) { &quot;&quot; }</span>
+
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        for ((index, word) in dict.withIndex()) {</span>
+<span class="fc" id="L126">            val ab = abbrev(word, 0)</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">            if (!groups.containsKey(ab)) groups[ab] = ArrayList()</span>
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">            groups[ab]?.add(IndexedWord(word, index))</span>
+        }
+
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        for (group in groups.values) {</span>
+<span class="fc" id="L132">            group.sortWith { a: IndexedWord, b: IndexedWord -&gt;</span>
+<span class="fc" id="L133">                a.word.compareTo(b.word)</span>
+            }
+
+<span class="fc" id="L136">            val lcp = IntArray(group.size)</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">            for (i in 1 until group.size) {</span>
+<span class="fc" id="L138">                val p = longestCommonPrefix(group[i - 1].word, group[i].word)</span>
+<span class="fc" id="L139">                lcp[i] = p</span>
+<span class="fc" id="L140">                lcp[i - 1] = max(lcp[i - 1], p)</span>
+            }
+<span class="fc bfc" id="L142" title="All 2 branches covered.">            for (i in group.indices) ans[group[i].index] = abbrev(group[i].word, lcp[i])</span>
+        }
+
+<span class="fc" id="L145">        return ans.toList()</span>
+    }
+
+    private fun longestCommonPrefix(word1: String, word2: String): Int {
+<span class="fc" id="L149">        var i = 0</span>
+<span class="pc bpc" id="L150" title="1 of 6 branches missed.">        while (i &lt; word1.length &amp;&amp; i &lt; word2.length &amp;&amp; word1[i] == word2[i]) i++</span>
+<span class="fc" id="L151">        return i</span>
+    }
+}
+
+/**
+ * Approach #3: Group + Trie.
+ */
+<span class="fc" id="L158">class WordAbbreviationTrie : WordAbbreviation {</span>
+    override operator fun invoke(dict: List&lt;String&gt;): List&lt;String&gt; {
+<span class="fc" id="L160">        val groups: MutableMap&lt;String, MutableList&lt;IndexedWord?&gt;&gt; = HashMap()</span>
+<span class="fc bfc" id="L161" title="All 2 branches covered.">        val ans = Array(dict.size) { &quot;&quot; }</span>
+
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        for ((index, word) in dict.withIndex()) {</span>
+<span class="fc" id="L164">            val ab = abbrev(word, 0)</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">            if (!groups.containsKey(ab)) groups[ab] = ArrayList()</span>
+<span class="fc" id="L166">            groups[ab]!!.add(IndexedWord(word, index))</span>
+        }
+
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        for (group in groups.values) {</span>
+<span class="fc" id="L170">            val trie = WordTrieNode()</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">            for (iw in group) {</span>
+<span class="fc" id="L172">                var cur = trie</span>
+<span class="fc bfc" id="L173" title="All 4 branches covered.">                if (iw!!.word.isNotBlank()) {</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">                    for (letter in iw.word.substring(1).toCharArray()) {</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">                        if (cur.children[letter - 'a'] == null) cur.children[letter - 'a'] = WordTrieNode()</span>
+<span class="fc" id="L176">                        cur.count++</span>
+<span class="fc" id="L177">                        cur = cur.children[letter - 'a']!!</span>
+                    }
+                }
+            }
+<span class="fc bfc" id="L181" title="All 2 branches covered.">            for (iw in group) {</span>
+<span class="fc" id="L182">                var cur = trie</span>
+<span class="fc" id="L183">                var i = 1</span>
+<span class="fc bfc" id="L184" title="All 4 branches covered.">                if (iw!!.word.isNotBlank()) {</span>
+<span class="fc bfc" id="L185" title="All 2 branches covered.">                    for (letter in iw.word.substring(1).toCharArray()) {</span>
+<span class="fc bfc" id="L186" title="All 2 branches covered.">                        if (cur.count == 1) break</span>
+<span class="fc" id="L187">                        cur = cur.children[letter - 'a']!!</span>
+<span class="fc" id="L188">                        i++</span>
+                    }
+                }
+<span class="fc" id="L191">                ans[iw.index] = abbrev(iw.word, i - 1)</span>
+            }
+        }
+<span class="fc" id="L194">        return ans.toList()</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

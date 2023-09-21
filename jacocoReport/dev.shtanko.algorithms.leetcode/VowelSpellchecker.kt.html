@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VowelSpellchecker.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">VowelSpellchecker.kt</span></div><h1>VowelSpellchecker.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface VowelSpellchecker {
+    operator fun invoke(wordlist: Array&lt;String&gt;, queries: Array&lt;String&gt;): Array&lt;String&gt;
+}
+
+<span class="fc" id="L23">class VowelSpellcheckerImpl : VowelSpellchecker {</span>
+
+<span class="fc" id="L25">    private val wordsPerfect: MutableSet&lt;String&gt; = HashSet()</span>
+<span class="fc" id="L26">    private val wordsCap: MutableMap&lt;String, String&gt; = HashMap()</span>
+<span class="fc" id="L27">    private val wordsVow: MutableMap&lt;String, String&gt; = HashMap()</span>
+
+    override operator fun invoke(wordlist: Array&lt;String&gt;, queries: Array&lt;String&gt;): Array&lt;String&gt; {
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (word in wordlist) {</span>
+<span class="fc" id="L31">            wordsPerfect.add(word)</span>
+<span class="fc" id="L32">            val wordlow = word.lowercase()</span>
+<span class="fc" id="L33">            wordsCap.putIfAbsent(wordlow, word)</span>
+<span class="fc" id="L34">            val wordlowDV = devowel(wordlow)</span>
+<span class="fc" id="L35">            wordsVow.putIfAbsent(wordlowDV, word)</span>
+        }
+
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        val ans = Array(queries.size) { &quot;&quot; }</span>
+<span class="fc" id="L39">        var t = 0</span>
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        for (query in queries) ans[t++] = solve(query) ?: &quot;&quot;</span>
+<span class="fc" id="L41">        return ans</span>
+    }
+
+    private fun solve(query: String): String? {
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (wordsPerfect.contains(query)) return query</span>
+<span class="fc" id="L46">        val queryL = query.lowercase()</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (wordsCap.containsKey(queryL)) return wordsCap[queryL]</span>
+<span class="fc" id="L48">        val queryLV = devowel(queryL)</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        return if (wordsVow.containsKey(queryLV)) wordsVow[queryLV] else &quot;&quot;</span>
+    }
+
+    private fun devowel(word: String): String {
+<span class="fc" id="L53">        val ans = StringBuilder()</span>
+<span class="fc bfc" id="L54" title="All 4 branches covered.">        for (c in word.toCharArray()) ans.append(if (isVowel(c)) '*' else c)</span>
+<span class="fc" id="L55">        return ans.toString()</span>
+    }
+
+    private fun isVowel(c: Char): Boolean {
+<span class="pc bpc" id="L59" title="1 of 10 branches missed.">        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

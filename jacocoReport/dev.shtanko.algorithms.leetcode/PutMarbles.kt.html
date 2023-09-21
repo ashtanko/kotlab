@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PutMarbles.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PutMarbles.kt</span></div><h1>PutMarbles.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 2551. Put Marbles in Bags
+ * @see &lt;a href=&quot;https://leetcode.com/problems/put-marbles-in-bags/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface PutMarbles {
+    fun putMarblesInBags(weights: IntArray, k: Int): Long
+}
+
+<span class="fc" id="L27">class PutMarblesSort : PutMarbles {</span>
+    override fun putMarblesInBags(weights: IntArray, k: Int): Long {
+        // We collect and sort the value of all n - 1 pairs.
+<span class="fc" id="L30">        val n: Int = weights.size</span>
+<span class="fc" id="L31">        val pairWeights = IntArray(n - 1)</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        for (i in 0 until n - 1) {</span>
+<span class="fc" id="L33">            pairWeights[i] = weights[i] + weights[i + 1]</span>
+        }
+        // We will sort only the first (n - 1) elements of the array.
+<span class="fc" id="L36">        pairWeights.sort(0, n - 1)</span>
+
+        // Get the difference between the largest k - 1 values and the
+        // smallest k - 1 values.
+<span class="fc" id="L40">        var answer = 0L</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (i in 0 until k - 1) {</span>
+<span class="fc" id="L42">            answer += (pairWeights[n - 2 - i] - pairWeights[i]).toLong()</span>
+        }
+
+<span class="fc" id="L45">        return answer</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

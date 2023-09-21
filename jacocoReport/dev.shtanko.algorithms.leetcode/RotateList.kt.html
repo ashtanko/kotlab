@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RotateList.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">RotateList.kt</span></div><h1>RotateList.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 61. Rotate List
+ * link https://leetcode.com/problems/rotate-list/
+ */
+fun interface RotateList {
+    operator fun invoke(head: ListNode?, k: Int): ListNode?
+}
+
+/**
+ * Time Limit Exceeded
+ */
+<span class="fc" id="L30">class RotateListBruteForce : RotateList {</span>
+    override operator fun invoke(head: ListNode?, k: Int): ListNode? {
+<span class="fc" id="L32">        var node = head</span>
+<span class="pc bpc" id="L33" title="2 of 4 branches missed.">        if (node?.next == null) return node</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (i in 0 until k) {</span>
+<span class="fc" id="L35">            var temp: ListNode? = node</span>
+<span class="pc bpc" id="L36" title="2 of 6 branches missed.">            while (temp?.next?.next != null) temp = temp.next</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">            val end: ListNode? = temp?.next</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">            temp?.next = null</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">            end?.next = node</span>
+<span class="fc" id="L40">            node = end</span>
+        }
+<span class="fc" id="L42">        return node</span>
+    }
+}
+
+<span class="fc" id="L46">class RotateListOptimized : RotateList {</span>
+    override operator fun invoke(head: ListNode?, k: Int): ListNode? {
+<span class="fc" id="L48">        var node = head</span>
+<span class="pc bpc" id="L49" title="3 of 6 branches missed.">        if (node?.next == null || k == 0) {</span>
+<span class="nc" id="L50">            return node</span>
+        }
+<span class="fc" id="L52">        var curr = node</span>
+<span class="fc" id="L53">        var len = 1</span>
+<span class="pc bpc" id="L54" title="1 of 4 branches missed.">        while (curr?.next != null) {</span>
+<span class="fc" id="L55">            len++</span>
+<span class="fc" id="L56">            curr = curr.next</span>
+        }
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        curr?.next = node</span>
+
+<span class="fc" id="L60">        val ll = len - k % len</span>
+
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        for (i in 0 until ll) { // 3 times because curr. next  is at head but curr is still at end of the linkedlist</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">            curr = curr?.next</span>
+        }
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        node = curr?.next</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        curr?.next = null</span>
+
+<span class="fc" id="L68">        return node</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BinaryTree.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">BinaryTree.kt</span></div><h1>BinaryTree.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import org.slf4j.LoggerFactory
+
+<span class="fc" id="L21">class BinaryTree {</span>
+<span class="fc" id="L22">    var root: TreeNode? = null</span>
+
+    fun printLevelOrder() {
+<span class="fc" id="L25">        val h = height(root)</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        for (i in 1 until h) {</span>
+<span class="fc" id="L27">            printGivenLevel(root, i)</span>
+        }
+<span class="fc" id="L29">    }</span>
+
+    private fun printGivenLevel(root: TreeNode?, level: Int) {
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (root == null) {</span>
+<span class="nc" id="L33">            return</span>
+        }
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (level == 1) {</span>
+<span class="fc" id="L36">            LOGGER.info(&quot;${root.value}&quot;)</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        } else if (level &gt; 1) {</span>
+<span class="fc" id="L38">            printGivenLevel(root.left, level - 1)</span>
+<span class="fc" id="L39">            printGivenLevel(root.right, level - 1)</span>
+        }
+<span class="fc" id="L41">    }</span>
+
+    private fun height(root: TreeNode?): Int {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        return if (root == null) {</span>
+<span class="fc" id="L45">            0</span>
+        } else {
+<span class="fc" id="L47">            val lHeight = height(root.left)</span>
+<span class="fc" id="L48">            val rHeight = height(root.right)</span>
+
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (lHeight &gt; rHeight) {</span>
+<span class="fc" id="L51">                lHeight + 1</span>
+            } else {
+<span class="fc" id="L53">                rHeight + 1</span>
+            }
+        }
+    }
+
+    companion object {
+<span class="fc" id="L59">        private val LOGGER = LoggerFactory.getLogger(BinaryTree::class.java)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

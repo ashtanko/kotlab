@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DesignHashMap.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">DesignHashMap.kt</span></div><h1>DesignHashMap.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+<span class="fc" id="L19">class DesignHashMap {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">    private val nodes = Array&lt;ListNode?&gt;(10_000) { null }</span>
+
+    fun put(key: Int, value: Int) {
+<span class="fc" id="L23">        val i = idx(key)</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (nodes[i] == null) {</span>
+<span class="fc" id="L25">            nodes[i] = ListNode(-1, -1)</span>
+        }
+<span class="fc" id="L27">        val prev = find(nodes[i], key)</span>
+<span class="pc bpc" id="L28" title="1 of 4 branches missed.">        if (prev?.next == null) {</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            prev?.next = ListNode(key, value)</span>
+        } else {
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">            prev.next?.value = value</span>
+        }
+<span class="fc" id="L33">    }</span>
+
+    fun get(key: Int): Int {
+<span class="fc" id="L36">        val i = idx(key)</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (nodes[i] == null) return -1</span>
+<span class="fc" id="L38">        val node = find(nodes[i], key)</span>
+<span class="pc bpc" id="L39" title="2 of 6 branches missed.">        return if (node?.next == null) -1 else node.next?.value ?: -1</span>
+    }
+
+    fun remove(key: Int) {
+<span class="fc" id="L43">        val i = idx(key)</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (nodes[i] == null) return</span>
+<span class="fc" id="L45">        val prev = find(nodes[i], key)</span>
+<span class="pc bpc" id="L46" title="2 of 4 branches missed.">        if (prev?.next == null) return</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        prev.next = prev.next?.next</span>
+<span class="fc" id="L48">    }</span>
+
+<span class="fc" id="L50">    private fun idx(key: Int): Int = Integer.hashCode(key) % nodes.size</span>
+
+    private fun find(bucket: ListNode?, key: Int): ListNode? {
+<span class="fc" id="L53">        var node: ListNode? = bucket</span>
+<span class="fc" id="L54">        var prev: ListNode? = null</span>
+<span class="fc bfc" id="L55" title="All 4 branches covered.">        while (node != null &amp;&amp; node.key != key) {</span>
+<span class="fc" id="L56">            prev = node</span>
+<span class="fc" id="L57">            node = node.next</span>
+        }
+<span class="fc" id="L59">        return prev</span>
+    }
+
+<span class="fc" id="L62">    class ListNode(val key: Int, var value: Int) {</span>
+<span class="fc" id="L63">        var next: ListNode? = null</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

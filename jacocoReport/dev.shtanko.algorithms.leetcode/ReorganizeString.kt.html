@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReorganizeString.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ReorganizeString.kt</span></div><h1>ReorganizeString.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.PriorityQueue
+
+/**
+ * 767. Reorganize String
+ * @see &lt;a href=&quot;https://leetcode.com/problems/reorganize-string/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+internal fun interface ReorganizeString {
+    operator fun invoke(s: String): String
+}
+
+/**
+ * Approach 1: Counting and Priority Queue
+ */
+<span class="fc" id="L32">class ReorganizeStringPQ : ReorganizeString {</span>
+    override operator fun invoke(s: String): String {
+<span class="fc" id="L34">        val charCounts = IntArray(ALPHABET_LETTERS_COUNT)</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (c in s.toCharArray()) {</span>
+<span class="fc" id="L36">            charCounts[c.code - 'a'.code] = charCounts[c.code - 'a'.code] + 1</span>
+        }
+
+        // Max heap ordered by character counts
+<span class="fc" id="L40">        val pq: PriorityQueue&lt;IntArray&gt; = PriorityQueue&lt;IntArray&gt; { a, b -&gt;</span>
+<span class="fc" id="L41">            b[1].compareTo(a[1])</span>
+        }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (i in 0 until ALPHABET_LETTERS_COUNT) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            if (charCounts[i] &gt; 0) {</span>
+<span class="fc" id="L45">                pq.offer(intArrayOf(i + 'a'.code, charCounts[i]))</span>
+            }
+        }
+
+<span class="fc" id="L49">        val sb = StringBuilder()</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        while (!pq.isEmpty()) {</span>
+<span class="fc" id="L51">            val first = pq.poll()</span>
+<span class="fc bfc" id="L52" title="All 6 branches covered.">            if (sb.isEmpty() || first[0] != sb[sb.length - 1].code) {</span>
+<span class="fc" id="L53">                sb.append(first[0].toChar())</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">                if (--first[1] &gt; 0) {</span>
+<span class="fc" id="L55">                    pq.offer(first)</span>
+                }
+            } else {
+<span class="fc bfc" id="L58" title="All 2 branches covered.">                if (pq.isEmpty()) {</span>
+<span class="fc" id="L59">                    return &quot;&quot;</span>
+                }
+<span class="fc" id="L61">                val second = pq.poll()</span>
+<span class="fc" id="L62">                sb.append(second[0])</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">                if (--second[1] &gt; 0) {</span>
+<span class="nc" id="L64">                    pq.offer(second)</span>
+                }
+<span class="fc" id="L66">                pq.offer(first)</span>
+            }
+        }
+
+<span class="fc" id="L70">        return sb.toString()</span>
+    }
+}
+
+/**
+ * Approach 2: Counting and Odd/Even
+ */
+<span class="fc" id="L77">class ReorganizeStringCounting : ReorganizeString {</span>
+    override operator fun invoke(s: String): String {
+<span class="fc" id="L79">        val charCounts = IntArray(ALPHABET_LETTERS_COUNT)</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (c in s.toCharArray()) {</span>
+<span class="fc" id="L81">            charCounts[c.code - 'a'.code]++</span>
+        }
+<span class="fc" id="L83">        var maxCount = 0</span>
+<span class="fc" id="L84">        var letter = 0</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        for (i in charCounts.indices) {</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">            if (charCounts[i] &gt; maxCount) {</span>
+<span class="fc" id="L87">                maxCount = charCounts[i]</span>
+<span class="fc" id="L88">                letter = i</span>
+            }
+        }
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (maxCount &gt; (s.length + 1) / 2) {</span>
+<span class="fc" id="L92">            return &quot;&quot;</span>
+        }
+<span class="fc" id="L94">        val ans = CharArray(s.length)</span>
+<span class="fc" id="L95">        var index = 0</span>
+
+        // Place the most frequent letter
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        while (charCounts[letter] != 0) {</span>
+<span class="fc" id="L99">            ans[index] = (letter + 'a'.code).toChar()</span>
+<span class="fc" id="L100">            index += 2</span>
+<span class="fc" id="L101">            charCounts[letter]--</span>
+        }
+
+        // Place rest of the letters in any order
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        for (i in charCounts.indices) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">            while (charCounts[i] &gt; 0) {</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">                if (index &gt;= s.length) {</span>
+<span class="fc" id="L108">                    index = 1</span>
+                }
+<span class="fc" id="L110">                ans[index] = (i + 'a'.code).toChar()</span>
+<span class="fc" id="L111">                index += 2</span>
+<span class="fc" id="L112">                charCounts[i]--</span>
+            }
+        }
+
+<span class="fc" id="L116">        return String(ans)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

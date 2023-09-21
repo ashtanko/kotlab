@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PathsWithMaxScore.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PathsWithMaxScore.kt</span></div><h1>PathsWithMaxScore.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1301. Number of Paths with Max Score
+ * @see &lt;a href=&quot;https://leetcode.com/problems/number-of-paths-with-max-score/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface PathsWithMaxScore {
+    operator fun invoke(board: List&lt;String&gt;): IntArray
+}
+
+<span class="fc" id="L27">class PathsWithMaxScoreDP : PathsWithMaxScore {</span>
+<span class="fc" id="L28">    private val dirs = arrayOf(intArrayOf(0, -1), intArrayOf(-1, 0), intArrayOf(-1, -1))</span>
+
+    override operator fun invoke(board: List&lt;String&gt;): IntArray {
+<span class="fc" id="L31">        val m: Int = board.size</span>
+<span class="fc" id="L32">        val n: Int = board[0].length</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        val dpSum = Array(m) { IntArray(n) }</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        val dpCnt = Array(m) { IntArray(n) }</span>
+<span class="fc" id="L35">        dpCnt[m - 1][n - 1] = 1 // start at the bottom right square</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (r in m - 1 downTo 0) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            for (c in n - 1 downTo 0) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                if (dpCnt[r][c] == 0) {</span>
+<span class="fc" id="L40">                    continue</span>
+                }
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                for (dir in dirs) {</span>
+<span class="fc" id="L43">                    val nr = r + dir[0]</span>
+<span class="fc" id="L44">                    val nc = c + dir[1]</span>
+<span class="fc bfc" id="L45" title="All 6 branches covered.">                    if (nr &gt;= 0 &amp;&amp; nc &gt;= 0 &amp;&amp; board[nr][nc] != 'X') {</span>
+<span class="fc" id="L46">                        var nsum = dpSum[r][c]</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                        if (board[nr][nc] != 'E') nsum += board[nr][nc] - '0'</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                        if (nsum &gt; dpSum[nr][nc]) {</span>
+<span class="fc" id="L49">                            dpCnt[nr][nc] = dpCnt[r][c]</span>
+<span class="fc" id="L50">                            dpSum[nr][nc] = nsum</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">                        } else if (nsum == dpSum[nr][nc]) {</span>
+<span class="fc" id="L52">                            dpCnt[nr][nc] = (dpCnt[nr][nc] + dpCnt[r][c]) % MOD</span>
+                        }
+                    }
+                }
+            }
+        }
+<span class="fc" id="L58">        return intArrayOf(dpSum[0][0], dpCnt[0][0])</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

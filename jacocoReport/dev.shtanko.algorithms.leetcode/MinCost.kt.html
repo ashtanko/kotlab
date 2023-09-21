@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinCost.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MinCost.kt</span></div><h1>MinCost.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.PriorityQueue
+
+/**
+ * 1928. Minimum Cost to Reach Destination in Time
+ * @see &lt;a href=&quot;https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MinCost {
+    operator fun invoke(maxTime: Int, edges: Array&lt;IntArray&gt;, passingFees: IntArray): Int
+}
+
+<span class="fc" id="L29">class MinCostQueue : MinCost {</span>
+    override operator fun invoke(maxTime: Int, edges: Array&lt;IntArray&gt;, passingFees: IntArray): Int {
+<span class="fc" id="L31">        val map: MutableMap&lt;Int, MutableList&lt;IntArray&gt;&gt; = HashMap()</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        for (e in edges) {</span>
+<span class="fc" id="L33">            val from = e[0]</span>
+<span class="fc" id="L34">            val to = e[1]</span>
+<span class="fc" id="L35">            val time = e[2]</span>
+<span class="fc" id="L36">            map.putIfAbsent(from, ArrayList())</span>
+<span class="fc" id="L37">            map.putIfAbsent(to, ArrayList())</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">            map[from]?.add(intArrayOf(to, time))</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">            map[to]?.add(intArrayOf(from, time))</span>
+        }
+<span class="fc" id="L41">        val pq: PriorityQueue&lt;IntArray&gt; = PriorityQueue&lt;IntArray&gt; { a, b -&gt;</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">            if (a[1] == b[1]) a[2] - b[2] else a[1] - b[1]</span>
+        }
+<span class="fc" id="L44">        pq.add(intArrayOf(0, passingFees[0], 0)) // node cost time</span>
+<span class="fc" id="L45">        val n = passingFees.size</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        val dist = IntArray(n) { Int.MAX_VALUE }</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        val times = IntArray(n) { Int.MAX_VALUE }</span>
+<span class="fc" id="L48">        dist[0] = 0</span>
+<span class="fc" id="L49">        times[0] = 0</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        while (!pq.isEmpty()) {</span>
+<span class="fc" id="L51">            val curr: IntArray = pq.poll()</span>
+<span class="fc" id="L52">            val node = curr[0]</span>
+<span class="fc" id="L53">            val cost = curr[1]</span>
+<span class="fc" id="L54">            val time = curr[2]</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            if (time &gt; maxTime) {</span>
+<span class="fc" id="L56">                continue</span>
+            }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            if (node == n - 1) return cost</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            for (nei in map.getOrDefault(node, emptyList())) {</span>
+<span class="fc" id="L60">                val neiNode = nei[0]</span>
+<span class="fc" id="L61">                val neiCost = passingFees[neiNode]</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">                if (cost + neiCost &lt; dist[neiNode]) {</span>
+<span class="fc" id="L63">                    dist[neiNode] = cost + neiCost</span>
+<span class="fc" id="L64">                    pq.add(intArrayOf(neiNode, cost + neiCost, time + nei[1]))</span>
+<span class="fc" id="L65">                    times[neiNode] = time + nei[1]</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">                } else if (time + nei[1] &lt; times[neiNode]) {</span>
+<span class="fc" id="L67">                    pq.add(intArrayOf(neiNode, cost + neiCost, time + nei[1]))</span>
+<span class="fc" id="L68">                    times[neiNode] = time + nei[1]</span>
+                }
+            }
+        }
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">        return if (dist[n - 1] == Int.MAX_VALUE || times[n - 1] &gt; maxTime) -1 else dist[n - 1]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EvenOddTree.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">EvenOddTree.kt</span></div><h1>EvenOddTree.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+fun interface EvenOddTreeStrategy {
+    operator fun invoke(tree: TreeNode?): Boolean
+}
+
+<span class="fc" id="L26">class EvenOddTreeBSF : EvenOddTreeStrategy {</span>
+    override operator fun invoke(tree: TreeNode?): Boolean {
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        var root: TreeNode? = tree ?: return true</span>
+<span class="fc" id="L29">        val q: Queue&lt;TreeNode&gt; = LinkedList()</span>
+<span class="fc" id="L30">        q.add(root)</span>
+<span class="fc" id="L31">        var even = true</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        while (q.size &gt; 0) {</span>
+<span class="fc" id="L33">            var size: Int = q.size</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            var prevVal = if (even) Int.MIN_VALUE else Int.MAX_VALUE // init preVal based on level even or odd</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            while (size-- &gt; 0) { // level by level</span>
+<span class="fc" id="L36">                root = q.poll()</span>
+<span class="pc bpc" id="L37" title="1 of 6 branches missed.">                if (even &amp;&amp; (root.value % 2 == 0 || root.value &lt;= prevVal)) return false // invalid case on even level</span>
+<span class="pc bpc" id="L38" title="2 of 6 branches missed.">                if (!even &amp;&amp; (root.value % 2 == 1 || root.value &gt;= prevVal)) return false // invalid case on odd level</span>
+<span class="fc" id="L39">                prevVal = root.value // update the prev value</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">                if (root.left != null) q.add(root.left) // add left child if exist</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                if (root.right != null) q.add(root.right) // add right child if exist</span>
+            }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            even = !even // alter the levels</span>
+        }
+
+<span class="fc" id="L46">        return true</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EditDistance.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">EditDistance.kt</span></div><h1>EditDistance.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.min
+
+fun interface EditDistance {
+    operator fun invoke(word1: String, word2: String): Int
+}
+
+<span class="fc" id="L25">class EditDistanceDP : EditDistance {</span>
+    override operator fun invoke(word1: String, word2: String): Int {
+<span class="fc" id="L27">        val n: Int = word1.length</span>
+<span class="fc" id="L28">        val m: Int = word2.length</span>
+
+        // if one of the strings is empty
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (n * m == 0) return n + m</span>
+
+        // array to store the convertion history
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        val d = Array(n + 1) { IntArray(m + 1) }</span>
+
+        // init boundaries
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (i in 0 until n + 1) {</span>
+<span class="fc" id="L38">            d[i][0] = i</span>
+        }
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (j in 0 until m + 1) {</span>
+<span class="fc" id="L41">            d[0][j] = j</span>
+        }
+
+        // DP compute
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (i in 1 until n + 1) {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for (j in 1 until m + 1) {</span>
+<span class="fc" id="L47">                val left = d[i - 1][j] + 1</span>
+<span class="fc" id="L48">                val down = d[i][j - 1] + 1</span>
+<span class="fc" id="L49">                var leftDown = d[i - 1][j - 1]</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">                if (word1[i - 1] != word2[j - 1]) leftDown += 1</span>
+<span class="fc" id="L51">                d[i][j] = min(left, min(down, leftDown))</span>
+            }
+        }
+<span class="fc" id="L54">        return d[n][m]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdjacencyListGraph.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.datastructures.graphs</a> &gt; <span class="el_source">AdjacencyListGraph.kt</span></div><h1>AdjacencyListGraph.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.datastructures.graphs
+
+/**
+ * Represents a graph using an adjacency list data structure.
+ *
+ * @param &lt;E&gt; the type of data held in the graph's vertices, must be comparable.
+ */
+<span class="fc" id="L24">class AdjacencyListGraph&lt;E : Comparable&lt;E&gt;&gt;(vertices: List&lt;Vertex&lt;E&gt;&gt; = ArrayList()) {</span>
+
+<span class="fc" id="L26">    private val mVertices: MutableList&lt;Vertex&lt;E&gt;&gt; = vertices.toMutableList()</span>
+
+    /**
+     * Removes an edge between two vertices in the graph.
+     *
+     * @param from the data of the source vertex.
+     * @param to   the data of the target vertex.
+     * @return true if the edge was removed, false otherwise.
+     */
+    fun removeEdge(from: E, to: E): Boolean {
+<span class="fc" id="L36">        var fromV: Vertex&lt;E&gt;? = null</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (v in mVertices) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            if (from.compareTo(v.data) == 0) {</span>
+<span class="fc" id="L39">                fromV = v</span>
+<span class="fc" id="L40">                break</span>
+            }
+        }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        return fromV?.removeAdjacentVertex(to) ?: false</span>
+    }
+
+    /**
+     * Adds an edge between two vertices in the graph.
+     *
+     * @param from the data of the source vertex.
+     * @param to   the data of the target vertex.
+     * @return true if the edge was added, false otherwise.
+     */
+    fun addEdge(from: E, to: E): Boolean {
+<span class="fc" id="L54">        var fromV: Vertex&lt;E&gt;? = null</span>
+<span class="fc" id="L55">        var toV: Vertex&lt;E&gt;? = null</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (v in mVertices) {</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            if (from.compareTo(v.data) == 0) { // see if from vertex already exists</span>
+<span class="fc" id="L58">                fromV = v</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            } else if (to.compareTo(v.data) == 0) { // see if to vertex already exists</span>
+<span class="fc" id="L60">                toV = v</span>
+            }
+<span class="fc bfc" id="L62" title="All 4 branches covered.">            if (fromV != null &amp;&amp; toV != null) {</span>
+<span class="fc" id="L63">                break // both nodes exist so stop searching</span>
+            }
+        }
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (fromV == null) {</span>
+<span class="fc" id="L67">            fromV = Vertex(from)</span>
+<span class="fc" id="L68">            mVertices.add(fromV)</span>
+        }
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (toV == null) {</span>
+<span class="fc" id="L71">            toV = Vertex(to)</span>
+<span class="fc" id="L72">            mVertices.add(toV)</span>
+        }
+<span class="fc" id="L74">        return fromV.addAdjacentVertex(toV)</span>
+    }
+
+    /**
+     * Returns a string representation of the graph.
+     *
+     * @return a string representing the graph's vertices and their adjacent vertices.
+     */
+    override fun toString(): String {
+<span class="fc" id="L83">        val sb = StringBuilder()</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for ((data, adjacentVertices) in mVertices) {</span>
+<span class="fc" id="L85">            sb.append(&quot;Vertex: &quot;)</span>
+<span class="fc" id="L86">            sb.append(data)</span>
+<span class="fc" id="L87">            sb.append(&quot;\n&quot;)</span>
+<span class="fc" id="L88">            sb.append(&quot;Adjacent vertices: &quot;)</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">            for ((data1) in adjacentVertices) {</span>
+<span class="fc" id="L90">                sb.append(data1)</span>
+<span class="fc" id="L91">                sb.append(&quot; &quot;)</span>
+            }
+<span class="fc" id="L93">            sb.append(&quot;\n&quot;)</span>
+        }
+<span class="fc" id="L95">        return sb.toString()</span>
+    }
+
+    /**
+     * Represents a vertex in the graph.
+     *
+     * @param &lt;E&gt; the type of data held in the vertex, must be comparable.
+     */
+<span class="fc" id="L103">    data class Vertex&lt;E : Comparable&lt;E&gt;&gt;(</span>
+<span class="pc" id="L104">        var data: E,</span>
+<span class="pc" id="L105">        var adjacentVertices: MutableList&lt;Vertex&lt;E&gt;&gt; = ArrayList(),</span>
+    ) {
+
+        /**
+         * Adds an adjacent vertex to this vertex.
+         *
+         * @param to the vertex to be added as an adjacent vertex.
+         * @return true if the vertex was added, false if the edge already exists.
+         */
+        fun addAdjacentVertex(to: Vertex&lt;E&gt;): Boolean {
+<span class="fc bfc" id="L115" title="All 2 branches covered.">            for (v in adjacentVertices) {</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">                if (v.data.compareTo(to.data) == 0) {</span>
+<span class="fc" id="L117">                    return false // the edge already exists</span>
+                }
+            }
+<span class="fc" id="L120">            return adjacentVertices.add(to) // this will return true;</span>
+        }
+
+        /**
+         * Removes an adjacent vertex from this vertex.
+         *
+         * @param to the data of the vertex to be removed.
+         * @return true if the vertex was removed, false if it was not found.
+         */
+        fun removeAdjacentVertex(to: E): Boolean {
+            // use indexes here, so it is possible to
+            // remove easily without implementing
+            // equals method that ArrayList.remove(Object o) uses
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            for (i in 0 until adjacentVertices.size) {</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                if (adjacentVertices[i].data.compareTo(to) == 0) {</span>
+<span class="fc" id="L135">                    adjacentVertices.removeAt(i)</span>
+<span class="fc" id="L136">                    return true</span>
+                }
+            }
+<span class="fc" id="L139">            return false</span>
+        }
+<span class="fc" id="L141">    }</span>
+<span class="fc" id="L142">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

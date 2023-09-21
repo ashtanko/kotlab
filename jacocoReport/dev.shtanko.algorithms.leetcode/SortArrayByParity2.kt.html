@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SortArrayByParity2.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">SortArrayByParity2.kt</span></div><h1>SortArrayByParity2.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import dev.shtanko.algorithms.extensions.swap
+
+/**
+ * Given an array A of non-negative integers, half of the integers in A are odd, and half of the integers are even.
+ * Sort the array so that whenever A[i] is odd, i is odd; and whenever A[i] is even, i is even.
+ */
+fun interface AbstractSortByParityStrategy {
+    operator fun invoke(array: IntArray): IntArray
+}
+
+<span class="fc" id="L29">class SortByParityTwoPass : AbstractSortByParityStrategy {</span>
+    override operator fun invoke(array: IntArray): IntArray {
+<span class="fc" id="L31">        val n = array.size</span>
+<span class="fc" id="L32">        val ans = IntArray(n)</span>
+<span class="fc" id="L33">        var t = 0</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (x in array) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            if (x % 2 == 0) {</span>
+<span class="fc" id="L36">                ans[t] = x</span>
+<span class="fc" id="L37">                t += 2</span>
+            }
+        }
+<span class="fc" id="L40">        t = 1</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (x in array) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            if (x % 2 == 1) {</span>
+<span class="fc" id="L43">                ans[t] = x</span>
+<span class="fc" id="L44">                t += 2</span>
+            }
+        }
+<span class="fc" id="L47">        return ans</span>
+    }
+}
+
+<span class="fc" id="L51">class SortByParityHeads : AbstractSortByParityStrategy {</span>
+    override operator fun invoke(array: IntArray): IntArray {
+<span class="fc" id="L53">        var j = 1</span>
+<span class="fc" id="L54">        var i = 0</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        while (i &lt; array.size) {</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            if (array[i] % 2 == 1) {</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">                while (array[j] % 2 == 1) {</span>
+<span class="fc" id="L58">                    j += 2</span>
+                }
+<span class="fc" id="L60">                array.swap(i, j)</span>
+            }
+<span class="fc" id="L62">            i += 2</span>
+        }
+<span class="fc" id="L64">        return array</span>
+    }
+}
+
+<span class="fc" id="L68">class SortByParityStraightForward : AbstractSortByParityStrategy {</span>
+    override operator fun invoke(array: IntArray): IntArray {
+<span class="fc" id="L70">        val n = array.size</span>
+<span class="fc" id="L71">        var e = 0</span>
+<span class="fc" id="L72">        var o = 1</span>
+<span class="fc bfc" id="L73" title="All 4 branches covered.">        while (e &lt; n &amp;&amp; o &lt; n) {</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            if (array[e] % 2 != 0) {</span>
+<span class="fc" id="L75">                array.swap(e, o)</span>
+<span class="fc" id="L76">                o += 2</span>
+            } else {
+<span class="fc" id="L78">                e += 2</span>
+            }
+        }
+<span class="fc" id="L81">        return array</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Atoi.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">Atoi.kt</span></div><h1>Atoi.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun String.atoi(): Int {
+<span class="fc bfc" id="L20" title="All 4 branches covered.">    if (this.isEmpty()) return 0 // or throw NumberFormatException()</span>
+<span class="fc" id="L21">    val str = this.trim()</span>
+<span class="fc bfc" id="L22" title="All 4 branches covered.">    if (str.isEmpty()) return 0 // or throw NumberFormatException()</span>
+<span class="fc" id="L23">    var start = 0</span>
+<span class="fc" id="L24">    var sign = 1</span>
+<span class="fc" id="L25">    var base = 0</span>
+<span class="pc bpc" id="L26" title="1 of 4 branches missed.">    if (str[start] == '-' || str[start] == '+') {</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        sign = if (str[start] == '-') -1 else 1</span>
+<span class="fc" id="L28">        start++</span>
+    }
+
+<span class="pc bpc" id="L31" title="1 of 8 branches missed.">    while (start &lt; str.length &amp;&amp; str[start] in '0'..'9') {</span>
+<span class="fc bfc" id="L32" title="All 4 branches covered.">        val a = base == Int.MAX_VALUE / DECIMAL &amp;&amp; str[start] - '0' &gt; Int.MAX_VALUE % DECIMAL</span>
+<span class="pc bpc" id="L33" title="1 of 4 branches missed.">        if (base &gt; Int.MAX_VALUE / DECIMAL || a) {</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            return if (sign &gt; 0) {</span>
+<span class="nc" id="L35">                Int.MAX_VALUE</span>
+            } else {
+<span class="fc" id="L37">                Int.MIN_VALUE</span>
+            }
+        }
+<span class="fc" id="L40">        base = base * DECIMAL + (str[start++] - '0')</span>
+    }
+
+<span class="fc" id="L43">    return base * sign</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

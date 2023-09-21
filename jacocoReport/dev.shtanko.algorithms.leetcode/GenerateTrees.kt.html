@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GenerateTrees.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">GenerateTrees.kt</span></div><h1>GenerateTrees.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Unique Binary Search Trees 2
+ */
+fun generateTrees(n: Int): MutableList&lt;TreeNode?&gt; {
+<span class="fc" id="L23">    var res: MutableList&lt;TreeNode?&gt; = ArrayList()</span>
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">    if (n &lt;= 0) return res</span>
+<span class="fc" id="L25">    res.add(null)</span>
+    // insert i into tree that stores values from n to i+1
+<span class="fc bfc" id="L27" title="All 2 branches covered.">    for (i in n downTo 1) {</span>
+        // `next` stores all possible trees that store values from n to i
+<span class="fc" id="L29">        val next: MutableList&lt;TreeNode?&gt; = ArrayList()</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (node in res) {</span>
+            /* Case 1: put n on the root,
+             * and the original @node tree is its right tree
+             * since i is the smallest value in the @node tree (from n to i+1)
+             */
+<span class="fc" id="L35">            val root = TreeNode(i)</span>
+<span class="fc" id="L36">            root.right = node</span>
+<span class="fc" id="L37">            next.add(root)</span>
+
+            /* Other Cases: put n on root.left, root.left.left, root.left....left,
+             * the root of the new tree is still @node,
+             * i put on insertParent.left,
+             * and the original left tree of the insertParent is set as the right subtree of the new node since i is
+             * small than values in the subtree.
+             */
+<span class="fc" id="L45">            var insertParent = node</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            while (insertParent != null) {</span>
+                // Step 1: generate a new tree from the @node tree
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">                val cRoot = TreeNode(node?.value!!)</span>
+                // clone left subtree since we need to change it by inserting i
+<span class="fc" id="L50">                cRoot.left = node.left.clone()</span>
+                // reusing the right tree since it is fixed
+<span class="fc" id="L52">                cRoot.right = node.right</span>
+
+                // Step 2: insert i into the new tree
+<span class="fc" id="L55">                val insertParentInNewTree = getValNode(cRoot, insertParent.value)</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">                val tmp = insertParentInNewTree?.left</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">                insertParentInNewTree?.left = TreeNode(i)</span>
+<span class="pc bpc" id="L58" title="2 of 4 branches missed.">                insertParentInNewTree?.left?.right = tmp</span>
+<span class="fc" id="L59">                next.add(cRoot)</span>
+<span class="fc" id="L60">                insertParent = insertParent.left</span>
+            }
+        }
+<span class="fc" id="L63">        res = next</span>
+    }
+<span class="fc" id="L65">    return res</span>
+}
+
+private fun getValNode(n: TreeNode, value: Int): TreeNode? { // find the cutoff node in the new tree
+<span class="fc" id="L69">    var node: TreeNode? = n</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">    while (node != null) {</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (node.value == value) break</span>
+<span class="fc" id="L72">        node = node.left</span>
+    }
+<span class="fc" id="L74">    return node</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindEventualSafeStates.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FindEventualSafeStates.kt</span></div><h1>FindEventualSafeStates.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+/**
+ * 802. Find Eventual Safe States
+ * @see &lt;a href=&quot;https://leetcode.com/problems/find-eventual-safe-states/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface FindEventualSafeStates {
+    fun eventualSafeNodes(graph: Array&lt;IntArray&gt;): List&lt;Int&gt;
+}
+
+/**
+ * Approach 1: Topological Sort Using Kahn's Algorithm
+ */
+<span class="fc" id="L33">class FindEventualSafeStatesKahn : FindEventualSafeStates {</span>
+    override fun eventualSafeNodes(graph: Array&lt;IntArray&gt;): List&lt;Int&gt; {
+<span class="fc" id="L35">        val n = graph.size</span>
+<span class="fc" id="L36">        val indegree = IntArray(n)</span>
+<span class="fc" id="L37">        val adj: MutableList&lt;MutableList&lt;Int&gt;&gt; = ArrayList()</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L39">            adj.add(ArrayList())</span>
+        }
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            for (node in graph[i]) {</span>
+<span class="fc" id="L43">                adj[node].add(i)</span>
+<span class="fc" id="L44">                indegree[i]++</span>
+            }
+        }
+<span class="fc" id="L47">        val q: Queue&lt;Int&gt; = LinkedList()</span>
+        // Push all the nodes with indegree zero in the queue.
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (indegree[i] == 0) {</span>
+<span class="fc" id="L51">                q.add(i)</span>
+            }
+        }
+<span class="fc" id="L54">        val safe = BooleanArray(n)</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        while (!q.isEmpty()) {</span>
+<span class="fc" id="L56">            val node: Int = q.poll()</span>
+<span class="fc" id="L57">            safe[node] = true</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            for (neighbor in adj[node]) {</span>
+                // Delete the edge &quot;node -&gt; neighbor&quot;.
+<span class="fc" id="L60">                indegree[neighbor]--</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">                if (indegree[neighbor] == 0) {</span>
+<span class="fc" id="L62">                    q.add(neighbor)</span>
+                }
+            }
+        }
+<span class="fc" id="L66">        val safeNodes: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            if (safe[i]) {</span>
+<span class="fc" id="L69">                safeNodes.add(i)</span>
+            }
+        }
+<span class="fc" id="L72">        return safeNodes</span>
+    }
+}
+
+/**
+ * Approach 2: Depth First Search
+ */
+<span class="fc" id="L79">class FindEventualSafeStatesDFS : FindEventualSafeStates {</span>
+    override fun eventualSafeNodes(graph: Array&lt;IntArray&gt;): List&lt;Int&gt; {
+<span class="fc" id="L81">        val n = graph.size</span>
+<span class="fc" id="L82">        val adj: MutableList&lt;MutableList&lt;Int&gt;&gt; = ArrayList()</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L84">            adj.add(ArrayList())</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            for (node in graph[i]) {</span>
+<span class="fc" id="L86">                adj[i].add(node)</span>
+            }
+        }
+<span class="fc" id="L89">        val visit = BooleanArray(n)</span>
+<span class="fc" id="L90">        val inStack = BooleanArray(n)</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L92">            safeStatesDFS(i, adj, visit, inStack)</span>
+        }
+<span class="fc" id="L94">        val safeNodes: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">            if (!inStack[i]) {</span>
+<span class="fc" id="L97">                safeNodes.add(i)</span>
+            }
+        }
+<span class="fc" id="L100">        return safeNodes</span>
+    }
+}
+
+fun safeStatesDFS(node: Int, adj: List&lt;MutableList&lt;Int&gt;&gt;, visit: BooleanArray, inStack: BooleanArray): Boolean {
+    // If the node is already in the stack, we have a cycle.
+<span class="fc bfc" id="L106" title="All 2 branches covered.">    if (inStack[node]) {</span>
+<span class="fc" id="L107">        return true</span>
+    }
+<span class="fc bfc" id="L109" title="All 2 branches covered.">    if (visit[node]) {</span>
+<span class="fc" id="L110">        return false</span>
+    }
+    // Mark the current node as visited and part of current recursion stack.
+<span class="fc" id="L113">    visit[node] = true</span>
+<span class="fc" id="L114">    inStack[node] = true</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">    for (neighbor in adj[node]) {</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        if (safeStatesDFS(neighbor, adj, visit, inStack)) {</span>
+<span class="fc" id="L117">            return true</span>
+        }
+    }
+    // Remove the node from the stack.
+<span class="fc" id="L121">    inStack[node] = false</span>
+<span class="fc" id="L122">    return false</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

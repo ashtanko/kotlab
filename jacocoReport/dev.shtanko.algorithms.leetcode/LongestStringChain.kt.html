@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LongestStringChain.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">LongestStringChain.kt</span></div><h1>LongestStringChain.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+/**
+ * 1048. Longest String Chain
+ * @see &lt;a href=&quot;https://leetcode.com/problems/longest-string-chain/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface LongestStringChain {
+    operator fun invoke(words: Array&lt;String&gt;): Int
+}
+
+/**
+ * Approach 1: Top-Down Dynamic Programming (Recursion + Memoization)
+ * Time complexity: O(L2⋅N)
+ * Space complexity: O(N).
+ */
+<span class="fc" id="L34">class LSCTopDown : LongestStringChain {</span>
+    override operator fun invoke(words: Array&lt;String&gt;): Int {
+<span class="fc" id="L36">        val memo: MutableMap&lt;String, Int&gt; = HashMap()</span>
+<span class="fc" id="L37">        val wordsPresent: MutableSet&lt;String&gt; = HashSet()</span>
+<span class="fc" id="L38">        wordsPresent.addAll(words)</span>
+<span class="fc" id="L39">        var ans = 0</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (word in words) {</span>
+<span class="fc" id="L41">            ans = max(ans, dfs(wordsPresent, memo, word))</span>
+        }
+<span class="fc" id="L43">        return ans</span>
+    }
+
+    private fun dfs(words: Set&lt;String&gt;, memo: MutableMap&lt;String, Int&gt;, currentWord: String): Int {
+        // If the word is encountered previously we just return its value present in the map (memoization).
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (memo.containsKey(currentWord)) {</span>
+<span class="fc" id="L49">            return memo[currentWord]!!</span>
+        }
+        // This stores the maximum length of word sequence possible with the 'currentWord' as the
+<span class="fc" id="L52">        var maxLength = 1</span>
+<span class="fc" id="L53">        val sb = StringBuilder(currentWord)</span>
+
+        // creating all possible strings taking out one character at a time from the `currentWord`
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (i in currentWord.indices) {</span>
+<span class="fc" id="L57">            sb.deleteCharAt(i)</span>
+<span class="fc" id="L58">            val newWord = sb.toString()</span>
+            // If the new word formed is present in the list, we do a dfs search with this newWord.
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            if (words.contains(newWord)) {</span>
+<span class="fc" id="L61">                val currentLength = 1 + dfs(words, memo, newWord)</span>
+<span class="fc" id="L62">                maxLength = max(maxLength, currentLength)</span>
+            }
+<span class="fc" id="L64">            sb.insert(i, currentWord[i])</span>
+        }
+<span class="fc" id="L66">        memo[currentWord] = maxLength</span>
+<span class="fc" id="L67">        return maxLength</span>
+    }
+}
+
+/**
+ * Approach 2: Bottom-Up Dynamic Programming
+ * Time complexity: O(N⋅(logN+L2)).
+ * Space complexity: O(N).
+ */
+<span class="fc" id="L76">class LSCBottomUp : LongestStringChain {</span>
+    override operator fun invoke(words: Array&lt;String&gt;): Int {
+<span class="fc" id="L78">        val dp: MutableMap&lt;String, Int&gt; = HashMap()</span>
+
+        // Sorting the list in terms of the word length.
+<span class="fc" id="L81">        words.sortWith { a, b -&gt; a.length - b.length }</span>
+
+<span class="fc" id="L83">        var longestWordSequenceLength = 1</span>
+
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        for (word in words) {</span>
+<span class="fc" id="L86">            var presentLength = 1</span>
+            // Find all possible predecessors for the current word by removing one letter at a time.
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            for (i in word.indices) {</span>
+<span class="fc" id="L89">                val temp = StringBuilder(word)</span>
+<span class="fc" id="L90">                temp.deleteCharAt(i)</span>
+<span class="fc" id="L91">                val predecessor = temp.toString()</span>
+<span class="fc" id="L92">                val previousLength = dp.getOrDefault(predecessor, 0)</span>
+<span class="fc" id="L93">                presentLength = max(presentLength, previousLength + 1)</span>
+            }
+<span class="fc" id="L95">            dp[word] = presentLength</span>
+<span class="fc" id="L96">            longestWordSequenceLength = max(longestWordSequenceLength, presentLength)</span>
+        }
+<span class="fc" id="L98">        return longestWordSequenceLength</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CoinChange2.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CoinChange2.kt</span></div><h1>CoinChange2.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 518. Coin Change II
+ * @see &lt;a href=&quot;https://leetcode.com/problems/coin-change-ii/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface CoinChange2 {
+    fun change(amount: Int, coins: IntArray): Int
+}
+
+/**
+ * Approach 1: Top-Down Dynamic Programming
+ */
+<span class="fc" id="L30">class CoinChange2TopDown : CoinChange2 {</span>
+
+    private lateinit var memo: Array&lt;IntArray&gt;
+    private lateinit var coins: IntArray
+
+    override fun change(amount: Int, coins: IntArray): Int {
+<span class="fc" id="L36">        this.coins = coins</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        memo = Array(coins.size) { IntArray(amount + 1) { -1 } }</span>
+<span class="fc" id="L38">        return numberOfWays(0, amount)</span>
+    }
+
+    private fun numberOfWays(i: Int, amount: Int): Int {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (amount == 0) {</span>
+<span class="fc" id="L43">            return 1</span>
+        }
+<span class="pc bpc" id="L45" title="1 of 4 branches missed.">        if (i == coins.size) {</span>
+<span class="fc" id="L46">            return 0</span>
+        }
+<span class="pc bpc" id="L48" title="1 of 4 branches missed.">        if (memo[i][amount] != -1) {</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">            return memo[i][amount]</span>
+        }
+<span class="pc bpc" id="L51" title="1 of 4 branches missed.">        if (coins[i] &gt; amount) {</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">            return numberOfWays(i + 1, amount).also { memo[i][amount] = it }</span>
+        }
+<span class="pc bpc" id="L54" title="2 of 4 branches missed.">        memo[i][amount] = numberOfWays(i, amount - coins[i]) + numberOfWays(i + 1, amount)</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        return memo[i][amount]</span>
+    }
+}
+
+/**
+ * Approach 2: Bottom-Up Dynamic Programming
+ */
+<span class="fc" id="L62">class CoinChange2BottomUp : CoinChange2 {</span>
+    override fun change(amount: Int, coins: IntArray): Int {
+<span class="fc" id="L64">        val n: Int = coins.size</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        val dp = Array(n + 1) { IntArray(amount + 1) }</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L67">            dp[i][0] = 1</span>
+        }
+
+<span class="pc bpc" id="L70" title="1 of 4 branches missed.">        for (i in 1..amount) {</span>
+<span class="fc" id="L71">            dp[0][i] = 0</span>
+        }
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        for (i in n - 1 downTo 0) {</span>
+<span class="pc bpc" id="L75" title="1 of 4 branches missed.">            for (j in 1..amount) {</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">                if (coins[i] &gt; j) {</span>
+<span class="fc" id="L77">                    dp[i][j] = dp[i + 1][j]</span>
+                } else {
+<span class="fc" id="L79">                    dp[i][j] = dp[i + 1][j] + dp[i][j - coins[i]]</span>
+                }
+            }
+        }
+
+<span class="fc" id="L84">        return dp[0][amount]</span>
+    }
+}
+
+/**
+ * Approach 3: Dynamic Programming with Space Optimization
+ */
+<span class="fc" id="L91">class CoinChange2SpaceOpt : CoinChange2 {</span>
+    override fun change(amount: Int, coins: IntArray): Int {
+<span class="fc" id="L93">        val n: Int = coins.size</span>
+<span class="fc" id="L94">        val dp = IntArray(amount + 1)</span>
+<span class="fc" id="L95">        dp[0] = 1</span>
+
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        for (i in n - 1 downTo 0) {</span>
+<span class="pc bpc" id="L98" title="1 of 4 branches missed.">            for (j in coins[i]..amount) {</span>
+<span class="fc" id="L99">                dp[j] += dp[j - coins[i]]</span>
+            }
+        }
+
+<span class="fc" id="L103">        return dp[amount]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

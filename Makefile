@@ -5,8 +5,11 @@ check:
 md:
 	truncate -s0 README.md && cat config/main.md >> README.md && cat build/reports/detekt/detekt.md >> README.md
 
+jacoco:
+	cp -r build/reports/jacoco/test/html jacocoReport
+
 default:
-	make check && make md
+	make check && make md && make jacoco
 
 run:
 	./gradlew build
@@ -16,8 +19,5 @@ test:
 
 lines:
 	find . -name '*.kt' | xargs wc -l
-
-jacoco:
-	cp -r build/reports/jacoco/test/html jacocoReport
 
 .DEFAULT_GOAL := default

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LevelOrder.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">LevelOrder.kt</span></div><h1>LevelOrder.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+/**
+ * Binary Tree Level Order Traversal
+ */
+fun TreeNode?.levelOrder(): List&lt;List&lt;Int&gt;&gt; {
+<span class="fc" id="L26">    val queue: Queue&lt;TreeNode&gt; = LinkedList()</span>
+<span class="fc" id="L27">    val wrapList: MutableList&lt;MutableList&lt;Int&gt;&gt; = ArrayList()</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">    if (this == null) return wrapList</span>
+<span class="fc" id="L29">    queue.offer(this)</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    while (!queue.isEmpty()) {</span>
+<span class="fc" id="L31">        val levelNum = queue.size</span>
+<span class="fc" id="L32">        val subList: MutableList&lt;Int&gt; = LinkedList()</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (i in 0 until levelNum) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            if (queue.peek().left != null) {</span>
+<span class="fc" id="L35">                queue.offer(queue.peek().left)</span>
+            }
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            if (queue.peek().right != null) {</span>
+<span class="fc" id="L38">                queue.offer(queue.peek().right)</span>
+            }
+<span class="fc" id="L40">            subList.add(queue.poll().value)</span>
+        }
+<span class="fc" id="L42">        wrapList.add(subList)</span>
+    }
+<span class="fc" id="L44">    return wrapList</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

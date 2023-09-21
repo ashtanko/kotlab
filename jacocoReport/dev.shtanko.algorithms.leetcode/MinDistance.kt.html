@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinDistance.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MinDistance.kt</span></div><h1>MinDistance.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+import kotlin.math.min
+
+/**
+ * 583. Delete Operation for Two Strings
+ * @see &lt;a href=&quot;https://leetcode.com/problems/delete-operation-for-two-strings/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MinDistance {
+    operator fun invoke(word1: String, word2: String): Int
+}
+
+/**
+ * Approach #1 Using Longest Common Subsequence
+ * Time complexity : O(2^{max(m,n)}).
+ * Space complexity : O(max (m,n))).
+ */
+<span class="fc" id="L35">class MinDistanceLCS : MinDistance {</span>
+    override operator fun invoke(word1: String, word2: String): Int {
+<span class="fc" id="L37">        return word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length)</span>
+    }
+
+    private fun lcs(s1: String, s2: String, m: Int, n: Int): Int {
+<span class="fc bfc" id="L41" title="All 4 branches covered.">        if (m == 0 || n == 0) return 0</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        return if (s1[m - 1] == s2[n - 1]) {</span>
+<span class="fc" id="L43">            1 + lcs(s1, s2, m - 1, n - 1)</span>
+        } else {
+<span class="fc" id="L45">            max(lcs(s1, s2, m, n - 1), lcs(s1, s2, m - 1, n))</span>
+        }
+    }
+}
+
+/**
+ * Approach #2 Longest Common Subsequence with Memoization
+ * Time complexity : O(m*n).
+ * Space complexity : O(m*n).
+ */
+<span class="fc" id="L55">class MinDistanceLCSMemo : MinDistance {</span>
+    override operator fun invoke(word1: String, word2: String): Int {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        val memo = Array(word1.length + 1) {</span>
+<span class="fc" id="L58">            IntArray(word2.length + 1)</span>
+        }
+<span class="fc" id="L60">        return word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length, memo)</span>
+    }
+
+    private fun lcs(s1: String, s2: String, m: Int, n: Int, memo: Array&lt;IntArray&gt;): Int {
+<span class="fc bfc" id="L64" title="All 4 branches covered.">        if (m == 0 || n == 0) {</span>
+<span class="fc" id="L65">            return 0</span>
+        }
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if (memo[m][n] &gt; 0) {</span>
+<span class="fc" id="L68">            return memo[m][n]</span>
+        }
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (s1[m - 1] == s2[n - 1]) {</span>
+<span class="fc" id="L71">            memo[m][n] = 1 + lcs(s1, s2, m - 1, n - 1, memo)</span>
+        } else {
+<span class="fc" id="L73">            memo[m][n] = max(lcs(s1, s2, m, n - 1, memo), lcs(s1, s2, m - 1, n, memo))</span>
+        }
+<span class="fc" id="L75">        return memo[m][n]</span>
+    }
+}
+
+/**
+ * Approach #3 Using The Longest Common Subsequence- Dynamic Programming
+ * Time complexity : O(m*n).
+ * Space complexity : O(m*n).
+ */
+<span class="fc" id="L84">class MinDistanceLCSDP : MinDistance {</span>
+    override operator fun invoke(word1: String, word2: String): Int {
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        val dp = Array(word1.length + 1) { IntArray(word2.length + 1) }</span>
+<span class="pc bpc" id="L87" title="1 of 4 branches missed.">        for (i in 0..word1.length) {</span>
+<span class="pc bpc" id="L88" title="1 of 4 branches missed.">            for (j in 0..word2.length) {</span>
+<span class="fc bfc" id="L89" title="All 4 branches covered.">                if (i == 0 || j == 0) {</span>
+<span class="fc" id="L90">                    continue</span>
+                }
+<span class="fc bfc" id="L92" title="All 2 branches covered.">                if (word1[i - 1] == word2[j - 1]) {</span>
+<span class="fc" id="L93">                    dp[i][j] = 1 + dp[i - 1][j - 1]</span>
+                } else {
+<span class="fc" id="L95">                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])</span>
+                }
+            }
+        }
+<span class="fc" id="L99">        return word1.length + word2.length - 2 * dp[word1.length][word2.length]</span>
+    }
+}
+
+/**
+ * Approach #4 Without using LCS Dynamic Programming
+ * Time complexity : O(m*n).
+ * Space complexity : O(m*n).
+ */
+<span class="fc" id="L108">class MinDistanceDP : MinDistance {</span>
+    override operator fun invoke(word1: String, word2: String): Int {
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        val dp = Array(word1.length + 1) {</span>
+            IntArray(
+<span class="fc" id="L112">                word2.length + 1,</span>
+            )
+        }
+<span class="pc bpc" id="L115" title="1 of 4 branches missed.">        for (i in 0..word1.length) {</span>
+<span class="pc bpc" id="L116" title="1 of 4 branches missed.">            for (j in 0..word2.length) {</span>
+<span class="fc bfc" id="L117" title="All 4 branches covered.">                if (i == 0 || j == 0) {</span>
+<span class="fc" id="L118">                    dp[i][j] = i + j</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">                } else if (word1[i - 1] == word2[j - 1]) {</span>
+<span class="fc" id="L120">                    dp[i][j] =</span>
+<span class="fc" id="L121">                        dp[i - 1][j - 1]</span>
+                } else {
+<span class="fc" id="L123">                    dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1])</span>
+                }
+            }
+        }
+<span class="fc" id="L127">        return dp[word1.length][word2.length]</span>
+    }
+}
+
+/**
+ * Approach #5 1-D Dynamic Programming
+ * Time complexity : O(m*n).
+ * Space complexity : O(n).
+ */
+<span class="fc" id="L136">class MinDistance1DDP : MinDistance {</span>
+    override operator fun invoke(word1: String, word2: String): Int {
+<span class="fc" id="L138">        var dp = IntArray(word2.length + 1)</span>
+<span class="pc bpc" id="L139" title="1 of 4 branches missed.">        for (i in 0..word1.length) {</span>
+<span class="fc" id="L140">            val temp = IntArray(word2.length + 1)</span>
+<span class="pc bpc" id="L141" title="1 of 4 branches missed.">            for (j in 0..word2.length) {</span>
+<span class="fc bfc" id="L142" title="All 4 branches covered.">                if (i == 0 || j == 0) {</span>
+<span class="fc" id="L143">                    temp[j] = i + j</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">                } else if (word1[i - 1] == word2[j - 1]) {</span>
+<span class="fc" id="L145">                    temp[j] = dp[j - 1]</span>
+                } else {
+<span class="fc" id="L147">                    temp[j] = 1 + min(dp[j], temp[j - 1])</span>
+                }
+            }
+<span class="fc" id="L150">            dp = temp</span>
+        }
+<span class="fc" id="L152">        return dp[word2.length]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

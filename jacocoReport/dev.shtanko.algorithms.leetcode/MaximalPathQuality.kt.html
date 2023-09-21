@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaximalPathQuality.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MaximalPathQuality.kt</span></div><h1>MaximalPathQuality.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import kotlin.math.max
+
+/**
+ * 2065. Maximum Path Quality of a Graph
+ * @see &lt;a href=&quot;https://leetcode.com/problems/maximum-path-quality-of-a-graph/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MaximalPathQuality {
+    operator fun invoke(values: IntArray, edges: Array&lt;IntArray&gt;, maxTime: Int): Int
+}
+
+<span class="fc" id="L30">class MaximalPathQualityDFS : MaximalPathQuality {</span>
+    override operator fun invoke(values: IntArray, edges: Array&lt;IntArray&gt;, maxTime: Int): Int {
+<span class="fc bfc" id="L32" title="All 4 branches covered.">        if (values.isEmpty()) return 0</span>
+<span class="pc bpc" id="L33" title="2 of 4 branches missed.">        if (edges.isEmpty()) return 0</span>
+<span class="pc bpc" id="L34" title="2 of 4 branches missed.">        if (edges.first().isEmpty()) return 0</span>
+<span class="fc" id="L35">        val n: Int = values.size</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        val adj: Array&lt;MutableList&lt;IntArray&gt;&gt; = Array(n) { mutableListOf() }</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L38">            adj[i] = LinkedList()</span>
+        }
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (e in edges) {</span>
+<span class="fc" id="L41">            val i = e[0]</span>
+<span class="fc" id="L42">            val j = e[1]</span>
+<span class="fc" id="L43">            val t = e[2]</span>
+<span class="fc" id="L44">            adj[i].add(intArrayOf(j, t))</span>
+<span class="fc" id="L45">            adj[j].add(intArrayOf(i, t))</span>
+        }
+<span class="fc" id="L47">        val res = IntArray(1)</span>
+<span class="fc" id="L48">        val seen = IntArray(n)</span>
+<span class="fc" id="L49">        seen[0]++</span>
+<span class="fc" id="L50">        dfs(adj, 0, values, maxTime, seen, res, values[0])</span>
+<span class="fc" id="L51">        return res[0]</span>
+    }
+
+    private fun dfs(
+        adj: Array&lt;MutableList&lt;IntArray&gt;&gt;,
+        src: Int,
+        values: IntArray,
+        maxTime: Int,
+        seen: IntArray,
+        res: IntArray,
+        sum: Int,
+    ) {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (0 == src) {</span>
+<span class="fc" id="L64">            res[0] = max(res[0], sum)</span>
+        }
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (0 &gt; maxTime) return</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        for (data in adj[src]) {</span>
+<span class="fc" id="L68">            val dst = data[0]</span>
+<span class="fc" id="L69">            val t = data[1]</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (0 &gt; maxTime - t) continue</span>
+<span class="fc" id="L71">            seen[dst]++</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            dfs(adj, dst, values, maxTime - t, seen, res, sum + if (1 == seen[dst]) values[dst] else 0)</span>
+<span class="fc" id="L73">            seen[dst]--</span>
+        }
+<span class="fc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
