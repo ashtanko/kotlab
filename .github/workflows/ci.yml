@@ -76,3 +76,6 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           # files: ./build/reports/jacoco/report.xml
           verbose: true
+
+      - name: Deploy GitHub Pages site
+        uses: actions/deploy-pages@v1.2.9
