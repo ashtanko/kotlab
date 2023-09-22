@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SuperUglyNumber.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">SuperUglyNumber.kt</span></div><h1>SuperUglyNumber.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.PriorityQueue
+import kotlin.math.min
+
+fun interface SuperUglyNumberStrategy {
+    operator fun invoke(n: Int, primes: IntArray): Int
+}
+
+<span class="fc" id="L26">class SuperUglyNumberCommon : SuperUglyNumberStrategy {</span>
+    override operator fun invoke(n: Int, primes: IntArray): Int {
+<span class="fc" id="L28">        val ugly = IntArray(n)</span>
+<span class="fc" id="L29">        val idx = IntArray(primes.size)</span>
+
+<span class="fc" id="L31">        ugly[0] = 1</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        for (i in 1 until n) {</span>
+            // find next
+<span class="fc" id="L34">            ugly[i] = Int.MAX_VALUE</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            for (j in primes.indices) ugly[i] = min(ugly[i], primes[j] * ugly[idx[j]])</span>
+
+            // slip duplicate
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            for (j in primes.indices) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                while (primes[j] * ugly[idx[j]] &lt;= ugly[i]) idx[j]++</span>
+            }
+        }
+
+<span class="fc" id="L43">        return ugly[n - 1]</span>
+    }
+}
+
+<span class="fc" id="L47">class SuperUglyNumberRedundantMultiplication : SuperUglyNumberStrategy {</span>
+    override operator fun invoke(n: Int, primes: IntArray): Int {
+<span class="fc" id="L49">        val ugly = IntArray(n)</span>
+<span class="fc" id="L50">        val idx = IntArray(primes.size)</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        val values = IntArray(primes.size) { 1 }</span>
+
+<span class="fc" id="L53">        var next = 1</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L55">            ugly[i] = next</span>
+<span class="fc" id="L56">            next = Int.MAX_VALUE</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            for (j in primes.indices) {</span>
+                // skip duplicate and avoid extra multiplication
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                if (values[j] == ugly[i]) values[j] = ugly[idx[j]++] * primes[j]</span>
+                // find next ugly number
+<span class="fc" id="L61">                next = min(next, values[j])</span>
+            }
+        }
+
+<span class="fc" id="L65">        return ugly[n - 1]</span>
+    }
+}
+
+<span class="fc" id="L69">class SuperUglyNumberHeap : SuperUglyNumberStrategy {</span>
+    override operator fun invoke(n: Int, primes: IntArray): Int {
+<span class="fc" id="L71">        val ugly = IntArray(n)</span>
+
+<span class="fc" id="L73">        val pq: PriorityQueue&lt;Num&gt; = PriorityQueue()</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        for (i in primes.indices) pq.add(Num(primes[i], 1, primes[i]))</span>
+<span class="fc" id="L75">        ugly[0] = 1</span>
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        for (i in 1 until n) {</span>
+<span class="fc" id="L78">            ugly[i] = pq.peek().value</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            while (pq.peek().value == ugly[i]) {</span>
+<span class="fc" id="L80">                val nxt: Num = pq.poll()</span>
+<span class="fc" id="L81">                pq.add(Num(nxt.p * ugly[nxt.idx], nxt.idx + 1, nxt.p))</span>
+            }
+        }
+
+<span class="fc" id="L85">        return ugly[n - 1]</span>
+    }
+
+<span class="pc" id="L88">    class Num(var value: Int, var idx: Int, var p: Int) : Comparable&lt;Num?&gt; {</span>
+        override fun compareTo(other: Num?): Int {
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">            return value - other?.value!!</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

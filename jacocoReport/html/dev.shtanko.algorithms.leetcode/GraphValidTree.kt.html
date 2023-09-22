@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GraphValidTree.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">GraphValidTree.kt</span></div><h1>GraphValidTree.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+/**
+ * 261. Graph Valid Tree
+ * @see &lt;a href=&quot;https://leetcode.com/problems/graph-valid-tree/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface GraphValidTree {
+    fun validTree(n: Int, edges: Array&lt;IntArray&gt;): Boolean
+}
+
+<span class="fc" id="L30">private class GraphValidTreeUnionFind(n: Int) {</span>
+<span class="fc" id="L31">    private val parent: IntArray = IntArray(n)</span>
+<span class="fc" id="L32">    private val size: IntArray = IntArray(n)</span>
+
+<span class="fc" id="L34">    init {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (node in 0 until n) {</span>
+<span class="fc" id="L36">            parent[node] = node</span>
+<span class="fc" id="L37">            size[node] = 1</span>
+        }
+<span class="fc" id="L39">    }</span>
+
+    fun Int.find(): Int {
+        // Step 1: Find the root.
+<span class="fc" id="L43">        var a = this</span>
+<span class="fc" id="L44">        var root = a</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        while (parent[root] != root) {</span>
+<span class="fc" id="L46">            root = parent[root]</span>
+        }
+        // Step 2: Do a second traversal, this time setting each node to point
+        // directly at A as we go.
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        while (a != root) {</span>
+<span class="fc" id="L51">            val oldRoot = parent[a]</span>
+<span class="fc" id="L52">            parent[a] = root</span>
+<span class="fc" id="L53">            a = oldRoot</span>
+        }
+<span class="fc" id="L55">        return root</span>
+    }
+
+    fun union(a: Int, b: Int): Boolean {
+        // Find the roots for A and B.
+<span class="fc" id="L60">        val rootA = a.find()</span>
+<span class="fc" id="L61">        val rootB = b.find()</span>
+        // Check if A and B are already in the same set.
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        if (rootA == rootB) {</span>
+<span class="nc" id="L64">            return false</span>
+        }
+        // We want to ensure the larger set remains the root.
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (size[rootA] &lt; size[rootB]) {</span>
+            // Make rootB the overall root.
+<span class="nc" id="L69">            parent[rootA] = rootB</span>
+            // The size of the set rooted at B is the sum of the 2.
+<span class="nc" id="L71">            size[rootB] += size[rootA]</span>
+        } else {
+            // Make rootA the overall root.
+<span class="fc" id="L74">            parent[rootB] = rootA</span>
+            // The size of the set rooted at A is the sum of the 2.
+<span class="fc" id="L76">            size[rootA] += size[rootB]</span>
+        }
+<span class="fc" id="L78">        return true</span>
+    }
+}
+
+/**
+ * Approach 1: Graph Theory + Iterative Depth-First Search
+ */
+<span class="fc" id="L85">class GVTSimpleIterativeDFS : GraphValidTree {</span>
+    override fun validTree(n: Int, edges: Array&lt;IntArray&gt;): Boolean {
+<span class="fc" id="L87">        val adjacencyList: MutableList&lt;MutableList&lt;Int&gt;&gt; = ArrayList()</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L89">            adjacencyList.add(ArrayList())</span>
+        }
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (edge in edges) {</span>
+<span class="fc" id="L92">            adjacencyList[edge[0]].add(edge[1])</span>
+<span class="fc" id="L93">            adjacencyList[edge[1]].add(edge[0])</span>
+        }
+
+<span class="fc" id="L96">        val parent: MutableMap&lt;Int, Int&gt; = HashMap()</span>
+<span class="fc" id="L97">        parent[0] = -1</span>
+<span class="fc" id="L98">        val queue: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="fc" id="L99">        queue.offer(0)</span>
+
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L102">            val node: Int = queue.poll()</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            for (neighbour in adjacencyList[node]) {</span>
+<span class="pc bpc" id="L104" title="1 of 4 branches missed.">                if (parent[node] == neighbour) {</span>
+<span class="fc" id="L105">                    continue</span>
+                }
+<span class="fc bfc" id="L107" title="All 2 branches covered.">                if (parent.containsKey(neighbour)) {</span>
+<span class="fc" id="L108">                    return false</span>
+                }
+<span class="fc" id="L110">                queue.offer(neighbour)</span>
+<span class="fc" id="L111">                parent[neighbour] = node</span>
+            }
+        }
+
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">        return parent.size == n</span>
+    }
+}
+
+/**
+ * Approach 2: Advanced Graph Theory + Iterative Depth-First Search
+ */
+<span class="fc" id="L122">class GVTAdvancedIterativeDFS : GraphValidTree {</span>
+    override fun validTree(n: Int, edges: Array&lt;IntArray&gt;): Boolean {
+<span class="fc bfc" id="L124" title="All 2 branches covered.">        if (edges.size != n - 1) return false</span>
+
+        // Make the adjacency list.
+
+        // Make the adjacency list.
+<span class="fc" id="L129">        val adjacencyList: MutableList&lt;MutableList&lt;Int&gt;&gt; = ArrayList()</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L131">            adjacencyList.add(ArrayList())</span>
+        }
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        for (edge in edges) {</span>
+<span class="fc" id="L134">            adjacencyList[edge[0]].add(edge[1])</span>
+<span class="fc" id="L135">            adjacencyList[edge[1]].add(edge[0])</span>
+        }
+
+<span class="fc" id="L138">        val queue: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="fc" id="L139">        val seen: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L140">        queue.offer(0)</span>
+<span class="fc" id="L141">        seen.add(0)</span>
+
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L144">            val node = queue.poll()</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">            for (neighbour in adjacencyList[node]) {</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">                if (seen.contains(neighbour)) continue</span>
+<span class="fc" id="L147">                seen.add(neighbour)</span>
+<span class="fc" id="L148">                queue.offer(neighbour)</span>
+            }
+        }
+
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">        return seen.size == n</span>
+    }
+}
+
+/**
+ * Approach 3: Advanced Graph Theory + Union Find
+ */
+<span class="fc" id="L159">class GVTAdvancedUnionFind : GraphValidTree {</span>
+    override fun validTree(n: Int, edges: Array&lt;IntArray&gt;): Boolean {
+        // Condition 1: The graph must contain n - 1 edges.
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        if (edges.size != n - 1) return false</span>
+        // Condition 2: The graph must contain a single connected component.
+        // Create a new UnionFind object with n nodes.
+<span class="fc" id="L165">        val unionFind = GraphValidTreeUnionFind(n)</span>
+        // Add each edge. Check if a merge happened, because if it
+        // didn't, there must be a cycle.
+<span class="fc bfc" id="L168" title="All 2 branches covered.">        for (edge in edges) {</span>
+<span class="fc" id="L169">            val a = edge[0]</span>
+<span class="fc" id="L170">            val b = edge[1]</span>
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">            if (!unionFind.union(a, b)) {</span>
+<span class="nc" id="L172">                return false</span>
+            }
+        }
+        // If we got this far, there's no cycles!
+<span class="fc" id="L176">        return true</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

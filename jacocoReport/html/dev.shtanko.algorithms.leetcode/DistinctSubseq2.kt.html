@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DistinctSubseq2.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">DistinctSubseq2.kt</span></div><h1>DistinctSubseq2.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 940. Distinct Subsequences II
+ * @see &lt;a href=&quot;https://leetcode.com/problems/distinct-subsequences-ii/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface DistinctSubseq2 {
+    fun distinctSubseqII(s: String): Int
+}
+
+/**
+ * Approach 1: Dynamic Programming
+ */
+<span class="fc" id="L30">class DistinctSubseq2DP : DistinctSubseq2 {</span>
+    override fun distinctSubseqII(s: String): Int {
+<span class="fc" id="L32">        val n: Int = s.length</span>
+<span class="fc" id="L33">        val dp = IntArray(n + 1)</span>
+<span class="fc" id="L34">        dp[0] = 1</span>
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        val last = IntArray(ALPHABET_LETTERS_COUNT) { -1 }</span>
+
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L39">            val x: Int = s[i] - 'a'</span>
+<span class="fc" id="L40">            dp[i + 1] = dp[i] * 2 % MOD</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            if (last[x] &gt;= 0) dp[i + 1] -= dp[last[x]]</span>
+<span class="fc" id="L42">            dp[i + 1] %= MOD</span>
+<span class="fc" id="L43">            last[x] = i</span>
+        }
+
+<span class="fc" id="L46">        dp[n]--</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (dp[n] &lt; 0) dp[n] += MOD</span>
+<span class="fc" id="L48">        return dp[n]</span>
+    }
+}
+
+<span class="fc" id="L52">class DistinctSubseq2DPConstSpace : DistinctSubseq2 {</span>
+    override fun distinctSubseqII(s: String): Int {
+<span class="fc" id="L54">        var pre = 1 // The number of subsequences till previous-location. Include empty string: &quot;&quot;</span>
+
+<span class="fc" id="L56">        var cur = 1 // The number of subsequences till now. Include empty string: &quot;&quot;</span>
+
+        // The number of subsequences that end with a character till now. Not include empty string: &quot;&quot;
+<span class="fc" id="L59">        val lastCount = IntArray(ALPHABET_LETTERS_COUNT)</span>
+
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        for (element in s) {</span>
+<span class="fc" id="L62">            val charIndex: Int = element - 'a'</span>
+<span class="fc" id="L63">            cur = pre * 2 % MOD // include-current-character  +  not-include-current-character</span>
+            // Remove duplicated characters: previous subsequences that end with current character.
+<span class="fc" id="L65">            cur -= lastCount[charIndex]</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">            cur = if (cur &gt;= 0) cur % MOD else cur + MOD</span>
+<span class="fc" id="L67">            lastCount[charIndex] = pre // The number of subsequences that end with current character.</span>
+<span class="fc" id="L68">            pre = cur</span>
+        }
+<span class="fc" id="L70">        --cur // remove the empty string: &quot;&quot;</span>
+
+<span class="fc" id="L72">        return cur</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

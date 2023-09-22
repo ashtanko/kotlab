@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UrlFetcher.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.concurrency.coroutines.problems</a> &gt; <span class="el_source">UrlFetcher.kt</span></div><h1>UrlFetcher.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.concurrency.coroutines.problems
+
+import java.net.URL
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+
+fun main() {
+    // Define a list of URLs to fetch data from
+<span class="nc" id="L29">    val urls = listOf(</span>
+<span class="nc" id="L30">        &quot;https://jsonplaceholder.typicode.com/posts/1&quot;,</span>
+<span class="nc" id="L31">        &quot;https://jsonplaceholder.typicode.com/posts/2&quot;,</span>
+<span class="nc" id="L32">        &quot;https://jsonplaceholder.typicode.com/posts/3&quot;,</span>
+    )
+
+    // Start a coroutine
+<span class="nc" id="L36">    runBlocking {</span>
+        // Create a list to store the deferred results
+<span class="nc" id="L38">        val deferredResults = mutableListOf&lt;Deferred&lt;String&gt;&gt;()</span>
+
+        // Launch a coroutine for each URL and add the deferred result to the list
+<span class="nc" id="L41">        urls.forEach { url -&gt;</span>
+<span class="nc" id="L42">            val deferred = async {</span>
+<span class="nc" id="L43">                fetchData(url)</span>
+            }
+<span class="nc" id="L45">            deferredResults.add(deferred)</span>
+<span class="nc" id="L46">        }</span>
+
+        // Await all the deferred results
+<span class="nc" id="L49">        val results = deferredResults.awaitAll()</span>
+
+        // Process the results
+<span class="nc" id="L52">        results.forEachIndexed { index, result -&gt;</span>
+<span class="nc" id="L53">            println(&quot;Result from URL ${urls[index]}:\n$result\n&quot;)</span>
+<span class="nc" id="L54">        }</span>
+<span class="nc" id="L55">    }</span>
+<span class="nc" id="L56">}</span>
+
+suspend fun fetchData(url: String): String {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">    return withContext(Dispatchers.IO) {</span>
+<span class="nc" id="L60">        println(&quot;Fetching data from URL: $url&quot;)</span>
+
+        // Fetch data from the URL
+<span class="nc" id="L63">        val response = URL(url).readText()</span>
+
+<span class="nc" id="L65">        println(&quot;Data fetched from URL: $url&quot;)</span>
+
+        // Return the fetched data
+<span class="nc" id="L68">        response</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaxConsecutiveAnswers.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MaxConsecutiveAnswers.kt</span></div><h1>MaxConsecutiveAnswers.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+import kotlin.math.min
+
+private const val SYMBOL_T = 'T'
+private const val SYMBOL_F = 'F'
+
+/**
+ * 2024. Maximize the Confusion of an Exam
+ * @see &lt;a href=&quot;https://leetcode.com/problems/maximize-the-confusion-of-an-exam/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MaxConsecutiveAnswers {
+    operator fun invoke(answerKey: String, k: Int): Int
+}
+
+/**
+ * Approach 1: Binary Search + Fixed Size Sliding Window
+ */
+<span class="fc" id="L36">class MaxConsecutiveAnswersBS : MaxConsecutiveAnswers {</span>
+    override operator fun invoke(answerKey: String, k: Int): Int {
+<span class="fc" id="L38">        val n: Int = answerKey.length</span>
+<span class="fc" id="L39">        var left = k</span>
+<span class="fc" id="L40">        var right = n</span>
+
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        while (left &lt; right) {</span>
+<span class="fc" id="L43">            val mid = (left + right + 1) / 2</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            if (isValid(answerKey, mid, k)) {</span>
+<span class="fc" id="L45">                left = mid</span>
+            } else {
+<span class="fc" id="L47">                right = mid - 1</span>
+            }
+        }
+
+<span class="fc" id="L51">        return left</span>
+    }
+
+    private fun isValid(answerKey: String, size: Int, k: Int): Boolean {
+<span class="fc" id="L55">        val n = answerKey.length</span>
+<span class="fc" id="L56">        val counter: MutableMap&lt;Char, Int&gt; = HashMap()</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        for (i in 0 until size) {</span>
+<span class="fc" id="L58">            val c = answerKey[i]</span>
+<span class="fc" id="L59">            counter[c] = counter.getOrDefault(c, 0) + 1</span>
+        }
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (min(counter.getOrDefault(SYMBOL_T, 0), counter.getOrDefault(SYMBOL_F, 0)) &lt;= k) {</span>
+<span class="fc" id="L62">            return true</span>
+        }
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (i in size until n) {</span>
+<span class="fc" id="L65">            val c1 = answerKey[i]</span>
+<span class="fc" id="L66">            counter[c1] = counter.getOrDefault(c1, 0) + 1</span>
+<span class="fc" id="L67">            val c2 = answerKey[i - size]</span>
+<span class="fc" id="L68">            counter[c2] = counter.getOrDefault(c2, 0) - 1</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">            if (min(counter.getOrDefault(SYMBOL_T, 0), counter.getOrDefault(SYMBOL_F, 0)) &lt;= k) {</span>
+<span class="nc" id="L70">                return true</span>
+            }
+        }
+<span class="fc" id="L73">        return false</span>
+    }
+}
+
+/**
+ * Approach 2: Sliding Window
+ */
+<span class="fc" id="L80">class MaxConsecutiveAnswersSlidingWindow : MaxConsecutiveAnswers {</span>
+    override operator fun invoke(answerKey: String, k: Int): Int {
+<span class="fc" id="L82">        var maxSize = k</span>
+<span class="fc" id="L83">        val count: MutableMap&lt;Char, Int&gt; = HashMap()</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (i in 0 until k) {</span>
+<span class="fc" id="L85">            count[answerKey[i]] = count.getOrDefault(answerKey[i], 0) + 1</span>
+        }
+
+<span class="fc" id="L88">        var left = 0</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (right in k until answerKey.length) {</span>
+<span class="fc" id="L90">            count[answerKey[right]] = count.getOrDefault(answerKey[right], 0) + 1</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">            while (min(count.getOrDefault(SYMBOL_T, 0), count.getOrDefault(SYMBOL_F, 0)) &gt; k) {</span>
+<span class="fc" id="L92">                count[answerKey[left]] = count[answerKey[left]]!! - 1</span>
+<span class="fc" id="L93">                left++</span>
+            }
+<span class="fc" id="L95">            maxSize = max(maxSize, right - left + 1)</span>
+        }
+
+<span class="fc" id="L98">        return maxSize</span>
+    }
+}
+
+/**
+ * Approach 3: Advanced Sliding Window
+ */
+<span class="fc" id="L105">class MaxConsecutiveAnswersSlidingWindow2 : MaxConsecutiveAnswers {</span>
+    override operator fun invoke(answerKey: String, k: Int): Int {
+<span class="fc" id="L107">        var maxSize = 0</span>
+<span class="fc" id="L108">        val count: MutableMap&lt;Char, Int&gt; = HashMap()</span>
+
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        for (right in answerKey.indices) {</span>
+<span class="fc" id="L111">            count[answerKey[right]] = count.getOrDefault(answerKey[right], 0) + 1</span>
+<span class="fc" id="L112">            val minor = min(count.getOrDefault(SYMBOL_T, 0), count.getOrDefault(SYMBOL_F, 0))</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">            if (minor &lt;= k) {</span>
+<span class="fc" id="L114">                maxSize++</span>
+            } else {
+<span class="fc" id="L116">                count[answerKey[right.minus(maxSize)]] = count[answerKey[right.minus(maxSize)]]!! - 1</span>
+            }
+        }
+
+<span class="fc" id="L120">        return maxSize</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

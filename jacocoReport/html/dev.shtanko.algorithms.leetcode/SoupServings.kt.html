@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SoupServings.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">SoupServings.kt</span></div><h1>SoupServings.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.ceil
+import kotlin.math.max
+
+/**
+ * 808. Soup Servings
+ * @see &lt;a href=&quot;https://leetcode.com/problems/soup-servings/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface SoupServings {
+    operator fun invoke(n: Int): Double
+}
+
+private const val DIVISOR = 25.0
+private const val HALF = 0.5
+
+/**
+ * Approach 1: Bottom-Up Dynamic Programming
+ */
+<span class="fc" id="L36">class SoupServingsBottomUp : SoupServings {</span>
+
+    override operator fun invoke(n: Int): Double {
+<span class="fc" id="L39">        val m = ceil(n / DIVISOR).toInt()</span>
+<span class="fc" id="L40">        val dp = mutableMapOf&lt;Int, MutableMap&lt;Int, Double&gt;&gt;()</span>
+<span class="fc" id="L41">        dp[0] = mutableMapOf()</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        dp[0]?.set(0, HALF)</span>
+
+<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        for (k in 1..m) {</span>
+<span class="fc" id="L45">            dp[k] = mutableMapOf()</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">            dp[0]?.set(k, 1.0)</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">            dp[k]?.set(0, 0.0)</span>
+<span class="pc bpc" id="L48" title="1 of 4 branches missed.">            for (j in 1..k) {</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">                dp[j]?.set(k, calculateDP(j, k, dp))</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">                dp[k]?.set(j, calculateDP(k, j, dp))</span>
+            }
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">            dp[k]?.let {</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">                it[k]?.let { k -&gt;</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">                    if (k &gt; 1 - EPSILON) {</span>
+<span class="nc" id="L55">                        return 1.0</span>
+                    }
+<span class="fc" id="L57">                }</span>
+            }
+        }
+
+<span class="pc bpc" id="L61" title="2 of 4 branches missed.">        return dp[m]?.get(m) ?: 0.0</span>
+    }
+
+    private fun calculateDP(i: Int, j: Int, dp: Map&lt;Int, Map&lt;Int, Double&gt;&gt;): Double {
+<span class="fc" id="L65">        val iMinus4 = max(0, i - 4)</span>
+<span class="fc" id="L66">        val iMinus3 = max(0, i - 3)</span>
+<span class="fc" id="L67">        val iMinus2 = max(0, i - 2)</span>
+<span class="fc" id="L68">        val jMinus1 = j - 1</span>
+<span class="fc" id="L69">        val jMinus2 = max(0, j - 2)</span>
+<span class="fc" id="L70">        val jMinus3 = max(0, j - 3)</span>
+
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">        val term1 = dp.getOrElse(iMinus4) { emptyMap() }.getOrElse(j) { 0.0 }</span>
+<span class="pc bpc" id="L73" title="2 of 4 branches missed.">        val term2 = dp.getOrElse(iMinus3) { emptyMap() }.getOrElse(jMinus1) { 0.0 }</span>
+<span class="pc bpc" id="L74" title="2 of 4 branches missed.">        val term3 = dp.getOrElse(iMinus2) { emptyMap() }.getOrElse(jMinus2) { 0.0 }</span>
+<span class="pc bpc" id="L75" title="2 of 4 branches missed.">        val term4 = dp.getOrElse(i - 1) { emptyMap() }.getOrElse(jMinus3) { 0.0 }</span>
+
+<span class="fc" id="L77">        return (term1 + term2 + term3 + term4) / 4</span>
+    }
+}
+
+/**
+ * Approach 2: Top-Down Dynamic Programming (Memoization)
+ */
+<span class="fc" id="L84">class SoupServingsTopDown : SoupServings {</span>
+    override operator fun invoke(n: Int): Double {
+<span class="fc" id="L86">        val m = ceil(n / DIVISOR).toInt()</span>
+<span class="fc" id="L87">        val dp: MutableMap&lt;Int, MutableMap&lt;Int, Double&gt;&gt; = HashMap()</span>
+
+<span class="pc bpc" id="L89" title="1 of 4 branches missed.">        for (k in 1..m) {</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">            if (calculateDP(k, k, dp) &gt; 1 - EPSILON) {</span>
+<span class="nc" id="L91">                return 1.0</span>
+            }
+        }
+<span class="fc" id="L94">        return calculateDP(m, m, dp)</span>
+    }
+
+    private fun calculateDP(i: Int, j: Int, dp: MutableMap&lt;Int, MutableMap&lt;Int, Double&gt;&gt;): Double {
+<span class="fc bfc" id="L98" title="All 4 branches covered.">        if (i &lt;= 0 &amp;&amp; j &lt;= 0) {</span>
+<span class="fc" id="L99">            return 0.5</span>
+        }
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        if (i &lt;= 0) {</span>
+<span class="fc" id="L102">            return 1.0</span>
+        }
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (j &lt;= 0) {</span>
+<span class="fc" id="L105">            return 0.0</span>
+        }
+<span class="pc bpc" id="L107" title="1 of 8 branches missed.">        if (dp.containsKey(i) &amp;&amp; dp[i]?.containsKey(j) == true) {</span>
+<span class="pc bpc" id="L108" title="2 of 4 branches missed.">            return dp[i]?.get(j) ?: 0.0</span>
+        }
+<span class="fc" id="L110">        val result = (</span>
+<span class="fc" id="L111">            calculateDP(i - 4, j, dp) +</span>
+<span class="fc" id="L112">                calculateDP(i - 3, j - 1, dp) +</span>
+<span class="fc" id="L113">                calculateDP(i - 2, j - 2, dp) +</span>
+<span class="fc" id="L114">                calculateDP(i - 1, j - 3, dp)</span>
+<span class="fc" id="L115">            ) / 4.0</span>
+<span class="fc" id="L116">        dp.getOrPut(i) { mutableMapOf() }[j] = result</span>
+<span class="fc" id="L117">        return result</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

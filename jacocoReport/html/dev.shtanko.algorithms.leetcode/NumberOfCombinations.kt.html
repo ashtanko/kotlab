@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NumberOfCombinations.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NumberOfCombinations.kt</span></div><h1>NumberOfCombinations.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.PriorityQueue
+
+/**
+ * 1977. Number of Ways to Separate Numbers
+ * @see &lt;a href=&quot;https://leetcode.com/problems/number-of-ways-to-separate-numbers/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface NumberOfCombinations {
+    operator fun invoke(num: String): Int
+}
+
+<span class="fc" id="L29">class NumberOfCombinationsBottomUp : NumberOfCombinations {</span>
+    override operator fun invoke(num: String): Int {
+<span class="fc" id="L31">        val cs = num.toCharArray()</span>
+<span class="fc" id="L32">        val n = cs.size</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        val rank = Array(n) { IntArray(n + 1) }</span>
+<span class="fc" id="L34">        val pq: PriorityQueue&lt;IntArray&gt; = PriorityQueue&lt;IntArray&gt;(1) { a, b -&gt; a[1] - b[1] }</span>
+<span class="pc bpc" id="L35" title="1 of 4 branches missed.">        for (i in 1..n) {</span>
+<span class="fc" id="L36">            var c = 0</span>
+<span class="fc" id="L37">            var prev = 0</span>
+<span class="fc" id="L38">            var j = 0</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            while (j + i &lt;= n) {</span>
+<span class="fc" id="L40">                pq.add(intArrayOf(j, rank[j][i - 1] * 10 + cs[i + j - 1].code - '0'.code))</span>
+<span class="fc" id="L41">                ++j</span>
+            }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            while (!pq.isEmpty()) {</span>
+<span class="fc" id="L44">                val cur: IntArray = pq.poll()</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                if (cur[1] != prev) c++</span>
+<span class="fc" id="L46">                rank[cur[0]][i] = c</span>
+<span class="fc" id="L47">                prev = cur[1]</span>
+            }
+        }
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        val dp = Array(n) { IntArray(n + 1) }</span>
+<span class="fc" id="L51">        var j = n - 1</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        while (0 &lt;= j) {</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            if ('0' == cs[j]) {</span>
+<span class="fc" id="L54">                --j</span>
+<span class="fc" id="L55">                continue</span>
+            }
+<span class="fc" id="L57">            val len = n - j</span>
+<span class="fc" id="L58">            dp[j][len] = 1</span>
+<span class="fc" id="L59">            var i = len - 1</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            while (1 &lt;= i) {</span>
+                // dp[j][i] means the valid number that can start from j and the length of the first number
+                // is at least i thus here I aggregate dp[j][i + 1] into dp[j][i]
+<span class="fc" id="L63">                dp[j][i] = dp[j][i + 1]</span>
+<span class="fc" id="L64">                val next = i + j</span>
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">                if (next &gt;= n || next + i &gt; n) {</span>
+<span class="fc" id="L66">                    --i</span>
+<span class="fc" id="L67">                    continue</span>
+                }
+                // if the rank of the next part is greater than the current one
+<span class="fc bfc" id="L70" title="All 2 branches covered.">                if (rank[j][i] &lt;= rank[next][i]) {</span>
+<span class="fc" id="L71">                    dp[j][i] = (dp[j][i] + dp[next][i]) % MOD</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">                } else if (next + i &lt; n) {</span>
+<span class="fc" id="L73">                    dp[j][i] = (dp[j][i] + dp[next][i + 1]) % MOD</span>
+                }
+<span class="fc" id="L75">                --i</span>
+            }
+<span class="fc" id="L77">            dp[j][0] = dp[j][1]</span>
+<span class="fc" id="L78">            --j</span>
+        }
+<span class="fc" id="L80">        return dp[0][0]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

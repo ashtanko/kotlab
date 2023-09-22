@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PalindromicSubstrings.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">PalindromicSubstrings.kt</span></div><h1>PalindromicSubstrings.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface PalindromicSubstrings {
+    operator fun invoke(s: String): Int
+}
+
+/**
+ * Approach #1: Check All Substrings
+ * Time Complexity: O(N^3)
+ * Space Complexity: O(1)
+ */
+<span class="fc" id="L28">class PalindromicSubstringsCheckAllSubstrings : PalindromicSubstrings {</span>
+    override operator fun invoke(s: String): Int {
+<span class="fc" id="L30">        var ans = 0</span>
+
+<span class="fc bfc" id="L32" title="All 6 branches covered.">        for (start in s.indices) for (end in start until s.length) ans += if (isPalindrome(</span>
+<span class="fc" id="L33">                s,</span>
+<span class="fc" id="L34">                start,</span>
+<span class="fc" id="L35">                end,</span>
+            )
+        ) {
+<span class="fc" id="L38">            1</span>
+        } else {
+<span class="fc" id="L40">            0</span>
+        }
+
+<span class="fc" id="L43">        return ans</span>
+    }
+
+    private fun isPalindrome(str: String, start: Int, end: Int): Boolean {
+<span class="fc" id="L47">        var s = start</span>
+<span class="fc" id="L48">        var e = end</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        while (start &lt; e) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (str[start] != str[e]) {</span>
+<span class="fc" id="L51">                return false</span>
+            }
+<span class="fc" id="L53">            ++s</span>
+<span class="fc" id="L54">            --e</span>
+        }
+<span class="fc" id="L56">        return true</span>
+    }
+}
+
+/**
+ * Approach #2: Dynamic Programming
+ * Time Complexity: O(N^2)
+ * Space Complexity: O(N^2)
+ */
+<span class="fc" id="L65">class PalindromicSubstringsDP : PalindromicSubstrings {</span>
+    override operator fun invoke(s: String): Int {
+<span class="fc" id="L67">        val n: Int = s.length</span>
+<span class="fc" id="L68">        var ans = 0</span>
+
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        if (n &lt;= 0) {</span>
+<span class="nc" id="L71">            return 0</span>
+        }
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        val dp = Array(n) { BooleanArray(n) }</span>
+
+        // Base case: single letter substrings
+<span class="fc" id="L77">        var k = 0</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        while (k &lt; n) {</span>
+<span class="fc" id="L79">            dp[k][k] = true</span>
+<span class="fc" id="L80">            ++k</span>
+<span class="fc" id="L81">            ++ans</span>
+        }
+
+        // Base case: double letter substrings
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        for (i in 0 until n - 1) {</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">            dp[i][i + 1] = s[i] == s[i + 1]</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            ans += if (dp[i][i + 1]) {</span>
+<span class="fc" id="L88">                1</span>
+            } else {
+<span class="fc" id="L90">                0</span>
+            }
+        }
+
+        // All other cases: substrings of length 3 to n
+<span class="pc bpc" id="L95" title="2 of 4 branches missed.">        for (len in 3..n) {</span>
+<span class="fc" id="L96">            var i = 0</span>
+<span class="fc" id="L97">            var j = i + len - 1</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            while (j &lt; n) {</span>
+<span class="pc bpc" id="L99" title="1 of 4 branches missed.">                dp[i][j] = dp[i + 1][j - 1] &amp;&amp; s[i] == s[j]</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">                ans += if (dp[i][j]) {</span>
+<span class="fc" id="L101">                    1</span>
+                } else {
+<span class="fc" id="L103">                    0</span>
+                }
+<span class="fc" id="L105">                ++i</span>
+<span class="fc" id="L106">                ++j</span>
+            }
+        }
+
+<span class="fc" id="L110">        return ans</span>
+    }
+}
+
+/**
+ * Approach #3: Expand Around Possible Centers
+ * Time Complexity: O(N^2)
+ * Space Complexity: O(1)
+ */
+<span class="fc" id="L119">class PalindromicSubstringsPossibleCenters : PalindromicSubstrings {</span>
+    override operator fun invoke(s: String): Int {
+<span class="fc" id="L121">        var ans = 0</span>
+
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        for (i in s.indices) {</span>
+            // odd-length palindromes, single character center
+<span class="fc" id="L125">            ans += countPalindromesAroundCenter(s, i, i)</span>
+
+            // even-length palindromes, consecutive characters center
+<span class="fc" id="L128">            ans += countPalindromesAroundCenter(s, i, i + 1)</span>
+        }
+
+<span class="fc" id="L131">        return ans</span>
+    }
+
+    private fun countPalindromesAroundCenter(ss: String, lo: Int, hi: Int): Int {
+<span class="fc" id="L135">        var l = lo</span>
+<span class="fc" id="L136">        var h = hi</span>
+<span class="fc" id="L137">        var ans = 0</span>
+<span class="fc bfc" id="L138" title="All 4 branches covered.">        while (l &gt;= 0 &amp;&amp; h &lt; ss.length) {</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">            if (ss[l] != ss[h]) {</span>
+<span class="fc" id="L140">                break // the first and last characters don't match!</span>
+            }
+
+            // expand around the center
+<span class="fc" id="L144">            l--</span>
+<span class="fc" id="L145">            h++</span>
+<span class="fc" id="L146">            ans++</span>
+        }
+<span class="fc" id="L148">        return ans</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

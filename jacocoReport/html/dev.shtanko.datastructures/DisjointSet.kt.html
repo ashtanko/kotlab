@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DisjointSet.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.datastructures</a> &gt; <span class="el_source">DisjointSet.kt</span></div><h1>DisjointSet.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.datastructures
+
+/**
+ * Implementation of the disjoint-set data structure using union by rank and path compression.
+ *
+ * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Disjoint-set_data_structure&quot;&gt;Disjoint-set data structure&lt;/a&gt;
+ *
+ * @property size The number of elements in the set.
+ */
+<span class="fc" id="L26">class DisjointSet(val size: Int) {</span>
+<span class="fc" id="L27">    private val parent = IntArray(size)</span>
+<span class="fc" id="L28">    private val rank = ByteArray(size)</span>
+
+    /**
+     * The number of disjoint sets in the current structure.
+     */
+<span class="fc" id="L33">    var count = size</span>
+        private set
+
+<span class="fc" id="L36">    init {</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (i in parent.indices) {</span>
+<span class="fc" id="L38">            parent[i] = i</span>
+        }
+<span class="fc" id="L40">    }</span>
+
+    /**
+     * Checks if two elements belong to the same set.
+     *
+     * @param v The index of the first element.
+     * @param w The index of the second element.
+     * @return `true` if the elements belong to the same set, `false` otherwise.
+     */
+    fun connected(v: Int, w: Int): Boolean {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        return find(v) == find(w)</span>
+    }
+
+    /**
+     * Finds the parent (root) of the specified element and applies path compression to optimize future queries.
+     *
+     * @param v The index of the element.
+     * @return The index of the parent (root) of the element.
+     */
+    private fun find(v: Int): Int {
+<span class="fc" id="L60">        var value = v</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        while (parent[value] != value) {</span>
+<span class="fc" id="L62">            parent[value] = parent[parent[value]]</span>
+<span class="fc" id="L63">            value = parent[value]</span>
+        }
+<span class="fc" id="L65">        return value</span>
+    }
+
+    /**
+     * Unites the sets containing the specified elements using union by rank to optimize future queries.
+     *
+     * @param v The index of the first element.
+     * @param w The index of the second element.
+     */
+    fun union(v: Int, w: Int) {
+<span class="fc" id="L75">        val rootV = find(v)</span>
+<span class="fc" id="L76">        val rootW = find(w)</span>
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if (rootV == rootW) return</span>
+<span class="fc" id="L78">        when {</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            rank[rootV] &gt; rank[rootW] -&gt; {</span>
+<span class="fc" id="L80">                parent[rootW] = rootV</span>
+            }
+
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">            rank[rootW] &gt; rank[rootV] -&gt; {</span>
+<span class="nc" id="L84">                parent[rootV] = rootW</span>
+            }
+
+            else -&gt; {
+<span class="fc" id="L88">                parent[rootV] = rootW</span>
+<span class="fc" id="L89">                rank[rootW]++</span>
+            }
+        }
+<span class="fc" id="L92">        count--</span>
+<span class="fc" id="L93">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

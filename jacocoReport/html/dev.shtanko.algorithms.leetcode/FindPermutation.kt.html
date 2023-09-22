@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindPermutation.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FindPermutation.kt</span></div><h1>FindPermutation.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Stack
+
+/**
+ * @see &lt;a href=&quot;https://leetcode.com/problems/find-permutation/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface FindPermutation {
+    operator fun invoke(s: String): IntArray
+}
+
+/**
+ * Approach #1 Using Stack
+ * Time complexity : O(n).
+ * Space complexity : O(n).
+ */
+<span class="fc" id="L33">class FindPermutationStack : FindPermutation {</span>
+    override operator fun invoke(s: String): IntArray {
+<span class="fc" id="L35">        val res = IntArray(s.length + 1)</span>
+<span class="fc" id="L36">        val stack: Stack&lt;Int&gt; = Stack()</span>
+<span class="fc" id="L37">        var j = 0</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        for (i in 1..s.length) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (s[i - 1] == 'I') {</span>
+<span class="fc" id="L40">                stack.push(i)</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                while (!stack.isEmpty()) {</span>
+<span class="fc" id="L42">                    res[j++] = stack.pop()</span>
+                }
+            } else {
+<span class="fc" id="L45">                stack.push(i)</span>
+            }
+        }
+<span class="fc" id="L48">        stack.push(s.length + 1)</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        while (!stack.isEmpty()) {</span>
+<span class="fc" id="L50">            res[j++] = stack.pop()</span>
+        }
+<span class="fc" id="L52">        return res</span>
+    }
+}
+
+/**
+ * Approach #2 Reversing the subarray.
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L61">class FindPermutationReversing : FindPermutation {</span>
+    override operator fun invoke(s: String): IntArray {
+<span class="fc" id="L63">        val res = IntArray(s.length + 1)</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (i in res.indices) res[i] = i + 1</span>
+<span class="fc" id="L65">        var i = 1</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        while (i &lt;= s.length) {</span>
+<span class="fc" id="L67">            val j = i</span>
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">            while (i &lt;= s.length &amp;&amp; s[i - 1] == 'D') i++</span>
+<span class="fc" id="L69">            res.reverse(j - 1, i)</span>
+<span class="fc" id="L70">            i++</span>
+        }
+<span class="fc" id="L72">        return res</span>
+    }
+}
+
+/**
+ * Approach #3 Two pointers.
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L81">class FindPermutationTwoPointers : FindPermutation {</span>
+    override operator fun invoke(s: String): IntArray {
+<span class="fc" id="L83">        val res = IntArray(s.length + 1)</span>
+<span class="fc" id="L84">        res[0] = 1</span>
+<span class="fc" id="L85">        var i = 1</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        while (i &lt;= s.length) {</span>
+<span class="fc" id="L87">            res[i] = i + 1</span>
+<span class="fc" id="L88">            val j = i</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">            if (s[i - 1] == 'D') {</span>
+<span class="pc bpc" id="L90" title="1 of 4 branches missed.">                while (i &lt;= s.length &amp;&amp; s[i - 1] == 'D') i++</span>
+<span class="fc" id="L91">                var k = j - 1</span>
+<span class="fc" id="L92">                var c = i</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">                while (k &lt;= i - 1) {</span>
+<span class="fc" id="L94">                    res[k] = c</span>
+<span class="fc" id="L95">                    k++</span>
+<span class="fc" id="L96">                    c--</span>
+                }
+            } else {
+<span class="fc" id="L99">                i++</span>
+            }
+        }
+<span class="fc" id="L102">        return res</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

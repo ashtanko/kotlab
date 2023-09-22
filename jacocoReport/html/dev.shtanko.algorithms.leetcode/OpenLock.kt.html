@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenLock.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">OpenLock.kt</span></div><h1>OpenLock.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 752. Open the Lock
+ * @see &lt;a href=&quot;https://leetcode.com/problems/open-the-lock/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface OpenLock {
+    fun openLock(deadEnds: Array&lt;String&gt;, target: String): Int
+}
+
+<span class="fc" id="L27">class OpenLockBFS : OpenLock {</span>
+<span class="fc" id="L28">    private var begin: MutableSet&lt;String&gt; = HashSet&lt;String&gt;().apply {</span>
+<span class="fc" id="L29">        add(START_LOCK_POSITION)</span>
+<span class="fc" id="L30">    }</span>
+<span class="fc" id="L31">    private var end: MutableSet&lt;String&gt; = HashSet()</span>
+
+    override fun openLock(deadEnds: Array&lt;String&gt;, target: String): Int {
+<span class="fc" id="L34">        val deads: MutableSet&lt;String&gt; = HashSet(deadEnds.toList())</span>
+<span class="fc" id="L35">        end.add(target)</span>
+<span class="fc" id="L36">        var level = 0</span>
+        var temp: MutableSet&lt;String&gt;
+<span class="pc bpc" id="L38" title="2 of 8 branches missed.">        while (begin.isNotEmpty() &amp;&amp; end.isNotEmpty()) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (begin.size &gt; end.size) {</span>
+<span class="fc" id="L40">                temp = begin</span>
+<span class="fc" id="L41">                begin = end</span>
+<span class="fc" id="L42">                end = temp</span>
+            }
+<span class="fc" id="L44">            temp = HashSet()</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            for (s in begin) {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                if (end.contains(s)) {</span>
+<span class="fc" id="L47">                    return level</span>
+                }
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">                if (deads.contains(s)) {</span>
+<span class="nc" id="L50">                    continue</span>
+                }
+<span class="fc" id="L52">                deads.add(s)</span>
+<span class="fc" id="L53">                val sb = StringBuilder(s)</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">                for (i in 0 until LOCK_SIZE) {</span>
+<span class="fc" id="L55">                    val c = sb[i]</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">                    val s1 = sb.substring(0, i) + (if (c == '9') 0 else c - '0' + 1) + sb.substring(</span>
+<span class="fc" id="L57">                        i + 1,</span>
+                    )
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                    val s2 = sb.substring(0, i) + (if (c == '0') 9 else c - '0' - 1) + sb.substring(</span>
+<span class="fc" id="L60">                        i + 1,</span>
+                    )
+<span class="fc bfc" id="L62" title="All 2 branches covered.">                    if (!deads.contains(s1)) {</span>
+<span class="fc" id="L63">                        temp.add(s1)</span>
+                    }
+<span class="fc bfc" id="L65" title="All 2 branches covered.">                    if (!deads.contains(s2)) {</span>
+<span class="fc" id="L66">                        temp.add(s2)</span>
+                    }
+                }
+            }
+<span class="fc" id="L70">            level++</span>
+<span class="fc" id="L71">            begin = temp</span>
+        }
+<span class="fc" id="L73">        return DEFAULT_RESULT</span>
+    }
+
+    companion object {
+        private const val START_LOCK_POSITION = &quot;0000&quot;
+        private const val LOCK_SIZE = 4
+        private const val DEFAULT_RESULT = -1
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

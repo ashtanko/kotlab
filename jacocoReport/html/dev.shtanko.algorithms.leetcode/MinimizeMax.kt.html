@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinimizeMax.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MinimizeMax.kt</span></div><h1>MinimizeMax.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 2616. Minimize the Maximum Difference of Pairs
+ * @see &lt;a href=&quot;https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MinimizeMax {
+    operator fun invoke(nums: IntArray, p: Int): Int
+}
+
+/**
+ * Greedy + Binary Search
+ */
+<span class="fc" id="L30">class MinimizeMaxGreedyBS : MinimizeMax {</span>
+    override operator fun invoke(nums: IntArray, p: Int): Int {
+<span class="fc" id="L32">        nums.sort()</span>
+<span class="fc" id="L33">        val n = nums.size</span>
+<span class="fc" id="L34">        var left = 0</span>
+<span class="fc" id="L35">        var right = nums[n - 1] - nums[0]</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        while (left &lt; right) {</span>
+<span class="fc" id="L37">            val mid = left + (right - left) / 2</span>
+
+            // If there are enough pairs, look for a smaller threshold.
+            // Otherwise, look for a larger threshold.
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            if (countValidPairs(nums, mid) &gt;= p) {</span>
+<span class="fc" id="L42">                right = mid</span>
+            } else {
+<span class="fc" id="L44">                left = mid + 1</span>
+            }
+        }
+<span class="fc" id="L47">        return left</span>
+    }
+
+    // Find the number of valid pairs by greedy approach
+    private fun countValidPairs(nums: IntArray, threshold: Int): Int {
+<span class="fc" id="L52">        var index = 0</span>
+<span class="fc" id="L53">        var count = 0</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        while (index &lt; nums.size - 1) {</span>
+            // If a valid pair is found, skip both numbers.
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            if (nums[index + 1] - nums[index] &lt;= threshold) {</span>
+<span class="fc" id="L57">                count++</span>
+<span class="fc" id="L58">                index++</span>
+            }
+<span class="fc" id="L60">            index++</span>
+        }
+<span class="fc" id="L62">        return count</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CoinPath.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CoinPath.kt</span></div><h1>CoinPath.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Coin Path.
+ * @see &lt;a href=&quot;https://leetcode.com/problems/coin-path/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface CoinPath {
+    fun cheapestJump(a: IntArray, b: Int): List&lt;Int&gt;
+}
+
+/**
+ * Approach #2 Using Memoization.
+ * Time complexity : O(nB).
+ * Space complexity : O(n).
+ */
+<span class="fc" id="L32">class CoinPathMemo : CoinPath {</span>
+    override fun cheapestJump(a: IntArray, b: Int): List&lt;Int&gt; {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        val next = IntArray(a.size) { -1 }</span>
+<span class="fc" id="L35">        val memo = LongArray(a.size)</span>
+<span class="fc" id="L36">        jump(a, b, 0, next, memo)</span>
+<span class="fc" id="L37">        val res: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc" id="L38">        var i = 0</span>
+<span class="fc bfc" id="L39" title="All 4 branches covered.">        while (i &lt; a.size &amp;&amp; next[i] &gt; 0) {</span>
+<span class="fc" id="L40">            res.add(i + 1)</span>
+<span class="fc" id="L41">            i = next[i]</span>
+        }
+
+<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        if (i == a.size - 1 &amp;&amp; a[i] &gt;= 0) res.add(a.size) else return ArrayList()</span>
+<span class="fc" id="L45">        return res</span>
+    }
+
+    private fun jump(a: IntArray, b: Int, i: Int, next: IntArray, memo: LongArray): Long {
+<span class="fc bfc" id="L49" title="All 4 branches covered.">        if (a.isEmpty()) return 0L</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (memo[i] &gt; 0) return memo[i]</span>
+<span class="pc bpc" id="L51" title="1 of 4 branches missed.">        if (i == a.size - 1 &amp;&amp; a[i] &gt;= 0) return a[i].toLong()</span>
+<span class="fc" id="L52">        var minCost = Int.MAX_VALUE.toLong()</span>
+<span class="fc" id="L53">        var j = i + 1</span>
+<span class="pc bpc" id="L54" title="1 of 4 branches missed.">        while (j &lt;= i + b &amp;&amp; j &lt; a.size) {</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            if (a[j] &gt;= 0) {</span>
+<span class="fc" id="L56">                val cost = a[i] + jump(a, b, j, next, memo)</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">                if (cost &lt; minCost) {</span>
+<span class="fc" id="L58">                    minCost = cost</span>
+<span class="fc" id="L59">                    next[i] = j</span>
+                }
+            }
+<span class="fc" id="L62">            j++</span>
+        }
+<span class="fc" id="L64">        memo[i] = minCost</span>
+<span class="fc" id="L65">        return minCost</span>
+    }
+}
+
+/**
+ * Approach #3 Using Dynamic Programming.
+ * Time complexity : O(nB).
+ * Space complexity : O(n).
+ */
+<span class="fc" id="L74">class CoinPathDP : CoinPath {</span>
+    override fun cheapestJump(a: IntArray, b: Int): List&lt;Int&gt; {
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        val next = IntArray(a.size) { -1 }</span>
+<span class="fc" id="L77">        val dp = LongArray(a.size)</span>
+<span class="fc" id="L78">        val res: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        for (i in a.size - 2 downTo 0) {</span>
+<span class="fc" id="L80">            var minCost = Int.MAX_VALUE.toLong()</span>
+<span class="fc" id="L81">            var j: Int = i + 1</span>
+<span class="fc bfc" id="L82" title="All 4 branches covered.">            while (j &lt;= i + b &amp;&amp; j &lt; a.size) {</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">                if (a[j] &gt;= 0) {</span>
+<span class="fc" id="L84">                    val cost: Long = a[i] + dp[j]</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                    if (cost &lt; minCost) {</span>
+<span class="fc" id="L86">                        minCost = cost</span>
+<span class="fc" id="L87">                        next[i] = j</span>
+                    }
+                }
+<span class="fc" id="L90">                j++</span>
+            }
+<span class="fc" id="L92">            dp[i] = minCost</span>
+        }
+<span class="fc" id="L94">        var i = 0</span>
+<span class="fc bfc" id="L95" title="All 4 branches covered.">        while (i &lt; a.size &amp;&amp; next[i] &gt; 0) {</span>
+<span class="fc" id="L96">            res.add(i + 1)</span>
+<span class="fc" id="L97">            i = next[i]</span>
+        }
+<span class="pc bpc" id="L99" title="1 of 4 branches missed.">        if (i == a.size - 1 &amp;&amp; a[i] &gt;= 0) res.add(a.size) else return ArrayList()</span>
+<span class="fc" id="L100">        return res</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

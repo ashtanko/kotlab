@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ListTNode.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ListTNode.kt</span></div><h1>ListTNode.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+<span class="pc" id="L19">data class ListTNode&lt;T&gt;(val value: T? = null, var next: ListTNode&lt;T&gt;? = null)</span>
+
+fun &lt;T&gt; ListTNode&lt;T&gt;.prettyPrinted(): String {
+<span class="fc" id="L22">    val sb = StringBuilder()</span>
+<span class="fc" id="L23">    var node: ListTNode&lt;T&gt;? = this</span>
+<span class="pc bpc" id="L24" title="1 of 4 branches missed.">    while (node?.next != null) {</span>
+<span class="fc" id="L25">        sb.append(&quot;${node.value}-&gt;&quot;)</span>
+<span class="fc" id="L26">        node = node.next</span>
+    }
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">    if (node != null) {</span>
+<span class="fc" id="L29">        sb.append(node.value)</span>
+    } else {
+<span class="nc" id="L31">        sb.append(&quot;Empty LinkedList&quot;)</span>
+    }
+<span class="fc" id="L33">    return sb.toString()</span>
+}
+
+fun &lt;T&gt; List&lt;T&gt;.toListTNode(): ListTNode&lt;T&gt;? {
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">    if (isEmpty()) return null</span>
+<span class="fc" id="L38">    var current = ListTNode&lt;T&gt;(value = null)</span>
+<span class="fc" id="L39">    var startNode = ListTNode&lt;T&gt;(value = null)</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    for (i in indices) {</span>
+<span class="fc" id="L41">        val v: T = this[i]</span>
+<span class="fc" id="L42">        val node = ListTNode(value = v)</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (i &gt; 0) {</span>
+<span class="fc" id="L44">            current.next = node</span>
+        } else {
+<span class="fc" id="L46">            startNode = node</span>
+        }
+<span class="fc" id="L48">        current = node</span>
+    }
+<span class="fc" id="L50">    return startNode</span>
+}
+
+fun &lt;T&gt; ListTNode&lt;T&gt;.toList(): List&lt;T?&gt; {
+<span class="fc" id="L54">    val result = mutableListOf&lt;T?&gt;()</span>
+<span class="fc" id="L55">    var node: ListTNode&lt;T&gt;? = this</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">    if (next == null) {</span>
+<span class="nc" id="L57">        result.add(value)</span>
+<span class="nc" id="L58">        return result.toList()</span>
+    }
+<span class="fc bfc" id="L60" title="All 2 branches covered.">    while (node != null) {</span>
+<span class="fc" id="L61">        result.add(node.value)</span>
+<span class="fc" id="L62">        node = node.next</span>
+    }
+<span class="fc" id="L64">    return result</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConsecutiveCharacters.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ConsecutiveCharacters.kt</span></div><h1>ConsecutiveCharacters.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface ConsecutiveCharactersStrategy {
+    operator fun invoke(s: String): Int
+}
+
+<span class="fc" id="L23">class MaxPower1 : ConsecutiveCharactersStrategy {</span>
+    override operator fun invoke(s: String): Int {
+<span class="fc" id="L25">        val n = s.length</span>
+<span class="fc" id="L26">        var start = 0</span>
+<span class="fc" id="L27">        var end = 0</span>
+<span class="fc" id="L28">        var max = 0</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        while (end &lt; n) {</span>
+<span class="fc bfc" id="L30" title="All 4 branches covered.">            while (end &lt; n &amp;&amp; s[end] == s[start]) {</span>
+<span class="fc" id="L31">                max = max.coerceAtLeast(end - start + 1)</span>
+<span class="fc" id="L32">                end++</span>
+            }
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            if (end == n) return max</span>
+<span class="fc" id="L35">            start = end</span>
+        }
+<span class="fc" id="L37">        return max</span>
+    }
+}
+
+<span class="fc" id="L41">class MaxPower2 : ConsecutiveCharactersStrategy {</span>
+    override operator fun invoke(s: String): Int {
+<span class="fc" id="L43">        var res = 0</span>
+<span class="fc" id="L44">        val n = s.length</span>
+<span class="fc" id="L45">        var i = 0</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        while (i &lt; n) {</span>
+<span class="fc" id="L47">            val j = i</span>
+<span class="fc bfc" id="L48" title="All 4 branches covered.">            while (i + 1 &lt; n &amp;&amp; s[i] == s[i + 1]) {</span>
+<span class="fc" id="L49">                i++</span>
+            }
+<span class="fc" id="L51">            res = kotlin.math.max(i - j + 1, res)</span>
+<span class="fc" id="L52">            i++</span>
+        }
+<span class="fc" id="L54">        return res</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

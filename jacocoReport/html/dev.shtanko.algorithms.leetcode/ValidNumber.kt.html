@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValidNumber.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ValidNumber.kt</span></div><h1>ValidNumber.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Locale
+
+fun String.isNumberRegex(): Boolean {
+<span class="fc" id="L22">    return trim().matches(&quot;[-+]?(\\d+\\.?|\\.\\d+)\\d*(e[-+]?\\d+)?&quot;.toRegex())</span>
+}
+
+fun String.isNumber(): Boolean {
+<span class="fc" id="L26">    var s = this</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">    s = s.lowercase(Locale.ROOT).trim { it &lt;= ' ' }</span>
+<span class="fc" id="L28">    var dotSeen = false</span>
+<span class="fc" id="L29">    var eSeen = false</span>
+<span class="fc" id="L30">    var numberBeforeE = false</span>
+<span class="fc" id="L31">    var numberAfterE = false</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">    for (i in s.indices) {</span>
+<span class="fc" id="L33">        val cur = s[i]</span>
+<span class="fc bfc" id="L34" title="All 6 branches covered.">        if (cur in '0'..'9') {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            if (!eSeen) {</span>
+<span class="fc" id="L36">                numberBeforeE = true</span>
+            } else {
+<span class="fc" id="L38">                numberAfterE = true</span>
+            }
+<span class="fc bfc" id="L40" title="All 4 branches covered.">        } else if (cur == '-' || cur == '+') {</span>
+<span class="fc bfc" id="L41" title="All 4 branches covered.">            if (i != 0 &amp;&amp; s[i - 1] != 'e') return false</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        } else if (cur == '.') {</span>
+<span class="pc bpc" id="L43" title="1 of 4 branches missed.">            if (eSeen || dotSeen) return false</span>
+<span class="fc" id="L44">            dotSeen = true</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        } else if (cur == 'e') {</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">            if (eSeen) return false</span>
+<span class="fc" id="L47">            eSeen = true</span>
+        } else { // invalid chars
+<span class="fc" id="L49">            return false</span>
+        }
+    }
+<span class="fc bfc" id="L52" title="All 6 branches covered.">    return if (eSeen) numberBeforeE &amp;&amp; numberAfterE else numberBeforeE</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CountPyramids.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CountPyramids.kt</span></div><h1>CountPyramids.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.min
+
+/**
+ * 2088. Count Fertile Pyramids in a Land
+ * @see &lt;a href=&quot;https://leetcode.com/problems/count-fertile-pyramids-in-a-land/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface CountPyramids {
+    operator fun invoke(grid: Array&lt;IntArray&gt;): Int
+}
+
+<span class="fc" id="L29">class CountPyramidsDP : CountPyramids {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L31">        val m: Int = grid.size</span>
+<span class="fc" id="L32">        val n: Int = grid.first().size</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        val rev = Array(m) { IntArray(n) }</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (i in 0 until m) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            for (j in 0 until n) rev[m - i - 1][j] = grid[i][j]</span>
+        }
+<span class="fc" id="L37">        return cal(grid) + cal(rev)</span>
+    }
+
+    private fun cal(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L41">        val m = grid.size</span>
+<span class="fc" id="L42">        val n = grid[0].size</span>
+<span class="fc" id="L43">        var res = 0</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (i in 1 until m) {</span>
+<span class="fc" id="L45">            var j = 0</span>
+<span class="fc" id="L46">            var cnt = 0</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">            while (j &lt; n) {</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                if (0 != grid[i][j]) cnt++ else cnt = 0</span>
+<span class="fc bfc" id="L49" title="All 4 branches covered.">                if (0 == cnt || 0 == j) {</span>
+<span class="fc" id="L50">                    ++j</span>
+<span class="fc" id="L51">                    continue</span>
+                }
+<span class="fc" id="L53">                grid[i][j] = min(grid[i - 1][j - 1] + 1, cnt + 1 shr 1)</span>
+<span class="fc" id="L54">                res += grid[i][j] - 1</span>
+<span class="fc" id="L55">                ++j</span>
+            }
+        }
+<span class="fc" id="L58">        return res</span>
+    }
+}
+
+<span class="fc" id="L62">class CountPyramidsDP2 : CountPyramids {</span>
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L64">        val inverseGrid = inverse(grid)</span>
+<span class="fc" id="L65">        return helper(grid) + helper(inverseGrid)</span>
+    }
+
+    private fun helper(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L69">        val m = grid.size</span>
+<span class="fc" id="L70">        val n = grid[0].size</span>
+<span class="fc" id="L71">        var ans = 0</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for (i in 1 until m) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            for (j in 1 until n - 1) {</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">                if (grid[i][j] &gt; 0) {</span>
+<span class="fc" id="L75">                    grid[i][j] = min(</span>
+<span class="fc" id="L76">                        min(grid[i - 1][j], grid[i - 1][j - 1]),</span>
+<span class="fc" id="L77">                        grid[i - 1][j + 1],</span>
+<span class="fc" id="L78">                    ) + 1</span>
+<span class="fc" id="L79">                    ans += grid[i][j] - 1</span>
+                }
+            }
+        }
+<span class="fc" id="L83">        return ans</span>
+    }
+
+    private fun inverse(grid: Array&lt;IntArray&gt;): Array&lt;IntArray&gt; {
+<span class="fc" id="L87">        val m = grid.size</span>
+<span class="fc" id="L88">        val n = grid[0].size</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        val g = Array(m) { IntArray(n) }</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        for (i in 0 until m) {</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">            for (j in 0 until n) {</span>
+<span class="fc" id="L92">                g[i][j] = grid[m - i - 1][j]</span>
+            }
+        }
+<span class="fc" id="L95">        return g</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

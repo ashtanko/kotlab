@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LongestIncreasingPath.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">LongestIncreasingPath.kt</span></div><h1>LongestIncreasingPath.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+fun interface LongestIncreasingPath {
+    operator fun invoke(grid: Array&lt;IntArray&gt;): Int
+}
+
+<span class="fc" id="L25">class LongestIncreasingPathDFS : LongestIncreasingPath {</span>
+
+<span class="fc" id="L27">    private val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(-1, 0))</span>
+    private var m = 0
+    private var n = 0
+
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="pc bpc" id="L32" title="2 of 4 branches missed.">        if (grid.isEmpty()) return 0</span>
+<span class="fc" id="L33">        m = grid.size</span>
+<span class="fc" id="L34">        n = grid[0].size</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        val cache = Array(m) { IntArray(n) }</span>
+<span class="fc" id="L36">        var ans = 0</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        for (i in 0 until m) for (j in 0 until n) ans = Math.max(ans, dfs(grid, i, j, cache))</span>
+<span class="fc" id="L38">        return ans</span>
+    }
+
+    private fun dfs(matrix: Array&lt;IntArray&gt;, i: Int, j: Int, cache: Array&lt;IntArray&gt;): Int {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (cache[i][j] != 0) return cache[i][j]</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (d in dirs) {</span>
+<span class="fc" id="L44">            val x = i + d[0]</span>
+<span class="fc" id="L45">            val y = j + d[1]</span>
+<span class="fc bfc" id="L46" title="All 12 branches covered.">            if (x in 0 until m &amp;&amp; 0 &lt;= y &amp;&amp; y &lt; n &amp;&amp; matrix[x][y] &gt; matrix[i][j]) {</span>
+<span class="fc" id="L47">                cache[i][j] = max(cache[i][j], dfs(matrix, x, y, cache))</span>
+            }
+        }
+<span class="fc" id="L50">        return ++cache[i][j]</span>
+    }
+}
+
+<span class="fc" id="L54">class LongestIncreasingPathPeelingOnion : LongestIncreasingPath {</span>
+<span class="fc" id="L55">    private val dir = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(-1, 0))</span>
+
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L58">        var m: Int = grid.size</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        if (m == 0) return 0</span>
+<span class="fc" id="L60">        var n: Int = grid[0].size</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        val matrix = Array(m + 2) { IntArray(n + 2) }</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        for (i in 0 until m) System.arraycopy(grid[i], 0, matrix[i + 1], 1, n)</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        val outdegree = Array(m + 2) { IntArray(n + 2) }</span>
+<span class="pc bpc" id="L64" title="1 of 4 branches missed.">        for (i in 1..m) {</span>
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">            for (j in 1..n) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">                for (d in dir) {</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">                    if (matrix[i][j] &lt; matrix[i + d[0]][j + d[1]]) {</span>
+<span class="fc" id="L68">                        outdegree[i][j]++</span>
+                    }
+                }
+            }
+        }
+<span class="fc" id="L73">        n += 2</span>
+<span class="fc" id="L74">        m += 2</span>
+<span class="fc" id="L75">        var leaves: MutableList&lt;IntArray&gt; = ArrayList()</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        for (i in 1 until m - 1) {</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            for (j in 1 until n - 1) {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">                if (outdegree[i][j] == 0) {</span>
+<span class="fc" id="L79">                    leaves.add(intArrayOf(i, j))</span>
+                }
+            }
+        }
+<span class="fc" id="L83">        var height = 0</span>
+<span class="fc bfc" id="L84" title="All 4 branches covered.">        while (leaves.isNotEmpty()) {</span>
+<span class="fc" id="L85">            height++</span>
+<span class="fc" id="L86">            val newLeaves: MutableList&lt;IntArray&gt; = ArrayList()</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            for (node in leaves) {</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">                for (d in dir) {</span>
+<span class="fc" id="L89">                    val x = node[0] + d[0]</span>
+<span class="fc" id="L90">                    val y = node[1] + d[1]</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">                    if (matrix[node[0]][node[1]] &gt; matrix[x][y]) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">                        if (--outdegree[x][y] == 0) {</span>
+<span class="fc" id="L93">                            newLeaves.add(intArrayOf(x, y))</span>
+                        }
+                    }
+                }
+            }
+<span class="fc" id="L98">            leaves = newLeaves</span>
+        }
+<span class="fc" id="L100">        return height</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

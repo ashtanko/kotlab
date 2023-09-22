@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VerbalArithmeticPuzzle.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">VerbalArithmeticPuzzle.kt</span></div><h1>VerbalArithmeticPuzzle.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+fun interface VerbalArithmeticPuzzle {
+    fun isSolvable(words: Array&lt;String&gt;, result: String): Boolean
+}
+
+<span class="fc" id="L23">class VerbalArithmeticPuzzleBacktracking : VerbalArithmeticPuzzle {</span>
+
+    companion object {
+<span class="fc" id="L26">        private val POW_10 = intArrayOf(1, 10, 100, 1000, 10000, 100000, 1000000)</span>
+        private const val ARR_SIZE = 91
+    }
+
+    override fun isSolvable(words: Array&lt;String&gt;, result: String): Boolean {
+<span class="fc" id="L31">        val charSet: MutableSet&lt;Char&gt; = HashSet()</span>
+<span class="fc" id="L32">        val charCount = IntArray(ARR_SIZE)</span>
+<span class="fc" id="L33">        val nonLeadingZero = BooleanArray(ARR_SIZE) // ASCII of `A..Z` chars are in range `65..90`</span>
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (word in words) {</span>
+<span class="fc" id="L36">            val cs = word.toCharArray()</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            for (i in cs.indices) {</span>
+<span class="fc bfc" id="L38" title="All 4 branches covered.">                if (i == 0 &amp;&amp; cs.size &gt; 1) {</span>
+<span class="fc" id="L39">                    nonLeadingZero[cs[i].code] = true</span>
+                }
+<span class="fc" id="L41">                charSet.add(cs[i])</span>
+<span class="fc" id="L42">                charCount[cs[i].code] += POW_10[cs.size - i - 1] // charCount is calculated by units</span>
+            }
+        }
+<span class="fc" id="L45">        val cs = result.toCharArray()</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        for (i in cs.indices) {</span>
+<span class="fc bfc" id="L47" title="All 4 branches covered.">            if (i == 0 &amp;&amp; cs.size &gt; 1) {</span>
+<span class="fc" id="L48">                nonLeadingZero[cs[i].code] = true</span>
+            }
+<span class="fc" id="L50">            charSet.add(cs[i])</span>
+<span class="fc" id="L51">            charCount[cs[i].code] -= POW_10[cs.size - i - 1] // charCount is calculated by units</span>
+        }
+<span class="fc" id="L53">        val used = BooleanArray(10)</span>
+<span class="fc" id="L54">        val charList = CharArray(charSet.size)</span>
+<span class="fc" id="L55">        var i = 0</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (c in charSet) {</span>
+<span class="fc" id="L57">            charList[i++] = c</span>
+        }
+<span class="fc" id="L59">        return backtracking(used, charList, nonLeadingZero, 0, 0, charCount)</span>
+    }
+
+    private fun backtracking(
+        used: BooleanArray,
+        charList: CharArray,
+        nonLeadingZero: BooleanArray,
+        step: Int,
+        diff: Int,
+        charCount: IntArray,
+    ): Boolean {
+<span class="fc bfc" id="L70" title="All 4 branches covered.">        if (step == charList.size) return diff == 0 // difference between sum of words and result equal to 0</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        for (d in 0..9) { // each character is decoded as one digit (0 - 9).</span>
+<span class="fc" id="L72">            val c = charList[step]</span>
+            // decoded as one number without leading zeros.
+<span class="fc bfc" id="L74" title="All 6 branches covered.">            if (!used[d] &amp;&amp; (d &gt; 0 || !nonLeadingZero[c.code])) {</span>
+<span class="fc" id="L75">                used[d] = true</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">                if (backtracking(</span>
+<span class="fc" id="L77">                        used,</span>
+<span class="fc" id="L78">                        charList,</span>
+<span class="fc" id="L79">                        nonLeadingZero,</span>
+<span class="fc" id="L80">                        step + 1,</span>
+<span class="fc" id="L81">                        diff + charCount[c.code] * d,</span>
+<span class="fc" id="L82">                        charCount,</span>
+                    )
+                ) {
+<span class="fc" id="L85">                    return true</span>
+                }
+<span class="fc" id="L87">                used[d] = false</span>
+            }
+        }
+<span class="fc" id="L90">        return false</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

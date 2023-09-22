@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LatestDayToCross.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">LatestDayToCross.kt</span></div><h1>LatestDayToCross.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+/**
+ * 1970. Last Day Where You Can Still Cross
+ * @see &lt;a href=&quot;https://leetcode.com/problems/last-day-where-you-can-still-cross/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface LatestDayToCross {
+    operator fun invoke(row: Int, col: Int, cells: Array&lt;IntArray&gt;): Int
+}
+
+<span class="fc" id="L30">class DSU(n: Int) {</span>
+<span class="nc" id="L31">    var root: IntArray</span>
+<span class="nc" id="L32">    var size: IntArray</span>
+
+<span class="fc" id="L34">    init {</span>
+<span class="fc" id="L35">        root = IntArray(n)</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc" id="L37">            root[i] = i</span>
+        }
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        size = IntArray(n) { 1 }</span>
+<span class="fc" id="L40">    }</span>
+
+    fun find(x: Int): Int {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (root[x] != x) {</span>
+<span class="fc" id="L44">            root[x] = find(root[x])</span>
+        }
+<span class="fc" id="L46">        return root[x]</span>
+    }
+
+    fun union(x: Int, y: Int) {
+<span class="fc" id="L50">        var rootX = find(x)</span>
+<span class="fc" id="L51">        var rootY = find(y)</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (rootX == rootY) {</span>
+<span class="fc" id="L53">            return</span>
+        }
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (size[rootX] &gt; size[rootY]) {</span>
+<span class="fc" id="L56">            val tmp = rootX</span>
+<span class="fc" id="L57">            rootX = rootY</span>
+<span class="fc" id="L58">            rootY = tmp</span>
+        }
+<span class="fc" id="L60">        root[rootX] = rootY</span>
+<span class="fc" id="L61">        size[rootY] += size[rootX]</span>
+<span class="fc" id="L62">    }</span>
+}
+
+/**
+ * Approach 1: Binary Search + Breadth-First Search
+ */
+<span class="fc" id="L68">class LatestDayToCrossBSBFS : LatestDayToCross {</span>
+
+<span class="fc" id="L70">    private val directions = arrayOf(intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, 1), intArrayOf(0, -1))</span>
+
+    override operator fun invoke(row: Int, col: Int, cells: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L73">        var left = 1</span>
+<span class="fc" id="L74">        var right = row * col</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        while (left &lt; right) {</span>
+<span class="fc" id="L76">            val mid = right - (right - left) / 2</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            if (canCross(row, col, cells, mid)) {</span>
+<span class="fc" id="L78">                left = mid</span>
+            } else {
+<span class="fc" id="L80">                right = mid - 1</span>
+            }
+        }
+<span class="fc" id="L83">        return left</span>
+    }
+
+    private fun canCross(row: Int, col: Int, cells: Array&lt;IntArray&gt;, day: Int): Boolean {
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        val grid = Array(row) { IntArray(col) }</span>
+<span class="fc" id="L88">        val queue: Queue&lt;IntArray&gt; = LinkedList()</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (i in 0 until day) {</span>
+<span class="fc" id="L90">            grid[cells[i][0] - 1][cells[i][1] - 1] = 1</span>
+        }
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        for (i in 0 until col) {</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            if (grid[0][i] == 0) {</span>
+<span class="fc" id="L94">                queue.offer(intArrayOf(0, i))</span>
+<span class="fc" id="L95">                grid[0][i] = -1</span>
+            }
+        }
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L99">            val cur: IntArray = queue.poll()</span>
+<span class="fc" id="L100">            val r = cur[0]</span>
+<span class="fc" id="L101">            val c = cur[1]</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">            if (r == row - 1) {</span>
+<span class="fc" id="L103">                return true</span>
+            }
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            for (dir in directions) {</span>
+<span class="fc" id="L106">                val newRow = r + dir[0]</span>
+<span class="fc" id="L107">                val newCol = c + dir[1]</span>
+<span class="pc bpc" id="L108" title="1 of 12 branches missed.">                if (newRow in 0 until row &amp;&amp; newCol &gt;= 0 &amp;&amp; newCol &lt; col &amp;&amp; grid[newRow][newCol] == 0) {</span>
+<span class="fc" id="L109">                    grid[newRow][newCol] = -1</span>
+<span class="fc" id="L110">                    queue.offer(intArrayOf(newRow, newCol))</span>
+                }
+            }
+        }
+<span class="fc" id="L114">        return false</span>
+    }
+}
+
+/**
+ * Approach 2: Binary Search + Depth-First Search
+ */
+<span class="fc" id="L121">class LatestDayToCrossBSDFS : LatestDayToCross {</span>
+
+<span class="fc" id="L123">    private val directions = arrayOf(intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, 1), intArrayOf(0, -1))</span>
+
+    override operator fun invoke(row: Int, col: Int, cells: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L126">        var left = 1</span>
+<span class="fc" id="L127">        var right = row * col</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        while (left &lt; right) {</span>
+<span class="fc" id="L129">            val mid = right - (right - left) / 2</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">            if (canCross(row, col, cells, mid)) {</span>
+<span class="fc" id="L131">                left = mid</span>
+            } else {
+<span class="fc" id="L133">                right = mid - 1</span>
+            }
+        }
+<span class="fc" id="L136">        return left</span>
+    }
+
+    private fun canCross(row: Int, col: Int, cells: Array&lt;IntArray&gt;, day: Int): Boolean {
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        val grid = Array(row) { IntArray(col) }</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        for (i in 0 until day) {</span>
+<span class="fc" id="L142">            val r = cells[i][0] - 1</span>
+<span class="fc" id="L143">            val c = cells[i][1] - 1</span>
+<span class="fc" id="L144">            grid[r][c] = 1</span>
+        }
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        for (i in 0 until day) {</span>
+<span class="fc" id="L147">            grid[cells[i][0] - 1][cells[i][1] - 1] = 1</span>
+        }
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        for (i in 0 until col) {</span>
+<span class="fc bfc" id="L150" title="All 4 branches covered.">            if (grid[0][i] == 0 &amp;&amp; dfs(grid, 0, i, row, col)) {</span>
+<span class="fc" id="L151">                return true</span>
+            }
+        }
+<span class="fc" id="L154">        return false</span>
+    }
+
+    private fun dfs(grid: Array&lt;IntArray&gt;, r: Int, c: Int, row: Int, col: Int): Boolean {
+<span class="pc bpc" id="L158" title="1 of 10 branches missed.">        if (r &lt; 0 || r &gt;= row || c &lt; 0 || c &gt;= col || grid[r][c] != 0) {</span>
+<span class="fc" id="L159">            return false</span>
+        }
+<span class="fc bfc" id="L161" title="All 2 branches covered.">        if (r == row - 1) {</span>
+<span class="fc" id="L162">            return true</span>
+        }
+<span class="fc" id="L164">        grid[r][c] = -1</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">        for (dir in directions) {</span>
+<span class="fc" id="L166">            val newR = r + dir[0]</span>
+<span class="fc" id="L167">            val newC = c + dir[1]</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">            if (dfs(grid, newR, newC, row, col)) {</span>
+<span class="fc" id="L169">                return true</span>
+            }
+        }
+<span class="fc" id="L172">        return false</span>
+    }
+}
+
+/**
+ * Approach 3: Disjoint Set Union (on land cells)
+ */
+<span class="fc" id="L179">class LatestDayToCrossDisjoint : LatestDayToCross {</span>
+    override operator fun invoke(row: Int, col: Int, cells: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L181">        return performCross(</span>
+<span class="fc" id="L182">            row,</span>
+<span class="fc" id="L183">            col,</span>
+<span class="fc" id="L184">            cells,</span>
+<span class="fc" id="L185">            arrayOf(intArrayOf(0, 1), intArrayOf(0, -1), intArrayOf(1, 0), intArrayOf(-1, 0)),</span>
+        )
+    }
+}
+
+/**
+ * Approach 4: Disjoint Set Union (on water cells)
+ */
+<span class="fc" id="L193">class LatestDayToCrossUnion : LatestDayToCross {</span>
+    override operator fun invoke(row: Int, col: Int, cells: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L195">        val dsu = DSU(row * col + 2)</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">        val grid = Array(row) { IntArray(col) }</span>
+<span class="fc" id="L197">        val directions = arrayOf(</span>
+<span class="fc" id="L198">            intArrayOf(0, 1),</span>
+<span class="fc" id="L199">            intArrayOf(0, -1),</span>
+<span class="fc" id="L200">            intArrayOf(1, 0),</span>
+<span class="fc" id="L201">            intArrayOf(-1, 0),</span>
+<span class="fc" id="L202">            intArrayOf(1, 1),</span>
+<span class="fc" id="L203">            intArrayOf(1, -1),</span>
+<span class="fc" id="L204">            intArrayOf(-1, 1),</span>
+<span class="fc" id="L205">            intArrayOf(-1, -1),</span>
+        )
+
+<span class="fc" id="L208">        (0 until row * col).forEach { i -&gt;</span>
+<span class="fc" id="L209">            val r = cells[i][0] - 1</span>
+<span class="fc" id="L210">            val c = cells[i][1] - 1</span>
+<span class="fc" id="L211">            grid[r][c] = 1</span>
+<span class="fc" id="L212">            val index1 = r * col + c + 1</span>
+<span class="fc" id="L213">            directions.forEach { d -&gt;</span>
+<span class="fc" id="L214">                val newR = r + d[0]</span>
+<span class="fc" id="L215">                val newC = c + d[1]</span>
+<span class="fc" id="L216">                val index2 = newR * col + newC + 1</span>
+<span class="fc bfc" id="L217" title="All 12 branches covered.">                if (newR in 0 until row &amp;&amp; newC &gt;= 0 &amp;&amp; newC &lt; col &amp;&amp; grid[newR][newC] == 1) {</span>
+<span class="fc" id="L218">                    dsu.union(index1, index2)</span>
+                }
+<span class="fc" id="L220">            }</span>
+<span class="fc bfc" id="L221" title="All 2 branches covered.">            if (c == 0) {</span>
+<span class="fc" id="L222">                dsu.union(0, index1)</span>
+            }
+<span class="fc bfc" id="L224" title="All 2 branches covered.">            if (c == col - 1) {</span>
+<span class="fc" id="L225">                dsu.union(row * col + 1, index1)</span>
+            }
+<span class="fc bfc" id="L227" title="All 2 branches covered.">            if (dsu.find(0) == dsu.find(row * col + 1)) {</span>
+<span class="fc" id="L228">                return i</span>
+            }
+<span class="fc" id="L230">        }</span>
+<span class="nc" id="L231">        return -1</span>
+    }
+}
+
+private fun performCross(
+    row: Int,
+    col: Int,
+    cells: Array&lt;IntArray&gt;,
+    directions: Array&lt;IntArray&gt;,
+): Int {
+<span class="fc" id="L241">    val dsu = DSU(row * col + 2)</span>
+<span class="fc bfc" id="L242" title="All 2 branches covered.">    val grid = Array(row) { IntArray(col) }</span>
+
+<span class="fc" id="L244">    cells.indices.reversed().forEach { i -&gt;</span>
+<span class="fc" id="L245">        val r = cells[i][0] - 1</span>
+<span class="fc" id="L246">        val c = cells[i][1] - 1</span>
+<span class="fc" id="L247">        grid[r][c] = 1</span>
+<span class="fc" id="L248">        val index1 = r * col + c + 1</span>
+<span class="fc bfc" id="L249" title="All 2 branches covered.">        for (d in directions) {</span>
+<span class="fc" id="L250">            val newR = r + d[0]</span>
+<span class="fc" id="L251">            val newC = c + d[1]</span>
+<span class="fc" id="L252">            val index2 = newR * col + newC + 1</span>
+<span class="fc bfc" id="L253" title="All 12 branches covered.">            if (newR in 0 until row &amp;&amp; newC &gt;= 0 &amp;&amp; newC &lt; col &amp;&amp; grid[newR][newC] == 1) {</span>
+<span class="fc" id="L254">                dsu.union(index1, index2)</span>
+            }
+        }
+<span class="fc bfc" id="L257" title="All 2 branches covered.">        if (r == 0) {</span>
+<span class="fc" id="L258">            dsu.union(0, index1)</span>
+        }
+<span class="fc bfc" id="L260" title="All 2 branches covered.">        if (r == row - 1) {</span>
+<span class="fc" id="L261">            dsu.union(row * col + 1, index1)</span>
+        }
+<span class="fc bfc" id="L263" title="All 2 branches covered.">        if (dsu.find(0) == dsu.find(row * col + 1)) {</span>
+<span class="fc" id="L264">            return i</span>
+        }
+<span class="fc" id="L266">    }</span>
+<span class="nc" id="L267">    return -1</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

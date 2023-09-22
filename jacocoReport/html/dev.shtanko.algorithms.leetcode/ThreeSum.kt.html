@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThreeSum.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ThreeSum.kt</span></div><h1>ThreeSum.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 3 Sum.
+ * @see &lt;a href=&quot;https://leetcode.com/problems/3sum/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface ThreeSum {
+    operator fun invoke(nums: IntArray): List&lt;List&lt;Int&gt;&gt;
+}
+
+/**
+ * Approach 1: Two Pointers.
+ * Time Complexity: O(n^2).
+ * Space Complexity: O(n^2).
+ */
+<span class="fc" id="L32">class ThreeSumTwoPointers : ThreeSum {</span>
+    override operator fun invoke(nums: IntArray): List&lt;List&lt;Int&gt;&gt; {
+<span class="fc" id="L34">        nums.sort()</span>
+<span class="fc" id="L35">        val res: MutableList&lt;List&lt;Int&gt;&gt; = ArrayList&lt;List&lt;Int&gt;&gt;()</span>
+<span class="fc" id="L36">        var i = 0</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        while (i &lt; nums.size &amp;&amp; nums[i] &lt;= 0) {</span>
+<span class="fc bfc" id="L38" title="All 4 branches covered.">            if (i == 0 || nums[i - 1] != nums[i]) {</span>
+<span class="fc" id="L39">                twoSumII(nums, i, res)</span>
+            }
+<span class="fc" id="L41">            ++i</span>
+        }
+<span class="fc" id="L43">        return res</span>
+    }
+
+    private fun twoSumII(nums: IntArray, i: Int, res: MutableList&lt;List&lt;Int&gt;&gt;) {
+<span class="fc" id="L47">        var lo = i + 1</span>
+<span class="fc" id="L48">        var hi = nums.size - 1</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        while (lo &lt; hi) {</span>
+<span class="fc" id="L50">            val sum = nums[i] + nums[lo] + nums[hi]</span>
+<span class="fc" id="L51">            when {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">                sum &lt; 0 -&gt; {</span>
+<span class="fc" id="L53">                    ++lo</span>
+                }
+
+<span class="fc bfc" id="L56" title="All 2 branches covered.">                sum &gt; 0 -&gt; {</span>
+<span class="fc" id="L57">                    --hi</span>
+                }
+
+                else -&gt; {
+<span class="fc" id="L61">                    res.add(listOf(nums[i], nums[lo++], nums[hi--]))</span>
+<span class="pc bpc" id="L62" title="1 of 4 branches missed.">                    while (lo &lt; hi &amp;&amp; nums[lo] == nums[lo - 1]) ++lo</span>
+                }
+            }
+        }
+<span class="fc" id="L66">    }</span>
+}
+
+/**
+ * Approach 2: Hashset.
+ * Time Complexity: O(n^2).
+ * Space Complexity: O(n^2).
+ */
+<span class="fc" id="L74">class ThreeSumHashset : ThreeSum {</span>
+    override operator fun invoke(nums: IntArray): List&lt;List&lt;Int&gt;&gt; {
+<span class="fc" id="L76">        nums.sort()</span>
+<span class="fc" id="L77">        val res: MutableList&lt;List&lt;Int&gt;&gt; = ArrayList&lt;List&lt;Int&gt;&gt;()</span>
+<span class="fc" id="L78">        var i = 0</span>
+<span class="fc bfc" id="L79" title="All 4 branches covered.">        while (i &lt; nums.size &amp;&amp; nums[i] &lt;= 0) {</span>
+<span class="fc bfc" id="L80" title="All 4 branches covered.">            if (i == 0 || nums[i - 1] != nums[i]) {</span>
+<span class="fc" id="L81">                twoSum(nums, i, res)</span>
+            }
+<span class="fc" id="L83">            ++i</span>
+        }
+<span class="fc" id="L85">        return res</span>
+    }
+
+    private fun twoSum(nums: IntArray, i: Int, res: MutableList&lt;List&lt;Int&gt;&gt;) {
+<span class="fc" id="L89">        val seen = HashSet&lt;Int&gt;()</span>
+<span class="fc" id="L90">        var j = i + 1</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        while (j &lt; nums.size) {</span>
+<span class="fc" id="L92">            val complement = -nums[i] - nums[j]</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            if (seen.contains(complement)) {</span>
+<span class="fc" id="L94">                res.add(listOf(nums[i], nums[j], complement))</span>
+<span class="pc bpc" id="L95" title="1 of 4 branches missed.">                while (j + 1 &lt; nums.size &amp;&amp; nums[j] == nums[j + 1]) ++j</span>
+            }
+<span class="fc" id="L97">            seen.add(nums[j])</span>
+<span class="fc" id="L98">            ++j</span>
+        }
+<span class="fc" id="L100">    }</span>
+}
+
+/**
+ * Approach 3: &quot;No-Sort&quot;.
+ * Time Complexity: O(n^2).
+ * Space Complexity: O(n).
+ */
+<span class="fc" id="L108">class ThreeSumNoSort : ThreeSum {</span>
+    override operator fun invoke(nums: IntArray): List&lt;List&lt;Int&gt;&gt; {
+<span class="fc" id="L110">        val res: MutableSet&lt;List&lt;Int&gt;&gt; = HashSet()</span>
+<span class="fc" id="L111">        val dups: MutableSet&lt;Int&gt; = HashSet()</span>
+<span class="fc" id="L112">        val seen: MutableMap&lt;Int, Int&gt; = HashMap()</span>
+<span class="fc bfc" id="L113" title="All 4 branches covered.">        for (i in nums.indices) if (dups.add(nums[i])) {</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">            for (j in i + 1 until nums.size) {</span>
+<span class="fc" id="L115">                val complement = -nums[i] - nums[j]</span>
+<span class="pc bpc" id="L116" title="1 of 6 branches missed.">                if (seen.containsKey(complement) &amp;&amp; seen[complement] == i) {</span>
+<span class="fc" id="L117">                    val triplet: MutableList&lt;Int&gt; = mutableListOf(nums[i], nums[j], complement)</span>
+<span class="fc" id="L118">                    triplet.sort()</span>
+<span class="fc" id="L119">                    res.add(triplet)</span>
+                }
+<span class="fc" id="L121">                seen[nums[j]] = i</span>
+            }
+        }
+<span class="fc" id="L124">        return ArrayList(res)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

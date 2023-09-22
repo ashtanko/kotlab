@@ -18,6 +18,10 @@ package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.max
 
+/**
+ * 392. Is Subsequence
+ * @see <a href="https://leetcode.com/problems/unique-paths-ii/">Source</a>
+ */
 fun interface IsSubsequence {
     operator fun invoke(source: String, target: String): Boolean
 }
@@ -48,5 +52,43 @@ class IsSubsequenceDP : IsSubsequence {
         }
         // matching failure
         return false
+    }
+}
+
+class IsSubsequenceTwoPointers : IsSubsequence {
+    override fun invoke(source: String, target: String): Boolean {
+        var j = 0
+        val n = source.length
+        val m = target.length
+
+        for (i in 0 until m) {
+            if (j < n && source[j] == target[i]) {
+                j++
+            }
+        }
+
+        return j == n
+    }
+}
+
+class IsSubsequenceRecursion : IsSubsequence {
+    override fun invoke(source: String, target: String): Boolean {
+        val m = source.length
+        val n = target.length
+        if (m > n) {
+            return false
+        }
+        return isSubSequence(source, target, m, n) == m
+    }
+
+    private fun isSubSequence(s1: String, s2: String, i: Int, j: Int): Int {
+        if (i == 0 || j == 0) {
+            return 0
+        }
+        return if (s1[i - 1] == s2[j - 1]) {
+            1 + isSubSequence(s1, s2, i - 1, j - 1)
+        } else {
+            isSubSequence(s1, s2, i, j - 1)
+        }
     }
 }

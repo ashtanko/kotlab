@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FlattenBinaryTree.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FlattenBinaryTree.kt</span></div><h1>FlattenBinaryTree.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Stack
+
+/**
+ * 114. Flatten Binary Tree to Linked List
+ * @see &lt;a href=&quot;https://leetcode.com/problems/flatten-binary-tree-to-linked-list/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface FlattenBinaryTree {
+    fun flatten(root: TreeNode?)
+}
+
+<span class="fc" id="L29">class FlattenRecursion : FlattenBinaryTree {</span>
+    override fun flatten(root: TreeNode?) {
+<span class="fc" id="L31">        flattenTree(root)</span>
+<span class="fc" id="L32">    }</span>
+
+    private fun flattenTree(node: TreeNode?): TreeNode? {
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (node == null) {</span>
+<span class="fc" id="L36">            return null</span>
+        }
+<span class="fc bfc" id="L38" title="All 4 branches covered.">        if (node.left == null &amp;&amp; node.right == null) {</span>
+<span class="fc" id="L39">            return node</span>
+        }
+<span class="fc" id="L41">        val leftTail = flattenTree(node.left)</span>
+<span class="fc" id="L42">        val rightTail = flattenTree(node.right)</span>
+
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (leftTail != null) {</span>
+<span class="fc" id="L45">            leftTail.right = node.right</span>
+<span class="fc" id="L46">            node.right = node.left</span>
+<span class="fc" id="L47">            node.left = null</span>
+        }
+
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        return rightTail ?: leftTail</span>
+    }
+}
+
+<span class="fc" id="L54">class FlattenStack : FlattenBinaryTree {</span>
+    override fun flatten(root: TreeNode?) {
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (root == null) {</span>
+<span class="nc" id="L57">            return</span>
+        }
+
+<span class="fc" id="L60">        val start = 1</span>
+<span class="fc" id="L61">        val end = 2</span>
+
+<span class="fc" id="L63">        var tailNode: TreeNode? = null</span>
+<span class="fc" id="L64">        val stack: Stack&lt;Pair&lt;TreeNode, Int&gt;&gt; = Stack&lt;Pair&lt;TreeNode, Int&gt;&gt;()</span>
+<span class="fc" id="L65">        stack.push(root to start)</span>
+
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        while (!stack.isEmpty()) {</span>
+<span class="fc" id="L68">            val nodeData: Pair&lt;TreeNode, Int&gt; = stack.pop()</span>
+<span class="fc" id="L69">            val currentNode: TreeNode = nodeData.first</span>
+<span class="fc" id="L70">            val recursionState: Int = nodeData.second</span>
+<span class="fc bfc" id="L71" title="All 4 branches covered.">            if (currentNode.left == null &amp;&amp; currentNode.right == null) {</span>
+<span class="fc" id="L72">                tailNode = currentNode</span>
+<span class="fc" id="L73">                continue</span>
+            }
+<span class="fc bfc" id="L75" title="All 2 branches covered.">            if (recursionState == start) {</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">                if (currentNode.left != null) {</span>
+<span class="fc" id="L77">                    stack.push(Pair(currentNode, end))</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">                    currentNode.left?.let {</span>
+<span class="fc" id="L79">                        stack.push(it to start)</span>
+                    }
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">                } else if (currentNode.right != null) {</span>
+<span class="fc" id="L82">                    stack.push(Pair(currentNode.right!!, start))</span>
+                }
+            } else {
+<span class="fc" id="L85">                var rightNode = currentNode.right</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">                if (tailNode != null) {</span>
+<span class="fc" id="L87">                    tailNode.right = currentNode.right</span>
+<span class="fc" id="L88">                    currentNode.right = currentNode.left</span>
+<span class="fc" id="L89">                    currentNode.left = null</span>
+<span class="fc" id="L90">                    rightNode = tailNode.right</span>
+                }
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">                if (rightNode != null) {</span>
+<span class="fc" id="L93">                    stack.push(Pair(rightNode, start))</span>
+                }
+            }
+        }
+<span class="fc" id="L97">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

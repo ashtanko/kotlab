@@ -48,4 +48,6 @@ abstract class IsSubsequenceTest<out T : IsSubsequence>(private val strategy: T)
     }
 }
 
-class IsSubsequenceDPTest : IsSubsequenceTest<IsSubsequenceDP>(IsSubsequenceDP())
+class IsSubsequenceDPTest : IsSubsequenceTest<IsSubsequence>(IsSubsequenceDP())
+class IsSubsequenceTwoPointersTest : IsSubsequenceTest<IsSubsequence>(IsSubsequenceTwoPointers())
+class IsSubsequenceRecursionTest : IsSubsequenceTest<IsSubsequence>(IsSubsequenceRecursion())

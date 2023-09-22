@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NetworkDelayTime.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NetworkDelayTime.kt</span></div><h1>NetworkDelayTime.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.PriorityQueue
+import java.util.Queue
+import kotlin.math.max
+
+/**
+ * 743. Network Delay Time
+ * @see &lt;a href=&quot;https://leetcode.com/problems/network-delay-time/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface NetworkDelayTime {
+    operator fun invoke(times: Array&lt;IntArray&gt;, n: Int, k: Int): Int
+}
+
+<span class="fc" id="L32">class NetworkDelayTimeDFS : NetworkDelayTime {</span>
+    override operator fun invoke(times: Array&lt;IntArray&gt;, n: Int, k: Int): Int {
+        // Build the adjacency list
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (time in times) {</span>
+<span class="fc" id="L36">            val source = time[0]</span>
+<span class="fc" id="L37">            val dest = time[1]</span>
+<span class="fc" id="L38">            val travelTime = time[2]</span>
+<span class="fc" id="L39">            adj.putIfAbsent(source, ArrayList())</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">            adj[source]?.add(Pair(travelTime, dest))</span>
+        }
+
+        // Sort the edges connecting to every node
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (node in adj.keys) {</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">            adj[node]?.let { it.sortWith { a, b -&gt; a.first - b.second } }</span>
+        }
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        val signalReceivedAt = IntArray(n + 1) { Int.MAX_VALUE }</span>
+<span class="fc" id="L48">        dfs(signalReceivedAt, k, 0)</span>
+<span class="fc" id="L49">        var answer = Int.MIN_VALUE</span>
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        for (node in 1..n) {</span>
+<span class="fc" id="L51">            answer = max(answer, signalReceivedAt[node])</span>
+        }
+
+        // Integer.MAX_VALUE signifies at least one node is unreachable
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        return if (answer == Int.MAX_VALUE) -1 else answer</span>
+    }
+
+    // Adjacency list
+<span class="fc" id="L59">    private val adj: MutableMap&lt;Int, MutableList&lt;Pair&lt;Int, Int&gt;&gt;&gt; = HashMap()</span>
+
+    private fun dfs(signalReceivedAt: IntArray, currNode: Int, currTime: Int) {
+        // If the current time is greater than or equal to the fastest signal received
+        // Then no need to iterate over adjacent nodes
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (currTime &gt;= signalReceivedAt[currNode]) {</span>
+<span class="nc" id="L65">            return</span>
+        }
+
+        // Fastest signal time for currNode so far
+<span class="fc" id="L69">        signalReceivedAt[currNode] = currTime</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (!adj.containsKey(currNode)) {</span>
+<span class="fc" id="L71">            return</span>
+        }
+
+        // Broadcast the signal to adjacent nodes
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        val pairs = adj[currNode] ?: return</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        for (edge in pairs) {</span>
+<span class="fc" id="L77">            val (travelTime, neighborNode) = edge</span>
+            // currTime + time : time when signal reaches neighborNode
+<span class="fc" id="L79">            dfs(signalReceivedAt, neighborNode, currTime + travelTime)</span>
+        }
+<span class="fc" id="L81">    }</span>
+}
+
+<span class="fc" id="L84">class NetworkDelayTimeBFS : NetworkDelayTime {</span>
+    override operator fun invoke(times: Array&lt;IntArray&gt;, n: Int, k: Int): Int {
+        // Build the adjacency list
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        for (time in times) {</span>
+<span class="fc" id="L88">            val source = time[0]</span>
+<span class="fc" id="L89">            val dest = time[1]</span>
+<span class="fc" id="L90">            val travelTime = time[2]</span>
+<span class="fc" id="L91">            adj.putIfAbsent(source, ArrayList())</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            adj[source]?.add(Pair(travelTime, dest))</span>
+        }
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        val signalReceivedAt = IntArray(n + 1) { Int.MAX_VALUE }</span>
+<span class="fc" id="L95">        bfs(signalReceivedAt, k)</span>
+<span class="fc" id="L96">        var answer = Int.MIN_VALUE</span>
+<span class="pc bpc" id="L97" title="1 of 4 branches missed.">        for (i in 1..n) {</span>
+<span class="fc" id="L98">            answer = max(answer, signalReceivedAt[i])</span>
+        }
+
+        // INT_MAX signifies at least one node is unreachable
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        return if (answer == Int.MAX_VALUE) -1 else answer</span>
+    }
+
+    // Adjacency list
+<span class="pc" id="L106">    var adj: MutableMap&lt;Int, MutableList&lt;Pair&lt;Int, Int&gt;&gt;&gt; = HashMap()</span>
+
+    private fun bfs(signalReceivedAt: IntArray, sourceNode: Int) {
+<span class="fc" id="L109">        val q: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="fc" id="L110">        q.add(sourceNode)</span>
+
+        // Time for starting node is 0
+<span class="fc" id="L113">        signalReceivedAt[sourceNode] = 0</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        while (!q.isEmpty()) {</span>
+<span class="fc" id="L115">            val currNode: Int = q.remove()</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">            if (!adj.containsKey(currNode)) {</span>
+<span class="fc" id="L117">                continue</span>
+            }
+
+            // Broadcast the signal to adjacent nodes
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">            val pairs = adj[currNode] ?: return</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">            for (edge in pairs) {</span>
+<span class="fc" id="L123">                val (travelTime, neighborNode) = edge</span>
+
+                // Fastest signal time for neighborNode so far
+                // signalReceivedAt[currNode] + time :
+                // time when signal reaches neighborNode
+<span class="fc" id="L128">                val arrivalTime = signalReceivedAt[currNode] + travelTime</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">                if (signalReceivedAt[neighborNode] &gt; arrivalTime) {</span>
+<span class="fc" id="L130">                    signalReceivedAt[neighborNode] = arrivalTime</span>
+<span class="fc" id="L131">                    q.add(neighborNode)</span>
+                }
+            }
+        }
+<span class="fc" id="L135">    }</span>
+}
+
+<span class="fc" id="L138">class NetworkDelayTimeDijkstra : NetworkDelayTime {</span>
+<span class="fc" id="L139">    data class GraphNode(val id: Int, val neighbors: MutableList&lt;GraphNode&gt; = mutableListOf())</span>
+
+    override operator fun invoke(times: Array&lt;IntArray&gt;, n: Int, k: Int): Int {
+<span class="fc" id="L142">        val graph = (1..n).associateWith { GraphNode(it) }</span>
+<span class="fc" id="L143">        val weight = mutableMapOf&lt;Pair&lt;Int, Int&gt;, Int&gt;()</span>
+<span class="fc" id="L144">        val distance = mutableMapOf&lt;Int, Int&gt;()</span>
+<span class="fc" id="L145">        times.forEach { time -&gt;</span>
+<span class="pc bpc" id="L146" title="3 of 6 branches missed.">            graph[time[1]]?.let { graph[time[0]]?.neighbors?.add(it) }</span>
+<span class="fc" id="L147">            weight[Pair(time[0], time[1])] = time[2]</span>
+<span class="fc" id="L148">        }</span>
+<span class="fc" id="L149">        dijkstra(graph, weight, distance, k)</span>
+
+<span class="pc bpc" id="L151" title="1 of 12 branches missed.">        return distance.map { it.value }.maxOf { it }.takeIf { it != Int.MAX_VALUE } ?: -1</span>
+    }
+
+    private fun dijkstra(
+        graph: Map&lt;Int, GraphNode&gt;,
+        weight: Map&lt;Pair&lt;Int, Int&gt;, Int&gt;,
+        distance: MutableMap&lt;Int, Int&gt;,
+        sourceId: Int,
+    ) {
+<span class="fc" id="L160">        initializeSingleSource(graph, distance, sourceId)</span>
+<span class="pc bpc" id="L161" title="2 of 4 branches missed.">        val minHeap = PriorityQueue&lt;GraphNode&gt; { o1, o2 -&gt; (distance[o1.id] ?: 0) - (distance[o2.id] ?: 0) }</span>
+<span class="fc" id="L162">        minHeap.offer(graph[sourceId]!!)</span>
+<span class="fc bfc" id="L163" title="All 4 branches covered.">        while (minHeap.isNotEmpty()) {</span>
+<span class="fc" id="L164">            val node = minHeap.poll()</span>
+<span class="fc" id="L165">            node.neighbors.forEach { graphNode -&gt;</span>
+<span class="pc bpc" id="L166" title="2 of 4 branches missed.">                val newDist = (distance[node.id] ?: 0) + (weight[Pair(node.id, graphNode.id)] ?: 0)</span>
+<span class="pc bpc" id="L167" title="1 of 2 branches missed.">                val safeDist = distance[graphNode.id] ?: 0</span>
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">                if (safeDist &gt; newDist) {</span>
+<span class="fc" id="L169">                    distance[graphNode.id] = newDist</span>
+<span class="pc bpc" id="L170" title="1 of 2 branches missed.">                    graph[graphNode.id]?.let { minHeap.offer(it) }</span>
+                }
+<span class="fc" id="L172">            }</span>
+        }
+<span class="fc" id="L174">    }</span>
+
+    private fun initializeSingleSource(graph: Map&lt;Int, GraphNode&gt;, distance: MutableMap&lt;Int, Int&gt;, sourceId: Int) {
+<span class="fc" id="L177">        graph.map { it.key }.forEach { distance[it] = Int.MAX_VALUE }</span>
+<span class="fc" id="L178">        distance[sourceId] = 0</span>
+<span class="fc" id="L179">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

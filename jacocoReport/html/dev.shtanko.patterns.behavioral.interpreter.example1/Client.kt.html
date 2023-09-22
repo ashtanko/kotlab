@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.patterns.behavioral.interpreter.example1</a> &gt; <span class="el_source">Client.kt</span></div><h1>Client.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.patterns.behavioral.interpreter.example1
+
+import java.util.Stack
+
+internal object Client {
+    @JvmStatic
+    fun main(vararg args: String) {
+<span class="fc" id="L24">        val tokenString = &quot;4 3 2 - 1 + *&quot;</span>
+        // the stack holds the parsed expressions
+<span class="fc" id="L26">        val stack = Stack&lt;Expression&gt;()</span>
+
+        // tokenize the string and go through them one by one
+<span class="fc" id="L29">        val tokenList = tokenString.split(&quot; &quot;.toRegex()).toTypedArray()</span>
+
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        for (s in tokenList) {</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">            if (isOperator(s)) {</span>
+                // when an operator is encountered we expect that the numbers can be popped from the top of
+                // the stack
+<span class="fc" id="L35">                val rightExpression = stack.pop()</span>
+<span class="fc" id="L36">                val leftExpression = stack.pop()</span>
+
+<span class="fc" id="L38">                val operator: Expression = getOperatorInstance(s, leftExpression, rightExpression)</span>
+<span class="fc" id="L39">                val result = operator.interpret()</span>
+                // the operation result is pushed on top of the stack
+<span class="fc" id="L41">                val resultExpression = NumberExpression(result)</span>
+<span class="fc" id="L42">                stack.push(resultExpression)</span>
+            } else {
+                // numbers are pushed on top of the stack
+<span class="fc" id="L45">                val i = NumberExpression(s)</span>
+<span class="fc" id="L46">                stack.push(i)</span>
+            }
+        }
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Checks whether the input parameter is an operator.
+     * @param s input string
+     * @return true if the input parameter is an operator
+     */
+    private fun isOperator(s: String): Boolean {
+<span class="fc bfc" id="L57" title="All 6 branches covered.">        return s == &quot;+&quot; || s == &quot;-&quot; || s == &quot;*&quot;</span>
+    }
+
+    /**
+     * Returns correct expression based on the parameters.
+     * @param s input string
+     * @param left expression
+     * @param right expression
+     * @return expression
+     */
+    private fun getOperatorInstance(s: String?, left: Expression, right: Expression): Expression {
+<span class="fc" id="L68">        return when (s) {</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">            &quot;+&quot; -&gt; PlusExpression(left, right)</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            &quot;-&quot; -&gt; MinusExpression(left, right)</span>
+<span class="fc" id="L71">            else -&gt; MultiplyExpression(left, right)</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

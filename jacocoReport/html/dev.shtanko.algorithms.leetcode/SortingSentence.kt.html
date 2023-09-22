@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SortingSentence.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">SortingSentence.kt</span></div><h1>SortingSentence.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.TreeMap
+
+/**
+ * 1859. Sorting the Sentence
+ * https://leetcode.com/problems/sorting-the-sentence/
+ */
+fun sortSentenceTree(s: String): String {
+<span class="fc" id="L26">    val map = TreeMap&lt;Int, String&gt;()</span>
+<span class="fc" id="L27">    val str = s.split(&quot; &quot;).toTypedArray()</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">    for (st in str) {</span>
+<span class="fc" id="L29">        val len = st.length - 1</span>
+<span class="fc" id="L30">        val number = Character.getNumericValue(st[len])</span>
+<span class="fc" id="L31">        val snew = StringBuilder()</span>
+<span class="fc" id="L32">        snew.append(st)</span>
+<span class="fc" id="L33">        snew.replace(len, len + 1, &quot; &quot;)</span>
+<span class="fc" id="L34">        val string = snew.toString()</span>
+<span class="fc" id="L35">        map[number] = string</span>
+    }
+<span class="fc" id="L37">    val string = StringBuilder()</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">    for (n in map.keys) {</span>
+<span class="fc" id="L39">        string.append(map[n])</span>
+    }
+<span class="fc" id="L41">    val i = string.length</span>
+<span class="fc" id="L42">    string.deleteCharAt(i - 1)</span>
+<span class="fc" id="L43">    return string.toString()</span>
+}
+
+fun sortSentence(s: String): String {
+<span class="fc" id="L47">    val list = ArrayList&lt;String&gt;()</span>
+<span class="fc" id="L48">    val sb = StringBuilder()</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">    for (c in s.toCharArray()) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (c != ' ') {</span>
+<span class="fc" id="L51">            sb.append(c)</span>
+        } else {
+<span class="fc" id="L53">            list.add(sb.toString())</span>
+<span class="fc" id="L54">            sb.setLength(0)</span>
+        }
+    }
+<span class="fc" id="L57">    list.add(sb.toString())</span>
+<span class="fc" id="L58">    sb.setLength(0)</span>
+<span class="fc" id="L59">    val temp = arrayOfNulls&lt;String&gt;(list.size)</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">    for (str in list) {</span>
+<span class="fc" id="L61">        temp[str[str.length - 1] - '0' - 1] = str.substring(0, str.length - 1)</span>
+    }
+<span class="fc bfc" id="L63" title="All 2 branches covered.">    for (str in temp) {</span>
+<span class="fc" id="L64">        sb.append(str)</span>
+<span class="fc" id="L65">        sb.append(' ')</span>
+    }
+<span class="fc" id="L67">    sb.deleteCharAt(sb.length - 1)</span>
+<span class="fc" id="L68">    return sb.toString()</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CountBalls.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CountBalls.kt</span></div><h1>CountBalls.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+/**
+ * 1742. Maximum Number of Balls in a Box
+ * link https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
+ */
+fun interface CountBalls {
+    operator fun invoke(lowLimit: Int, highLimit: Int): Int
+
+    companion object {
+        const val ARR_SIZE = 46
+    }
+}
+
+<span class="fc" id="L33">class CountBallsBruteforce : CountBalls {</span>
+    override operator fun invoke(lowLimit: Int, highLimit: Int): Int {
+<span class="fc" id="L35">        val cnt = IntArray(CountBalls.ARR_SIZE)</span>
+<span class="fc" id="L36">        var max = 0</span>
+<span class="pc bpc" id="L37" title="1 of 4 branches missed.">        for (i in lowLimit..highLimit) {</span>
+<span class="fc" id="L38">            var num = i</span>
+<span class="fc" id="L39">            var sum = 0</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            while (num &gt; 0) {</span>
+<span class="fc" id="L41">                sum += num % DECIMAL</span>
+<span class="fc" id="L42">                num /= DECIMAL</span>
+            }
+<span class="fc" id="L44">            max = max(++cnt[sum], max)</span>
+        }
+<span class="fc" id="L46">        return max</span>
+    }
+}
+
+<span class="fc" id="L50">class CountBalls2 : CountBalls {</span>
+    override operator fun invoke(lowLimit: Int, highLimit: Int): Int {
+<span class="fc" id="L52">        val box = IntArray(CountBalls.ARR_SIZE)</span>
+<span class="fc" id="L53">        var lo = lowLimit</span>
+<span class="fc" id="L54">        var id = 0</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        while (lo &gt; 0) { // compute box id for lowLimit.</span>
+<span class="fc" id="L56">            id += lo % DECIMAL</span>
+<span class="fc" id="L57">            lo /= DECIMAL</span>
+        }
+<span class="fc" id="L59">        ++box[id]</span>
+<span class="pc bpc" id="L60" title="1 of 4 branches missed.">        for (i in lowLimit + 1..highLimit) { // compute all other box ids.</span>
+<span class="fc" id="L61">            var digits = i</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            while (digits % DECIMAL == 0) { // for ball numbers with trailing 0's, decrease 9 for each 0.</span>
+<span class="fc" id="L63">                id -= 9</span>
+<span class="fc" id="L64">                digits /= DECIMAL</span>
+            }
+<span class="fc" id="L66">            ++box[++id]</span>
+        }
+<span class="fc" id="L68">        return box.max()</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EscapeLargeMaze.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">EscapeLargeMaze.kt</span></div><h1>EscapeLargeMaze.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+/**
+ * 1036. Escape a Large Maze
+ * @see &lt;a href=&quot;https://leetcode.com/problems/escape-a-large-maze&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface EscapeLargeMaze {
+    fun isEscapePossible(blocked: Array&lt;IntArray&gt;, source: IntArray, target: IntArray): Boolean
+}
+
+<span class="fc" id="L30">class EscapeLargeMazeBFS : EscapeLargeMaze {</span>
+
+<span class="fc" id="L32">    private val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, -1))</span>
+
+    override fun isEscapePossible(blocked: Array&lt;IntArray&gt;, source: IntArray, target: IntArray): Boolean {
+<span class="fc" id="L35">        val blocks: MutableSet&lt;String&gt; = HashSet()</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (block in blocked) {</span>
+<span class="fc" id="L37">            blocks.add(block[0].toString() + &quot;:&quot; + block[1])</span>
+        }
+<span class="pc bpc" id="L39" title="1 of 4 branches missed.">        return bfs(source, target, blocks) &amp;&amp; bfs(target, source, blocks)</span>
+    }
+
+    private fun bfs(source: IntArray, target: IntArray, blocks: Set&lt;String?&gt;): Boolean {
+<span class="fc" id="L43">        val seen: MutableSet&lt;String&gt; = HashSet()</span>
+<span class="fc" id="L44">        seen.add(source[0].toString() + &quot;:&quot; + source[1])</span>
+<span class="fc" id="L45">        val bfs: Queue&lt;IntArray&gt; = LinkedList()</span>
+<span class="fc" id="L46">        bfs.offer(source)</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        while (!bfs.isEmpty()) {</span>
+<span class="fc" id="L48">            val cur: IntArray = bfs.poll()</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            for (dir in dirs) {</span>
+<span class="fc" id="L50">                val nextX = cur[0] + dir[0]</span>
+<span class="fc" id="L51">                val nextY = cur[1] + dir[1]</span>
+<span class="fc bfc" id="L52" title="All 8 branches covered.">                if (nextX &lt; 0 || nextY &lt; 0 || nextX &gt;= LIMIT || nextY &gt;= LIMIT) continue</span>
+<span class="fc" id="L53">                val key = &quot;$nextX:$nextY&quot;</span>
+<span class="fc bfc" id="L54" title="All 4 branches covered.">                if (seen.contains(key) || blocks.contains(key)) continue</span>
+<span class="pc bpc" id="L55" title="3 of 4 branches missed.">                if (nextX == target[0] &amp;&amp; nextY == target[1]) return true</span>
+<span class="fc" id="L56">                bfs.offer(intArrayOf(nextX, nextY))</span>
+<span class="fc" id="L57">                seen.add(key)</span>
+            }
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            if (seen.size == MAX) return true</span>
+        }
+<span class="fc" id="L61">        return false</span>
+    }
+
+    companion object {
+        private const val LIMIT = 1e6.toInt()
+        private const val MAX = 20000
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

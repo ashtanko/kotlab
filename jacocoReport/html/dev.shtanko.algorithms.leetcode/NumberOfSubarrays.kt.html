@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NumberOfSubarrays.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NumberOfSubarrays.kt</span></div><h1>NumberOfSubarrays.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1248. Count Number of Nice Subarrays
+ * @see &lt;a href=&quot;https://leetcode.com/problems/count-number-of-nice-subarrays/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface NumberOfSubarrays {
+    operator fun invoke(nums: IntArray, k: Int): Int
+}
+
+<span class="fc" id="L27">class NumberOfSubarraysOnePass : NumberOfSubarrays {</span>
+    override operator fun invoke(nums: IntArray, k: Int): Int {
+<span class="fc" id="L29">        var res = 0</span>
+<span class="fc" id="L30">        var i = 0</span>
+<span class="fc" id="L31">        var count = 0</span>
+<span class="fc" id="L32">        val n: Int = nums.size</span>
+<span class="fc" id="L33">        var k0 = k</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (j in 0 until n) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            if (nums[j] % 2 == 1) {</span>
+<span class="fc" id="L36">                --k0</span>
+<span class="fc" id="L37">                count = 0</span>
+            }
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            while (k0 == 0) {</span>
+<span class="fc" id="L40">                k0 += nums[i++] and 1</span>
+<span class="fc" id="L41">                ++count</span>
+            }
+<span class="fc" id="L43">            res += count</span>
+        }
+<span class="fc" id="L45">        return res</span>
+    }
+}
+
+<span class="fc" id="L49">class NumberOfSubarraysSlidingWindow : NumberOfSubarrays {</span>
+    override operator fun invoke(nums: IntArray, k: Int): Int {
+<span class="fc" id="L51">        return atMost(nums, k) - atMost(nums, k - 1)</span>
+    }
+
+    private fun atMost(nums: IntArray, k: Int): Int {
+<span class="fc" id="L55">        var k0 = k</span>
+<span class="fc" id="L56">        var res = 0</span>
+<span class="fc" id="L57">        var i = 0</span>
+<span class="fc" id="L58">        val n = nums.size</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        for (j in 0 until n) {</span>
+<span class="fc" id="L60">            k0 -= nums[j] % 2</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            while (k0 &lt; 0) {</span>
+<span class="fc" id="L62">                k0 += nums[i++] % 2</span>
+            }
+<span class="fc" id="L64">            res += j - i + 1</span>
+        }
+<span class="fc" id="L66">        return res</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

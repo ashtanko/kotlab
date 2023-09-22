@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LargestDivisibleSubset.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">LargestDivisibleSubset.kt</span></div><h1>LargestDivisibleSubset.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 368. Largest Divisible Subset
+ * @see &lt;a href=&quot;https://leetcode.com/problems/largest-divisible-subset/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface LargestDivisibleSubset {
+    operator fun invoke(nums: IntArray): List&lt;Int&gt;
+}
+
+<span class="fc" id="L27">class LargestDivisibleSubsetDFS : LargestDivisibleSubset {</span>
+
+<span class="fc" id="L29">    private val mem: MutableMap&lt;Int, List&lt;Int&gt;&gt; = HashMap()</span>
+
+    override operator fun invoke(nums: IntArray): List&lt;Int&gt; {
+<span class="fc" id="L32">        nums.sort()</span>
+<span class="fc" id="L33">        return helper(nums, 0)</span>
+    }
+
+    private fun helper(nums: IntArray, i: Int): List&lt;Int&gt; {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (mem.containsKey(i)) {</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">            return mem[i] ?: emptyList()</span>
+        }
+<span class="fc" id="L40">        var maxLenLst: List&lt;Int&gt; = ArrayList()</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        val div = if (i == 0) 1 else nums[i - 1]</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (k in i until nums.size) {</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            if (nums[k] % div == 0) {</span>
+                // make a copy is crucial here, so that we won't modify the returned List reference
+<span class="fc" id="L45">                val lst: MutableList&lt;Int&gt; = ArrayList(helper(nums, k + 1))</span>
+<span class="fc" id="L46">                lst.add(nums[k])</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                if (lst.size &gt; maxLenLst.size) maxLenLst = lst</span>
+            }
+        }
+<span class="fc" id="L50">        mem[i] = maxLenLst</span>
+<span class="fc" id="L51">        return maxLenLst</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LongestSubarray.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">LongestSubarray.kt</span></div><h1>LongestSubarray.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+/**
+ * 1493. Longest Subarray of 1's After Deleting One Element
+ * @see &lt;a href=&quot;https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface LongestSubarray {
+    operator fun invoke(nums: IntArray): Int
+}
+
+/**
+ * Sliding window with at most one 0 inside.
+ */
+<span class="fc" id="L32">class LongestSubarraySlidingWindow : LongestSubarray {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L34">        var i = 0</span>
+<span class="fc" id="L35">        var k = 1</span>
+<span class="fc" id="L36">        var res = 0</span>
+<span class="fc" id="L37">        var j = 0</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        while (j &lt; nums.size) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (nums[j] == 0) {</span>
+<span class="fc" id="L40">                k--</span>
+            }
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            while (k &lt; 0) {</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">                if (nums[i] == 0) {</span>
+<span class="fc" id="L44">                    k++</span>
+                }
+<span class="fc" id="L46">                i++</span>
+            }
+<span class="fc" id="L48">            res = max(res, j - i)</span>
+<span class="fc" id="L49">            ++j</span>
+        }
+<span class="fc" id="L51">        return res</span>
+    }
+}
+
+/**
+ * Sliding window that size doesn't shrink.
+ */
+<span class="fc" id="L58">class LongestSubarraySlidingWindow2 : LongestSubarray {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L60">        var i = 0</span>
+<span class="fc" id="L61">        var k = 1</span>
+<span class="fc" id="L62">        var j = 0</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        while (j &lt; nums.size) {</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            if (nums[j] == 0) k--</span>
+<span class="fc bfc" id="L65" title="All 4 branches covered.">            if (k &lt; 0 &amp;&amp; nums[i++] == 0) k++</span>
+<span class="fc" id="L66">            ++j</span>
+        }
+<span class="fc" id="L68">        return j - i - 1</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

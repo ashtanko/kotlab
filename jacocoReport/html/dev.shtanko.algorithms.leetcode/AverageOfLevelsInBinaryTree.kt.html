@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AverageOfLevelsInBinaryTree.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">AverageOfLevelsInBinaryTree.kt</span></div><h1>AverageOfLevelsInBinaryTree.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+fun interface AverageOfLevelsInBinaryTreeStrategy {
+    operator fun invoke(root: TreeNode?): DoubleArray
+}
+
+// Using Depth First Search
+<span class="fc" id="L27">class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {</span>
+    override operator fun invoke(root: TreeNode?): DoubleArray {
+<span class="fc" id="L29">        val count: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc" id="L30">        val res: MutableList&lt;Double&gt; = ArrayList()</span>
+<span class="fc" id="L31">        average(root, 0, res, count)</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        for (i in res.indices) res[i] = res[i] / count[i]</span>
+<span class="fc" id="L33">        return res.toDoubleArray()</span>
+    }
+
+    fun average(t: TreeNode?, i: Int, sum: MutableList&lt;Double&gt;, count: MutableList&lt;Int&gt;) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (t == null) return</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (i &lt; sum.size) {</span>
+<span class="fc" id="L39">            sum[i] = sum[i] + t.value</span>
+<span class="fc" id="L40">            count[i] = count[i] + 1</span>
+        } else {
+<span class="fc" id="L42">            sum.add(1.0 * t.value)</span>
+<span class="fc" id="L43">            count.add(1)</span>
+        }
+<span class="fc" id="L45">        average(t.left, i + 1, sum, count)</span>
+<span class="fc" id="L46">        average(t.right, i + 1, sum, count)</span>
+<span class="fc" id="L47">    }</span>
+}
+
+// Using Breadth First Search
+<span class="fc" id="L51">class AverageOfLevelsInBinaryTreeBFS : AverageOfLevelsInBinaryTreeStrategy {</span>
+    override operator fun invoke(root: TreeNode?): DoubleArray {
+<span class="fc" id="L53">        val res: MutableList&lt;Double&gt; = ArrayList()</span>
+<span class="fc" id="L54">        var queue: Queue&lt;TreeNode?&gt; = LinkedList()</span>
+<span class="fc" id="L55">        queue.add(root)</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L57">            var sum: Long = 0</span>
+<span class="fc" id="L58">            var count: Long = 0</span>
+<span class="fc" id="L59">            val temp: Queue&lt;TreeNode?&gt; = LinkedList()</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            while (!queue.isEmpty()) {</span>
+<span class="fc" id="L61">                val n: TreeNode? = queue.remove()</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">                if (n != null) {</span>
+<span class="fc" id="L63">                    sum += n.value</span>
+<span class="fc" id="L64">                    count++</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">                    if (n.left != null) temp.add(n.left)</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">                    if (n.right != null) temp.add(n.right)</span>
+                }
+            }
+<span class="fc" id="L69">            queue = temp</span>
+<span class="fc" id="L70">            res.add(sum * 1.0 / count)</span>
+        }
+<span class="fc" id="L72">        return res.toDoubleArray()</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BinarySearchTree.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.datastructures.tree</a> &gt; <span class="el_source">BinarySearchTree.kt</span></div><h1>BinarySearchTree.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.datastructures.tree
+
+/**
+ * A Binary Search Tree implementation of the Map interface.
+ *
+ * @param K The key type, must be Comparable.
+ * @param V The value type.
+ */
+<span class="fc" id="L25">class BinarySearchTree&lt;K : Comparable&lt;K&gt;, V&gt; : Map&lt;K, V&gt; {</span>
+
+    /**
+     * Represents a node in the Binary Search Tree.
+     *
+     * @param key The key of the node.
+     * @param value The value associated with the key.
+     * @param left The left child node.
+     * @param right The right child node.
+     * @param size The number of nodes in the subtree rooted at this node.
+     */
+<span class="fc" id="L36">    data class Node&lt;K, V&gt;(</span>
+<span class="fc" id="L37">        override val key: K,</span>
+<span class="fc" id="L38">        override var value: V,</span>
+<span class="fc" id="L39">        var left: Node&lt;K, V&gt;? = null,</span>
+<span class="fc" id="L40">        var right: Node&lt;K, V&gt;? = null,</span>
+<span class="fc" id="L41">        var size: Int = 1,</span>
+<span class="fc" id="L42">    ) : Map.Entry&lt;K, V&gt;</span>
+
+    private var root: Node&lt;K, V&gt;? = null
+
+    override val size: Int
+<span class="fc" id="L47">        get() = size(root)</span>
+
+    override val entries: Set&lt;Map.Entry&lt;K, V&gt;&gt;
+        get() {
+<span class="fc" id="L51">            val set = mutableSetOf&lt;Node&lt;K, V&gt;&gt;()</span>
+<span class="fc" id="L52">            inorder(root) { set.add(it.copy()) }</span>
+<span class="fc" id="L53">            return set</span>
+        }
+
+    override val keys: Set&lt;K&gt;
+        get() {
+<span class="fc" id="L58">            val set = mutableSetOf&lt;K&gt;()</span>
+<span class="fc" id="L59">            inorder(root) { set.add(it.key) }</span>
+<span class="fc" id="L60">            return set</span>
+        }
+
+    override val values: Collection&lt;V&gt;
+        get() {
+<span class="fc" id="L65">            val queue = mutableListOf&lt;V&gt;()</span>
+<span class="fc" id="L66">            inorder(root) { queue.add(it.value) }</span>
+<span class="fc" id="L67">            return queue</span>
+        }
+
+    override fun containsKey(key: K): Boolean {
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        return get(key) != null</span>
+    }
+
+    override fun containsValue(value: V): Boolean {
+<span class="fc" id="L75">        return any { it.value == value }</span>
+    }
+
+    override fun get(key: K): V? {
+<span class="fc" id="L79">        var x = root</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        while (x != null) {</span>
+<span class="fc" id="L81">            x = when {</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">                key &lt; x.key -&gt; x.left</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">                key &gt; x.key -&gt; x.right</span>
+<span class="fc" id="L84">                else -&gt; return x.value</span>
+            }
+        }
+<span class="fc" id="L87">        return null</span>
+    }
+
+<span class="fc bfc" id="L90" title="All 2 branches covered.">    override fun isEmpty(): Boolean = size == 0</span>
+
+    /**
+     * Returns the height of the binary search tree.
+     *
+     * @return The height of the binary search tree.
+     */
+    fun height(): Int {
+<span class="fc" id="L98">        return height(root)</span>
+    }
+
+    /**
+     * Returns the minimum key in the binary search tree.
+     *
+     * @return The minimum key.
+     * @throws NoSuchElementException if the tree is empty.
+     */
+    fun min(): K {
+<span class="fc" id="L108">        return min(root).key</span>
+    }
+
+    /**
+     * Adds a new key-value pair to the binary search tree.
+     *
+     * @param key The key to be added.
+     * @param value The value associated with the key.
+     */
+    fun add(key: K, value: V) {
+<span class="fc" id="L118">        root = add(key, value, root)</span>
+<span class="fc" id="L119">    }</span>
+
+    /**
+     * Returns the maximum key in the binary search tree.
+     *
+     * @return The maximum key.
+     * @throws NoSuchElementException if the tree is empty.
+     */
+    fun max(): K {
+<span class="fc" id="L128">        return max(root).key</span>
+    }
+
+    /**
+     * Removes a key and its associated value from the binary search tree.
+     *
+     * @param key The key to be removed.
+     */
+    fun remove(key: K) {
+<span class="fc" id="L137">        root = remove(key, root)</span>
+<span class="fc" id="L138">    }</span>
+
+    /**
+     * Removes the minimum key and its associated value from the binary search tree.
+     *
+     * @throws NoSuchElementException if the tree is empty.
+     */
+    fun pollMin() {
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        if (root == null) throw NoSuchElementException()</span>
+<span class="fc" id="L147">        root = pollMin(root!!)</span>
+<span class="fc" id="L148">    }</span>
+
+    /**
+     * Removes the maximum key and its associated value from the binary search tree.
+     *
+     * @throws NoSuchElementException if the tree is empty.
+     */
+    fun pollMax() {
+<span class="fc bfc" id="L156" title="All 2 branches covered.">        if (root == null) throw NoSuchElementException()</span>
+<span class="fc" id="L157">        root = pollMax(root!!)</span>
+<span class="fc" id="L158">    }</span>
+
+    /**
+     * Returns the height of the binary search tree.
+     *
+     * @param x The root node of the subtree.
+     * @return The height of the subtree rooted at node x.
+     */
+    private fun height(x: Node&lt;K, V&gt;?): Int {
+<span class="fc bfc" id="L167" title="All 2 branches covered.">        if (x == null) return 0</span>
+<span class="fc" id="L168">        return maxOf(height(x.left), height(x.right)) + 1</span>
+    }
+
+    /**
+     * Removes the maximum key and its associated value from the binary search tree.
+     *
+     * @param x The root node of the subtree.
+     * @return The root node of the modified subtree after removal.
+     * @throws NoSuchElementException if the subtree is empty.
+     */
+    private fun pollMax(x: Node&lt;K, V&gt;): Node&lt;K, V&gt;? {
+<span class="fc bfc" id="L179" title="All 2 branches covered.">        if (x.right == null) return x.left</span>
+<span class="fc" id="L180">        x.right = pollMax(x.right!!)</span>
+<span class="fc" id="L181">        x.size = size(x.left) + size(x.right) + 1</span>
+<span class="fc" id="L182">        return x</span>
+    }
+
+    /**
+     * Returns the maximum node in the binary search tree.
+     *
+     * @param node The root node of the subtree.
+     * @return The maximum node in the subtree.
+     * @throws NoSuchElementException if the subtree is empty.
+     */
+    private fun max(node: Node&lt;K, V&gt;?): Node&lt;K, V&gt; {
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        if (node == null) throw NoSuchElementException()</span>
+<span class="fc" id="L194">        var x: Node&lt;K, V&gt; = node</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        while (x.right != null) {</span>
+<span class="fc" id="L196">            x = x.right!!</span>
+        }
+<span class="fc" id="L198">        return x</span>
+    }
+
+    /**
+     * Returns the minimum node in the binary search tree.
+     *
+     * @param node The root node of the subtree.
+     * @return The minimum node in the subtree.
+     * @throws NoSuchElementException if the subtree is empty.
+     */
+    private fun min(node: Node&lt;K, V&gt;?): Node&lt;K, V&gt; {
+<span class="fc bfc" id="L209" title="All 2 branches covered.">        if (node == null) throw NoSuchElementException()</span>
+<span class="fc" id="L210">        var x: Node&lt;K, V&gt; = node</span>
+<span class="fc bfc" id="L211" title="All 2 branches covered.">        while (x.left != null) {</span>
+<span class="fc" id="L212">            x = x.left!!</span>
+        }
+<span class="fc" id="L214">        return x</span>
+    }
+
+    /**
+     * Removes a key and its associated value from the binary search tree.
+     *
+     * @param key The key to be removed.
+     * @param root The root node of the subtree.
+     * @return The root node of the modified subtree after removal.
+     * @throws NoSuchElementException if the key is not found in the subtree.
+     */
+    private fun remove(key: K, root: Node&lt;K, V&gt;?): Node&lt;K, V&gt;? {
+<span class="fc bfc" id="L226" title="All 2 branches covered.">        var x: Node&lt;K, V&gt; = root ?: throw NoSuchElementException()</span>
+<span class="fc" id="L227">        when {</span>
+<span class="pc bpc" id="L228" title="1 of 2 branches missed.">            key &lt; x.key -&gt; x.left = remove(key, x.left)</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">            key &gt; x.key -&gt; x.right = remove(key, x.right)</span>
+            else -&gt; {
+<span class="pc bpc" id="L231" title="1 of 2 branches missed.">                if (x.left == null) return x.right</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">                if (x.right == null) return x.left</span>
+<span class="nc" id="L233">                val tmp = x</span>
+<span class="nc" id="L234">                x = pollMin(tmp.right!!)!!</span>
+<span class="nc" id="L235">                x.right = min(tmp.right)</span>
+<span class="nc" id="L236">                x.left = tmp.left</span>
+            }
+        }
+<span class="fc" id="L239">        x.size = size(x.left) + size(x.right) + 1</span>
+<span class="fc" id="L240">        return x</span>
+    }
+
+    /**
+     * Removes the minimum key and its associated value from the binary search tree.
+     *
+     * @param x The root node of the subtree.
+     * @return The root node of the modified subtree after removal.
+     * @throws NoSuchElementException if the subtree is empty.
+     */
+    private fun pollMin(x: Node&lt;K, V&gt;): Node&lt;K, V&gt;? {
+<span class="fc bfc" id="L251" title="All 2 branches covered.">        if (x.left == null) return x.right</span>
+<span class="fc" id="L252">        x.left = pollMin(x.left!!)</span>
+<span class="fc" id="L253">        x.size = size(x.left) + size(x.right) + 1</span>
+<span class="fc" id="L254">        return x</span>
+    }
+
+    /**
+     * Adds a new key-value pair to the binary search tree.
+     *
+     * @param key The key to be added.
+     * @param value The value associated with the key.
+     * @param x The root node of the subtree.
+     * @return The root node of the modified subtree after addition.
+     */
+    private fun add(key: K, value: V, x: Node&lt;K, V&gt;?): Node&lt;K, V&gt; {
+<span class="fc bfc" id="L266" title="All 2 branches covered.">        if (x == null) return Node(key, value)</span>
+<span class="fc" id="L267">        when {</span>
+<span class="fc bfc" id="L268" title="All 2 branches covered.">            key &lt; x.key -&gt; x.left = add(key, value, x.left)</span>
+<span class="fc bfc" id="L269" title="All 2 branches covered.">            key &gt; x.key -&gt; x.right = add(key, value, x.right)</span>
+<span class="fc" id="L270">            else -&gt; x.value = value</span>
+        }
+<span class="fc" id="L272">        x.size = size(x.left) + size(x.right) + 1</span>
+<span class="fc" id="L273">        return x</span>
+    }
+
+    /**
+     * Returns the number of nodes in the subtree rooted at the given node.
+     *
+     * @param x The root node of the subtree.
+     * @return The number of nodes in the subtree rooted at node x.
+     */
+<span class="fc bfc" id="L282" title="All 2 branches covered.">    private fun size(x: Node&lt;K, V&gt;?): Int = x?.size ?: 0</span>
+
+    /**
+     * Performs an inorder traversal of the binary search tree.
+     *
+     * @param x The root node of the subtree.
+     * @param lambda The lambda function to apply to each node during traversal.
+     */
+    private fun inorder(x: Node&lt;K, V&gt;?, lambda: (Node&lt;K, V&gt;) -&gt; Unit) {
+<span class="fc bfc" id="L291" title="All 2 branches covered.">        if (x == null) return</span>
+<span class="fc" id="L292">        inorder(x.left, lambda)</span>
+<span class="fc" id="L293">        lambda(x)</span>
+<span class="fc" id="L294">        inorder(x.right, lambda)</span>
+<span class="fc" id="L295">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

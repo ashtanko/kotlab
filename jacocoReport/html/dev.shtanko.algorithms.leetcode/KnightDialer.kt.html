@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KnightDialer.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">KnightDialer.kt</span></div><h1>KnightDialer.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Arrays
+
+/**
+ * 935. Knight Dialer
+ * @see &lt;a href=&quot;https://leetcode.com/problems/knight-dialer/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface KnightDialer {
+    operator fun invoke(n: Int): Int
+}
+
+/**
+ * Naive Recursive Code
+ */
+<span class="fc" id="L32">class KnightDialerBottomUp : KnightDialer {</span>
+
+    override operator fun invoke(n: Int): Int {
+<span class="fc" id="L35">        val dirs = arrayOf(</span>
+<span class="fc" id="L36">            intArrayOf(4, 6),</span>
+<span class="fc" id="L37">            intArrayOf(6, 8),</span>
+<span class="fc" id="L38">            intArrayOf(7, 9),</span>
+<span class="fc" id="L39">            intArrayOf(4, 8),</span>
+<span class="fc" id="L40">            intArrayOf(0, 3, 9),</span>
+            intArrayOf(),
+<span class="fc" id="L42">            intArrayOf(0, 1, 7),</span>
+<span class="fc" id="L43">            intArrayOf(2, 6),</span>
+<span class="fc" id="L44">            intArrayOf(1, 3),</span>
+<span class="fc" id="L45">            intArrayOf(2, 4),</span>
+        )
+<span class="fc" id="L47">        val mod = E_9.toInt() + 7</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        val dp = Array(n) { IntArray(10) }</span>
+<span class="fc" id="L49">        Arrays.fill(dp[0], 1)</span>
+<span class="fc" id="L50">        var res = 0</span>
+
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        for (i in 1 until n) {</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            for (j in 0..9) {</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">                for (next in dirs[j]) {</span>
+<span class="fc" id="L55">                    dp[i][j] = (dp[i][j] + dp[i - 1][next]) % mod</span>
+                }
+            }
+        }
+
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        for (i in 0..9) {</span>
+<span class="fc" id="L61">            res = (res + dp[n - 1][i]) % mod</span>
+        }
+
+<span class="fc" id="L64">        return res</span>
+    }
+}
+
+/**
+ * Top down Dynamic programming solution
+ */
+<span class="fc" id="L71">class KnightDialerDP : KnightDialer {</span>
+    override operator fun invoke(n: Int): Int {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (n == 1) return 10</span>
+<span class="fc" id="L74">        val jumpMap = arrayOf(</span>
+<span class="fc" id="L75">            intArrayOf(4, 6),</span>
+<span class="fc" id="L76">            intArrayOf(6, 8),</span>
+<span class="fc" id="L77">            intArrayOf(7, 9),</span>
+<span class="fc" id="L78">            intArrayOf(4, 8),</span>
+<span class="fc" id="L79">            intArrayOf(3, 9, 0),</span>
+            intArrayOf(),
+<span class="fc" id="L81">            intArrayOf(1, 7, 0),</span>
+<span class="fc" id="L82">            intArrayOf(2, 6),</span>
+<span class="fc" id="L83">            intArrayOf(1, 3),</span>
+<span class="fc" id="L84">            intArrayOf(2, 4),</span>
+        )
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        var dp = IntArray(10) { 1 }</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        for (n0 in n downTo 2) {</span>
+<span class="fc" id="L88">            val temp = IntArray(10)</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">            for (i in jumpMap.indices) {</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">                for (j in jumpMap[i].indices) {</span>
+<span class="fc" id="L91">                    val position = jumpMap[i][j] // jump from number i, to position</span>
+<span class="fc" id="L92">                    temp[position] = (temp[position] + dp[i] % MOD) % MOD</span>
+                }
+            }
+<span class="fc" id="L95">            dp = temp</span>
+        }
+<span class="fc" id="L97">        var ans = 0</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        for (num in dp) ans = (ans + num % MOD) % MOD</span>
+<span class="fc" id="L99">        return ans</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BalanceBST.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">BalanceBST.kt</span></div><h1>BalanceBST.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1382. Balance a Binary Search Tree
+ * @see &lt;a href=&quot;https://leetcode.com/problems/balance-a-binary-search-tree/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface BalanceBST {
+    operator fun invoke(root: TreeNode?): TreeNode?
+}
+
+<span class="fc" id="L27">class BalanceBSTInorder : BalanceBST {</span>
+<span class="fc" id="L28">    private val sortedArr: MutableList&lt;TreeNode&gt; = ArrayList()</span>
+
+    override operator fun invoke(root: TreeNode?): TreeNode? {
+<span class="fc" id="L31">        inorderTraverse(root)</span>
+<span class="fc" id="L32">        return sortedArrayToBST(0, sortedArr.size - 1)</span>
+    }
+
+    private fun inorderTraverse(root: TreeNode?) {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (root == null) return</span>
+<span class="fc" id="L37">        inorderTraverse(root.left)</span>
+<span class="fc" id="L38">        sortedArr.add(root)</span>
+<span class="fc" id="L39">        inorderTraverse(root.right)</span>
+<span class="fc" id="L40">    }</span>
+
+    private fun sortedArrayToBST(start: Int, end: Int): TreeNode? {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (start &gt; end) return null</span>
+<span class="fc" id="L44">        val mid = (start + end) / 2</span>
+<span class="fc" id="L45">        val root = sortedArr[mid]</span>
+<span class="fc" id="L46">        root.left = sortedArrayToBST(start, mid - 1)</span>
+<span class="fc" id="L47">        root.right = sortedArrayToBST(mid + 1, end)</span>
+<span class="fc" id="L48">        return root</span>
+    }
+}
+
+<span class="fc" id="L52">class BalanceBSTreeDSW : BalanceBST {</span>
+
+    override operator fun invoke(root: TreeNode?): TreeNode? {
+<span class="fc" id="L55">        val pseudoRoot = TreeNode(0)</span>
+<span class="fc" id="L56">        pseudoRoot.right = root</span>
+
+<span class="fc" id="L58">        val nodeCount = flattenTreeWithRightRotations(pseudoRoot)</span>
+<span class="fc" id="L59">        val heightOfTree = (Math.log((nodeCount + 1).toDouble()) / Math.log(2.0)).toInt()</span>
+<span class="fc" id="L60">        val numOfNodesInTree = Math.pow(2.0, heightOfTree.toDouble()).toInt() - 1</span>
+
+<span class="fc" id="L62">        createBalancedTreeWithLeftRotation(pseudoRoot, nodeCount - numOfNodesInTree)</span>
+<span class="fc" id="L63">        var numOfNodesInSubTree = numOfNodesInTree / 2</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        while (numOfNodesInSubTree &gt; 0) {</span>
+<span class="fc" id="L65">            createBalancedTreeWithLeftRotation(pseudoRoot, numOfNodesInSubTree)</span>
+<span class="fc" id="L66">            numOfNodesInSubTree /= 2</span>
+        }
+
+<span class="fc" id="L69">        return pseudoRoot.right</span>
+    }
+
+    private fun flattenTreeWithRightRotations(root: TreeNode): Int {
+<span class="fc" id="L73">        var tree = root</span>
+<span class="fc" id="L74">        var nodeCount = 0</span>
+<span class="fc" id="L75">        var pseudoRoot = tree.right</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        while (pseudoRoot != null) {</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            if (pseudoRoot.left != null) {</span>
+<span class="fc" id="L78">                val oldPseudoRoot: TreeNode = pseudoRoot</span>
+<span class="fc" id="L79">                pseudoRoot = pseudoRoot.left</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">                oldPseudoRoot.left = pseudoRoot?.right</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">                pseudoRoot?.right = oldPseudoRoot</span>
+<span class="fc" id="L82">                tree.right = pseudoRoot</span>
+            } else {
+<span class="fc" id="L84">                ++nodeCount</span>
+<span class="fc" id="L85">                tree = pseudoRoot</span>
+<span class="fc" id="L86">                pseudoRoot = pseudoRoot.right</span>
+            }
+        }
+<span class="fc" id="L89">        return nodeCount</span>
+    }
+
+    private fun createBalancedTreeWithLeftRotation(root: TreeNode?, numOfNodesInSubTree: Int) {
+<span class="fc" id="L93">        var tree = root</span>
+<span class="fc" id="L94">        var num = numOfNodesInSubTree</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        var pseudoRoot = tree?.right</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        while (num-- &gt; 0) {</span>
+<span class="fc" id="L97">            val oldPseudoRoot = pseudoRoot</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">            pseudoRoot = pseudoRoot?.right</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">            tree?.right = pseudoRoot</span>
+<span class="pc bpc" id="L100" title="2 of 4 branches missed.">            oldPseudoRoot?.right = pseudoRoot?.left</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">            pseudoRoot?.left = oldPseudoRoot</span>
+<span class="fc" id="L102">            tree = pseudoRoot</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">            pseudoRoot = pseudoRoot?.right</span>
+        }
+<span class="fc" id="L105">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommonChars.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">CommonChars.kt</span></div><h1>CommonChars.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * Find Common Characters
+ */
+fun Array&lt;String&gt;.commonChars(): List&lt;String&gt; {
+<span class="fc" id="L23">    val map1: MutableMap&lt;Char, Int?&gt; = HashMap()</span>
+<span class="fc" id="L24">    val map2: MutableMap&lt;Char, Int?&gt; = HashMap()</span>
+<span class="fc" id="L25">    val arr = ArrayList&lt;Char&gt;()</span>
+<span class="fc bfc" id="L26" title="All 4 branches covered.">    if (isEmpty()) return emptyList()</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">    for (i in this.first().toCharArray()) { // get the frequency of the string to use to compare against</span>
+<span class="pc bpc" id="L28" title="1 of 4 branches missed.">        if (map1.containsKey(i)) map1[i] = map1[i]?.plus(1) else map1[i] = 1</span>
+    }
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    for (h in 1 until this.size) {</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        for (i in this[h].toCharArray()) { // get the frequencies of the next string</span>
+<span class="pc bpc" id="L32" title="1 of 4 branches missed.">            if (map2.containsKey(i)) map2[i] = map2[i]?.plus(1) else map2[i] = 1</span>
+        }
+<span class="fc bfc" id="L34" title="All 4 branches covered.">        for (i in map2.keys) if (map1.containsKey(i)) {</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">            val x = map2[i]?.coerceAtMost(map1[i]!!) // find the intersection between two pairs of strings</span>
+<span class="fc" id="L36">            map1[i] = x</span>
+        }
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (i in map1.keys) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (!map2.containsKey(i)) {</span>
+<span class="fc" id="L40">                arr.add(i)</span>
+            }
+        } // temporarily store the char rather than delete right away to avoid concurrent modification
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (t in arr) map1.remove(t) // remove whatever was not contained in the next string</span>
+<span class="fc" id="L44">        map2.clear() // clear the map</span>
+    }
+<span class="fc" id="L46">    val array = ArrayList&lt;String&gt;()</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    for (k in map1.keys) { // make the required list</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (i in 0 until map1[k]!!) {</span>
+<span class="fc" id="L49">            array.add(k.toString())</span>
+        }
+    }
+<span class="fc" id="L52">    return array</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

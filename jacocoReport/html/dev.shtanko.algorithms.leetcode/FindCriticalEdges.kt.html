@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindCriticalEdges.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">FindCriticalEdges.kt</span></div><h1>FindCriticalEdges.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1489. Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree
+ * @see &lt;a href=&quot;https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree&quot;&gt;
+ *     leetcode page&lt;/a&gt;
+ */
+fun interface FindCriticalEdges {
+    operator fun invoke(n: Int, edges: Array&lt;IntArray&gt;): List&lt;List&lt;Int&gt;&gt;
+}
+
+/**
+ * Approach 1: Kruskal's Algorithm
+ */
+<span class="fc" id="L31">class FindCriticalEdgesKruskal : FindCriticalEdges {</span>
+    override operator fun invoke(n: Int, edges: Array&lt;IntArray&gt;): List&lt;List&lt;Int&gt;&gt; {
+<span class="fc" id="L33">        val critical: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc" id="L34">        val pseudoCritical: MutableList&lt;Int&gt; = ArrayList()</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (i in edges.indices) {</span>
+<span class="fc" id="L36">            var edge = edges[i]</span>
+<span class="fc" id="L37">            edge = edge.copyOf(edge.size + 1)</span>
+<span class="fc" id="L38">            edge[3] = i</span>
+<span class="fc" id="L39">            edges[i] = edge</span>
+        }
+<span class="fc" id="L41">        edges.sortWith { a: IntArray, b: IntArray -&gt; a[2].compareTo(b[2]) }</span>
+<span class="fc" id="L42">        val mstwt = findMST(n, edges, -1, -1)</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (i in edges.indices)</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            if (mstwt &lt; findMST(n, edges, i, -1)) {</span>
+<span class="fc" id="L45">                critical.add(edges[i][3])</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            } else if (mstwt == findMST(n, edges, -1, i)) {</span>
+<span class="fc" id="L47">                pseudoCritical.add(edges[i][3])</span>
+            }
+
+<span class="fc" id="L50">        val result: MutableList&lt;List&lt;Int&gt;&gt; = ArrayList()</span>
+<span class="fc" id="L51">        result.add(critical)</span>
+<span class="fc" id="L52">        result.add(pseudoCritical)</span>
+<span class="fc" id="L53">        return result</span>
+    }
+
+    private fun findParent(p: Int, parent: IntArray): Int =
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (parent[p] == p) p else findParent(parent[p], parent).also { parent[p] = it }</span>
+
+    fun union(u: Int, v: Int, parent: IntArray) {
+<span class="fc" id="L60">        parent[findParent(u, parent)] = findParent(v, parent)</span>
+<span class="fc" id="L61">    }</span>
+
+    private fun findMST(n: Int, edges: Array&lt;IntArray&gt;, block: Int, e: Int): Int {
+<span class="fc" id="L64">        val parent = IntArray(n)</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (i in 0 until n) parent[i] = i</span>
+<span class="fc" id="L66">        var weight = 0</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if (e != -1) {</span>
+<span class="fc" id="L68">            weight += edges[e][2]</span>
+<span class="fc" id="L69">            union(edges[e][0], edges[e][1], parent)</span>
+        }
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        for (i in edges.indices) {</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            if (i == block) continue</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            if (findParent(edges[i][0], parent) == findParent(edges[i][1], parent)) {</span>
+<span class="fc" id="L74">                continue</span>
+            }
+<span class="fc" id="L76">            union(edges[i][0], edges[i][1], parent)</span>
+<span class="fc" id="L77">            weight += edges[i][2]</span>
+        }
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">            if (findParent(i, parent) != findParent(0, parent)) {</span>
+<span class="nc" id="L81">                return Int.MAX_VALUE</span>
+            }
+        }
+<span class="fc" id="L84">        return weight</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

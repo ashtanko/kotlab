@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Dota2Senate.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">Dota2Senate.kt</span></div><h1>Dota2Senate.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+private const val RADIANT = &quot;Radiant&quot;
+private const val DIRE = &quot;Dire&quot;
+
+/**
+ * 649. Dota2 Senate
+ * @see &lt;a href=&quot;https://leetcode.com/problems/dota2-senate/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface Dota2Senate {
+    fun predictPartyVictory(senate: String): String
+}
+
+<span class="fc" id="L33">class Dota2SenateGreedy : Dota2Senate {</span>
+    override fun predictPartyVictory(senate: String): String {
+        // Convert to StringBuilder for easy deletion
+<span class="fc" id="L36">        val senateArray = StringBuilder(senate)</span>
+
+        // Count of Each Type of Senator to check for Winner
+<span class="fc" id="L39">        var rCount = 0</span>
+<span class="fc" id="L40">        var dCount = 0</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (element in senateArray) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            if (element == 'R') {</span>
+<span class="fc" id="L43">                rCount++</span>
+            } else {
+<span class="fc" id="L45">                dCount++</span>
+            }
+        }
+
+        // Turn of Senator at this index
+<span class="fc" id="L50">        var turn = 0</span>
+
+        // While No Winner
+<span class="fc bfc" id="L53" title="All 4 branches covered.">        while (rCount &gt; 0 &amp;&amp; dCount &gt; 0) {</span>
+            // Ban the next opponent, starting at one index ahead
+            // Taking MOD to loop around.
+            // If index of banned senator is before current index,
+            // then we need to decrement turn by 1, as we have removed
+            // a senator from list
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            if (senateArray[turn] == 'R') {</span>
+<span class="fc" id="L60">                val bannedSenatorBefore = ban(senateArray, 'D', (turn + 1) % senateArray.length)</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">                if (bannedSenatorBefore) {</span>
+<span class="nc" id="L62">                    turn--</span>
+                }
+<span class="fc" id="L64">                dCount--</span>
+            } else {
+<span class="fc" id="L66">                val bannedSenatorBefore = ban(senateArray, 'R', (turn + 1) % senateArray.length)</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">                if (bannedSenatorBefore) {</span>
+<span class="fc" id="L68">                    turn--</span>
+                }
+<span class="fc" id="L70">                rCount--</span>
+            }
+
+            // Increment Turn
+<span class="fc" id="L74">            turn = (turn + 1) % senateArray.length</span>
+        }
+
+        // Return Winner
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        return if (rCount &gt; 0) {</span>
+<span class="fc" id="L79">            RADIANT</span>
+        } else {
+<span class="fc" id="L81">            DIRE</span>
+        }
+    }
+
+    // Ban the candidate &quot;toBan&quot;, immediate next to &quot;startAt&quot;
+    // If have to loop around, then it means next turn will be of
+    // senator at same index. Returns loop around boolean
+    private fun ban(senateArray: StringBuilder, toBan: Char, startAt: Int): Boolean {
+<span class="fc" id="L89">        var loopAround = false</span>
+<span class="fc" id="L90">        var pointer = startAt</span>
+<span class="fc" id="L91">        while (true) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if (pointer == 0) {</span>
+<span class="fc" id="L93">                loopAround = true</span>
+            }
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">            if (senateArray[pointer] == toBan) {</span>
+<span class="fc" id="L96">                senateArray.deleteCharAt(pointer)</span>
+<span class="fc" id="L97">                break</span>
+            }
+<span class="nc" id="L99">            pointer = (pointer + 1) % senateArray.length</span>
+        }
+<span class="fc" id="L101">        return loopAround</span>
+    }
+}
+
+<span class="fc" id="L105">class Dota2SenateBooleanArray : Dota2Senate {</span>
+    override fun predictPartyVictory(senate: String): String {
+        // To mark Banned Senators
+<span class="fc" id="L108">        val banned = BooleanArray(senate.length)</span>
+
+        // Count of Each Type of Senator who are not-banned
+<span class="fc" id="L111">        var rCount = 0</span>
+<span class="fc" id="L112">        var dCount = 0</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        for (element in senate) {</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">            if (element == 'R') {</span>
+<span class="fc" id="L115">                rCount++</span>
+            } else {
+<span class="fc" id="L117">                dCount++</span>
+            }
+        }
+
+        // Turn of Senator at this Index
+<span class="fc" id="L122">        var turn = 0</span>
+
+        // While both parties have at least one senator
+<span class="fc bfc" id="L125" title="All 4 branches covered.">        while (rCount &gt; 0 &amp;&amp; dCount &gt; 0) {</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            if (!banned[turn]) {</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">                if (senate[turn] == 'R') {</span>
+<span class="fc" id="L128">                    ban(senate, banned, 'D', (turn + 1) % senate.length)</span>
+<span class="fc" id="L129">                    dCount--</span>
+                } else {
+<span class="fc" id="L131">                    ban(senate, banned, 'R', (turn + 1) % senate.length)</span>
+<span class="fc" id="L132">                    rCount--</span>
+                }
+            }
+<span class="fc" id="L135">            turn = (turn + 1) % senate.length</span>
+        }
+
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        return if (dCount == 0) RADIANT else DIRE</span>
+    }
+
+    // Ban the candidate &quot;toBan&quot;, immediate next to &quot;startAt&quot;
+    private fun ban(senate: String, banned: BooleanArray, toBan: Char, startAt: Int) {
+        // Find the next eligible candidate to ban
+<span class="fc" id="L144">        var pointer = startAt</span>
+<span class="fc" id="L145">        while (true) {</span>
+<span class="pc bpc" id="L146" title="2 of 4 branches missed.">            if (senate[pointer] == toBan &amp;&amp; !banned[pointer]) {</span>
+<span class="fc" id="L147">                banned[pointer] = true</span>
+<span class="fc" id="L148">                break</span>
+            }
+<span class="nc" id="L150">            pointer = (pointer + 1) % senate.length</span>
+        }
+<span class="fc" id="L152">    }</span>
+}
+
+<span class="fc" id="L155">class Dota2SenateTwoQueues : Dota2Senate {</span>
+    override fun predictPartyVictory(senate: String): String {
+        // Number of Senator
+<span class="fc" id="L158">        val n: Int = senate.length</span>
+
+        // Queues with Senator's Index.
+        // Index will be used to find the next turn of Senator
+<span class="fc" id="L162">        val rQueue: Queue&lt;Int&gt; = LinkedList()</span>
+<span class="fc" id="L163">        val dQueue: Queue&lt;Int&gt; = LinkedList()</span>
+
+        // Populate the Queues
+<span class="fc bfc" id="L166" title="All 2 branches covered.">        for (i in 0 until n) {</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">            if (senate[i] == 'R') {</span>
+<span class="fc" id="L168">                rQueue.add(i)</span>
+            } else {
+<span class="fc" id="L170">                dQueue.add(i)</span>
+            }
+        }
+
+        // While both parties have at least one Senator
+<span class="fc bfc" id="L175" title="All 4 branches covered.">        while (!rQueue.isEmpty() &amp;&amp; !dQueue.isEmpty()) {</span>
+            // Pop the Next-Turn Senate from both Q.
+<span class="fc" id="L177">            val rTurn: Int = rQueue.poll()</span>
+<span class="fc" id="L178">            val dTurn: Int = dQueue.poll()</span>
+
+            // ONE having a larger index will be banned by a lower index
+            //  will again get Turn, so EN-Queue again
+            // But ensure its turn comes in the next round only
+<span class="fc bfc" id="L183" title="All 2 branches covered.">            if (dTurn &lt; rTurn) {</span>
+<span class="fc" id="L184">                dQueue.add(dTurn + n)</span>
+            } else {
+<span class="fc" id="L186">                rQueue.add(rTurn + n)</span>
+            }
+        }
+
+        // One's which Empty is not winner
+<span class="fc bfc" id="L191" title="All 2 branches covered.">        return if (rQueue.isEmpty()) DIRE else RADIANT</span>
+    }
+}
+
+<span class="fc" id="L195">class Dota2SenateSingleQueue : Dota2Senate {</span>
+    override fun predictPartyVictory(senate: String): String {
+        // Number of Senators of each party
+<span class="fc" id="L198">        var rCount = 0</span>
+<span class="fc" id="L199">        var dCount = 0</span>
+
+        // Floating Ban Count
+<span class="fc" id="L202">        var dFloatingBan = 0</span>
+<span class="fc" id="L203">        var rFloatingBan = 0</span>
+
+        // Queue of Senators
+<span class="fc" id="L206">        val q: Queue&lt;Char&gt; = LinkedList()</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">        for (c in senate.toCharArray()) {</span>
+<span class="fc" id="L208">            q.add(c)</span>
+<span class="fc bfc" id="L209" title="All 2 branches covered.">            if (c == 'R') rCount++ else dCount++</span>
+        }
+
+        // While any party has eligible Senators
+<span class="fc bfc" id="L213" title="All 4 branches covered.">        while (rCount &gt; 0 &amp;&amp; dCount &gt; 0) {</span>
+            // Pop the senator with turn
+<span class="fc" id="L215">            val curr = q.poll()</span>
+
+            // If eligible, float the ban on the other party, enqueue again.
+            // If not, decrement the floating ban and count of the party.
+<span class="pc bpc" id="L219" title="1 of 4 branches missed.">            if (curr == 'D') {</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">                if (dFloatingBan &gt; 0) {</span>
+<span class="fc" id="L221">                    dFloatingBan--</span>
+<span class="fc" id="L222">                    dCount--</span>
+                } else {
+<span class="fc" id="L224">                    rFloatingBan++</span>
+<span class="fc" id="L225">                    q.add('D')</span>
+                }
+            } else {
+<span class="fc bfc" id="L228" title="All 2 branches covered.">                if (rFloatingBan &gt; 0) {</span>
+<span class="fc" id="L229">                    rFloatingBan--</span>
+<span class="fc" id="L230">                    rCount--</span>
+                } else {
+<span class="fc" id="L232">                    dFloatingBan++</span>
+<span class="fc" id="L233">                    q.add('R')</span>
+                }
+            }
+        }
+
+        // Return the party with eligible Senators
+<span class="fc bfc" id="L239" title="All 2 branches covered.">        return if (rCount &gt; 0) RADIANT else DIRE</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

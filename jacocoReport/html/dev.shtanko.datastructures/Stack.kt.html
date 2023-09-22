@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Stack.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.datastructures</a> &gt; <span class="el_source">Stack.kt</span></div><h1>Stack.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.datastructures
+
+/**
+ * A custom [Iterator] implementation for custom [Stack].
+ *
+ * @param T the type of a data in this data structure.
+ * @property stackNode the [Stack.Node] of this data structure.
+ * @constructor Creates an [Iterator].
+ */
+<span class="fc" id="L26">class StackIterator&lt;T&gt;(private var stackNode: Stack.Node&lt;T&gt;?) : Iterator&lt;T&gt; {</span>
+    /**
+     * Returns `true` if the iteration has more elements.
+     */
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    override fun hasNext(): Boolean = stackNode != null</span>
+
+    /**
+     * Returns the next element in the iteration.
+     */
+    override fun next(): T {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (!hasNext()) throw NoSuchElementException()</span>
+<span class="fc" id="L37">        val current = stackNode!!</span>
+<span class="fc" id="L38">        stackNode = current.next</span>
+<span class="fc" id="L39">        return current.value</span>
+    }
+}
+
+/**
+ * A stack is a basic data structure that can be logically thought of as a linear structure represented by a real
+ * physical stack or pile, a structure where insertion and deletion of items takes place at one end called top of
+ * the stack. The basic concept can be illustrated by thinking of your data set as a stack of plates or books where
+ * you can only take the top item off the stack in order to remove things from it. This structure is used all
+ * throughout programming. The basic implementation of a stack is also called a LIFO (Last In First Out) to demonstrate
+ * the way it accesses data, since as we will see there are various variations of stack implementations.
+ * There are basically three operations that can be performed on stacks. They are 1) inserting an item into
+ * a stack (push). 2) deleting an item from the stack (pop). 3) displaying the contents of the stack (peek or top).
+ */
+<span class="fc" id="L53">class Stack&lt;T&gt; : Collection&lt;T&gt; {</span>
+    private var head: Node&lt;T&gt;? = null
+
+<span class="fc" id="L56">    class Node&lt;T&gt;(val value: T) {</span>
+<span class="fc" id="L57">        var next: Node&lt;T&gt;? = null</span>
+    }
+
+<span class="fc" id="L60">    override var size: Int = 0</span>
+        private set
+
+    override fun contains(element: T): Boolean {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (obj in this) {</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (obj == element) return true</span>
+        }
+<span class="fc" id="L67">        return false</span>
+    }
+
+    override fun containsAll(elements: Collection&lt;T&gt;): Boolean {
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        for (element in elements) {</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            if (!contains(element)) return false</span>
+        }
+<span class="fc" id="L74">        return true</span>
+    }
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">    override fun isEmpty(): Boolean = size == 0</span>
+
+<span class="fc" id="L79">    override fun iterator(): Iterator&lt;T&gt; = StackIterator(head)</span>
+
+    /**
+     * Returns the object [T] at the top of the [Stack] without removing it.
+     * @return An object [T]
+     * @throws NoSuchElementException
+     */
+    fun peek(): T {
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if (size == 0) throw NoSuchElementException()</span>
+<span class="fc" id="L88">        return head!!.value</span>
+    }
+
+    /**
+     * Removes and returns the object [T] at the top of the [Stack].
+     * @return An object [T]
+     * @throws NoSuchElementException
+     */
+    fun poll(): T {
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (size == 0) throw NoSuchElementException()</span>
+<span class="fc" id="L98">        val old = head!!</span>
+<span class="fc" id="L99">        head = old.next</span>
+<span class="fc" id="L100">        size--</span>
+<span class="fc" id="L101">        return old.value</span>
+    }
+
+    fun push(item: T) {
+<span class="fc" id="L105">        val newNode = Node(item)</span>
+<span class="fc" id="L106">        newNode.next = head</span>
+<span class="fc" id="L107">        head = newNode</span>
+<span class="fc" id="L108">        size++</span>
+<span class="fc" id="L109">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

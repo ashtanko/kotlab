@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DistributeCookies.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">DistributeCookies.kt</span></div><h1>DistributeCookies.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+import kotlin.math.min
+
+/**
+ * 2305. Fair Distribution of Cookies
+ * @see &lt;a href=&quot;https://leetcode.com/problems/fair-distribution-of-cookies/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface DistributeCookies {
+    operator fun invoke(cookies: IntArray, k: Int): Int
+}
+
+<span class="fc" id="L30">class DistributeCookiesBacktracking : DistributeCookies {</span>
+    override operator fun invoke(cookies: IntArray, k: Int): Int {
+<span class="fc" id="L32">        val distribute = IntArray(k)</span>
+<span class="fc" id="L33">        return dfs(0, distribute, cookies, k, k)</span>
+    }
+
+    private fun dfs(i: Int, distribute: IntArray, cookies: IntArray, k: Int, zeroCount: Int): Int {
+        // If there are not enough cookies remaining, return Integer.MAX_VALUE
+        // as it leads to an invalid distribution.
+<span class="fc" id="L39">        var count = zeroCount</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (cookies.size - i &lt; count) {</span>
+<span class="fc" id="L41">            return Int.MAX_VALUE</span>
+        }
+
+        // After distributing all cookies, return the unfairness of this
+        // distribution.
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (i == cookies.size) {</span>
+<span class="fc" id="L47">            var unfairness = Int.MIN_VALUE</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            for (value in distribute) {</span>
+<span class="fc" id="L49">                unfairness = max(unfairness, value)</span>
+            }
+<span class="fc" id="L51">            return unfairness</span>
+        }
+
+        // Try to distribute the i-th cookie to each child, and update answer
+        // as the minimum unfairness in these distributions.
+<span class="fc" id="L56">        var answer = Int.MAX_VALUE</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        for (j in 0 until k) {</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            count -= if (distribute[j] == 0) 1 else 0</span>
+<span class="fc" id="L59">            distribute[j] += cookies[i]</span>
+
+            // Recursively distribute the next cookie.
+<span class="fc" id="L62">            answer = min(answer, dfs(i + 1, distribute, cookies, k, count))</span>
+<span class="fc" id="L63">            distribute[j] -= cookies[i]</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            count += if (distribute[j] == 0) 1 else 0</span>
+        }
+<span class="fc" id="L66">        return answer</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

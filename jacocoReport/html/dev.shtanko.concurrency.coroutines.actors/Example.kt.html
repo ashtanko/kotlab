@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Example.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.concurrency.coroutines.actors</a> &gt; <span class="el_source">Example.kt</span></div><h1>Example.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.concurrency.coroutines.actors
+
+import kotlin.system.measureTimeMillis
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+
+private sealed interface CounterMessage
+private object IncrementCounter : CounterMessage // one-way message to increment counter
+private object DecrementCounter : CounterMessage // one-way message to increment counter
+<span class="nc" id="L35">private class GetCounter(val response: CompletableDeferred&lt;Int&gt;) : CounterMessage // a request with reply</span>
+
+<span class="nc" id="L37">private fun CoroutineScope.customCounterStateMachine(channel: ReceiveChannel&lt;CounterMessage&gt;) = launch {</span>
+<span class="nc" id="L38">    var counter = 0 // actor state</span>
+<span class="nc" id="L39">    channel.consumeEach { message -&gt;</span>
+<span class="nc" id="L40">        ensureActive()</span>
+<span class="nc" id="L41">        when (message) {</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            is IncrementCounter -&gt; counter++</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            is GetCounter -&gt; message.response.complete(counter)</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            is DecrementCounter -&gt; counter--</span>
+        }
+<span class="nc" id="L46">    }</span>
+<span class="nc" id="L47">}</span>
+
+<span class="nc" id="L49">private fun main(): Unit = runBlocking {</span>
+<span class="nc" id="L50">    val channel = Channel&lt;CounterMessage&gt;()</span>
+<span class="nc" id="L51">    val counterStateMachine = customCounterStateMachine(channel) // create the counterStateMachine actor</span>
+<span class="nc" id="L52">    withContext(Dispatchers.Default) {</span>
+<span class="nc" id="L53">        massiveRun {</span>
+<span class="nc" id="L54">            channel.send(IncrementCounter)</span>
+<span class="nc" id="L55">        }</span>
+<span class="nc" id="L56">    }</span>
+    // send a message to get the counter value from the counterStateMachine actor
+<span class="nc" id="L58">    val response = CompletableDeferred&lt;Int&gt;()</span>
+<span class="nc" id="L59">    channel.send(GetCounter(response))</span>
+<span class="nc" id="L60">    val count = response.await()</span>
+<span class="nc" id="L61">    println(&quot;Counter = $count&quot;)</span>
+<span class="nc" id="L62">    channel.close() // shutdown the counterStateMachine actor</span>
+<span class="nc" id="L63">}</span>
+
+private const val COROUTINES = 100 // number of coroutines to launch
+private const val EXECUTION_TIMES = 1000 // times an action is repeated by each coroutine
+
+// helper function to simulate a massive concurrent input of messages
+private suspend fun massiveRun(action: suspend () -&gt; Unit) {
+<span class="nc" id="L70">    val n = COROUTINES</span>
+<span class="nc" id="L71">    val k = EXECUTION_TIMES</span>
+<span class="nc" id="L72">    val time = measureTimeMillis {</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        coroutineScope { // scope for coroutines</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            repeat(n) {</span>
+<span class="nc" id="L75">                launch {</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                    repeat(k) { action() }</span>
+<span class="nc" id="L77">                }</span>
+<span class="nc" id="L78">            }</span>
+<span class="nc" id="L79">        }</span>
+<span class="nc" id="L80">    }</span>
+<span class="nc" id="L81">    println(&quot;Completed ${n * k} actions in $time ms&quot;)</span>
+<span class="nc" id="L82">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

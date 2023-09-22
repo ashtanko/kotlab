@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NumMusicPlaylists.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">NumMusicPlaylists.kt</span></div><h1>NumMusicPlaylists.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.Arrays
+import kotlin.math.min
+
+/**
+ * 920. Number of Music Playlists
+ * @see &lt;a href=&quot;https://leetcode.com/problems/number-of-music-playlists&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface NumMusicPlaylists {
+    operator fun invoke(n: Int, goal: Int, k: Int): Int
+}
+
+/**
+ * Approach 1: Bottom-up Dynamic Programming
+ */
+<span class="fc" id="L33">class NumMusicPlaylistsBottomUp : NumMusicPlaylists {</span>
+    override operator fun invoke(n: Int, goal: Int, k: Int): Int {
+        // Initialize the DP table
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        val dp = Array(goal + 1) { LongArray(n + 1) }</span>
+<span class="fc" id="L37">        dp[0][0] = 1</span>
+
+<span class="pc bpc" id="L39" title="1 of 4 branches missed.">        for (i in 1..goal) {</span>
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">            for (j in 1..min(i, n)) {</span>
+                // The i-th song is a new song
+<span class="fc" id="L42">                dp[i][j] = dp[i - 1][j - 1] * (n - j + 1) % MOD</span>
+                // The i-th song is a song we have played before
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                if (j &gt; k) {</span>
+<span class="fc" id="L45">                    dp[i][j] = (dp[i][j] + dp[i - 1][j] * (j - k)) % MOD</span>
+                }
+            }
+        }
+
+<span class="fc" id="L50">        return dp[goal][n].toInt()</span>
+    }
+}
+
+/**
+ * Approach 2: Top-down Dynamic Programming (Memoization)
+ */
+<span class="fc" id="L57">class NumMusicPlaylistsTopDown : NumMusicPlaylists {</span>
+    private lateinit var dp: Array&lt;LongArray&gt;
+
+    override operator fun invoke(n: Int, goal: Int, k: Int): Int {
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        dp = Array(goal + 1) { LongArray(n + 1) }</span>
+<span class="pc bpc" id="L62" title="1 of 4 branches missed.">        for (row in dp) {</span>
+<span class="fc" id="L63">            Arrays.fill(row, -1L)</span>
+        }
+<span class="fc" id="L65">        return numberOfPlaylists(goal, n, k, n).toInt()</span>
+    }
+
+    private fun numberOfPlaylists(i: Int, j: Int, k: Int, n: Int): Long {
+        // Base cases
+<span class="fc bfc" id="L70" title="All 4 branches covered.">        if (i == 0 &amp;&amp; j == 0) {</span>
+<span class="fc" id="L71">            return 1</span>
+        }
+<span class="fc bfc" id="L73" title="All 4 branches covered.">        if (i == 0 || j == 0) {</span>
+<span class="fc" id="L74">            return 0</span>
+        }
+<span class="pc bpc" id="L76" title="1 of 4 branches missed.">        if (dp[i][j] != -1L) {</span>
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">            return dp[i][j]</span>
+        }
+        // DP transition: add a new song or replay an old one
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        dp[i][j] = numberOfPlaylists(i - 1, j - 1, k, n) * (n - j + 1) % MOD</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (j &gt; k) {</span>
+<span class="pc bpc" id="L82" title="2 of 4 branches missed.">            dp[i][j] = (dp[i][j] + numberOfPlaylists(i - 1, j, k, n) * (j - k) % MOD) % MOD</span>
+        }
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">        return dp[i][j]</span>
+    }
+}
+
+/**
+ * Approach 3: Combinatorics
+ */
+<span class="fc" id="L91">class NumMusicPlaylistsCombinatorics : NumMusicPlaylists {</span>
+    // Pre-calculated factorials and inverse factorials
+    private lateinit var factorial: LongArray
+    private lateinit var invFactorial: LongArray
+
+    override operator fun invoke(n: Int, goal: Int, k: Int): Int {
+        // Pre-calculate factorials and inverse factorials
+<span class="fc" id="L98">        precalculateFactorials(n)</span>
+
+        // Initialize variables for calculation
+<span class="fc" id="L101">        var sign = 1</span>
+<span class="fc" id="L102">        var answer: Long = 0</span>
+
+        // Loop from 'n' down to 'k'
+<span class="pc bpc" id="L105" title="1 of 4 branches missed.">        for (i in n downTo k) {</span>
+            // Calculate temporary result for this iteration
+<span class="fc" id="L107">            var temp = power(i - k.toLong(), goal - k)</span>
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">            temp = temp * invFactorial[n - i] % MOD</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">            temp = temp * invFactorial[i - k] % MOD</span>
+
+            // Add or subtract temporary result to/from answer
+<span class="fc" id="L112">            answer = (answer + sign * temp + MOD) % MOD</span>
+
+            // Flip sign for next iteration
+<span class="fc" id="L115">            sign *= -1</span>
+        }
+
+        // Final result is n! * answer, all under modulo
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">        return (factorial[n] * answer % MOD).toInt()</span>
+    }
+
+    // Method to pre-calculate factorials and inverse factorials up to 'n'
+    private fun precalculateFactorials(n: Int) {
+<span class="fc" id="L124">        factorial = LongArray(n + 1)</span>
+<span class="fc" id="L125">        invFactorial = LongArray(n + 1)</span>
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">        factorial[0] = 1</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">        invFactorial[0] = 1</span>
+
+        // Calculate factorials and inverse factorials for each number up to 'n'
+<span class="pc bpc" id="L130" title="1 of 4 branches missed.">        for (i in 1..n) {</span>
+<span class="pc bpc" id="L131" title="2 of 4 branches missed.">            factorial[i] = factorial[i - 1] * i % MOD</span>
+            // Inverse factorial calculated using Fermat's Little Theorem
+<span class="pc bpc" id="L133" title="2 of 4 branches missed.">            invFactorial[i] = power(factorial[i], MOD - 2)</span>
+        }
+<span class="fc" id="L135">    }</span>
+
+    // Method to calculate power of a number under modulo using binary exponentiation
+    private fun power(base: Long, exponent: Int): Long {
+<span class="fc" id="L139">        var result = 1L</span>
+
+        // Loop until exponent is not zero
+<span class="fc" id="L142">        var exp = exponent</span>
+<span class="fc" id="L143">        var b = base</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        while (exp &gt; 0) {</span>
+            // If exponent is odd, multiply result with base
+<span class="fc bfc" id="L146" title="All 2 branches covered.">            if (exp and 1 == 1) {</span>
+<span class="fc" id="L147">                result = result * b % MOD</span>
+            }
+            // Divide the exponent by 2 and square the base
+<span class="fc" id="L150">            exp = exp shr 1</span>
+<span class="fc" id="L151">            b = b * b % MOD</span>
+        }
+
+<span class="fc" id="L154">        return result</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

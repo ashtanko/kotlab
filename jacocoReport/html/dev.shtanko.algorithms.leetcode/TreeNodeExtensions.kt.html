@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TreeNodeExtensions.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">TreeNodeExtensions.kt</span></div><h1>TreeNodeExtensions.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import java.util.LinkedList
+import java.util.Queue
+
+// Function to insert nodes in level order
+<span class="fc" id="L23">fun insertLevelOrder(rootNode: TreeNode?, arr: IntArray, i: Int = 0): TreeNode? {</span>
+<span class="fc" id="L24">    var root: TreeNode? = rootNode</span>
+
+    // Base case for recursion
+<span class="fc bfc" id="L27" title="All 2 branches covered.">    if (i &lt; arr.size) {</span>
+<span class="fc" id="L28">        val temp = TreeNode(arr[i])</span>
+<span class="fc" id="L29">        root = temp</span>
+
+        // insert left child
+<span class="fc" id="L32">        root.left = insertLevelOrder(root.left, arr, 2 * i + 1)</span>
+
+        // insert right child
+<span class="fc" id="L35">        root.right = insertLevelOrder(root.right, arr, 2 * i + 2)</span>
+    }
+
+<span class="fc" id="L38">    return root</span>
+}
+
+fun IntArray.toTree(): TreeNode? {
+<span class="fc bfc" id="L42" title="All 4 branches covered.">    if (isEmpty()) return null</span>
+<span class="fc" id="L43">    val root = TreeNode(first())</span>
+<span class="fc" id="L44">    val q: Queue&lt;TreeNode&gt; = LinkedList()</span>
+<span class="fc" id="L45">    q.add(root)</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    for (i in 1 until this.size) {</span>
+<span class="fc" id="L48">        val node = q.peek()</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (node.left == null) {</span>
+<span class="fc" id="L50">            node.left = TreeNode(this[i])</span>
+<span class="fc" id="L51">            q.add(node.left)</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        } else if (node.right == null) {</span>
+<span class="fc" id="L53">            node.right = TreeNode(this[i])</span>
+<span class="fc" id="L54">            q.add(node.right)</span>
+<span class="fc" id="L55">            q.remove()</span>
+        }
+    }
+<span class="fc" id="L58">    return root</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

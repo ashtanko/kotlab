@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinimumFinishTime.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MinimumFinishTime.kt</span></div><h1>MinimumFinishTime.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.min
+
+/**
+ * 2188. Minimum Time to Finish the Race
+ * @see &lt;a href=&quot;https://leetcode.com/problems/minimum-time-to-finish-the-race/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface MinimumFinishTime {
+    operator fun invoke(tires: Array&lt;IntArray&gt;, changeTime: Int, numLaps: Int): Int
+}
+
+<span class="fc" id="L29">class MinimumFinishTimeDP : MinimumFinishTime {</span>
+    override operator fun invoke(tires: Array&lt;IntArray&gt;, changeTime: Int, numLaps: Int): Int {
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        val minTime = IntArray(numLaps + 1) { Int.MAX_VALUE }</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        for (tire in tires) {</span>
+<span class="fc" id="L33">            checkMinTime(tire, minTime, changeTime, numLaps)</span>
+        }
+<span class="pc bpc" id="L35" title="1 of 4 branches missed.">        for (i in 2..numLaps) {</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            for (j in 1 until i) {</span>
+<span class="fc" id="L37">                val remain = i % j</span>
+                // Greedy, in order to get the minimal runtime, we should repeat the same loop as much as possible.
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                val currMin: Int = if (remain != 0) {</span>
+<span class="fc" id="L40">                    i / j * (minTime[j] + changeTime) + minTime[remain]</span>
+                } else {
+                    // The last changeTime is not required if remain is 0
+<span class="fc" id="L43">                    i / j * (minTime[j] + changeTime) - changeTime</span>
+                }
+<span class="fc" id="L45">                minTime[i] = min(minTime[i], currMin)</span>
+            }
+        }
+
+<span class="fc" id="L49">        return minTime[numLaps]</span>
+    }
+
+    private fun checkMinTime(tire: IntArray, minTime: IntArray, changeTime: Int, numLaps: Int) {
+<span class="fc" id="L53">        val base = tire[0]</span>
+<span class="fc" id="L54">        var lap = 1</span>
+<span class="fc" id="L55">        var curr = base</span>
+<span class="fc" id="L56">        minTime[lap] = min(minTime[lap], curr)</span>
+<span class="fc" id="L57">        var sum = base</span>
+        // Greedy, if changeTime + base is smaller, the minimal runtime for the next lap
+        // will not be better than minTime[lap - 1] + changeTime + minTime[1]
+<span class="pc bpc" id="L60" title="1 of 4 branches missed.">        while (curr * tire[1] - base &lt;= changeTime &amp;&amp; lap++ &lt; numLaps) {</span>
+<span class="fc" id="L61">            curr *= tire[1]</span>
+<span class="fc" id="L62">            sum += curr</span>
+<span class="fc" id="L63">            minTime[lap] = min(minTime[lap], sum)</span>
+        }
+<span class="fc" id="L65">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

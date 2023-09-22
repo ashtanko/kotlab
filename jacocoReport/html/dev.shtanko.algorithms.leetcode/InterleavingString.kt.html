@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InterleavingString.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">InterleavingString.kt</span></div><h1>InterleavingString.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 97. Interleaving String
+ * @see &lt;a href=&quot;https://leetcode.com/problems/interleaving-string/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface InterleavingStringStrategy {
+    operator fun invoke(s1: String, s2: String, s3: String): Boolean
+}
+
+<span class="fc" id="L27">class InterleavingStringBruteForce : InterleavingStringStrategy {</span>
+    override operator fun invoke(s1: String, s2: String, s3: String): Boolean {
+<span class="fc" id="L29">        return Triple(s1, s2, s3).isInterleave(0, 0, &quot;&quot;)</span>
+    }
+
+    private fun Triple&lt;String, String, String&gt;.isInterleave(i: Int, j: Int, res: String): Boolean {
+<span class="pc bpc" id="L33" title="2 of 6 branches missed.">        if (res == third &amp;&amp; i == first.length &amp;&amp; j == second.length) return true</span>
+<span class="fc" id="L34">        var ans = false</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (i &lt; first.length) ans = ans or isInterleave(i + 1, j, res + first[i])</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (j &lt; second.length) ans = ans or isInterleave(i, j + 1, res + second[j])</span>
+<span class="fc" id="L37">        return ans</span>
+    }
+}
+
+// Recursion with memoization
+<span class="fc" id="L42">class InterleavingStringRecursionWithMemo : InterleavingStringStrategy {</span>
+    override operator fun invoke(s1: String, s2: String, s3: String): Boolean {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        val memo = Array(s1.length) { IntArray(s2.length) }</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (i in s1.indices) {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for (j in s2.indices) {</span>
+<span class="fc" id="L47">                memo[i][j] = -1</span>
+            }
+        }
+<span class="fc" id="L50">        return Triple(s1, s2, s3).isInterleave(0, 0, 0, memo)</span>
+    }
+
+    private fun Triple&lt;String, String, String&gt;.isInterleave(
+        i: Int,
+        j: Int,
+        k: Int,
+        memo: Array&lt;IntArray&gt;,
+    ): Boolean {
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (i == first.length) {</span>
+<span class="fc" id="L60">            return second.substring(j) == third.substring(k)</span>
+        }
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (j == second.length) {</span>
+<span class="fc" id="L63">            return first.substring(i) == third.substring(k)</span>
+        }
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (memo[i][j] &gt;= 0) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            return memo[i][j] == 1</span>
+        }
+<span class="fc" id="L68">        var ans = false</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        val isThirdEqualFirst = third[k] == first[i]</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        val isThirdEqualSecond = third[k] == second[j]</span>
+<span class="fc bfc" id="L71" title="All 4 branches covered.">        val thirdToFirstPredicate = isThirdEqualFirst &amp;&amp; isInterleave(i + 1, j, k + 1, memo)</span>
+<span class="fc bfc" id="L72" title="All 4 branches covered.">        val thirdToSecondPredicate = isThirdEqualSecond &amp;&amp; isInterleave(i, j + 1, k + 1, memo)</span>
+<span class="fc bfc" id="L73" title="All 4 branches covered.">        if (thirdToFirstPredicate || thirdToSecondPredicate) {</span>
+<span class="fc" id="L74">            ans = true</span>
+        }
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        memo[i][j] = if (ans) 1 else 0</span>
+<span class="fc" id="L77">        return ans</span>
+    }
+}
+
+// Using 2D Dynamic Programming
+<span class="fc" id="L82">class InterleavingString2D : InterleavingStringStrategy {</span>
+    override operator fun invoke(s1: String, s2: String, s3: String): Boolean {
+<span class="fc" id="L84">        return isInterleave(s1, s2, s3)</span>
+    }
+
+    private fun isInterleave(s1: String, s2: String, s3: String): Boolean {
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">        if (s3.length != s1.length + s2.length) {</span>
+<span class="nc" id="L89">            return false</span>
+        }
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        val dp = Array(s1.length + 1) {</span>
+            BooleanArray(
+<span class="fc" id="L93">                s2.length + 1,</span>
+            )
+        }
+<span class="pc bpc" id="L96" title="1 of 4 branches missed.">        for (i in 0..s1.length) {</span>
+<span class="pc bpc" id="L97" title="1 of 4 branches missed.">            for (j in 0..s2.length) {</span>
+<span class="fc bfc" id="L98" title="All 4 branches covered.">                if (i == 0 &amp;&amp; j == 0) {</span>
+<span class="fc" id="L99">                    dp[i][j] = true</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">                } else if (i == 0) {</span>
+<span class="pc bpc" id="L101" title="1 of 4 branches missed.">                    dp[i][j] = dp[i][j - 1] &amp;&amp; s2[j - 1] == s3[i + j - 1]</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">                } else if (j == 0) {</span>
+<span class="fc bfc" id="L103" title="All 4 branches covered.">                    dp[i][j] = dp[i - 1][j] &amp;&amp; s1[i - 1] == s3[i + j - 1]</span>
+                } else {
+<span class="fc bfc" id="L105" title="All 8 branches covered.">                    dp[i][j] = dp[i - 1][j] &amp;&amp; s1[i - 1] == s3[i + j - 1] || dp[i][j - 1] &amp;&amp; s2[j - 1] == s3[i + j - 1]</span>
+                }
+            }
+        }
+<span class="fc" id="L109">        return dp[s1.length][s2.length]</span>
+    }
+}
+
+// Using 1D Dynamic Programming
+<span class="fc" id="L114">class InterleavingString1D : InterleavingStringStrategy {</span>
+    override operator fun invoke(s1: String, s2: String, s3: String): Boolean {
+<span class="fc" id="L116">        return isInterleave(s1, s2, s3)</span>
+    }
+
+    private fun isInterleave(s1: String, s2: String, s3: String): Boolean {
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">        if (s3.length != s1.length + s2.length) {</span>
+<span class="nc" id="L121">            return false</span>
+        }
+<span class="fc" id="L123">        val dp = BooleanArray(s2.length + 1)</span>
+<span class="pc bpc" id="L124" title="1 of 4 branches missed.">        for (i in 0..s1.length) {</span>
+<span class="pc bpc" id="L125" title="1 of 4 branches missed.">            for (j in 0..s2.length) {</span>
+<span class="fc bfc" id="L126" title="All 4 branches covered.">                if (i == 0 &amp;&amp; j == 0) {</span>
+<span class="fc" id="L127">                    dp[j] = true</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">                } else if (i == 0) {</span>
+<span class="pc bpc" id="L129" title="1 of 4 branches missed.">                    dp[j] = dp[j - 1] &amp;&amp; s2[j - 1] == s3[i + j - 1]</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">                } else if (j == 0) {</span>
+<span class="fc bfc" id="L131" title="All 4 branches covered.">                    dp[j] = dp[j] &amp;&amp; s1[i - 1] == s3[i + j - 1]</span>
+                } else {
+<span class="fc bfc" id="L133" title="All 8 branches covered.">                    dp[j] = dp[j] &amp;&amp; s1[i - 1] == s3[i + j - 1] || dp[j - 1] &amp;&amp; s2[j - 1] == s3[i + j - 1]</span>
+                }
+            }
+        }
+<span class="fc" id="L137">        return dp[s2.length]</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaxWeightPathEvaluator.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.coursera</a> &gt; <span class="el_source">MaxWeightPathEvaluator.kt</span></div><h1>MaxWeightPathEvaluator.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.coursera
+
+<span class="fc" id="L19">class MaxWeightPathEvaluator(private val weights: LongArray) {</span>
+
+<span class="fc" id="L21">    private val d = LongArray(weights.size)</span>
+<span class="fc" id="L22">    private val path = HashSet&lt;Int&gt;()</span>
+<span class="fc" id="L23">    private var maxPathWeight = -1L</span>
+
+    fun evaluate(): Long {
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (maxPathWeight != -1L) {</span>
+<span class="nc" id="L27">            return maxPathWeight</span>
+        }
+
+<span class="fc" id="L30">        d[0] = weights[0]</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (weights.size == 1) {</span>
+<span class="nc" id="L32">            return weights[0]</span>
+        }
+
+<span class="fc" id="L35">        d[1] = weights[1]</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (i in 2 until weights.size) {</span>
+<span class="fc" id="L37">            val weight1 = d[i - 1]</span>
+<span class="fc" id="L38">            val weight2 = d[i - 2] + weights[i]</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (weight1 &gt; weight2) {</span>
+<span class="fc" id="L40">                d[i] = weight1</span>
+            } else {
+<span class="fc" id="L42">                d[i] = weight2</span>
+            }
+        }
+
+<span class="fc" id="L46">        return d.last()</span>
+    }
+
+    fun getPath(): Set&lt;Int&gt; {
+<span class="pc bpc" id="L50" title="2 of 4 branches missed.">        if (path.isNotEmpty()) {</span>
+<span class="nc" id="L51">            return path</span>
+        }
+
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        if (maxPathWeight == -1L) {</span>
+<span class="fc" id="L55">            evaluate()</span>
+        }
+
+<span class="fc" id="L58">        var i = d.lastIndex</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        while (i &gt;= 2) {</span>
+<span class="fc" id="L60">            when {</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">                d[i] == weights[i] + d[i - 2] -&gt; {</span>
+<span class="fc" id="L62">                    path.add(i + 1)</span>
+<span class="fc" id="L63">                    i -= 2</span>
+                }
+
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">                d[i] == d[i - 1] -&gt; --i</span>
+<span class="nc" id="L67">                else -&gt; throw IllegalStateException(&quot;invalid state at $i&quot;)</span>
+            }
+        }
+
+<span class="fc" id="L71">        path.add(i + 1)</span>
+<span class="fc" id="L72">        return path</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

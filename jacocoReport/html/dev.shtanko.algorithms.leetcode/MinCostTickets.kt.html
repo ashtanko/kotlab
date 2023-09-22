@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinCostTickets.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">MinCostTickets.kt</span></div><h1>MinCostTickets.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.min
+
+/**
+ * 983. Minimum Cost For Tickets
+ * https://leetcode.com/problems/minimum-cost-for-tickets/
+ */
+fun interface MinCostTickets {
+    operator fun invoke(days: IntArray, costs: IntArray): Int
+}
+
+/**
+ * Approach 1: Dynamic Programming (Day Variant)
+ */
+<span class="fc" id="L32">class DPDayVariant : MinCostTickets {</span>
+
+    private lateinit var costs: IntArray
+<span class="fc" id="L35">    private var memo: Array&lt;Int?&gt; = arrayOfNulls(LEAP_YEAR_DAYS)</span>
+<span class="fc" id="L36">    private var dayset: MutableSet&lt;Int&gt; = HashSet()</span>
+
+    override operator fun invoke(days: IntArray, costs: IntArray): Int {
+<span class="fc" id="L39">        this.costs = costs</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (d in days) dayset.add(d)</span>
+<span class="fc" id="L41">        return dp(1)</span>
+    }
+
+    private fun dp(i: Int): Int {
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (i &gt; YEAR_DAYS) return 0</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (memo[i] != null) {</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">            return memo[i] ?: 0</span>
+        }
+        var ans: Int
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (dayset.contains(i)) {</span>
+<span class="fc" id="L51">            ans = min(</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">                dp(i + 1) + costs[0],</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">                dp(i + 7) + costs[1],</span>
+            )
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">            ans = min(ans, dp(i + THIRTY_DAYS) + costs[2])</span>
+        } else {
+<span class="fc" id="L57">            ans = dp(i + 1)</span>
+        }
+<span class="fc" id="L59">        memo[i] = ans</span>
+<span class="fc" id="L60">        return ans</span>
+    }
+
+    companion object {
+        private const val THIRTY_DAYS = 30
+        private const val LEAP_YEAR_DAYS = 366
+        private const val YEAR_DAYS = 365
+    }
+}
+
+/**
+ * Approach 2: Dynamic Programming (Window Variant)
+ */
+<span class="fc" id="L73">class DPWindowVariant : MinCostTickets {</span>
+    private lateinit var days: IntArray
+    private lateinit var costs: IntArray
+    private lateinit var memo: Array&lt;Int?&gt;
+<span class="fc" id="L77">    private var durations = intArrayOf(ONE_DAY, ONE_WEEK, ONE_MONTH)</span>
+
+    override operator fun invoke(days: IntArray, costs: IntArray): Int {
+<span class="fc" id="L80">        this.days = days</span>
+<span class="fc" id="L81">        this.costs = costs</span>
+<span class="fc" id="L82">        memo = arrayOfNulls(days.size)</span>
+<span class="fc" id="L83">        return dp(0)</span>
+    }
+
+    private fun dp(i: Int): Int {
+<span class="pc bpc" id="L87" title="1 of 4 branches missed.">        if (i &gt;= days.size) return 0</span>
+<span class="pc bpc" id="L88" title="1 of 4 branches missed.">        if (memo[i] != null) {</span>
+<span class="pc bpc" id="L89" title="2 of 4 branches missed.">            return memo[i] ?: 0</span>
+        }
+<span class="fc" id="L91">        var ans = Int.MAX_VALUE</span>
+<span class="fc" id="L92">        var j = i</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        for (k in 0..2) {</span>
+<span class="pc bpc" id="L94" title="3 of 10 branches missed.">            while (j &lt; days.size &amp;&amp; days[j] &lt; days[i] + durations[k]) {</span>
+<span class="fc" id="L95">                j++</span>
+            }
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">            ans = min(ans, dp(j) + costs[k])</span>
+        }
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">        memo[i] = ans</span>
+<span class="fc" id="L100">        return ans</span>
+    }
+
+    companion object {
+        private const val ONE_DAY = 1
+        private const val ONE_WEEK = 7
+        private const val ONE_MONTH = 30
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LongestRepeatingSubstring.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">LongestRepeatingSubstring.kt</span></div><h1>LongestRepeatingSubstring.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.pow
+
+/**
+ * 1062. Longest Repeating Substring
+ * @see &lt;a href=&quot;https://leetcode.com/problems/longest-repeating-substring/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+interface LongestRepeatingSubstring {
+    operator fun invoke(s: String): Int {
+<span class="fc" id="L27">        val n = s.length</span>
+<span class="fc" id="L28">        var left = 1</span>
+<span class="fc" id="L29">        var right = n</span>
+        var l: Int
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        while (left &lt;= right) {</span>
+<span class="fc" id="L32">            l = left + right.minus(left) / 2</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            if (search(l, n, s) != -1) {</span>
+<span class="fc" id="L34">                left = l + 1</span>
+            } else {
+<span class="fc" id="L36">                right = l - 1</span>
+            }
+        }
+<span class="fc" id="L39">        return left - 1</span>
+    }
+
+    fun search(l: Int, n: Int, s: String): Int {
+<span class="fc" id="L43">        return -1</span>
+    }
+}
+
+/**
+ * Approach 1: Binary Search + Hashset of Already Seen Strings
+ */
+<span class="fc" id="L50">class LRSBinarySearch : LongestRepeatingSubstring {</span>
+
+    override fun search(l: Int, n: Int, s: String): Int {
+<span class="fc" id="L53">        val seen: MutableSet&lt;String&gt; = HashSet()</span>
+        var tmp: String
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        for (start in 0 until n - l + 1) {</span>
+<span class="fc" id="L56">            tmp = s.substring(start, start + l)</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            if (seen.contains(tmp)) return start</span>
+<span class="fc" id="L58">            seen.add(tmp)</span>
+        }
+<span class="fc" id="L60">        return -1</span>
+    }
+}
+
+/**
+ * Approach 2: Binary Search + Hashset of Hashes of Already Seen Strings
+ */
+<span class="fc" id="L67">class LRSHashes : LongestRepeatingSubstring {</span>
+
+    override fun search(l: Int, n: Int, s: String): Int {
+<span class="fc" id="L70">        val seen: MutableSet&lt;Int&gt; = HashSet()</span>
+        var tmp: String
+        var hc: Int
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        for (start in 0 until n - l + 1) {</span>
+<span class="fc" id="L74">            tmp = s.substring(start, start + l)</span>
+<span class="fc" id="L75">            hc = tmp.hashCode()</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            if (seen.contains(hc)) return start</span>
+<span class="fc" id="L77">            seen.add(hc)</span>
+        }
+<span class="fc" id="L79">        return super.search(l, n, s)</span>
+    }
+}
+
+/**
+ * Approach 3: Binary Search + Rabin-Karp
+ */
+<span class="pc" id="L86">class LRSRabinKarp : LongestRepeatingSubstring {</span>
+
+    override operator fun invoke(s: String): Int {
+<span class="fc" id="L89">        val n = s.length</span>
+        // convert string to array of integers
+        // to implement constant time slice
+<span class="fc" id="L92">        val nums = IntArray(n)</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        for (i in 0 until n) nums[i] = s[i].code - 'a'.code</span>
+        // modulus value for the rolling hash function to avoid overflow
+<span class="fc" id="L95">        val modulus = 2.0.pow(HASH_ROLLING_MODULUS).toLong()</span>
+
+        // binary search, L = repeating string length
+<span class="fc" id="L98">        var left = 1</span>
+<span class="fc" id="L99">        var right = n</span>
+        var l: Int
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        while (left &lt;= right) {</span>
+<span class="fc" id="L102">            l = left + (right - left) / 2</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            if (search(l, modulus, n, nums) != -1) left = l + 1 else right = l - 1</span>
+        }
+<span class="fc" id="L105">        return left - 1</span>
+    }
+
+    private fun search(l: Int, modulus: Long, n: Int, nums: IntArray): Int {
+        // compute the hash of string S[:L]
+<span class="fc" id="L110">        var h: Long = 0</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        for (i in 0 until l) h = (h * HASH_ROLLING_NUM + nums[i]) % modulus</span>
+
+        // already seen hashes of strings of length L
+<span class="fc" id="L114">        val seen: HashSet&lt;Long&gt; = HashSet()</span>
+<span class="fc" id="L115">        seen.add(h)</span>
+        // const value to be used often : a**L % modulus
+<span class="fc" id="L117">        var aL: Long = 1</span>
+<span class="pc bpc" id="L118" title="1 of 4 branches missed.">        for (i in 1..l) aL = aL * HASH_ROLLING_NUM % modulus</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        for (start in 1 until n - l + 1) {</span>
+            // compute rolling hash in O(1) time
+<span class="fc" id="L121">            h = (h * HASH_ROLLING_NUM - nums[start - 1] * aL % modulus + modulus) % modulus</span>
+<span class="fc" id="L122">            h = (h + nums[start + l - 1]) % modulus</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">            if (seen.contains(h)) return start</span>
+<span class="fc" id="L124">            seen.add(h)</span>
+        }
+<span class="fc" id="L126">        return -1</span>
+    }
+
+    companion object {
+        private const val HASH_ROLLING_NUM = 26
+        private const val HASH_ROLLING_MODULUS = 24.0
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

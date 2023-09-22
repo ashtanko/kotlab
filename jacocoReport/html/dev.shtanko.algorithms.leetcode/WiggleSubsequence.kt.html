@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WiggleSubsequence.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">WiggleSubsequence.kt</span></div><h1>WiggleSubsequence.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+import kotlin.math.max
+
+fun interface WiggleSubsequence {
+    operator fun invoke(nums: IntArray): Int
+}
+
+/**
+ * Brute Force
+ * Time complexity : O(n!).
+ * Space complexity : O(n).
+ */
+<span class="fc" id="L30">class WSBruteForce : WiggleSubsequence {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L32">        val n = nums.size</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        return if (n &lt; 2) n else 1 + max(calculate(nums, 0, true), calculate(nums, 0, false))</span>
+    }
+
+    private fun calculate(nums: IntArray, index: Int, isUp: Boolean): Int {
+<span class="fc" id="L37">        var maxCount = 0</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (i in index + 1 until nums.size) {</span>
+<span class="fc bfc" id="L39" title="All 8 branches covered.">            if (isUp.and(nums[i] &gt; nums[index]).or(isUp.not().and(nums[i] &lt; nums[index]))) {</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">                maxCount = max(maxCount, 1 + calculate(nums, i, isUp.not()))</span>
+            }
+        }
+<span class="fc" id="L43">        return maxCount</span>
+    }
+}
+
+/**
+ * Dynamic Programming
+ * Time complexity : O(n^2).
+ * Space complexity : O(n).
+ */
+<span class="fc" id="L52">class WSDP : WiggleSubsequence {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L54">        val n = nums.size</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (n &lt; 2) return n</span>
+<span class="fc" id="L56">        val up = IntArray(n)</span>
+<span class="fc" id="L57">        val down = IntArray(n)</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        for (i in 1 until n) {</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            for (j in 0 until i) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">                if (nums[i] &gt; nums[j]) {</span>
+<span class="fc" id="L61">                    up[i] = max(up[i], down[j] + 1)</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">                } else if (nums[i] &lt; nums[j]) {</span>
+<span class="fc" id="L63">                    down[i] = max(down[i], up[j] + 1)</span>
+                }
+            }
+        }
+<span class="fc" id="L67">        return 1 + max(down[n - 1], up[n - 1])</span>
+    }
+}
+
+/**
+ * Linear Dynamic Programming
+ * Time complexity : O(n).
+ * Space complexity : O(n).
+ */
+<span class="fc" id="L76">class WSLinearDP : WiggleSubsequence {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L78">        val n = nums.size</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if (n &lt; 2) return n</span>
+<span class="fc" id="L80">        val up = IntArray(n)</span>
+<span class="fc" id="L81">        val down = IntArray(n)</span>
+<span class="fc" id="L82">        up[0] = 1.also { down[0] = it }</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        for (i in 1 until n) {</span>
+<span class="fc" id="L84">            when {</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                nums[i] &gt; nums[i - 1] -&gt; {</span>
+<span class="fc" id="L86">                    up[i] = down[i - 1] + 1</span>
+<span class="fc" id="L87">                    down[i] = down[i - 1]</span>
+                }
+
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">                nums[i] &lt; nums[i - 1] -&gt; {</span>
+<span class="fc" id="L91">                    down[i] = up[i - 1] + 1</span>
+<span class="fc" id="L92">                    up[i] = up[i - 1]</span>
+                }
+
+                else -&gt; {
+<span class="nc" id="L96">                    down[i] = down[i - 1]</span>
+<span class="nc" id="L97">                    up[i] = up[i - 1]</span>
+                }
+            }
+        }
+<span class="fc" id="L101">        return max(down[n - 1], up[n - 1])</span>
+    }
+}
+
+/**
+ * Space-Optimized Dynamic Programming
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L110">class WSSpaceOptimizedDP : WiggleSubsequence {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L112">        val n = nums.size</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (n &lt; 2) return n</span>
+<span class="fc" id="L114">        var up = 1</span>
+<span class="fc" id="L115">        var down = 1</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        for (i in 1 until n) {</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">            if (nums[i] &gt; nums[i - 1]) {</span>
+<span class="fc" id="L118">                up = down + 1</span>
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">            } else if (nums[i] &lt; nums[i - 1]) {</span>
+<span class="fc" id="L120">                down = up + 1</span>
+            }
+        }
+<span class="fc" id="L123">        return max(down, up)</span>
+    }
+}
+
+/**
+ * Greedy Approach
+ * Time complexity : O(n).
+ * Space complexity : O(1).
+ */
+<span class="fc" id="L132">class WSGreedy : WiggleSubsequence {</span>
+    override operator fun invoke(nums: IntArray): Int {
+<span class="fc" id="L134">        val n = nums.size</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (n &lt; 2) return n</span>
+<span class="fc" id="L136">        var diffPrev = nums[1] - nums[0]</span>
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">        var count = if (diffPrev != 0) 2 else 1</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        for (i in 2 until n) {</span>
+<span class="fc" id="L139">            val diff = nums[i] - nums[i - 1]</span>
+<span class="fc bfc" id="L140" title="All 10 branches covered.">            if ((diff &gt; 0).and(diffPrev &lt;= 0).or((diff &lt; 0).and(diffPrev &gt;= 0))) {</span>
+<span class="fc" id="L141">                count++</span>
+<span class="fc" id="L142">                diffPrev = diff</span>
+            }
+        }
+
+<span class="fc" id="L146">        return count</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

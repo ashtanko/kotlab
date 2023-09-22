@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShortestPathInBinaryMatrix.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">kotlab</a> &gt; <a href="index.source.html" class="el_package">dev.shtanko.algorithms.leetcode</a> &gt; <span class="el_source">ShortestPathInBinaryMatrix.kt</span></div><h1>ShortestPathInBinaryMatrix.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2022 Oleksii Shtanko
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.shtanko.algorithms.leetcode
+
+/**
+ * 1091. Shortest Path in Binary Matrix
+ * @see &lt;a href=&quot;https://leetcode.com/problems/shortest-path-in-binary-matrix/&quot;&gt;leetcode page&lt;/a&gt;
+ */
+fun interface ShortestPathInBinaryMatrix {
+    operator fun invoke(grid: Array&lt;IntArray&gt;): Int
+}
+
+<span class="fc" id="L27">class ShortestPathInBinaryMatrixBFS : ShortestPathInBinaryMatrix {</span>
+
+    override operator fun invoke(grid: Array&lt;IntArray&gt;): Int {
+<span class="fc" id="L30">        val queue: java.util.ArrayDeque&lt;Pair&lt;Int, Int&gt;&gt; = java.util.ArrayDeque()</span>
+<span class="fc" id="L31">        queue.addLast(Pair(0, 0))</span>
+
+<span class="fc" id="L33">        val n: Int = grid.size</span>
+
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        val done: Array&lt;IntArray&gt; = Array(n) { _ -&gt; IntArray(n) { _ -&gt; -1 } }</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (grid[0][0] == 1) return -1</span>
+<span class="fc" id="L38">        done[0][0] = 1</span>
+
+<span class="fc" id="L40">        val x: IntArray = intArrayOf(-1, -1, -1, 0, 0, 1, 1, 1)</span>
+<span class="fc" id="L41">        val y: IntArray = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)</span>
+
+<span class="pc bpc" id="L43" title="2 of 4 branches missed.">        while (queue.isNotEmpty()) {</span>
+<span class="fc" id="L44">            val cur: Pair&lt;Int, Int&gt; = queue.pollFirst()</span>
+<span class="pc bpc" id="L45" title="1 of 4 branches missed.">            if (cur.first == n - 1 &amp;&amp; cur.second == n - 1) return done[cur.first][cur.second]</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for (i: Int in 0..7) {</span>
+<span class="fc" id="L47">                val nx: Int = cur.first + x[i]</span>
+<span class="fc" id="L48">                val ny: Int = cur.second + y[i]</span>
+<span class="pc bpc" id="L49" title="1 of 8 branches missed.">                val local = nx &lt; 0 || ny &lt; 0 || nx &gt;= n || ny &gt;= n</span>
+<span class="fc bfc" id="L50" title="All 6 branches covered.">                if (local || grid[nx][ny] == 1 || done[nx][ny] != -1) {</span>
+<span class="fc" id="L51">                    continue</span>
+                }
+<span class="fc" id="L53">                done[nx][ny] = done[cur.first][cur.second] + 1</span>
+<span class="fc" id="L54">                queue.addLast(Pair(nx, ny))</span>
+            }
+        }
+
+<span class="nc" id="L58">        return -1</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
