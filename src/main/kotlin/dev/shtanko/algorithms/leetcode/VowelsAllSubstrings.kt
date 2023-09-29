@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2063. Vowels of All Substrings
- * @see <a href="https://leetcode.com/problems/vowels-of-all-substrings/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/vowels-of-all-substrings/">Source</a>
  */
 fun interface VowelsAllSubstrings {
     fun countVowels(word: String): Long

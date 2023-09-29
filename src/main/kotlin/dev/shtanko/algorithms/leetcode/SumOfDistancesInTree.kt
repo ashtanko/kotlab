@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 834. Sum of Distances in Tree
- * @see <a href="https://leetcode.com/problems/sum-of-distances-in-tree">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/sum-of-distances-in-tree">Source</a>
  */
 class SumOfDistancesInTree {
 

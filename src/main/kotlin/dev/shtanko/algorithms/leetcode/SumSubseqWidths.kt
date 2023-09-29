@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Sum of Subsequence Widths.
- * @see <a href="https://leetcode.com/problems/sum-of-subsequence-widths/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/sum-of-subsequence-widths/">Source</a>
  */
 object SumSubseqWidths {
 

@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 718. Maximum Length of Repeated Subarray
- * @see <a href="https://leetcode.com/problems/maximum-length-of-repeated-subarray/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximum-length-of-repeated-subarray/">Source</a>
  */
 fun interface MaximumLengthRepeatedSubarray {
     fun findLength(nums1: IntArray, nums2: IntArray): Int

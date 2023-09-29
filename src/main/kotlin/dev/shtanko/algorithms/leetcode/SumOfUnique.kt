@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Sum of Unique Elements
- * @see <a href="https://leetcode.com/problems/sum-of-unique-elements">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/sum-of-unique-elements">Source</a>
  */
 fun interface SumOfUnique {
     operator fun invoke(nums: IntArray): Int

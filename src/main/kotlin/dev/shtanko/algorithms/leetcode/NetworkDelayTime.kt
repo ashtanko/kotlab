@@ -23,7 +23,7 @@ import kotlin.math.max
 
 /**
  * 743. Network Delay Time
- * @see <a href="https://leetcode.com/problems/network-delay-time/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/network-delay-time/">Source</a>
  */
 fun interface NetworkDelayTime {
     operator fun invoke(times: Array<IntArray>, n: Int, k: Int): Int

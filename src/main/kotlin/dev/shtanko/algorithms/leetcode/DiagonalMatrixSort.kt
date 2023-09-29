@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 1329. Sort the Matrix Diagonally
- * @see <a href="https://leetcode.com/problems/sort-the-matrix-diagonally/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/sort-the-matrix-diagonally/">Source</a>
  */
 fun interface DiagonalMatrixSort {
     fun diagonalSort(mat: Array<IntArray>): Array<IntArray>

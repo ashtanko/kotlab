@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 725. Split Linked List in Parts
- * @see <a href="https://leetcode.com/problems/split-linked-list-in-parts">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/split-linked-list-in-parts">Source</a>
  */
 fun interface SplitLinkedListInParts {
     operator fun invoke(head: NullableListNode?, k: Int): Array<NullableListNode?>

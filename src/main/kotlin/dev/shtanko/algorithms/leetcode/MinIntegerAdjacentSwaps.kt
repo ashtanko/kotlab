@@ -23,7 +23,7 @@ import java.util.Queue
 /**
  * 1505. Minimum Possible Integer After at Most K Adjacent Swaps On Digits
  * @see <a href="https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface MinIntegerAdjacentSwaps {
     fun minInteger(num: String, k: Int): String

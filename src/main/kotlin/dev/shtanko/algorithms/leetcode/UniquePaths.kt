@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 62. Unique Paths
- * @see <a href="https://leetcode.com/problems/unique-paths">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/unique-paths">Source</a>
  */
 fun interface UniquePaths {
     operator fun invoke(m: Int, n: Int): Int

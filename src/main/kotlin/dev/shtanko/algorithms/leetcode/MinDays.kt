@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1553. Minimum Number of Days to Eat N Oranges
- * @see <a href="https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/">Source</a>
  */
 sealed interface MinDays {
     operator fun invoke(n: Int): Int

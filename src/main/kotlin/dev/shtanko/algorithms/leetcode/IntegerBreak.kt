@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 343. Integer Break
- * @see <a href="https://leetcode.com/problems/integer-break/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/integer-break/">Source</a>
  */
 fun interface IntegerBreak {
     operator fun invoke(n: Int): Int

@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 2359. Find The Closest Node to Given Two Nodes
- * @see <a href="https://leetcode.com/problems/find-closest-node-to-given-two-nodes/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/find-closest-node-to-given-two-nodes/">Source</a>
  */
 fun interface ClosestMeetingNode {
     operator fun invoke(edges: IntArray, node1: Int, node2: Int): Int

@@ -22,7 +22,7 @@ import java.util.Stack
 
 /**
  * 2390. Removing Stars From a String
- * @see <a href="https://leetcode.com/problems/removing-stars-from-a-string/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/removing-stars-from-a-string/">Source</a>
  */
 fun interface RemoveStars {
     operator fun invoke(s: String): String

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 212. Word Search II
- * @see <a href="https://leetcode.com/problems/word-search-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/word-search-ii/">Source</a>
  */
 fun interface WordSearch2 {
     fun findWords(board: Array<CharArray>, words: Array<String>): List<String>

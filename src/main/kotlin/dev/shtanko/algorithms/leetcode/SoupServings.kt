@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 808. Soup Servings
- * @see <a href="https://leetcode.com/problems/soup-servings/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/soup-servings/">Source</a>
  */
 fun interface SoupServings {
     operator fun invoke(n: Int): Double

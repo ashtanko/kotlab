@@ -20,7 +20,7 @@ private const val VOWELS = "aeiouAEIOU"
 
 /**
  * Determine if String Halves Are Alike
- * @see <a href="https://leetcode.com/problems/determine-if-string-halves-are-alike/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/determine-if-string-halves-are-alike/">Source</a>
  */
 fun interface HalvesAreAlike {
     operator fun invoke(s: String): Boolean

@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * 2316. Count Unreachable Pairs of Nodes in an Undirected Graph
  * @see <a href="https://leetcode.com/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface CountUnreachablePairs {
     fun countPairs(n: Int, edges: Array<IntArray>): Long

@@ -20,7 +20,7 @@ import java.util.TreeMap
 
 /**
  * 1146. Snapshot Array
- * @see <a href="https://leetcode.com/problems/snapshot-array">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/snapshot-array">Source</a>
  */
 sealed interface SnapshotArray {
     fun set(index: Int, value: Int)

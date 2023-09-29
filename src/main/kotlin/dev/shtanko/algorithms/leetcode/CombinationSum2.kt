@@ -20,7 +20,7 @@ import java.util.LinkedList
 
 /**
  * 40. Combination Sum II
- * @see <a href="https://leetcode.com/problems/combination-sum-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/combination-sum-ii/">Source</a>
  */
 fun interface CombinationSum2 {
     operator fun invoke(candidates: IntArray, target: Int): List<List<Int>>

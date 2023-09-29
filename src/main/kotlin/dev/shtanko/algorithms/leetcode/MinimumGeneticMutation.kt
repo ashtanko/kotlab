@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 433. Minimum Genetic Mutation
- * @see <a href="https://leetcode.com/problems/minimum-genetic-mutation/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-genetic-mutation/">Source</a>
  */
 fun interface MinimumGeneticMutation {
     fun minMutation(start: String, end: String, bank: Array<String>): Int

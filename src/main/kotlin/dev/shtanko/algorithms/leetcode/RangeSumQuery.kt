@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  *  Range Sum Query - Immutable
- *  @see <a href="https://leetcode.com/problems/range-sum-query-immutable/">leetcode page</a>
+ *  @see <a href="https://leetcode.com/problems/range-sum-query-immutable/">Source</a>
  */
 fun interface RangeSumQuery {
     operator fun invoke(i: Int, j: Int): Int

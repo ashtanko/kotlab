@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 554. Brick Wall
- * @see <a href="https://leetcode.com/problems/brick-wall/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/brick-wall/">Source</a>
  */
 fun interface BrickWall {
     operator fun invoke(wall: List<List<Int>>): Int

@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * Degree of an Array
- * @see <a href="https://leetcode.com/problems/degree-of-an-array/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/degree-of-an-array/">Source</a>
  */
 object DegreeOfArray {
     fun findShortestSubArray(nums: IntArray): Int {

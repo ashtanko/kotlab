@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 427. Construct Quad Tree
- * @see <a href="https://leetcode.com/problems/construct-quad-tree/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/construct-quad-tree/">Source</a>
  */
 fun interface ConstructQuadTree {
     fun construct(grid: Array<IntArray>): QuadTreeNode?

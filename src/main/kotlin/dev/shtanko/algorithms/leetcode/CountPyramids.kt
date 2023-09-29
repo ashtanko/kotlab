@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 2088. Count Fertile Pyramids in a Land
- * @see <a href="https://leetcode.com/problems/count-fertile-pyramids-in-a-land/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-fertile-pyramids-in-a-land/">Source</a>
  */
 fun interface CountPyramids {
     operator fun invoke(grid: Array<IntArray>): Int

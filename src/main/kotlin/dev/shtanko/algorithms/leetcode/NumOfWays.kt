@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1569. Number of Ways to Reorder Array to Get Same BST
- * @see <a href="https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/">Source</a>
  */
 fun interface NumOfWays {
     operator fun invoke(nums: IntArray): Int

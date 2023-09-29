@@ -21,7 +21,7 @@ import java.util.PriorityQueue
 
 /**
  * Find Median from Data Stream
- * @see <a href="https://leetcode.com/problems/find-median-from-data-stream/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/find-median-from-data-stream/">Source</a>
  */
 interface MedianFinder {
     fun addNum(num: Int)

@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 2140. Solving Questions With Brainpower
- * @see <a href="https://leetcode.com/problems/solving-questions-with-brainpower/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/solving-questions-with-brainpower/">Source</a>
  */
 fun interface MostPoints {
     operator fun invoke(questions: Array<IntArray>): Long

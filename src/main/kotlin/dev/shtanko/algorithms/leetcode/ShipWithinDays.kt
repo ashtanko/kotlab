@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1011. Capacity To Ship Packages Within D Days
- * @see <a href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/">Source</a>
  */
 fun interface ShipWithinDays {
     operator fun invoke(weights: IntArray, days: Int): Int

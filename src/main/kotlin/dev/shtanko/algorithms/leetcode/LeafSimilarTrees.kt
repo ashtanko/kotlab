@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 872. Leaf-Similar Trees
- * @see <a href="https://leetcode.com/problems/leaf-similar-trees">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/leaf-similar-trees">Source</a>
  */
 fun interface LeafSimilarTrees {
     fun leafSimilar(root1: TreeNode?, root2: TreeNode?): Boolean

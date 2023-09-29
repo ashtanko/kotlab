@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 261. Graph Valid Tree
- * @see <a href="https://leetcode.com/problems/graph-valid-tree/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/graph-valid-tree/">Source</a>
  */
 fun interface GraphValidTree {
     fun validTree(n: Int, edges: Array<IntArray>): Boolean

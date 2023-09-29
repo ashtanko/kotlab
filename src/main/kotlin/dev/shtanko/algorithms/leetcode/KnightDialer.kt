@@ -20,7 +20,7 @@ import java.util.Arrays
 
 /**
  * 935. Knight Dialer
- * @see <a href="https://leetcode.com/problems/knight-dialer/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/knight-dialer/">Source</a>
  */
 fun interface KnightDialer {
     operator fun invoke(n: Int): Int

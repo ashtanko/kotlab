@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2440. Create Components With Same Value
- * @see <a href="https://leetcode.com/problems/create-components-with-same-value/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/create-components-with-same-value/">Source</a>
  */
 fun interface ComponentValue {
     operator fun invoke(nums: IntArray, edges: Array<IntArray>): Int

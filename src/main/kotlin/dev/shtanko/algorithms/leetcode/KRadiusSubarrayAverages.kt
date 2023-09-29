@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2090. K Radius Subarray Averages
- * @see <a href="https://leetcode.com/problems/k-radius-subarray-averages/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/k-radius-subarray-averages/">Source</a>
  */
 fun interface KRadiusSubarrayAverages {
     fun getAverages(nums: IntArray, k: Int): IntArray

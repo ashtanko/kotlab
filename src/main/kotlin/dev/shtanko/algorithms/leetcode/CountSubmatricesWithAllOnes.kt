@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1504. Count Submatrices With All Ones
- * @see <a href="https://leetcode.com/problems/count-submatrices-with-all-ones/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-submatrices-with-all-ones/">Source</a>
  */
 fun interface CountSubmatricesWithAllOnes {
     fun numSubmat(mat: Array<IntArray>): Int

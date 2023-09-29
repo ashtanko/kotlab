@@ -21,7 +21,7 @@ import kotlin.math.abs
 
 /**
  * 1575. Count All Possible Routes
- * @see <a href="https://leetcode.com/problems/count-all-possible-routes/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-all-possible-routes/">Source</a>
  */
 fun interface CountAllPossibleRoutes {
     fun countRoutes(locations: IntArray, start: Int, finish: Int, fuel: Int): Int

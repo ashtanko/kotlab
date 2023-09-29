@@ -20,7 +20,7 @@ import java.util.Random
 
 /**
  * 169. Majority Element
- * @see <a href="https://leetcode.com/problems/majority-element">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/majority-element">Source</a>
  */
 fun interface MajorityElement {
     operator fun invoke(nums: IntArray): Int

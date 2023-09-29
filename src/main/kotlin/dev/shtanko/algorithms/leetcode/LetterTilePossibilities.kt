@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1079. Letter Tile Possibilities
- * @see <a href="https://leetcode.com/problems/letter-tile-possibilities/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/letter-tile-possibilities/">Source</a>
  */
 fun interface LetterTilePossibilities {
     operator fun invoke(tiles: String): Int

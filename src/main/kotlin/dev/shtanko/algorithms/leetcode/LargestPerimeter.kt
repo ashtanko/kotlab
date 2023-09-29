@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 976. Largest Perimeter Triangle
- * @see <a href="https://leetcode.com/problems/largest-perimeter-triangle/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/largest-perimeter-triangle/">Source</a>
  */
 fun largestPerimeter(arr: IntArray): Int {
     if (arr.isEmpty()) return 0

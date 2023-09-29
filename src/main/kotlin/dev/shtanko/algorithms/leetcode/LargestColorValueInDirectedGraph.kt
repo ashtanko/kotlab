@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 1857. Largest Color Value in a Directed Graph
- * @see <a href="https://leetcode.com/problems/largest-color-value-in-a-directed-graph/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/largest-color-value-in-a-directed-graph/">Source</a>
  */
 fun interface LargestColorValueInDirectedGraph {
     fun largestPathValue(colors: String, edges: Array<IntArray>): Int

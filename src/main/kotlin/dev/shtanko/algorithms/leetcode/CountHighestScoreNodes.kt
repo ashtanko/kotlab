@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 2049. Count Nodes With the Highest Score
- * @see <a href="https://leetcode.com/problems/count-nodes-with-the-highest-score/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-nodes-with-the-highest-score/">Source</a>
  */
 fun interface CountHighestScoreNodes {
     operator fun invoke(parents: IntArray): Int

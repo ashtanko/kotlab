@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 53. Maximum Subarray
- * @see <a href="https://leetcode.com/problems/maximum-subarray/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximum-subarray/">Source</a>
  */
 fun interface MaximumSubarray {
     operator fun invoke(nums: IntArray): Int

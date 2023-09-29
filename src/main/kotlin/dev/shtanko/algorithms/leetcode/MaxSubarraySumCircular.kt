@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 918. Maximum Sum Circular Subarray
- * @see <a href="https://leetcode.com/problems/maximum-sum-circular-subarray/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximum-sum-circular-subarray/">Source</a>
  */
 fun interface MaxSubarraySumCircular {
     operator fun invoke(nums: IntArray): Int

@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 410. Split Array Largest Sum
- * @see <a href="https://leetcode.com/problems/split-array-largest-sum/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/split-array-largest-sum/">Source</a>
  */
 fun interface SplitArrayLargestSum {
     fun splitArray(nums: IntArray, k: Int): Int

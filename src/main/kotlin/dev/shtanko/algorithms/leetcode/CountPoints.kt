@@ -20,7 +20,7 @@ import java.util.Arrays
 
 /**
  * 1828. Queries on Number of Points Inside a Circle
- * @see <a href="https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/">Source</a>
  */
 fun interface CountPoints {
     operator fun invoke(points: Array<IntArray>, queries: Array<IntArray>): IntArray

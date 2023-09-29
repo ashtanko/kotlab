@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 2305. Fair Distribution of Cookies
- * @see <a href="https://leetcode.com/problems/fair-distribution-of-cookies/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/fair-distribution-of-cookies/">Source</a>
  */
 fun interface DistributeCookies {
     operator fun invoke(cookies: IntArray, k: Int): Int

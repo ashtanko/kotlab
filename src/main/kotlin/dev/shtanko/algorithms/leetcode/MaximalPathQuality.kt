@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 2065. Maximum Path Quality of a Graph
- * @see <a href="https://leetcode.com/problems/maximum-path-quality-of-a-graph/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximum-path-quality-of-a-graph/">Source</a>
  */
 fun interface MaximalPathQuality {
     operator fun invoke(values: IntArray, edges: Array<IntArray>, maxTime: Int): Int

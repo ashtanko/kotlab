@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 752. Open the Lock
- * @see <a href="https://leetcode.com/problems/open-the-lock/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/open-the-lock/">Source</a>
  */
 fun interface OpenLock {
     fun openLock(deadEnds: Array<String>, target: String): Int

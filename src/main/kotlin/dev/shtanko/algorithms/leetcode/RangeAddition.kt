@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.extensions.second
 
 /**
  * 370. Range Addition
- * @see <a href="https://leetcode.com/problems/range-addition/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/range-addition/">Source</a>
  */
 fun interface RangeAddition {
     operator fun invoke(length: Int, updates: Array<IntArray>): IntArray

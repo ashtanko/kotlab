@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1061. Lexicographically The Smallest Equivalent String
- * @see <a href="https://leetcode.com/problems/lexicographically-smallest-equivalent-string/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/lexicographically-smallest-equivalent-string/">Source</a>
  */
 fun interface SmallestEquivalentString {
     operator fun invoke(s1: String, s2: String, baseStr: String): String

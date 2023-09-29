@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 396. Rotate Function
- * @see <a href="https://leetcode.com/problems/rotate-function/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/rotate-function/">Source</a>
  */
 fun interface RotateFunction {
     fun maxRotateFunction(nums: IntArray): Int

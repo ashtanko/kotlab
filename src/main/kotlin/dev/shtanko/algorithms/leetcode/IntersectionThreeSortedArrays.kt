@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * Given three integer arrays arr1, arr2 and arr3 sorted in strictly increasing order,
  * return a sorted array of only the integers that appeared in all three arrays.
- * @see <a href="https://leetcode.com/problems/intersection-of-three-sorted-arrays/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/intersection-of-three-sorted-arrays/">Source</a>
  */
 fun interface IntersectionThreeSortedArrays {
     operator fun invoke(arr1: IntArray, arr2: IntArray, arr3: IntArray): List<Int>

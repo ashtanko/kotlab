@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 452. Minimum Number of Arrows to Burst Balloons
- * @see <a href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/">Source</a>
  */
 sealed interface FindMinArrowShots {
     operator fun invoke(points: Array<IntArray>): Int

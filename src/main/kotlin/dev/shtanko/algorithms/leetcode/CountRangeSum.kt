@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 327. Count of Range Sum
- * @see <a href="https://leetcode.com/problems/count-of-range-sum">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-of-range-sum">Source</a>
  */
 fun interface CountRangeSum {
     operator fun invoke(nums: IntArray, lower: Int, upper: Int): Int

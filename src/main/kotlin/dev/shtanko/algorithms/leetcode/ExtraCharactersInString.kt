@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 2707. Extra Characters in a String
- * @see <a href="https://leetcode.com/problems/extra-characters-in-a-string">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/extra-characters-in-a-string">Source</a>
  */
 fun interface ExtraCharactersInString {
     operator fun invoke(s: String, dictionary: Array<String>): Int

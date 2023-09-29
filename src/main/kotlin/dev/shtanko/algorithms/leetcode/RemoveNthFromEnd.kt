@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Remove Nth Node From End of List
- * @see <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">Source</a>
  */
 fun interface RemoveNthFromEnd {
     operator fun invoke(head: ListNode?, n: Int): ListNode?

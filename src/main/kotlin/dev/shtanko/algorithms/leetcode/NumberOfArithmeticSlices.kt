@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 446. Arithmetic Slices II - Subsequence
- * @see <a href="https://leetcode.com/problems/arithmetic-slices-ii-subsequence/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/arithmetic-slices-ii-subsequence/">Source</a>
  */
 fun interface NumberOfArithmeticSlices {
     operator fun invoke(nums: IntArray): Int

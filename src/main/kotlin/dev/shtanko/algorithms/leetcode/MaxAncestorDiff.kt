@@ -23,7 +23,7 @@ import kotlin.math.min
 /**
  * 1026. Maximum Difference Between Node and Ancestor
  * @see <a href="https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/description">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface MaxAncestorDiff {
     operator fun invoke(root: TreeNode?): Int

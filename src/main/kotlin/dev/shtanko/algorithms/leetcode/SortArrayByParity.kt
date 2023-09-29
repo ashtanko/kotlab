@@ -21,8 +21,8 @@ import dev.shtanko.algorithms.extensions.swap
 import java.util.Arrays
 
 /**
- * Given an array A of non-negative integers, return an array consisting of all the even elements of A,
- * followed by all the odd elements of A.
+ * 905. Sort Array By Parity
+ * @see <a href="https://leetcode.com/problems/sort-array-by-parity">Source</a>
  */
 fun interface SortArrayByParity {
     operator fun invoke(nums: IntArray): IntArray
@@ -69,24 +69,24 @@ class SortArrayByParityTwoPass : SortArrayByParity {
 
 class SortArrayByParityInPlace : SortArrayByParity {
     override operator fun invoke(nums: IntArray): IntArray = nums.sortArrayByParity()
-}
 
-fun IntArray.sortArrayByParity(): IntArray {
-    var i = 0
-    var j = size - 1
-    while (i < j) {
-        if (this[i].isEven) {
-            i++
-        } else {
-            if (!this[j].isEven) {
-                j--
-            }
-            if (this[j].isEven) {
-                swap(i, j)
+    private fun IntArray.sortArrayByParity(): IntArray {
+        var i = 0
+        var j = size - 1
+        while (i < j) {
+            if (this[i].isEven) {
                 i++
-                j--
+            } else {
+                if (!this[j].isEven) {
+                    j--
+                }
+                if (this[j].isEven) {
+                    swap(i, j)
+                    i++
+                    j--
+                }
             }
         }
+        return this
     }
-    return this
 }

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 646. Maximum Length of Pair Chain
- * @see <a href="https://leetcode.com/problems/maximum-length-of-pair-chain">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximum-length-of-pair-chain">Source</a>
  */
 fun interface FindLongestChain {
     operator fun invoke(pairs: Array<IntArray>): Int

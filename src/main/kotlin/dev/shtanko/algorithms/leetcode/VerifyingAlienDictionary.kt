@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Verifying an Alien Dictionary
- * @see <a href="https://leetcode.com/problems/verifying-an-alien-dictionary/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/verifying-an-alien-dictionary/">Source</a>
  */
 fun interface VerifyingAlienDictionary {
     fun isAlienSorted(words: Array<String>, order: String): Boolean

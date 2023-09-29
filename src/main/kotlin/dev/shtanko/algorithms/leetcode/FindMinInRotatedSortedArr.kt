@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 153. Find Minimum in Rotated Sorted Array
- * @see <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/">Source</a>
  */
 fun findMinInRotatedSortedArr(nums: IntArray): Int {
     var start = 0

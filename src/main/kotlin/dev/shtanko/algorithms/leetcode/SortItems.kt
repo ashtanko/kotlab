@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 1203. Sort Items by Groups Respecting Dependencies
- * @see <a href="https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies">Source</a>
  */
 fun interface SortItems {
     operator fun invoke(n: Int, m: Int, group: IntArray, beforeItems: List<List<Int>>): IntArray

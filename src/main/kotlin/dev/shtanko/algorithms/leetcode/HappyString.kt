@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * 1415. The k-th Lexicographical String of All Happy Strings of Length n
  * @see <a href="https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface HappyString {
     operator fun invoke(n: Int, k: Int): String

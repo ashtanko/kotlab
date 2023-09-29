@@ -23,7 +23,7 @@ import java.util.regex.Pattern
 
 /**
  * 726. Number of Atoms
- * @see <a href="https://leetcode.com/problems/number-of-atoms/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/number-of-atoms/">Source</a>
  */
 fun interface NumberOfAtoms {
     fun countOfAtoms(formula: String): String

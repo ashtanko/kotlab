@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 785. Is Graph Bipartite?
- * @see <a href="https://leetcode.com/problems/is-graph-bipartite/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/is-graph-bipartite/">Source</a>
  */
 fun interface IsGraphBipartite {
     fun isBipartite(graph: Array<IntArray>): Boolean

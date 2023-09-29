@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 1047. Remove All Adjacent Duplicates In String
- * @see <a href="https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/">Source</a>
  */
 fun interface RemoveAllAdjacentDuplicatesStrategy {
     operator fun invoke(s: String): String

@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 2448. Minimum Cost to Make Array Equal
- * @see <a href="https://leetcode.com/problems/minimum-cost-to-make-array-equal/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-cost-to-make-array-equal/">Source</a>
  */
 fun interface MinCostArrayEqual {
     fun minCost(nums: IntArray, cost: IntArray): Long

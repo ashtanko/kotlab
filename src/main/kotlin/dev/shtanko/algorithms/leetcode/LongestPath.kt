@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 2246. Longest Path With Different Adjacent Characters
- * @see <a href="https://leetcode.com/problems/longest-path-with-different-adjacent-characters/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/longest-path-with-different-adjacent-characters/">Source</a>
  */
 fun interface LongestPath {
     operator fun invoke(parent: IntArray, s: String): Int

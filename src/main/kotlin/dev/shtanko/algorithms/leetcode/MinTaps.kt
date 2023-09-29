@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1326. Minimum Number of Taps to Open to Water a Garden
- * @see <a href="https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden">Source</a>
  */
 fun interface MinTaps {
     operator fun invoke(n: Int, ranges: IntArray): Int

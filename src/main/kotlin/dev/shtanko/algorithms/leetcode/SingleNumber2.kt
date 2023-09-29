@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 137. Single Number II
- * @see <a href="https://leetcode.com/problems/single-number-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/single-number-ii/">Source</a>
  */
 fun interface SingleNumber2 {
     fun singleNumber(nums: IntArray): Int

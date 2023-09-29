@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 1048. Longest String Chain
- * @see <a href="https://leetcode.com/problems/longest-string-chain/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/longest-string-chain/">Source</a>
  */
 fun interface LongestStringChain {
     operator fun invoke(words: Array<String>): Int

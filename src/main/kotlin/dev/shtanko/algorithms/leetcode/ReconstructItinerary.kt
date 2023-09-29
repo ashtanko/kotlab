@@ -22,7 +22,7 @@ import java.util.Stack
 
 /**
  * 332. Reconstruct Itinerary
- * @see <a href="https://leetcode.com/problems/reconstruct-itinerary">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/reconstruct-itinerary">Source</a>
  */
 fun interface ReconstructItinerary {
     operator fun invoke(tickets: List<List<String>>): List<String>

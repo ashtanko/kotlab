@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 114. Flatten Binary Tree to Linked List
- * @see <a href="https://leetcode.com/problems/flatten-binary-tree-to-linked-list/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/flatten-binary-tree-to-linked-list/">Source</a>
  */
 fun interface FlattenBinaryTree {
     fun flatten(root: TreeNode?)

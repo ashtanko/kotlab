@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 /**
  * 2037. Minimum Number of Moves to Seat Everyone
- * @see <a href="https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/">Source</a>
  */
 fun interface MinMovesToSeat {
     operator fun invoke(seats: IntArray, students: IntArray): Int

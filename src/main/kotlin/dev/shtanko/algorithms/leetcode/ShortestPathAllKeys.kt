@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 864. Shortest Path to Get All Keys
- * @see <a href="https://leetcode.com/problems/shortest-path-to-get-all-keys/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/shortest-path-to-get-all-keys/">Source</a>
  */
 fun interface ShortestPathAllKeys {
     operator fun invoke(grid: Array<String>): Int

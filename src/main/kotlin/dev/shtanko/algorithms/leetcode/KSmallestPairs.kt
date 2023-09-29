@@ -20,7 +20,7 @@ import java.util.PriorityQueue
 
 /**
  * 373. Find K Pairs with Smallest Sums
- * @see <a href="https://leetcode.com/problems/find-k-pairs-with-smallest-sums/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/find-k-pairs-with-smallest-sums/">Source</a>
  */
 fun interface KSmallestPairs {
     operator fun invoke(nums1: IntArray, nums2: IntArray, k: Int): List<List<Int>>

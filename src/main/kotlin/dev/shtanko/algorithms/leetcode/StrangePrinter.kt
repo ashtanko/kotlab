@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 664. Strange Printer
- * @see <a href="https://leetcode.com/problems/strange-printer/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/strange-printer/">Source</a>
  */
 fun interface StrangePrinter {
     operator fun invoke(s: String): Int

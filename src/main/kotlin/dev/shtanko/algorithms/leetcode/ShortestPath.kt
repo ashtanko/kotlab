@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 1293. Shortest Path in a Grid with Obstacles Elimination
- * @see <a href="https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/">Source</a>
  */
 fun interface ShortestPath {
     operator fun invoke(grid: Array<IntArray>, k: Int): Int

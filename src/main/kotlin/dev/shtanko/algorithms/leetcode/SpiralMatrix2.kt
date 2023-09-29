@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 59. Spiral Matrix II
- * @see <a href="https://leetcode.com/problems/spiral-matrix-ii">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/spiral-matrix-ii">Source</a>
  */
 fun interface SpiralMatrix2 {
     fun generateMatrix(n: Int): Array<IntArray>

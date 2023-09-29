@@ -21,7 +21,7 @@ import java.util.LinkedList
 
 /**
  * 239. Sliding Window Maximum
- * @see <a href="https://leetcode.com/problems/sliding-window-maximum/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/sliding-window-maximum/">Source</a>
  */
 fun interface SlidingWindowMax {
     operator fun invoke(nums: IntArray, k: Int): IntArray

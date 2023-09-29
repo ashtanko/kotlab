@@ -25,7 +25,7 @@ enum class SPNumType(val value: Int) {
 
 /**
  * 906. Super Palindromes
- * @see <a href="https://leetcode.com/problems/super-palindromes/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/super-palindromes/">Source</a>
  */
 object SuperPalindromes {
     private const val MAGIC = 100_000

@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 2462. Total Cost to Hire K Workers
- * @see <a href="https://leetcode.com/problems/total-cost-to-hire-k-workers/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/total-cost-to-hire-k-workers/">Source</a>
  */
 fun interface TotalCost {
     operator fun invoke(costs: IntArray, k: Int, candidates: Int): Long

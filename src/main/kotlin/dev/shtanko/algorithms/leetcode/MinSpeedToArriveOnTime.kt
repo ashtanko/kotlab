@@ -20,7 +20,7 @@ import kotlin.math.ceil
 
 /**
  * 1870. Minimum Speed to Arrive on Time
- * @see <a href="https://leetcode.com/problems/minimum-speed-to-arrive-on-time/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-speed-to-arrive-on-time/">Source</a>
  */
 fun interface MinSpeedToArriveOnTime {
     operator fun invoke(dist: IntArray, hour: Double): Int

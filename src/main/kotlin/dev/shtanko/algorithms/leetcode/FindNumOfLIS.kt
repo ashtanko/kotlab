@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 673. Number of Longest Increasing Subsequence
- * @see <a href="https://leetcode.com/problems/number-of-longest-increasing-subsequence/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/number-of-longest-increasing-subsequence/">Source</a>
  */
 fun interface FindNumOfLIS {
     operator fun invoke(nums: IntArray): Int

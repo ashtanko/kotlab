@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-// Beautiful Array @see <a href="https://leetcode.com/problems/beautiful-array/">leetcode page</a>
+// Beautiful Array @see <a href="https://leetcode.com/problems/beautiful-array/">Source</a>
 class BeautifulArray {
 
     private val memo: MutableMap<Int, IntArray> by lazy {

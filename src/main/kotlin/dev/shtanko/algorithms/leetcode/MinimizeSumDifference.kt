@@ -23,7 +23,7 @@ import kotlin.math.min
 /**
  * 2035. Partition Array Into Two Arrays to Minimize Sum Difference
  * @see <a href="https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface MinimizeSumDifference {
     operator fun invoke(nums: IntArray): Int

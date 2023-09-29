@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 2439. Minimize Maximum of Array
- * @see <a href="https://leetcode.com/problems/minimize-maximum-of-array/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimize-maximum-of-array/">Source</a>
  */
 fun interface MinimizeMaximumOfArray {
     fun minimizeArrayValue(nums: IntArray): Int

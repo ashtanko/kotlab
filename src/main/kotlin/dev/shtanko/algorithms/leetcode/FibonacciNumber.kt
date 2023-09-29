@@ -23,7 +23,7 @@ import kotlin.math.sqrt
 
 /**
  * 509. Fibonacci Number
- * @see <a href="https://leetcode.com/problems/fibonacci-number/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/fibonacci-number/">Source</a>
  */
 fun interface FibonacciStrategy {
     operator fun invoke(n: Int): Long

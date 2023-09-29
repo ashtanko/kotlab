@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 1288. Remove Covered Intervals
- * @see <a href="https://leetcode.com/problems/remove-covered-intervals/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/remove-covered-intervals/">Source</a>
  */
 fun interface RemoveCoveredIntervals {
     operator fun invoke(intervals: Array<IntArray>): Int

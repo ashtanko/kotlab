@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1125. Smallest Sufficient Team
- * @see <a href="https://leetcode.com/problems/smallest-sufficient-team/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/smallest-sufficient-team/">Source</a>
  */
 fun interface SmallestSufficientTeam {
     operator fun invoke(reqSkills: Array<String>, people: List<List<String>>): IntArray

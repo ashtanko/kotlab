@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 238. Product of Array Except Self
- * @see <a href="https://leetcode.com/problems/product-of-array-except-self">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/product-of-array-except-self">Source</a>
  */
 fun interface ProductExceptSelf {
     operator fun invoke(nums: IntArray): IntArray

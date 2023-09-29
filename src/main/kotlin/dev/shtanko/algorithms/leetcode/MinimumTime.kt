@@ -21,7 +21,7 @@ import kotlin.math.min
 /**
  * 2167. Minimum Time to Remove All Cars Containing Illegal Goods
  * @see <a href="https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface MinimumTime {
     operator fun invoke(s: String): Int

@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * Count Square Submatrices with All Ones.
- * @see <a href="https://leetcode.com/problems/count-square-submatrices-with-all-ones/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-square-submatrices-with-all-ones/">Source</a>
  */
 object CountSquares {
     operator fun invoke(matrix: Array<IntArray>): Int {

@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 842. Split Array into Fibonacci Sequence
- * @see <a href="https://leetcode.com/problems/split-array-into-fibonacci-sequence/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/split-array-into-fibonacci-sequence/">Source</a>
  */
 fun interface SplitIntoFibonacci {
     operator fun invoke(num: String): List<Int>

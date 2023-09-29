@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * Find Leaves of Binary Tree
- * @see <a href="https://leetcode.com/problems/find-leaves-of-binary-tree/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/find-leaves-of-binary-tree/">Source</a>
  */
 fun interface FindLeaves {
     operator fun invoke(root: TreeNode?): List<List<Int>>

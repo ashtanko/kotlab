@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 80. Remove Duplicates from Sorted Array II
- * @see <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii">Source</a>
  */
 fun interface RemoveDuplicates2 {
     operator fun invoke(nums: IntArray): Int

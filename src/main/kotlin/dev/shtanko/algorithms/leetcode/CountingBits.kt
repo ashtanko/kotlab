@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 338. Counting Bits
- * @see <a href="https://leetcode.com/problems/counting-bits">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/counting-bits">Source</a>
  */
 fun interface CountingBits {
     operator fun invoke(n: Int): IntArray

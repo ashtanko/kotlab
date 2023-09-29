@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 141. Linked List Cycle
- * @see <a href="https://leetcode.com/problems/linked-list-cycle">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/linked-list-cycle">Source</a>
  */
 fun interface LinkedListCycle {
     operator fun invoke(head: ListNode?): Boolean

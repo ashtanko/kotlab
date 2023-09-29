@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 79. Word Search
- * @see <a href="https://leetcode.com/problems/word-search/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/word-search/">Source</a>
  */
 fun interface WordSearch {
     fun exist(board: Array<CharArray>, word: String): Boolean

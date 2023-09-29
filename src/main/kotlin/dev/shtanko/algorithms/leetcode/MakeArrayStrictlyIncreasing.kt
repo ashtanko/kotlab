@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1187. Make Array Strictly Increasing
- * @see <a href="https://leetcode.com/problems/make-array-strictly-increasing/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/make-array-strictly-increasing/">Source</a>
  */
 fun interface MakeArrayStrictlyIncreasing {
     operator fun invoke(arr1: IntArray, arr2: IntArray): Int

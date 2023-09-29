@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 294. Flip Game II
- * @see <a href="https://leetcode.com/problems/flip-game-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/flip-game-ii/">Source</a>
  */
 fun interface FlipGame2 {
     fun canWin(currentState: String): Boolean

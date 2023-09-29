@@ -17,15 +17,15 @@
 package dev.shtanko.algorithms.leetcode
 
 fun IntArray.isMonotonic(): Boolean {
-<span class="fc" id="L20">    val n = size</span>
-<span class="pc bpc" id="L21" title="1 of 2 branches missed.">    if (n == 1) return true</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">    val up = this[n - 1] - this[0] &gt; 0</span>
-<span class="fc bfc" id="L23" title="All 2 branches covered.">    for (i in 0 until n - 1) {</span>
-<span class="fc bfc" id="L24" title="All 2 branches covered.">        val local = this[i + 1] - this[i] &gt; 0</span>
-<span class="fc bfc" id="L25" title="All 4 branches covered.">        if (this[i + 1] != this[i] &amp;&amp; local != up) {</span>
-<span class="fc" id="L26">            return false</span>
+<span class="nc" id="L20">    val n = size</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">    if (n == 1) return true</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">    val up = this[n - 1] - this[0] &gt; 0</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">    for (i in 0 until n - 1) {</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        val local = this[i + 1] - this[i] &gt; 0</span>
+<span class="nc bnc" id="L25" title="All 4 branches missed.">        if (this[i + 1] != this[i] &amp;&amp; local != up) {</span>
+<span class="nc" id="L26">            return false</span>
         }
     }
-<span class="fc" id="L29">    return true</span>
+<span class="nc" id="L29">    return true</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

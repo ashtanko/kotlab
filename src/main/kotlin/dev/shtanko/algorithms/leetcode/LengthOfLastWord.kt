@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 58. Length of Last Word
- * @see <a href="https://leetcode.com/problems/length-of-last-word/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/length-of-last-word/">Source</a>
  */
 object LengthOfLastWord {
     fun stringIndexManipulation(s: String): Int {

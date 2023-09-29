@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 1140. Stone Game II
- * @see <a href="https://leetcode.com/problems/stone-game-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/stone-game-ii/">Source</a>
  */
 fun interface StoneGame2 {
     operator fun invoke(piles: IntArray): Int

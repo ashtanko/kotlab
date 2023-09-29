@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1657. Determine if Two Strings Are Close
- * @see <a href="https://leetcode.com/problems/determine-if-two-strings-are-close/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/determine-if-two-strings-are-close/">Source</a>
  */
 fun interface CloseStrings {
     operator fun invoke(word1: String, word2: String): Boolean

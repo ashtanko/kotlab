@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Rotated Digits
- * @see <a href="https://leetcode.com/problems/rotated-digits/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/rotated-digits/">Source</a>
  */
 fun interface RotatedDigits {
     operator fun invoke(n: Int): Int

@@ -20,7 +20,7 @@ private const val MAX_SIZE = 32
 
 /**
  * 868. Binary Gap
- * @see <a href="https://leetcode.com/problems/binary-gap/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/binary-gap/">Source</a>
  */
 fun interface BinaryGapStrategy {
     fun binaryGap(n: Int): Int

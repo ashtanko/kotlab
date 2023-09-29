@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 881. Boats to Save People
- * @see <a href="https://leetcode.com/problems/boats-to-save-people/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/boats-to-save-people/">Source</a>
  */
 fun interface BoatsToSavePeople {
     fun numRescueBoats(people: IntArray, limit: Int): Int

@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * Word Abbreviation.
- * @see <a href="https://leetcode.com/problems/word-abbreviation/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/word-abbreviation/">Source</a>
  */
 fun interface WordAbbreviation {
     operator fun invoke(dict: List<String>): List<String>

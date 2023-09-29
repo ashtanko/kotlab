@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 2444. Count Subarrays With Fixed Bounds
- * @see <a href="https://leetcode.com/problems/count-subarrays-with-fixed-bounds/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-subarrays-with-fixed-bounds/">Source</a>
  */
 fun interface CountSubarraysWithFixedBounds {
     fun countSubarrays(nums: IntArray, minK: Int, maxK: Int): Long

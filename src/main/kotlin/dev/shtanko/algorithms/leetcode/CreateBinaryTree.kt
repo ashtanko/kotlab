@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2196. Create Binary Tree From Descriptions
- * @see <a href="https://leetcode.com/problems/create-binary-tree-from-descriptions">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/create-binary-tree-from-descriptions">Source</a>
  */
 fun interface CreateBinaryTree {
     operator fun invoke(descriptions: Array<IntArray>): TreeNode?

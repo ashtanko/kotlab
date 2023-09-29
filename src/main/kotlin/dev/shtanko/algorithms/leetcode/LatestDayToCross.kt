@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 1970. Last Day Where You Can Still Cross
- * @see <a href="https://leetcode.com/problems/last-day-where-you-can-still-cross/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/last-day-where-you-can-still-cross/">Source</a>
  */
 fun interface LatestDayToCross {
     operator fun invoke(row: Int, col: Int, cells: Array<IntArray>): Int

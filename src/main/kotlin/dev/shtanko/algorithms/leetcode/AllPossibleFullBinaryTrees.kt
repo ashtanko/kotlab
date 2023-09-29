@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 894. All Possible Full Binary Trees
- * @see <a href="https://leetcode.com/problems/all-possible-full-binary-trees/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/all-possible-full-binary-trees/">Source</a>
  */
 fun interface AllPossibleFullBinaryTrees {
     fun allPossibleFBT(n: Int): List<TreeNode?>

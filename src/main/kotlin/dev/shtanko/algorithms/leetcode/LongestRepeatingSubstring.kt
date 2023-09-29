@@ -20,7 +20,7 @@ import kotlin.math.pow
 
 /**
  * 1062. Longest Repeating Substring
- * @see <a href="https://leetcode.com/problems/longest-repeating-substring/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/longest-repeating-substring/">Source</a>
  */
 interface LongestRepeatingSubstring {
     operator fun invoke(s: String): Int {

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1706. Where Will the Ball Fall
- * @see <a href="https://leetcode.com/problems/where-will-the-ball-fall/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/where-will-the-ball-fall/">Source</a>
  */
 fun interface FindBall {
     operator fun invoke(grid: Array<IntArray>): IntArray

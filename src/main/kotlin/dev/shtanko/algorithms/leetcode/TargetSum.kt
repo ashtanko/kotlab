@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 /**
  * 494. Target Sum
- * @see <a href="https://leetcode.com/problems/target-sum/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/target-sum/">Source</a>
  */
 fun interface TargetSum {
     fun findTargetSumWays(nums: IntArray, target: Int): Int

@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 934. Shortest Bridge
- * @see <a href="https://leetcode.com/problems/shortest-bridge/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/shortest-bridge/">Source</a>
  */
 fun interface ShortestBridge {
     operator fun invoke(grid: Array<IntArray>): Int

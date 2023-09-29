@@ -20,7 +20,7 @@ import java.util.Arrays
 
 /**
  * 2466. Count Ways To Build Good Strings
- * @see <a href="https://leetcode.com/problems/count-ways-to-build-good-strings/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-ways-to-build-good-strings/">Source</a>
  */
 fun interface CountGoodStrings {
     operator fun invoke(low: Int, high: Int, zero: Int, one: Int): Int

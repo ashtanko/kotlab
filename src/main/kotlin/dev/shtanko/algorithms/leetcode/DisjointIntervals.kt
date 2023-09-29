@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 352. Data Stream as Disjoint Intervals
- * @see <a href="https://leetcode.com/problems/data-stream-as-disjoint-intervals/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/data-stream-as-disjoint-intervals/">Source</a>
  */
 class DisjointIntervals {
 

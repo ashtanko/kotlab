@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 135. Candy
- * @see <a href="https://leetcode.com/problems/candy">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/candy">Source</a>
  */
 fun interface Candy {
     operator fun invoke(ratings: IntArray): Int

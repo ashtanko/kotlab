@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 /**
  * 2006. Count Number of Pairs With Absolute Difference K
- * @see <a href="https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/">Source</a>
  */
 fun interface CountKDifference {
     operator fun invoke(nums: IntArray, k: Int): Int

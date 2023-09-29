@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1366. Rank Teams by Votes
- * @see <a href="https://leetcode.com/problems/rank-teams-by-votes/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/rank-teams-by-votes/">Source</a>
  */
 fun interface RankTeams {
     operator fun invoke(votes: Array<String>): String

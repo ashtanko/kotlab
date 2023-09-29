@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 1138. Alphabet Board Path
- * @see <a href="https://leetcode.com/problems/alphabet-board-path/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/alphabet-board-path/">Source</a>
  */
 fun interface AlphabetBoardPath {
     operator fun invoke(target: String): String

@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.utils.reverse
 
 /**
  * 186. Reverse Words in a String II
- * @see <a href="https://leetcode.com/problems/reverse-words-in-a-string-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/reverse-words-in-a-string-ii/">Source</a>
  */
 fun reverseWords2(s: CharArray) {
     // reverse the whole string

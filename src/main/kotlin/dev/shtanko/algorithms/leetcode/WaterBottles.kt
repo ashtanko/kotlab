@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * Given numBottles full water bottles, you can exchange numExchange empty water bottles for one full water bottle.
  * The operation of drinking a full water bottle turns it into an empty bottle.
  * Return the maximum number of water bottles you can drink.
- * @see <a href="https://leetcode.com/problems/water-bottles/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/water-bottles/">Source</a>
  */
 class WaterBottles {
     operator fun invoke(numBottles: Int, numExchange: Int): Int {

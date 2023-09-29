@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2366. Minimum Replacements to Sort the Array
- * @see <a href="https://leetcode.com/problems/minimum-replacements-to-sort-the-array">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-replacements-to-sort-the-array">Source</a>
  */
 fun interface MinReplacement {
     operator fun invoke(nums: IntArray): Long

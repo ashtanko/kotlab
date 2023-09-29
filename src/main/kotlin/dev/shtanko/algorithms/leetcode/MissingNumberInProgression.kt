@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1228. Missing Number In Arithmetic Progression
- * @see <a href="https://leetcode.com/problems/missing-number-in-arithmetic-progression/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/missing-number-in-arithmetic-progression/">Source</a>
  */
 fun interface MissingNumberInProgression {
     operator fun invoke(arr: IntArray): Int

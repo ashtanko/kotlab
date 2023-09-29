@@ -21,7 +21,7 @@ import java.util.function.BiFunction
 
 /**
  * Evaluate Reverse Polish Notation
- * @see <a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/solution/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/solution/">Source</a>
  */
 fun interface EvalRPN {
     operator fun invoke(tokens: Array<String>): Int

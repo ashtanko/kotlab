@@ -21,7 +21,7 @@ import kotlin.math.abs
 /**
  * 1466. Reorder Routes to Make All Paths Lead to the City Zero
  * @see <a href="https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface MinReorder {
     operator fun invoke(n: Int, connections: Array<IntArray>): Int

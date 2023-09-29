@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1359. Count All Valid Pickup and Delivery Options
- * @see <a href="https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options">Source</a>
  */
 fun interface CountOrders {
     operator fun invoke(n: Int): Int

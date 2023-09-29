@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2425. Bitwise XOR of All Pairings
- * @see <a href="https://leetcode.com/problems/bitwise-xor-of-all-pairings/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/bitwise-xor-of-all-pairings/">Source</a>
  */
 fun interface XorAllNums {
     operator fun invoke(nums1: IntArray, nums2: IntArray): Int

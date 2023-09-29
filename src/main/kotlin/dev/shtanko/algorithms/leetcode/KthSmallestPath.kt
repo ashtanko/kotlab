@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.extensions.second
 
 /**
  * 1643. Kth The Smallest Instructions
- * @see <a href="https://leetcode.com/problems/kth-smallest-instructions/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/kth-smallest-instructions/">Source</a>
  */
 fun interface KthSmallestPath {
     operator fun invoke(destination: IntArray, k: Int): String

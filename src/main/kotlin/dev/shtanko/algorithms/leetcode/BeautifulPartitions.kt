@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 2478. Number of Beautiful Partitions
- * @see <a href="https://leetcode.com/problems/number-of-beautiful-partitions">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/number-of-beautiful-partitions">Source</a>
  */
 fun interface BeautifulPartitions {
     operator fun invoke(s: String, k: Int, minLength: Int): Int

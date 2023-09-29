@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 445. Add Two Numbers II
- * @see <a href="https://leetcode.com/problems/add-two-numbers-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/add-two-numbers-ii/">Source</a>
  */
 fun interface AddTwoNumbers2 {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode?

@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 1971. Find if Path Exists in Graph
- * @see <a href="https://leetcode.com/problems/find-if-path-exists-in-graph">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/find-if-path-exists-in-graph">Source</a>
  */
 fun interface ValidPathInGraph {
     operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean

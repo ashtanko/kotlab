@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Jump to game
- * @see <a href="https://leetcode.com/problems/jump-game">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/jump-game">Source</a>
  * Given an array of non-negative integers, you are initially positioned at the first index of the array.
  * Each element in the array represents your maximum jump length at that position.
  * Determine if you are able to reach the last index.

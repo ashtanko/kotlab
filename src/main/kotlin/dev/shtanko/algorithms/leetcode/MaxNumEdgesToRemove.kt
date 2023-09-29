@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * 1579. Remove Max Number of Edges to Keep Graph Fully Traversable
  * @see <a href="https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface MaxNumEdgesToRemove {
     operator fun invoke(n: Int, edges: Array<IntArray>): Int

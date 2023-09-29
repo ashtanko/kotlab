@@ -20,7 +20,7 @@ import java.util.TreeMap
 
 /**
  * 2502. Design Memory Allocator
- * @see <a href="https://leetcode.com/problems/design-memory-allocator">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/design-memory-allocator">Source</a>
  */
 interface Malloc {
     fun allocate(size: Int, mID: Int): Int

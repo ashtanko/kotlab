@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Prefix and Suffix Search
- * @see <a href="https://leetcode.com/problems/prefix-and-suffix-search/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/prefix-and-suffix-search/">Source</a>
  */
 fun interface WordFilter {
     operator fun invoke(prefix: String, suffix: String): Int

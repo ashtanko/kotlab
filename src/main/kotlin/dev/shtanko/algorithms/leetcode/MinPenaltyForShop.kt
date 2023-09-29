@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2483. Minimum Penalty for a Shop
- * @see <a href="https://leetcode.com/problems/minimum-penalty-for-a-shop">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-penalty-for-a-shop">Source</a>
  */
 fun interface MinPenaltyForShop {
     infix operator fun invoke(customers: String): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Multiply Strings.
- * @see <a href="https://leetcode.com/problems/multiply-strings/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/multiply-strings/">Source</a>
  */
 object MultiplyStrings {
     operator fun invoke(num1: String, num2: String): String {

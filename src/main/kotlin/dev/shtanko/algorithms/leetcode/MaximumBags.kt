@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2279. Maximum Bags With Full Capacity of Rocks
- * @see <a href="https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/">Source</a>
  */
 fun interface MaximumBags {
     operator fun invoke(capacity: IntArray, rocks: IntArray, additionalRocks: Int): Int

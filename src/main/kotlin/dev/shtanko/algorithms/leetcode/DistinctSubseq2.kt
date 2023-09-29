@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 940. Distinct Subsequences II
- * @see <a href="https://leetcode.com/problems/distinct-subsequences-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/distinct-subsequences-ii/">Source</a>
  */
 fun interface DistinctSubseq2 {
     fun distinctSubseqII(s: String): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1. Two Sum
- * @see <a href="https://leetcode.com/problems/two-sum/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/two-sum/">Source</a>
  */
 fun interface TwoSumStrategy {
     operator fun invoke(nums: IntArray, target: Int): IntArray

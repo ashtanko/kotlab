@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 956. Tallest Billboard
- * @see <a href="https://leetcode.com/problems/tallest-billboard/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/tallest-billboard/">Source</a>
  */
 fun interface TallestBillboard {
     operator fun invoke(rods: IntArray): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 876. Middle of the Linked List
- * @see <a href="https://leetcode.com/problems/middle-of-the-linked-list/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/middle-of-the-linked-list/">Source</a>
  */
 fun interface MiddleNode {
     operator fun invoke(head: ListNode?): ListNode?

@@ -20,7 +20,7 @@ import java.util.PriorityQueue
 
 /**
  * 1054. Distant Barcodes
- * @see <a href="https://leetcode.com/problems/distant-barcodes/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/distant-barcodes/">Source</a>
  */
 fun interface DistantBarcodes {
     fun rearrangeBarcodes(barcodes: IntArray): IntArray

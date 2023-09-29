@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1091. Shortest Path in Binary Matrix
- * @see <a href="https://leetcode.com/problems/shortest-path-in-binary-matrix/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/shortest-path-in-binary-matrix/">Source</a>
  */
 fun interface ShortestPathInBinaryMatrix {
     operator fun invoke(grid: Array<IntArray>): Int

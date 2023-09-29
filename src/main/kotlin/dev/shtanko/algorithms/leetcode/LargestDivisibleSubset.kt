@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 368. Largest Divisible Subset
- * @see <a href="https://leetcode.com/problems/largest-divisible-subset/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/largest-divisible-subset/">Source</a>
  */
 fun interface LargestDivisibleSubset {
     operator fun invoke(nums: IntArray): List<Int>

@@ -24,7 +24,7 @@ import kotlin.math.min
 
 /**
  * 936. Stamping The Sequence
- * @see <a href="https://leetcode.com/problems/stamping-the-sequence/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/stamping-the-sequence/">Source</a>
  */
 class StampingSequence {
 

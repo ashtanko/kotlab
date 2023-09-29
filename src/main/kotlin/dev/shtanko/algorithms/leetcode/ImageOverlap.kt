@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 835. Image Overlap
- * @see <a href="https://leetcode.com/problems/image-overlap/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/image-overlap/">Source</a>
  */
 fun interface ImageOverlap {
     fun largestOverlap(img1: Array<IntArray>, img2: Array<IntArray>): Int

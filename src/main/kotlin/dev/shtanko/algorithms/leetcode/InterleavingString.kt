@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 97. Interleaving String
- * @see <a href="https://leetcode.com/problems/interleaving-string/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/interleaving-string/">Source</a>
  */
 fun interface InterleavingStringStrategy {
     operator fun invoke(s1: String, s2: String, s3: String): Boolean

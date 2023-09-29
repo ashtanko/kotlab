@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 301. Remove Invalid Parentheses
- * @see <a href="https://leetcode.com/problems/remove-invalid-parentheses/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/remove-invalid-parentheses/">Source</a>
  */
 fun interface RemoveInvalidParentheses {
     operator fun invoke(s: String): List<String>

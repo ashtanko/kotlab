@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 530. Minimum Absolute Difference in BST
- * @see <a href="https://leetcode.com/problems/minimum-absolute-difference-in-bst/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-absolute-difference-in-bst/">Source</a>
  */
 fun interface MinimumAbsoluteDifferenceBST {
     fun getMinimumDifference(root: TreeNode?): Int

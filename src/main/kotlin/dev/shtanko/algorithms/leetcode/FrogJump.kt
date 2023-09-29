@@ -20,7 +20,7 @@ import java.util.Arrays
 
 /**
  * 403. Frog Jump
- * @see <a href="https://leetcode.com/problems/frog-jump">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/frog-jump">Source</a>
  */
 fun interface FrogJump {
     operator fun invoke(stones: IntArray): Boolean

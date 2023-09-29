@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1278. Palindrome Partitioning III
- * @see <a href="https://leetcode.com/problems/palindrome-partitioning-iii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/palindrome-partitioning-iii/">Source</a>
  */
 fun interface PalindromePartitioning3 {
     fun palindromePartition(s: String, k: Int): Int

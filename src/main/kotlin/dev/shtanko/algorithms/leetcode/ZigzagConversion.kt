@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 6. Zigzag Conversion
- * @see <a href="https://leetcode.com/problems/zigzag-conversion/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/zigzag-conversion/">Source</a>
  */
 fun interface ZigzagConversion {
     fun convert(s: String, numRows: Int): String

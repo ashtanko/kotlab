@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 698. Partition to K Equal Sum Subsets
- * @see <a href="https://leetcode.com/problems/partition-to-k-equal-sum-subsets/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/partition-to-k-equal-sum-subsets/">Source</a>
  */
 fun interface CanPartitionKSubsets {
     operator fun invoke(nums: IntArray, k: Int): Boolean

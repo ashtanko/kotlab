@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1282. Group the People Given the Group Size They Belong To
- * @see <a href="https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to">Source</a>
  */
 fun interface GroupThePeople {
     operator fun invoke(groupSizes: IntArray): List<List<Int>>

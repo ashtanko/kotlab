@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 207. Course Schedule
- * @see <a href="https://leetcode.com/problems/course-schedule/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/course-schedule/">Source</a>
  */
 fun interface CourseSchedule {
     fun canFinish(numCourses: Int, prerequisites: Array<IntArray>): Boolean

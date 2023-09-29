@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 851. Loud and Rich
- * @see <a href="https://leetcode.com/problems/loud-and-rich/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/loud-and-rich/">Source</a>
  */
 fun interface LoudAndRich {
     operator fun invoke(richer: Array<IntArray>, quiet: IntArray): IntArray

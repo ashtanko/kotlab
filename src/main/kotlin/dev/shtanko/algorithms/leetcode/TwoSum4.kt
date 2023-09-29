@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 653. Two Sum IV - Input is a BST
- * @see <a href="https://leetcode.com/problems/two-sum-iv-input-is-a-bst/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/two-sum-iv-input-is-a-bst/">Source</a>
  */
 fun interface TwoSum4 {
     fun findTarget(root: TreeNode, k: Int): Boolean

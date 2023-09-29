@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 290. Word Pattern
- * @see <a href="https://leetcode.com/problems/word-pattern/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/word-pattern/">Source</a>
  */
 fun interface WordPattern {
     operator fun invoke(pattern: String, s: String): Boolean

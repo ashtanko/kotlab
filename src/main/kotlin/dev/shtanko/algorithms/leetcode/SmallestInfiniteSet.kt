@@ -22,7 +22,7 @@ import java.util.TreeSet
 
 /**
  * 2336. Smallest Number in Infinite Set
- * @see <a href="https://leetcode.com/problems/smallest-number-in-infinite-set">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/smallest-number-in-infinite-set">Source</a>
  */
 interface SmallestInfiniteSet {
     fun popSmallest(): Int

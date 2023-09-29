@@ -23,7 +23,7 @@ import java.util.Queue
 
 /**
  * 1190. Reverse Substrings Between Each Pair of Parentheses
- * @see <a href="https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/">Source</a>
  */
 fun interface ReverseParentheses {
     operator fun invoke(s: String): String

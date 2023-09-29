@@ -23,7 +23,7 @@ import kotlin.math.min
 
 /**
  * 215. Kth Largest Element in an Array
- * @see <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/">Source</a>
  */
 fun interface FindKthLargest {
     operator fun invoke(nums: IntArray, k: Int): Int

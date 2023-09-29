@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 88. Merge Sorted Array
- * @see <a href="https://leetcode.com/problems/merge-sorted-array">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/merge-sorted-array">Source</a>
  */
 fun interface MergeSortedArray {
     operator fun invoke(nums1: IntArray, m: Int, nums2: IntArray, n: Int)

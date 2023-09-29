@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * 105. Construct Binary Tree from Preorder and Inorder Traversal
  * @see <a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface ConstructBinaryTree {
     fun buildTree(preorder: IntArray, inorder: IntArray): TreeNode?

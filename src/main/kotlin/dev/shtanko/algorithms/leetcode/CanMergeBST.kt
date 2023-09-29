@@ -21,7 +21,7 @@ import java.util.LinkedList
 
 /**
  * 1932. Merge BSTs to Create Single BST
- * @see <a href="https://leetcode.com/problems/merge-bsts-to-create-single-bst/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/merge-bsts-to-create-single-bst/">Source</a>
  */
 fun interface CanMergeBST {
     operator fun invoke(trees: List<TreeNode>): TreeNode?

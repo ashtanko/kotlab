@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 927. Three Equal Parts
- * @see <a href="https://leetcode.com/problems/three-equal-parts/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/three-equal-parts/">Source</a>
  */
 fun interface ThreeEqualParts {
     operator fun invoke(arr: IntArray): IntArray

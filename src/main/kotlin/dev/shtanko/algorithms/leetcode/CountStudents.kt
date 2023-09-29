@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1700. Number of Students Unable to Eat Lunch
- * @see <a href="https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/">Source</a>
  */
 fun countStudents(students: IntArray, sandwiches: IntArray): Int {
     val a = intArrayOf(0, 0)

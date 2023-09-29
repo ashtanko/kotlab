@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1829. Maximum XOR for Each Query
- * @see <a href="https://leetcode.com/problems/maximum-xor-for-each-query/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximum-xor-for-each-query/">Source</a>
  */
 fun interface MaximumXor {
     fun getMaximumXor(nums: IntArray, maximumBit: Int): IntArray

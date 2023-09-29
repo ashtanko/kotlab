@@ -21,7 +21,7 @@ import java.util.Queue
 
 /**
  * 913. Cat and Mouse
- * @see <a href="https://leetcode.com/problems/cat-and-mouse/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/cat-and-mouse/">Source</a>
  */
 fun interface CatAndMouse {
     fun catMouseGame(graph: Array<IntArray>): Int

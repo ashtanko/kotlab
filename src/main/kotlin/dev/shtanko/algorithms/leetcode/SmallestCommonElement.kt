@@ -25,7 +25,7 @@ private const val NO_SOLUTION = -1 // returns when solution not found
 
 /**
  * Find Smallest Common Element in All Rows
- * @see <a href="https://leetcode.com/problems/find-smallest-common-element-in-all-rows/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/find-smallest-common-element-in-all-rows/">Source</a>
  */
 fun interface SmallestCommonElement {
     operator fun invoke(mat: Array<IntArray>): Int

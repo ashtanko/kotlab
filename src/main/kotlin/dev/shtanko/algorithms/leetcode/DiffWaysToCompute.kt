@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 241. Different Ways to Add Parentheses
- * @see <a href="https://leetcode.com/problems/different-ways-to-add-parentheses/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/different-ways-to-add-parentheses/">Source</a>
  */
 fun interface DiffWaysToCompute {
     fun compute(expression: String): List<Int>

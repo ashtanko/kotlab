@@ -20,7 +20,7 @@ import java.util.PriorityQueue
 
 /**
  * 1834. Single-Threaded CPU
- * @see <a href="https://leetcode.com/problems/single-threaded-cpu/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/single-threaded-cpu/">Source</a>
  */
 fun interface SingleThreadedCPU {
     fun getOrder(tasks: Array<IntArray>): IntArray

@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 /**
  * 2116. Check if a Parentheses String Can Be Valid
- * @see <a href="https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/">Source</a>
  */
 fun interface CanBeValid {
     operator fun invoke(s: String, locked: String): Boolean

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1647. Minimum Deletions to Make Character Frequencies Unique
- * @see <a href="https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique">Source</a>
  */
 fun interface MinDeletions {
     operator fun invoke(s: String): Int

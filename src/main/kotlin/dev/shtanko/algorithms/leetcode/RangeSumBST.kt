@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 938. Range Sum of BST
- * @see <a href="https://leetcode.com/problems/range-sum-of-bst">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/range-sum-of-bst">Source</a>
  */
 fun interface RangeSumStrategy {
     operator fun invoke(root: TreeNode?, left: Int, right: Int): Int

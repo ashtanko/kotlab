@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 168. Excel Sheet Column Title
- * @see <a href="https://leetcode.com/problems/excel-sheet-column-title/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/excel-sheet-column-title/">Source</a>
  */
 fun interface ExcelSheetColumnTitle {
     operator fun invoke(columnNumber: Int): String

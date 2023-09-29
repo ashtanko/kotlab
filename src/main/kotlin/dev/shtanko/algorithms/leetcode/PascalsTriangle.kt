@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 118. Pascal's Triangle
- * @see <a href="https://leetcode.com/problems/pascals-triangle">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/pascals-triangle">Source</a>
  */
 fun interface PascalsTriangle {
     operator fun invoke(numRows: Int): List<List<Int>>

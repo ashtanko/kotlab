@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * Min Cost Climbing Stairs.
- * @see <a href="https://leetcode.com/problems/min-cost-climbing-stairs/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/min-cost-climbing-stairs/">Source</a>
  * Time Complexity: O(N).
  * Space Complexity: O(1).
  */

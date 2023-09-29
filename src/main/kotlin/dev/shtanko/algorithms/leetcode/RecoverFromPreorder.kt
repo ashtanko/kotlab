@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 1028. Recover a Tree From Preorder Traversal
- * @see <a href="https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/">Source</a>
  */
 fun interface RecoverFromPreorder {
     operator fun invoke(traversal: String): TreeNode?

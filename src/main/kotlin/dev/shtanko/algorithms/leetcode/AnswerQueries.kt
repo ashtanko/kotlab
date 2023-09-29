@@ -21,7 +21,7 @@ import kotlin.math.abs
 
 /**
  * 2389. Longest Subsequence With Limited Sum
- * @see <a href="https://leetcode.com/problems/longest-subsequence-with-limited-sum/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/longest-subsequence-with-limited-sum/">Source</a>
  */
 fun interface AnswerQueries {
     operator fun invoke(nums: IntArray, queries: IntArray): IntArray

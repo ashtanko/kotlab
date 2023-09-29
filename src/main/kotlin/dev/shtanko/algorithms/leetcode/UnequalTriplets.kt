@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2475. Number of Unequal Triplets in Array
- * @see <a href="https://leetcode.com/problems/number-of-unequal-triplets-in-array/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/number-of-unequal-triplets-in-array/">Source</a>
  */
 fun interface UnequalTriplets {
     operator fun invoke(nums: IntArray): Int

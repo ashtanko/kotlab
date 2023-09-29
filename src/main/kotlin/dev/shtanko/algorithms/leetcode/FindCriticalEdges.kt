@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.leetcode
 /**
  * 1489. Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree
  * @see <a href="https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree">
- *     leetcode page</a>
+ *     Source</a>
  */
 fun interface FindCriticalEdges {
     operator fun invoke(n: Int, edges: Array<IntArray>): List<List<Int>>

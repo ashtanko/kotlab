@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2531. Make Number of Distinct Characters Equal
- * @see <a href="https://leetcode.com/problems/make-number-of-distinct-characters-equal/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/make-number-of-distinct-characters-equal/">Source</a>
  */
 fun interface DistinctCharactersEqual {
     fun isItPossible(word1: String, word2: String): Boolean

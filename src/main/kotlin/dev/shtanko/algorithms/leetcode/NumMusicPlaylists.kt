@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 920. Number of Music Playlists
- * @see <a href="https://leetcode.com/problems/number-of-music-playlists">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/number-of-music-playlists">Source</a>
  */
 fun interface NumMusicPlaylists {
     operator fun invoke(n: Int, goal: Int, k: Int): Int

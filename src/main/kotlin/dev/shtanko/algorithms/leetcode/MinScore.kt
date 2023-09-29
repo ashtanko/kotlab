@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * 2492. Minimum Score of a Path Between Two Cities
- * @see <a href="https://leetcode.com/problems/minimum-score-of-a-path-between-two-cities/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-score-of-a-path-between-two-cities/">Source</a>
  */
 fun interface MinScore {
     operator fun invoke(n: Int, roads: Array<IntArray>): Int

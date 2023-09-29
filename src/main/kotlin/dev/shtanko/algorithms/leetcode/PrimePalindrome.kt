@@ -21,7 +21,7 @@ import kotlin.math.pow
 
 /**
  * Prime Palindrome
- * @see <a href="https://leetcode.com/problems/prime-palindrome/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/prime-palindrome/">Source</a>
  */
 fun interface PrimePalindrome {
     operator fun invoke(n: Int): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 336. Palindrome Pairs
- * @see <a href="https://leetcode.com/problems/palindrome-pairs/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/palindrome-pairs/">Source</a>
  */
 fun interface PalindromePairs {
     fun palindromePairs(words: Array<String>): List<List<Int>>

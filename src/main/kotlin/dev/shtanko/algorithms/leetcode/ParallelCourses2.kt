@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1494. Parallel Courses II
- * @see <a href="https://leetcode.com/problems/parallel-courses-ii/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/parallel-courses-ii/">Source</a>
  */
 fun interface ParallelCourses2 {
     fun minNumberOfSemesters(n: Int, relations: Array<IntArray>, k: Int): Int

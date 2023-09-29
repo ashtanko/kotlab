@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.math.gcd
 
 /**
  * 2427. Number of Common Factors
- * @see <a href="https://leetcode.com/problems/number-of-common-factors/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/number-of-common-factors/">Source</a>
  */
 fun interface NumberOfCommonFactors {
     fun commonFactors(a: Int, b: Int): Int

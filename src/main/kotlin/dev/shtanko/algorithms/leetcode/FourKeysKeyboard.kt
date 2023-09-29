@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  *  4 Keys Keyboard.
- *  @see <a href="https://leetcode.com/problems/4-keys-keyboard/">leetcode page</a>
+ *  @see <a href="https://leetcode.com/problems/4-keys-keyboard/">Source</a>
  */
 fun interface FourKeysKeyboard {
     fun maxA(n: Int): Int

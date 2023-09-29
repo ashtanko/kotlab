@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 688. Knight Probability in Chessboard
- * @see <a href="https://leetcode.com/problems/knight-probability-in-chessboard/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/knight-probability-in-chessboard/">Source</a>
  */
 fun interface KnightProbability {
     operator fun invoke(n: Int, k: Int, row: Int, column: Int): Double

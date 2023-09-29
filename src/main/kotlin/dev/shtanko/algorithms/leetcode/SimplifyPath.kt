@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * 71. Simplify Path
- * @see <a href="https://leetcode.com/problems/simplify-path/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/simplify-path/">Source</a>
  */
 fun interface SimplifyPath {
     operator fun invoke(path: String): String

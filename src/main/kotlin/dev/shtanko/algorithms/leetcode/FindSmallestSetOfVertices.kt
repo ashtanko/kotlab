@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Minimum Number of Vertices to Reach All Nodes.
- * @see <a href="https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/">Source</a>
  */
 object FindSmallestSetOfVertices {
     operator fun invoke(n: Int, edges: List<List<Int>>): List<Int> {

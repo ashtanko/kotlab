@@ -24,7 +24,7 @@ private const val SYMBOL_F = 'F'
 
 /**
  * 2024. Maximize the Confusion of an Exam
- * @see <a href="https://leetcode.com/problems/maximize-the-confusion-of-an-exam/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/maximize-the-confusion-of-an-exam/">Source</a>
  */
 fun interface MaxConsecutiveAnswers {
     operator fun invoke(answerKey: String, k: Int): Int

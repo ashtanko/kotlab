@@ -20,7 +20,7 @@ import dev.shtanko.algorithms.math.gcd
 
 /**
  * 149. Max Points on a Line
- * @see <a href="https://leetcode.com/problems/max-points-on-a-line/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/max-points-on-a-line/">Source</a>
  */
 fun interface MaxPoints {
     operator fun invoke(points: Array<IntArray>): Int

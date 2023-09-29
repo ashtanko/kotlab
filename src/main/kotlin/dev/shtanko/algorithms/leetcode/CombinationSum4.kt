@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * Combination Sum IV
- * @see <a href="https://leetcode.com/problems/combination-sum-iv/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/combination-sum-iv/">Source</a>
  */
 fun interface CombinationSum4 {
     operator fun invoke(nums: IntArray, target: Int): Int

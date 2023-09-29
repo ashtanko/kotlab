@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * Kth Smallest Element in a Sorted Matrix
- * @see <a href="https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix">Source</a>
  */
 fun interface KthSmallest {
     operator fun invoke(matrix: Array<IntArray>, k: Int): Int

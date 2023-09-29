@@ -21,7 +21,7 @@ import kotlin.math.sqrt
 
 /**
  * 70. Climbing Stairs
- * @see <a href="https://leetcode.com/problems/climbing-stairs">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/climbing-stairs">Source</a>
  */
 fun interface ClimbingStairsStrategy {
     operator fun invoke(n: Int): Int

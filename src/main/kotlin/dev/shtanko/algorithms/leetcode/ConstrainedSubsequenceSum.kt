@@ -22,7 +22,7 @@ import kotlin.math.max
 
 /**
  * 1425. Constrained Subsequence Sum
- * @see <a href="https://leetcode.com/problems/constrained-subsequence-sum/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/constrained-subsequence-sum/">Source</a>
  */
 fun interface ConstrainedSubsequenceSum {
     operator fun invoke(nums: IntArray, k: Int): Int

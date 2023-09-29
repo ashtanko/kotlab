@@ -22,7 +22,7 @@ import java.util.Stack
 
 /**
  * 623. Add One Row to Tree
- * @see <a href="https://leetcode.com/problems/add-one-row-to-tree/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/add-one-row-to-tree/">Source</a>
  */
 fun interface AddOneRowToTree {
     operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode?

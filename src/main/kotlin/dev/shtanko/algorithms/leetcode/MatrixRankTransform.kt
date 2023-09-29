@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * 1632. Rank Transform of a Matrix
- * @see <a href="https://leetcode.com/problems/rank-transform-of-a-matrix/">leetcode page</a>
+ * @see <a href="https://leetcode.com/problems/rank-transform-of-a-matrix/">Source</a>
  */
 fun interface MatrixRankTransform {
     operator fun invoke(matrix: Array<IntArray>): Array<IntArray>
