@@ -21,7 +21,7 @@ import kotlin.math.min
 
 /**
  * 629. K Inverse Pairs Array
- * link https://leetcode.com/problems/k-inverse-pairs-array/
+ * @see <a href="https://leetcode.com/problems/k-inverse-pairs-array">Source</a>
  */
 fun interface KInversePairsArray {
     operator fun invoke(n: Int, k: Int): Int

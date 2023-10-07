@@ -20,7 +20,7 @@ import kotlin.math.min
 
 /**
  * 1681. Minimum Incompatibility
- * link https://leetcode.com/problems/minimum-incompatibility/
+ * @see <a href="https://leetcode.com/problems/minimum-incompatibility">Source</a>
  */
 fun interface MinimumIncompatibility {
     operator fun invoke(nums: IntArray, k: Int): Int

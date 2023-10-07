@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2103. Rings and Rods
- * link https://leetcode.com/problems/rings-and-rods/
+ * @see <a href="https://leetcode.com/problems/rings-and-rods">Source</a>
  */
 fun interface RingsAndRods {
     fun countPoints(rings: String): Int

@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2053. Kth Distinct String in an Array
- * link https://leetcode.com/problems/kth-distinct-string-in-an-array/
+ * @see <a href="https://leetcode.com/problems/kth-distinct-string-in-an-array">Source</a>
  */
 fun interface KTHDistinct {
     operator fun invoke(arr: Array<String>, k: Int): String

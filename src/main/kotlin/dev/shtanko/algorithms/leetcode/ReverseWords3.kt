@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 557. Reverse Words in a String III
- * link https://leetcode.com/problems/reverse-words-in-a-string-iii/
+ * @see <a href="https://leetcode.com/problems/reverse-words-in-a-string-iii">Source</a>
  */
 fun interface ReverseWords3 {
     operator fun invoke(s: String): String

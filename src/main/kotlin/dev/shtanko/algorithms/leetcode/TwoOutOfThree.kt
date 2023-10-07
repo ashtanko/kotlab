@@ -21,7 +21,7 @@ import java.util.stream.IntStream
 
 /**
  * 2032. Two Out of Three
- * link https://leetcode.com/problems/two-out-of-three/
+ * @see <a href="https://leetcode.com/problems/two-out-of-three">Source</a>
  */
 fun interface TwoOutOfThree {
     operator fun invoke(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,19 +17,25 @@
 package dev.shtanko.algorithms.leetcode
 
 /**
- * 2154. Keep Multiplying Found Values by Two
- * @see <a href="https://leetcode.com/problems/keep-multiplying-found-values-by-two">Source</a>
+ * 456. 132 Pattern
+ * @see <a href="https://leetcode.com/problems/132-pattern">Source</a>
  */
-fun interface FindFinalValue {
-    operator fun invoke(nums: IntArray, original: Int): Int
+interface Find132Pattern {
+    operator fun invoke(nums: IntArray): Boolean
 }
 
-class FindFinalValueHashMap : FindFinalValue {
-    override operator fun invoke(nums: IntArray, original: Int): Int {
-        var o = original
-        val set = HashSet<Int>()
-        for (i in nums) if (i >= o) set.add(i)
-        while (true) o *= if (set.contains(o)) 2 else break
-        return o
+class Find132PatternOnePass : Find132Pattern {
+    override fun invoke(nums: IntArray): Boolean {
+        val n: Int = nums.size
+        var top = n
+        var third = Int.MIN_VALUE
+
+        for (i in n - 1 downTo 0) {
+            if (nums[i] < third) return true
+            while (top < n && nums[i] > nums[top]) third = nums[top++]
+            nums[--top] = nums[i]
+        }
+
+        return false
     }
 }

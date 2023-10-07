@@ -9,7 +9,7 @@ jacoco:
 	cp -r build/reports/jacoco/test/html jacocoReport
 
 default:
-	make check && make md && make jacoco
+	make check && make md
 
 run:
 	./gradlew build
