@@ -205,7 +205,7 @@ class LatestDayToCrossUnion : LatestDayToCross {
             intArrayOf(-1, -1),
         )
 
-        (0 until row * col).forEach { i ->
+        for (i in 0 until row * col) {
             val r = cells[i][0] - 1
             val c = cells[i][1] - 1
             grid[r][c] = 1
