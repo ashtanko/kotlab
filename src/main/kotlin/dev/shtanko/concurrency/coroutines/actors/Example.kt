@@ -48,7 +48,7 @@ private fun CoroutineScope.customCounterStateMachine(channel: ReceiveChannel<Cou
 
 private fun main(): Unit = runBlocking {
     val channel = Channel<CounterMessage>()
-    val counterStateMachine = customCounterStateMachine(channel) // create the counterStateMachine actor
+    // val counterStateMachine = customCounterStateMachine(channel) // create the counterStateMachine actor
     withContext(Dispatchers.Default) {
         massiveRun {
             channel.send(IncrementCounter)

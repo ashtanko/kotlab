@@ -32,7 +32,6 @@ class MinOperationsHashMap : MinOperations {
         val left = mutableMapOf<Int, Int>()
         var res = Int.MAX_VALUE
         var sum = 0
-        var l = 0
 
         for (l in nums.indices) {
             left[sum] = l

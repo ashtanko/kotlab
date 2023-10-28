@@ -28,17 +28,20 @@ abstract class CountVowelsPermutationTest<out T : CountVowelsPermutationStrategy
         2 to 10,
         5 to 68,
     ).map { (input, expected) ->
-        DynamicTest.dynamicTest("dp $strategy count vowel permutation of $input then get $expected") {
+        DynamicTest.dynamicTest("$strategy count vowel permutation of $input then get $expected") {
             Assertions.assertEquals(expected, strategy.invoke(input))
         }
     }
 }
 
 class CountVowelsPermutationBottomUpTest :
-    CountVowelsPermutationTest<CountVowelsPermutation.BottomUp>(CountVowelsPermutation.BottomUp())
+    CountVowelsPermutationTest<CountVowelsPermutationStrategy>(CountVowelsPermutation.BottomUp())
 
 class CountVowelsPermutationOptimizedSpaceTest :
-    CountVowelsPermutationTest<CountVowelsPermutation.OptimizedSpace>(CountVowelsPermutation.OptimizedSpace())
+    CountVowelsPermutationTest<CountVowelsPermutationStrategy>(CountVowelsPermutation.OptimizedSpace())
 
 class CountVowelsPermutationTopDownTest :
-    CountVowelsPermutationTest<CountVowelsPermutation.TopDown>(CountVowelsPermutation.TopDown())
+    CountVowelsPermutationTest<CountVowelsPermutationStrategy>(CountVowelsPermutation.TopDown())
+
+class CountVowelsPermutationMatrixTest :
+    CountVowelsPermutationTest<CountVowelsPermutationStrategy>(CountVowelsPermutation.Matrix())

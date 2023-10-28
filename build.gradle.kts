@@ -20,11 +20,11 @@ import java.util.Locale
 val projectJvmTarget = "17"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktLintConfig: Configuration by configurations.creating
-val isK2Enabled = false // kapt currently doesn't support new kotlin compiler
+val isK2Enabled = true
 val k2CompilerArg = if (isK2Enabled) listOf("-Xuse-k2") else emptyList()
 
 fun isLinux(): Boolean {
-    val osName = System.getProperty("os.name").toLowerCase(Locale.ROOT)
+    val osName = System.getProperty("os.name").lowercase()
     return listOf("linux", "mac os", "macos").contains(osName)
 }
 
@@ -41,7 +41,6 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.pitest)
     alias(libs.plugins.serialization)
-    kotlin("kapt") version "1.8.10"
 }
 
 jacoco {
@@ -59,7 +58,7 @@ application {
     mainClass.set("link.kotlin.scripts.Application")
 }
 
-val outputDir = "${project.buildDir}/reports/ktlint/"
+val outputDir = "${project.layout.buildDirectory}/reports/ktlint/"
 val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
 
 val ktlintCheck by tasks.creating(JavaExec::class) {
@@ -104,9 +103,9 @@ spotless {
                 mapOf(
                     "dir" to ".",
                     "include" to listOf("**/*.kt"),
-                    "exclude" to listOf("**/build/**", "**/spotless/*.kt")
-                )
-            )
+                    "exclude" to listOf("**/build/**", "**/spotless/*.kt"),
+                ),
+            ),
         )
         trimTrailingWhitespace()
         indentWithSpaces()
@@ -122,6 +121,12 @@ subprojects {
 }
 
 tasks {
+    compileKotlin {
+        compilerOptions {
+            apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9)
+            languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9)
+        }
+    }
     jacocoTestCoverageVerification {
         violationRules {
             rule {
@@ -244,20 +249,11 @@ dependencies {
     implementation(libs.retrofit.mock)
     implementation(libs.retrofit.converter)
     implementation(libs.okhttp)
-    implementation(libs.dagger)
-    implementation(libs.autovalue.annotations)
-    implementation(libs.jmh)
 
     ktLintConfig(libs.ktlint)
 
-    kapt(libs.dagger.compiler)
-    kapt(libs.autovalue)
-    kapt(libs.jmh.annprocess)
-
     testImplementation(libs.mockk)
     testImplementation(libs.junit)
-    testImplementation(libs.jmh.annprocess)
-    testImplementation(libs.jmh.benchmarks)
     testImplementation(libs.lincheck)
     testApi(libs.kotlin.coroutines.core)
     testImplementation(libs.kotlin.coroutines.test)

@@ -24,7 +24,7 @@ fun interface CountVowelsPermutationStrategy {
     operator fun invoke(n: Int): Int
 }
 
-sealed class CountVowelsPermutation {
+sealed interface CountVowelsPermutation {
 
     /**
      * Approach 1: Dynamic Programming (Bottom-up)
@@ -146,5 +146,38 @@ sealed class CountVowelsPermutation {
         }
 
         override fun toString(): String = "top down"
+    }
+
+    class Matrix : CountVowelsPermutationStrategy {
+        override fun invoke(n: Int): Int {
+            var countA: Long = 1
+            var countE: Long = 1
+            var countI: Long = 1
+            var countO: Long = 1
+            var countU: Long = 1
+
+            for (length in 1 until n) {
+                // Calculate the next counts for each vowel based on the previous counts
+                val nextCountA = countE
+                val nextCountE = (countA + countI) % MOD
+                val nextCountI = (countA + countE + countO + countU) % MOD
+                val nextCountO = (countI + countU) % MOD
+                val nextCountU = countA
+
+                // Update the counts with the newly calculated values for the next length
+                countA = nextCountA
+                countE = nextCountE
+                countI = nextCountI
+                countO = nextCountO
+                countU = nextCountU
+            }
+
+            // Calculate the total count of valid strings for length n
+            val totalCount = (countA + countE + countI + countO + countU) % MOD
+
+            return totalCount.toInt()
+        }
+
+        override fun toString(): String = "matrix"
     }
 }

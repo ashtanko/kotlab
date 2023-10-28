@@ -42,7 +42,7 @@ class OddStringDifferenceHashMap : OddStringDifference {
             //    of each group of words
             eq.computeIfAbsent(
                 diff.hashCode(),
-            ) { x: Int? -> ArrayList() }.add(w)
+            ) { ArrayList() }.add(w)
         }
 
         // [3] as guaranteed in the problem, there will be 2
