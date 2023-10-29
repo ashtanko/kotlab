@@ -1,5 +1,8 @@
 .PHONY: check run test lines md default jacoco
 check:
+	./gradlew detekt ktlintCheck --profile --daemon
+
+check2:
 	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
 
 md:
