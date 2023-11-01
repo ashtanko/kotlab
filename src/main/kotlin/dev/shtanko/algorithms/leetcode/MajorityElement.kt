@@ -113,7 +113,7 @@ class MajorityElementBit : MajorityElement {
             var bits = 0
 
             for (num in nums) {
-                if ((num and (1 shl i)) != 0) {
+                if (num and (1 shl i) != 0) {
                     bits++
                 }
             }

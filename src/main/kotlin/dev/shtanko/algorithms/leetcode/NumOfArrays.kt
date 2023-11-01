@@ -162,7 +162,7 @@ class NumOfArraysPrefixSums : NumOfArrays {
         for (i in 1..n) {
             for (maxNum in 1..m) {
                 for (cost in 1..k) {
-                    var ans = (maxNum.toLong() * dp[i - 1][maxNum][cost]) % MOD
+                    var ans = maxNum.toLong() * dp[i - 1][maxNum][cost] % MOD
                     ans = (ans + prefix[i - 1][maxNum - 1][cost - 1]) % MOD
 
                     dp[i][maxNum][cost] = (dp[i][maxNum][cost] + ans) % MOD
