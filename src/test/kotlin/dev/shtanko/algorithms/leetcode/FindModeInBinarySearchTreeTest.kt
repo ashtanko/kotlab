@@ -16,6 +16,12 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.leetcode.FindModeInBinarySearchTreeStrategy.BFS
+import dev.shtanko.algorithms.leetcode.FindModeInBinarySearchTreeStrategy.DFS
+import dev.shtanko.algorithms.leetcode.FindModeInBinarySearchTreeStrategy.DFSArray
+import dev.shtanko.algorithms.leetcode.FindModeInBinarySearchTreeStrategy.DFSList
+import dev.shtanko.algorithms.leetcode.FindModeInBinarySearchTreeStrategy.IterativeDFS
+import dev.shtanko.algorithms.leetcode.FindModeInBinarySearchTreeStrategy.MorrisTraversal
 import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -24,7 +30,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class FindModeInBinarySearchTreeTest {
+abstract class FindModeInBinarySearchTreeTest<out T : FindModeInBinarySearchTree>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -45,7 +51,18 @@ class FindModeInBinarySearchTreeTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find mode in binary search tree test`(root: TreeNode, expected: IntArray) {
-        val actual = FindModeInBinarySearchTree().invoke(root)
+        val actual = strategy(root)
         assertArrayEquals(actual, expected)
     }
 }
+
+class FindModeInBinarySearchTreeDFSTest : FindModeInBinarySearchTreeTest<FindModeInBinarySearchTree>(DFS)
+class FindModeInBinarySearchTreeIterativeDFSTest :
+    FindModeInBinarySearchTreeTest<FindModeInBinarySearchTree>(IterativeDFS)
+
+class FindModeInBinarySearchBFSTest : FindModeInBinarySearchTreeTest<FindModeInBinarySearchTree>(BFS)
+class FindModeInBinarySearchDFSListTest : FindModeInBinarySearchTreeTest<FindModeInBinarySearchTree>(DFSList)
+
+class FindModeInBinarySearchDFSArrayTest : FindModeInBinarySearchTreeTest<FindModeInBinarySearchTree>(DFSArray)
+class FindModeInBinarySearchMorrisTraversalTest :
+    FindModeInBinarySearchTreeTest<FindModeInBinarySearchTree>(MorrisTraversal)
