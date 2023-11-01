@@ -27,7 +27,7 @@ mockito = "3.12.4"
 mockito_kotlin = "2.2.0"
 logback = "1.2.11"
 junit_benchmarks = "0.7.2"
-hamcrest = "2.2"
+hamcrest = "2.2"        # https://hamcrest.org/JavaHamcrest/distributables
 mockk = "1.12.4"
 
 [libraries]
