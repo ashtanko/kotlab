@@ -1,7 +1,7 @@
 [versions]
 coroutines = "1.7.3"    # https://github.com/Kotlin/kotlinx.coroutines
 junit = "5.10.0"        # https://junit.org/junit5/
-kotlin = "1.9.10"       # https://github.com/JetBrains/kotlin
+kotlin = "1.9.20"       # https://github.com/JetBrains/kotlin
 detekt = "1.23.1"       # https://github.com/detekt/detekt
 dokka = "1.8.20"        # https://github.com/Kotlin/dokka
 spotless = "6.22.0"     # https://github.com/diffplug/spotless
