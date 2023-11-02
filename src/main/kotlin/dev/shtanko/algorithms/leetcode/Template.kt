@@ -17,7 +17,8 @@
 package dev.shtanko.algorithms.leetcode
 
 /**
- * TODO
+ * Template title
+ * @see <a href="<link>">Source</a>
  */
 fun interface Template {
     operator fun invoke(): Int
