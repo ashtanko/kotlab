@@ -1,6 +1,6 @@
 ## Algorithms implemented in Kotlin (for education reasons)
 
-[![Build](https://github.com/ashtanko/kotlab/actions/workflows/ci.yml/badge.svg)](https://github.com/ashtanko/kotlab/actions/workflows/ci.yml)
+[![Build](https://github.com/ashtanko/kotlab/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ashtanko/kotlab/actions/workflows/build.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/ashtanko/kotlab/badge?s=1290c19502114b2413b119de774f8c596d0e4953)](https://www.codefactor.io/repository/github/ashtanko/kotlab)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth?ref=badge_shield)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
