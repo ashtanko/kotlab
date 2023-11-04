@@ -16,7 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
-// Build an Array With Stack Operations
+/**
+ * 1441. Build an Array With Stack Operations
+ * @see <a href="https://leetcode.com/problems/build-an-array-with-stack-operations">Source</a>
+ */
 class BuildArrayWithStackOperations {
 
     operator fun invoke(target: IntArray, n: Int): MutableList<String> {
