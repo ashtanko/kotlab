@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.interview
 
-import dev.shtanko.algorithms.leetcode.DECIMAL
+import dev.shtanko.algorithms.DECIMAL
 import java.util.Stack
 
 internal class Node(var data: Int) {

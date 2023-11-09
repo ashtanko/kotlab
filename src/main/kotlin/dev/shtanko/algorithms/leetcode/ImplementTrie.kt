@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 interface Trie {
     fun insert(word: String)
 

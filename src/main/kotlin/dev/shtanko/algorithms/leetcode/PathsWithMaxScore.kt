@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1301. Number of Paths with Max Score
  * @see <a href="https://leetcode.com/problems/number-of-paths-with-max-score/">Source</a>

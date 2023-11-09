@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1397. Find All Good Strings
  * @see <a href="https://leetcode.com/problems/find-all-good-strings/">Source</a>

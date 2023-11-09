@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * Verifying an Alien Dictionary
  * @see <a href="https://leetcode.com/problems/verifying-an-alien-dictionary/">Source</a>

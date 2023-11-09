@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
 import java.lang.Character.isDigit
 
 /**

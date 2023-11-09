@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 fun Int.subtractProductAndSum(): Int {
     var n = this
     var sum = 0

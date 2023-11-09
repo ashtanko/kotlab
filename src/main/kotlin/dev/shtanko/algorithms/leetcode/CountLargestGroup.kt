@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 private const val MAX_ARR_SIZE = 37
 
 fun Int.countLargestGroup(): Int {

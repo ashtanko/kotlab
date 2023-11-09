@@ -28,31 +28,41 @@ fun interface ValidPartition {
  * Approach 1: Top-Down Dynamic Programming
  */
 class ValidPartitionTopDown : ValidPartition {
+    // Memoization map to store the results of subproblems
     private val memo: MutableMap<Int, Boolean> = HashMap()
 
+    // Overriding the invoke operator to implement the top-down approach
     override operator fun invoke(nums: IntArray): Boolean {
         val n = nums.size
+        // Base case: An empty array is considered a valid partition
         memo[-1] = true
         return prefixIsValid(nums, n - 1)
     }
 
     // Determine if the prefix array nums[0 ~ i] has a valid partition
     private fun prefixIsValid(nums: IntArray, i: Int): Boolean {
+        // Check if the result for the current index is already memoized
         if (memo.containsKey(i)) {
             return memo[i]!!
         }
+
         var ans = false
 
-        // Check 3 possibilities
+        // Check the three possibilities for a valid partition
         if (i > 0 && nums[i] == nums[i - 1]) {
+            // Case 1: Two consecutive equal elements
             ans = ans or prefixIsValid(nums, i - 2)
         }
         if (i > 1 && nums[i] == nums[i - 1] && nums[i - 1] == nums[i - 2]) {
+            // Case 2: Three consecutive equal elements
             ans = ans or prefixIsValid(nums, i - 3)
         }
         if (i > 1 && nums[i] == nums[i - 1] + 1 && nums[i - 1] == nums[i - 2] + 1) {
+            // Case 3: Three consecutive elements in increasing order
             ans = ans or prefixIsValid(nums, i - 3)
         }
+
+        // Memoize the result to avoid redundant computations
         memo[i] = ans
         return ans
     }

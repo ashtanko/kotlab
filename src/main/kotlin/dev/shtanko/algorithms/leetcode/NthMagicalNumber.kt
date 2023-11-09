@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
 import dev.shtanko.algorithms.math.gcd
 import kotlin.math.ceil
 import kotlin.math.min

@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 823. Binary Trees With Factors
  * @see <a href="https://leetcode.com/problems/binary-trees-with-factors">Source</a>

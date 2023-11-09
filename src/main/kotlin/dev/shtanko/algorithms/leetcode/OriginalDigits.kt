@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 private const val OUT_ARRAY_SIZE = 10
 
 fun originalDigits(s: String): String {

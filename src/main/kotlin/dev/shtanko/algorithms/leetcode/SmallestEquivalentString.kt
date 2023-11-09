@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 1061. Lexicographically The Smallest Equivalent String
  * @see <a href="https://leetcode.com/problems/lexicographically-smallest-equivalent-string/">Source</a>

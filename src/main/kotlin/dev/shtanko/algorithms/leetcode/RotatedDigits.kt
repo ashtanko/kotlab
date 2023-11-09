@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 /**
  * Rotated Digits
  * @see <a href="https://leetcode.com/problems/rotated-digits/">Source</a>

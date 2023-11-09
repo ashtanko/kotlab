@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 /**
  * 2. Add Two Numbers
  * @see <a href="https://leetcode.com/problems/add-two-numbers">Source</a>

@@ -41,14 +41,14 @@ class StringTransformer(private val ringBuffer: RingBuffer) {
      *
      * For example:
      * The first chunk:
-     * [0, id, n1..n[CHUNK_SIZE]]
+     * [0, id, n1…n[CHUNK_SIZE]]
      * The second chunk:
-     * [0, id, n1..n[CHUNK_SIZE]]
+     * [0, id, n1…n[CHUNK_SIZE]]
      * The last one:
-     * [1, id, n1..n[CHUNK_SIZE]]
+     * [1, id, n1…n[CHUNK_SIZE]]
      *
      * returns:
-     * [[0, id, n1..n[CHUNK_SIZE]], [0, id, n1..n[CHUNK_SIZE]], [1, id, n1..n[CHUNK_SIZE]]]
+     * [[0, id, n1…n[CHUNK_SIZE]], [0, id, n1…n[CHUNK_SIZE]], [1, id, n1…n[CHUNK_SIZE]]]
      *
      */
     fun transform(string: String): List<ByteArray> {

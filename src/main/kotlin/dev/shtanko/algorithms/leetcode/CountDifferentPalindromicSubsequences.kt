@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 730. Count Different Palindromic Subsequences
  * @see <a href="https://leetcode.com/problems/count-different-palindromic-subsequences/">Source</a>

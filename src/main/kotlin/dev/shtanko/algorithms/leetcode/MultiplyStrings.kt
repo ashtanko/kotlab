@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 /**
  * Multiply Strings.
  * @see <a href="https://leetcode.com/problems/multiply-strings/">Source</a>

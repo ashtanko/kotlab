@@ -16,7 +16,7 @@
 
 package dev.shtanko.utils
 
-import dev.shtanko.algorithms.leetcode.BYTE
+import dev.shtanko.algorithms.BYTE
 import java.text.CharacterIterator
 import java.text.StringCharacterIterator
 import java.util.Locale

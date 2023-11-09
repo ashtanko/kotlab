@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1444. Number of Ways of Cutting a Pizza
  * @see <a href="https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/">Source</a>

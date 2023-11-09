@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1814. Count Nice Pairs in an Array
  * @see <a href="https://leetcode.com/problems/count-nice-pairs-in-an-array">Source</a>

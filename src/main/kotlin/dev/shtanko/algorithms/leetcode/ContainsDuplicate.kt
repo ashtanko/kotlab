@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.OCTAL
 import kotlin.experimental.and
 import kotlin.experimental.or
 

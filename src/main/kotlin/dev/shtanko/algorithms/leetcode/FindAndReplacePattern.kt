@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * Find and Replace Pattern
  * @see <a href="https://leetcode.com/problems/find-and-replace-pattern/">Source</a>

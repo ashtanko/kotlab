@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * Prefix and Suffix Search
  * @see <a href="https://leetcode.com/problems/prefix-and-suffix-search/">Source</a>

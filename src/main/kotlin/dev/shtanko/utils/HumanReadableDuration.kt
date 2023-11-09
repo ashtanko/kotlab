@@ -16,7 +16,7 @@
 
 package dev.shtanko.utils
 
-import dev.shtanko.algorithms.leetcode.MILLISECOND
+import dev.shtanko.algorithms.MILLISECOND
 import java.util.concurrent.TimeUnit
 
 fun Long.toHumanReadableDuration(): String {

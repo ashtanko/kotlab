@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 /**
  * Given a 32-bit signed integer, reverse digits of an integer.
  */

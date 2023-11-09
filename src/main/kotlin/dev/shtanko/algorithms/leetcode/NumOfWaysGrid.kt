@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1411. Number of Ways to Paint N × 3 Grid
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid">Source</a>

@@ -16,6 +16,13 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+import dev.shtanko.algorithms.EPSILON
+import dev.shtanko.algorithms.E_9
+import dev.shtanko.algorithms.HEXADECIMAL
+import dev.shtanko.algorithms.MOD
+import dev.shtanko.algorithms.OCTAL
+import dev.shtanko.algorithms.SHUFFLE_CONST
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

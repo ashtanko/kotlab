@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 fun String.atoi(): Int {
     if (this.isEmpty()) return 0 // or throw NumberFormatException()
     val str = this.trim()

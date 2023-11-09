@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 2531. Make Number of Distinct Characters Equal
  * @see <a href="https://leetcode.com/problems/make-number-of-distinct-characters-equal/">Source</a>

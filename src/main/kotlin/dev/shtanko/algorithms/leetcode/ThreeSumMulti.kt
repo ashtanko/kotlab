@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 private const val LIMIT = 100
 private const val ARR_SIZE = LIMIT + 1
 

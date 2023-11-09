@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
 import java.util.Arrays
 import kotlin.math.max
 

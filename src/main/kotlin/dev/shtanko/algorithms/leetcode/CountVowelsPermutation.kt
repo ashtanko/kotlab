@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1220. Count Vowels Permutation
  * @see <a href="https://leetcode.com/problems/count-vowels-permutation/">Source</a>

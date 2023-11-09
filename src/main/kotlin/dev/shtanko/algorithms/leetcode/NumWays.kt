@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1639. Number of Ways to Form a Target String Given a Dictionary
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary">

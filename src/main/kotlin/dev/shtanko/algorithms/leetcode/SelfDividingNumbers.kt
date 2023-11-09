@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 fun Pair<Int, Int>.selfDividingNumbers(): List<Int> {
     val list: MutableList<Int> = ArrayList()
     var i = first

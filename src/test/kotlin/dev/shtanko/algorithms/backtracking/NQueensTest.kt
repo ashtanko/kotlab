@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.algorithms.backtracking
 
-import dev.shtanko.algorithms.leetcode.AverageOfSubtreeStrategy.DFS
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -25,34 +24,37 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class AverageOfSubtreeTest<out T : AverageOfSubtree>(private val strategy: T) {
+abstract class NQueensTest<out T : NQueens>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                TreeNode(4).apply {
-                    left = TreeNode(8).apply {
-                        left = TreeNode(0)
-                        right = TreeNode(1)
-                    }
-                    right = TreeNode(5).apply {
-                        right = TreeNode(6)
-                    }
-                },
-                5,
+                4,
+                listOf(
+                    listOf(".Q..", "...Q", "Q...", "..Q."),
+                    listOf("..Q.", "Q...", "...Q", ".Q.."),
+                ),
             ),
             Arguments.of(
-                TreeNode(1),
                 1,
+                listOf(listOf("Q")),
+            ),
+            Arguments.of(
+                2,
+                emptyList<List<String>>(),
+            ),
+            Arguments.of(
+                0,
+                listOf(emptyList<List<String>>()),
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `average of subtree test`(root: TreeNode?, expected: Int) {
-        val actual = strategy(root)
+    fun `n queens test`(n: Int, expected: List<List<String>>) {
+        val actual = strategy(n)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class AverageOfSubtreeDFSTest : AverageOfSubtreeTest<AverageOfSubtree>(DFS)
+class NQueensSolutionTest : NQueensTest<NQueens>(NQueensSolution())

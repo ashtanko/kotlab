@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 648. Replace Words
  * @see <a href="https://leetcode.com/problems/replace-words/">Source</a>

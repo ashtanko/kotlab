@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.algorithms
 
 const val DECIMAL = 10
 const val OCTAL = 8
@@ -27,3 +27,5 @@ const val HALF_OF_BYTE = 256
 const val MILLISECOND = 1000L
 const val EPSILON = 1e-5
 const val ALPHABET_LETTERS_COUNT = 26
+const val QUEEN = 'Q'
+const val DOT = '.'

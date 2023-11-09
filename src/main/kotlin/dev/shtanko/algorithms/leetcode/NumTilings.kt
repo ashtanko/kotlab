@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 790. Domino and Tromino Tiling
  * @see <a href="https://leetcode.com/problems/domino-and-tromino-tiling/">Source</a>

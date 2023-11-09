@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 fun Array<String>.countCharacters(chars: String): Int {
     val arr = IntArray(ALPHABET_LETTERS_COUNT)
     for (ch in chars.toCharArray()) {

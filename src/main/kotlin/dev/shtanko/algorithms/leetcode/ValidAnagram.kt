@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 242. Valid Anagram
  * @see <a href="https://leetcode.com/problems/valid-anagram/">Source</a>

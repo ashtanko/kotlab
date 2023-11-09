@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 2550. Count Collisions of Monkeys on a Polygon
  * @see <a href="https://leetcode.com/problems/count-collisions-of-monkeys-on-a-polygon">Source</a>

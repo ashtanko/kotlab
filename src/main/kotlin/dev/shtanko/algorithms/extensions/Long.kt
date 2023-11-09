@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.extensions
 
-import dev.shtanko.algorithms.leetcode.DECIMAL
+import dev.shtanko.algorithms.DECIMAL
 
 /**
  * Check self is a super palindrome

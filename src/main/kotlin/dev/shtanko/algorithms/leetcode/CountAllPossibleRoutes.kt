@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
 import java.util.Arrays
 import kotlin.math.abs
 

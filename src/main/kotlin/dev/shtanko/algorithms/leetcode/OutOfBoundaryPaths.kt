@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 576. Out of Boundary Paths
  * @see <a href="https://leetcode.com/problems/out-of-boundary-paths/">Source</a>

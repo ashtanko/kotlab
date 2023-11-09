@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 336. Palindrome Pairs
  * @see <a href="https://leetcode.com/problems/palindrome-pairs/">Source</a>

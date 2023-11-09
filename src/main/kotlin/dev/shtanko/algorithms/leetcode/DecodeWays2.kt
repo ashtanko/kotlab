@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
 import dev.shtanko.algorithms.extensions.lessThanZero
 
 // TODO Rename constants

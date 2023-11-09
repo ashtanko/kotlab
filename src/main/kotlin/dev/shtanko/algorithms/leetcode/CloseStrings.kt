@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 1657. Determine if Two Strings Are Close
  * @see <a href="https://leetcode.com/problems/determine-if-two-strings-are-close/">Source</a>

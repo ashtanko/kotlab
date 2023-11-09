@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1711. Count Good Meals
  * @see <a href="https://leetcode.com/problems/count-good-meals/">Source</a>

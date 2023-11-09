@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 168. Excel Sheet Column Title
  * @see <a href="https://leetcode.com/problems/excel-sheet-column-title/">Source</a>

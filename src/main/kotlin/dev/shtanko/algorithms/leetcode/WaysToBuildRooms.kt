@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 1916. Count Ways to Build Rooms in an Ant Colony
  * @see <a href="https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/">Source</a>

@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 /**
  * 1215. Stepping Numbers
  * https://leetcode.com/problems/stepping-numbers/

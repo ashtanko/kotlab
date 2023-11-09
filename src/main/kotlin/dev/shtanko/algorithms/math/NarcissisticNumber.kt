@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.math
 
-import dev.shtanko.algorithms.leetcode.DECIMAL
+import dev.shtanko.algorithms.DECIMAL
 import kotlin.math.pow
 
 interface NarcissisticNumber {

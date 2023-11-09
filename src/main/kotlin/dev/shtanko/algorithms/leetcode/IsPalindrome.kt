@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 /**
  * Complexity Analysis
  * Time complexity : O(\log_{10}(n))O(log10(n)).

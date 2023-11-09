@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.MOD
+
 /**
  * 940. Distinct Subsequences II
  * @see <a href="https://leetcode.com/problems/distinct-subsequences-ii/">Source</a>

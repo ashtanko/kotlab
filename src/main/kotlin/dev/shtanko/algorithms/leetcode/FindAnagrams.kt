@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 438. Find All Anagrams in a String
  * @see <a href="https://leetcode.com/problems/find-all-anagrams-in-a-string/">Source</a>

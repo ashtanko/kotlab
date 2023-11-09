@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.HALF_OF_BYTE
+
 /**
  * 79. Word Search
  * @see <a href="https://leetcode.com/problems/word-search/">Source</a>

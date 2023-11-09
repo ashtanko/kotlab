@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 2306. Naming a Company
  * @see <a href="https://leetcode.com/problems/naming-a-company/">Source</a>

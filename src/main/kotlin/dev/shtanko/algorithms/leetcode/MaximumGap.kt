@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+
 /**
  * Maximum Gap
  * @see <a href="https://leetcode.com/problems/maximum-gap/">Source</a>

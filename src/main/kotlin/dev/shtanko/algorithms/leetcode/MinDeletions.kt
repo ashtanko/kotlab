@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 1647. Minimum Deletions to Make Character Frequencies Unique
  * @see <a href="https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique">Source</a>

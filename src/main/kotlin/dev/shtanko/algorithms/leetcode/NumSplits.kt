@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 1525. Number of Good Ways to Split a String
  * @see <a href="https://leetcode.com/problems/number-of-good-ways-to-split-a-string/">Source</a>

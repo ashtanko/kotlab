@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 1941. Check if All Characters Have Equal Number of Occurrences
  * link https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/

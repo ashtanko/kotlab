@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+
 /**
  * 2328. Number of Increasing Paths in a Grid
  * @see <a href="https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/">Source</a>

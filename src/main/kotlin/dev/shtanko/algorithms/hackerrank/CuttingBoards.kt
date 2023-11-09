@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.hackerrank
 
-import dev.shtanko.algorithms.leetcode.MOD
+import dev.shtanko.algorithms.MOD
 
 object CuttingBoards {
 

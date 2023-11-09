@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 2262. Total Appeal of A String
  * @see <a href="https://leetcode.com/problems/total-appeal-of-a-string/">Source</a>

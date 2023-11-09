@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.HALF_OF_BYTE
+
 /**
  * 93. Restore IP Addresses
  * @see <a href="https://leetcode.com/problems/restore-ip-addresses/">Source</a>
