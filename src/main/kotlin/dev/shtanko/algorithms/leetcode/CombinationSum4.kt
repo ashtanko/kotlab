@@ -32,20 +32,39 @@ fun interface CombinationSum4 {
  */
 class CombinationSum4TopDown : CombinationSum4 {
 
+    // Memoization map to store previously calculated results for specific remain values
     private val memo: MutableMap<Int, Int> = HashMap()
 
+    // Overridden invoke function to conform to the CombinationSum4 interface
     override operator fun invoke(nums: IntArray, target: Int): Int {
+        // Delegate the computation to the combs function
         return combs(nums, target)
     }
 
+    // Recursive function to calculate the number of combinations for a given remain value
     private fun combs(nums: IntArray, remain: Int): Int {
+        // Base case: if remain is 0, there is one valid combination
         if (remain == 0) return 1
+
+        // Check if the result for the current remain value is already memoized
         if (memo.containsKey(remain)) return memo.getOrDefault(remain, -1)
+
+        // Initialize the result
         var result = 0
+
+        // Iterate through each number in the given array
         for (num in nums) {
-            if (remain - num >= 0) result += combs(nums, remain - num)
+            // Check if subtracting the current number is a valid option
+            if (remain - num >= 0) {
+                // Recursively calculate combinations for the new remain value
+                result += combs(nums, remain - num)
+            }
         }
+
+        // Memoize the result for the current remain value
         memo[remain] = result
+
+        // Return the calculated result
         return result
     }
 }

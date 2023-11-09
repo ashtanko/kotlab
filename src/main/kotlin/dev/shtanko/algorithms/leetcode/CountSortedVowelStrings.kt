@@ -72,17 +72,42 @@ class CountSortedVowelRecursion : CountSortedVowelStrings {
  * Space Complexity: O(n).
  */
 class CountSortedVowelTopDynamic : CountSortedVowelStrings {
+
+    // Override the invoke operator function to calculate and return the count of sorted vowel strings
     override operator fun invoke(n: Int): Int {
+        // Initialize a memoization array to store computed values for dynamic programming
         val memo = Array(n + 1) { IntArray(VOWEL_COUNT + 1) }
+
+        // Call the helper function to perform the actual calculation using dynamic programming
         return countVowelStringUtil(n, VOWEL_COUNT, memo)
     }
 
+    // Helper function to recursively calculate the count of sorted vowel strings
     private fun countVowelStringUtil(n: Int, vowels: Int, memo: Array<IntArray>): Int {
+        // Base case: If n is 1, return the count of vowels
         if (n == 1) return vowels
+
+        // Base case: If there is only 1 vowel, return 1
         if (vowels == 1) return 1
+
+        // If the result for the current parameters is already computed, return it
         if (memo[n][vowels] != 0) return memo[n][vowels]
-        val res = countVowelStringUtil(n - 1, vowels, memo) + countVowelStringUtil(n, vowels - 1, memo)
+
+        // Calculate the result for the current state (length of string 'n' and remaining vowels 'vowels').
+
+        // Recursive call 1: Consider the case where a consonant is added to the end of the string.
+        val resultConsonant = countVowelStringUtil(n - 1, vowels, memo)
+
+        // Recursive call 2: Consider the case where a vowel is added to the end of the string.
+        val resultVowel = countVowelStringUtil(n, vowels - 1, memo)
+
+        // Combine the results of the two recursive calls to get the total count of sorted vowel strings.
+        val res = resultConsonant + resultVowel
+
+        // Store the computed result in the memoization array
         memo[n][vowels] = res
+
+        // Return the final result
         return res
     }
 }
