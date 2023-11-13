@@ -24,8 +24,5 @@ fun ClosedRange<Char>.randomString(length: Int) =
         .joinToString("")
 
 fun Char.isVowel(): Boolean {
-    val ae = this == 'a' || this == 'e'
-    val io = this == 'i' || this == 'o'
-    val iou = io || this == 'u'
-    return ae || iou
+    return lowercaseChar() in setOf('a', 'e', 'i', 'o', 'u')
 }

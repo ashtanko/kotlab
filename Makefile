@@ -18,7 +18,7 @@ jacoco:
 
 # Run code style check + update the README.md file in accordance with the detekt report
 default:
-	make check && make md
+	make spotless && make check && make md
 
 # Build the project
 run:

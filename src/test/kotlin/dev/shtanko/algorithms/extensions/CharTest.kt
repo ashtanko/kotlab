@@ -47,6 +47,15 @@ internal class CharTest {
             Arguments.of('q', false),
             Arguments.of('z', false),
             Arguments.of('x', false),
+            Arguments.of('A', true),
+            Arguments.of('E', true),
+            Arguments.of('I', true),
+            Arguments.of('O', true),
+            Arguments.of('U', true),
+            Arguments.of('R', false),
+            Arguments.of('Q', false),
+            Arguments.of('Z', false),
+            Arguments.of('X', false),
         )
     }
 

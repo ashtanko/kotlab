@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms
+package dev.shtanko.algorithms.bitwise
 
-const val DECIMAL = 10
-const val OCTAL = 8
-const val HEXADECIMAL = 16
-const val SHUFFLE_CONST = 0xFFFF
-const val MOD = 1_000_000_007
-const val E_9 = 1e9
-const val BYTE = 1024
-const val HALF_OF_BYTE = 256
-const val MILLISECOND = 1000L
-const val EPSILON = 1e-5
-const val ALPHABET_LETTERS_COUNT = 26
-const val HALF = 0.5f
-const val THREE_HALVES = 1.5F
-const val QUEEN = 'Q'
-const val DOT = '.'
+import dev.shtanko.algorithms.HALF
+import dev.shtanko.algorithms.THREE_HALVES
+
+// responsible for the fast approximation
+private const val MAGIC_NUMBER = 0x5f3759df
+
+fun fastInverseSquareRoot(number: Float): Float {
+    var i: Long
+    val x2 = number * HALF
+    var y = number
+    i = java.lang.Float.floatToIntBits(y).toLong()
+    i = MAGIC_NUMBER - (i shr 1)
+    y = java.lang.Float.intBitsToFloat(i.toInt())
+    y *= (THREE_HALVES - (x2 * y * y)) // 1st iteration
+    return y
+}
