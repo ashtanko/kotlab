@@ -17,39 +17,33 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class GetSumAbsoluteDifferencesTest<out T : GetSumAbsoluteDifferences>(private val strategy: T) {
+abstract class MinPairSumTest<out T : MinPairSum>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(2, 3, 5),
-                intArrayOf(4, 3, 5),
+                intArrayOf(3, 5, 2, 3),
+                7,
             ),
             Arguments.of(
-                intArrayOf(1, 4, 6, 8, 10),
-                intArrayOf(24, 15, 13, 15, 21),
+                intArrayOf(3, 5, 4, 2, 4, 6),
+                8,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `get sum absolute differences test`(nums: IntArray, expected: IntArray) {
-        val actual = strategy.invoke(nums)
-        assertThat(actual).isEqualTo(expected)
+    fun `min pair sum test`(nums: IntArray, expected: Int) {
+        val actual = strategy(nums)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class GetSumAbsoluteDifferencesPrefixSumTest : GetSumAbsoluteDifferencesTest<GetSumAbsoluteDifferences>(
-    GetSumAbsoluteDifferencesPrefixSum(),
-)
-
-class GetSumAbsoluteDifferencesPrefixSum2Test : GetSumAbsoluteDifferencesTest<GetSumAbsoluteDifferences>(
-    GetSumAbsoluteDifferencesPrefixSum2(),
-)
+class MinPairSumSortingTest : MinPairSumTest<MinPairSum>(MinPairSumSorting())

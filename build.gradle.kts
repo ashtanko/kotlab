@@ -15,13 +15,16 @@
  */
 
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import java.util.Locale
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
 
 val projectJvmTarget = "17"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktLintConfig: Configuration by configurations.creating
 val isK2Enabled = true
 val k2CompilerArg = if (isK2Enabled) listOf("-Xuse-k2") else emptyList()
+val outputDir = "${project.layout.buildDirectory}/reports/ktlint/"
+val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
+val kotlinVersion = KOTLIN_1_9
 
 fun isLinux(): Boolean {
     val osName = System.getProperty("os.name").lowercase()
@@ -57,9 +60,6 @@ repositories {
 application {
     mainClass.set("link.kotlin.scripts.Application")
 }
-
-val outputDir = "${project.layout.buildDirectory}/reports/ktlint/"
-val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
 
 val ktlintCheck by tasks.creating(JavaExec::class) {
     inputs.files(inputFiles)
@@ -123,8 +123,8 @@ subprojects {
 tasks {
     compileKotlin {
         compilerOptions {
-            apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9)
-            languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9)
+            apiVersion.set(kotlinVersion)
+            languageVersion.set(kotlinVersion)
         }
     }
     jacocoTestCoverageVerification {
@@ -175,11 +175,10 @@ tasks {
     jacocoTestReport {
         dependsOn(test)
         reports {
-            html.required.set(true)
-            xml.required.set(true)
-            // xml.outputLocation.set(file("$buildDir/reports/jacoco/report.xml"))
+            listOf(
+                html, xml, csv,
+            ).map { it.required }.forEach { it.set(true) }
         }
-        // executionData(file("build/jacoco/test.exec"))
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
@@ -197,17 +196,22 @@ tasks {
         jvmTarget = projectJvmTarget
 
         setSource(files("src/main/kotlin", "src/test/kotlin"))
-        include("**/*.kt")
-        include("**/*.kts")
-        exclude(".*/resources/.*")
-        exclude(".*/build/.*")
-        exclude("/versions.gradle.kts")
+        setOf(
+            "**/*.kt",
+            "**/*.kts",
+            ".*/resources/.*",
+            ".*/build/.*",
+            "/versions.gradle.kts",
+        ).forEach {
+            include(it)
+        }
 
         reports {
-            xml.required.set(true)
-            html.required.set(true)
-            txt.required.set(true)
-            md.required.set(true)
+            reports.apply {
+                listOf(xml, html, txt, md).map { it.required }.forEach {
+                    it.set(true)
+                }
+            }
         }
     }
 
@@ -235,43 +239,45 @@ tasks {
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlin.reflect)
-    implementation(libs.kotlin.coroutines)
-    implementation(libs.kotlin.coroutines.slf4j)
-    implementation(libs.kotlin.coroutines.debug)
-    implementation(libs.slf4j)
-    implementation(libs.rxjava)
-    implementation(libs.rxkotlin)
-    implementation(libs.lincheck)
-    implementation(libs.kotlin.serialization.json)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.mock)
-    implementation(libs.retrofit.converter)
-    implementation(libs.okhttp)
+    libs.apply {
+        implementation(kotlin.stdlib)
+        implementation(kotlin.reflect)
+        implementation(kotlin.coroutines)
+        implementation(kotlin.coroutines.slf4j)
+        implementation(kotlin.coroutines.debug)
+        implementation(slf4j)
+        implementation(rxjava)
+        implementation(rxkotlin)
+        implementation(lincheck)
+        implementation(kotlin.serialization.json)
+        implementation(retrofit)
+        implementation(retrofit.mock)
+        implementation(retrofit.converter)
+        implementation(okhttp)
 
-    ktLintConfig(libs.ktlint)
+        ktLintConfig(ktlint)
 
-    testImplementation(libs.mockk)
-    testImplementation(libs.junit)
-    testImplementation(libs.lincheck)
-    testApi(libs.kotlin.coroutines.core)
-    testImplementation(libs.kotlin.coroutines.test)
-    testImplementation(libs.kotlintest.core)
-    testImplementation(libs.kotlintest.junit5)
-    testImplementation(libs.assertj)
-    testImplementation(libs.hamcrest)
-    testImplementation(libs.mockk)
-    testImplementation(libs.mockito)
-    testImplementation(libs.mockito.kotlin)
-    testImplementation(libs.logback)
-    testImplementation(libs.logback.classic)
-    testImplementation(libs.rxjava)
-    testImplementation(libs.junit.benchmarks)
-    testImplementation(libs.kotlin.serialization.json)
-    testImplementation(libs.kotest)
-    testImplementation(libs.kotest.assertions)
-    testImplementation(libs.kotest.property)
-    testImplementation(libs.okhttp.mockwebserver)
+        testImplementation(mockk)
+        testImplementation(junit)
+        testImplementation(lincheck)
+        testApi(kotlin.coroutines.core)
+        testImplementation(kotlin.coroutines.test)
+        testImplementation(kotlintest.core)
+        testImplementation(kotlintest.junit5)
+        testImplementation(assertj)
+        testImplementation(hamcrest)
+        testImplementation(mockk)
+        testImplementation(mockito)
+        testImplementation(mockito.kotlin)
+        testImplementation(logback)
+        testImplementation(logback.classic)
+        testImplementation(rxjava)
+        testImplementation(junit.benchmarks)
+        testImplementation(kotlin.serialization.json)
+        testImplementation(kotest)
+        testImplementation(kotest.assertions)
+        testImplementation(kotest.property)
+        testImplementation(okhttp.mockwebserver)
+    }
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }

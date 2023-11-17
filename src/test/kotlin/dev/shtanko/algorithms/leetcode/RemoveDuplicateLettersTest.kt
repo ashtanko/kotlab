@@ -40,7 +40,7 @@ abstract class RemoveDuplicateLettersTest<out T : RemoveDuplicateLetters>(privat
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `template test`(s: String, expected: String) {
+    fun `remove duplicate letters test`(s: String, expected: String) {
         val actual = strategy(s)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
