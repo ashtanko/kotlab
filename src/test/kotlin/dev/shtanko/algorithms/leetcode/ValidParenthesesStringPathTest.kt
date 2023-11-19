@@ -50,7 +50,7 @@ abstract class ValidParenthesesStringPathTest<out T : ValidParenthesesStringPath
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `has valid path test`(grid: Array<CharArray>, expected: Boolean) {
-        val actual = strategy.hasValidPath(grid)
+        val actual = strategy.invoke(grid)
         assertThat(actual).isEqualTo(expected)
     }
 }

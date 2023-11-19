@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/all-possible-full-binary-trees/">Source</a>
  */
 fun interface AllPossibleFullBinaryTrees {
-    fun allPossibleFBT(n: Int): List<TreeNode?>
+    operator fun invoke(n: Int): List<TreeNode?>
 }
 
 class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
-    override fun allPossibleFBT(n: Int): List<TreeNode?> {
+    override fun invoke(n: Int): List<TreeNode?> {
         val ret: MutableList<TreeNode> = ArrayList()
         if (n % 2 == 0) {
             return ret
@@ -73,15 +73,15 @@ class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
 }
 
 class AllPossibleFullBinaryTreesRecursive : AllPossibleFullBinaryTrees {
-    override fun allPossibleFBT(n: Int): List<TreeNode?> {
+    override fun invoke(n: Int): List<TreeNode?> {
         val ret: MutableList<TreeNode> = ArrayList()
         if (1 == n) {
             ret.add(TreeNode(0))
         } else if (n % 2 != 0) {
             var i = 2
             while (i <= n) {
-                val leftBranch = allPossibleFBT(i - 1)
-                val rightBranch = allPossibleFBT(n - i)
+                val leftBranch = invoke(i - 1)
+                val rightBranch = invoke(n - i)
                 val leftIter = leftBranch.iterator()
                 while (leftIter.hasNext()) {
                     val left = leftIter.next()

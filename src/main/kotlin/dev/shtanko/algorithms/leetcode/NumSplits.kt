@@ -28,8 +28,8 @@ fun interface NumSplits {
 
 class NumSplitsSplitPointer : NumSplits {
     override operator fun invoke(str: String): Int {
-        val l = IntArray(ALPHABET_LETTERS_COUNT) // TODO rename
-        val r = IntArray(ALPHABET_LETTERS_COUNT) // TODO rename
+        val l = IntArray(ALPHABET_LETTERS_COUNT)
+        val r = IntArray(ALPHABET_LETTERS_COUNT)
         var dL = 0
         var dR = 0
         var res = 0

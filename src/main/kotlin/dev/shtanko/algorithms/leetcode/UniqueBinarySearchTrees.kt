@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/unique-binary-search-trees/">Source</a>
  */
 fun interface UniqueBinarySearchTrees {
-    fun numTrees(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 /**
@@ -30,7 +30,7 @@ fun interface UniqueBinarySearchTrees {
  * Space complexity O(N)
  */
 class UniqueBSTDP : UniqueBinarySearchTrees {
-    override fun numTrees(n: Int): Int {
+    override fun invoke(n: Int): Int {
         val g = IntArray(n + 1)
         g[0] = 1
         g[1] = 1
@@ -50,7 +50,7 @@ class UniqueBSTDP : UniqueBinarySearchTrees {
  * Space complexity : O(1)
  */
 class UniqueBSTDeduction : UniqueBinarySearchTrees {
-    override fun numTrees(n: Int): Int {
+    override fun invoke(n: Int): Int {
         // Note: we should use long here instead of int, otherwise overflow
         var c: Long = 1
         for (i in 0 until n) {

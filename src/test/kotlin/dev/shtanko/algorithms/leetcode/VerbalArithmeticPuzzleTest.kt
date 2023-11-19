@@ -68,7 +68,7 @@ abstract class VerbalArithmeticPuzzleTest<out T : VerbalArithmeticPuzzle>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is solvable test`(words: Array<String>, result: String, expected: Boolean) {
-        val actual = strategy.isSolvable(words, result)
+        val actual = strategy.invoke(words, result)
         assertThat(actual).isEqualTo(expected)
     }
 }

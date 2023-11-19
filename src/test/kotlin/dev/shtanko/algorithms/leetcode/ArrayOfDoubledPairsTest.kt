@@ -49,7 +49,7 @@ abstract class ArrayOfDoubledPairsTest<out T : ArrayOfDoubledPairs>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `can reorder doubled test`(arr: IntArray, expected: Boolean) {
-        val actual = strategy.canReorderDoubled(arr)
+        val actual = strategy.invoke(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }

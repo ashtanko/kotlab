@@ -23,11 +23,11 @@ import dev.shtanko.algorithms.DECIMAL
  * https://leetcode.com/problems/stepping-numbers/
  */
 fun interface SteppingNumbers {
-    fun countSteppingNumbers(low: Int, high: Int): List<Int>
+    operator fun invoke(low: Int, high: Int): List<Int>
 }
 
 class SteppingNumbersBFS : SteppingNumbers {
-    override fun countSteppingNumbers(low: Int, high: Int): List<Int> {
+    override fun invoke(low: Int, high: Int): List<Int> {
         val list: MutableList<Int> = ArrayList()
 
         for (i in 0..9) {

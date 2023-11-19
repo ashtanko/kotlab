@@ -24,7 +24,7 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/two-sum-iv-input-is-a-bst/">Source</a>
  */
 fun interface TwoSum4 {
-    fun findTarget(root: TreeNode, k: Int): Boolean
+    operator fun invoke(root: TreeNode, k: Int): Boolean
 }
 
 /**
@@ -33,7 +33,7 @@ fun interface TwoSum4 {
  * Space complexity : O(n).
  */
 class TwoSum4HashSet : TwoSum4 {
-    override fun findTarget(root: TreeNode, k: Int): Boolean {
+    override fun invoke(root: TreeNode, k: Int): Boolean {
         val set: MutableSet<Int?> = HashSet()
         return find(root, k, set)
     }
@@ -52,7 +52,7 @@ class TwoSum4HashSet : TwoSum4 {
  * Space complexity : O(n).
  */
 class TwoSum4BFS : TwoSum4 {
-    override fun findTarget(root: TreeNode, k: Int): Boolean {
+    override fun invoke(root: TreeNode, k: Int): Boolean {
         val set: MutableSet<Int?> = HashSet()
         val queue: Queue<TreeNode> = LinkedList()
         queue.add(root)
@@ -77,7 +77,7 @@ class TwoSum4BFS : TwoSum4 {
  * Space complexity : O(n).
  */
 class TwoSum4BST : TwoSum4 {
-    override fun findTarget(root: TreeNode, k: Int): Boolean {
+    override fun invoke(root: TreeNode, k: Int): Boolean {
         val list: MutableList<Int> = ArrayList()
         inorder(root, list)
         var l = 0
@@ -99,7 +99,7 @@ class TwoSum4BST : TwoSum4 {
 }
 
 class TwoSum4DFS : TwoSum4 {
-    override fun findTarget(root: TreeNode, k: Int): Boolean {
+    override fun invoke(root: TreeNode, k: Int): Boolean {
         return dfs(root, root, k)
     }
 

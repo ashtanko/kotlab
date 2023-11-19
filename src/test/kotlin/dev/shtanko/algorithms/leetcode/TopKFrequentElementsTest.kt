@@ -43,7 +43,7 @@ abstract class TopKFrequentElementsTest<out T : TopKFrequentElements>(private va
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `top k frequent test`(nums: IntArray, k: Int, expected: IntArray) {
-        val actual = strategy.topKFrequent(nums, k)
+        val actual = strategy.invoke(nums, k)
         assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

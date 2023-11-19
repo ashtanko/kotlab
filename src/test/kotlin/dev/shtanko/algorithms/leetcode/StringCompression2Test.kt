@@ -48,7 +48,7 @@ abstract class StringCompression2Test<out T : StringCompression2>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `get length of optimal compression test`(s: String, k: Int, expected: Int) {
-        val actual = strategy.getLengthOfOptimalCompression(s, k)
+        val actual = strategy.invoke(s, k)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

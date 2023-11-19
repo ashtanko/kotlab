@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/maximum-xor-for-each-query/">Source</a>
  */
 fun interface MaximumXor {
-    fun getMaximumXor(nums: IntArray, maximumBit: Int): IntArray
+    operator fun invoke(nums: IntArray, maximumBit: Int): IntArray
 }
 
 class MaximumXorOnePass : MaximumXor {
-    override fun getMaximumXor(nums: IntArray, maximumBit: Int): IntArray {
+    override fun invoke(nums: IntArray, maximumBit: Int): IntArray {
         val n = nums.size
         val res = IntArray(n)
         var value = (1 shl maximumBit) - 1

@@ -61,7 +61,7 @@ abstract class ValidSudokuTest<out T : ValidSudoku>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is valid sudoku test`(board: Array<CharArray>, expected: Boolean) {
-        val actual = strategy.isValidSudoku(board)
+        val actual = strategy.invoke(board)
         assertThat(actual).isEqualTo(expected)
     }
 }

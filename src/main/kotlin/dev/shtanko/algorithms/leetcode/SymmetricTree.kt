@@ -24,11 +24,11 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/symmetric-tree/">Source</a>
  */
 fun interface SymmetricTree {
-    fun isSymmetric(root: TreeNode?): Boolean
+    operator fun invoke(root: TreeNode?): Boolean
 }
 
 class SymmetricTreeRecursive : SymmetricTree {
-    override fun isSymmetric(root: TreeNode?) = root.isSymmetricTree()
+    override fun invoke(root: TreeNode?) = root.isSymmetricTree()
 
     private fun TreeNode?.isSymmetricTree(): Boolean {
         if (this == null) return true
@@ -47,7 +47,7 @@ class SymmetricTreeRecursive : SymmetricTree {
 }
 
 class SymmetricTreeIterative : SymmetricTree {
-    override fun isSymmetric(root: TreeNode?): Boolean {
+    override fun invoke(root: TreeNode?): Boolean {
         if (root == null) return true
         val stack = Stack<TreeNode>()
         var left: TreeNode

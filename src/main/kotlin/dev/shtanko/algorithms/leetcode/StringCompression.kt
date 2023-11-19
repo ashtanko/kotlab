@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/string-compression/">Source</a>
  */
 fun interface StringCompression {
-    fun compress(chars: CharArray): Int
+    operator fun invoke(chars: CharArray): Int
 }
 
 class StringCompressionSimple : StringCompression {
-    override fun compress(chars: CharArray): Int {
+    override fun invoke(chars: CharArray): Int {
         var indexAns = 0
         var index = 0
         while (index < chars.size) {

@@ -20,14 +20,14 @@ package dev.shtanko.algorithms.leetcode
  * 95. Unique Binary Search Trees II
  */
 fun interface UniqueBST2 {
-    fun generateTrees(n: Int): List<TreeNode?>
+    operator fun invoke(n: Int): List<TreeNode?>
 }
 
 /**
  * Approach 1: Recursive Dynamic Programming
  */
 class UniqueBST2RecursiveDP : UniqueBST2 {
-    override fun generateTrees(n: Int): List<TreeNode?> {
+    override fun invoke(n: Int): List<TreeNode?> {
         val memo: MutableMap<Pair<Int, Int>, List<TreeNode?>> = HashMap()
         return allPossibleBST(1, n, memo)
     }
@@ -70,7 +70,7 @@ class UniqueBST2RecursiveDP : UniqueBST2 {
  * Approach 2: Iterative Dynamic Programming
  */
 class UniqueBST2IterativeDP : UniqueBST2 {
-    override fun generateTrees(n: Int): List<TreeNode?> {
+    override fun invoke(n: Int): List<TreeNode?> {
         val dp: MutableList<List<MutableList<TreeNode?>>> = ArrayList(n + 1)
         for (i in 0..n) {
             val innerList: MutableList<MutableList<TreeNode?>> = ArrayList(n + 1)
@@ -116,7 +116,7 @@ class UniqueBST2IterativeDP : UniqueBST2 {
  * Approach 3: Dynamic Programming with Space Optimization
  */
 class UniqueBST2DPSpaceOpt : UniqueBST2 {
-    override fun generateTrees(n: Int): List<TreeNode?> {
+    override fun invoke(n: Int): List<TreeNode?> {
         val dp: MutableList<MutableList<TreeNode?>> = ArrayList(n + 1)
         for (i in 0..n) {
             dp.add(ArrayList())

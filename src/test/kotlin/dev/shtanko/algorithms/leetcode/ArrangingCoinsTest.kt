@@ -40,7 +40,7 @@ abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `arrange coins test`(coins: Int, expected: Int) {
-        val actual = strategy.arrangeCoins(coins)
+        val actual = strategy.invoke(coins)
         assertThat(actual, equalTo(expected))
     }
 }

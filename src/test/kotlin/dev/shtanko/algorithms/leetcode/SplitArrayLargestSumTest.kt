@@ -48,7 +48,7 @@ abstract class SplitArrayLargestSumTest<out T : SplitArrayLargestSum>(private va
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `split array test`(nums: IntArray, k: Int, expected: Int) {
-        val actual = strategy.splitArray(nums, k)
+        val actual = strategy.invoke(nums, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

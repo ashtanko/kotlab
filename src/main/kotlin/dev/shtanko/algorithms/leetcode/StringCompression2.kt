@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/string-compression-ii/">Source</a>
  */
 fun interface StringCompression2 {
-    fun getLengthOfOptimalCompression(s: String, k: Int): Int
+    operator fun invoke(s: String, k: Int): Int
 }
 
 class StringCompression2DP : StringCompression2 {
-    override fun getLengthOfOptimalCompression(s: String, k: Int): Int {
+    override fun invoke(s: String, k: Int): Int {
         val n: Int = s.length
         val dp = Array(n + 1) { IntArray(k + 1) { n } }
         dp[0][0] = 0

@@ -48,7 +48,7 @@ abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDictionary>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is alien sorted test`(words: Array<String>, order: String, expected: Boolean) {
-        val actual = strategy.isAlienSorted(words, order)
+        val actual = strategy.invoke(words, order)
         Assertions.assertEquals(expected, actual)
     }
 }

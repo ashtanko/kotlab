@@ -45,7 +45,7 @@ abstract class VowelsAllSubstringsTest<out T : VowelsAllSubstrings>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count vowels test`(word: String, expected: Long) {
-        val actual = strategy.countVowels(word)
+        val actual = strategy.invoke(word)
         assertThat(actual).isEqualTo(expected)
     }
 }

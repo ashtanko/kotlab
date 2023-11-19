@@ -53,7 +53,7 @@ abstract class SwapNodesInPairsTest<out T : SwapNodesInPairs>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `swap pairs test`(head: ListNode, expected: List<Int>) {
-        val actual = strategy.swapPairs(head).toListOrEmpty()
+        val actual = strategy.invoke(head).toListOrEmpty()
         assertThat(actual).isEqualTo(expected)
     }
 }

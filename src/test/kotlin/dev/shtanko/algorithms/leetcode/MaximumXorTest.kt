@@ -48,7 +48,7 @@ abstract class MaximumXorTest<out T : MaximumXor>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `get maximum xor test`(nums: IntArray, maximumBit: Int, expected: IntArray) {
-        val actual = strategy.getMaximumXor(nums, maximumBit)
+        val actual = strategy.invoke(nums, maximumBit)
         assertThat(actual).isEqualTo(expected)
     }
 }

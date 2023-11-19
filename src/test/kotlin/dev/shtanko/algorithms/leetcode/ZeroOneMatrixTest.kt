@@ -57,7 +57,7 @@ abstract class ZeroOneMatrixTest<out T : ZeroOneMatrix>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `update matrix test`(mat: Array<IntArray>, expected: Array<IntArray>) {
-        val actual = strategy.updateMatrix(mat)
+        val actual = strategy.invoke(mat)
         assertThat(actual).isEqualTo(expected)
     }
 }

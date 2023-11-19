@@ -61,7 +61,7 @@ abstract class ValidParenthesisStringTest<out T : ValidParenthesisString>(privat
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `check valid string test`(s: String, expected: Boolean) {
-        val actual = strategy.checkValidString(s)
+        val actual = strategy.invoke(s)
         assertThat(actual).isEqualTo(expected)
     }
 }

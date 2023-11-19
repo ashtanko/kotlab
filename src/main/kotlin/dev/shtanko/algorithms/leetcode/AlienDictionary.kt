@@ -26,7 +26,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/alien-dictionary/solution/">Source</a>
  */
 fun interface AlienDictionary {
-    fun alienOrder(words: Array<String>): String
+    operator fun invoke(words: Array<String>): String
 }
 
 /**
@@ -34,7 +34,7 @@ fun interface AlienDictionary {
  * Time complexity : O(C).
  */
 class AlienDictionaryBFS : AlienDictionary {
-    override fun alienOrder(words: Array<String>): String {
+    override fun invoke(words: Array<String>): String {
         // Step 0: Create data structures and find all unique letters.
         val adjList: MutableMap<Char, MutableList<Char>> = HashMap()
         val counts: MutableMap<Char, Int> = HashMap()
@@ -96,7 +96,7 @@ class AlienDictionaryBFS : AlienDictionary {
  */
 class AlienDictionaryDFS : AlienDictionary {
 
-    override fun alienOrder(words: Array<String>): String {
+    override fun invoke(words: Array<String>): String {
         val adj = Array(ALPHABET_LETTERS_COUNT) { BooleanArray(ALPHABET_LETTERS_COUNT) }
         val visited = IntArray(ALPHABET_LETTERS_COUNT) { -1 }
         buildGraph(words, adj, visited)

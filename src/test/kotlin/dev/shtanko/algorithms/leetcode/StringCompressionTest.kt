@@ -45,7 +45,7 @@ abstract class StringCompressionTest<out T : StringCompression>(private val stra
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `compress test`(chars: CharArray, expected: Int) {
-        val actual = strategy.compress(chars)
+        val actual = strategy.invoke(chars)
         assertThat(actual).isEqualTo(expected)
     }
 }

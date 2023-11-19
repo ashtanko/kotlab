@@ -55,7 +55,7 @@ abstract class WordSearch2Test<out T : WordSearch2>(private val strategy: T) {
         words: Array<String>,
         expected: List<String>,
     ) {
-        val actual = strategy.findWords(board, words)
+        val actual = strategy.invoke(board, words)
         Assertions.assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }

@@ -25,14 +25,14 @@ import java.util.LinkedList
  * https://leetcode.com/problems/validate-binary-search-tree/
  */
 fun interface ValidateBinarySearchTree {
-    fun isValidBST(root: TreeNode): Boolean
+    operator fun invoke(root: TreeNode): Boolean
 }
 
 /**
  * Approach 1: Recursive Traversal with Valid Range
  */
 class RecursiveTraversalValidRange : ValidateBinarySearchTree {
-    override fun isValidBST(root: TreeNode): Boolean {
+    override fun invoke(root: TreeNode): Boolean {
         return validate(root, null, null)
     }
 
@@ -57,7 +57,7 @@ class IterativeTraversalValidRange : ValidateBinarySearchTree {
     private val upperLimits: Deque<Int> = LinkedList()
     private val lowerLimits: Deque<Int> = LinkedList()
 
-    override fun isValidBST(root: TreeNode): Boolean {
+    override fun invoke(root: TreeNode): Boolean {
         var low: Int? = null
         var high: Int? = null
         var value: Int
@@ -96,7 +96,7 @@ class RecursiveInorderTraversal : ValidateBinarySearchTree {
 
     private var prev: Int? = null
 
-    override fun isValidBST(root: TreeNode): Boolean {
+    override fun invoke(root: TreeNode): Boolean {
         return inorder(root)
     }
 
@@ -119,7 +119,7 @@ class RecursiveInorderTraversal : ValidateBinarySearchTree {
  * Approach 4: Iterative Inorder Traversal
  */
 class IterativeInorderTraversal : ValidateBinarySearchTree {
-    override fun isValidBST(root: TreeNode): Boolean {
+    override fun invoke(root: TreeNode): Boolean {
         val stack: Deque<TreeNode> = ArrayDeque()
         var prev: Int? = null
         var node: TreeNode? = root

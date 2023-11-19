@@ -24,14 +24,14 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/add-two-numbers-ii/">Source</a>
  */
 fun interface AddTwoNumbers2 {
-    fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode?
+    operator fun invoke(l1: ListNode?, l2: ListNode?): ListNode?
 }
 
 /**
  * Approach 1: Using Stack
  */
 class AddTwoNumbers2Stack : AddTwoNumbers2 {
-    override fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+    override fun invoke(l1: ListNode?, l2: ListNode?): ListNode? {
         val s1: Stack<Int> = Stack<Int>()
         val s2: Stack<Int> = Stack<Int>()
         var ll1 = l1
@@ -67,7 +67,7 @@ class AddTwoNumbers2Stack : AddTwoNumbers2 {
  * Approach 2: Reverse Given Linked Lists
  */
 class AddTwoNumbers2Reverse : AddTwoNumbers2 {
-    override fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+    override fun invoke(l1: ListNode?, l2: ListNode?): ListNode? {
         var r1: ListNode? = l1?.reverseList()
         var r2: ListNode? = l2?.reverseList()
 

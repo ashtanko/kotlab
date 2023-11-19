@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.LinkedList
 
-fun Array<String>.findWords(): Array<String> {
+fun Array<String>.invoke(): Array<String> {
     val strs = arrayOf("QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM")
     val map: MutableMap<Char, Int> = HashMap()
     for (i in strs.indices) {

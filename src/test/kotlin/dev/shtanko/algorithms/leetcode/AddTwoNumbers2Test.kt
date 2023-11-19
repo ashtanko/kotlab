@@ -48,7 +48,7 @@ abstract class AddTwoNumbers2Test<out T : AddTwoNumbers2>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `add to array form test`(l1: ListNode?, l2: ListNode?, expected: List<Int>) {
-        val actual = strategy.addTwoNumbers(l1, l2).toListOrEmpty()
+        val actual = strategy.invoke(l1, l2).toListOrEmpty()
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

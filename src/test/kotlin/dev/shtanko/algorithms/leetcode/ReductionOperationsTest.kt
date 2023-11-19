@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,39 +17,39 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.MatcherAssert.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class SplitArrayIntoConsecutiveSubsequencesTest<out T : SplitArrayIntoConsecutiveSubsequences>(
-    private val strategy: T,
-) {
+abstract class ReductionOperationsTest<out T : ReductionOperations>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(intArrayOf(1, 2, 3, 3, 4, 5), true),
-            Arguments.of(intArrayOf(1, 2, 3, 3, 4, 4, 5, 5), true),
-            Arguments.of(intArrayOf(1, 2, 3, 4, 4, 5), false),
+            Arguments.of(
+                intArrayOf(5, 1, 3),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3),
+                4,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is possible test`(nums: IntArray, expected: Boolean) {
-        val actual = strategy.isPossible(nums)
-        assertThat(actual, equalTo(expected))
+    fun `reduction operations test`(nums: IntArray, expected: Int) {
+        val actual = strategy(nums)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class SplitArrayIntoConsecutiveSubsequencesQueueTest :
-    SplitArrayIntoConsecutiveSubsequencesTest<SplitArrayIntoConsecutiveSubsequencesQueue>(
-        SplitArrayIntoConsecutiveSubsequencesQueue(),
-    )
-
-class SplitArrayIntoConsecutiveSubsequencesGreedyTest :
-    SplitArrayIntoConsecutiveSubsequencesTest<SplitArrayIntoConsecutiveSubsequencesGreedy>(
-        SplitArrayIntoConsecutiveSubsequencesGreedy(),
-    )
+class ReductionOperationsSortAndCountTest : ReductionOperationsTest<ReductionOperations>(
+    ReductionOperationsSortAndCount(),
+)

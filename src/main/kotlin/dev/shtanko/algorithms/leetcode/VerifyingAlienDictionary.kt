@@ -23,11 +23,11 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
  * @see <a href="https://leetcode.com/problems/verifying-an-alien-dictionary/">Source</a>
  */
 fun interface VerifyingAlienDictionary {
-    fun isAlienSorted(words: Array<String>, order: String): Boolean
+    operator fun invoke(words: Array<String>, order: String): Boolean
 }
 
 class VerifyingAlienDictionaryCompare : VerifyingAlienDictionary {
-    override fun isAlienSorted(words: Array<String>, order: String): Boolean {
+    override fun invoke(words: Array<String>, order: String): Boolean {
         val orderMap = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in order.indices) {
             orderMap[order[i] - 'a'] = i

@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.sqrt
 
 fun interface ArrangingCoinsStrategy {
-    fun arrangeCoins(n: Int): Int
+    operator fun invoke(n: Int): Int
 }
 
 class ArrangingCoinsBS : ArrangingCoinsStrategy {
-    override fun arrangeCoins(n: Int): Int {
+    override fun invoke(n: Int): Int {
         var left = 0
         var right = n
         var k: Int
@@ -45,7 +45,7 @@ class ArrangingCoinsBS : ArrangingCoinsStrategy {
 
 class ArrangingCoinsMath : ArrangingCoinsStrategy {
 
-    override fun arrangeCoins(n: Int): Int {
+    override fun invoke(n: Int): Int {
         val local = sqrt(C1 * n + C2) - C3
         return local.toInt()
     }

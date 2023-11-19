@@ -49,7 +49,7 @@ abstract class SumOfRootToLeafBinaryNumbersTest<out T : SumOfRootToLeafBinaryNum
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sum of root to leaf binary numbers test`(root: TreeNode, expected: Int) {
-        val actual = strategy.sumRootToLeaf(root)
+        val actual = strategy.invoke(root)
         assertEquals(expected, actual)
     }
 }

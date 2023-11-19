@@ -44,7 +44,7 @@ class UniqueBinarySearchTrees2Test {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `unique binary search trees 2 test`(n: Int, expected: List<List<List<Int>>>) {
-        val actual = generateTrees(n)
+        val actual = invoke(n)
         val ordered = actual.map { it.levelOrderBottom() }
         assertEquals(expected, ordered)
     }

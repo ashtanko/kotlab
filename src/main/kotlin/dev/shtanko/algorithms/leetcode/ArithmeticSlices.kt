@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/arithmetic-slices/">Source</a>
  */
 fun interface ArithmeticSlices {
-    fun numberOfArithmeticSlices(arr: IntArray): Int
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -30,7 +30,7 @@ fun interface ArithmeticSlices {
  * Space complexity : O(1).
  */
 class ArSlicesBruteForce : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         var count = 0
         for (s in 0 until arr.size - 2) {
             val d: Int = arr[s + 1] - arr[s]
@@ -53,7 +53,7 @@ class ArSlicesBruteForce : ArithmeticSlices {
  * Space complexity : O(1).
  */
 class ArSlicesBetterBruteForce : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         var count = 0
         for (s in 0 until arr.size - 2) {
             val d: Int = arr[s + 1] - arr[s]
@@ -74,7 +74,7 @@ class ArSlicesRecursion : ArithmeticSlices {
 
     private var sum = 0
 
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         slices(arr, arr.size - 1)
         return sum
     }
@@ -98,7 +98,7 @@ class ArSlicesRecursion : ArithmeticSlices {
  * Space complexity : O(n).
  */
 class ArSlicesDP : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         val dp = IntArray(arr.size)
         var sum = 0
         for (i in 2 until dp.size) {
@@ -117,7 +117,7 @@ class ArSlicesDP : ArithmeticSlices {
  * Space complexity : O(1).
  */
 class ArSlicesConstantSpaceDP : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         var dp = 0
         var sum = 0
         for (i in 2 until arr.size) {
@@ -138,7 +138,7 @@ class ArSlicesConstantSpaceDP : ArithmeticSlices {
  * Space complexity : O(1).
  */
 class ArSlicesFormula : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         var count = 0
         var sum = 0
         for (i in 2 until arr.size) {

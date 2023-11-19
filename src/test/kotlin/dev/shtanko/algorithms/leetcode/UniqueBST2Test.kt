@@ -68,7 +68,7 @@ abstract class UniqueBST2Test<out T : UniqueBST2>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `generate trees test`(n: Int, expected: List<TreeNode>) {
-        val actual = strategy.generateTrees(n).map { it.preorderTraversal() }
+        val actual = strategy.invoke(n).map { it.preorderTraversal() }
         assertThat(actual).containsExactlyInAnyOrder(*expected.map { it.preorderTraversal() }.toTypedArray())
     }
 }

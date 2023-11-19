@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 fun interface VerbalArithmeticPuzzle {
-    fun isSolvable(words: Array<String>, result: String): Boolean
+    operator fun invoke(words: Array<String>, result: String): Boolean
 }
 
 class VerbalArithmeticPuzzleBacktracking : VerbalArithmeticPuzzle {
@@ -27,7 +27,7 @@ class VerbalArithmeticPuzzleBacktracking : VerbalArithmeticPuzzle {
         private const val ARR_SIZE = 91
     }
 
-    override fun isSolvable(words: Array<String>, result: String): Boolean {
+    override fun invoke(words: Array<String>, result: String): Boolean {
         val charSet: MutableSet<Char> = HashSet()
         val charCount = IntArray(ARR_SIZE)
         val nonLeadingZero = BooleanArray(ARR_SIZE) // ASCII of `A..Z` chars are in range `65..90`

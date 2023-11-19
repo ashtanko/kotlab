@@ -23,14 +23,14 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
  * @see <a href="https://leetcode.com/problems/word-search-ii/">Source</a>
  */
 fun interface WordSearch2 {
-    fun findWords(board: Array<CharArray>, words: Array<String>): List<String>
+    operator fun invoke(board: Array<CharArray>, words: Array<String>): List<String>
 }
 
 /**
  * Backtracking + Trie
  */
 class WordSearch2Trie : WordSearch2 {
-    override fun findWords(board: Array<CharArray>, words: Array<String>): List<String> {
+    override fun invoke(board: Array<CharArray>, words: Array<String>): List<String> {
         val res: MutableList<String> = ArrayList()
         val root: TrieNode = buildTrie(words)
         for (i in board.indices) {

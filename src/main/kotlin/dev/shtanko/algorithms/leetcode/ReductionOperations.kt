@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,26 +17,26 @@
 package dev.shtanko.algorithms.leetcode
 
 /**
- * 2063. Vowels of All Substrings
- * @see <a href="https://leetcode.com/problems/vowels-of-all-substrings/">Source</a>
+ * 1887. Reduction Operations to Make the Array Elements Equal
+ * @see <a href="https://leetcode.com/problems/reduction-operations-to-make-the-array-elements-equal">Source</a>
  */
-fun interface VowelsAllSubstrings {
-    operator fun invoke(word: String): Long
+fun interface ReductionOperations {
+    operator fun invoke(nums: IntArray): Int
 }
 
-class VowelsAllSubstringsImpl : VowelsAllSubstrings {
-    override fun invoke(word: String): Long {
-        var res: Long = 0
-        val n: Long = word.length.toLong()
-        for (i in 0 until n) {
-            if (VOWELS.indexOf(word[i.toInt()]) >= 0) {
-                res += (i + 1) * (n - i)
-            }
-        }
-        return res
-    }
+class ReductionOperationsSortAndCount : ReductionOperations {
+    override fun invoke(nums: IntArray): Int {
+        nums.sort()
+        var ans = 0
+        var up = 0
 
-    companion object {
-        private const val VOWELS = "aeiou"
+        for (i in 1 until nums.size) {
+            if (nums[i] != nums[i - 1]) {
+                up++
+            }
+            ans += up
+        }
+
+        return ans
     }
 }

@@ -264,7 +264,7 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is valid BST test`(root: TreeNode, expected: Boolean) {
-        val actual = strategy.isValidBST(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

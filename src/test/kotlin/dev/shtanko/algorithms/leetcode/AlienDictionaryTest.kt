@@ -41,7 +41,7 @@ abstract class AlienDictionaryTest<out T : AlienDictionary>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `alien order test`(words: Array<String>, expected: String) {
-        val actual = strategy.alienOrder(words)
+        val actual = strategy.invoke(words)
         assertThat(actual).isEqualTo(expected)
     }
 }

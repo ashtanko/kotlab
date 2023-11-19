@@ -24,11 +24,11 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/split-array-largest-sum/">Source</a>
  */
 fun interface SplitArrayLargestSum {
-    fun splitArray(nums: IntArray, k: Int): Int
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class SplitArrayLargestSumMaxSum : SplitArrayLargestSum {
-    override fun splitArray(nums: IntArray, k: Int): Int {
+    override fun invoke(nums: IntArray, k: Int): Int {
         // validation
         if (nums.isEmpty() || k < 1) {
             return -1
@@ -82,7 +82,7 @@ class SplitArrayLargestSumMaxSum : SplitArrayLargestSum {
 }
 
 class SplitArrayLargestSumGreedy : SplitArrayLargestSum {
-    override fun splitArray(nums: IntArray, k: Int): Int {
+    override fun invoke(nums: IntArray, k: Int): Int {
         var low = 0
         var high = 0
         var min = Int.MAX_VALUE
@@ -117,7 +117,7 @@ class SplitArrayLargestSumGreedy : SplitArrayLargestSum {
 }
 
 class SplitArrayLargestSumBinarySearch : SplitArrayLargestSum {
-    override fun splitArray(nums: IntArray, k: Int): Int {
+    override fun invoke(nums: IntArray, k: Int): Int {
         // sanity check
         if (nums.isEmpty()) return 0
 
@@ -158,7 +158,7 @@ class SplitArrayLargestSumBinarySearch : SplitArrayLargestSum {
 }
 
 class SplitArrayLargestSumDP : SplitArrayLargestSum {
-    override fun splitArray(nums: IntArray, k: Int): Int {
+    override fun invoke(nums: IntArray, k: Int): Int {
         // sanity check
         if (nums.isEmpty()) return 0
 

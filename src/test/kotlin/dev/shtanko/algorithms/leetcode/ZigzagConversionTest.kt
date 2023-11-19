@@ -48,7 +48,7 @@ abstract class ZigzagConversionTest<out T : ZigzagConversion>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `convert test`(s: String, numRows: Int, expected: String) {
-        val actual = strategy.convert(s, numRows)
+        val actual = strategy.invoke(s, numRows)
         assertThat(actual).isEqualTo(expected)
     }
 }

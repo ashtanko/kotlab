@@ -23,11 +23,11 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
  * @see <a href="https://leetcode.com/problems/valid-anagram/">Source</a>
  */
 fun interface ValidAnagram {
-    fun isAnagram(s: String, t: String): Boolean
+    operator fun invoke(s: String, t: String): Boolean
 }
 
 class ValidAnagramHashMap : ValidAnagram {
-    override fun isAnagram(s: String, t: String): Boolean {
+    override fun invoke(s: String, t: String): Boolean {
         val sMap = HashMap<Char, Int>()
         val sl: Int = s.length
         val tl: Int = t.length
@@ -48,7 +48,7 @@ class ValidAnagramHashMap : ValidAnagram {
 }
 
 class ValidAnagramImpl : ValidAnagram {
-    override fun isAnagram(s: String, t: String): Boolean {
+    override fun invoke(s: String, t: String): Boolean {
         val alphabet = IntArray(ALPHABET_LETTERS_COUNT)
         for (i in s.indices) {
             alphabet[s[i] - ALPHABET_FIRST_LETTER]++

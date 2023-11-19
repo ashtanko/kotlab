@@ -21,14 +21,14 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/tree-of-coprimes/">Source</a>
  */
 fun interface TreeOfCoprimes {
-    fun getCoprimes(nums: IntArray, edges: Array<IntArray>): IntArray
+    operator fun invoke(nums: IntArray, edges: Array<IntArray>): IntArray
 }
 
 class TreeOfCoprimesDFS : TreeOfCoprimes {
 
     lateinit var ans: IntArray
 
-    override fun getCoprimes(nums: IntArray, edges: Array<IntArray>): IntArray {
+    override fun invoke(nums: IntArray, edges: Array<IntArray>): IntArray {
         val path: Array<MutableList<Pair>> = Array(LIMIT) { ArrayList() }
         for (i in 0 until LIMIT) path[i] = ArrayList()
         val n = nums.size

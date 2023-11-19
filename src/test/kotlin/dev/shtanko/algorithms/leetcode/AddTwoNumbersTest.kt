@@ -48,7 +48,7 @@ abstract class AddTwoNumbersTest<out T : AddTwoNumbers>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `add two numbers test`(l1: ListNode?, l2: ListNode?, expected: ListNode?) {
-        val actual = strategy.addTwoNumbers(l1, l2)
+        val actual = strategy.invoke(l1, l2)
         assertThat(actual).isEqualTo(expected)
     }
 }

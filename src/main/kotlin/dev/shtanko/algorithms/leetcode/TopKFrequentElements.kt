@@ -25,14 +25,14 @@ import java.util.Random
  * @see <a href="https://leetcode.com/problems/top-k-frequent-elements/">Source</a>
  */
 fun interface TopKFrequentElements {
-    fun topKFrequent(nums: IntArray, k: Int): IntArray
+    operator fun invoke(nums: IntArray, k: Int): IntArray
 }
 
 /**
  * Approach 1: Heap
  */
 class TopKFrequentElementsHeap : TopKFrequentElements {
-    override fun topKFrequent(nums: IntArray, k: Int): IntArray {
+    override fun invoke(nums: IntArray, k: Int): IntArray {
         // O(1) time
         if (k == nums.size) {
             return nums
@@ -75,7 +75,7 @@ class TopKFrequentElementsQuickSelect : TopKFrequentElements {
     lateinit var unique: IntArray
     var count: MutableMap<Int, Int> = HashMap()
 
-    override fun topKFrequent(nums: IntArray, k: Int): IntArray {
+    override fun invoke(nums: IntArray, k: Int): IntArray {
         // build hash map : character and how often it appears
 
         for (num in nums) {

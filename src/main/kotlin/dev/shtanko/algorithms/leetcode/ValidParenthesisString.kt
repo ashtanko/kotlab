@@ -23,7 +23,7 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/valid-parenthesis-string/">Source</a>
  */
 fun interface ValidParenthesisString {
-    fun checkValidString(s: String): Boolean
+    operator fun invoke(s: String): Boolean
 }
 
 /**
@@ -31,7 +31,7 @@ fun interface ValidParenthesisString {
  */
 class ValidParenthesisStringBruteForce : ValidParenthesisString {
     private var ans = false
-    override fun checkValidString(s: String): Boolean {
+    override fun invoke(s: String): Boolean {
         solve(StringBuilder(s), 0)
         return ans
     }
@@ -66,7 +66,7 @@ class ValidParenthesisStringBruteForce : ValidParenthesisString {
  * Approach #2: Dynamic Programming
  */
 class ValidParenthesisStringDP : ValidParenthesisString {
-    override fun checkValidString(s: String): Boolean {
+    override fun invoke(s: String): Boolean {
         val n: Int = s.length
         if (n == 0) return true
         val dp = Array(n) { BooleanArray(n) }
@@ -106,7 +106,7 @@ class ValidParenthesisStringDP : ValidParenthesisString {
  * Approach #3: Greedy
  */
 class ValidParenthesisStringGreedy : ValidParenthesisString {
-    override fun checkValidString(s: String): Boolean {
+    override fun invoke(s: String): Boolean {
         var lo = 0
         var hi = 0
         for (c in s.toCharArray()) {

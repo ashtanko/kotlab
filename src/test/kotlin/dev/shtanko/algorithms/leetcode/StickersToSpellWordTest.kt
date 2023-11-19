@@ -43,7 +43,7 @@ abstract class StickersToSpellWordTest<out T : StickersToSpellWord>(private val 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min stickers test`(stickers: Array<String>, target: String, expected: Int) {
-        val actual = strategy.minStickers(stickers, target)
+        val actual = strategy.invoke(stickers, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

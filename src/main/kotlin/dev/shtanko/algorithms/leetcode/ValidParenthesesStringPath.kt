@@ -21,12 +21,12 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path">Source</a>
  */
 fun interface ValidParenthesesStringPath {
-    fun hasValidPath(grid: Array<CharArray>): Boolean
+    operator fun invoke(grid: Array<CharArray>): Boolean
 }
 
 class ValidParenthesesStringPathDFS : ValidParenthesesStringPath {
 
-    override fun hasValidPath(grid: Array<CharArray>): Boolean {
+    override fun invoke(grid: Array<CharArray>): Boolean {
         val m: Int = grid.size
         val n: Int = grid[0].size
         val dp = Array(m + 1) {

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/zigzag-conversion/">Source</a>
  */
 fun interface ZigzagConversion {
-    fun convert(s: String, numRows: Int): String
+    operator fun invoke(s: String, numRows: Int): String
 }
 
 class ZigzagConversionSB : ZigzagConversion {
-    override fun convert(s: String, numRows: Int): String {
+    override fun invoke(s: String, numRows: Int): String {
         if (numRows <= 1) return s
         val sb = arrayOfNulls<StringBuilder>(numRows)
         for (i in 0 until numRows) sb[i] = StringBuilder()

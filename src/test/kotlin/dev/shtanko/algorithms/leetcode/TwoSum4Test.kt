@@ -95,7 +95,7 @@ abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find target test`(root: TreeNode, target: Int, expected: Boolean) {
-        val actual = strategy.findTarget(root, target)
+        val actual = strategy.invoke(root, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

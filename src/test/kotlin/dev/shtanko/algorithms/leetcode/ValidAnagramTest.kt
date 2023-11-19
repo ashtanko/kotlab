@@ -93,7 +93,7 @@ abstract class ValidAnagramTest<out T : ValidAnagram>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is anagram test`(s: String, t: String, expected: Boolean) {
-        val actual = strategy.isAnagram(s, t)
+        val actual = strategy.invoke(s, t)
         assertThat(actual).isEqualTo(expected)
     }
 }

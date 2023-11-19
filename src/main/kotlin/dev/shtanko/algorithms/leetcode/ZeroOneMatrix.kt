@@ -25,7 +25,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/01-matrix/">Source</a>
  */
 fun interface ZeroOneMatrix {
-    fun updateMatrix(mat: Array<IntArray>): Array<IntArray>
+    operator fun invoke(mat: Array<IntArray>): Array<IntArray>
 }
 
 /**
@@ -34,7 +34,7 @@ fun interface ZeroOneMatrix {
 class ZeroOneMatrixBFS : ZeroOneMatrix {
     private val dir = intArrayOf(0, 1, 0, -1, 0)
 
-    override fun updateMatrix(mat: Array<IntArray>): Array<IntArray> {
+    override fun invoke(mat: Array<IntArray>): Array<IntArray> {
         val m: Int = mat.size
         val n: Int = mat[0].size // The distance of cells is up to (M+N)
 
@@ -47,7 +47,7 @@ class ZeroOneMatrixBFS : ZeroOneMatrix {
             }
         }
 
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val curr: IntArray = q.poll()
             val r = curr[0]
             val c = curr[1]
@@ -70,7 +70,7 @@ class ZeroOneMatrixBFS : ZeroOneMatrix {
  * Approach 3: Dynamic Programming
  */
 class ZeroOneMatrixDP : ZeroOneMatrix {
-    override fun updateMatrix(mat: Array<IntArray>): Array<IntArray> {
+    override fun invoke(mat: Array<IntArray>): Array<IntArray> {
         val m: Int = mat.size
         val n: Int = mat.first().size
         val inf = m + n // The distance of cells is up to (M+N)

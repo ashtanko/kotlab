@@ -35,7 +35,7 @@ abstract class SteppingNumbersTest<out T : SteppingNumbers>(private val strategy
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `stepping numbers test`(low: Int, high: Int, expected: List<Int>) {
-        val actual = strategy.countSteppingNumbers(low, high)
+        val actual = strategy.invoke(low, high)
         assertThat(actual).isEqualTo(expected)
     }
 }

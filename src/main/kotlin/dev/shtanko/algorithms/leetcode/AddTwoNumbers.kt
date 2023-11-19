@@ -23,11 +23,11 @@ import dev.shtanko.algorithms.DECIMAL
  * @see <a href="https://leetcode.com/problems/add-two-numbers">Source</a>
  */
 fun interface AddTwoNumbers {
-    fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode?
+    operator fun invoke(l1: ListNode?, l2: ListNode?): ListNode?
 }
 
 class AddTwoNumbersMath : AddTwoNumbers {
-    override fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+    override fun invoke(l1: ListNode?, l2: ListNode?): ListNode? {
         val dummy = ListNode(0) // creating a dummy list
         var curr: ListNode? = dummy // initialising a pointer
         var carry = 0 // initialising our carry with 0 initial

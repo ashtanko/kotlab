@@ -100,7 +100,7 @@ abstract class SymmetricTreeTest<out T : SymmetricTree>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is symmetric tree test`(root: TreeNode, expected: Boolean) {
-        val actual = strategy.isSymmetric(root)
+        val actual = strategy.invoke(root)
         assertThat(actual).isEqualTo(expected)
     }
 }

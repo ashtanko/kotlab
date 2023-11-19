@@ -97,7 +97,7 @@ abstract class AllPossibleFullBinaryTreesTest<out T : AllPossibleFullBinaryTrees
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `allPossibleFBT test`(n: Int, expected: List<TreeNode?>) {
-        val actual = strategy.allPossibleFBT(n)
+        val actual = strategy.invoke(n)
         assertThat(actual.size).isEqualTo(expected.size)
     }
 }

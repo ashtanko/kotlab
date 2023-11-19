@@ -54,7 +54,7 @@ abstract class TreeOfCoprimesTest<out T : TreeOfCoprimes>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `get coprimes test`(nums: IntArray, edges: Array<IntArray>, expected: IntArray) {
-        val actual = strategy.getCoprimes(nums, edges)
+        val actual = strategy.invoke(nums, edges)
         assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

@@ -17,35 +17,39 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class KeyboardRowTest {
+abstract class ArrIntoConsecutiveSubsequencesTest<out T : ArrIntoConsecutiveSubsequences>(
+    private val strategy: T,
+) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(
-                arrayOf<String>(),
-                arrayOf<String>(),
-            ),
-            Arguments.of(
-                arrayOf("Hello"),
-                arrayOf<String>(),
-            ),
-            Arguments.of(
-                arrayOf("Hello", "Alaska", "Dad", "Peace"),
-                arrayOf("Alaska", "Dad"),
-            ),
+            Arguments.of(intArrayOf(1, 2, 3, 3, 4, 5), true),
+            Arguments.of(intArrayOf(1, 2, 3, 3, 4, 4, 5, 5), true),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 4, 5), false),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `keyboard row test`(words: Array<String>, expected: Array<String>) {
-        val actual = words.invoke()
-        assertArrayEquals(expected, actual)
+    fun `is possible test`(nums: IntArray, expected: Boolean) {
+        val actual = strategy.invoke(nums)
+        assertThat(actual, equalTo(expected))
     }
 }
+
+class ArrIntoConsecutiveSubsequencesQueueTest :
+    ArrIntoConsecutiveSubsequencesTest<ArrIntoConsecutiveSubsequencesQueue>(
+        ArrIntoConsecutiveSubsequencesQueue(),
+    )
+
+class ArrIntoConsecutiveSubsequencesGreedyTest :
+    ArrIntoConsecutiveSubsequencesTest<ArrIntoConsecutiveSubsequencesGreedy>(
+        ArrIntoConsecutiveSubsequencesGreedy(),
+    )

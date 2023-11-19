@@ -62,7 +62,7 @@ abstract class ArithmeticSlicesTest<out T : ArithmeticSlices>(private val strate
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `number of arithmetic slices test`(arr: IntArray, expected: Int) {
-        val actual = strategy.numberOfArithmeticSlices(arr)
+        val actual = strategy.invoke(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -25,14 +25,14 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/stickers-to-spell-word/">Source</a>
  */
 fun interface StickersToSpellWord {
-    fun minStickers(stickers: Array<String>, target: String): Int
+    operator fun invoke(stickers: Array<String>, target: String): Int
 }
 
 /**
  * DP + Memoization with optimization
  */
 class StickersToSpellWordDP : StickersToSpellWord {
-    override fun minStickers(stickers: Array<String>, target: String): Int {
+    override fun invoke(stickers: Array<String>, target: String): Int {
         val m: Int = stickers.size
         val mp = Array(m) { IntArray(ALPHABET_LETTERS_COUNT) }
         val dp: MutableMap<String, Int> = HashMap()

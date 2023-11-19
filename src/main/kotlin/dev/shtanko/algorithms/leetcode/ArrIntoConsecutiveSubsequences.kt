@@ -22,8 +22,8 @@ import java.util.Queue
 /**
  * Split Array into Consecutive Subsequences.
  */
-fun interface SplitArrayIntoConsecutiveSubsequences {
-    fun isPossible(nums: IntArray): Boolean
+fun interface ArrIntoConsecutiveSubsequences {
+    operator fun invoke(nums: IntArray): Boolean
 }
 
 /**
@@ -31,8 +31,8 @@ fun interface SplitArrayIntoConsecutiveSubsequences {
  * Time Complexity: O(N).
  * Space Complexity: O(N).
  */
-class SplitArrayIntoConsecutiveSubsequencesQueue : SplitArrayIntoConsecutiveSubsequences {
-    override fun isPossible(nums: IntArray): Boolean {
+class ArrIntoConsecutiveSubsequencesQueue : ArrIntoConsecutiveSubsequences {
+    override fun invoke(nums: IntArray): Boolean {
         var prev: Int? = null
         var prevCount = 0
         val starts: Queue<Int> = LinkedList()
@@ -68,8 +68,8 @@ class SplitArrayIntoConsecutiveSubsequencesQueue : SplitArrayIntoConsecutiveSubs
  * Time Complexity: O(N).
  * Space Complexity: O(N).
  */
-class SplitArrayIntoConsecutiveSubsequencesGreedy : SplitArrayIntoConsecutiveSubsequences {
-    override fun isPossible(nums: IntArray): Boolean {
+class ArrIntoConsecutiveSubsequencesGreedy : ArrIntoConsecutiveSubsequences {
+    override fun invoke(nums: IntArray): Boolean {
         val count = CounterMap()
         val tails = CounterMap()
 

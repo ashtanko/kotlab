@@ -23,11 +23,11 @@ import java.util.TreeMap
  * @see <a href="https://leetcode.com/problems/array-of-doubled-pairs/">Source</a>
  */
 fun interface ArrayOfDoubledPairs {
-    fun canReorderDoubled(arr: IntArray): Boolean
+    operator fun invoke(arr: IntArray): Boolean
 }
 
 class ArrayOfDoubledPairsGreedy : ArrayOfDoubledPairs {
-    override fun canReorderDoubled(arr: IntArray): Boolean {
+    override fun invoke(arr: IntArray): Boolean {
         val count: MutableMap<Int, Int> = TreeMap()
         for (a in arr) {
             count[a] = count.getOrDefault(a, 0) + 1

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/swap-nodes-in-pairs">Source</a>
  */
 fun interface SwapNodesInPairs {
-    fun swapPairs(head: ListNode?): ListNode?
+    operator fun invoke(head: ListNode?): ListNode?
 }
 
 class SwapNodesInPairsSimple : SwapNodesInPairs {
-    override fun swapPairs(head: ListNode?): ListNode? {
+    override fun invoke(head: ListNode?): ListNode? {
         if (head?.next == null) {
             return head
         }

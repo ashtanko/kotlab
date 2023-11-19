@@ -16,32 +16,49 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class AbstractMaximumProductStrategyTest<out T : AbstractMaximumProductStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<Int, IntArray>> {
-            return listOf(
-                6 to intArrayOf(1, 2, 3),
-                24 to intArrayOf(1, 2, 3, 4),
-                60 to intArrayOf(1, 2, 3, 4, 5),
-                15456 to intArrayOf(4, 8, 15, 16, 23, 42),
-                60 to intArrayOf(5, 4, 3, 1),
-                2561598 to intArrayOf(
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                24,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                60,
+            ),
+            Arguments.of(
+                intArrayOf(4, 8, 15, 16, 23, 42),
+                15456,
+            ),
+            Arguments.of(
+                intArrayOf(5, 4, 3, 1),
+                60,
+            ),
+            Arguments.of(
+                intArrayOf(
                     5, 89, 1, 234, 78, 4, 9, 66, 123, 6, 9, 0,
                 ),
-            )
-        }
+                2561598,
+            ),
+        )
     }
 
     @ParameterizedTest
-    @MethodSource("casesProvider")
-    fun `maximum product test`(testCase: Pair<Int, IntArray>) {
-        val (expected, products) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `maximum product test`(products: IntArray, expected: Int) {
         val actual = strategy.invoke(products)
         assertEquals(expected, actual)
     }
