@@ -28,6 +28,14 @@ class EvenOrOddTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, false),
+            Arguments.of(2, true),
+            Arguments.of(10, true),
+            Arguments.of(100, true),
+            Arguments.of(1, true),
+            Arguments.of(7, true),
+            Arguments.of(99, true),
+            Arguments.of(-4, false),
+            Arguments.of(-7, false),
         )
     }
 

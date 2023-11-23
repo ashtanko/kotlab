@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.bitwise
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class FastInverseSquareRoot {
+class FastInverseSquareRootTest {
     @Test
     fun test_fastInverseSquareRootBase() {
         val number = 4f

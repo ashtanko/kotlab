@@ -28,7 +28,9 @@ fun interface CountGoodNumbers {
 
 class CountGoodNumbersImpl : CountGoodNumbers {
     override fun invoke(n: Long): Int {
-        return ((powerMod(5, (n + 1) / 2, MOD) * powerMod(4, n / 2, MOD)) % MOD).toInt()
+        return powerMod(5, n.plus(1).div(2), MOD).times(
+            powerMod(4, n / 2, MOD),
+        ).mod(MOD)
     }
 
     private fun powerMod(a: Int, b: Long, mod: Int): Long {
@@ -38,9 +40,9 @@ class CountGoodNumbersImpl : CountGoodNumbers {
 
         val x = powerMod(a, b / 2, mod)
         return if (b % 2 == 0L) {
-            (x * x) % mod
+            x.times(x).mod(mod).toLong()
         } else {
-            (((a.toLong() * x) % mod) * x) % mod
+            a.times(x).mod(mod).times(x).mod(mod).toLong()
         }
     }
 }

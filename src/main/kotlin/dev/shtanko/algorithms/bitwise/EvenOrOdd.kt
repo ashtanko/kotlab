@@ -17,8 +17,10 @@
 package dev.shtanko.algorithms.bitwise
 
 fun evenOrOdd(n: Int): Boolean {
-    for (event in 0..n) {
-        return event and 0x1 != 0
+    for (number in 0..n) {
+        if (number and 0x1 != 0) {
+            return true
+        }
     }
     return false
 }

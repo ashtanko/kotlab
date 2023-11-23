@@ -28,16 +28,16 @@ abstract class CountGoodNumbersTest<out T : CountGoodNumbers>(private val strate
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                1,
-                5L,
+                1L,
+                5,
             ),
             Arguments.of(
-                4,
-                400L,
+                4L,
+                400,
             ),
             Arguments.of(
-                50,
-                564908303L,
+                50L,
+                564908303,
             ),
         )
     }

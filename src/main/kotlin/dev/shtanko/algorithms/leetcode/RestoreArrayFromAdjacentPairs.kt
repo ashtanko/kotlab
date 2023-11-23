@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 1743. Restore the Array From Adjacent Pairs
  * @see <a href="https://leetcode.com/problems/restore-the-array-from-adjacent-pairs">Source</a>
  */
-interface RestoreArrayFromAdjacentPairs {
+fun interface RestoreArrayFromAdjacentPairs {
     operator fun invoke(adjacentPairs: Array<IntArray>): IntArray
 }
 

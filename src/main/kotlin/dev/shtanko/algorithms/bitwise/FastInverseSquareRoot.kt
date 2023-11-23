@@ -24,11 +24,11 @@ private const val MAGIC_NUMBER = 0x5f3759df
 
 fun fastInverseSquareRoot(number: Float): Float {
     var i: Long
-    val x2 = number * HALF
+    val x2 = number.times(HALF)
     var y = number
     i = java.lang.Float.floatToIntBits(y).toLong()
-    i = MAGIC_NUMBER - (i shr 1)
+    i = MAGIC_NUMBER - i.shr(1)
     y = java.lang.Float.intBitsToFloat(i.toInt())
-    y *= (THREE_HALVES - (x2 * y * y)) // 1st iteration
+    y *= THREE_HALVES - x2.times(y).times(y)
     return y
 }
