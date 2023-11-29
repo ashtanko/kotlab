@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2023 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,26 +17,41 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class TemplateTest<out T : Template>(private val strategy: T) {
+abstract class HammingWeightTest<out T : HammingWeight>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(0),
+            Arguments.of(
+                11, // 00000000000000000000000000001011
+                3,
+            ),
+            Arguments.of(
+                128, // 00000000000000000000000010000000
+                1,
+            ),
+            Arguments.of(
+                -3, // 11111111111111111111111111111101
+                31,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun test(expected: Int) {
-        val actual = strategy()
-        assertThat(actual).isEqualTo(expected)
+    fun countBitsTest(n: Int, expected: Int) {
+        val actual = strategy(n)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class TemplateImplTest : TemplateTest<Template>(TemplateImpl())
+class HammingWeightSolutionTest : HammingWeightTest<HammingWeight>(HammingWeightSolution())
+class HammingWeightStdTest : HammingWeightTest<HammingWeight>(HammingWeightStd())
+class HammingWeightXorTest : HammingWeightTest<HammingWeight>(HammingWeightXor())
+class HammingWeightAndTest : HammingWeightTest<HammingWeight>(HammingWeightAnd())
+class HammingWeightUnsignedShiftRightTest : HammingWeightTest<HammingWeight>(HammingWeightUnsignedShiftRight())
