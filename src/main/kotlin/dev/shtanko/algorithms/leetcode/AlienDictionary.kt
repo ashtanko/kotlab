@@ -71,7 +71,7 @@ class AlienDictionaryBFS : AlienDictionary {
                 queue.add(c)
             }
         }
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val c: Char = queue.remove()
             sb.append(c)
             for (next in adjList.getOrDefault(c, emptyList())) {
@@ -105,13 +105,27 @@ class AlienDictionaryDFS : AlienDictionary {
         for (i in 0 until ALPHABET_LETTERS_COUNT) {
             // unvisited
             if (visited[i] == 0) {
-                if (!dfs(adj, visited, sb, i)) return ""
+                if (!dfs(adj, visited, sb, i)) {
+                    return ""
+                }
             }
         }
         return sb.reverse().toString()
     }
 
-    fun dfs(adj: Array<BooleanArray>, visited: IntArray, sb: StringBuilder, i: Int): Boolean {
+    /**
+     * Depth-first search (DFS) algorithm for traversing a graph.
+     *
+     * This method performs a depth-first search traversal starting from the given node `i`
+     * in the graph represented by the adjacent matrix `adj`.
+     *
+     * @param adj The adjacency matrix representing the connections between graph nodes.
+     * @param visited The array representing the visited status of graph nodes.
+     * @param sb The `StringBuilder` used to store the visited nodes in the DFS traversal order.
+     * @param i The index of the current node being visited.
+     * @return `true` if the DFS traversal is successful, `false` if a cycle is detected.
+     */
+    private fun dfs(adj: Array<BooleanArray>, visited: IntArray, sb: StringBuilder, i: Int): Boolean {
         visited[i] = 1 // 1 = visiting
         for (j in 0 until ALPHABET_LETTERS_COUNT) {
             if (adj[i][j]) {
@@ -126,6 +140,14 @@ class AlienDictionaryDFS : AlienDictionary {
         return true
     }
 
+    /**
+     * Builds a graph based on the given array of words, assigning adjacency values and visited status to the
+     * graph nodes.
+     *
+     * @param words The array of words representing the graph nodes.
+     * @param adj The adjacency matrix representing the connections between graph nodes.
+     * @param visited The array representing the visited status of graph nodes.
+     */
     private fun buildGraph(words: Array<String>, adj: Array<BooleanArray>, visited: IntArray) {
         if (words.isEmpty()) return
         var pre = words[0].toCharArray()

@@ -45,7 +45,7 @@ fun advantageCount(a: IntArray, b: IntArray): IntArray {
     val ans = IntArray(b.size)
     for (i in b.indices) {
         val bDeque = assigned.getOrDefault(b[i], LinkedList())
-        if (bDeque.size > 0) {
+        if (bDeque.isNotEmpty()) {
             ans[i] = bDeque.pop()
         } else {
             ans[i] = remaining.pop()

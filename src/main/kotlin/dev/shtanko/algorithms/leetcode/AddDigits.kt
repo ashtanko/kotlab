@@ -21,14 +21,27 @@ import dev.shtanko.algorithms.DECIMAL
 private const val MAX = 9
 
 /**
- * Add Digits
+ * 258. Add Digits
  * @see <a href="https://leetcode.com/problems/add-digits/">Source</a>
  */
 fun interface AddDigits {
     operator fun invoke(num: Int): Int
 }
 
+/**
+ * This class represents a straightforward implementation of the digital root calculation algorithm.
+ * It implements the [AddDigits] interface.
+ *
+ * @property DECIMAL The base number system to be used for the calculations.
+ * @property MAX The maximum value that can be present in the result of the digital root calculation.
+ */
 class AddDigitsStraightForward : AddDigits {
+    /**
+     * Calculates the digital root of a given number.
+     *
+     * @param num The number for which the digital root needs to be calculated.
+     * @return The digital root of the given number.
+     */
     override operator fun invoke(num: Int): Int {
         var digitalRoot = 0
         var digits = num
@@ -44,7 +57,19 @@ class AddDigitsStraightForward : AddDigits {
     }
 }
 
+/**
+ * Class representing a mathematical operation to add the digits of a given number.
+ * Implements the AddDigits interface.
+ *
+ * @param num The number to be operated on.
+ */
 class AddDigitsMath : AddDigits {
+    /**
+     * Calculates the remainder of dividing the given number by the maximum value.
+     *
+     * @param num The number to be operated on.
+     * @return The remainder of dividing the number by the maximum value.
+     */
     override operator fun invoke(num: Int): Int {
         if (num == 0) return 0
         if (num % MAX == 0) return MAX
@@ -52,7 +77,16 @@ class AddDigitsMath : AddDigits {
     }
 }
 
+/**
+ * Class representing the AddDigitsDigitalRoot strategy for adding digits.
+ */
 class AddDigitsDigitalRoot : AddDigits {
+    /**
+     * Invokes the `AddDigitsDigitalRoot` function with the given input number.
+     *
+     * @param num The input number.
+     * @return The result of the invocation.
+     */
     override operator fun invoke(num: Int): Int {
         return if (num == 0) 0 else 1 + (num - 1) % MAX
     }

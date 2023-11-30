@@ -28,6 +28,13 @@ fun interface AddToArrayForm {
 }
 
 class AddToArrayFormSimple : AddToArrayForm {
+    /**
+     * Adds an integer value to each element of an array of integers using a specified base.
+     *
+     * @param num The array of integers to be modified.
+     * @param k The integer value to be added to each element.
+     * @return A list of integers representing the modified array.
+     */
     override operator fun invoke(num: IntArray, k: Int): List<Int> {
         val res: MutableList<Int> = LinkedList()
         var k0 = k
@@ -44,6 +51,13 @@ class AddToArrayFormSimple : AddToArrayForm {
 }
 
 class AddToArrayFormOnePass : AddToArrayForm {
+    /**
+     * Calculates the result of adding an integer to an array of integers in decimal form.
+     *
+     * @param num The array of integers representing the decimal form.
+     * @param k The integer to be added.
+     * @return The result of adding the integer to the array of integers.
+     */
     override operator fun invoke(num: IntArray, k: Int): List<Int> {
         val res: MutableList<Int> = LinkedList()
         var i: Int = num.size - 1

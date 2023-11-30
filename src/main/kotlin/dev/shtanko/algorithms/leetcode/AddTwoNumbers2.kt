@@ -31,6 +31,13 @@ fun interface AddTwoNumbers2 {
  * Approach 1: Using Stack
  */
 class AddTwoNumbers2Stack : AddTwoNumbers2 {
+    /**
+     * Adds two numbers represented as linked lists in reverse order.
+     *
+     * @param l1 The first linked list representing a number.
+     * @param l2 The second linked list representing a number.
+     * @return The linked list representing the sum of l1 and l2.
+     */
     override fun invoke(l1: ListNode?, l2: ListNode?): ListNode? {
         val s1: Stack<Int> = Stack<Int>()
         val s2: Stack<Int> = Stack<Int>()
@@ -67,6 +74,13 @@ class AddTwoNumbers2Stack : AddTwoNumbers2 {
  * Approach 2: Reverse Given Linked Lists
  */
 class AddTwoNumbers2Reverse : AddTwoNumbers2 {
+    /**
+     * Adds two numbers represented by linked lists in reverse order.
+     *
+     * @param l1 The first linked list representing a number in reverse order.
+     * @param l2 The second linked list representing a number in reverse order.
+     * @return The sum of the two numbers as a linked list in reverse order.
+     */
     override fun invoke(l1: ListNode?, l2: ListNode?): ListNode? {
         var r1: ListNode? = l1?.reverseList()
         var r2: ListNode? = l2?.reverseList()

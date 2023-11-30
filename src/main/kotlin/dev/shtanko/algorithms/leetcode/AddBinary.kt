@@ -30,6 +30,13 @@ fun interface AddBinaryStrategy {
  * Space complexity: O(max(N,M)) to keep the answer.
  */
 class AddBinaryBitByBitComputation : AddBinaryStrategy {
+    /**
+     * Adds two binary strings and returns their sum as a binary string.
+     *
+     * @param a the first binary string
+     * @param b the second binary string
+     * @return the sum of the binary strings as a binary string
+     */
     override operator fun invoke(a: String, b: String): String {
         val sb = StringBuilder()
         var i: Int = a.length - 1
@@ -52,19 +59,37 @@ class AddBinaryBitByBitComputation : AddBinaryStrategy {
  * Space complexity: O(max(N,M)) to keep the answer.
  */
 class AddBinaryBitManipulation : AddBinaryStrategy {
+    /**
+     * Performs binary addition of two strings and returns the sum as a binary string.
+     *
+     * @param a The first binary string.
+     * @param b The second binary string.
+     * @return The sum of the two binary strings as a binary string.
+     */
     override operator fun invoke(a: String, b: String): String {
         if (a.isEmpty() || b.isEmpty()) return ""
-        var x = BigInteger(a, 2)
-        var y = BigInteger(b, 2)
-        val zero = BigInteger("0", 2)
-        var carry: BigInteger
-        var answer: BigInteger
-        while (y.compareTo(zero) != 0) {
-            answer = x.xor(y)
-            carry = x.and(y).shiftLeft(1)
-            x = answer
-            y = carry
+        val firstOperand = BigInteger(a, 2)
+        val secondOperand = BigInteger(b, 2)
+        val zeroBigInteger = BigInteger("0", 2)
+
+        return binaryAddition(firstOperand, secondOperand, zeroBigInteger).toString(2)
+    }
+
+    private fun binaryAddition(
+        firstOperand: BigInteger,
+        secondOperand: BigInteger,
+        zeroBigInteger: BigInteger,
+    ): BigInteger {
+        var tempResult: BigInteger
+        var carryResult: BigInteger
+        var x = firstOperand
+        var y = secondOperand
+        while (y.compareTo(zeroBigInteger) != 0) {
+            tempResult = x.xor(y)
+            carryResult = x.and(y).shiftLeft(1)
+            x = tempResult
+            y = carryResult
         }
-        return x.toString(2)
+        return x
     }
 }

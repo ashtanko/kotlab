@@ -26,37 +26,57 @@ fun interface AllPossibleFullBinaryTrees {
 
 class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
     override fun invoke(n: Int): List<TreeNode?> {
-        val ret: MutableList<TreeNode> = ArrayList()
+        val ret: MutableList<TreeNode> = mutableListOf()
         if (n % 2 == 0) {
             return ret
-        } else if (1 == n) {
+        }
+        if (n == 1) {
             ret.add(TreeNode(0))
             return ret
         }
 
-        // Build up a cache of a all possible FBT for the N - 2 levels
-        // these levels will be linked together as a graph and should not
-        // be returned
-        val cache: MutableList<MutableList<TreeNode>> = ArrayList()
-        cache.add(ArrayList<TreeNode>())
-        cache[0].add(TreeNode(0))
+        // Cache all possible Full Binary Trees (FBT) for the N - 2 levels
+        val cache = cacheFBT(n)
+
+        // Clone cached values, link them, and add them to the list
+        linkCachedTreesAndAddToList(n, ret, cache)
+
+        return ret
+    }
+
+    private fun cacheFBT(n: Int): MutableList<MutableList<TreeNode>> {
+        val cache: MutableList<MutableList<TreeNode>> = mutableListOf(mutableListOf(TreeNode(0)))
         for (root in 1 until n / 2) {
-            val newRoot: MutableList<TreeNode> = ArrayList()
+            val newRoot = mutableListOf<TreeNode>()
             for (leftSize in 0 until root) {
-                for (left in cache[leftSize]) {
-                    for (right in cache[root - leftSize - 1]) {
-                        val newTree = TreeNode(0)
-                        newTree.left = left
-                        newTree.right = right
-                        newRoot.add(newTree)
-                    }
-                }
+                linkTreesAndAddToRoot(leftSize, root, newRoot, cache)
             }
             cache.add(newRoot)
         }
+        return cache
+    }
 
-        // Cached values are linked together and must be cloned to be unlinked
-        // trees before returning
+    private fun linkTreesAndAddToRoot(
+        leftSize: Int,
+        root: Int,
+        newRoot: MutableList<TreeNode>,
+        cache: MutableList<MutableList<TreeNode>>,
+    ) {
+        for (left in cache[leftSize]) {
+            for (right in cache[root - leftSize - 1]) {
+                val newTree = TreeNode(0)
+                newTree.left = left
+                newTree.right = right
+                newRoot.add(newTree)
+            }
+        }
+    }
+
+    private fun linkCachedTreesAndAddToList(
+        n: Int,
+        ret: MutableList<TreeNode>,
+        cache: MutableList<MutableList<TreeNode>>,
+    ) {
         for (root in 0 until n / 2) {
             for (left in cache[root]) {
                 for (right in cache[n / 2 - root - 1]) {
@@ -67,8 +87,6 @@ class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
                 }
             }
         }
-
-        return ret
     }
 }
 

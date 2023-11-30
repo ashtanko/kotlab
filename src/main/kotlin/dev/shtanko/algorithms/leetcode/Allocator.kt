@@ -96,26 +96,30 @@ class TAllocator(n: Int) : Malloc {
         memory[0] = ranges // 0 means free block
     }
 
+    class Range(val start: Int, val end: Int)
+
     override fun allocate(size: Int, mID: Int): Int {
-        var addr = -1
-        val availableRange = intArrayOf(-1, -1)
-        for ((startAdd, endAdd) in memory[0] ?: emptyMap()) {
-            if (endAdd - startAdd + 1 >= size) {
-                addr = startAdd
-                availableRange[0] = startAdd
-                availableRange[1] = endAdd
-                break
-            }
-        }
-        if (addr != -1) {
-            memory.computeIfAbsent(mID) { _: Int? -> TreeMap() }[availableRange[0]] = availableRange[0] + size - 1
-            memory[0]?.remove(availableRange[0])
-            if (availableRange[1] - availableRange[0] + 1 > size) {
-                memory[0]!![availableRange[0] + size] = availableRange[1]
-            }
+        val emptyRange = Range(start = -1, end = -1)
+        val foundRange = findSuitableMemoryRange(size) ?: emptyRange
+
+        if (foundRange.start != -1) {
+            allocateMemoryRange(mID, size, foundRange)
         }
         mergeRanges(mID)
-        return addr
+        return foundRange.start
+    }
+
+    private fun findSuitableMemoryRange(size: Int): Range? {
+        return memory[0]?.entries?.find { it.value - it.key + 1 >= size }?.let { Range(it.key, it.value) }
+    }
+
+    private fun allocateMemoryRange(mID: Int, size: Int, foundRange: Range) {
+        memory.computeIfAbsent(mID) { TreeMap() }[foundRange.start] = foundRange.start + size - 1
+        memory[0]?.remove(foundRange.start)
+        val remainingSize = foundRange.end - foundRange.start + 1
+        if (remainingSize > size) {
+            memory.getOrDefault(0, TreeMap())[foundRange.start + size] = foundRange.end
+        }
     }
 
     override fun free(mID: Int): Int {
@@ -124,7 +128,7 @@ class TAllocator(n: Int) : Malloc {
         if (freeRanges != null) {
             for ((startAdd, endAdd) in freeRanges) {
                 cnt += endAdd - startAdd + 1
-                memory[0]!![startAdd] = endAdd
+                memory.getOrDefault(0, TreeMap())[startAdd] = endAdd
             }
         }
         memory.remove(mID)
