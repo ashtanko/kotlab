@@ -21,7 +21,7 @@ import kotlin.math.max
 
 /**
  * Ones and Zeroes
- * @see <a href="https://leetcode.com/problems/ones-and-zeroes/solution/">Source</a>
+ * @see <a href="https://leetcode.com/problems/ones-and-zeroes">Source</a>
  */
 fun interface OnesAndZeroes {
     fun findMaxForm(strs: Array<String>, m: Int, n: Int): Int

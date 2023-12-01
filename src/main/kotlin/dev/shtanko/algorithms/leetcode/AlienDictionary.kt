@@ -23,7 +23,7 @@ import kotlin.math.min
 
 /**
  * 269. Alien Dictionary
- * @see <a href="https://leetcode.com/problems/alien-dictionary/solution/">Source</a>
+ * @see <a href="https://leetcode.com/problems/alien-dictionary">Source</a>
  */
 fun interface AlienDictionary {
     operator fun invoke(words: Array<String>): String
