@@ -20,7 +20,7 @@ import kotlin.math.max
 
 /**
  * 309. Best Time to Buy and Sell Stock with Cooldown
- * @see <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description">
+ * @see <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown">
  *     Source</a>
  */
 fun interface MaxProfitStock {
