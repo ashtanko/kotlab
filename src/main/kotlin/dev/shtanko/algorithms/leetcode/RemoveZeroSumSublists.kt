@@ -45,7 +45,7 @@ class RemoveZeroSumSublistsMap : RemoveZeroSumSublists {
             } else {
                 m[prefix] = cur
             }
-            cur = cur?.next
+            cur = cur.next
         }
         return dummy.next
     }

@@ -19,7 +19,6 @@ package dev.shtanko.kotlinlang.serialization
 import dev.shtanko.algorithms.utils.measureTime
 import java.util.stream.Stream
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext

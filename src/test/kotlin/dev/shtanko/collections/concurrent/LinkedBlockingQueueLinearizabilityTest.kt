@@ -62,9 +62,7 @@ class LinkedBlockingQueueLinearizabilityTest : VerifierState() {
 
         other as LinkedBlockingQueueLinearizabilityTest
 
-        if (queue != other.queue) return false
-
-        return true
+        return queue == other.queue
     }
 
     override fun hashCode(): Int {
