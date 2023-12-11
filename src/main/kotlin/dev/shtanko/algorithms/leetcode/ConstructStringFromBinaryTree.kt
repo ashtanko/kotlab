@@ -49,7 +49,7 @@ class ConstructStringFromBinaryTreeStack : ConstructStringFromBinaryTreeStrategy
         stack.push(tree)
         val visited: MutableSet<TreeNode> = HashSet()
         val s = StringBuilder()
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             tree = stack.peek()
             if (visited.contains(tree)) {
                 stack.pop()
