@@ -65,7 +65,7 @@ class IsGraphBipartiteBFS : IsGraphBipartite {
             val queue: Queue<Int> = LinkedList()
             queue.offer(i)
             colors[i] = 1 // Blue: 1; Red: -1.
-            while (!queue.isEmpty()) {
+            while (queue.isNotEmpty()) {
                 val cur: Int = queue.poll()
                 for (next in graph[cur]) {
                     if (colors[next] == 0) { // If this node hasn't been colored;

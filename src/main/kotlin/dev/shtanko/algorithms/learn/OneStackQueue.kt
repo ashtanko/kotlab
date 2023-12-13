@@ -44,7 +44,7 @@ class OneStackQueue<T> : Collection<T> {
     }
 
     fun peek(): T {
-        if (size == 0) throw NoSuchElementException()
+        if (isEmpty()) throw NoSuchElementException()
         val x = stack.peek()
         stack.pop()
         if (stack.isEmpty()) return x

@@ -57,7 +57,7 @@ class ShortestAlternatingPathsBFS : ShortestAlternatingPaths {
         q.offer(intArrayOf(0, 0))
         q.offer(intArrayOf(0, 1))
 
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val cur: IntArray = q.poll()
             val ind = cur[0]
             val col = cur[1]

@@ -39,29 +39,37 @@ class TSMThreePointer : ThreeSumMulti {
             var j = i + 1
             var k: Int = arr.size - 1
             while (j < k) {
-                if (arr[j] + arr[k] < t) {
-                    j++
-                } else if (arr[j] + arr[k] > t) {
-                    k--
-                } else if (arr[j] != arr[k]) {
-                    var left = 1
-                    var right = 1
-                    while (j + 1 < k && arr[j] == arr[j + 1]) {
-                        left++
+                when {
+                    arr[j] + arr[k] < t -> {
                         j++
                     }
-                    while (k - 1 > j && arr[k] == arr[k - 1]) {
-                        right++
+
+                    arr[j] + arr[k] > t -> {
                         k--
                     }
-                    ans += (left * right).toLong()
-                    ans %= MOD.toLong()
-                    j++
-                    k--
-                } else {
-                    ans += ((k - j + 1) * (k - j) / 2).toLong()
-                    ans %= MOD.toLong()
-                    break
+
+                    arr[j] != arr[k] -> {
+                        var left = 1
+                        var right = 1
+                        while (j + 1 < k && arr[j] == arr[j + 1]) {
+                            left++
+                            j++
+                        }
+                        while (k - 1 > j && arr[k] == arr[k - 1]) {
+                            right++
+                            k--
+                        }
+                        ans += (left * right).toLong()
+                        ans %= MOD.toLong()
+                        j++
+                        k--
+                    }
+
+                    else -> {
+                        ans += ((k - j + 1) * (k - j) / 2).toLong()
+                        ans %= MOD.toLong()
+                        break
+                    }
                 }
             }
         }
@@ -156,14 +164,22 @@ class TSMAdapt : ThreeSumMulti {
                     }
 
                     else -> {
-                        ans += if (j in i.plus(1) until k) {
-                            count[x] * count[y] * count[z]
-                        } else if (i == j && j < k) {
-                            count[x] * (count[x] - 1) / 2 * count[z]
-                        } else if (i < j && j == k) {
-                            count[x] * count[y] * (count[y] - 1) / 2
-                        } else {
-                            count[x] * (count[x] - 1) * (count[x] - 2) / 6
+                        ans += when {
+                            j in i.plus(1) until k -> {
+                                count[x] * count[y] * count[z]
+                            }
+
+                            i == j && j < k -> {
+                                count[x] * (count[x] - 1) / 2 * count[z]
+                            }
+
+                            i < j && j == k -> {
+                                count[x] * count[y] * (count[y] - 1) / 2
+                            }
+
+                            else -> {
+                                count[x] * (count[x] - 1) * (count[x] - 2) / 6
+                            }
                         }
                         ans %= MOD.toLong()
                         j++

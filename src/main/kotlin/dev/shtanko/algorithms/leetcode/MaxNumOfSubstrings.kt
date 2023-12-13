@@ -48,10 +48,10 @@ class MaxNumOfSubstringsGreedy : MaxNumOfSubstrings {
             val tail = range[idx][1]
             val r = getRightMost(l, tail, range, s)
             if (r < 0) continue
-            while (!st.isEmpty() && l >= st.peek()[0] && r <= st.peek()[1]) st.pop()
+            while (st.isNotEmpty() && l >= st.peek()[0] && r <= st.peek()[1]) st.pop()
             st.push(intArrayOf(l, r))
         }
-        while (!st.isEmpty()) res.add(s.substring(st.peek()[0], st.pop()[1] + 1))
+        while (st.isNotEmpty()) res.add(s.substring(st.peek()[0], st.pop()[1] + 1))
         return res
     }
 

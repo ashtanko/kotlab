@@ -60,7 +60,7 @@ class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
         leftSize: Int,
         root: Int,
         newRoot: MutableList<TreeNode>,
-        cache: MutableList<MutableList<TreeNode>>,
+        cache: List<MutableList<TreeNode>>,
     ) {
         for (left in cache[leftSize]) {
             for (right in cache[root - leftSize - 1]) {
@@ -75,7 +75,7 @@ class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
     private fun linkCachedTreesAndAddToList(
         n: Int,
         ret: MutableList<TreeNode>,
-        cache: MutableList<MutableList<TreeNode>>,
+        cache: List<MutableList<TreeNode>>,
     ) {
         for (root in 0 until n / 2) {
             for (left in cache[root]) {
@@ -93,36 +93,46 @@ class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
 class AllPossibleFullBinaryTreesRecursive : AllPossibleFullBinaryTrees {
     override fun invoke(n: Int): List<TreeNode?> {
         val ret: MutableList<TreeNode> = ArrayList()
-        if (1 == n) {
+
+        if (n == 1) {
             ret.add(TreeNode(0))
         } else if (n % 2 != 0) {
-            var i = 2
-            while (i <= n) {
-                val leftBranch = invoke(i - 1)
-                val rightBranch = invoke(n - i)
-                val leftIter = leftBranch.iterator()
-                while (leftIter.hasNext()) {
-                    val left = leftIter.next()
-                    val rightIter = rightBranch.iterator()
-                    while (rightIter.hasNext()) {
-                        val right = rightIter.next()
-                        val tree = TreeNode(0)
+            generateTrees(n, ret)
+        }
 
-                        // If we're using the last right branch, then this will be the last time this left branch is
-                        // used and can hence
-                        // be shallow copied, otherwise the tree will have to be cloned
-                        tree.left = if (rightIter.hasNext()) left.clone() else left
+        return ret
+    }
 
-                        // If we're using the last left branch, then this will be the last time this right branch is
-                        // used and can hence
-                        // be shallow copied, otherwise the tree will have to be cloned
-                        tree.right = if (leftIter.hasNext()) right.clone() else right
-                        ret.add(tree)
-                    }
-                }
-                i += 2
+    private fun generateTrees(n: Int, ret: MutableList<TreeNode>) {
+        var i = 2
+        while (i <= n) {
+            val leftBranch = invoke(i - 1)
+            val rightBranch = invoke(n - i)
+
+            processBranches(leftBranch, rightBranch, ret)
+
+            i += 2
+        }
+    }
+
+    private fun processBranches(
+        leftBranch: List<TreeNode?>,
+        rightBranch: List<TreeNode?>,
+        ret: MutableList<TreeNode>,
+    ) {
+        val leftIter = leftBranch.iterator()
+        while (leftIter.hasNext()) {
+            val left = leftIter.next()
+            val rightIter = rightBranch.iterator()
+            while (rightIter.hasNext()) {
+                val right = rightIter.next()
+                val tree = TreeNode(0)
+
+                tree.left = if (rightIter.hasNext()) left?.clone() else left
+
+                tree.right = if (leftIter.hasNext()) right?.clone() else right
+                ret.add(tree)
             }
         }
-        return ret
     }
 }

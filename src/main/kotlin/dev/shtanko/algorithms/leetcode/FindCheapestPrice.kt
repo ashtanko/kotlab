@@ -40,7 +40,7 @@ class FindCheapestPriceBFS : FindCheapestPrice {
         val q: Queue<IntArray> = LinkedList()
         q.offer(intArrayOf(src, 0))
         var ans = Int.MAX_VALUE
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val size = q.size
             for (i in 0 until size) {
                 val curr = q.poll()
@@ -88,7 +88,7 @@ class FindCheapestPriceDijkstra : FindCheapestPrice {
         }
         val q: PriorityQueue<IntArray> = PriorityQueue { o1, o2 -> o1[0].compareTo(o2[0]) }
         q.offer(intArrayOf(0, src, k + 1))
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val c: IntArray = q.poll()
             val cost = c[0]
             val curr = c[1]

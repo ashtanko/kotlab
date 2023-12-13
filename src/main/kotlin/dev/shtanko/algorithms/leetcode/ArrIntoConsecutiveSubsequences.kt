@@ -76,17 +76,25 @@ class ArrIntoConsecutiveSubsequencesGreedy : ArrIntoConsecutiveSubsequences {
         for (x in nums) count.add(x, 1)
 
         for (x in nums) {
-            if (count[x] == 0) {
-                continue
-            } else if (tails[x] > 0) {
-                tails.add(x, -1)
-                tails.add(x + 1, 1)
-            } else if (count[x + 1] > 0 && count[x + 2] > 0) {
-                count.add(x + 1, -1)
-                count.add(x + 2, -1)
-                tails.add(x + 3, 1)
-            } else {
-                return false
+            when {
+                count[x] == 0 -> {
+                    continue
+                }
+
+                tails[x] > 0 -> {
+                    tails.add(x, -1)
+                    tails.add(x + 1, 1)
+                }
+
+                count[x + 1] > 0 && count[x + 2] > 0 -> {
+                    count.add(x + 1, -1)
+                    count.add(x + 2, -1)
+                    tails.add(x + 3, 1)
+                }
+
+                else -> {
+                    return false
+                }
             }
             count.add(x, -1)
         }
@@ -94,9 +102,9 @@ class ArrIntoConsecutiveSubsequencesGreedy : ArrIntoConsecutiveSubsequences {
     }
 }
 
-class CounterMap : HashMap<Int?, Int?>() {
-    operator fun get(k: Int): Int {
-        return if (containsKey(k)) super.get(k)!! else 0
+class CounterMap : HashMap<Int, Int>() {
+    override operator fun get(key: Int): Int {
+        return if (containsKey(key)) super.getOrDefault(key, 0) else 0
     }
 
     fun add(k: Int, v: Int) {

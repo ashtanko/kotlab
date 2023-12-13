@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.math
 import dev.shtanko.algorithms.DECIMAL
 import kotlin.math.pow
 
-interface NarcissisticNumber {
+fun interface NarcissisticNumber {
     fun isArmstrong(number: Int): Boolean
 }
 

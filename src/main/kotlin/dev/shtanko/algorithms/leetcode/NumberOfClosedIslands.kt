@@ -55,7 +55,7 @@ class NumberOfClosedIslandsBFS : NumberOfClosedIslands {
         var isClosed = true
         val dirX = intArrayOf(0, 1, 0, -1)
         val dirY = intArrayOf(-1, 0, 1, 0)
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val temp: IntArray = q.poll()
             x1 = temp[0]
             y1 = temp[1]

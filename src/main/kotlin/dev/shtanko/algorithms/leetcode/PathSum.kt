@@ -37,10 +37,10 @@ class PathSumStack : PathSumStrategy {
     override fun hasPathSum(root: TreeNode?, sum: Int): Boolean {
         val stack: Stack<TreeNode> = Stack()
         stack.push(root)
-        while (!stack.isEmpty() && root != null) {
+        while (stack.isNotEmpty() && root != null) {
             val cur: TreeNode = stack.pop()
-            if (cur.left == null && cur.right == null) {
-                if (cur.value == sum) return true
+            if (cur.left == null && cur.right == null && cur.value == sum) {
+                return true
             }
             if (cur.right != null) {
                 cur.right?.value = cur.value + cur.right!!.value

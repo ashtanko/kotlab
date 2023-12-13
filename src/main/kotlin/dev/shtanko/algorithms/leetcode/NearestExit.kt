@@ -46,7 +46,7 @@ class NearestExitBFS : NearestExit {
         val queue: Queue<IntArray> = LinkedList()
         queue.offer(intArrayOf(startRow, startCol, 0))
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val currState: IntArray = queue.poll()
             val currRow = currState[0]
             val currCol = currState[1]

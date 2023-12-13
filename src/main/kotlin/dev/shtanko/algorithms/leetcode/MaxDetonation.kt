@@ -106,7 +106,7 @@ class MaxDetonationIterative : MaxDetonation {
         val visited: MutableSet<Int> = HashSet()
         stack.push(i)
         visited.add(i)
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val cur: Int = stack.pop()
             for (neib in graph[cur] ?: ArrayList()) {
                 if (!visited.contains(neib)) {
@@ -139,7 +139,7 @@ class MaxDetonationBFS : MaxDetonation {
         val visited: MutableSet<Int> = HashSet()
         queue.offer(i)
         visited.add(i)
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val cur = queue.poll()
             for (nib in graph[cur] ?: ArrayList()) {
                 if (!visited.contains(nib)) {

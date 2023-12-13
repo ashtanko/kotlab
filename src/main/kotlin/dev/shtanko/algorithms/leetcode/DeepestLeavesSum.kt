@@ -35,7 +35,7 @@ class DeepestLeavesSumDFS : DeepestLeavesSum {
         val stack: Deque<Pair<TreeNode, Int>> = ArrayDeque()
         stack.push(node to 0)
 
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val p = stack.pop()
             node = p.first
             currDepth = p.second
@@ -71,7 +71,7 @@ class DeepestLeavesSumBFS : DeepestLeavesSum {
         var node: TreeNode = root
         queue.offer(Pair(node, 0))
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val p = queue.poll()
             node = p.first
             currDepth = p.second
@@ -104,7 +104,7 @@ class DeepestLeavesSumOptimizedBFS : DeepestLeavesSum {
         var currLevel: ArrayDeque<TreeNode> = ArrayDeque()
         nextLevel.offer(root)
 
-        while (!nextLevel.isEmpty()) {
+        while (nextLevel.isNotEmpty()) {
             currLevel = nextLevel.clone()
             nextLevel.clear()
             for (node in currLevel) {

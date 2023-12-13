@@ -17,6 +17,6 @@
 package dev.shtanko.patterns.structural.adapter.example3
 
 // New TemperatureSystem interface expecting Fahrenheit measurements
-interface TemperatureSystem {
+fun interface TemperatureSystem {
     fun getTemperatureInFahrenheit(): Double
 }

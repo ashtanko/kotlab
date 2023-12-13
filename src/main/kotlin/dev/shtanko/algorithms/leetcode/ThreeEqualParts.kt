@@ -105,11 +105,9 @@ class ThreeEqualPartsSimple : ThreeEqualParts {
         var thirdPartStartingIndex = 0
         var count = 0
         for (i in arr.indices.reversed()) {
-            if (arr[i] == 1) {
-                if (++count == numOne / 3) {
-                    thirdPartStartingIndex = i
-                    break
-                }
+            if (arr[i] == 1 && ++count == numOne / 3) {
+                thirdPartStartingIndex = i
+                break
             }
         }
         val firstPartEndIndex = findNextEndIndexAndCompare(arr, 0, thirdPartStartingIndex)

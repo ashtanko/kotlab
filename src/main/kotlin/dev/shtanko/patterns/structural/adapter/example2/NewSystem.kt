@@ -17,6 +17,6 @@
 package dev.shtanko.patterns.structural.adapter.example2
 
 // New system (NewSystem) with expected interface
-interface NewSystem {
+fun interface NewSystem {
     fun performNewAction()
 }

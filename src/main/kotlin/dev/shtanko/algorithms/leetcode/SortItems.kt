@@ -99,7 +99,7 @@ class TopologicalSorting : SortItems {
                 stack.add(key)
             }
         }
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val curr: Int = stack.pop()
             visited.add(curr)
             for (prev in graph[curr]!!) {

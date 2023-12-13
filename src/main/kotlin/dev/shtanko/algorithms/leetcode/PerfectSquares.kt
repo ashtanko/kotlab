@@ -128,7 +128,7 @@ class PerfectSquaresBFS : PerfectSquares {
         q.offer(0)
         visited.add(0)
         var depth = 0
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             var size: Int = q.size
             depth++
             while (size-- > 0) {

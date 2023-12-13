@@ -22,7 +22,7 @@ import kotlin.math.min
  * 2009. Minimum Number of Operations to Make Array Continuous
  * @see <a href="https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous">Source</a>
  */
-interface MinOperationsToMakeArrayContinuous {
+fun interface MinOperationsToMakeArrayContinuous {
     operator fun invoke(nums: IntArray): Int
 }
 

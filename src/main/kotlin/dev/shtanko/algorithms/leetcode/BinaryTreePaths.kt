@@ -54,7 +54,7 @@ class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {
         if (root == null) return list
         qNode.add(root)
         qStr.add("")
-        while (!qNode.isEmpty()) {
+        while (qNode.isNotEmpty()) {
             val curNode: TreeNode = qNode.remove()
             val curStr: String = qStr.remove()
             if (curNode.left == null && curNode.right == null) list.add(curStr + curNode.value)
@@ -80,7 +80,7 @@ class BinaryTreePathsBFSStack : BinaryTreePathsStrategy {
         if (root == null) return list
         sNode.push(root)
         sStr.push("")
-        while (!sNode.isEmpty()) {
+        while (sNode.isNotEmpty()) {
             val curNode: TreeNode = sNode.pop()
             val curStr: String = sStr.pop()
             if (curNode.left == null && curNode.right == null) list.add(curStr + curNode.value)

@@ -29,7 +29,7 @@ class BstIterator<T : Comparable<T>>(root: TreeNode<T>?) : CustomIterator<TreeNo
     }
 
     override fun hasNext(): Boolean {
-        return !pathStack.isEmpty()
+        return pathStack.isNotEmpty()
     }
 
     @Throws(NoSuchElementException::class)

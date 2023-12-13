@@ -64,10 +64,10 @@ class TaskSchedulerPriorityQueue : TaskSchedulerStrategy {
         q.addAll(map.entries)
 
         var count = 0
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             var k = n + 1
             val tempList: MutableList<Map.Entry<Char, Int>> = ArrayList()
-            while (k > 0 && !q.isEmpty()) {
+            while (k > 0 && q.isNotEmpty()) {
                 val top: MutableMap.MutableEntry<Char, Int> =
                     q.poll() as MutableMap.MutableEntry<Char, Int> // most frequency task
                 top.setValue(top.value - 1) // decrease frequency, meaning it got executed

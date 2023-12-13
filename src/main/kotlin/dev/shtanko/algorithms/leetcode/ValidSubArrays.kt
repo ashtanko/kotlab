@@ -30,7 +30,7 @@ class ValidSubArrays {
         stack.push(nums[0])
         for (i in 1 until nums.size) {
             val num = nums[i]
-            while (!stack.isEmpty() && num < stack.peek()) {
+            while (stack.isNotEmpty() && num < stack.peek()) {
                 stack.pop()
             }
             res += stack.size

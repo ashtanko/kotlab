@@ -23,12 +23,12 @@ import java.util.stream.Collectors
  * Implement an algorithm to determine if a string has all unique characters
  * What if you can not use additional data structures?
  */
-interface UniqueCharacters {
-    fun perform(str: String): Boolean
+fun interface UniqueCharacters {
+    operator fun invoke(str: String): Boolean
 }
 
 class UniqueCharactersSet : UniqueCharacters {
-    override fun perform(str: String): Boolean {
+    override fun invoke(str: String): Boolean {
         if (str.isBlank()) return false
         return str.length == str.toSet().size
     }
@@ -38,7 +38,7 @@ class UniqueCharactersSet : UniqueCharacters {
  * Not use additional data structures
  */
 class UniqueCharactersSort : UniqueCharacters {
-    override fun perform(str: String): Boolean {
+    override fun invoke(str: String): Boolean {
         if (str.isBlank()) return false
         val chars = str.toCharArray().sorted()
         for (i in 0 until chars.size - 1) {
@@ -54,7 +54,7 @@ class UniqueCharactersSort : UniqueCharacters {
 
 class UniqueCharactersStream : UniqueCharacters {
 
-    override fun perform(str: String): Boolean {
+    override fun invoke(str: String): Boolean {
         if (str.isBlank()) return false
 
         return str.chars().filter { e ->
@@ -67,7 +67,7 @@ class UniqueCharactersStream : UniqueCharacters {
 }
 
 class UniqueCharactersBruteForce : UniqueCharacters {
-    override fun perform(str: String): Boolean {
+    override fun invoke(str: String): Boolean {
         if (str.isBlank()) return false
         for (i in str.indices) {
             for (j in i + 1 until str.length) {

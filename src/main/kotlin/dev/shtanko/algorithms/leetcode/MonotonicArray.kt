@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 896. Monotonic Array
  * @see <a href="https://leetcode.com/problems/sort-array-by-parity">Source</a>
  */
-interface MonotonicArray {
+fun interface MonotonicArray {
     operator fun invoke(nums: IntArray): Boolean
 }
 

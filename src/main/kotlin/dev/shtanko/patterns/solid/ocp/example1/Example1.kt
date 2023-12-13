@@ -16,7 +16,7 @@
 
 package dev.shtanko.patterns.solid.ocp.example1
 
-interface Shape {
+fun interface Shape {
     fun calculateArea(): Double
 }
 

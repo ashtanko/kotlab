@@ -43,7 +43,7 @@ class SmallestInfiniteSetHash : SmallestInfiniteSet {
         val answer: Int
         // If there are numbers in the min-heap,
         // top element is lowest among all the available numbers.
-        if (!addedIntegers.isEmpty()) {
+        if (addedIntegers.isNotEmpty()) {
             answer = addedIntegers.poll()
             isPresent.remove(answer)
         } else {
@@ -72,7 +72,7 @@ class SmallestInfiniteSetSortedSet : SmallestInfiniteSet {
         val answer: Int
         // If there are numbers in the sorted-set,
         // top element is lowest among all the available numbers.
-        if (!addedIntegers.isEmpty()) {
+        if (addedIntegers.isNotEmpty()) {
             answer = addedIntegers.first()
             addedIntegers.remove(answer)
         } else {

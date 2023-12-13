@@ -16,6 +16,6 @@
 
 package dev.shtanko.patterns.behavioral.interpreter.example1
 
-interface Expression {
+fun interface Expression {
     fun interpret(): Int
 }

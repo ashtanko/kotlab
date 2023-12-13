@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2038. Remove Colored Pieces if Both Neighbors are the Same Color
  * @see <a href="https://leetcode.com/problems/remove-colored-pieces-if-both-neighbors-are-the-same-color">Source</a>
  */
-interface WinnerOfGame {
+fun interface WinnerOfGame {
     operator fun invoke(colors: String): Boolean
 }
 

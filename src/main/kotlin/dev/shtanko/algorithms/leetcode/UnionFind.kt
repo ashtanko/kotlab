@@ -32,15 +32,23 @@ class UnionFind(size: Int) {
     fun unionSet(x: Int, y: Int) {
         val xSet = find(x)
         val ySet = find(y)
-        if (xSet == ySet) {
-            return
-        } else if (rank[xSet] < rank[ySet]) {
-            parent[xSet] = ySet
-        } else if (rank[xSet] > rank[ySet]) {
-            parent[ySet] = xSet
-        } else {
-            parent[ySet] = xSet
-            rank[xSet]++
+        when {
+            xSet == ySet -> {
+                return
+            }
+
+            rank[xSet] < rank[ySet] -> {
+                parent[xSet] = ySet
+            }
+
+            rank[xSet] > rank[ySet] -> {
+                parent[ySet] = xSet
+            }
+
+            else -> {
+                parent[ySet] = xSet
+                rank[xSet]++
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ class OrangePlant : Plant
 
 class ApplePlant : Plant
 
-interface PlantFactory {
+fun interface PlantFactory {
 
     fun makePlant(): Plant
 

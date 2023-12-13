@@ -22,7 +22,7 @@ import kotlin.math.min
  * 1846. Maximum Element After Decreasing and Rearranging
  * @see <a href="https://leetcode.com/problems/maximum-element-after-decreasing-and-rearranging">Source</a>
  */
-interface MaxElementDecrementingAndRearranging {
+fun interface MaxElementDecrementingAndRearranging {
     operator fun invoke(arr: IntArray): Int
 }
 

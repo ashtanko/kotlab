@@ -146,7 +146,7 @@ class DeleteAndEarnIterative : DeleteAndEarn {
             val temp = oneBack
             if (currentElement == elements[i - 1] + 1) {
                 // The 2 elements are adjacent, cannot take both - apply normal recurrence
-                oneBack = max(oneBack, twoBack + points[currentElement]!!)
+                oneBack = max(oneBack, twoBack + points.getOrDefault(currentElement, 0))
             } else {
                 // Otherwise, we don't need to worry about adjacent deletions
                 oneBack += points[currentElement] ?: 0
@@ -186,9 +186,9 @@ class DeleteAndEarnBest : DeleteAndEarn {
                 val currentElement = elements[i]
                 val temp = oneBack
                 if (currentElement == elements[i - 1] + 1) {
-                    oneBack = max(oneBack, twoBack + points[currentElement]!!)
+                    oneBack = max(oneBack, twoBack + points.getOrDefault(currentElement, 0))
                 } else {
-                    oneBack += points[currentElement]!!
+                    oneBack += points.getOrDefault(currentElement, 0)
                 }
                 twoBack = temp
             }

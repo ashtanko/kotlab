@@ -39,7 +39,7 @@ class RemoveStarsStack : RemoveStars {
         }
         val sb = StringBuilder()
 
-        while (st.size > 0) {
+        while (st.isNotEmpty()) {
             sb.append(st.pop())
         }
 
@@ -58,7 +58,7 @@ class RemoveStarsDeque : RemoveStars {
         }
         val sb = StringBuilder()
 
-        while (!dq.isEmpty()) {
+        while (dq.isNotEmpty()) {
             sb.append(dq.removeFirst())
         }
         return sb.toString()

@@ -34,14 +34,22 @@ class KthSmallestPathImpl : KthSmallestPath {
         val dp = Array(ti + 1) { IntArray(tj + 1) }
         for (i in ti downTo 0) {
             for (j in tj downTo 0) {
-                if (i == ti && j == tj) {
-                    dp[i][j] = 1
-                } else if (i == ti) {
-                    dp[i][j] = dp[i][j + 1]
-                } else if (j == tj) {
-                    dp[i][j] = dp[i + 1][j]
-                } else {
-                    dp[i][j] = dp[i + 1][j] + dp[i][j + 1]
+                when {
+                    i == ti && j == tj -> {
+                        dp[i][j] = 1
+                    }
+
+                    i == ti -> {
+                        dp[i][j] = dp[i][j + 1]
+                    }
+
+                    j == tj -> {
+                        dp[i][j] = dp[i + 1][j]
+                    }
+
+                    else -> {
+                        dp[i][j] = dp[i + 1][j] + dp[i][j + 1]
+                    }
                 }
             }
         }

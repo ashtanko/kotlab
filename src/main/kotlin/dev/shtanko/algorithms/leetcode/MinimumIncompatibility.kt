@@ -60,7 +60,7 @@ class MinimumIncompatibilityDFS : MinimumIncompatibility {
             res = min(res, dfs(level, count))
             count[i]++
             level.remove(i)
-            if (level.size == 0) break // first element we don't need to expand
+            if (level.isNotEmpty()) break // first element we don't need to expand
         }
         memo[key] = res
         return res

@@ -16,7 +16,7 @@
 
 package dev.shtanko.kotlinlang.inline
 
-interface Printable {
+fun interface Printable {
     fun prettyPrint(): String
 }
 

@@ -55,7 +55,7 @@ class LargestIslandDFS : LargestIsland {
         val seen: MutableSet<Int> = HashSet()
         stack.push(r0 * n + c0)
         seen.add(r0 * n + c0)
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val code: Int = stack.pop()
             val r = code / n
             val c = code % n

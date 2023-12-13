@@ -45,24 +45,32 @@ class CherryPickupTopDown : CherryPickup {
     private fun dp(r1: Int, c1: Int, c2: Int): Int {
         val r2 = r1 + c1 - c2
         val helper = n == r1 || n == r2 || n == c1 || n == c2
-        if (grid.isNotEmpty()) {
-            if (grid.first().isEmpty()) return 0
+        if (grid.isNotEmpty() && grid.first().isEmpty()) {
+            return 0
         }
-        return if (helper || grid[r1][c1] == -1 || grid[r2][c2] == -1) {
-            LIMIT
-        } else if (r1 == n - 1 && c1 == n - 1) {
-            grid[r1][c1]
-        } else if (memo[r1][c1][c2] != Int.MIN_VALUE) {
-            memo[r1][c1][c2]
-        } else {
-            var ans = grid[r1][c1]
-            if (c1 != c2) ans += grid[r2][c2]
-            ans += max(
-                max(dp(r1, c1 + 1, c2 + 1), dp(r1 + 1, c1, c2 + 1)),
-                max(dp(r1, c1 + 1, c2), dp(r1 + 1, c1, c2)),
-            )
-            memo[r1][c1][c2] = ans
-            ans
+        return when {
+            helper || grid[r1][c1] == -1 || grid[r2][c2] == -1 -> {
+                LIMIT
+            }
+
+            r1 == n - 1 && c1 == n - 1 -> {
+                grid[r1][c1]
+            }
+
+            memo[r1][c1][c2] != Int.MIN_VALUE -> {
+                memo[r1][c1][c2]
+            }
+
+            else -> {
+                var ans = grid[r1][c1]
+                if (c1 != c2) ans += grid[r2][c2]
+                ans += max(
+                    max(dp(r1, c1 + 1, c2 + 1), dp(r1 + 1, c1, c2 + 1)),
+                    max(dp(r1, c1 + 1, c2), dp(r1 + 1, c1, c2)),
+                )
+                memo[r1][c1][c2] = ans
+                ans
+            }
         }
     }
 
@@ -79,8 +87,8 @@ class CherryPickupBottomUp : CherryPickup {
         if (grid.isEmpty()) return 0
         val n: Int = grid.size
         var dp = Array(n) { IntArray(n) { Int.MIN_VALUE } }
-        if (grid.isNotEmpty()) {
-            if (grid.first().isEmpty()) return 0
+        if (grid.isNotEmpty() && grid.first().isEmpty()) {
+            return 0
         }
         dp.first()[0] = grid.first().first()
 

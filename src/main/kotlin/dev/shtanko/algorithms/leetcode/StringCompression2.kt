@@ -53,7 +53,12 @@ class StringCompression2DP : StringCompression2 {
     }
 
     private fun getLen(count: Int): Int {
-        return if (count == 1) 1 else if (count < DECIMAL) 2 else if (count < LIMIT) 3 else 4
+        return when {
+            count == 1 -> 1
+            count < DECIMAL -> 2
+            count < LIMIT -> 3
+            else -> 4
+        }
     }
 
     companion object {

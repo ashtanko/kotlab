@@ -28,7 +28,7 @@ class InvertTree : InvertTreeStrategy {
         if (root == null) return null
         val queue: Queue<TreeNode> = LinkedList<TreeNode>()
         queue.add(root)
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val current: TreeNode = queue.poll()
             val temp = current.left
             current.left = current.right

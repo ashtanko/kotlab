@@ -49,7 +49,7 @@ class RecoverFromPreorderIterative : RecoverFromPreorder {
                 stack.pop()
             }
             val node = TreeNode(value)
-            if (!stack.isEmpty()) {
+            if (stack.isNotEmpty()) {
                 if (stack.peek().left == null) {
                     stack.peek().left = node
                 } else {

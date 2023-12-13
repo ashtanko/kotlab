@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.templates
 import java.util.PriorityQueue
 
 private fun fn(arr: IntArray, k: Int): IntArray {
-    val criteria = 0 // TODO
+    val criteria = 0
     val heap: PriorityQueue<Int> = PriorityQueue(criteria)
     for (num in arr) {
         heap.add(num)

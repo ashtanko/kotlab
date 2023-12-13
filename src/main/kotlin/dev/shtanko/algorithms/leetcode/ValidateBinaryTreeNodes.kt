@@ -76,7 +76,7 @@ class ValidateBinaryTreeNodesBFS : ValidateBinaryTreeNodes {
         val q: Queue<Int> = LinkedList()
         q.offer(root)
         var count = 0
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val node: Int = q.poll()
             ++count
             if (leftChild[node] != -1) q.offer(leftChild[node])

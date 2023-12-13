@@ -45,7 +45,7 @@ class MinScoreBFS : MinScore {
         val q: Queue<Int> = LinkedList()
         q.add(1)
         vis[1] = 1
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val node: Int = q.poll()
             for (pair in gr[node]) {
                 val v: Int = pair.first

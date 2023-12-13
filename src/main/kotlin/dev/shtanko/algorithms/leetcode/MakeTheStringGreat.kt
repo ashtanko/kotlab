@@ -98,7 +98,7 @@ class MakeTheStringGreatStack : MakeTheStringGreat {
     override operator fun invoke(s: String): String {
         val stack: Stack<Char> = Stack()
         for (i in s.indices) {
-            if (!stack.isEmpty() && abs(stack.peek() - s[i]) == ASCII_UPPER_CASE - ASCII_LOWER_CASE) {
+            if (stack.isNotEmpty() && abs(stack.peek() - s[i]) == ASCII_UPPER_CASE - ASCII_LOWER_CASE) {
                 stack.pop()
             } else {
                 stack.push(s[i])
@@ -106,7 +106,7 @@ class MakeTheStringGreatStack : MakeTheStringGreat {
         }
         val res = CharArray(stack.size)
         var index: Int = stack.size - 1
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             res[index--] = stack.pop()
         }
         return String(res)

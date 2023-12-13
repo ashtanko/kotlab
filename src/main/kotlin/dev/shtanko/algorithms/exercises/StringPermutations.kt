@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.exercises
 
-interface StringPermutations {
+fun interface StringPermutations {
     fun perform(str: String, ans: String): Array<String>
 }
 

@@ -54,11 +54,9 @@ class PossiblyEqualsDFS : PossiblyEquals {
         }
         if (dp[i][j][diff + LIMIT1] != null) return dp[i][j][diff + LIMIT1]!!
 
-        if (i < s1.size && j < s2.size && diff == 0 && s1[i] == s2[j]) {
-            if (dfs(i + 1, j + 1, 0, s1, s2, dp)) {
-                dp[i][j][LIMIT1] = true
-                return true
-            }
+        if (i < s1.size && j < s2.size && diff == 0 && s1[i] == s2[j] && dfs(i + 1, j + 1, 0, s1, s2, dp)) {
+            dp[i][j][LIMIT1] = true
+            return true
         }
 
         if (i < s1.size && !isDigit(s1[i]) && diff > 0 && dfs(i + 1, j, diff - 1, s1, s2, dp)) {

@@ -37,11 +37,11 @@ class FindNearestRightNodeTwoQueues : FindNearestRightNodeStrategy {
 
         var currLevel: ArrayDeque<TreeNode?>
         var node: TreeNode?
-        while (!nextLevel.isEmpty()) {
+        while (nextLevel.isNotEmpty()) {
             // prepare for the next level
             currLevel = nextLevel.clone()
             nextLevel.clear()
-            while (!currLevel.isEmpty()) {
+            while (currLevel.isNotEmpty()) {
                 node = currLevel.poll()
                 if (node.levelOrder().flatten() == u.levelOrder().flatten()) {
                     return currLevel.poll()
@@ -68,7 +68,7 @@ class FindNearestRightNodeSentinel : FindNearestRightNodeStrategy {
 
         var curr: TreeNode? = null
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             curr = queue.poll()
             if (curr != null) {
                 // if it's the given node
@@ -83,7 +83,7 @@ class FindNearestRightNodeSentinel : FindNearestRightNodeStrategy {
                 }
             } else {
                 // add a sentinel to mark end of level
-                if (!queue.isEmpty()) queue.offer(null)
+                if (queue.isNotEmpty()) queue.offer(null)
             }
         }
         return curr
@@ -97,7 +97,7 @@ class FindNearestRightNodeSizeMeasurements : FindNearestRightNodeStrategy {
         root?.let {
             queue.offer(it)
         }
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val levelLength: Int = queue.size
             for (i in 0 until levelLength) {
                 val node: TreeNode = queue.poll()

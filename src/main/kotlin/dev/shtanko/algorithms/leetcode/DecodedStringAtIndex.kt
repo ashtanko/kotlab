@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 880. Decoded String at Index
  * @see <a href="https://leetcode.com/problems/decoded-string-at-index">Source</a>
  */
-interface DecodedStringAtIndex {
+fun interface DecodedStringAtIndex {
     operator fun invoke(s: String, k: Int): String
 }
 

@@ -26,20 +26,28 @@ class FindPeakElementLinear : FindPeakElementStrategy {
     }
 
     private fun helper(num: IntArray, start: Int, end: Int): Int {
-        return if (num.isEmpty()) {
-            0
-        } else if (start == end) {
-            start
-        } else if (start + 1 == end) {
-            if (num[start] > num[end]) start else end
-        } else {
-            val m = (start + end) / 2
-            if (num[m] > num[m - 1] && num[m] > num[m + 1]) {
-                m
-            } else if (num[m - 1] > num[m] && num[m] > num[m + 1]) {
-                helper(num, start, m - 1)
-            } else {
-                helper(num, m + 1, end)
+        return when {
+            num.isEmpty() -> {
+                0
+            }
+
+            start == end -> {
+                start
+            }
+
+            start + 1 == end -> {
+                if (num[start] > num[end]) start else end
+            }
+
+            else -> {
+                val m = (start + end) / 2
+                if (num[m] > num[m - 1] && num[m] > num[m + 1]) {
+                    m
+                } else if (num[m - 1] > num[m] && num[m] > num[m + 1]) {
+                    helper(num, start, m - 1)
+                } else {
+                    helper(num, m + 1, end)
+                }
             }
         }
     }

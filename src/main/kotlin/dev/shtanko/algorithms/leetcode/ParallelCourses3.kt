@@ -53,7 +53,7 @@ class ParallelCourses3Sort : ParallelCourses3 {
             }
         }
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val node: Int = queue.remove()
             for (neighbor in graph[node]!!) {
                 maxTime[neighbor] = max(maxTime[neighbor], maxTime[node] + time[neighbor])

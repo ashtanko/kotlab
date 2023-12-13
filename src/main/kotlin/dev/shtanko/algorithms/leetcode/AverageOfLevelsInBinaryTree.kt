@@ -53,11 +53,11 @@ class AverageOfLevelsInBinaryTreeBFS : AverageOfLevelsInBinaryTreeStrategy {
         val res: MutableList<Double> = ArrayList()
         var queue: Queue<TreeNode?> = LinkedList()
         queue.add(root)
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             var sum: Long = 0
             var count: Long = 0
             val temp: Queue<TreeNode?> = LinkedList()
-            while (!queue.isEmpty()) {
+            while (queue.isNotEmpty()) {
                 val n: TreeNode? = queue.remove()
                 if (n != null) {
                     sum += n.value

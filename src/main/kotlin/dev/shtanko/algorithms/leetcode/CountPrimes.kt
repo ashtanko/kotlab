@@ -44,10 +44,11 @@ class CountPrimesTimeComplexity : CountPrimesStrategy {
         val nonPrime = BooleanArray(n)
         nonPrime[1] = true
         var numNonPrimes = 1
-        for (i in 2 until n) { // O(n)
+        for (i in 2 until n) { // Complexity: O(n)
             if (nonPrime[i]) continue
             var j = i * 2
-            while (j < n) { // O(log(log(n)))
+            // Complexity: O(log(log(n)))
+            while (j < n) {
                 if (!nonPrime[j]) {
                     nonPrime[j] = true
                     numNonPrimes++

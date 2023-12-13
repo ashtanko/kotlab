@@ -35,7 +35,7 @@ class ZigzagLevelOrderQueue : ZigzagLevelOrder {
         if (root == null) return res
         var sub: MutableList<Int>
         var level = 0
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val size: Int = queue.size
             sub = ArrayList()
             for (i in 0 until size) {

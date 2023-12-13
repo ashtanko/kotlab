@@ -79,7 +79,7 @@ class SimilarStringGroupsBFS : SimilarStringGroups {
         val q: Queue<Int> = LinkedList()
         q.offer(node)
         visit[node] = true
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             node = q.poll()
             if (!adj.containsKey(node)) {
                 continue

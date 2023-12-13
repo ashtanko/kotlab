@@ -67,7 +67,7 @@ private fun IntArray.maxArea(): Int {
         }
     }
 
-    while (!stack.isEmpty()) {
+    while (stack.isNotEmpty()) {
         val top = stack.pop()
         val current = this[top] * if (stack.isEmpty()) i else i - stack.peek() - 1
         max = kotlin.math.max(max, current)

@@ -48,7 +48,7 @@ class MinIntegerAdjacentSwapsImpl : MinIntegerAdjacentSwaps {
             // At each location, try to place 0....9
             for (digit in 0..9) {
                 // is there any occurrence of digit left?
-                if (pqs[digit].size != 0) {
+                if (pqs[digit].isNotEmpty()) {
                     // yes, there is a occurrence of digit at pos
                     val pos: Int = pqs[digit].peek()
                     // Since few numbers already shifted to left, this `pos` might be outdated.

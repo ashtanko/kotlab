@@ -87,7 +87,7 @@ class MaxProbabilityShortestPath : MaxProbability {
 
         val queue: Queue<Int> = LinkedList()
         queue.offer(start)
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val curNode: Int = queue.poll()
             for (neighbor in graph.getOrDefault(curNode, ArrayList())) {
                 val nxtNode: Int = neighbor.first
@@ -120,7 +120,7 @@ class MaxProbabilityDijkstra : MaxProbability {
             -a.first.compareTo(b.first)
         }
         pq.add(Pair(1.0, start))
-        while (!pq.isEmpty()) {
+        while (pq.isNotEmpty()) {
             val cur: Pair<Double, Int> = pq.poll()
             val curProb: Double = cur.first
             val curNode: Int = cur.second

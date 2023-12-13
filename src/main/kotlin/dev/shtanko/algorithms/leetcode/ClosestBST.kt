@@ -61,7 +61,7 @@ class IterativeInorder : ClosestBST {
         val stack: LinkedList<TreeNode?> = LinkedList()
         var pred = Int.MIN_VALUE
         var node = root
-        while (!stack.isEmpty() || node != null) {
+        while (stack.isNotEmpty() || node != null) {
             while (node != null) {
                 stack.add(node)
                 node = node.left

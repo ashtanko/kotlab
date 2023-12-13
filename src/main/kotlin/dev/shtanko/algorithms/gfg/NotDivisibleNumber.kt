@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.gfg
 /**
  * Number that are not divisible
  */
-interface NotDivisibleNumber {
+fun interface NotDivisibleNumber {
     fun perform(n: Long): Long
 }
 

@@ -63,7 +63,7 @@ sealed interface EliminateMaximumStrategy {
             }
 
             var ans = 0
-            while (!heap.isEmpty()) {
+            while (heap.isNotEmpty()) {
                 if (heap.remove() <= ans) {
                     break
                 }

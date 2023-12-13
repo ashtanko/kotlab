@@ -56,7 +56,7 @@ class TwoSum4BFS : TwoSum4 {
         val set: MutableSet<Int?> = HashSet()
         val queue: Queue<TreeNode> = LinkedList()
         queue.add(root)
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             if (queue.peek() != null) {
                 val node: TreeNode = queue.remove()
                 if (set.contains(k - node.value)) return true

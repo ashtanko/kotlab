@@ -27,7 +27,7 @@ private fun fn(root: TreeNode?): Int {
     val queue: Queue<TreeNode> = LinkedList()
     queue.add(root)
     val ans = 0
-    while (!queue.isEmpty()) {
+    while (queue.isNotEmpty()) {
         val currentLength: Int = queue.size
         // do logic for current level
         for (i in 0 until currentLength) {

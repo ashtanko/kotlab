@@ -19,7 +19,7 @@ package dev.shtanko.patterns.structural.decorator.examples.example2
 import kotlin.streams.toList
 
 // Concrete decorator
-class DistinctStream<T>(private val decoratedStream: StreamDecorator<T>) : StreamDecorator<T> {
+class DistinctStream<T>(decoratedStream: StreamDecorator<T>) : StreamDecorator<T> {
     private var stream = decoratedStream.collect().stream().distinct()
 
     override fun filter(predicate: (T) -> Boolean): StreamDecorator<T> {

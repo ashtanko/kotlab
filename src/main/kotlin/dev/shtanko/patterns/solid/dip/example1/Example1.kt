@@ -18,7 +18,7 @@ package dev.shtanko.patterns.solid.dip.example1
 
 import java.io.ByteArrayOutputStream
 
-interface MessageSender {
+fun interface MessageSender {
     fun sendMessage(message: String)
 }
 

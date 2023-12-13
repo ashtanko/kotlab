@@ -39,7 +39,7 @@ class MinimumGeneticMutationBFS : MinimumGeneticMutation {
 
         var steps = 0
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val nodesInQueue: Int = queue.size
             for (j in 0 until nodesInQueue) {
                 val node: String = queue.remove()

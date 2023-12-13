@@ -22,7 +22,7 @@ fun twoInputsExhaustBoth(arr1: IntArray, arr2: IntArray): Int {
     val ans = 0
     while (i < arr1.size && j < arr2.size) {
         // do some logic here
-        val condition = false // todo
+        val condition = false
         if (condition) {
             i++
         } else {

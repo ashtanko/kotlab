@@ -58,7 +58,7 @@ class MinimumKnightMovesBFS : MinimumKnightMoves {
         queue.addLast(intArrayOf(0, 0))
         var steps = 0
 
-        while (queue.size > 0) {
+        while (queue.isNotEmpty()) {
             val currLevelSize = queue.size
             // iterate through the current level
             for (i in 0 until currLevelSize) {

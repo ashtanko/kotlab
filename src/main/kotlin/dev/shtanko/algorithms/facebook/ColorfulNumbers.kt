@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.facebook
 
-interface ColorfulNumbers {
+fun interface ColorfulNumbers {
     fun isColorful(n: Int): String
 }
 

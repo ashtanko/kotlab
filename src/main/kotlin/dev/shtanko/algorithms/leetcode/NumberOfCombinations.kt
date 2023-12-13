@@ -41,7 +41,7 @@ class NumberOfCombinationsBottomUp : NumberOfCombinations {
                 pq.add(intArrayOf(j, rank[j][i - 1] * 10 + cs[i + j - 1].code - '0'.code))
                 ++j
             }
-            while (!pq.isEmpty()) {
+            while (pq.isNotEmpty()) {
                 val cur: IntArray = pq.poll()
                 if (cur[1] != prev) c++
                 rank[cur[0]][i] = c

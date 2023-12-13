@@ -66,7 +66,7 @@ class MinDepthBFS : MinDepth {
         q.add(root)
         var depth = 1
 
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             var qSize: Int = q.size
             while (qSize > 0) {
                 qSize--

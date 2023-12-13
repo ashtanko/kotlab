@@ -157,7 +157,7 @@ class ScheduleCourse3PriorityQueue : ScheduleCourse3 {
             if (time + c[0] <= c[1]) {
                 queue.offer(c[0])
                 time += c[0]
-            } else if (!queue.isEmpty() && queue.peek() > c[0]) {
+            } else if (queue.isNotEmpty() && queue.peek() > c[0]) {
                 time += c[0] - queue.poll()
                 queue.offer(c[0])
             }

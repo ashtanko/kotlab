@@ -98,7 +98,7 @@ class GVTSimpleIterativeDFS : GraphValidTree {
         val queue: Queue<Int> = LinkedList()
         queue.offer(0)
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val node: Int = queue.poll()
             for (neighbour in adjacencyList[node]) {
                 if (parent[node] == neighbour) {
@@ -140,7 +140,7 @@ class GVTAdvancedIterativeDFS : GraphValidTree {
         queue.offer(0)
         seen.add(0)
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val node = queue.poll()
             for (neighbour in adjacencyList[node]) {
                 if (seen.contains(neighbour)) continue

@@ -78,8 +78,8 @@ class LRUCache<K, V>(cap: Int = LRU_CACHE_DEFAULT_CAP) {
     }
 
     private fun evict(): Entry<K, V>? {
-        if (head == null) {
-            throw IllegalStateException("cache cannot be empty!")
+        checkNotNull(head) {
+            "cache cannot be empty!"
         }
         val evicted: Entry<K, V>? = head
         head = evicted?.nextEntry
@@ -89,8 +89,8 @@ class LRUCache<K, V>(cap: Int = LRU_CACHE_DEFAULT_CAP) {
     }
 
     private fun checkCapacity(capacity: Int) {
-        if (capacity <= 0) {
-            throw IllegalArgumentException("capacity must greater than 0!")
+        require(capacity > 0) {
+            "capacity must greater than 0!"
         }
     }
 

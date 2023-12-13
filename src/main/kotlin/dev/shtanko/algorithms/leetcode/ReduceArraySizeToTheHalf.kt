@@ -51,7 +51,7 @@ class MinSetSizeHashMap : MinSetSizeStrategy {
 
         for (i in size downTo 0) {
             val cur = list[i]
-            if (cur == null || cur.isEmpty()) continue
+            if (cur.isNullOrEmpty()) continue
             for (num in cur) {
                 steps += i
                 res++
@@ -82,7 +82,7 @@ class MinSetSizePriorityQueue : MinSetSizeStrategy {
         for (n in map.keys) {
             pq.offer(map[n])
         }
-        while (!pq.isEmpty()) {
+        while (pq.isNotEmpty()) {
             sum += pq.poll()
             res++
             val local = size + 1

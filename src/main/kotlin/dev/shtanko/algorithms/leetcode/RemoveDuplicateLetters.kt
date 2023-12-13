@@ -41,7 +41,7 @@ class RemoveDuplicateLettersSolution : RemoveDuplicateLetters {
         for (i in s.indices) {
             val curr: Int = s[i] - 'a'
             if (seen[curr]) continue // if seen continue as we need to pick one char only
-            while (!st.isEmpty() && st.peek() > curr && i < lastIndex[st.peek()]) {
+            while (st.isNotEmpty() && st.peek() > curr && i < lastIndex[st.peek()]) {
                 seen[st.pop()] = false // pop out and mark unseen
             }
             st.push(curr) // add into stack
@@ -49,7 +49,7 @@ class RemoveDuplicateLettersSolution : RemoveDuplicateLetters {
         }
 
         val sb = StringBuilder()
-        while (!st.isEmpty()) sb.append((st.pop() + 'a'.code).toChar())
+        while (st.isNotEmpty()) sb.append((st.pop() + 'a'.code).toChar())
         return sb.reverse().toString()
     }
 }

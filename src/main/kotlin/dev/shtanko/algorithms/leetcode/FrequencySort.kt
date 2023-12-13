@@ -64,7 +64,7 @@ class FrequencySortPQ : FrequencySort {
         pq.addAll(map.entries)
 
         val sb = StringBuilder()
-        while (!pq.isEmpty()) {
+        while (pq.isNotEmpty()) {
             val (key, value) = pq.poll()
             for (i in 0 until value) sb.append(key)
         }

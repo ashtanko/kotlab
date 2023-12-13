@@ -17,7 +17,7 @@
 package dev.shtanko.patterns.structural.bridge.examples.example3
 
 // Implementation hierarchy: Driving Modes
-interface DrivingMode {
+fun interface DrivingMode {
     fun applyMode()
 }
 

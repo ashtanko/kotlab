@@ -54,7 +54,7 @@ class MaximumWidthOfBinaryTreeBFS : MaximumWidthOfBinaryTree {
         val q: Queue<SimpleEntry<TreeNode, Int>> = LinkedList()
         q.offer(SimpleEntry(root, 1))
 
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val l: Int = q.peek().value
             var r = l // right started same as left
             var i = 0

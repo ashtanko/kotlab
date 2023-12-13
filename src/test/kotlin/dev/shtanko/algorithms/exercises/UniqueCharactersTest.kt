@@ -54,7 +54,7 @@ internal abstract class UniqueCharactersTest<out T : UniqueCharacters>(private v
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `find unique characters test`(str: String, expected: Boolean) {
-        val actual = strategy.perform(str)
+        val actual = strategy.invoke(str)
         assertEquals(expected, actual)
     }
 }

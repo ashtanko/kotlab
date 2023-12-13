@@ -31,7 +31,7 @@ class RangeSumBST : RangeSumStrategy {
         var ans = 0
         val stack: Stack<TreeNode> = Stack()
         stack.push(root)
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val node: TreeNode? = stack.pop()
             if (node != null) {
                 if (node.value in left..right) ans += node.value

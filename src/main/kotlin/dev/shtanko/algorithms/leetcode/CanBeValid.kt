@@ -53,12 +53,20 @@ class CanBeValidCountingBrackets : CanBeValid {
         var open = 0
         var closed = 0
         for (i in s.length - 1 downTo 0) {
-            if (locked[i] == '0') total += 1 else if (s[i] == '(') open += 1 else if (s[i] == ')') closed += 1
+            when {
+                locked[i] == '0' -> total += 1
+                s[i] == '(' -> open += 1
+                s[i] == ')' -> closed += 1
+            }
             if (total - open + closed < 0) return false
         }
         total = 0.also { closed = it }.also { open = it }
         for (i in s.indices) {
-            if (locked[i] == '0') total += 1 else if (s[i] == '(') open += 1 else if (s[i] == ')') closed += 1
+            when {
+                locked[i] == '0' -> total += 1
+                s[i] == '(' -> open += 1
+                s[i] == ')' -> closed += 1
+            }
             if (total + open - closed < 0) return false
         }
         return true

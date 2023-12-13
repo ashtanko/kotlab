@@ -34,8 +34,8 @@ fun IntArray.splitArraySameAverage(): Boolean {
     }
     this.sort()
     for (lenOfB in 1..this.size / 2) {
-        if (sumA * lenOfB % this.size == 0) {
-            if (this.check(sumA * lenOfB / this.size, lenOfB, 0)) return true
+        if (sumA * lenOfB % this.size == 0 && this.check(sumA * lenOfB / this.size, lenOfB, 0)) {
+            return true
         }
     }
     return false

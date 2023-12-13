@@ -33,7 +33,7 @@ class BraceExpansion2DFS : BraceExpansion2 {
         queue.offer(expression)
         val set: MutableSet<String> = HashSet()
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val str: String = queue.poll()
             if (str.indexOf('{') == -1) {
                 set.add(str)

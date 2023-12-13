@@ -69,7 +69,7 @@ class NumberOfEnclavesBFS : NumberOfEnclaves {
         val cols = grid[0].size
         val visited = Array(rows) { BooleanArray(cols) }
         val q = getStartPositions(grid, visited, rows, cols)
-        while (q.size > 0) {
+        while (q.isNotEmpty()) {
             val cell = q.poll()
             for (i in directions.indices) {
                 val row = cell[0] + directions[i][0]
@@ -180,7 +180,11 @@ class NumberOfEnclavesBFS : NumberOfEnclaves {
         cols: Int,
     ): Boolean {
         if (!validCoords(row, col, rows, cols)) return false
-        return if (visited[row][col]) false else grid[row][col] == 1
+        return if (visited[row][col]) {
+            false
+        } else {
+            grid[row][col] == 1
+        }
     }
 
     private fun validCoords(row: Int, col: Int, rows: Int, cols: Int): Boolean {

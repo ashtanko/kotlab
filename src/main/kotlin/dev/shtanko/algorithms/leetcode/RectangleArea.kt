@@ -24,6 +24,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/rectangle-area/">Source</a>
  */
 fun interface RectangleArea {
+    // TODO wtf?
     fun computeArea(ax1: Int, ay1: Int, ax2: Int, ay2: Int, bx1: Int, by1: Int, bx2: Int, by2: Int): Int
 }
 

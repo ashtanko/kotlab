@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.dp
 /**
  * The longest common subsequence.
  */
-interface LCS {
+fun interface LCS {
     fun perform(x: String, y: String, m: Int, n: Int): Int
 }
 

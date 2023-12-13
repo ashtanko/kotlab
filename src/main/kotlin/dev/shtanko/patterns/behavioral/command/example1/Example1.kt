@@ -35,7 +35,7 @@ class Light {
 }
 
 // Command interface
-interface Command {
+fun interface Command {
     fun execute()
 }
 

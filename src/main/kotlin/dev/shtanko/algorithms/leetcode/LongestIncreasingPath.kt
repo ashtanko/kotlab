@@ -88,10 +88,8 @@ class LongestIncreasingPathPeelingOnion : LongestIncreasingPath {
                 for (d in dir) {
                     val x = node[0] + d[0]
                     val y = node[1] + d[1]
-                    if (matrix[node[0]][node[1]] > matrix[x][y]) {
-                        if (--outdegree[x][y] == 0) {
-                            newLeaves.add(intArrayOf(x, y))
-                        }
+                    if (matrix[node[0]][node[1]] > matrix[x][y] && --outdegree[x][y] == 0) {
+                        newLeaves.add(intArrayOf(x, y))
                     }
                 }
             }

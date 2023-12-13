@@ -48,7 +48,7 @@ class SumSubarrayMinsDP : SumSubarrayMins {
             }
 
             // either the previousSmaller element exists
-            if (stack.size > 0) {
+            if (stack.isNotEmpty()) {
                 val previousSmaller: Int = stack.peek()
                 dp[i] = dp[previousSmaller] + (i - previousSmaller) * arr[i]
             } else {

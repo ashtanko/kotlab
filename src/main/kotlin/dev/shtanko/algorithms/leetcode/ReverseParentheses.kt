@@ -35,15 +35,15 @@ class ReverseParenthesesBF : ReverseParentheses {
         for (c in s.toCharArray()) {
             if (c == ')') {
                 val p: Queue<Char> = LinkedList()
-                while (!st.isEmpty() && st.peek() != '(') p.add(st.poll())
-                if (!st.isEmpty()) st.poll()
-                while (!p.isEmpty()) st.push(p.remove())
+                while (st.isNotEmpty() && st.peek() != '(') p.add(st.poll())
+                if (st.isNotEmpty()) st.poll()
+                while (p.isNotEmpty()) st.push(p.remove())
             } else {
                 st.push(c)
             }
         }
         val sb = StringBuilder()
-        while (!st.isEmpty()) sb.append(st.poll())
+        while (st.isNotEmpty()) sb.append(st.poll())
 
         return sb.reverse().toString()
     }

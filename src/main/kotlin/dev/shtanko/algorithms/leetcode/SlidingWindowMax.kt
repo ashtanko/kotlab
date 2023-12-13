@@ -33,7 +33,7 @@ class MonotonicDeque : SlidingWindowMax {
         val res: MutableList<Int> = ArrayList()
 
         for (i in 0 until k) {
-            while (!dq.isEmpty() && nums[i] >= nums[dq.peekLast()]) {
+            while (dq.isNotEmpty() && nums[i] >= nums[dq.peekLast()]) {
                 dq.pollLast()
             }
             dq.offerLast(i)
@@ -44,7 +44,7 @@ class MonotonicDeque : SlidingWindowMax {
             if (dq.peekFirst() == i - k) {
                 dq.pollFirst()
             }
-            while (!dq.isEmpty() && nums[i] >= nums[dq.peekLast()]) {
+            while (dq.isNotEmpty() && nums[i] >= nums[dq.peekLast()]) {
                 dq.pollLast()
             }
             dq.offerLast(i)

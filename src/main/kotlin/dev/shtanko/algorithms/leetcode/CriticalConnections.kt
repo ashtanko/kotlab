@@ -52,7 +52,7 @@ class CycleDetection : CriticalConnections {
     private fun dfs(node: Int, discoveryRank: Int): Int {
         // That means this node is already visited. We simply return the rank.
         if (rank[node] != null) {
-            return rank[node]!!
+            return rank.getOrDefault(node, 0) ?: 0
         }
 
         // Update the rank of this node.

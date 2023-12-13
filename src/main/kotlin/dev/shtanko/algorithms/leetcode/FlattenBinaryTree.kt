@@ -64,7 +64,7 @@ class FlattenStack : FlattenBinaryTree {
         val stack: Stack<Pair<TreeNode, Int>> = Stack<Pair<TreeNode, Int>>()
         stack.push(root to start)
 
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val nodeData: Pair<TreeNode, Int> = stack.pop()
             val currentNode: TreeNode = nodeData.first
             val recursionState: Int = nodeData.second

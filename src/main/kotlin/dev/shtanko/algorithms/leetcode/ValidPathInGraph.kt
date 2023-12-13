@@ -189,7 +189,7 @@ class ValidPathBFS : ValidPathInGraph {
         queue.offer(source)
         visited[source] = true
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             current = queue.poll()
             if (current == destination) {
                 return true

@@ -48,7 +48,7 @@ class TotalCostPriorityQueues : TotalCost {
         var nextTail: Int = costs.size - 1 - candidates
 
         for (i in 0 until k) {
-            if (tailWorkers.isEmpty() || !headWorkers.isEmpty() && headWorkers.peek() <= tailWorkers.peek()) {
+            if (tailWorkers.isEmpty() || headWorkers.isNotEmpty() && headWorkers.peek() <= tailWorkers.peek()) {
                 answer += headWorkers.poll()
 
                 // Only refill the queue if there are workers outside the two queues.

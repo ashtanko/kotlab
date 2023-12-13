@@ -67,7 +67,7 @@ class ShortestPathAllKeysBFS : ShortestPathAllKeys {
         seen[0] = HashSet()
         seen[0]?.add(Pair(startR, startC))
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val cur: IntArray = queue.poll()
             val curR = cur[0]
             val curC = cur[1]

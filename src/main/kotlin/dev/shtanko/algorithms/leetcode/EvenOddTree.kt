@@ -29,7 +29,7 @@ class EvenOddTreeBSF : EvenOddTreeStrategy {
         val q: Queue<TreeNode> = LinkedList()
         q.add(root)
         var even = true
-        while (q.size > 0) {
+        while (q.isNotEmpty()) {
             var size: Int = q.size
             var prevVal = if (even) Int.MIN_VALUE else Int.MAX_VALUE // init preVal based on level even or odd
             while (size-- > 0) { // level by level

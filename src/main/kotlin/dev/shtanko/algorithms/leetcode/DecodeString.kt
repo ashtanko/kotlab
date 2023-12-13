@@ -77,18 +77,26 @@ class DecodeStringRecursive : DecodeString {
     fun helper(queue: Deque<Char>): String {
         val sb = java.lang.StringBuilder()
         var num = 0
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val c: Char = queue.poll()
-            if (Character.isDigit(c)) {
-                num = num * 10 + c.code - '0'.code
-            } else if (c == '[') {
-                val sub = helper(queue)
-                for (i in 0 until num) sb.append(sub)
-                num = 0
-            } else if (c == ']') {
-                break
-            } else {
-                sb.append(c)
+            when {
+                Character.isDigit(c) -> {
+                    num = num * 10 + c.code - '0'.code
+                }
+
+                c == '[' -> {
+                    val sub = helper(queue)
+                    for (i in 0 until num) sb.append(sub)
+                    num = 0
+                }
+
+                c == ']' -> {
+                    break
+                }
+
+                else -> {
+                    sb.append(c)
+                }
             }
         }
         return sb.toString()

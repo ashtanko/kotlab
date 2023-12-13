@@ -132,7 +132,7 @@ class DistanceKTreeBFS : DistanceKTree {
         // Add the target node to the queue with a distance of 0
         queue.add(intArrayOf(target.value, 0))
         visited.add(target.value)
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val cur: IntArray = queue.poll()
             val node = cur[0]
             val distance = cur[1]

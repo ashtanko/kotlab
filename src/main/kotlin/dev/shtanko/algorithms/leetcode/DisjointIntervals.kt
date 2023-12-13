@@ -31,21 +31,29 @@ class DisjointIntervals {
         if (map.containsKey(value)) return
         val low = map.lowerKey(value)
         val high = map.higherKey(value)
-        if (low != null && high != null && value == map[low]!![1] + 1 && value == map[high]!![0] - 1) {
-            // low =1,val=3 high=4 and high has key =[4,5] and low has key [1,2]
-            // now 4 has no use as 1 2 3 4 5 is possible so [1,5]
-            map[low]!![1] = map[high]!![1]
-            map.remove(high)
-        } else if (low != null && value <= map[low]!![1] + 1) {
-            // for example if 2,8 exists and val is 7 nothing happens but if it is 9 then 2,9
-            // if i dont put <= then on 7  as  val,new value is added in the last else part which is incorrect
-            map[low]!![1] = max(value, map[low]!![1])
-        } else if (high != null && value == map[high]!![0] - 1) {
-            // if  5,8 exists and val is 4 so new=[4,8] and 5 is removed
-            map[value] = intArrayOf(value, map[high]!![1])
-            map.remove(high)
-        } else {
-            map[value] = intArrayOf(value, value)
+        when {
+            low != null && high != null && value == map[low]!![1] + 1 && value == map[high]!![0] - 1 -> {
+                // low =1,val=3 high=4 and high has key =[4,5] and low has key [1,2]
+                // now 4 has no use as 1 2 3 4 5 is possible so [1,5]
+                map[low]!![1] = map[high]!![1]
+                map.remove(high)
+            }
+
+            low != null && value <= map[low]!![1] + 1 -> {
+                // for example if 2,8 exists and val is 7 nothing happens but if it is 9 then 2,9
+                // if i dont put <= then on 7  as  val,new value is added in the last else part which is incorrect
+                map[low]!![1] = max(value, map[low]!![1])
+            }
+
+            high != null && value == map[high]!![0] - 1 -> {
+                // if  5,8 exists and val is 4 so new=[4,8] and 5 is removed
+                map[value] = intArrayOf(value, map[high]!![1])
+                map.remove(high)
+            }
+
+            else -> {
+                map[value] = intArrayOf(value, value)
+            }
         }
     }
 

@@ -111,7 +111,7 @@ class NetworkDelayTimeBFS : NetworkDelayTime {
 
         // Time for starting node is 0
         signalReceivedAt[sourceNode] = 0
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val currNode: Int = q.remove()
             if (!adj.containsKey(currNode)) {
                 continue

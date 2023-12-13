@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.facebook
 
 import java.util.Stack
 
-interface BalanceBrackets {
+fun interface BalanceBrackets {
     fun isBalanced(args: String): Boolean
 }
 
@@ -34,7 +34,7 @@ class BalanceBracketsStack : BalanceBrackets {
                 stk.add(ch)
             } else if (ch in closingBrackets) {
                 if (stk.isEmpty()) return false
-                if (stk.pop() != matchedBracketsMap[ch]!!) return false
+                if (stk.pop() != matchedBracketsMap.getOrDefault(ch, '0')) return false
             }
         }
 

@@ -35,25 +35,43 @@ fun interface AlienDictionary {
  */
 class AlienDictionaryBFS : AlienDictionary {
     override fun invoke(words: Array<String>): String {
-        // Step 0: Create data structures and find all unique letters.
         val adjList: MutableMap<Char, MutableList<Char>> = HashMap()
         val counts: MutableMap<Char, Int> = HashMap()
+
+        initializeDataStructures(words, adjList, counts)
+        if (!findEdges(words, adjList, counts)) {
+            return ""
+        }
+
+        return breadthFirstSearch(adjList, counts)
+    }
+
+    private fun initializeDataStructures(
+        words: Array<String>,
+        adjList: MutableMap<Char, MutableList<Char>>,
+        counts: MutableMap<Char, Int>,
+    ) {
         for (word in words) {
             for (c in word.toCharArray()) {
                 counts[c] = 0
                 adjList[c] = ArrayList()
             }
         }
+    }
 
-        // Step 1: Find all edges.
+    private fun findEdges(
+        words: Array<String>,
+        adjList: MutableMap<Char, MutableList<Char>>,
+        counts: MutableMap<Char, Int>,
+    ): Boolean {
         for (i in 0 until words.size - 1) {
             val word1 = words[i]
             val word2 = words[i + 1]
-            // Check that word2 is not a prefix of word1.
+
             if (word1.length > word2.length && word1.startsWith(word2)) {
-                return ""
+                return false
             }
-            // Find the first non match and insert the corresponding relation.
+
             for (j in 0 until min(word1.length, word2.length)) {
                 if (word1[j] != word2[j]) {
                     adjList[word1[j]]?.add(word2[j])
@@ -62,15 +80,22 @@ class AlienDictionaryBFS : AlienDictionary {
                 }
             }
         }
+        return true
+    }
 
-        // Step 2: Breadth-first search.
+    private fun breadthFirstSearch(
+        adjList: Map<Char, MutableList<Char>>,
+        counts: MutableMap<Char, Int>,
+    ): String {
         val sb = StringBuilder()
         val queue: Queue<Char> = LinkedList()
+
         for (c in counts.keys) {
             if (counts[c] == 0) {
                 queue.add(c)
             }
         }
+
         while (queue.isNotEmpty()) {
             val c: Char = queue.remove()
             sb.append(c)
@@ -104,10 +129,8 @@ class AlienDictionaryDFS : AlienDictionary {
         val sb = StringBuilder()
         for (i in 0 until ALPHABET_LETTERS_COUNT) {
             // unvisited
-            if (visited[i] == 0) {
-                if (!dfs(adj, visited, sb, i)) {
-                    return ""
-                }
+            if (visited[i] == 0 && !dfs(adj, visited, sb, i)) {
+                return ""
             }
         }
         return sb.reverse().toString()
@@ -130,8 +153,8 @@ class AlienDictionaryDFS : AlienDictionary {
         for (j in 0 until ALPHABET_LETTERS_COUNT) {
             if (adj[i][j]) {
                 if (visited[j] == 1) return false
-                if (visited[j] == 0) {
-                    if (!dfs(adj, visited, sb, j)) return false
+                if (visited[j] == 0 && !dfs(adj, visited, sb, j)) {
+                    return false
                 }
             }
         }

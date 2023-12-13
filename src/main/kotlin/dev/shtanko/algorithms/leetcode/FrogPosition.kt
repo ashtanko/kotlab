@@ -41,7 +41,7 @@ class FrogPositionBFS : FrogPosition {
             offer(0)
         }
 
-        while (!q.isEmpty() && t0-- > 0) {
+        while (q.isNotEmpty() && t0-- > 0) {
             for (size in q.size downTo 1) {
                 val u = q.poll()
                 val nextVerticesCount = adjacentVerticesCount(graph, visited, u)

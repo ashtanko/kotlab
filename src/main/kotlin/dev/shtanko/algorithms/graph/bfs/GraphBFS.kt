@@ -40,7 +40,7 @@ class GraphBFS(private val vertices: Int) {
         // Mark the current node as visited and enqueue it
         visited[s] = true
         queue.add(s)
-        while (queue.size != 0) {
+        while (queue.isNotEmpty()) {
             // Dequeue a vertex from queue and print it
             s = queue.poll()
             result.add(s)

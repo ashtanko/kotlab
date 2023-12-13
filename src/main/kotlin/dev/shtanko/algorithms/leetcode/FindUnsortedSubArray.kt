@@ -120,12 +120,12 @@ class FindUnsortedSubArrayStack : FindUnsortedSubArray {
         var l: Int = nums.size
         var r = 0
         for (i in nums.indices) {
-            while (!stack.isEmpty() && nums[stack.peek()] > nums[i]) l = min(l, stack.pop())
+            while (stack.isNotEmpty() && nums[stack.peek()] > nums[i]) l = min(l, stack.pop())
             stack.push(i)
         }
         stack.clear()
         for (i in nums.size - 1 downTo 0) {
-            while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) r = max(r, stack.pop())
+            while (stack.isNotEmpty() && nums[stack.peek()] < nums[i]) r = max(r, stack.pop())
             stack.push(i)
         }
         return if (r - l > 0) r - l + 1 else 0

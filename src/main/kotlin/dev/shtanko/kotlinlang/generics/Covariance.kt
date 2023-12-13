@@ -16,7 +16,7 @@
 
 package dev.shtanko.kotlinlang.generics
 
-internal interface Source<out T> {
+internal fun interface Source<out T> {
     fun nextT(): T
 }
 
@@ -28,7 +28,7 @@ internal class EmptySource : Source<String> {
 
 internal fun demo(s: Source<String>): Source<Any> = s
 
-internal interface Bank<out T> {
+internal fun interface Bank<out T> {
     fun produce(sum: Int): T
 }
 

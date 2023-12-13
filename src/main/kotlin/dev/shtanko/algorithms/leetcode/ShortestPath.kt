@@ -58,7 +58,7 @@ class ShortestPathBFS : ShortestPath {
         k: Int,
     ): Int {
         var step = 0
-        while (!ls.isEmpty()) {
+        while (ls.isNotEmpty()) {
             var size: Int = ls.size
             step++
             while (size-- > 0) {
@@ -118,7 +118,7 @@ class ShortestPathBFS2 : ShortestPath {
         n: Int,
         visited: Array<Array<BooleanArray>>,
     ): Int {
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val top: IntArray = q.poll()
             val r = top[0]
             val c = top[1]

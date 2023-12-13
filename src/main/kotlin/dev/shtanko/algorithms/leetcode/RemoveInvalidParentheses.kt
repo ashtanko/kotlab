@@ -48,19 +48,21 @@ class RemoveInvalidParenthesesBacktracking : RemoveInvalidParentheses {
         // If we have reached the end of string.
         if (index == s.length) {
             // If the current expression is valid.
-            if (leftCount == rightCount) {
-                // If the current count of removed parentheses is <= the current minimum count
-                if (removedCount <= minimumRemoved) {
-                    // Convert StringBuilder to a String. This is an expensive operation.
-                    // So we only perform this when needed.
-                    val possibleAnswer = expression.toString()
+            when (leftCount) {
+                rightCount -> {
+                    // If the current count of removed parentheses is <= the current minimum count
+                    if (removedCount <= minimumRemoved) {
+                        // Convert StringBuilder to a String. This is an expensive operation.
+                        // So we only perform this when needed.
+                        val possibleAnswer = expression.toString()
 
-                    // If the current count beats the overall minimum we have till now
-                    if (removedCount < minimumRemoved) {
-                        validExpressions.clear()
-                        minimumRemoved = removedCount
+                        // If the current count beats the overall minimum we have till now
+                        if (removedCount < minimumRemoved) {
+                            validExpressions.clear()
+                            minimumRemoved = removedCount
+                        }
+                        validExpressions.add(possibleAnswer)
                     }
-                    validExpressions.add(possibleAnswer)
                 }
             }
         } else {
@@ -159,14 +161,20 @@ class RemoveInvalidParenthesesLBacktracking : RemoveInvalidParentheses {
             expression.append(character)
 
             // Simply recurse one step further if the current character is not a parenthesis.
-            if (character != '(' && character != ')') {
-                recurse(s, index + 1, leftCount, rightCount, leftRem, rightRem, expression)
-            } else if (character == '(') {
-                // Consider an opening bracket.
-                recurse(s, index + 1, leftCount + 1, rightCount, leftRem, rightRem, expression)
-            } else if (rightCount < leftCount) {
-                // Consider a closing bracket.
-                recurse(s, index + 1, leftCount, rightCount + 1, leftRem, rightRem, expression)
+            when {
+                character != '(' && character != ')' -> {
+                    recurse(s, index + 1, leftCount, rightCount, leftRem, rightRem, expression)
+                }
+
+                character == '(' -> {
+                    // Consider an opening bracket.
+                    recurse(s, index + 1, leftCount + 1, rightCount, leftRem, rightRem, expression)
+                }
+
+                rightCount < leftCount -> {
+                    // Consider a closing bracket.
+                    recurse(s, index + 1, leftCount, rightCount + 1, leftRem, rightRem, expression)
+                }
             }
 
             // Delete for backtracking.

@@ -66,7 +66,7 @@ class DistantBarcodesQueue : DistantBarcodes {
         }
 
         var pos = 0
-        while (!pq.isEmpty()) {
+        while (pq.isNotEmpty()) {
             val el = pq.poll()
             val count = ct.getOrDefault(el, 0)
             var i = 0

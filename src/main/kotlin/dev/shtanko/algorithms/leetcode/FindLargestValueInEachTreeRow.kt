@@ -41,7 +41,7 @@ class LargestValueInEachTreeRowBFS : FindLargestValueInEachTreeRow {
         val queue: Queue<TreeNode> = LinkedList()
         queue.add(root)
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val currentLength: Int = queue.size
             var currMax = Int.MIN_VALUE
             for (i in 0 until currentLength) {
@@ -99,7 +99,7 @@ class LargestValueInEachTreeRowDFSIter : FindLargestValueInEachTreeRow {
         val stack: Stack<Pair<TreeNode, Int>> = Stack()
         stack.push(Pair(root, 0))
 
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val pair: Pair<TreeNode, Int> = stack.pop()
             val node: TreeNode = pair.first
             val depth: Int = pair.second

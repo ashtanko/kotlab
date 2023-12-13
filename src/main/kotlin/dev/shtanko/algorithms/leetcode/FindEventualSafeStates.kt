@@ -52,7 +52,7 @@ class FindEventualSafeStatesKahn : FindEventualSafeStates {
             }
         }
         val safe = BooleanArray(n)
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val node: Int = q.poll()
             safe[node] = true
             for (neighbor in adj[node]) {

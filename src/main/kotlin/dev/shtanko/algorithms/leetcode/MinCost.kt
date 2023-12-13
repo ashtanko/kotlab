@@ -47,7 +47,7 @@ class MinCostQueue : MinCost {
         val times = IntArray(n) { Int.MAX_VALUE }
         dist[0] = 0
         times[0] = 0
-        while (!pq.isEmpty()) {
+        while (pq.isNotEmpty()) {
             val curr: IntArray = pq.poll()
             val node = curr[0]
             val cost = curr[1]

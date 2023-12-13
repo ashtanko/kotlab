@@ -28,9 +28,13 @@ open class LetterComposite {
         return children.size
     }
 
-    open fun printThisBefore() {}
+    open fun printThisBefore() {
+        // TODO comment explaining why the method is empty
+    }
 
-    open fun printThisAfter() {}
+    open fun printThisAfter() {
+        // TODO comment explaining why the method is empty
+    }
 
     fun print() {
         printThisBefore()

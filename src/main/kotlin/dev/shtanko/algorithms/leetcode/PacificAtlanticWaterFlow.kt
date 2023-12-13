@@ -98,7 +98,7 @@ class PacificAtlanticBFS : PacificAtlanticWaterFlow {
     private fun bfs(matrix: Array<IntArray>, queue: Queue<IntArray>, visited: Array<BooleanArray>) {
         val n = matrix.size
         val m: Int = matrix[0].size
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val cur = queue.poll()
             for (d in DIRECTIONS) {
                 val x = cur[0] + d[0]

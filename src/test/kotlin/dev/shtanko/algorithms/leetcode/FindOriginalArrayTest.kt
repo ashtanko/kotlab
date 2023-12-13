@@ -43,6 +43,26 @@ abstract class FindOriginalArrayTest<out T : FindOriginalArray>(private val stra
                 intArrayOf(),
                 intArrayOf(),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 4),
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 3, 2, 6, 4, 8),
+                intArrayOf(1, 3, 4),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 4, 4),
+                intArrayOf(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 4, 8),
+                intArrayOf(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 2, 4, 4, 8, 8),
+                intArrayOf(),
+            ),
         )
     }
 

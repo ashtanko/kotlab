@@ -16,7 +16,7 @@
 
 package dev.shtanko.kotlinlang.functions.grouping
 
-private const val VOWELS = "aeiou"
+import dev.shtanko.algorithms.VOWELS
 
 // grouping by first char and collect only max of contains vowels
 val compareByVowelCount = compareBy { s: String -> s.count { it in VOWELS } }

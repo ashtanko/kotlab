@@ -120,7 +120,7 @@ class BrowserHistoryStack(homepage: String) : BrowserHistory {
 
     override fun forward(steps: Int): String {
         var s = steps
-        while (s > 0 && future.size > 0) {
+        while (s > 0 && future.isNotEmpty()) {
             history.push(future.peek())
             future.pop()
             s--

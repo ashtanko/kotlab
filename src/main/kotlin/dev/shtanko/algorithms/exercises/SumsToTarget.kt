@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.exercises
 
-interface SumsToTarget {
+fun interface SumsToTarget {
     fun perform(arr: IntArray, k: Int): Boolean
 }
 

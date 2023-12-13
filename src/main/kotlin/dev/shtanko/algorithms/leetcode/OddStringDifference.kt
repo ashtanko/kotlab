@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 2451. Odd String Difference
  * @see <a href="https://leetcode.com/problems/odd-string-difference">Source</a>
  */
-interface OddStringDifference {
+fun interface OddStringDifference {
     operator fun invoke(words: Array<String>): String
 }
 

@@ -80,7 +80,7 @@ class NumberOfProvincesBFS : NumberOfProvinces {
         val q: Queue<Int> = LinkedList()
         q.offer(n)
         visit[n] = true
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             n = q.poll()
             for (i in isConnected.indices) {
                 if (isConnected[n][i] == 1 && !visit[i]) {

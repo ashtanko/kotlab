@@ -22,7 +22,7 @@ fun oneInputOppositeEnds(arr: IntArray): Int {
     val ans = 0
     while (left < right) {
         // do some logic here with left and right
-        val condition = false // TODO
+        val condition = false
         if (condition) {
             left++
         } else {

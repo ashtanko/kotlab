@@ -40,7 +40,7 @@ class SnakesAndLaddersBFS : SnakesAndLadders {
         val set: MutableSet<Int> = HashSet()
         set.add(1)
         var steps = 0
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val size: Int = queue.size
             for (i in 0 until size) {
                 val curr: Int = queue.poll()

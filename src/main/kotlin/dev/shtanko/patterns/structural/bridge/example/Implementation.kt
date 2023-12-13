@@ -16,11 +16,11 @@
 
 package dev.shtanko.patterns.structural.bridge.example
 
-interface MessageSender {
+fun interface MessageSender {
     fun sendMessage(): String
 }
 
-interface Message {
+fun interface Message {
     fun send(): String
 }
 

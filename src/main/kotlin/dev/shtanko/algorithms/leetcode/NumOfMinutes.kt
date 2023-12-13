@@ -90,7 +90,7 @@ class NumOfMinutesBFS : NumOfMinutes {
         val q: Queue<Pair<Int, Int>> = LinkedList()
         q.add(Pair(headID, 0))
 
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val employeePair: Pair<Int, Int> = q.remove()
             val parent: Int = employeePair.first
             val time: Int = employeePair.second

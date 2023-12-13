@@ -18,7 +18,7 @@ package dev.shtanko.patterns.structural.adapter
 
 import org.slf4j.LoggerFactory
 
-interface RowingBoat {
+fun interface RowingBoat {
     fun row()
 }
 

@@ -16,6 +16,6 @@
 
 package dev.shtanko.kotlinlang.delegation.support
 
-interface ClosedShape {
+fun interface ClosedShape {
     fun area(): Int
 }

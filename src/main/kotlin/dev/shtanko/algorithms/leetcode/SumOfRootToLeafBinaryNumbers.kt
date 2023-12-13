@@ -35,7 +35,7 @@ class SumOfRootToLeafBinaryNumbersBitwise : SumOfRootToLeafBinaryNumbers {
         val stack: Deque<Pair<TreeNode?, Int>> = LinkedList()
         stack.push(rootNode to 0)
 
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val treeNodeIntPair = stack.pop()
             rootNode = treeNodeIntPair.first
             currNumber = treeNodeIntPair.second
@@ -63,7 +63,7 @@ class SumOfRootToLeafBinaryNumbersIPT : SumOfRootToLeafBinaryNumbers {
         val stack: Deque<Pair<TreeNode?, Int>> = LinkedList()
         stack.push(treeNode to 0)
 
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val p = stack.pop()
             treeNode = p.first
             currNumber = p.second

@@ -25,12 +25,12 @@ import kotlin.math.min
  * The sequence 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, … shows the first 11 ugly numbers. By convention, 1 is included.
  * Given a number n, the task is to find n’th Ugly number.
  */
-interface UglyNumbers {
-    fun perform(n: Int): Int
+fun interface UglyNumbers {
+    operator fun invoke(n: Int): Int
 }
 
 class UglyNumbersBruteForce : UglyNumbers {
-    override fun perform(n: Int): Int {
+    override fun invoke(n: Int): Int {
         val ugly = IntArray(n)
         var i2 = 0
         var i3 = 0

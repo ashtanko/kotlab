@@ -66,7 +66,7 @@ class BusRoutesBFS : BusRoutes {
             }
         }
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val info: Point = queue.poll()
             val node: Int = info.x
             val depth: Int = info.y
@@ -107,7 +107,7 @@ class BusRoutesBFS2 : BusRoutes {
         val seen = HashSet<Int>()
         seen.add(source)
         val seenRoutes = BooleanArray(n)
-        while (!bfs.isEmpty()) {
+        while (bfs.isNotEmpty()) {
             val stop = bfs.peek()[0]
             val bus = bfs.peek()[1]
             bfs.poll()

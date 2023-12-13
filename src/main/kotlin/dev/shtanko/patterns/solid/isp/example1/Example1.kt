@@ -19,12 +19,12 @@ package dev.shtanko.patterns.solid.isp.example1
 import java.io.ByteArrayOutputStream
 
 // Interface for workers who perform work-related tasks
-interface Worker {
+fun interface Worker {
     fun work()
 }
 
 // Interface for entities that eat or consume food
-interface Eater {
+fun interface Eater {
     fun eat()
 }
 

@@ -38,7 +38,7 @@ class IncreasingSubsequencesBacktracking : IncreasingSubsequences {
         val used: MutableSet<Int> = HashSet()
         for (i in index until nums.size) {
             if (used.contains(nums[i])) continue
-            if (list.size == 0 || nums[i] >= list.peekLast()) {
+            if (list.isEmpty() || nums[i] >= list.peekLast()) {
                 used.add(nums[i])
                 list.add(nums[i])
                 helper(list, i + 1, nums, res)

@@ -38,7 +38,7 @@ class FindPermutationStack : FindPermutation {
         for (i in 1..s.length) {
             if (s[i - 1] == 'I') {
                 stack.push(i)
-                while (!stack.isEmpty()) {
+                while (stack.isNotEmpty()) {
                     res[j++] = stack.pop()
                 }
             } else {
@@ -46,7 +46,7 @@ class FindPermutationStack : FindPermutation {
             }
         }
         stack.push(s.length + 1)
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             res[j++] = stack.pop()
         }
         return res

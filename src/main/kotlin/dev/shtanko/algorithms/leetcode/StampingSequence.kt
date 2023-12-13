@@ -72,7 +72,7 @@ class StampingSequence {
 
         val ret = IntArray(ans.size)
         var t = 0
-        while (!ans.isEmpty()) {
+        while (ans.isNotEmpty()) {
             ret[t++] = ans.pop()
         }
         return ret
@@ -80,14 +80,14 @@ class StampingSequence {
 
     private fun calculateEachEnqueuedLetter(
         queue: Queue<Int>,
-        a: MutableList<Node>,
+        a: List<Node>,
         m: Int,
         n: Int,
         ans: Stack<Int>,
         done: BooleanArray,
     ) {
         // For each enqueued letter (position),
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val i: Int = queue.poll()
             // For each window that is potentially affected,
             // j: start of window

@@ -29,15 +29,15 @@ class DesignHashSetBitSet : DesignHashSet {
 
     private val bitSet = BitSet(BITS + 1)
     override fun add(key: Int) {
-        bitSet.set(key, true)
+        bitSet[key] = true
     }
 
     override fun remove(key: Int) {
-        bitSet.set(key, false)
+        bitSet[key] = false
     }
 
     override fun contains(key: Int): Boolean {
-        return bitSet.get(key)
+        return bitSet[key]
     }
 
     companion object {

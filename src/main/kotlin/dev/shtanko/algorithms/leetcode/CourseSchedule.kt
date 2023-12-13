@@ -53,7 +53,7 @@ class CourseScheduleKahn : CourseSchedule {
         }
 
         var nodesVisited = 0
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val node: Int = queue.poll()
             nodesVisited++
             for (neighbor in adj[node]) {

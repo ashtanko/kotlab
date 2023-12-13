@@ -56,7 +56,7 @@ class FindDuplicateBruteForce : FindDuplicate {
                     visited[j] = true
                 }
             }
-            if (l.size > 0) {
+            if (l.isNotEmpty()) {
                 l.add(list[i][0])
                 res.add(l)
             }

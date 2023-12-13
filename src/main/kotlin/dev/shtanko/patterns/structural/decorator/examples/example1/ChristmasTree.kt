@@ -16,6 +16,6 @@
 
 package dev.shtanko.patterns.structural.decorator.examples.example1
 
-interface ChristmasTree {
+fun interface ChristmasTree {
     fun decorate(): String
 }

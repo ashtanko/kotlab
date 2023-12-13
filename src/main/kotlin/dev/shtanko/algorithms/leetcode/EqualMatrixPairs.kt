@@ -40,7 +40,7 @@ class EqualMatrixPairsTrie : EqualMatrixPairs {
             var curNode = root
             for (row in grid) {
                 curNode = if (curNode.children.containsKey(row[i])) {
-                    curNode.children[row[i]]!!
+                    curNode.children.getOrDefault(row[i], TrieNode())
                 } else {
                     break
                 }

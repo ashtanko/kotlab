@@ -24,7 +24,7 @@ class StockSpanner {
 
     fun next(price: Int): Int {
         var ans = 1
-        while (!stack.isEmpty() && stack.peek()[0] <= price) {
+        while (stack.isNotEmpty() && stack.peek()[0] <= price) {
             ans += stack.pop()[1]
         }
         stack.push(intArrayOf(price, ans))

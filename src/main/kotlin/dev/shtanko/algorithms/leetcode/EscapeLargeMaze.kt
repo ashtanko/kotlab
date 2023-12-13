@@ -44,7 +44,7 @@ class EscapeLargeMazeBFS : EscapeLargeMaze {
         seen.add(source[0].toString() + ":" + source[1])
         val bfs: Queue<IntArray> = LinkedList()
         bfs.offer(source)
-        while (!bfs.isEmpty()) {
+        while (bfs.isNotEmpty()) {
             val cur: IntArray = bfs.poll()
             for (dir in dirs) {
                 val nextX = cur[0] + dir[0]

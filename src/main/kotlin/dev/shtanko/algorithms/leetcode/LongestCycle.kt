@@ -82,7 +82,7 @@ class LongestCycleKahnsAlgorithm : LongestCycle {
             }
         }
 
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val node: Int = q.poll()
             visit[node] = true
             val neighbor = edges[node]

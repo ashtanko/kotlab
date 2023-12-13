@@ -40,10 +40,8 @@ class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
                     stack.push(node.left)
                 }
             }
-            if (node.right != null) {
-                if (node.right?.left != null || node.right?.right != null) {
-                    stack.push(node.right)
-                }
+            if (node.right != null && node.right?.left != null || node.right?.right != null) {
+                stack.push(node.right)
             }
         }
         return ans
@@ -73,7 +71,7 @@ class SumOfLeftLeavesBSF : SumOfLeftLeavesStrategy {
         val queue: Queue<TreeNode> = LinkedList()
         queue.add(root)
         var sum = 0
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val presentNode: TreeNode = queue.poll()
             if (presentNode.left != null) {
                 queue.add(presentNode.left)

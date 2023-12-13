@@ -56,7 +56,7 @@ class HighFivePriorityQueue : HighFiveStrategy {
             val pq: PriorityQueue<Int> = map[id] ?: break
             var sum = 0
             val size: Int = pq.size
-            while (!pq.isEmpty()) {
+            while (pq.isNotEmpty()) {
                 sum += pq.poll()
             }
             res[index][1] = sum / size

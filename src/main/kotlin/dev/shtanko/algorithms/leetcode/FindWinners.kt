@@ -40,16 +40,24 @@ class FindWinnersHashSet : FindWinners {
                 zeroLoss.add(winner)
             }
             // Add or move loser.
-            if (zeroLoss.contains(loser)) {
-                zeroLoss.remove(loser)
-                oneLoss.add(loser)
-            } else if (oneLoss.contains(loser)) {
-                oneLoss.remove(loser)
-                moreLosses.add(loser)
-            } else if (moreLosses.contains(loser)) {
-                continue
-            } else {
-                oneLoss.add(loser)
+            when {
+                zeroLoss.contains(loser) -> {
+                    zeroLoss.remove(loser)
+                    oneLoss.add(loser)
+                }
+
+                oneLoss.contains(loser) -> {
+                    oneLoss.remove(loser)
+                    moreLosses.add(loser)
+                }
+
+                moreLosses.contains(loser) -> {
+                    continue
+                }
+
+                else -> {
+                    oneLoss.add(loser)
+                }
             }
         }
         val answer: List<MutableList<Int>> = listOf(ArrayList(), ArrayList())

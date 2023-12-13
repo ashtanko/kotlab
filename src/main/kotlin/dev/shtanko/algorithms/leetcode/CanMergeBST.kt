@@ -55,7 +55,7 @@ class CanMergeBSTImpl : CanMergeBST {
         val node: TreeNode = root
         val queue: Deque<TreeNode?> = LinkedList()
         queue.offerFirst(node)
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val cur = queue.pollLast()
             // If cur is a leaf node and find the matching root
             if (cur != null && cur.left == null && cur.right == null && rootMap.containsKey(cur.value)) {

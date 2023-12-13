@@ -55,7 +55,7 @@ class TreeOfCoprimesDFS : TreeOfCoprimes {
         var closestIdx = -1
         var maxDepth = -1
         for (i in 1 until LIMIT) {
-            if (gcd(nums[src], i) == 1 && path[i].size > 0 && path[i][path[i].size - 1].depth > maxDepth) {
+            if (gcd(nums[src], i) == 1 && path[i].isNotEmpty() && path[i][path[i].size - 1].depth > maxDepth) {
                 closestIdx = path[i][path[i].size - 1].idx
                 maxDepth = path[i][path[i].size - 1].depth
             }

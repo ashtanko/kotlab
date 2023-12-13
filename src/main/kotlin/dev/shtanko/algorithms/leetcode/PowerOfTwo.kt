@@ -31,6 +31,10 @@ class POTIterative : PowerOfTwoStrategy {
 
 class POTBitwise : PowerOfTwoStrategy {
     override fun isPowerOfTwo(n: Int): Boolean {
-        return if (n < 1) false else 0 == n - 1 and n
+        return if (n < 1) {
+            false
+        } else {
+            0 == n - 1 and n
+        }
     }
 }

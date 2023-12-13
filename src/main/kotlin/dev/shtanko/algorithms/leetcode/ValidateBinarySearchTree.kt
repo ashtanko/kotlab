@@ -64,7 +64,7 @@ class IterativeTraversalValidRange : ValidateBinarySearchTree {
         var node: TreeNode? = root
         update(node, low, high)
 
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             node = stack.poll()
             low = lowerLimits.poll()
             high = upperLimits.poll()
@@ -123,7 +123,7 @@ class IterativeInorderTraversal : ValidateBinarySearchTree {
         val stack: Deque<TreeNode> = ArrayDeque()
         var prev: Int? = null
         var node: TreeNode? = root
-        while (!stack.isEmpty() || node != null) {
+        while (stack.isNotEmpty() || node != null) {
             while (node != null) {
                 stack.push(node)
                 node = node.left

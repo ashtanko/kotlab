@@ -16,7 +16,7 @@
 
 package dev.shtanko.grasp.lc.example1
 
-interface MessageSender {
+fun interface MessageSender {
     fun sendMessage(message: String)
 }
 

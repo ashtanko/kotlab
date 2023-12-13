@@ -19,6 +19,6 @@ package dev.shtanko.patterns.creational.abstractfactory.examples.gui.checkboxes
 /**
  * Checkboxes is the second product family. It has the same variants as buttons.
  */
-interface Checkbox {
+fun interface Checkbox {
     fun paint(): String
 }

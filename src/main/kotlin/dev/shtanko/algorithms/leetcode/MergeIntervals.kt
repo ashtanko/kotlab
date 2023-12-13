@@ -72,7 +72,7 @@ class MergeIntervalsConnectedComponents : MergeIntervalsStrategy {
     private fun markComponentDFS(start: IntArray, compNumber: Int) {
         val stack: Stack<IntArray> = Stack()
         stack.add(start)
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             val node: IntArray = stack.pop()
             if (!visited.contains(node)) {
                 visited.add(node)

@@ -27,7 +27,7 @@ fun TreeNode?.levelOrder(): List<List<Int>> {
     val wrapList: MutableList<MutableList<Int>> = ArrayList()
     if (this == null) return wrapList
     queue.offer(this)
-    while (!queue.isEmpty()) {
+    while (queue.isNotEmpty()) {
         val levelNum = queue.size
         val subList: MutableList<Int> = LinkedList()
         for (i in 0 until levelNum) {

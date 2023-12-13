@@ -139,7 +139,7 @@ class MakeConnectedBFS : MakeConnected {
         visited[src] = true
         val q: Queue<Int> = LinkedList()
         q.offer(src)
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             val u: Int = q.poll()
             for (v in graph[u]) {
                 if (!visited[v]) {

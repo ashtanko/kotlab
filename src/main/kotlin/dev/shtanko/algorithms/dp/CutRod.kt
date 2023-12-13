@@ -35,14 +35,22 @@ fun cutRod(price: IntArray, n: Int): Int {
     for (i in 0 until n - 1) {
         for (j in 0 until n + 1) {
             // First column => 0 length of rod => 0 profit
-            if (j == 0) {
-                continue
-            } else if (i == 0) {
-                arr[i][j] = price[i] + arr[i][j - i - 1]
-            } else if (j - i - 1 < 0) {
-                arr[i][j] = arr[i - 1][j]
-            } else {
-                arr[i][j] = max(arr[i - 1][j], price[i] + arr[i][j - i - 1])
+            when {
+                j == 0 -> {
+                    continue
+                }
+
+                i == 0 -> {
+                    arr[i][j] = price[i] + arr[i][j - i - 1]
+                }
+
+                j - i - 1 < 0 -> {
+                    arr[i][j] = arr[i - 1][j]
+                }
+
+                else -> {
+                    arr[i][j] = max(arr[i - 1][j], price[i] + arr[i][j - i - 1])
+                }
             }
         }
     }

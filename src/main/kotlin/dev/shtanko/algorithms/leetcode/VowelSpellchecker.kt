@@ -29,10 +29,10 @@ class VowelSpellcheckerImpl : VowelSpellchecker {
     override operator fun invoke(wordlist: Array<String>, queries: Array<String>): Array<String> {
         for (word in wordlist) {
             wordsPerfect.add(word)
-            val wordlow = word.lowercase()
-            wordsCap.putIfAbsent(wordlow, word)
-            val wordlowDV = devowel(wordlow)
-            wordsVow.putIfAbsent(wordlowDV, word)
+            val wordLow = word.lowercase()
+            wordsCap.putIfAbsent(wordLow, word)
+            val wordLowDV = deVowel(wordLow)
+            wordsVow.putIfAbsent(wordLowDV, word)
         }
 
         val ans = Array(queries.size) { "" }
@@ -45,11 +45,11 @@ class VowelSpellcheckerImpl : VowelSpellchecker {
         if (wordsPerfect.contains(query)) return query
         val queryL = query.lowercase()
         if (wordsCap.containsKey(queryL)) return wordsCap[queryL]
-        val queryLV = devowel(queryL)
+        val queryLV = deVowel(queryL)
         return if (wordsVow.containsKey(queryLV)) wordsVow[queryLV] else ""
     }
 
-    private fun devowel(word: String): String {
+    private fun deVowel(word: String): String {
         val ans = StringBuilder()
         for (c in word.toCharArray()) ans.append(if (isVowel(c)) '*' else c)
         return ans.toString()

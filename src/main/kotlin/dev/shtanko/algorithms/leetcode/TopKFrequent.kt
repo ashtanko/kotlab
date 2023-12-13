@@ -122,7 +122,7 @@ class TopKFrequentMap : TopKFrequent {
             }
         }
 
-        while (!pq.isEmpty()) result.add(0, pq.poll().key)
+        while (pq.isNotEmpty()) result.add(0, pq.poll().key)
 
         return result
     }
@@ -224,7 +224,7 @@ class TopKFrequentBucketSort : TopKFrequent {
                 val temp = buckets[i] ?: return emptyList()
                 if (temp.size < k0) {
                     k0 -= temp.size
-                    while (temp.size > 0) {
+                    while (temp.isNotEmpty()) {
                         ans.add(temp.pollFirstEntry().key)
                     }
                 } else {

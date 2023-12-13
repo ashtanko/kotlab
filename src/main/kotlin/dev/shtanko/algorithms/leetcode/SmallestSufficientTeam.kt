@@ -49,12 +49,12 @@ class SmallestSufficientTeamDFS : SmallestSufficientTeam {
     fun search(cur: Int, pe: IntArray, onesol: MutableList<Int>, n: Int) {
         // when all bits are 1, all skills are covered
         if (cur == (1 shl n) - 1) {
-            if (sol.size == 0 || onesol.size < sol.size) {
+            if (sol.isEmpty() || onesol.size < sol.size) {
                 sol = ArrayList(onesol)
             }
             return
         }
-        if (sol.size != 0 && onesol.size >= sol.size) {
+        if (sol.isNotEmpty() && onesol.size >= sol.size) {
             return
         }
         var zeroBit = 0

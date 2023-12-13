@@ -64,7 +64,7 @@ class MaxWeightPathEvaluator(private val weights: LongArray) {
                 }
 
                 d[i] == d[i - 1] -> --i
-                else -> throw IllegalStateException("invalid state at $i")
+                else -> error("invalid state at $i")
             }
         }
 

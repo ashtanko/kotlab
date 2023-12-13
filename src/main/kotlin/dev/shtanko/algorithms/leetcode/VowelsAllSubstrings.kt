@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.VOWELS
+
 /**
  * 2063. Vowels of All Substrings
  * @see <a href="https://leetcode.com/problems/vowels-of-all-substrings/">Source</a>
@@ -34,9 +36,5 @@ class VowelsAllSubstringsImpl : VowelsAllSubstrings {
             }
         }
         return res
-    }
-
-    companion object {
-        private const val VOWELS = "aeiou"
     }
 }

@@ -92,7 +92,7 @@ class MaxScoreStack : MaxScoreOfGoodSubarray {
         var stack: Stack<Int> = Stack()
 
         for (i in n - 1 downTo 0) {
-            while (!stack.isEmpty() && nums[stack.peek()] > nums[i]) {
+            while (stack.isNotEmpty() && nums[stack.peek()] > nums[i]) {
                 left[stack.pop()] = i
             }
             stack.push(i)
@@ -102,7 +102,7 @@ class MaxScoreStack : MaxScoreOfGoodSubarray {
         stack = Stack()
 
         for (i in 0 until n) {
-            while (!stack.isEmpty() && nums[stack.peek()] > nums[i]) {
+            while (stack.isNotEmpty() && nums[stack.peek()] > nums[i]) {
                 right[stack.pop()] = i
             }
             stack.push(i)

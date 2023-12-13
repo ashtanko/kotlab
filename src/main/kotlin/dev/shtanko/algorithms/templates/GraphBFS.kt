@@ -20,13 +20,13 @@ import java.util.LinkedList
 import java.util.Queue
 
 private fun fn(graph: Array<IntArray>): Int {
-    val startNode = 0 // TODO
+    val startNode = 0
     val queue: Queue<Int> = LinkedList()
     val seen: MutableSet<Int> = HashSet()
     queue.add(startNode)
     seen.add(startNode)
     val ans = 0
-    while (!queue.isEmpty()) {
+    while (queue.isNotEmpty()) {
         val node: Int = queue.remove()
         // do some logic
         for (neighbor in graph[node]) {

@@ -41,7 +41,11 @@ class VerifyingAlienDictionaryCompare : VerifyingAlienDictionary {
                 if (words[i][j] != words[i + 1][j]) {
                     val currentWordChar: Int = words[i][j] - 'a'
                     val nextWordChar: Int = words[i + 1][j] - 'a'
-                    return if (orderMap[currentWordChar] > orderMap[nextWordChar]) false else break
+                    return if (orderMap[currentWordChar] > orderMap[nextWordChar]) {
+                        false
+                    } else {
+                        break
+                    }
                 }
             }
         }

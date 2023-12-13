@@ -51,7 +51,7 @@ class ShortestBridgeDP : ShortestBridge {
     ): Int {
         var step = 0
         val dirs = arrayOf(intArrayOf(-1, 0), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(0, 1))
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val size: Int = queue.size
             for (i in 0 until size) {
                 val point: IntArray = queue.poll()
@@ -121,7 +121,7 @@ class ShortestBridgeDFS : ShortestBridge {
         dirs: Array<IntArray>,
     ): Int {
         var step = 0
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             var size = q.size
             while (size-- > 0) {
                 val cur = q.poll()

@@ -41,7 +41,7 @@ sealed interface GetWinnerStrategy {
             var curr = arr[0]
             var winstreak = 0
 
-            while (!queue.isEmpty()) {
+            while (queue.isNotEmpty()) {
                 val opponent: Int = queue.poll()
                 if (curr > opponent) {
                     queue.offer(opponent)

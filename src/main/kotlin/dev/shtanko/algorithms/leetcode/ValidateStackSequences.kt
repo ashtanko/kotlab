@@ -34,7 +34,7 @@ class ValidateStackSequencesGreedy : ValidateStackSequences {
         var j = 0
         for (x in pushed) {
             stack.push(x)
-            while (!stack.isEmpty() && j < n && stack.peek() == popped[j]) {
+            while (stack.isNotEmpty() && j < n && stack.peek() == popped[j]) {
                 stack.pop()
                 j++
             }

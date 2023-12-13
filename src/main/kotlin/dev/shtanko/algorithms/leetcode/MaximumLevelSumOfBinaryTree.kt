@@ -35,7 +35,7 @@ class MaximumLevelSumOfBinaryTreeBFS : MaximumLevelSumOfBinaryTree {
         val q: Queue<TreeNode> = LinkedList()
         q.offer(root)
         var level = 1
-        while (!q.isEmpty()) {
+        while (q.isNotEmpty()) {
             var sum = 0
             for (sz in q.size downTo 1) {
                 val n: TreeNode = q.poll()

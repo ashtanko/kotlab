@@ -46,7 +46,6 @@ class MeetingRoomsSorting : MeetingRoomsStrategy {
         intervals.sortWith { a, b ->
             a[0].compareTo(b[0])
         }
-        // Arrays.sort(intervals) { a, b -> a[0].compareTo(b[0]) }
         for (i in 0 until intervals.size - 1) {
             if (intervals[i][1] > intervals[i + 1][0]) {
                 return false

@@ -52,20 +52,28 @@ class MinDaysDP : MinDays {
             return dp.getOrDefault(n, -1)
         }
         var ans = Int.MAX_VALUE
-        if (n % 2 == 0 && n % 3 == 0) {
-            ans = min(ans, 1 + min(solve(n / 2), solve(n / 3)))
-        } else if (n % 3 == 0) {
-            ans = min(ans, 1 + min(solve(n - 1), solve(n / 3)))
-        } else if (n % 2 == 0) {
-            ans = if ((n - 1) % 3 == 0) {
-                min(ans, 1 + min(solve(n / 2), solve(n - 1)))
-            } else {
-                min(ans, min(1 + solve(n / 2), 2 + solve(n - 2)))
+        when {
+            n % 2 == 0 && n % 3 == 0 -> {
+                ans = min(ans, 1 + min(solve(n / 2), solve(n / 3)))
             }
-        } else {
-            ans = min(ans, 1 + solve(n - 1))
-            if ((n - 2) % 3 == 0) {
-                ans = min(ans, 2 + solve(n - 2))
+
+            n % 3 == 0 -> {
+                ans = min(ans, 1 + min(solve(n - 1), solve(n / 3)))
+            }
+
+            n % 2 == 0 -> {
+                ans = if ((n - 1) % 3 == 0) {
+                    min(ans, 1 + min(solve(n / 2), solve(n - 1)))
+                } else {
+                    min(ans, min(1 + solve(n / 2), 2 + solve(n - 2)))
+                }
+            }
+
+            else -> {
+                ans = min(ans, 1 + solve(n - 1))
+                if ((n - 2) % 3 == 0) {
+                    ans = min(ans, 2 + solve(n - 2))
+                }
             }
         }
         dp[n] = ans

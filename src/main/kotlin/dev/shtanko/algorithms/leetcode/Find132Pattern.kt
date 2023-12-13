@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * 456. 132 Pattern
  * @see <a href="https://leetcode.com/problems/132-pattern">Source</a>
  */
-interface Find132Pattern {
+fun interface Find132Pattern {
     operator fun invoke(nums: IntArray): Boolean
 }
 

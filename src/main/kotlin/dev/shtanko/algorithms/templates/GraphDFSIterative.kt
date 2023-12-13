@@ -19,7 +19,7 @@ package dev.shtanko.algorithms.templates
 import java.util.Stack
 
 private fun fn(graph: Array<IntArray>): Int {
-    val startNode = 0 // TODO
+    val startNode = 0
     val stack: Stack<Int> = Stack()
     val seen: MutableSet<Int> = HashSet()
     stack.push(startNode)

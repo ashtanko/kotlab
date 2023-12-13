@@ -19,6 +19,6 @@ package dev.shtanko.algorithms.sorts
 /**
  * Sort Strategy
  */
-interface SortStrategy<T : Comparable<T>> {
+fun interface SortStrategy<T : Comparable<T>> {
     fun sort(arr: Array<T>)
 }

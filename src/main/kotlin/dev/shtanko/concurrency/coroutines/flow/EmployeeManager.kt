@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.flow
 
 object EmployeeManager {
 
-    suspend fun getEmployee(id: Int) = flow {
+    fun getEmployee(id: Int) = flow {
         getEmployees().asFlow().collect {
             if (it.id == id) {
                 emit("${it.name} ${it.salary} ${it.skill}")

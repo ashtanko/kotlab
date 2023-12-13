@@ -95,14 +95,23 @@ class InterleavingString2D : InterleavingStringStrategy {
         }
         for (i in 0..s1.length) {
             for (j in 0..s2.length) {
-                if (i == 0 && j == 0) {
-                    dp[i][j] = true
-                } else if (i == 0) {
-                    dp[i][j] = dp[i][j - 1] && s2[j - 1] == s3[i + j - 1]
-                } else if (j == 0) {
-                    dp[i][j] = dp[i - 1][j] && s1[i - 1] == s3[i + j - 1]
-                } else {
-                    dp[i][j] = dp[i - 1][j] && s1[i - 1] == s3[i + j - 1] || dp[i][j - 1] && s2[j - 1] == s3[i + j - 1]
+                when {
+                    i == 0 && j == 0 -> {
+                        dp[i][j] = true
+                    }
+
+                    i == 0 -> {
+                        dp[i][j] = dp[i][j - 1] && s2[j - 1] == s3[i + j - 1]
+                    }
+
+                    j == 0 -> {
+                        dp[i][j] = dp[i - 1][j] && s1[i - 1] == s3[i + j - 1]
+                    }
+
+                    else -> {
+                        dp[i][j] =
+                            dp[i - 1][j] && s1[i - 1] == s3[i + j - 1] || dp[i][j - 1] && s2[j - 1] == s3[i + j - 1]
+                    }
                 }
             }
         }
@@ -123,14 +132,22 @@ class InterleavingString1D : InterleavingStringStrategy {
         val dp = BooleanArray(s2.length + 1)
         for (i in 0..s1.length) {
             for (j in 0..s2.length) {
-                if (i == 0 && j == 0) {
-                    dp[j] = true
-                } else if (i == 0) {
-                    dp[j] = dp[j - 1] && s2[j - 1] == s3[i + j - 1]
-                } else if (j == 0) {
-                    dp[j] = dp[j] && s1[i - 1] == s3[i + j - 1]
-                } else {
-                    dp[j] = dp[j] && s1[i - 1] == s3[i + j - 1] || dp[j - 1] && s2[j - 1] == s3[i + j - 1]
+                when {
+                    i == 0 && j == 0 -> {
+                        dp[j] = true
+                    }
+
+                    i == 0 -> {
+                        dp[j] = dp[j - 1] && s2[j - 1] == s3[i + j - 1]
+                    }
+
+                    j == 0 -> {
+                        dp[j] = dp[j] && s1[i - 1] == s3[i + j - 1]
+                    }
+
+                    else -> {
+                        dp[j] = dp[j] && s1[i - 1] == s3[i + j - 1] || dp[j - 1] && s2[j - 1] == s3[i + j - 1]
+                    }
                 }
             }
         }

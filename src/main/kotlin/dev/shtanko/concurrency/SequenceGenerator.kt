@@ -27,11 +27,11 @@ class SequenceGenerator {
         return currentValue
     }
 
-    suspend fun next() {
+    fun next() {
         currentValue += 1
     }
 
-    suspend fun prev() {
+    fun prev() {
         currentValue -= 1
     }
 

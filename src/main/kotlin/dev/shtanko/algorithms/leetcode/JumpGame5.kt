@@ -160,7 +160,7 @@ class JP5BidirectionalBFS : JumpGame5Strategy {
         }
     }
 
-    private fun isOtherContains(other: MutableList<Int>, node: Int): Boolean {
+    private fun isOtherContains(other: List<Int>, node: Int): Boolean {
         return other.contains(node + 1) || other.contains(node - 1)
     }
 }

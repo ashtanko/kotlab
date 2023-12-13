@@ -41,7 +41,7 @@ class WordAbbreviationGreedy : WordAbbreviation {
         val groups: MutableMap<Int, MutableList<String>> = HashMap()
 
         // Try to group words by their length. Because no point to compare words with different length.
-        // Also no point to look at words with length < 4.
+        // Also, no point to look at words with length < 4.
         for (word in dict) {
             val len = word.length
             if (len < 4) {
@@ -55,7 +55,7 @@ class WordAbbreviationGreedy : WordAbbreviation {
 
         // For each group of words with same length, generate a result HashMap.
         for (len in groups.keys) {
-            val res = getAbbr(groups[len]!!)
+            val res = getAbbr(groups.getOrDefault(len, emptyList()))
             for (word in res.keys) {
                 wordToAbbr[word] = res[word]
             }
@@ -164,7 +164,7 @@ class WordAbbreviationTrie : WordAbbreviation {
         for ((index, word) in dict.withIndex()) {
             val ab = abbrev(word, 0)
             if (!groups.containsKey(ab)) groups[ab] = ArrayList()
-            groups[ab]!!.add(IndexedWord(word, index))
+            groups[ab]?.add(IndexedWord(word, index))
         }
 
         for (group in groups.values) {

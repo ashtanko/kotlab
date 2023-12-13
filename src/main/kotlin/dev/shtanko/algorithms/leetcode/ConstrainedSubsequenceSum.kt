@@ -33,11 +33,11 @@ class ConstrainedSubsequenceSumDeque : ConstrainedSubsequenceSum {
         var res = nums.firstOrNull() ?: Int.MIN_VALUE
         val q: Deque<Int> = LinkedList()
         for (i in nums.indices) {
-            nums[i] += if (!q.isEmpty()) q.peek() else 0
+            nums[i] += if (q.isNotEmpty()) q.peek() else 0
             res = res.coerceAtLeast(nums[i])
-            while (!q.isEmpty() && nums[i] > q.peekLast()) q.pollLast()
+            while (q.isNotEmpty() && nums[i] > q.peekLast()) q.pollLast()
             if (nums[i] > 0) q.offer(nums[i])
-            if (i >= k && !q.isEmpty() && q.peek() == nums[i - k]) q.poll()
+            if (i >= k && q.isNotEmpty() && q.peek() == nums[i - k]) q.poll()
         }
         return res
     }
@@ -70,7 +70,7 @@ class ConstrainedSubsequenceSumQueue : ConstrainedSubsequenceSum {
             val max = max(0, if (deque.isEmpty()) 0 else dp[deque.peekFirst()])
             dp[i] = nums[i] + max
             ans = max(ans, dp[i])
-            while (!deque.isEmpty() && dp[i] >= dp[deque.peekLast()]) {
+            while (deque.isNotEmpty() && dp[i] >= dp[deque.peekLast()]) {
                 deque.pollLast()
             }
             deque.addLast(i)
@@ -94,7 +94,7 @@ class ConstrainedSubsequenceSumQueueOpt : ConstrainedSubsequenceSum {
             val max: Int = max(0, if (deque.isEmpty()) 0 else nums[deque.peekFirst()])
             nums[i] += max
             ans = max(ans, nums[i])
-            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
+            while (deque.isNotEmpty() && nums[i] >= nums[deque.peekLast()]) {
                 deque.pollLast()
             }
             deque.addLast(i)

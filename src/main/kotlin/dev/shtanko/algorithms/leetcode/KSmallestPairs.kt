@@ -41,7 +41,7 @@ class KSmallestPairsHeap : KSmallestPairs {
         minHeap.offer(intArrayOf(nums1[0] + nums2[0], 0, 0))
         visited.add(Pair(0, 0))
         var k0 = k
-        while (k0-- > 0 && !minHeap.isEmpty()) {
+        while (k0-- > 0 && minHeap.isNotEmpty()) {
             val top: IntArray = minHeap.poll()
             val i = top[1]
             val j = top[2]

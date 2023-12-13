@@ -33,7 +33,7 @@ class DailyTemperaturesStack : DailyTemperatures {
         val stack: Stack<Int> = Stack()
         val ret = IntArray(temperatures.size)
         for (i in temperatures.indices) {
-            while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
+            while (stack.isNotEmpty() && temperatures[i] > temperatures[stack.peek()]) {
                 val idx: Int = stack.pop()
                 ret[idx] = i - idx
             }
@@ -71,10 +71,10 @@ class DailyTemperaturesDeque : DailyTemperatures {
             if (stack.isEmpty()) {
                 // case1 : stack is empty, feel free to push
                 stack.offerFirst(i)
-            } else if (!stack.isEmpty() && temperatures[i] > temperatures[stack.peekFirst()]) {
+            } else if (stack.isNotEmpty() && temperatures[i] > temperatures[stack.peekFirst()]) {
                 // case2 : descending order happens:
                 // pop all the smaller element out, then push the current element
-                while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peekFirst()]) {
+                while (stack.isNotEmpty() && temperatures[i] > temperatures[stack.peekFirst()]) {
                     res[stack.peekFirst()] = i - stack.peekFirst()
                     stack.pollFirst()
                 }

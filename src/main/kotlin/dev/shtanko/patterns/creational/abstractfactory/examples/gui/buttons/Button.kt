@@ -23,6 +23,6 @@ package dev.shtanko.patterns.creational.abstractfactory.examples.gui.buttons
  *
  * This is the common interface for buttons family.
  */
-interface Button {
+fun interface Button {
     fun paint(): String
 }

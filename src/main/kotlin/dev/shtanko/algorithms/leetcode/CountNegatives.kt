@@ -81,8 +81,8 @@ class CountNegativesBinary : AbstractCountNegativesStrategy {
 
     private fun Array<IntArray>.count(): Int {
         if (this.isEmpty()) return 0
-        if (this.size < 2) {
-            if (first().isEmpty()) return 0
+        if (this.size < 2 && first().isEmpty()) {
+            return 0
         }
         var min = this[0].size - 1
         var res = 0

@@ -32,10 +32,10 @@ class MergeKListsPQ : MergeKLists {
         val queue = PriorityQueue<ListNode>(
             lists.size,
             Comparator { o1, o2 ->
-                when {
-                    o1.value < o2.value -> return@Comparator -1
-                    o1.value == o2.value -> return@Comparator 0
-                    else -> return@Comparator 1
+                return@Comparator when {
+                    o1.value < o2.value -> -1
+                    o1.value == o2.value -> 0
+                    else -> 1
                 }
             },
         )

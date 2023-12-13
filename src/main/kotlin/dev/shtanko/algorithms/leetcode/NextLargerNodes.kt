@@ -37,7 +37,7 @@ class NextLargerNodesStack : NextLargerNodes {
         val res = IntArray(arr.size)
         val stack: Stack<Int> = Stack()
         for (i in 0 until arr.size) {
-            while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) res[stack.pop()] = arr[i]
+            while (stack.isNotEmpty() && arr[stack.peek()] < arr[i]) res[stack.pop()] = arr[i]
             stack.push(i)
         }
         return res
@@ -63,7 +63,7 @@ class NextLargerNodesOnePass : NextLargerNodes {
 
             // Process anything that is less than current node value
             // i.e. current node value is the "next"greatest for elements (index-referenced) in the stack
-            while (!stack.isEmpty() && nums[stack.peek()] < n.value) {
+            while (stack.isNotEmpty() && nums[stack.peek()] < n.value) {
                 nums[stack.pop()] = n.value
             }
 
@@ -74,7 +74,7 @@ class NextLargerNodesOnePass : NextLargerNodes {
             index++
         }
         // Handle remaining items in stack / write in 0 (no "next greatest" found for these)
-        while (!stack.isEmpty()) {
+        while (stack.isNotEmpty()) {
             nums[stack.pop()] = 0
         }
 

@@ -27,7 +27,7 @@ fun isNStraightHand(hand: IntArray, w: Int): Boolean {
         if (!count.containsKey(card)) count[card] = 1 else count.replace(card, count[card]!! + 1)
     }
 
-    while (count.size > 0) {
+    while (count.isNotEmpty()) {
         val first = count.firstKey()
         for (card in first until first + w) {
             if (!count.containsKey(card)) return false

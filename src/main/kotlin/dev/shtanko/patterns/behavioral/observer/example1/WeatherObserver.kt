@@ -16,6 +16,6 @@
 
 package dev.shtanko.patterns.behavioral.observer.example1
 
-interface WeatherObserver {
+fun interface WeatherObserver {
     fun update(currentWeather: WeatherType)
 }

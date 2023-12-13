@@ -172,7 +172,7 @@ class Dota2SenateTwoQueues : Dota2Senate {
         }
 
         // While both parties have at least one Senator
-        while (!rQueue.isEmpty() && !dQueue.isEmpty()) {
+        while (rQueue.isNotEmpty() && dQueue.isNotEmpty()) {
             // Pop the Next-Turn Senate from both Q.
             val rTurn: Int = rQueue.poll()
             val dTurn: Int = dQueue.poll()

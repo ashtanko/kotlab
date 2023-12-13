@@ -17,7 +17,7 @@
 package dev.shtanko.patterns.structural.bridge.examples.example2
 
 // Implementation hierarchy: Colors
-interface Color {
+fun interface Color {
     fun applyColor()
 }
 

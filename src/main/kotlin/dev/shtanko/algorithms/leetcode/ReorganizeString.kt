@@ -48,7 +48,7 @@ class ReorganizeStringPQ : ReorganizeString {
         }
 
         val sb = StringBuilder()
-        while (!pq.isEmpty()) {
+        while (pq.isNotEmpty()) {
             val first = pq.poll()
             if (sb.isEmpty() || first[0] != sb[sb.length - 1].code) {
                 sb.append(first[0].toChar())

@@ -34,7 +34,7 @@ class KeysAndRoomsStraightForward : KeysAndRooms {
         val seen: HashSet<Int> = HashSet<Int>().apply {
             add(0)
         }
-        while (!dfs.isEmpty()) {
+        while (dfs.isNotEmpty()) {
             val i: Int = dfs.pop()
             for (j in rooms[i]) {
                 if (!seen.contains(j)) {

@@ -54,7 +54,7 @@ class CatAndMouseMinimax : CatAndMouse {
         val queue = enqueuedAllNodes(n, status)
 
         // percolate nodes that we know who wins in the end
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val node: IntArray = queue.remove()
             val m = node[0]
             val c = node[1]

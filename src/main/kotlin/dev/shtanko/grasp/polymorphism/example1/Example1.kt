@@ -16,7 +16,7 @@
 
 package dev.shtanko.grasp.polymorphism.example1
 
-interface Shape {
+fun interface Shape {
     fun area(): Double
 }
 

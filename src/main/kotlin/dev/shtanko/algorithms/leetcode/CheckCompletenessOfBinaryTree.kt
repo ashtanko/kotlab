@@ -36,7 +36,7 @@ class CheckCompletenessOfBinaryTreeBFS : CheckCompletenessOfBinaryTree {
             bfs.offer(node.left)
             bfs.offer(node.right)
         }
-        while (!bfs.isEmpty() && bfs.peek() == null) bfs.poll()
+        while (bfs.isNotEmpty() && bfs.peek() == null) bfs.poll()
         return bfs.isEmpty()
     }
 }

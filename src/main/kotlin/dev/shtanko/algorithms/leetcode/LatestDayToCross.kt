@@ -95,7 +95,7 @@ class LatestDayToCrossBSBFS : LatestDayToCross {
                 grid[0][i] = -1
             }
         }
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val cur: IntArray = queue.poll()
             val r = cur[0]
             val c = cur[1]

@@ -122,7 +122,7 @@ sealed interface FindModeInBinarySearchTreeStrategy {
             val queue: Queue<TreeNode?> = LinkedList()
             queue.add(root)
 
-            while (!queue.isEmpty()) {
+            while (queue.isNotEmpty()) {
                 val node: TreeNode? = queue.remove()
 
                 counter[node?.value] = counter.getOrDefault(node?.value, 0)!! + 1
