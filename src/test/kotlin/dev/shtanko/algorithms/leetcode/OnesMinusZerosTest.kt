@@ -45,7 +45,6 @@ abstract class OnesMinusZerosTest<out T : OnesMinusZeros>(private val strategy: 
         val actual = strategy(grid)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
-
 }
 
 class OnesMinusZerosArrayCounterTest : OnesMinusZerosTest<OnesMinusZeros>(OnesMinusZerosArrayCounter())
