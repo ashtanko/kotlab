@@ -17,7 +17,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Set up JDK 17
@@ -34,7 +34,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Cache gradle dependencies
-        uses: actions/cache@v3.0.8
+        uses: actions/cache@v3.3.2
         with:
           path: ${{ env.GRADLE_HOME }}/caches
           # Include the SHA in the hash so this step always adds a cache entry. If we didn't use the SHA, the artifacts
@@ -59,6 +59,7 @@ jobs:
         uses: coverallsapp/github-action@v2
         with:
           parallel: true
+          file: ./build/reports/kover/report.xml
           debug: true
 
       - name: Upload coverage to Codecov
