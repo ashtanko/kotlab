@@ -7,3 +7,5 @@
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.20-blue.svg)](http://kotlinlang.org/)
 [![codecov](https://codecov.io/gh/ashtanko/kotlab/branch/main/graph/badge.svg?token=JEU9EIJMHA)](https://codecov.io/gh/ashtanko/kotlab)
 [![Coverage Status](https://coveralls.io/repos/github/ashtanko/kotlab/badge.svg?branch=main)](https://coveralls.io/github/ashtanko/kotlab?branch=main)
+[![Maintainability](https://api.codeclimate.com/v1/badges/428fc33c4caf2c832402/maintainability)](https://codeclimate.com/github/ashtanko/kotlab/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/428fc33c4caf2c832402/test_coverage)](https://codeclimate.com/github/ashtanko/kotlab/test_coverage)

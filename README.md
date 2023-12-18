@@ -7,15 +7,17 @@
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.20-blue.svg)](http://kotlinlang.org/)
 [![codecov](https://codecov.io/gh/ashtanko/kotlab/branch/main/graph/badge.svg?token=JEU9EIJMHA)](https://codecov.io/gh/ashtanko/kotlab)
 [![Coverage Status](https://coveralls.io/repos/github/ashtanko/kotlab/badge.svg?branch=main)](https://coveralls.io/github/ashtanko/kotlab?branch=main)
+[![Maintainability](https://api.codeclimate.com/v1/badges/428fc33c4caf2c832402/maintainability)](https://codeclimate.com/github/ashtanko/kotlab/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/428fc33c4caf2c832402/test_coverage)](https://codeclimate.com/github/ashtanko/kotlab/test_coverage)
 # detekt
 
 ## Metrics
 
-* 10,561 number of properties
+* 10,560 number of properties
 
-* 7,157 number of functions
+* 7,155 number of functions
 
-* 6,397 number of classes
+* 6,398 number of classes
 
 * 158 number of packages
 
@@ -23,17 +25,17 @@
 
 ## Complexity Report
 
-* 168,867 lines of code (loc)
+* 168,854 lines of code (loc)
 
-* 102,774 source lines of code (sloc)
+* 102,767 source lines of code (sloc)
 
-* 72,863 logical lines of code (lloc)
+* 72,856 logical lines of code (lloc)
 
-* 47,080 comment lines of code (cloc)
+* 47,078 comment lines of code (cloc)
 
-* 17,664 cyclomatic complexity (mcc)
+* 17,658 cyclomatic complexity (mcc)
 
-* 15,431 cognitive complexity
+* 15,428 cognitive complexity
 
 * 0 number of total code smells
 
@@ -45,4 +47,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.23.1](https://detekt.dev/) on 2023-12-18 09:28:07 UTC
+generated with [detekt version 1.23.4](https://detekt.dev/) on 2023-12-18 17:29:45 UTC

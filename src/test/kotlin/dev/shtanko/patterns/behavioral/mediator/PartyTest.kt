@@ -16,7 +16,6 @@
 
 package dev.shtanko.patterns.behavioral.mediator
 
-import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
@@ -32,12 +31,11 @@ class PartyTest {
         party.addMember(partyMember1)
         party.addMember(partyMember2)
 
-        verify<PartyMember>(partyMember1).joinedParty(party)
-        verify<PartyMember>(partyMember2).joinedParty(party)
+        verify(partyMember1).joinedParty(party)
+        verify(partyMember2).joinedParty(party)
 
         party.act(partyMember1, Action.GOLD)
-        verifyZeroInteractions(partyMember1)
-        verify<PartyMember>(partyMember2).partyAction(Action.GOLD)
+        verify(partyMember2).partyAction(Action.GOLD)
 
         verifyNoMoreInteractions(partyMember1, partyMember2)
     }

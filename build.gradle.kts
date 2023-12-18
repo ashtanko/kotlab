@@ -17,7 +17,7 @@
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
 
-val projectJvmTarget = "17"
+val projectJvmTarget = 17
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktLintConfig: Configuration by configurations.creating
 val isK2Enabled = true
@@ -44,6 +44,7 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.pitest)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.kover)
 }
 
 jacoco {
@@ -120,12 +121,31 @@ subprojects {
     apply<com.diffplug.gradle.spotless.SpotlessPlugin>()
 }
 
+koverReport {
+    verify {
+        rule {
+            minBound(80)
+        }
+    }
+}
+
 tasks {
+    withType<Test> {
+        maxParallelForks = 1
+        jvmArgs(
+            "--add-opens", "java.base/jdk.internal.misc=ALL-UNNAMED",
+            "--add-exports", "java.base/jdk.internal.util=ALL-UNNAMED",
+            "--add-exports", "java.base/sun.security.action=ALL-UNNAMED"
+        )
+    }
     compileKotlin {
         compilerOptions {
             apiVersion.set(kotlinVersion)
             languageVersion.set(kotlinVersion)
         }
+    }
+    kotlin {
+        jvmToolchain(projectJvmTarget)
     }
     jacocoTestCoverageVerification {
         violationRules {
@@ -183,7 +203,7 @@ tasks {
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = projectJvmTarget
+            jvmTarget = "$projectJvmTarget"
             freeCompilerArgs = freeCompilerArgs + k2CompilerArg
         }
     }
@@ -193,7 +213,7 @@ tasks {
         parallel = true
         baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
         config.from(file("config/detekt/detekt.yml"))
-        jvmTarget = projectJvmTarget
+        jvmTarget = "$projectJvmTarget"
 
         setSource(files("src/main/kotlin", "src/test/kotlin"))
         setOf(
@@ -216,7 +236,7 @@ tasks {
     }
 
     withType<DetektCreateBaselineTask> {
-        jvmTarget = projectJvmTarget
+        jvmTarget = "$projectJvmTarget"
     }
 
     withType<Test>().configureEach {
@@ -233,7 +253,7 @@ tasks {
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = projectJvmTarget
+            jvmTarget = "$projectJvmTarget"
         }
     }
 }
@@ -272,7 +292,6 @@ dependencies {
         testImplementation(logback)
         testImplementation(logback.classic)
         testImplementation(rxjava)
-        testImplementation(junit.benchmarks)
         testImplementation(kotlin.serialization.json)
         testImplementation(kotest)
         testImplementation(kotest.assertions)

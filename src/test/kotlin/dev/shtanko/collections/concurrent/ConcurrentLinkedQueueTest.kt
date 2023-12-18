@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.collections.concurrent
 
+import java.util.LinkedList
+import java.util.concurrent.ConcurrentLinkedQueue
 import org.jetbrains.kotlinx.lincheck.annotations.Operation
 import org.jetbrains.kotlinx.lincheck.check
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
@@ -23,15 +25,24 @@ import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 @Disabled("Requires a lot of time to execute")
-class CounterTest {
-    private val counter = Counter()
+class ConcurrentLinkedQueueTest {
+    private val s = ConcurrentLinkedQueue<Int>()
 
     @Operation
-    fun addAndGet() = counter.addAndGet()
+    fun add(value: Int) = s.add(value)
 
     @Operation
-    fun get() = counter.get()
+    fun poll(): Int? = s.poll()
 
     @Test
-    fun test() = StressOptions().check(this::class)
+    fun stressTest() = StressOptions()
+        .sequentialSpecification(SequentialQueue::class.java)
+        .check(this::class)
+}
+
+class SequentialQueue {
+    private val q = LinkedList<Int>()
+
+    fun add(x: Int) = q.add(x)
+    fun poll(): Int? = q.poll()
 }

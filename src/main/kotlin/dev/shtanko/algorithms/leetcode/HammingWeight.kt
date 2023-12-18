@@ -29,7 +29,7 @@ class HammingWeightSolution : HammingWeight {
         var count = 0
         var num = n
         for (i in 0 until Int.SIZE_BITS) {
-            if ((num and 1) == 1) {
+            if (num and 1 == 1) {
                 count++
             }
             num = num shr 1
@@ -63,7 +63,7 @@ class HammingWeightAnd : HammingWeight {
         var input = n
         var res = 0
         for (i in 0..<BITS) {
-            res += (input and 1)
+            res += input and 1
             input = input shr 1
         }
         return res

@@ -43,7 +43,7 @@ class MinOneBitOperationsRecursion : MinOneBitOperations {
             k++
         }
 
-        return (1 shl (k + 1)) - 1 - invoke(n xor curr)
+        return (1 shl k + 1) - 1 - invoke(n xor curr)
     }
 }
 
@@ -60,8 +60,8 @@ class MinOneBitOperationsIteration : MinOneBitOperations {
         var mask = 1
 
         while (mask <= n) {
-            if ((n and mask) != 0) {
-                ans = (1 shl (k + 1)) - 1 - ans
+            if (n and mask != 0) {
+                ans = (1 shl k + 1) - 1 - ans
             }
 
             mask = mask shl 1

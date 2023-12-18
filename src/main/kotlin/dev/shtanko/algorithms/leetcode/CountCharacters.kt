@@ -86,7 +86,7 @@ class CountCharactersStd : CountCharacters {
 
         return words.filter { word ->
             word.groupingBy { it }.eachCount()
-                .all { (w, c) -> c <= (countChars[w] ?: 0) }
+                .all { (w, c) -> c <= countChars.getOrDefault(w, 0) }
         }
             .sumOf { it.length }
     }
