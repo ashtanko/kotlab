@@ -46,11 +46,14 @@ jobs:
           restore-keys: |
             gradle-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/buildSrc/**') }}-
 
-      - name: Run checks
+      - name: Run checks and test
         run: ./gradlew detekt ktlintCheck --build-cache --no-daemon --stacktrace --gradle-user-home "$GRADLE_HOME"
 
       - name: Build with Gradle and test
         run: ./gradlew build -x koverVerify  # skipping koverVerify to not fail if the coverage has lowered
+
+      - name: Generate Test Coverage Xml Report
+        run: ./gradlew koverXmlReport
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
@@ -63,5 +66,5 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./build/reports/kover/
-          #files: build/reports/kover/index.xml
+          files: ./build/reports/kover/report.xml
           verbose: true
