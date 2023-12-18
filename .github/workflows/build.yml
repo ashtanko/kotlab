@@ -62,5 +62,6 @@ jobs:
         uses: codecov/codecov-action@v3.1.4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: build/reports/kover/index.xml
+          directory: ./build/reports/kover/
+          #files: build/reports/kover/index.xml
           verbose: true
