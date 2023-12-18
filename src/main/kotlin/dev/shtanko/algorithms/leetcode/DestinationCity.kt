@@ -16,8 +16,34 @@
 
 package dev.shtanko.algorithms.leetcode
 
+/**
+ * 1436. Destination City
+ * @see <a href="https://leetcode.com/problems/destination-city">Source</a>
+ */
 fun interface DestinationCityStrategy {
     operator fun invoke(paths: List<List<String>>): String
+}
+
+class DestinationCityStrategyBF : DestinationCityStrategy {
+    override fun invoke(paths: List<List<String>>): String {
+        for (element in paths) {
+            val candidate = element[1]
+            var good = true
+
+            for (path in paths) {
+                if (path[0] == candidate) {
+                    good = false
+                    break
+                }
+            }
+
+            if (good) {
+                return candidate
+            }
+        }
+
+        return ""
+    }
 }
 
 class DestinationCitySet : DestinationCityStrategy {

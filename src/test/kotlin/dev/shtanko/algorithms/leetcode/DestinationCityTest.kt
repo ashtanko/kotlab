@@ -58,6 +58,7 @@ abstract class DestinationCityTest<out T : DestinationCityStrategy>(private val 
     }
 }
 
-class DestinationCitySetTest : DestinationCityTest<DestinationCitySet>(DestinationCitySet())
+class DestinationCitySetTest : DestinationCityTest<DestinationCityStrategy>(DestinationCitySet())
 
-class DestinationCityHashMapTest : DestinationCityTest<DestinationCityHashMap>(DestinationCityHashMap())
+class DestinationCityHashMapTest : DestinationCityTest<DestinationCityStrategy>(DestinationCityHashMap())
+class DestinationCityStrategyBFTest : DestinationCityTest<DestinationCityStrategy>(DestinationCityStrategyBF())
