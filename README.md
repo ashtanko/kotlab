@@ -6,36 +6,36 @@
 [![coveralls](https://coveralls.io/repos/github/ashtanko/kotlab/badge.svg?branch=main)](https://coveralls.io/github/ashtanko/kotlab?branch=main)
 [![codefactor](https://www.codefactor.io/repository/github/ashtanko/kotlab/badge?s=1290c19502114b2413b119de774f8c596d0e4953)](https://www.codefactor.io/repository/github/ashtanko/kotlab)
 [![maintainability](https://api.codeclimate.com/v1/badges/428fc33c4caf2c832402/maintainability)](https://codeclimate.com/github/ashtanko/kotlab/maintainability)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth?ref=badge_shield&issueType=license)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
-[![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.20-blue.svg)](http://kotlinlang.org/)
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.21-blue.svg)](http://kotlinlang.org/)
 # detekt
 
 ## Metrics
 
-* 10,560 number of properties
+* 10,586 number of properties
 
-* 7,155 number of functions
+* 7,176 number of functions
 
-* 6,398 number of classes
+* 6,412 number of classes
 
 * 158 number of packages
 
-* 2,501 number of kt files
+* 2,505 number of kt files
 
 ## Complexity Report
 
-* 168,854 lines of code (loc)
+* 169,214 lines of code (loc)
 
-* 102,767 source lines of code (sloc)
+* 102,995 source lines of code (sloc)
 
-* 72,856 logical lines of code (lloc)
+* 73,005 logical lines of code (lloc)
 
-* 47,078 comment lines of code (cloc)
+* 47,149 comment lines of code (cloc)
 
-* 17,658 cyclomatic complexity (mcc)
+* 17,708 cyclomatic complexity (mcc)
 
-* 15,428 cognitive complexity
+* 15,478 cognitive complexity
 
 * 0 number of total code smells
 
@@ -47,4 +47,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.23.4](https://detekt.dev/) on 2023-12-18 17:29:45 UTC
+generated with [detekt version 1.23.4](https://detekt.dev/) on 2023-12-19 17:03:20 UTC

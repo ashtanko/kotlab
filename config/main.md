@@ -6,6 +6,6 @@
 [![coveralls](https://coveralls.io/repos/github/ashtanko/kotlab/badge.svg?branch=main)](https://coveralls.io/github/ashtanko/kotlab?branch=main)
 [![codefactor](https://www.codefactor.io/repository/github/ashtanko/kotlab/badge?s=1290c19502114b2413b119de774f8c596d0e4953)](https://www.codefactor.io/repository/github/ashtanko/kotlab)
 [![maintainability](https://api.codeclimate.com/v1/badges/428fc33c4caf2c832402/maintainability)](https://codeclimate.com/github/ashtanko/kotlab/maintainability)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth?ref=badge_shield&issueType=license)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.21-blue.svg)](http://kotlinlang.org/)

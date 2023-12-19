@@ -1,4 +1,4 @@
-.PHONY: check run test lines md default jacoco spotless kover
+.PHONY: check run test lines md default jacoco spotless kover diktat
 
 # Run detekt + ktlint
 check:
@@ -34,5 +34,8 @@ lines:
 
 kover:
 	./gradlew koverHtmlReport
+
+diktat:
+	./gradlew diktatCheck
 
 .DEFAULT_GOAL := default

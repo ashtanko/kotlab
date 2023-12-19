@@ -28,6 +28,7 @@ logback = "1.2.11"          # https://logback.qos.ch/
 hamcrest = "2.2"            # https://hamcrest.org/JavaHamcrest/distributables
 mockk = "1.13.8"            # https://mockk.io/
 kover = "0.7.5"             # https://github.com/Kotlin/kotlinx-kover
+diktat = "2.0.0"            # https://github.com/saveourtool/diktat
 
 [libraries]
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
@@ -83,3 +84,4 @@ spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependency" }
 pitest = { id = "info.solidsoft.pitest", version.ref = "pitest" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+diktat = { id = "com.saveourtool.diktat", version.ref = "diktat" }
