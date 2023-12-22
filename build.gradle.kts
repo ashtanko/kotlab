@@ -85,16 +85,17 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
 
 plugins.withId("info.solidsoft.pitest") {
     configure<info.solidsoft.gradle.pitest.PitestPluginExtension> {
-        jvmArgs.set(listOf("-Xmx1024m"))
+        jvmArgs.set(listOf("-Xmx2048m"))
         avoidCallsTo.set(setOf("kotlin.jvm.internal", "kotlin.Result"))
         targetClasses.set(setOf("dev.shtanko.*"))
         targetTests.set(setOf("dev.shtanko.*"))
-        pitestVersion.set("1.9.0")
+        pitestVersion.set("1.15.0")
         verbose.set(true)
+        timestampedReports.set(false)
         threads.set(System.getenv("PITEST_THREADS")?.toInt() ?: satisfyingNumberOfCores)
         outputFormats.set(setOf("XML", "HTML"))
         testPlugin.set("junit5")
-        junit5PluginVersion.set("0.12")
+        junit5PluginVersion.set("1.0.0")
     }
 }
 
