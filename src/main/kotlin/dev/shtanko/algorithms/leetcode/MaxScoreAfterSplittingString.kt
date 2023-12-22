@@ -72,7 +72,6 @@ sealed interface MaxScoreAfterSplittingString {
             }
 
             return ans
-
         }
     }
 
