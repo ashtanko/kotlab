@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.DECIMAL
 import kotlin.math.min
 
 /**
@@ -28,28 +27,46 @@ fun interface StringCompression2 {
 }
 
 class StringCompression2DP : StringCompression2 {
+
     override fun invoke(s: String, k: Int): Int {
         val n: Int = s.length
-        val dp = Array(n + 1) { IntArray(k + 1) { n } }
-        dp[0][0] = 0
+        val dp = initializeDP(n, k)
 
         for (i in 1..n) {
             for (m in 0..k) {
-                if (m > 0) {
-                    dp[i][m] = min(dp[i][m], dp[i - 1][m - 1])
-                }
-
-                // keep s[i], concat the same, remove the different
-                var same = 0
-                var diff = 0
-                for (j in i downTo 1) {
-                    if (s[j - 1] == s[i - 1]) same++ else diff++
-                    if (diff > m) break
-                    dp[i][m] = min(dp[i][m], dp[j - 1][m - diff] + getLen(same))
-                }
+                updateDP(dp, s, i, m)
             }
         }
+
         return dp[n][k]
+    }
+
+    private fun initializeDP(n: Int, k: Int): Array<IntArray> {
+        val dp = Array(n + 1) { IntArray(k + 1) { n } }
+        dp[0][0] = 0
+        return dp
+    }
+
+    private fun updateDP(dp: Array<IntArray>, s: String, i: Int, m: Int) {
+        if (m > 0) {
+            dp[i][m] = min(dp[i][m], dp[i - 1][m - 1])
+        }
+
+        // keep s[i], concat the same, remove the different
+        var same = 0
+        var diff = 0
+
+        for (j in i downTo 1) {
+            if (s[j - 1] == s[i - 1]) {
+                same++
+            } else {
+                diff++
+            }
+
+            if (diff > m) break
+
+            dp[i][m] = min(dp[i][m], dp[j - 1][m - diff] + getLen(same))
+        }
     }
 
     private fun getLen(count: Int): Int {
@@ -63,5 +80,6 @@ class StringCompression2DP : StringCompression2 {
 
     companion object {
         private const val LIMIT = 100
+        private const val DECIMAL = 10
     }
 }
