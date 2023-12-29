@@ -75,11 +75,13 @@ jobs:
           files: ./build/reports/kover/report.xml
           verbose: true
 
-      - name: Test & publish code coverage
+      - name: Upload test coverage to Code Climate
         uses: paambaati/codeclimate-action@v5.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          JACOCO_SOURCE_PATH: "${{ github.workspace }}/src/main/kotlin"
         with:
-          coverageCommand: ./gradlew test
-          coverageLocations: ./build/reports/jacoco/jacoco.xml:jacoco
+          debug: true
+          file: ./build/reports/jacoco/test/jacoco.xml
+          format: jacoco
+          prefix: src/main/kotlin  # Adjust this based on your project structure
+          verbose: true
