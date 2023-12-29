@@ -79,6 +79,7 @@ jobs:
         uses: paambaati/codeclimate-action@v5.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          JACOCO_SOURCE_PATH: "${{github.workspace}}/src/main/kotlin"
         with:
           coverageCommand: ./gradlew test jacocoTestReport
           coverageLocations: ./build/reports/jacoco/test/jacocoTestReport.xml:jacoco
