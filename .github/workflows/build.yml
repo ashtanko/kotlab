@@ -81,7 +81,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           debug: true
-          file: ./build/reports/jacoco/test/jacoco.xml
+          file: build/reports/jacoco/test/jacocoTestReport.xml
           format: jacoco
           prefix: src/main/kotlin  # Adjust this based on your project structure
           verbose: true
