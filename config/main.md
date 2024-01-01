@@ -5,6 +5,7 @@
 [![test coverage](https://api.codeclimate.com/v1/badges/428fc33c4caf2c832402/test_coverage)](https://codeclimate.com/github/ashtanko/kotlab/test_coverage)
 [![coveralls](https://coveralls.io/repos/github/ashtanko/kotlab/badge.svg?branch=main)](https://coveralls.io/github/ashtanko/kotlab?branch=main)
 [![codefactor](https://www.codefactor.io/repository/github/ashtanko/kotlab/badge?s=1290c19502114b2413b119de774f8c596d0e4953)](https://www.codefactor.io/repository/github/ashtanko/kotlab)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/74cad08184b34038bb5c64c317384367)](https://app.codacy.com/gh/ashtanko/kotlab/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 [![maintainability](https://api.codeclimate.com/v1/badges/428fc33c4caf2c832402/maintainability)](https://codeclimate.com/github/ashtanko/kotlab/maintainability)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/74cad08184b34038bb5c64c317384367)](https://app.codacy.com/gh/ashtanko/kotlab/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth?ref=badge_shield&issueType=license)
