@@ -22,16 +22,13 @@ import kotlin.math.max
  * 300. Longest Increasing Subsequence
  * https://leetcode.com/problems/longest-increasing-subsequence/
  */
-fun interface LengthOfLIS {
+sealed interface LongestIncreasingSubsequence {
     operator fun invoke(nums: IntArray): Int
-}
-
-sealed class LISStrategy {
 
     /**
      * Approach 1: Dynamic Programming
      */
-    object DynamicProgramming : LISStrategy(), LengthOfLIS {
+    data object DynamicProgramming : LongestIncreasingSubsequence {
         override operator fun invoke(nums: IntArray): Int {
             val dp = IntArray(nums.size) { 1 }
 
@@ -55,7 +52,7 @@ sealed class LISStrategy {
     /**
      * Approach 2: Intelligently Build a Subsequence
      */
-    object BuildSubsequence : LISStrategy(), LengthOfLIS {
+    data object BuildSubsequence : LongestIncreasingSubsequence {
         override operator fun invoke(nums: IntArray): Int {
             val sub = ArrayList<Int>()
             if (nums.isNotEmpty()) {
@@ -85,7 +82,7 @@ sealed class LISStrategy {
     /**
      * Approach 3: Improve With Binary Search
      */
-    object BinarySearch : LISStrategy(), LengthOfLIS {
+    data object BinarySearch : LongestIncreasingSubsequence {
         override operator fun invoke(nums: IntArray): Int {
             val sub = ArrayList<Int>()
             if (nums.isNotEmpty()) {

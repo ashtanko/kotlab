@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.leetcode.LongestIncreasingSubsequence.BinarySearch
+import dev.shtanko.algorithms.leetcode.LongestIncreasingSubsequence.BuildSubsequence
+import dev.shtanko.algorithms.leetcode.LongestIncreasingSubsequence.DynamicProgramming
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -24,14 +27,29 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class LengthOfLISTest<out T : LengthOfLIS>(private val strategy: T) {
+abstract class LongestIncreasingSubsequenceTest<out T : LongestIncreasingSubsequence>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(intArrayOf(10, 9, 2, 5, 3, 7, 101, 18), 4),
-            Arguments.of(intArrayOf(0, 1, 0, 3, 2, 3), 4),
-            Arguments.of(intArrayOf(7, 7, 7, 7, 7, 7, 7), 1),
-            Arguments.of(intArrayOf(1, 2, 3), 3),
-            Arguments.of(intArrayOf(), 0),
+            Arguments.of(
+                intArrayOf(10, 9, 2, 5, 3, 7, 101, 18),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 0, 3, 2, 3),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(7, 7, 7, 7, 7, 7, 7),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
         )
     }
 
@@ -43,6 +61,6 @@ abstract class LengthOfLISTest<out T : LengthOfLIS>(private val strategy: T) {
     }
 }
 
-class LISDPTest : LengthOfLISTest<LISStrategy.DynamicProgramming>(LISStrategy.DynamicProgramming)
-class LISBuildSubsequenceTest : LengthOfLISTest<LISStrategy.BuildSubsequence>(LISStrategy.BuildSubsequence)
-class LISBinarySearchTest : LengthOfLISTest<LISStrategy.BinarySearch>(LISStrategy.BinarySearch)
+class LISDpTest : LongestIncreasingSubsequenceTest<LongestIncreasingSubsequence>(DynamicProgramming)
+class LISBuildSubsequenceTest : LongestIncreasingSubsequenceTest<LongestIncreasingSubsequence>(BuildSubsequence)
+class LISBinarySearchTest : LongestIncreasingSubsequenceTest<LongestIncreasingSubsequence>(BinarySearch)

@@ -24,7 +24,7 @@
 
 * 7,263 number of functions
 
-* 6,510 number of classes
+* 6,509 number of classes
 
 * 158 number of packages
 
@@ -32,11 +32,11 @@
 
 ## Complexity Report
 
-* 171,309 lines of code (loc)
+* 171,324 lines of code (loc)
 
-* 104,258 source lines of code (sloc)
+* 104,274 source lines of code (sloc)
 
-* 73,871 logical lines of code (lloc)
+* 73,885 logical lines of code (lloc)
 
 * 47,699 comment lines of code (cloc)
 
@@ -54,4 +54,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.23.4](https://detekt.dev/) on 2024-01-04 11:52:02 UTC
+generated with [detekt version 1.23.4](https://detekt.dev/) on 2024-01-05 12:48:34 UTC
