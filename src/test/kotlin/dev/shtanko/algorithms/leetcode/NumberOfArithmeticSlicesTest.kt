@@ -28,8 +28,28 @@ abstract class NumberOfArithmeticSlicesTest<out T : NumberOfArithmeticSlices>(pr
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(0, 0, 0, 0, 0, 0),
+                42,
+            ),
+            Arguments.of(
                 intArrayOf(2, 4, 6, 8, 10),
                 7,
+            ),
+            Arguments.of(
+                intArrayOf(3, 4, 6, 8, 10),
+                3,
             ),
             Arguments.of(
                 intArrayOf(7, 7, 7, 7, 7),
