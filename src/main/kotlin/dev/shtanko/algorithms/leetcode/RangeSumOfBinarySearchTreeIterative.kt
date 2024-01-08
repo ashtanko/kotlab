@@ -22,11 +22,11 @@ import java.util.Stack
  * 938. Range Sum of BST
  * @see <a href="https://leetcode.com/problems/range-sum-of-bst">Source</a>
  */
-fun interface RangeSumStrategy {
+fun interface RangeSumOfBinarySearchTree {
     operator fun invoke(root: TreeNode?, left: Int, right: Int): Int
 }
 
-class RangeSumBST : RangeSumStrategy {
+class RangeSumOfBinarySearchTreeIterative : RangeSumOfBinarySearchTree {
     override operator fun invoke(root: TreeNode?, left: Int, right: Int): Int {
         var ans = 0
         val stack: Stack<TreeNode> = Stack()
@@ -43,7 +43,7 @@ class RangeSumBST : RangeSumStrategy {
     }
 }
 
-class RangeSumRecursive : RangeSumStrategy {
+class RangeSumOfBinarySearchTreeRecursive : RangeSumOfBinarySearchTree {
     override operator fun invoke(root: TreeNode?, left: Int, right: Int): Int {
         return rangeSumBSTRecursive(root, left, right)
     }
