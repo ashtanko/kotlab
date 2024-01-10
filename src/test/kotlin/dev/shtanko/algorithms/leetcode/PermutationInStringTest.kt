@@ -16,29 +16,41 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class PermutationInStringStrategyTest<out T : StringPermutationStrategy>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> {
-            return listOf(
-                "ab" to "eidbaooo" to true,
-                "ab" to "eidboaoo" to false,
-            )
-        }
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `simple test`(str1: String, str2: String, expected: Boolean) {
+        val actual = strategy.invoke(str1, str2)
+        assertEquals(expected, actual)
     }
 
-    @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<String, String>, Boolean>) {
-        val (data, expected) = testCase
-        val (s1, s2) = data
-        val actual = strategy.invoke(s1, s2)
-        assertEquals(expected, actual)
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "ab",
+                "eidbaooo",
+                true,
+            ),
+            Arguments.of(
+                "ab",
+                "eidboaoo",
+                false,
+            ),
+            Arguments.of(
+                "",
+                "",
+                true,
+            ),
+        )
     }
 }
 

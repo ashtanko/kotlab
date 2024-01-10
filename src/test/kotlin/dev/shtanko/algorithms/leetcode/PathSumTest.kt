@@ -16,16 +16,26 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class PathSumTest<out T : PathSumStrategy>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<Pair<TreeNode, Int>, Boolean>> {
-            return listOf(
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `path sum test`(tree: TreeNode, sum: Int, expected: Boolean) {
+        val actual = strategy.invoke(tree, sum)
+        assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
                 TreeNode(5).apply {
                     left = TreeNode(4).apply {
                         left = TreeNode(11).apply {
@@ -39,21 +49,14 @@ abstract class PathSumTest<out T : PathSumStrategy>(private val strategy: T) {
                             right = TreeNode(1)
                         }
                     }
-                } to 22 to true,
-            )
-        }
-    }
-
-    @ParameterizedTest
-    @MethodSource("casesProvider")
-    fun `path sum test`(testCase: Pair<Pair<TreeNode, Int>, Boolean>) {
-        val (data, expected) = testCase
-        val (tree, sum) = data
-        val actual = strategy.hasPathSum(tree, sum)
-        assertEquals(expected, actual)
+                },
+                22,
+                true,
+            ),
+        )
     }
 }
 
-class PathSumRecursiveTest : PathSumTest<PathSumRecursive>(PathSumRecursive())
+class PathSumRecursiveTest : PathSumTest<PathSumStrategy>(PathSumRecursive())
 
-class PathSumStackTest : PathSumTest<PathSumStack>(PathSumStack())
+class PathSumStackTest : PathSumTest<PathSumStrategy>(PathSumStack())

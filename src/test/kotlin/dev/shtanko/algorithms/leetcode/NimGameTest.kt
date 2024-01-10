@@ -16,28 +16,37 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class NimGameTest {
 
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<Boolean, Int>> {
-            return listOf(
-                false to 4,
-                true to 1,
-                true to 2,
-            )
-        }
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `nim game test`(num: Int, expected: Boolean) {
+        val actual = canWinNim(num)
+        assertEquals(expected, actual)
     }
 
-    @ParameterizedTest
-    @MethodSource("casesProvider")
-    fun `nim game test`(testCase: Pair<Boolean, Int>) {
-        val (expected, n) = testCase
-        val actual = canWinNim(n)
-        assertEquals(expected, actual)
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                4,
+                false,
+            ),
+            Arguments.of(
+                1,
+                true,
+            ),
+            Arguments.of(
+                2,
+                true,
+            ),
+        )
     }
 }

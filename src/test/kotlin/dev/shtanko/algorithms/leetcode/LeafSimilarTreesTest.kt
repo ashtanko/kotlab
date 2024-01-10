@@ -26,6 +26,13 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class LeafSimilarTreesTest<out T : LeafSimilarTrees>(private val strategy: T) {
 
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `leaf similar trees test`(root1: TreeNode?, root2: TreeNode?, expected: Boolean) {
+        val actual = strategy(root1, root2)
+        assertThat(actual).isEqualTo(expected)
+    }
+
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -88,13 +95,6 @@ abstract class LeafSimilarTreesTest<out T : LeafSimilarTrees>(private val strate
             ),
         )
     }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `leaf similar trees test`(root1: TreeNode?, root2: TreeNode?, expected: Boolean) {
-        val actual = strategy.leafSimilar(root1, root2)
-        assertThat(actual).isEqualTo(expected)
-    }
 }
 
-class LeafSimilarDFSTest : LeafSimilarTreesTest<LeafSimilarTrees>(LeafSimilarDFS())
+class LeafSimilarDepthFirstSearchTest : LeafSimilarTreesTest<LeafSimilarTrees>(LeafSimilarDepthFirstSearch())

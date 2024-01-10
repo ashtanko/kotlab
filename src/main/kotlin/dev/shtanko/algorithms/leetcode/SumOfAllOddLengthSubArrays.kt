@@ -16,11 +16,11 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun interface SumOfAllOddLengthSubArraysStrategy {
+fun interface SumOfAllOddLengthSubArrays {
     operator fun invoke(arr: IntArray): Int
 }
 
-class SumOfAllOddLengthSubArraysSF : SumOfAllOddLengthSubArraysStrategy {
+class SumOfAllOddLengthSubArraysSF : SumOfAllOddLengthSubArrays {
     override operator fun invoke(arr: IntArray): Int {
         var res = 0
         val n: Int = arr.size

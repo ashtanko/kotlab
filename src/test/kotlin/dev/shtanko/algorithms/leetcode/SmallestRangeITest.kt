@@ -16,29 +16,41 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class SmallestRangeITest {
 
-    // TODO
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<IntArray, Int>, Int>> {
-            return listOf(
-                Pair(Pair(intArrayOf(1), 0), 0),
-                Pair(Pair(intArrayOf(0, 10), 2), 6),
-                Pair(Pair(intArrayOf(1, 3, 6), 3), 0),
-            )
-        }
-    }
-
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `smallest range I test`(testCase: Pair<Pair<IntArray, Int>, Int>) {
-        val (data, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `smallest range I test`(data: Pair<IntArray, Int>, expected: Int) {
         val actual = data.smallestRangeI()
         assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                Pair(intArrayOf(1), 0),
+                0,
+            ),
+            Arguments.of(
+                Pair(intArrayOf(0, 10), 2),
+                6,
+            ),
+            Arguments.of(
+                Pair(intArrayOf(1, 3, 6), 3),
+                0,
+            ),
+            Arguments.of(
+                Pair(intArrayOf(1), 3),
+                0,
+            ),
+        )
     }
 }

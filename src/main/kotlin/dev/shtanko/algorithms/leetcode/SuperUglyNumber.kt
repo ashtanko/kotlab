@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import java.util.PriorityQueue
 import kotlin.math.min
 
-fun interface SuperUglyNumberStrategy {
+fun interface SuperUglyNumber {
     operator fun invoke(n: Int, primes: IntArray): Int
 }
 
-class SuperUglyNumberCommon : SuperUglyNumberStrategy {
+class SuperUglyNumberCommon : SuperUglyNumber {
     override operator fun invoke(n: Int, primes: IntArray): Int {
         val ugly = IntArray(n)
         val idx = IntArray(primes.size)
@@ -44,7 +44,7 @@ class SuperUglyNumberCommon : SuperUglyNumberStrategy {
     }
 }
 
-class SuperUglyNumberRedundantMultiplication : SuperUglyNumberStrategy {
+class SuperUglyNumberRedundantMultiplication : SuperUglyNumber {
     override operator fun invoke(n: Int, primes: IntArray): Int {
         val ugly = IntArray(n)
         val idx = IntArray(primes.size)
@@ -66,7 +66,7 @@ class SuperUglyNumberRedundantMultiplication : SuperUglyNumberStrategy {
     }
 }
 
-class SuperUglyNumberHeap : SuperUglyNumberStrategy {
+class SuperUglyNumberHeap : SuperUglyNumber {
     override operator fun invoke(n: Int, primes: IntArray): Int {
         val ugly = IntArray(n)
 

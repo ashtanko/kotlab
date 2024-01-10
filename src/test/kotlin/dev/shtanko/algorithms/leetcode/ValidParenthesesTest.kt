@@ -17,38 +17,52 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.TreeMap
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class ValidParenthesesTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Boolean, String>> {
-            return listOf(
-                true to "()",
-                true to "()[]{}",
-                false to "(]",
-                false to "([)]",
-                true to "{[]}",
-            )
-        }
-    }
-
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `is valid parentheses test`(testCase: Pair<Boolean, String>) {
-        val (expected, str) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is valid parentheses test`(str: String, expected: Boolean) {
         val actual = str.isValidParentheses()
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `is valid parentheses mapping test`(testCase: Pair<Boolean, String>) {
-        val (expected, s) = testCase
-        val actual = ValidParentheses(TreeMap()).invoke(s)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is valid parentheses mapping test`(str: String, expected: Boolean) {
+        val actual = ValidParentheses(TreeMap()).invoke(str)
         assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "()",
+                true,
+            ),
+            Arguments.of(
+                "()[]{}",
+                true,
+            ),
+            Arguments.of(
+                "(]",
+                false,
+            ),
+            Arguments.of(
+                "([)]",
+                false,
+            ),
+            Arguments.of(
+                "{[]}",
+                true,
+            ),
+        )
     }
 }

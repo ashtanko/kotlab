@@ -19,22 +19,22 @@ package dev.shtanko.algorithms.leetcode
 import java.util.Stack
 
 fun interface PathSumStrategy {
-    fun hasPathSum(root: TreeNode?, sum: Int): Boolean
+    operator fun invoke(root: TreeNode?, sum: Int): Boolean
 }
 
 class PathSumRecursive : PathSumStrategy {
-    override fun hasPathSum(root: TreeNode?, sum: Int): Boolean {
+    override fun invoke(root: TreeNode?, sum: Int): Boolean {
         if (root == null) return false
         return if (root.left == null && root.right == null && sum - root.value == 0) {
             true
         } else {
-            hasPathSum(root.left, sum - root.value) || hasPathSum(root.right, sum - root.value)
+            invoke(root.left, sum - root.value) || invoke(root.right, sum - root.value)
         }
     }
 }
 
 class PathSumStack : PathSumStrategy {
-    override fun hasPathSum(root: TreeNode?, sum: Int): Boolean {
+    override fun invoke(root: TreeNode?, sum: Int): Boolean {
         val stack: Stack<TreeNode> = Stack()
         stack.push(root)
         while (stack.isNotEmpty() && root != null) {

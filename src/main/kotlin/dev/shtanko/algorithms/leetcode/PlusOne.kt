@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-class PlusOne {
+data object PlusOne {
 
     operator fun invoke(digits: IntArray): IntArray {
         val carry = 1
@@ -32,7 +32,5 @@ class PlusOne {
         return ret
     }
 
-    companion object {
-        private const val MAX_DIGIT_RESTRICTION = 9
-    }
+    private const val MAX_DIGIT_RESTRICTION = 9
 }

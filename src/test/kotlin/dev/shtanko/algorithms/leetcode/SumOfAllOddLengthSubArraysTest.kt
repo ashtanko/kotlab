@@ -18,29 +18,31 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArraysStrategy>(private val strategy: T) {
+abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArrays>(private val strategy: T) {
 
-    companion object {
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `sum of all odd length sub arrays test`(arr: IntArray, expected: Int) {
+        val actual = strategy.invoke(arr)
+        assertEquals(expected, actual)
+    }
 
-        @JvmStatic
-        fun dataProvider(): Stream<Arguments> = Stream.of(
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(intArrayOf(), 0),
+            Arguments.of(intArrayOf(1), 1),
             Arguments.of(intArrayOf(1, 4, 2, 5, 3), 58),
             Arguments.of(intArrayOf(1, 2), 3),
             Arguments.of(intArrayOf(10, 11, 12), 66),
         )
     }
-
-    @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `sum of all odd length sub arrays test`(arr: IntArray, expected: Int) {
-        val actual = strategy.invoke(arr)
-        assertEquals(expected, actual)
-    }
 }
 
 class SumOfAllOddLengthSubArraysSFTest :
-    SumOfAllOddLengthSubArraysTest<SumOfAllOddLengthSubArraysSF>(SumOfAllOddLengthSubArraysSF())
+    SumOfAllOddLengthSubArraysTest<SumOfAllOddLengthSubArrays>(SumOfAllOddLengthSubArraysSF())

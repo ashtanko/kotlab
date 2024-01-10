@@ -16,40 +16,47 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class AbstractRotateArrayStrategyTest<out T : AbstractRotateArrayStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<IntArray, Int>, IntArray>> {
-            return listOf(
-                Pair(Pair(intArrayOf(1, 2, 3, 4, 5, 6, 7), 3), intArrayOf(5, 6, 7, 1, 2, 3, 4)),
-                Pair(Pair(intArrayOf(-1, -100, 3, 99), 2), intArrayOf(3, 99, -1, -100)),
-            )
-        }
-    }
+abstract class AbstractRotateArrayTest<out T : AbstractRotateArray>(private val strategy: T) {
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `rotate array test`(testCase: Pair<Pair<IntArray, Int>, IntArray>) {
-        val (data, expected) = testCase
-        val (arr, k) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `rotate array test`(arr: IntArray, k: Int, expected: IntArray) {
         strategy.invoke(arr, k)
         assertArrayEquals(expected, arr)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7),
+                3,
+                intArrayOf(5, 6, 7, 1, 2, 3, 4),
+            ),
+            Arguments.of(
+                intArrayOf(-1, -100, 3, 99),
+                2,
+                intArrayOf(3, 99, -1, -100),
+            ),
+        )
     }
 }
 
 class RotateArrayBruteForceTest :
-    AbstractRotateArrayStrategyTest<RotateArrayBruteForce>(RotateArrayBruteForce())
+    AbstractRotateArrayTest<RotateArrayBruteForce>(RotateArrayBruteForce())
 
 class RotateArrayUsingExtraArrayTest :
-    AbstractRotateArrayStrategyTest<RotateArrayUsingExtraArray>(RotateArrayUsingExtraArray())
+    AbstractRotateArrayTest<RotateArrayUsingExtraArray>(RotateArrayUsingExtraArray())
 
 class RotateArrayUsingCyclicReplacementsTest :
-    AbstractRotateArrayStrategyTest<RotateArrayUsingCyclicReplacements>(RotateArrayUsingCyclicReplacements())
+    AbstractRotateArrayTest<RotateArrayUsingCyclicReplacements>(RotateArrayUsingCyclicReplacements())
 
 class RotateArrayUsingReverseTest :
-    AbstractRotateArrayStrategyTest<RotateArrayUsingReverse>(RotateArrayUsingReverse())
+    AbstractRotateArrayTest<RotateArrayUsingReverse>(RotateArrayUsingReverse())

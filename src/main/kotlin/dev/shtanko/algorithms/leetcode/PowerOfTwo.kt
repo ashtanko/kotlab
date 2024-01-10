@@ -17,24 +17,24 @@
 package dev.shtanko.algorithms.leetcode
 
 fun interface PowerOfTwoStrategy {
-    fun isPowerOfTwo(n: Int): Boolean
+    operator fun invoke(num: Int): Boolean
 }
 
-class POTIterative : PowerOfTwoStrategy {
-    override fun isPowerOfTwo(n: Int): Boolean {
-        var num = n
-        if (num <= 0) return false
-        while (num % 2 == 0) num /= 2
-        return num == 1
+class PowerOfTwoIterative : PowerOfTwoStrategy {
+    override fun invoke(num: Int): Boolean {
+        var num1 = num
+        if (num1 <= 0) return false
+        while (num1 % 2 == 0) num1 /= 2
+        return num1 == 1
     }
 }
 
-class POTBitwise : PowerOfTwoStrategy {
-    override fun isPowerOfTwo(n: Int): Boolean {
-        return if (n < 1) {
+class PowerOfTwoBitwise : PowerOfTwoStrategy {
+    override fun invoke(num: Int): Boolean {
+        return if (num < 1) {
             false
         } else {
-            0 == n - 1 and n
+            0 == num - 1 and num
         }
     }
 }

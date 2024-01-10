@@ -16,27 +16,49 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class SummaryRangesTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<IntArray, List<String>>> {
-            return listOf(
-                intArrayOf(0, 1, 2, 4, 5, 7) to listOf("0->2", "4->5", "7"),
-                intArrayOf(0, 2, 3, 4, 6, 8, 9) to listOf("0", "2->4", "6", "8->9"),
-            )
-        }
-    }
-
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `summary ranges test`(testCase: Pair<IntArray, List<String>>) {
-        val (arr, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `summary ranges test`(arr: IntArray, expected: List<String>) {
         val summaryRanges = arr.summaryRanges()
         assertEquals(expected, summaryRanges)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(0, 1, 2, 4, 5, 7),
+                listOf("0->2", "4->5", "7"),
+            ),
+            Arguments.of(
+                intArrayOf(0, 2, 3, 4, 6, 8, 9),
+                listOf("0", "2->4", "6", "8->9"),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                listOf<String>(),
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                listOf("0"),
+            ),
+            Arguments.of(
+                intArrayOf(0, 1),
+                listOf("0->1"),
+            ),
+            Arguments.of(
+                intArrayOf(Int.MIN_VALUE, Int.MAX_VALUE),
+                listOf("${Int.MIN_VALUE}", "${Int.MAX_VALUE}"),
+            ),
+        )
     }
 }

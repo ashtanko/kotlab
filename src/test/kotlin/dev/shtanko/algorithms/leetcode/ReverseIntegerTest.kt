@@ -16,28 +16,37 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class ReverseIntegerTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Int, Int>> {
-            return listOf(
-                123 to 321,
-                -123 to -321,
-                0 to 0,
-            )
-        }
-    }
-
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `reversed number test`(testCase: Pair<Int, Int>) {
-        val (num, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `reversed number test`(num: Int, expected: Int) {
         val actual = num.reverseInteger()
         assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                123,
+                321,
+            ),
+            Arguments.of(
+                -123,
+                -321,
+            ),
+            Arguments.of(
+                0,
+                0,
+            ),
+        )
     }
 }

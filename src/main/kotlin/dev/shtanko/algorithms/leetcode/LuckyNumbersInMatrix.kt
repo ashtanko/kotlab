@@ -16,11 +16,11 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun interface AbstractLuckyNumbersStrategy {
+fun interface AbstractLuckyNumbers {
     operator fun invoke(matrix: Array<IntArray>): List<Int>
 }
 
-class LuckyNumbers : AbstractLuckyNumbersStrategy {
+class LuckyNumbers : AbstractLuckyNumbers {
     override operator fun invoke(matrix: Array<IntArray>): List<Int> {
         val m = matrix.size
         val n = matrix[0].size
@@ -45,7 +45,7 @@ class LuckyNumbers : AbstractLuckyNumbersStrategy {
     }
 }
 
-class LuckyNumbersSet : AbstractLuckyNumbersStrategy {
+class LuckyNumbersSet : AbstractLuckyNumbers {
     override operator fun invoke(matrix: Array<IntArray>): List<Int> {
         val minSet: MutableSet<Int> = HashSet()
         val maxSet: MutableSet<Int> = HashSet()

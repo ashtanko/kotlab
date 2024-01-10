@@ -20,11 +20,23 @@ import dev.shtanko.algorithms.E_9
 
 private const val MODULE = 7
 
+/**
+ * Calculates the number of subarrays with an even number of odd integers.
+ *
+ * Given an array of integers, this function calculates the number of subarrays
+ * where the count of odd integers is even. It utilizes bitwise XOR and dynamic
+ * programming to efficiently compute the result.
+ *
+ * @param arr The input array of integers.
+ * @return The number of subarrays with an even number of odd integers.
+ */
 fun numOfSubArrays(arr: IntArray): Int {
     var cur = 0
     var res = 0
     val count = intArrayOf(1, 0)
     val mod = E_9.toInt() + MODULE
+
+    // Iterate through the array and update the count of sub-arrays
     for (a in arr) {
         cur = cur xor (a and 1)
         res = (res + count[1 - cur]) % mod

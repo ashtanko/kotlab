@@ -28,6 +28,7 @@ fun interface AbstractMissingNumberStrategy {
 class MissingNumberSorting : AbstractMissingNumberStrategy {
     override operator fun invoke(nums: IntArray): Int {
         nums.sort()
+        if (nums.isEmpty()) return 0
         if (nums.last() != nums.size) {
             return nums.size
         } else if (nums.first() != 0) {

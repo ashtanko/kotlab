@@ -16,11 +16,11 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun interface UnivaluedBinaryTreeStrategy {
+fun interface UnivaluedBinaryTree {
     operator fun invoke(root: TreeNode?): Boolean
 }
 
-class UnivaluedBinaryTreeDFS : UnivaluedBinaryTreeStrategy {
+class UnivaluedBinaryTreeDFS : UnivaluedBinaryTree {
 
     private var values: MutableList<Int> = mutableListOf()
 
@@ -41,7 +41,7 @@ class UnivaluedBinaryTreeDFS : UnivaluedBinaryTreeStrategy {
     }
 }
 
-class UnivaluedBinaryTreeRecursive : UnivaluedBinaryTreeStrategy {
+class UnivaluedBinaryTreeRecursive : UnivaluedBinaryTree {
     override operator fun invoke(root: TreeNode?): Boolean {
         val isLeftCorrect = root?.left == null || root.value == root.left?.value && invoke(root.left)
         val isRightCorrect = root?.right == null || root.value == root.right?.value && invoke(root.right)

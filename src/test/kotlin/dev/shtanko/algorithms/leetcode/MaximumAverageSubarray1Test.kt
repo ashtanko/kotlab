@@ -17,29 +17,36 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.lang.Double.NaN
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class MaximumAverageSubArray1Test<out T : FindMaxAverageStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<IntArray, Int>, Double>> {
-            return listOf(
-                intArrayOf() to 0 to NaN,
-                intArrayOf(1, 12, -5, -6, 50, 3) to 4 to 12.75,
-            )
-        }
-    }
+abstract class MaximumAverageSubArray1Test<out T : FindMaxAverage>(private val strategy: T) {
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<IntArray, Int>, Double>) {
-        val (data, expected) = testCase
-        val (nums, k) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `simple test`(nums: IntArray, k: Int, expected: Double) {
         val actual = strategy.invoke(nums, k)
         assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(),
+                0,
+                NaN,
+            ),
+            Arguments.of(
+                intArrayOf(1, 12, -5, -6, 50, 3),
+                4,
+                12.75,
+            ),
+        )
     }
 }
 

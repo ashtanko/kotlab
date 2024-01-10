@@ -16,33 +16,43 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class TaskSchedulerTest<out T : TaskSchedulerStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<CharArray, Int>, Int>> {
-            return listOf(
-                charArrayOf('A', 'A', 'A', 'B', 'B', 'B') to 2 to 8,
-                charArrayOf('A', 'A', 'A', 'B', 'B', 'B') to 0 to 6,
-            )
-        }
+abstract class TaskSchedulerTest<out T : TaskScheduler>(private val strategy: T) {
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `task scheduler test`(tasks: CharArray, size: Int, expected: Int) {
+        val actual = strategy.invoke(tasks, size)
+        assertEquals(expected, actual)
     }
 
-    @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `simple test`(testCase: Pair<Pair<CharArray, Int>, Int>) {
-        val (data, expected) = testCase
-        val (tasks, n) = data
-        val actual = strategy.invoke(tasks, n)
-        assertEquals(expected, actual)
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                charArrayOf('A', 'A', 'A', 'B', 'B', 'B'),
+                2,
+                8,
+            ),
+            Arguments.of(
+                charArrayOf('A', 'A', 'A', 'B', 'B', 'B'),
+                0,
+                6,
+            ),
+            Arguments.of(
+                charArrayOf(),
+                0,
+                0,
+            ),
+        )
     }
 }
 
-class TaskSchedulerSimpleTest : TaskSchedulerTest<TaskSchedulerSimple>(TaskSchedulerSimple())
+class TaskSchedulerSimpleTest : TaskSchedulerTest<TaskScheduler>(TaskSchedulerSimple())
 
-class TaskSchedulerPriorityQueueTest :
-    TaskSchedulerTest<TaskSchedulerPriorityQueue>(TaskSchedulerPriorityQueue())
+class TaskSchedulerPriorityQueueTest : TaskSchedulerTest<TaskScheduler>(TaskSchedulerPriorityQueue())

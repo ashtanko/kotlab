@@ -18,27 +18,28 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class NthMagicalNumberTest<out T : NthMagicalNumberStrategy>(private val strategy: T) {
+abstract class NthMagicalNumberTest<out T : NthMagicalNumber>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun numbersDataProvider(): Stream<Arguments?> = Stream.of(
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `nth magical number test`(n: Int, a: Int, b: Int, expected: Int) {
+        val actual = strategy.invoke(n, a, b)
+        assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(1, 2, 3, 2),
             Arguments.of(4, 2, 3, 6),
             Arguments.of(5, 2, 4, 10),
             Arguments.of(3, 6, 4, 8),
         )
-    }
-
-    @ParameterizedTest
-    @MethodSource("numbersDataProvider")
-    fun `nth magical number test`(n: Int, a: Int, b: Int, expected: Int) {
-        val actual = strategy.invoke(n, a, b)
-        assertEquals(expected, actual)
     }
 }
 

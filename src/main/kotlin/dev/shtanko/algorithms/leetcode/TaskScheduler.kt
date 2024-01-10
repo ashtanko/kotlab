@@ -20,11 +20,11 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
 import java.util.PriorityQueue
 import kotlin.math.max
 
-fun interface TaskSchedulerStrategy {
+fun interface TaskScheduler {
     operator fun invoke(tasks: CharArray, n: Int): Int
 }
 
-class TaskSchedulerSimple : TaskSchedulerStrategy {
+class TaskSchedulerSimple : TaskScheduler {
 
     override operator fun invoke(tasks: CharArray, n: Int): Int {
         val counter = IntArray(ALPHABET_LETTERS_COUNT)
@@ -50,7 +50,7 @@ class TaskSchedulerSimple : TaskSchedulerStrategy {
     }
 }
 
-class TaskSchedulerPriorityQueue : TaskSchedulerStrategy {
+class TaskSchedulerPriorityQueue : TaskScheduler {
     override operator fun invoke(tasks: CharArray, n: Int): Int {
         val map: MutableMap<Char, Int> = HashMap()
         for (i in tasks.indices) {

@@ -16,53 +16,68 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val strategy: T) {
-    companion object {
-        @JvmStatic
-        fun positiveCasesProvider(): List<Int> {
-            return listOf(
-                1,
-                2,
-                4,
-                8,
-                16,
-                32,
-                64,
-                128,
-                256,
-                512,
-                1024,
-                2048,
-                4096,
-                8192,
-                16_384,
-                32_768,
-                65_536,
-                131_072,
-                262_144,
-                524_288,
-                1_048_576,
-                2_097_152,
-                4_194_304,
-                8_388_608,
-                16_777_216,
-                33_554_432,
-                67_108_864,
-                134_217_728,
-                268_435_456,
-                536_870_912,
-                1_073_741_824,
-            )
-        }
 
-        @JvmStatic
-        fun negativeCasesProvider(): List<Int> {
-            return listOf(
+    @ParameterizedTest
+    @ArgumentsSource(InputPositiveCasesProvider::class)
+    fun `power of two positive test`(n: Int) {
+        assertThat(strategy(n)).isTrue()
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputNegativeCasesProvider::class)
+    fun `power of two negative test`(n: Int) {
+        assertFalse(strategy(n))
+    }
+
+    private class InputPositiveCasesProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = listOf(
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512,
+            1024,
+            2048,
+            4096,
+            8192,
+            16_384,
+            32_768,
+            65_536,
+            131_072,
+            262_144,
+            524_288,
+            1_048_576,
+            2_097_152,
+            4_194_304,
+            8_388_608,
+            16_777_216,
+            33_554_432,
+            67_108_864,
+            134_217_728,
+            268_435_456,
+            536_870_912,
+            1_073_741_824,
+        ).map { Arguments.of(it) }.stream()
+    }
+
+    private class InputNegativeCasesProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> =
+            listOf(
                 3,
                 9,
                 27,
@@ -82,23 +97,10 @@ abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val strategy: 
                 129_140_163,
                 387_420_489,
                 1_162_261_467,
-            )
-        }
-    }
-
-    @ParameterizedTest
-    @MethodSource("positiveCasesProvider")
-    fun `power of two test`(n: Int) {
-        assertTrue(strategy.isPowerOfTwo(n))
-    }
-
-    @ParameterizedTest
-    @MethodSource("negativeCasesProvider")
-    fun `not power of two test`(n: Int) {
-        assertFalse(strategy.isPowerOfTwo(n))
+            ).map { Arguments.of(it) }.stream()
     }
 }
 
-class POTIterativeTest : PowerOfTwoTest<POTIterative>(POTIterative())
+class PowerOfTwoIterativeTest : PowerOfTwoTest<PowerOfTwoIterative>(PowerOfTwoIterative())
 
-class POTBitwiseTest : PowerOfTwoTest<POTBitwise>(POTBitwise())
+class PowerOfTwoBitwiseTest : PowerOfTwoTest<PowerOfTwoBitwise>(PowerOfTwoBitwise())

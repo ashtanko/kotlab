@@ -16,26 +16,36 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class ReachNumberTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Any> {
-            return listOf(
-                3 to 2,
-                2 to 3,
-            )
-        }
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `reach number test`(target: Int, expected: Int) {
+        assertEquals(expected, reachNumber(target))
     }
 
-    @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `reach number test`(param: Pair<Int, Int>) {
-        val (target, expected) = param
-        assertEquals(expected, reachNumber(target))
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                3,
+                2,
+            ),
+            Arguments.of(
+                2,
+                3,
+            ),
+            Arguments.of(
+                0,
+                0,
+            ),
+        )
     }
 }

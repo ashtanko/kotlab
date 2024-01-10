@@ -21,11 +21,11 @@ import dev.shtanko.algorithms.math.gcd
 import kotlin.math.ceil
 import kotlin.math.min
 
-fun interface NthMagicalNumberStrategy {
+fun interface NthMagicalNumber {
     operator fun invoke(n: Int, a: Int, b: Int): Int
 }
 
-class NthMagicalNumberMath : NthMagicalNumberStrategy {
+class NthMagicalNumberMath : NthMagicalNumber {
 
     override operator fun invoke(n: Int, a: Int, b: Int): Int {
         val lcm = a * b / gcd(a, b)
@@ -39,7 +39,7 @@ class NthMagicalNumberMath : NthMagicalNumberStrategy {
     }
 }
 
-class NthMagicalNumberBS : NthMagicalNumberStrategy {
+class NthMagicalNumberBS : NthMagicalNumber {
     override operator fun invoke(n: Int, a: Int, b: Int): Int {
         val l: Int = a / gcd(a, b) * b
 
@@ -47,7 +47,6 @@ class NthMagicalNumberBS : NthMagicalNumberStrategy {
         var hi: Long = n.toLong() * min(a, b)
         while (lo < hi) {
             val mi = lo + hi.minus(lo) / 2
-            // If there are not enough magic numbers below mi...
             if (mi / a + mi / b - mi / l < n) lo = mi + 1 else hi = mi
         }
 

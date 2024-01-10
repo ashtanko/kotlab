@@ -18,18 +18,30 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.TreeMap
 
+/**
+ * Assigns ranks to elements in the array. Elements with the same value will have the same rank.
+ *
+ * @return IntArray with ranks assigned to elements.
+ */
 fun IntArray.arrayRankTransform(): IntArray {
-    val map: MutableMap<Int, MutableList<Int>> =
-        TreeMap()
+    // Using TreeMap to automatically sort elements and keep track of their indices
+    val map: MutableMap<Int, MutableList<Int>> = TreeMap()
+
+    // Populate the map with indices for each unique element
     for (i in indices) {
-        val current = map.getOrDefault(this[i], ArrayList())
+        val current = map.getOrDefault(this[i], mutableListOf())
         current.add(i)
         map[this[i]] = current
     }
+
+    // Assign ranks to elements in the array
     var rank = 1
     for ((_, currentList) in map) {
-        for (i in currentList) this[i] = rank
+        for (i in currentList) {
+            this[i] = rank
+        }
         rank++
     }
+
     return this
 }

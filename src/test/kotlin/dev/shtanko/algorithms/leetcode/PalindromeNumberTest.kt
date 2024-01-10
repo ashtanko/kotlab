@@ -16,31 +16,49 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class PalindromeNumberTest {
 
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<Int, Boolean>> {
-            return listOf(
-                4815 to false,
-                121 to true,
-                -121 to false,
-                0 to true,
-                Int.MAX_VALUE to false,
-                444 to true,
-            )
-        }
-    }
-
     @ParameterizedTest
-    @MethodSource("casesProvider")
-    fun `is number palindrome test`(testCase: Pair<Int, Boolean>) {
-        val (num, expected) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is number palindrome test`(num: Int, expected: Boolean) {
         val actual = num.isPalindrome()
         assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                4815,
+                false,
+            ),
+            Arguments.of(
+                121,
+                true,
+            ),
+            Arguments.of(
+                -121,
+                false,
+            ),
+            Arguments.of(
+                0,
+                true,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                false,
+            ),
+            Arguments.of(
+                444,
+                true,
+            ),
+        )
     }
 }

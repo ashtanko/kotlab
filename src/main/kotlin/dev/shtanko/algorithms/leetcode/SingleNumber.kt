@@ -30,5 +30,5 @@ fun IntArray.singleNumberUsingSet(): Int {
     for (i in this) {
         if (!set.remove(i)) set.add(i)
     }
-    return set.iterator().next()
+    return if (isEmpty()) 0 else set.iterator().next()
 }

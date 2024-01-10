@@ -17,11 +17,11 @@
 package dev.shtanko.algorithms.leetcode
 
 fun interface SqrtStrategy {
-    fun mySqrt(x: Int): Int
+    operator fun invoke(x: Int): Int
 }
 
 class SqrtBruteForce : SqrtStrategy {
-    override fun mySqrt(x: Int): Int {
+    override fun invoke(x: Int): Int {
         if (x == 0) return 0
         var i = 1
         while (i <= x / i) {
@@ -35,7 +35,7 @@ class SqrtBruteForce : SqrtStrategy {
 }
 
 class SqrtBS : SqrtStrategy {
-    override fun mySqrt(x: Int): Int {
+    override fun invoke(x: Int): Int {
         if (x == 0) return 0
         var start = 1
         var end = x
@@ -57,7 +57,7 @@ class SqrtBS : SqrtStrategy {
 }
 
 class SqrtNewton : SqrtStrategy {
-    override fun mySqrt(x: Int): Int {
+    override fun invoke(x: Int): Int {
         if (x == 0) return 0
         var i = x.toLong()
         while (i > x / i) {

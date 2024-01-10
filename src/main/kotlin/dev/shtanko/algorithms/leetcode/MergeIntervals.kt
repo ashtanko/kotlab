@@ -19,11 +19,11 @@ package dev.shtanko.algorithms.leetcode
 import java.util.LinkedList
 import java.util.Stack
 
-fun interface MergeIntervalsStrategy {
+fun interface MergeIntervals {
     operator fun invoke(intervals: Array<IntArray>): Array<IntArray>
 }
 
-class MergeIntervalsConnectedComponents : MergeIntervalsStrategy {
+class MergeIntervalsConnectedComponents : MergeIntervals {
 
     private var graph: MutableMap<IntArray, MutableList<IntArray>> = HashMap()
     private var nodesInComp: MutableMap<Int, MutableList<IntArray>> = HashMap()
@@ -113,7 +113,7 @@ class MergeIntervalsConnectedComponents : MergeIntervalsStrategy {
     }
 }
 
-class MergeIntervalsSorting : MergeIntervalsStrategy {
+class MergeIntervalsSorting : MergeIntervals {
 
     override operator fun invoke(intervals: Array<IntArray>): Array<IntArray> {
         val i = intervals.toList().sortedWith(IntervalComparator())

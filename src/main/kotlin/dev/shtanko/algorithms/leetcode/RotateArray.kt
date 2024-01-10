@@ -16,11 +16,11 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun interface AbstractRotateArrayStrategy {
+fun interface AbstractRotateArray {
     operator fun invoke(nums: IntArray, k: Int)
 }
 
-class RotateArrayBruteForce : AbstractRotateArrayStrategy {
+class RotateArrayBruteForce : AbstractRotateArray {
     override operator fun invoke(nums: IntArray, k: Int) {
         var a = k
         a %= nums.size
@@ -37,7 +37,7 @@ class RotateArrayBruteForce : AbstractRotateArrayStrategy {
     }
 }
 
-class RotateArrayUsingExtraArray : AbstractRotateArrayStrategy {
+class RotateArrayUsingExtraArray : AbstractRotateArray {
     override operator fun invoke(nums: IntArray, k: Int) {
         val a = IntArray(nums.size)
         for (i in nums.indices) {
@@ -49,7 +49,7 @@ class RotateArrayUsingExtraArray : AbstractRotateArrayStrategy {
     }
 }
 
-class RotateArrayUsingCyclicReplacements : AbstractRotateArrayStrategy {
+class RotateArrayUsingCyclicReplacements : AbstractRotateArray {
     override operator fun invoke(nums: IntArray, k: Int) {
         val a: Int = k % nums.size
         var count = 0
@@ -70,7 +70,7 @@ class RotateArrayUsingCyclicReplacements : AbstractRotateArrayStrategy {
     }
 }
 
-class RotateArrayUsingReverse : AbstractRotateArrayStrategy {
+class RotateArrayUsingReverse : AbstractRotateArray {
     override operator fun invoke(nums: IntArray, k: Int) {
         var a = k
         a %= nums.size

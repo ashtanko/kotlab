@@ -20,7 +20,7 @@ package dev.shtanko.algorithms.leetcode
  * Trim Binary Search Tree
  */
 fun trimBST(root: TreeNode?, low: Int, high: Int): TreeNode? {
-    if (root == null) return root
+    if (root == null) return null
     if (root.value > high) return trimBST(root.left, low, high)
     if (root.value < low) return trimBST(root.right, low, high)
 

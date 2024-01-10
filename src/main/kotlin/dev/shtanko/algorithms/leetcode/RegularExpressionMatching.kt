@@ -16,11 +16,11 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun interface RegularExpressionMatchStrategy {
+fun interface RegularExpressionMatch {
     operator fun invoke(text: String, pattern: String): Boolean
 }
 
-class RegularExpressionMatchRecursion : RegularExpressionMatchStrategy {
+class RegularExpressionMatchRecursion : RegularExpressionMatch {
     override operator fun invoke(text: String, pattern: String): Boolean {
         if (pattern.isEmpty()) return text.isEmpty()
         val isFirstMatch = text.isNotEmpty() &&
@@ -34,7 +34,7 @@ class RegularExpressionMatchRecursion : RegularExpressionMatchStrategy {
     }
 }
 
-class RegularExpressionMatchDPTopDown : RegularExpressionMatchStrategy {
+class RegularExpressionMatchDPTopDown : RegularExpressionMatch {
 
     enum class Result {
         TRUE, FALSE
@@ -66,7 +66,7 @@ class RegularExpressionMatchDPTopDown : RegularExpressionMatchStrategy {
     }
 }
 
-class RegularExpressionMatchDPBottomUp : RegularExpressionMatchStrategy {
+class RegularExpressionMatchDPBottomUp : RegularExpressionMatch {
     override operator fun invoke(text: String, pattern: String): Boolean {
         val dp = Array(text.length + 1) { BooleanArray(pattern.length + 1) }
         dp[text.length][pattern.length] = true

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/leaf-similar-trees">Source</a>
  */
 fun interface LeafSimilarTrees {
-    fun leafSimilar(root1: TreeNode?, root2: TreeNode?): Boolean
+    operator fun invoke(root1: TreeNode?, root2: TreeNode?): Boolean
 }
 
-class LeafSimilarDFS : LeafSimilarTrees {
-    override fun leafSimilar(root1: TreeNode?, root2: TreeNode?): Boolean {
+class LeafSimilarDepthFirstSearch : LeafSimilarTrees {
+    override fun invoke(root1: TreeNode?, root2: TreeNode?): Boolean {
         val leaves1: MutableList<Int?> = ArrayList()
         val leaves2: MutableList<Int?> = ArrayList()
         dfs(root1, leaves1)

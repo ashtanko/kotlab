@@ -22,11 +22,11 @@ import java.util.PriorityQueue
  * Given an array arr.  You can choose a set of integers and remove all the occurrences of these integers in the array.
  * Return the minimum size of the set so that at least half of the integers of the array are removed.
  */
-fun interface MinSetSizeStrategy {
+fun interface MinSetSize {
     operator fun invoke(arr: IntArray): Int
 }
 
-class MinSetSizeHashMap : MinSetSizeStrategy {
+class MinSetSizeHashMap : MinSetSize {
     override operator fun invoke(arr: IntArray): Int {
         return arr.minSetSize()
     }
@@ -65,7 +65,7 @@ class MinSetSizeHashMap : MinSetSizeStrategy {
     }
 }
 
-class MinSetSizePriorityQueue : MinSetSizeStrategy {
+class MinSetSizePriorityQueue : MinSetSize {
     override operator fun invoke(arr: IntArray): Int {
         return arr.minSetSize2()
     }

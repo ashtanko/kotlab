@@ -22,17 +22,17 @@ import dev.shtanko.algorithms.DECIMAL
  * Given a 32-bit signed integer, reverse digits of an integer.
  */
 fun Int.reverseInteger(): Int {
-    var x = this
+    var value = this
     var result = 0
 
-    while (x != 0) {
-        val tail = x % DECIMAL
+    while (value != 0) {
+        val tail = value % DECIMAL
         val newResult = result * DECIMAL + tail
         if ((newResult - tail) / DECIMAL != result) {
             return 0
         }
         result = newResult
-        x /= DECIMAL
+        value /= DECIMAL
     }
 
     return result

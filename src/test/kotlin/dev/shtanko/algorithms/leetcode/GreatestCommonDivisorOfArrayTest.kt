@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,44 +17,47 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class ReverseStringTest {
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `reverse string test`(arr: CharArray, expected: CharArray) {
-        arr.reverse()
-        assertArrayEquals(expected, arr)
-    }
-
+abstract class GreatestCommonDivisorOfArrayTest<out T : GreatestCommonDivisorOfArray>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                charArrayOf(),
-                charArrayOf(),
+                intArrayOf(2, 5, 6, 9, 10),
+                2,
             ),
             Arguments.of(
-                charArrayOf('h', 'e', 'l', 'l', 'o'),
-                charArrayOf('o', 'l', 'l', 'e', 'h'),
+                intArrayOf(7, 5, 6, 8, 3),
+                1,
             ),
             Arguments.of(
-                charArrayOf('T', 'E', 'N', 'E', 'T'),
-                charArrayOf('T', 'E', 'N', 'E', 'T'),
+                intArrayOf(3, 3),
+                3,
             ),
             Arguments.of(
-                charArrayOf('2', '1'),
-                charArrayOf('1', '2'),
-            ),
-            Arguments.of(
-                charArrayOf('$', '%'),
-                charArrayOf('%', '$'),
+                intArrayOf(),
+                -1,
             ),
         )
     }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun findGCDTest(nums: IntArray, expected: Int) {
+        val actual = strategy(nums)
+        Assertions.assertThat(actual).isEqualTo(expected)
+    }
 }
+
+class GreatestCommonDivisorOfArrayBFTest :
+    GreatestCommonDivisorOfArrayTest<GreatestCommonDivisorOfArray>(GreatestCommonDivisorOfArrayBF())
+
+class EuclideanTest : GreatestCommonDivisorOfArrayTest<GreatestCommonDivisorOfArray>(Euclidean())
+
+class GreatestCommonDivisorOfArrayFuncTest :
+    GreatestCommonDivisorOfArrayTest<GreatestCommonDivisorOfArray>(GreatestCommonDivisorOfArrayFunc())

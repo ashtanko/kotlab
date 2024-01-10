@@ -16,40 +16,64 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class RegularExpressionMatchingStrategyTest<out T : RegularExpressionMatchStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<String, String>, Boolean>> {
-            return listOf(
-                "aa" to "a" to false,
-                "aa" to "a*" to true,
-                "ab" to ".*" to true,
-                "aab" to "c*a*b" to true,
-                "mississippi" to "mis*is*p*." to false,
-            )
-        }
-    }
+abstract class RegularExpressionMatchingStrategyTest<out T : RegularExpressionMatch>(private val strategy: T) {
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `regular expression matching test`(testCase: Pair<Pair<String, String>, Boolean>) {
-        val (data, expected) = testCase
-        val (text, pattern) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `regular expression matching test`(text: String, pattern: String, expected: Boolean) {
         val actual = strategy.invoke(text = text, pattern = pattern)
         assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                "aa",
+                "a",
+                false,
+            ),
+            Arguments.of(
+                "aa",
+                "a*",
+                true,
+            ),
+            Arguments.of(
+                "ab",
+                ".*",
+                true,
+            ),
+            Arguments.of(
+                "aab",
+                "c*a*b",
+                true,
+            ),
+            Arguments.of(
+                "mississippi",
+                "mis*is*p*.",
+                false,
+            ),
+            Arguments.of(
+                "",
+                "",
+                true,
+            ),
+        )
     }
 }
 
 class RegularExpressionMatchRecursionTest :
-    RegularExpressionMatchingStrategyTest<RegularExpressionMatchRecursion>(RegularExpressionMatchRecursion())
+    RegularExpressionMatchingStrategyTest<RegularExpressionMatch>(RegularExpressionMatchRecursion())
 
 class RegularExpressionMatchDPTopDownTest :
-    RegularExpressionMatchingStrategyTest<RegularExpressionMatchDPTopDown>(RegularExpressionMatchDPTopDown())
+    RegularExpressionMatchingStrategyTest<RegularExpressionMatch>(RegularExpressionMatchDPTopDown())
 
 class RegularExpressionMatchDPBottomUpTest :
-    RegularExpressionMatchingStrategyTest<RegularExpressionMatchDPBottomUp>(RegularExpressionMatchDPBottomUp())
+    RegularExpressionMatchingStrategyTest<RegularExpressionMatch>(RegularExpressionMatchDPBottomUp())

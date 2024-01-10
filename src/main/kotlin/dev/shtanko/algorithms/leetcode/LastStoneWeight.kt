@@ -18,11 +18,11 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.PriorityQueue
 
-fun interface LastStoneWeightStrategy {
+fun interface LastStoneWeight {
     operator fun invoke(arr: IntArray): Int
 }
 
-class LastStoneWeightSort : LastStoneWeightStrategy {
+class LastStoneWeightSort : LastStoneWeight {
     override operator fun invoke(arr: IntArray): Int {
         return arr.lastStoneWeight()
     }
@@ -33,11 +33,11 @@ class LastStoneWeightSort : LastStoneWeightStrategy {
             this[i - 1] = this[i] - this[i - 1]
             sort()
         }
-        return first()
+        return if (this.isEmpty()) 1 else first()
     }
 }
 
-class LastStoneWeightQueue : LastStoneWeightStrategy {
+class LastStoneWeightQueue : LastStoneWeight {
     override operator fun invoke(arr: IntArray): Int {
         val pq = PriorityQueue<Int> { c, d -> d - c }
         for (stone in arr) {
@@ -46,6 +46,6 @@ class LastStoneWeightQueue : LastStoneWeightStrategy {
         while (pq.size > 1) {
             pq.offer(pq.poll() - pq.poll())
         }
-        return pq.poll()
+        return if (arr.isEmpty()) 1 else pq.poll()
     }
 }

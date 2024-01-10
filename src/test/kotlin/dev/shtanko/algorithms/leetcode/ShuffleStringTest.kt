@@ -16,32 +16,60 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class ShuffleStringTest {
 
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Pair<IntArray, String>, String>> {
-            return listOf(
-                Pair(Pair(intArrayOf(4, 5, 6, 7, 0, 2, 1, 3), "codeleet"), "leetcode"),
-                Pair(Pair(intArrayOf(0, 1, 2), "abc"), "abc"),
-                Pair(Pair(intArrayOf(3, 1, 4, 2, 0), "aiohn"), "nihao"),
-                Pair(Pair(intArrayOf(4, 0, 2, 6, 7, 3, 1, 5), "aaiougrt"), "arigatou"),
-                Pair(Pair(intArrayOf(1, 0, 2), "art"), "rat"),
-                Pair(Pair(intArrayOf(3, 4, 5, 6, 0, 1, 2), "ankosht"), "shtanko"),
-            )
-        }
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `restore string test`(indices: IntArray, str: String, expected: String) {
+        val actual = (str to indices).restoreString()
+        assertEquals(expected, actual)
     }
 
-    @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `restore string test`(testCase: Pair<Pair<IntArray, String>, String>) {
-        val (data, expected) = testCase
-        val (indices, s) = data
-        val actual = (s to indices).restoreString()
-        assertEquals(expected, actual)
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(4, 5, 6, 7, 0, 2, 1, 3),
+                "codeleet",
+                "leetcode",
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 2),
+                "abc",
+                "abc",
+            ),
+            Arguments.of(
+                intArrayOf(3, 1, 4, 2, 0),
+                "aiohn",
+                "nihao",
+            ),
+            Arguments.of(
+                intArrayOf(4, 0, 2, 6, 7, 3, 1, 5),
+                "aaiougrt",
+                "arigatou",
+            ),
+            Arguments.of(
+                intArrayOf(1, 0, 2),
+                "art",
+                "rat",
+            ),
+            Arguments.of(
+                intArrayOf(3, 4, 5, 6, 0, 1, 2),
+                "ankosht",
+                "shtanko",
+            ),
+            Arguments.of(
+                intArrayOf(),
+                "",
+                "",
+            ),
+        )
     }
 }

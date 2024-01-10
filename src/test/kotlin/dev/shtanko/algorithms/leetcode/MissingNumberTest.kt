@@ -16,30 +16,46 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 abstract class AbstractMissingNumberStrategyTest<out T : AbstractMissingNumberStrategy>(private val strategy: T) {
 
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<Int, IntArray>> {
-            return listOf(
-                2 to intArrayOf(3, 0, 1),
-                8 to intArrayOf(9, 6, 4, 2, 3, 5, 7, 0, 1),
-                0 to intArrayOf(1, 2, 3),
-                7 to intArrayOf(9, 6, 4, 2, 3, 5, 8, 0, 1),
-            )
-        }
-    }
-
     @ParameterizedTest
-    @MethodSource("casesProvider")
-    fun `missing number test`(testCase: Pair<Int, IntArray>) {
-        val (expected, arr) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `missing number test`(arr: IntArray, expected: Int) {
         val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(3, 0, 1),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(9, 6, 4, 2, 3, 5, 7, 0, 1),
+                8,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(9, 6, 4, 2, 3, 5, 8, 0, 1),
+                7,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+        )
     }
 }
 

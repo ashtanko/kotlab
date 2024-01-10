@@ -37,12 +37,12 @@ class MinSubsequenceCountingSort : MinSubsequenceStrategy {
             totalSum += current
             count[current]++
         }
-        val currentSubseq = mutableListOf<Int>()
+        val currentSubsequence = mutableListOf<Int>()
         var currSum = 0
         var i = count.size - 1
         while (i >= 0) {
             while (count[i] > 0) {
-                currentSubseq.add(i)
+                currentSubsequence.add(i)
                 currSum += i
                 count[i]--
                 if (currSum > totalSum - currSum) {
@@ -52,7 +52,7 @@ class MinSubsequenceCountingSort : MinSubsequenceStrategy {
             }
             --i
         }
-        return currentSubseq
+        return currentSubsequence
     }
 
     companion object {
@@ -62,7 +62,7 @@ class MinSubsequenceCountingSort : MinSubsequenceStrategy {
 
 class MinSubsequencePriorityQueue : MinSubsequenceStrategy {
     override operator fun invoke(arr: IntArray): List<Int> {
-        return arr.solve()
+        return if (arr.isEmpty()) return listOf() else arr.solve()
     }
 
     private fun IntArray.solve(): List<Int> {

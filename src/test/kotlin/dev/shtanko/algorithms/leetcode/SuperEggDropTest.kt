@@ -16,37 +16,41 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class SuperEggDropStrategyTest<out T : SuperEggDropStrategy>(private val strategy: T) {
-
-    companion object {
-        @JvmStatic
-        fun dataProvider(): List<Pair<Int, Pair<Int, Int>>> {
-            return listOf(
-                3 to (2 to 6),
-                4 to (3 to 14),
-            )
-        }
-    }
+abstract class SuperEggDropTest<out T : SuperEggDrop>(private val strategy: T) {
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
-    fun `super egg drop test`(testCase: Pair<Int, Pair<Int, Int>>) {
-        val (expected, data) = testCase
-        val (eggs, floors) = data
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `super egg drop test`(eggs: Int, floors: Int, expected: Int) {
         val actual = strategy.invoke(eggs, floors)
         assertEquals(expected, actual)
     }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                2,
+                6,
+                3,
+            ),
+            Arguments.of(
+                3,
+                14,
+                4,
+            ),
+        )
+    }
 }
 
-class SuperEggDropDPBinarySearchTest :
-    SuperEggDropStrategyTest<SuperEggDropDPBinarySearch>(SuperEggDropDPBinarySearch())
+class SuperEggDropDPBinarySearchTest : SuperEggDropTest<SuperEggDrop>(SuperEggDropDPBinarySearch())
 
-class SuperEggDropDPOptimalityCriterionTest :
-    SuperEggDropStrategyTest<SuperEggDropDPOptimalityCriterion>(SuperEggDropDPOptimalityCriterion())
+class SuperEggDropDPOptimalityCriterionTest : SuperEggDropTest<SuperEggDrop>(SuperEggDropDPOptimalityCriterion())
 
-class SuperEggDropMathematicalTest :
-    SuperEggDropStrategyTest<SuperEggDropMathematical>(SuperEggDropMathematical())
+class SuperEggDropMathematicalTest : SuperEggDropTest<SuperEggDrop>(SuperEggDropMathematical())

@@ -16,28 +16,41 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 class MinStartValueTest {
 
-    companion object {
-        @JvmStatic
-        fun casesProvider(): List<Pair<Int, IntArray>> {
-            return listOf(
-                5 to intArrayOf(-3, 2, -3, 4, 2),
-                1 to intArrayOf(1, 2),
-                5 to intArrayOf(1, -2, -3),
-            )
-        }
-    }
-
     @ParameterizedTest
-    @MethodSource("casesProvider")
-    fun `find min start value test`(testCase: Pair<Int, IntArray>) {
-        val (expected, arr) = testCase
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `find min start value test`(arr: IntArray, expected: Int) {
         val actual = arr.findMinStartValue()
         assertEquals(expected, actual)
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(-3, 2, -3, 4, 2),
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, -2, -3),
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                1,
+            ),
+        )
     }
 }
