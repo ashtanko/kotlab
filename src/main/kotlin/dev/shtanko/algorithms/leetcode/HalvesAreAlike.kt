@@ -23,38 +23,38 @@ private const val VOWELS = "aeiouAEIOU"
  * @see <a href="https://leetcode.com/problems/determine-if-string-halves-are-alike/">Source</a>
  */
 fun interface HalvesAreAlike {
-    operator fun invoke(s: String): Boolean
+    operator fun invoke(str: String): Boolean
 }
 
 class HalvesAreAlikeBruteForce : HalvesAreAlike {
-    override operator fun invoke(s: String): Boolean {
-        val n = s.length
-        val mid = n / 2
-        val a = s.substring(0, mid)
-        val b = s.substring(mid, n)
-        var leftCount = 0
-        var rightCount = 0
-        for (c in a) {
-            if (VOWELS.contains(c)) leftCount++
+    override operator fun invoke(str: String): Boolean {
+        val length = str.length
+        val mid = length / 2
+        val firstHalf = str.substring(0, mid)
+        val secondHalf = str.substring(mid, length)
+        var leftVowelCount = 0
+        var rightVowelCount = 0
+        for (char in firstHalf) {
+            if (VOWELS.contains(char)) leftVowelCount++
         }
-        for (c in b) {
-            if (VOWELS.contains(c)) rightCount++
+        for (char in secondHalf) {
+            if (VOWELS.contains(char)) rightVowelCount++
         }
-        return leftCount == rightCount
+        return leftVowelCount == rightVowelCount
     }
 }
 
 class HalvesAreAlikeCount : HalvesAreAlike {
-    override operator fun invoke(s: String): Boolean {
-        val n = s.length
-        val mid = n / 2
-        return countVowel(0 until mid, s) == countVowel(mid until n, s)
+    override operator fun invoke(str: String): Boolean {
+        val length = str.length
+        val mid = length / 2
+        return countVowels(0 until mid, str) == countVowels(mid until length, str)
     }
 
-    private fun countVowel(range: IntRange, s: String): Int {
+    private fun countVowels(range: IntRange, s: String): Int {
         var count = 0
-        for (i in range) {
-            if (VOWELS.indexOf(s[i]) != -1) {
+        for (index in range) {
+            if (VOWELS.indexOf(s[index]) != -1) {
                 count++
             }
         }
