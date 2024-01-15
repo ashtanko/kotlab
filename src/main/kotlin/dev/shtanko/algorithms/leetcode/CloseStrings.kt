@@ -41,44 +41,51 @@ class CloseStringsMap : CloseStrings {
         for (i in 0 until ALPHABET_LETTERS_COUNT) {
             if (wf[i] == 0 && wf2[i] != 0) return false
         }
-        val map: HashMap<Int, Int> = HashMap()
+        val map1: HashMap<Int, Int> = HashMap()
+        val map2: HashMap<Int, Int> = HashMap()
         for (i in 0 until ALPHABET_LETTERS_COUNT) {
-            map[wf[i]] = map.getOrDefault(wf[i], 0) + 1
-            map[wf2[i]] = map.getOrDefault(wf2[i], 0) - 1
+            map1[wf[i]] = map1.getOrDefault(wf[i], 0) + 1
+            map2[wf2[i]] = map2.getOrDefault(wf2[i], 0) + 1
         }
-        for (key in map.keys) {
-            if (map[key] != 0) {
-                return false
-            }
-        }
-        return true
+        return map1 == map2
     }
 }
 
 class CloseStringsBitwise : CloseStrings {
 
     override operator fun invoke(word1: String, word2: String): Boolean {
-        if (word1.length != word2.length) return false
-
-        val count1 = IntArray(ALPHABET_LETTERS_COUNT)
-        val count2 = IntArray(ALPHABET_LETTERS_COUNT)
-        for (ch in word1.toCharArray()) {
-            ++count1[ch.code - 'a'.code]
-        }
-        for (ch in word2.toCharArray()) {
-            ++count2[ch.code - 'a'.code]
+        if (word1.length != word2.length) {
+            return false
         }
 
-        var signature = 0
-        for (i in 0 until ALPHABET_LETTERS_COUNT) {
-            if (count1[i] > 0 && count2[i] == 0 || count2[i] > 0 && count1[i] == 0) {
-                return false
-            }
-            signature = signature xor count1[i]
-            signature = signature xor count2[i]
+        val v1 = IntArray(ALPHABET_LETTERS_COUNT)
+        val v2 = IntArray(ALPHABET_LETTERS_COUNT)
+
+        var k1 = 0
+        var k2 = 0
+
+        for (b in word1.toByteArray()) {
+            val i = b - 'a'.code.toByte()
+            v1[i]++
+            k1 = k1 or (1 shl i)
         }
 
-        return signature == 0
+        for (b in word2.toByteArray()) {
+            val i = b - 'a'.code.toByte()
+            v2[i]++
+            k2 = k2 or (1 shl i)
+        }
+
+        // Ensure the same characters are used
+        if (k1 != k2) {
+            return false
+        }
+
+        // Test that occurrence counts match
+        v1.sort()
+        v2.sort()
+
+        return v1.contentEquals(v2)
     }
 }
 

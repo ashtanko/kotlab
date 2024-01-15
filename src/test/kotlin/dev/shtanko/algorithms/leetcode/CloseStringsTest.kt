@@ -42,6 +42,11 @@ abstract class CloseStringsTest<out T : CloseStrings>(private val strategy: T) {
                 "abbccc",
                 true,
             ),
+            Arguments.of(
+                "aaabbbbccddeeeeefffff",
+                "aaaaabbcccdddeeeeffff",
+                false,
+            ),
         )
     }
 
