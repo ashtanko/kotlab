@@ -17,45 +17,48 @@
 package dev.shtanko.algorithms.codingbat
 
 /**
- * Recursion-1 > bunnyEars
- * https://codingbat.com/prob/p183649
+ * Recursion-1 > triangle
+ * https://codingbat.com/prob/p194781
  */
-fun interface BunnyEars {
-    operator fun invoke(bunnies: Int): Int
+internal fun interface Triangle {
+    operator fun invoke(rows: Int): Int
 }
 
-class BunnyEarsIterative : BunnyEars {
-    override fun invoke(bunnies: Int): Int {
+class TriangleIterative : Triangle {
+    override fun invoke(rows: Int): Int {
+        if (rows == 0) {
+            return 0
+        }
         var res = 0
-        repeat(bunnies) {
-            res += 2
+        repeat(rows) {
+            res += it + 1
         }
         return res
     }
 }
 
-class BunnyEarsRecursive : BunnyEars {
-    override fun invoke(bunnies: Int): Int {
-        if (bunnies == 0) {
+class TriangleRecursive : Triangle {
+    override fun invoke(rows: Int): Int {
+        if (rows == 0) {
             return 0
         }
-        return 2 + invoke(bunnies - 1)
+        return rows + invoke(rows - 1)
     }
 }
 
-class BunnyEarsMemo : BunnyEars {
-    override fun invoke(bunnies: Int): Int {
-        if (bunnies == 0) {
+class TriangleBottomUp : Triangle {
+    override fun invoke(rows: Int): Int {
+        if (rows == 0) {
             return 0
         }
-        return mem(bunnies)
+        return mem(rows)
     }
 
-    private fun mem(bunnies: Int): Int {
-        val cache = IntArray(bunnies + 1)
-        for (i in 1..bunnies) {
-            cache[i] = 2 + cache[i - 1]
+    private fun mem(rows: Int): Int {
+        val memo = IntArray(rows + 1)
+        for (i in 1..rows) {
+            memo[i] = i + memo[i - 1]
         }
-        return cache[bunnies]
+        return memo[rows]
     }
 }

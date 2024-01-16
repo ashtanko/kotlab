@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class BunnyEarsTest<out T : BunnyEars>(private val strategy: T) {
+internal abstract class TriangleTest<out T : Triangle>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -33,11 +33,11 @@ abstract class BunnyEarsTest<out T : BunnyEars>(private val strategy: T) {
             ),
             Arguments.of(
                 1,
-                2,
+                1,
             ),
             Arguments.of(
                 2,
-                4,
+                3,
             ),
             Arguments.of(
                 3,
@@ -45,35 +45,59 @@ abstract class BunnyEarsTest<out T : BunnyEars>(private val strategy: T) {
             ),
             Arguments.of(
                 4,
-                8,
-            ),
-            Arguments.of(
-                5,
                 10,
             ),
             Arguments.of(
+                5,
+                15,
+            ),
+            Arguments.of(
+                6,
+                21,
+            ),
+            Arguments.of(
+                7,
+                28,
+            ),
+            Arguments.of(
+                8,
+                36,
+            ),
+            Arguments.of(
+                9,
+                45,
+            ),
+            Arguments.of(
+                10,
+                55,
+            ),
+            Arguments.of(
+                11,
+                66,
+            ),
+            Arguments.of(
                 12,
-                24,
+                78,
             ),
             Arguments.of(
-                50,
-                100,
+                13,
+                91,
             ),
             Arguments.of(
-                234,
-                468,
+                14,
+                105,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `bunnies test`(bunnies: Int, expected: Int) {
-        val actual = strategy(bunnies)
+    fun `triangle test`(rows: Int, expected: Int) {
+        val actual = strategy(rows)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class BunnyEarsIterativeTest : BunnyEarsTest<BunnyEars>(BunnyEarsIterative())
-class BunnyEarsRecursiveTest : BunnyEarsTest<BunnyEars>(BunnyEarsRecursive())
-class BunnyEarsMemoTest : BunnyEarsTest<BunnyEars>(BunnyEarsMemo())
+internal class TriangleIterativeTest : TriangleTest<Triangle>(TriangleIterative())
+internal class TriangleRecursiveTest : TriangleTest<Triangle>(TriangleRecursive())
+internal class TriangleBottomUpTest : TriangleTest<Triangle>(TriangleBottomUp())

@@ -106,3 +106,4 @@ abstract class BunnyEars2Test<out T : BunnyEars2>(private val strategy: T) {
 class BunnyEars2IterativeTest : BunnyEars2Test<BunnyEars2>(BunnyEars2Iterative())
 class BunnyEars2RecursiveTest : BunnyEars2Test<BunnyEars2>(BunnyEars2Recursive())
 class BunnyEars2MemoTest : BunnyEars2Test<BunnyEars2>(BunnyEars2Memo())
+class BunnyEars2BottomUpTest : BunnyEars2Test<BunnyEars2>(BunnyEars2BottomUp())

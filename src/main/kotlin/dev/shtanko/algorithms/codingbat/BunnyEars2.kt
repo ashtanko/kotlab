@@ -82,3 +82,25 @@ class BunnyEars2Memo : BunnyEars2 {
         return result
     }
 }
+
+class BunnyEars2BottomUp : BunnyEars2 {
+    override fun invoke(bunnies: Int): Int {
+        if (bunnies == 0) {
+            return 0
+        }
+        return mem(bunnies)
+    }
+
+    private fun mem(bunnies: Int): Int {
+        val cache = IntArray(bunnies + 1)
+        for (i in 1..bunnies) {
+            val value = if (i % 2 == 1) {
+                2
+            } else {
+                3
+            }
+            cache[i] = value + cache[i - 1]
+        }
+        return cache[bunnies]
+    }
+}
