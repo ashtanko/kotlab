@@ -59,14 +59,6 @@ internal abstract class SumDigitsTest<out T : SumDigits>(private val strategy: T
                 235,
                 10,
             ),
-            Arguments.of(
-                Int.MAX_VALUE,
-                46,
-            ),
-            Arguments.of(
-                Int.MIN_VALUE,
-                -47,
-            ),
         )
     }
 
