@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.codingbat
 
 /**
  * Recursion-1 > triangle
- * https://codingbat.com/prob/p194781
+ * @see <a href="https://codingbat.com/prob/p194781">Source</a>
  */
 internal fun interface Triangle {
     operator fun invoke(rows: Int): Int

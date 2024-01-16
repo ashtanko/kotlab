@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.codingbat
 
 /**
  * Recursion-1 > bunnyEars
- * https://codingbat.com/prob/p183649
+ * @see <a href="https://codingbat.com/prob/p183649">Source</a>
  */
 fun interface BunnyEars {
     operator fun invoke(bunnies: Int): Int
@@ -57,5 +57,30 @@ class BunnyEarsMemo : BunnyEars {
             cache[i] = 2 + cache[i - 1]
         }
         return cache[bunnies]
+    }
+}
+
+class BunnyEarsTopDown : BunnyEars {
+
+    private val cache = arrayOfNulls<Int>(SIZE)
+
+    override fun invoke(bunnies: Int): Int {
+        if (bunnies == 0) {
+            return 0
+        }
+        cache[0] = 0
+        return mem(bunnies)
+    }
+
+    private fun mem(bunnies: Int): Int {
+        if (cache[bunnies] != null) {
+            return cache[bunnies] ?: 0
+        }
+        cache[bunnies] = 2 + mem(bunnies - 1)
+        return mem(bunnies)
+    }
+
+    private companion object {
+        private const val SIZE = 1000
     }
 }

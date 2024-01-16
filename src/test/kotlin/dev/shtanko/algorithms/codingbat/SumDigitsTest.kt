@@ -24,57 +24,59 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class BunnyEarsTest<out T : BunnyEars>(private val strategy: T) {
+internal abstract class SumDigitsTest<out T : SumDigits>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                0,
-                0,
+                126,
+                9,
             ),
             Arguments.of(
-                1,
-                2,
-            ),
-            Arguments.of(
-                2,
-                4,
-            ),
-            Arguments.of(
-                3,
-                6,
-            ),
-            Arguments.of(
-                4,
-                8,
-            ),
-            Arguments.of(
-                5,
-                10,
+                49,
+                13,
             ),
             Arguments.of(
                 12,
-                24,
+                3,
             ),
             Arguments.of(
-                50,
-                100,
+                111,
+                3,
             ),
             Arguments.of(
-                234,
-                468,
+                1,
+                1,
+            ),
+            Arguments.of(
+                10110,
+                3,
+            ),
+            Arguments.of(
+                0,
+                0,
+            ),
+            Arguments.of(
+                235,
+                10,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                46,
+            ),
+            Arguments.of(
+                Int.MIN_VALUE,
+                -47,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `bunnies test`(bunnies: Int, expected: Int) {
-        val actual = strategy(bunnies)
+    fun `sum digits test`(digits: Int, expected: Int) {
+        val actual = strategy(digits)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class BunnyEarsIterativeTest : BunnyEarsTest<BunnyEars>(BunnyEarsIterative())
-class BunnyEarsRecursiveTest : BunnyEarsTest<BunnyEars>(BunnyEarsRecursive())
-class BunnyEarsMemoTest : BunnyEarsTest<BunnyEars>(BunnyEarsMemo())
-class BunnyEarsTopDownTest : BunnyEarsTest<BunnyEars>(BunnyEarsTopDown())
+internal class SumDigitsIterativeTest : SumDigitsTest<SumDigits>(SumDigitsIterative())
+internal class SumDigitsRecursiveTest : SumDigitsTest<SumDigits>(SumDigitsRecursive())
