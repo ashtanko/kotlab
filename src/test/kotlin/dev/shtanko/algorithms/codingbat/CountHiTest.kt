@@ -94,6 +94,7 @@ abstract class CountHiTest<out T : CountHi>(private val strategy: T) {
     }
 }
 
+class CountHiIterativeTest : CountHiTest<CountHi>(CountHiIterative())
 class CountHiRecursiveTest : CountHiTest<CountHi>(CountHiRecursive())
 class CountHiRecursiveSimplifiedTest : CountHiTest<CountHi>(CountHiRecursiveSimplified())
 class CountHiMemoTest : CountHiTest<CountHi>(CountHiMemo())

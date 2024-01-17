@@ -24,56 +24,75 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class ChangeXYTest<out T : ChangeXY>(private val strategy: T) {
+abstract class ChangePiTest<out T : ChangePi>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "codex",
-                "codey",
+                "xpix",
+                "x3.14x",
             ),
             Arguments.of(
-                "xxhixx",
-                "yyhiyy",
+                "pipi",
+                "3.143.14",
             ),
             Arguments.of(
-                "xhixhix",
-                "yhiyhiy",
+                "pip",
+                "3.14p",
+            ),
+            Arguments.of(
+                "p",
+                "p",
+            ),
+            Arguments.of(
+                "",
+                "",
             ),
             Arguments.of(
                 "x",
-                "y",
+                "x",
             ),
             Arguments.of(
-                "y",
-                "y",
+                "pixx",
+                "3.14xx",
             ),
             Arguments.of(
-                "hiy",
-                "hiy",
+                "pi",
+                "3.14",
             ),
             Arguments.of(
-                "",
-                "",
+                "pI",
+                "3.14",
             ),
             Arguments.of(
-                "xxx",
-                "yyy",
+                "Pi",
+                "3.14",
             ),
             Arguments.of(
-                "yyhxyi",
-                "yyhyyi",
+                "PI",
+                "3.14",
+            ),
+            Arguments.of(
+                "Pixx",
+                "3.14xx",
+            ),
+            Arguments.of(
+                "pIxx",
+                "3.14xx",
+            ),
+            Arguments.of(
+                "PIxx",
+                "3.14xx",
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `change XY test`(str: String, expected: String) {
+    fun `change pi test`(str: String, expected: String) {
         val actual = strategy(str)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class ChangeXYIterativeTest : ChangeXYTest<ChangeXY>(ChangeXYIterative())
-class ChangeXYIterative2Test : ChangeXYTest<ChangeXY>(ChangeXYIterative2())
-class ChangeXYRecursiveTest : ChangeXYTest<ChangeXY>(ChangeXYRecursive())
+class ChangePiIterativeTest : ChangePiTest<ChangePi>(ChangePiIterative())
+class ChangePiRecursiveTest : ChangePiTest<ChangePi>(ChangePiRecursive())

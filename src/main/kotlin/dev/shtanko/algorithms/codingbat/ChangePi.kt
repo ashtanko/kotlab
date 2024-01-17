@@ -17,46 +17,40 @@
 package dev.shtanko.algorithms.codingbat
 
 /**
- * Recursion-1 > changeXY
- * @see <a href="https://codingbat.com/prob/p101372">Source</a>
+ * Recursion-1 > changePi
+ * @see <a href="https://codingbat.com/prob/p170924">Source</a>
  */
-fun interface ChangeXY {
+fun interface ChangePi {
     operator fun invoke(str: String): String
 }
 
-class ChangeXYIterative : ChangeXY {
-    override fun invoke(str: String): String {
-        val builder = StringBuilder()
-        for (s in str) {
-            builder.append(if (s == 'x') "y" else s)
-        }
-        return builder.toString()
-    }
-}
-
-class ChangeXYIterative2 : ChangeXY {
+class ChangePiIterative : ChangePi {
     override fun invoke(str: String): String {
         var result = ""
-        for (char in str) {
-            result += if (char == 'x') {
-                'y'
+        var i = 0
+        while (i < str.length) {
+            if (i + 1 < str.length && str.substring(i, i + 2).lowercase() == "pi") {
+                result += "3.14"
+                i += 2
             } else {
-                char
+                result += str[i]
+                i++
             }
         }
-
         return result
     }
 }
 
-class ChangeXYRecursive : ChangeXY {
+class ChangePiRecursive : ChangePi {
     override fun invoke(str: String): String {
-        if (str.isEmpty()) {
-            return ""
+        if (str.length < 2) {
+            return str
         }
-        if (str[0] == 'x') {
-            return 'y' + invoke(str.substring(1))
+        println(str.substring(0, 2).lowercase())
+        return if (str.substring(0, 2).lowercase() == "pi") {
+            "3.14" + invoke(str.substring(2))
+        } else {
+            str[0] + invoke(str.substring(1))
         }
-        return str[0] + invoke(str.substring(1))
     }
 }

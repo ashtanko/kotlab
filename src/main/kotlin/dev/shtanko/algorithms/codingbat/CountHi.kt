@@ -41,6 +41,22 @@ class CountHiRecursive : CountHi {
     }
 }
 
+class CountHiIterative : CountHi {
+    override fun invoke(str: String): Int {
+        var res = 0
+        var i = 0
+        while (i < str.length) {
+            if (i + 1 < str.length && str.substring(i, i + 2).lowercase() == "hi") {
+                res++
+                i += 2
+            } else {
+                i++
+            }
+        }
+        return res
+    }
+}
+
 class CountHiRecursiveSimplified : CountHi {
     override fun invoke(str: String): Int {
         if (str.length < 2) {

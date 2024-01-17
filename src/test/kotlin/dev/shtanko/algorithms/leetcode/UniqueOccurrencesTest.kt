@@ -24,12 +24,12 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class UniqueOccurrencesTest {
+abstract class UniqueOccurrencesTest<out T : UniqueOccurrences>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `unique occurrences test`(arr: IntArray, expected: Boolean) {
-        val actual = arr.uniqueOccurrences()
+        val actual = strategy(arr)
         assertEquals(expected, actual)
     }
 
@@ -62,3 +62,6 @@ class UniqueOccurrencesTest {
         )
     }
 }
+
+class UniqueOccurrencesMapTest : UniqueOccurrencesTest<UniqueOccurrences>(UniqueOccurrencesMap())
+class UniqueOccurrencesSortTest : UniqueOccurrencesTest<UniqueOccurrences>(UniqueOccurrencesSort())
