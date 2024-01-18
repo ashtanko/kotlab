@@ -46,7 +46,6 @@ class ChangePiRecursive : ChangePi {
         if (str.length < 2) {
             return str
         }
-        println(str.substring(0, 2).lowercase())
         return if (str.substring(0, 2).lowercase() == "pi") {
             "3.14" + invoke(str.substring(2))
         } else {
