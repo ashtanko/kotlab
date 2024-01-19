@@ -24,63 +24,43 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class CountPairsTest<out T : CountPairs>(private val strategy: T) {
+abstract class CountAbcTest<out T : CountAbc>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(
-                "axa",
-                1,
-            ),
-            Arguments.of(
-                "axax",
-                2,
-            ),
-            Arguments.of(
-                "axbx",
-                1,
-            ),
             Arguments.of(
                 "",
                 0,
             ),
             Arguments.of(
-                "hi",
-                0,
-            ),
-            Arguments.of(
-                "hihih",
-                3,
-            ),
-            Arguments.of(
-                "hihih3hi",
-                4,
-            ),
-            Arguments.of(
-                "hah",
+                "abc",
                 1,
             ),
             Arguments.of(
-                "hahi",
+                "acc",
+                0,
+            ),
+            Arguments.of(
+                "aba",
                 1,
             ),
             Arguments.of(
-                "ihihhh",
-                3,
+                "abcxxabc",
+                2,
             ),
             Arguments.of(
-                "ihjxhh",
+                "abcxxabc",
+                2,
+            ),
+            Arguments.of(
+                "aaa",
                 0,
             ),
             Arguments.of(
-                "a",
+                "aca",
                 0,
             ),
             Arguments.of(
-                "aa",
-                0,
-            ),
-            Arguments.of(
-                "qqq",
+                "aaabc",
                 1,
             ),
         )
@@ -88,11 +68,11 @@ internal abstract class CountPairsTest<out T : CountPairs>(private val strategy:
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count pairs test`(str: String, expected: Int) {
+    fun `count abc test`(str: String, expected: Int) {
         val actual = strategy(str)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-internal class CountPairsIterativeTest : CountPairsTest<CountPairs>(CountPairsIterative())
-internal class CountPairsRecursiveTest : CountPairsTest<CountPairs>(CountPairsRecursive())
+class CountAbcIterativeTest : CountAbcTest<CountAbc>(CountAbcIterative())
+class CountAbcRecursiveTest : CountAbcTest<CountAbc>(CountAbcRecursive())
