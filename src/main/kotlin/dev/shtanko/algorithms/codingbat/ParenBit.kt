@@ -24,6 +24,22 @@ fun interface ParenBit {
     operator fun invoke(str: String): String
 }
 
+class ParenBitIterative : ParenBit {
+    override fun invoke(str: String): String {
+        var index = 0
+        while (index < str.length) {
+            if (str[index] == '(') {
+                val closingIndex = str.indexOf(')', index)
+                if (closingIndex != -1) {
+                    return str.substring(index, closingIndex + 1)
+                }
+            }
+            index++
+        }
+        return ""
+    }
+}
+
 class ParenBitRecursive : ParenBit {
     override fun invoke(str: String): String {
         if (str.isEmpty()) {

@@ -24,71 +24,76 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class ParenBitTest<out T : ParenBit>(private val strategy: T) {
+abstract class NestParenTest<out T : NestParen>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "xyz(abc)123",
-                "(abc)",
+                "(())",
+                true,
             ),
             Arguments.of(
-                "x(hello)",
-                "(hello)",
+                "((()))",
+                true,
             ),
             Arguments.of(
-                "(xy)1",
-                "(xy)",
+                "(((x))",
+                false,
             ),
             Arguments.of(
-                "not really (possible)",
-                "(possible)",
+                "((())",
+                false,
             ),
+
             Arguments.of(
-                "(abc)",
-                "(abc)",
-            ),
-            Arguments.of(
-                "(abc)xyz",
-                "(abc)",
-            ),
-            Arguments.of(
-                "(abc)x",
-                "(abc)",
-            ),
-            Arguments.of(
-                "(x)",
-                "(x)",
+                "((()()",
+                false,
             ),
             Arguments.of(
                 "()",
-                "()",
-            ),
-            Arguments.of(
-                "res (ipsa) loquitor",
-                "(ipsa)",
-            ),
-            Arguments.of(
-                "hello(not really)there",
-                "(not really)",
-            ),
-            Arguments.of(
-                "ab(ab)ab",
-                "(ab)",
+                true,
             ),
             Arguments.of(
                 "",
-                "",
+                true,
+            ),
+            Arguments.of(
+                "(yy)",
+                false,
+            ),
+            Arguments.of(
+                "(((y))",
+                false,
+            ),
+            Arguments.of(
+                "((y)))",
+                false,
+            ),
+            Arguments.of(
+                "((()))",
+                true,
+            ),
+            Arguments.of(
+                "(())))",
+                false,
+            ),
+            Arguments.of(
+                "((yy())))",
+                false,
+            ),
+            Arguments.of(
+                "(((())))",
+                true,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `parenBit test`(str: String, expected: String) {
+    fun `nestParen test`(str: String, expected: Boolean) {
         val actual = strategy(str)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class ParenBitIterativeTest : ParenBitTest<ParenBit>(ParenBitIterative())
-class ParenBitRecursiveTest : ParenBitTest<ParenBit>(ParenBitRecursive())
+class NestParenIterativeTest : NestParenTest<NestParen>(NestParenIterative())
+class NestParenRecursiveTest : NestParenTest<NestParen>(NestParenRecursive())
