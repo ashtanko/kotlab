@@ -16,7 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun interface AbstractRobberStrategy {
+fun interface AbstractRobber {
     operator fun invoke(arr: IntArray): Int
 }
 
@@ -33,7 +33,7 @@ fun interface AbstractRobberStrategy {
  *
  *  Recursive (top-down)
  */
-class RecursiveRobber : AbstractRobberStrategy {
+class RecursiveRobber : AbstractRobber {
     override operator fun invoke(arr: IntArray): Int {
         return arr.rob(arr.size - 1)
     }
@@ -48,7 +48,7 @@ class RecursiveRobber : AbstractRobberStrategy {
  * Recursive + memo (top-down).
  * Much better, this should run in O(n) time. Space complexity is O(n) as well, because of the recursion stack
  */
-class RecursiveRobberMemo : AbstractRobberStrategy {
+class RecursiveRobberMemo : AbstractRobber {
 
     private lateinit var memo: IntArray
 
@@ -75,7 +75,7 @@ class RecursiveRobberMemo : AbstractRobberStrategy {
 /**
  * Iterative + memo (bottom-up)
  */
-class IterativeRobberMemo : AbstractRobberStrategy {
+class IterativeRobberMemo : AbstractRobber {
     override operator fun invoke(arr: IntArray): Int {
         if (arr.isEmpty()) return 0
         val memo = IntArray(arr.size + 1)
@@ -97,7 +97,7 @@ class IterativeRobberMemo : AbstractRobberStrategy {
  * We can hold them in 2 variables instead. This optimization is met in Fibonacci sequence
  * creation and some other problems
  */
-class IterativeRobber : AbstractRobberStrategy {
+class IterativeRobber : AbstractRobber {
     override operator fun invoke(arr: IntArray): Int {
         if (arr.isEmpty()) return 0
 
