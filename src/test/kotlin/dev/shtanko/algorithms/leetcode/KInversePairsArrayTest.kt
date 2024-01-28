@@ -27,15 +27,51 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 abstract class KInversePairsArrayTest<out T : KInversePairsArray>(private val strategy: T) {
     private class InputArgumentsProvide : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(3, 0, 1),
-            Arguments.of(3, 1, 2),
-            Arguments.of(0, 0, 0),
-            Arguments.of(1, 1, 0),
-            Arguments.of(2, 0, 1),
-            Arguments.of(4, 0, 1),
-            Arguments.of(5, 2, 9),
-            Arguments.of(15, 7, 66013),
-            Arguments.of(20, 12, 67163518),
+            Arguments.of(
+                3,
+                0,
+                1,
+            ),
+            Arguments.of(
+                3,
+                1,
+                2,
+            ),
+            Arguments.of(
+                0,
+                0,
+                0,
+            ),
+            Arguments.of(
+                1,
+                1,
+                0,
+            ),
+            Arguments.of(
+                2,
+                0,
+                1,
+            ),
+            Arguments.of(
+                4,
+                0,
+                1,
+            ),
+            Arguments.of(
+                5,
+                2,
+                9,
+            ),
+            Arguments.of(
+                15,
+                7,
+                66013,
+            ),
+            Arguments.of(
+                20,
+                12,
+                67163518,
+            ),
         )
     }
 
