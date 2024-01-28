@@ -62,5 +62,8 @@ abstract class NumSubmatrixSumTargetTest<out T : NumSubmatrixSumTarget>(private 
     }
 }
 
-class HorizontalPrefixSumTest : NumSubmatrixSumTargetTest<HorizontalPrefixSum>(HorizontalPrefixSum())
-class VerticalPrefixSumTest : NumSubmatrixSumTargetTest<VerticalPrefixSum>(VerticalPrefixSum())
+class NumSubmatrixSumTargetSolutionTest :
+    NumSubmatrixSumTargetTest<NumSubmatrixSumTarget>(NumSubmatrixSumTargetSolution())
+
+class NumSubmatrixSumTargetSolution2Test :
+    NumSubmatrixSumTargetTest<NumSubmatrixSumTarget>(NumSubmatrixSumTargetSolution2())
