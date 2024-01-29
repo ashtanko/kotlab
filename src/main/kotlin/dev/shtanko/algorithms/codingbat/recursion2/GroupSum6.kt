@@ -19,57 +19,55 @@ package dev.shtanko.algorithms.codingbat.recursion2
 import java.util.Stack
 
 /**
- * Recursion-2 > groupSum
- * @see <a href="https://codingbat.com/prob/p145416">Source</a>
+ * Recursion-2 > groupSum6
+ * @see <a href="https://codingbat.com/prob/p199368">Source</a>
  */
-fun interface GroupSum {
+fun interface GroupSum6 {
     operator fun invoke(start: Int, nums: IntArray, target: Int): Boolean
 }
 
-class GroupSumIterable : GroupSum {
+class GroupSum6Iterative : GroupSum6 {
     override fun invoke(start: Int, nums: IntArray, target: Int): Boolean {
-        val stack = Stack<Group>()
-        stack.push(Group(start, target, 0))
+        val stack = Stack<Group6>() // Using Group6 data class to store start, target, and index
+        stack.push(Group6(start, target, 0))
 
         while (stack.isNotEmpty()) {
-            val (currStart, currTarget, currIndex) = stack.pop()
+            val (currentStart, currentTarget, currentIndex) = stack.pop()
 
-            if (currStart >= nums.size) {
-                if (currTarget == 0) {
+            if (currentIndex >= nums.size) {
+                if (currentTarget == 0) {
                     return true
                 }
                 continue
             }
 
-            // Include current element
-            stack.push(Group(currStart + 1, currTarget - nums[currStart], currIndex + 1))
-
-            // Exclude current element
-            stack.push(Group(currStart + 1, currTarget, currIndex + 1))
+            if (nums[currentIndex] == 6) {
+                stack.push(Group6(currentStart, currentTarget - 6, currentIndex + 1))
+            } else {
+                stack.push(Group6(currentStart, currentTarget - nums[currentIndex], currentIndex + 1))
+                stack.push(Group6(currentStart, currentTarget, currentIndex + 1))
+            }
         }
 
         return false
     }
 
-    private data class Group(
+    private data class Group6(
         val start: Int,
         val target: Int,
         val index: Int,
     )
 }
 
-class GroupSumBacktracking : GroupSum {
+class GroupSum6Recursive : GroupSum6 {
     override fun invoke(start: Int, nums: IntArray, target: Int): Boolean {
         if (start >= nums.size) {
             return target == 0
         }
+        if (nums[start] == 6) {
+            return invoke(start + 1, nums, target - 6)
+        }
 
-        if (invoke(start + 1, nums, target - nums[start])) {
-            return true
-        }
-        if (invoke(start + 1, nums, target)) {
-            return true
-        }
-        return false
+        return invoke(start + 1, nums, target - nums[start]) || return invoke(start + 1, nums, target)
     }
 }
