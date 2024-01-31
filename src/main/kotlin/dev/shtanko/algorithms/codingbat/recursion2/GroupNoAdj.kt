@@ -20,7 +20,7 @@ import java.util.Stack
 
 /**
  * Recursion-2 > groupNoAdj
- * https://codingbat.com/prob/p169605
+ * @see <a href="https://codingbat.com/prob/p169605">Source</a>
  */
 fun interface GroupNoAdj {
     operator fun invoke(start: Int, nums: IntArray, target: Int): Boolean
