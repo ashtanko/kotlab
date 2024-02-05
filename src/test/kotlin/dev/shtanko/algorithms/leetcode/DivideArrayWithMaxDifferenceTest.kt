@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,46 +17,36 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class MinimumWindowSubstringTest<out T : MinimumWindowSubstring>(private val strategy: T) {
+abstract class DivideArrayWithMaxDifferenceTest<out T : DivideArrayWithMaxDifference>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "ADOBECODEBANC",
-                "ABC",
-                "BANC",
+                intArrayOf(1, 3, 4, 8, 7, 9, 3, 5, 1),
+                2,
+                arrayOf(intArrayOf(1, 1, 3), intArrayOf(3, 4, 5), intArrayOf(7, 8, 9)),
             ),
             Arguments.of(
-                "",
-                "",
-                "",
-            ),
-            Arguments.of(
-                "a",
-                "a",
-                "a",
-            ),
-            Arguments.of(
-                "a",
-                "aa",
-                "",
+                intArrayOf(1, 3, 3, 2, 7, 3),
+                3,
+                arrayOf<IntArray>(),
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min window test`(s: String, t: String, expected: String) {
-        val actual = strategy.invoke(s, t)
-        assertThat(actual).isEqualTo(expected)
+    fun divideArrayTest(nums: IntArray, k: Int, expected: Array<IntArray>) {
+        val actual = strategy(nums, k)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class MWSSlidingWindowTest : MinimumWindowSubstringTest<MinimumWindowSubstring>(MWSSlidingWindow())
-class MWSSlidingWindowOptTest : MinimumWindowSubstringTest<MinimumWindowSubstring>(MWSSlidingLongestSubstring())
+class DivideArrayWithMaxDifferenceSortTest :
+    DivideArrayWithMaxDifferenceTest<DivideArrayWithMaxDifference>(DivideArrayWithMaxDifferenceSort())

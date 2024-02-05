@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,46 +17,37 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class MinimumWindowSubstringTest<out T : MinimumWindowSubstring>(private val strategy: T) {
+abstract class FirstUniqCharTest<out T : FirstUniqChar>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "ADOBECODEBANC",
-                "ABC",
-                "BANC",
+                "leetcode",
+                0,
             ),
             Arguments.of(
-                "",
-                "",
-                "",
+                "loveleetcode",
+                2,
             ),
             Arguments.of(
-                "a",
-                "a",
-                "a",
-            ),
-            Arguments.of(
-                "a",
-                "aa",
-                "",
+                "aabb",
+                -1,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min window test`(s: String, t: String, expected: String) {
-        val actual = strategy.invoke(s, t)
-        assertThat(actual).isEqualTo(expected)
+    fun `firstUniqChar test`(str: String, expected: Int) {
+        val actual = strategy(str)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class MWSSlidingWindowTest : MinimumWindowSubstringTest<MinimumWindowSubstring>(MWSSlidingWindow())
-class MWSSlidingWindowOptTest : MinimumWindowSubstringTest<MinimumWindowSubstring>(MWSSlidingLongestSubstring())
+class FirstUniqCharArrayTest : FirstUniqCharTest<FirstUniqChar>(FirstUniqCharArray())
