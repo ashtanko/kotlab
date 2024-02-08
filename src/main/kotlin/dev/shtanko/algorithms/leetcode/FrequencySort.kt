@@ -23,17 +23,17 @@ import java.util.PriorityQueue
  * @see <a href="https://leetcode.com/problems/sort-characters-by-frequency/">Source</a>
  */
 fun interface FrequencySort {
-    operator fun invoke(s: String): String
+    operator fun invoke(str: String): String
 }
 
 class FrequencyBucketSort : FrequencySort {
-    override operator fun invoke(s: String): String {
+    override operator fun invoke(str: String): String {
         val map: MutableMap<Char, Int> = HashMap()
-        for (c in s.toCharArray()) {
-            map[c] = map.getOrDefault(c, 0) + 1
+        for (character in str.toCharArray()) {
+            map[character] = map.getOrDefault(character, 0) + 1
         }
 
-        val bucket: Array<MutableList<Char>> = Array(s.length + 1) {
+        val bucket: Array<MutableList<Char>> = Array(str.length + 1) {
             mutableListOf()
         }
         for (key in map.keys) {
@@ -43,9 +43,9 @@ class FrequencyBucketSort : FrequencySort {
 
         val sb = StringBuilder()
         for (pos in bucket.indices.reversed()) {
-            for (c in bucket[pos]) {
+            for (character in bucket[pos]) {
                 for (i in 0 until pos) {
-                    sb.append(c)
+                    sb.append(character)
                 }
             }
         }
@@ -54,10 +54,10 @@ class FrequencyBucketSort : FrequencySort {
 }
 
 class FrequencySortPQ : FrequencySort {
-    override operator fun invoke(s: String): String {
+    override operator fun invoke(str: String): String {
         val map: MutableMap<Char, Int> = HashMap()
-        for (c in s.toCharArray()) {
-            map[c] = map.getOrDefault(c, 0) + 1
+        for (character in str.toCharArray()) {
+            map[character] = map.getOrDefault(character, 0) + 1
         }
 
         val pq: PriorityQueue<Map.Entry<Char, Int>> = PriorityQueue { a, b -> b.value - a.value }

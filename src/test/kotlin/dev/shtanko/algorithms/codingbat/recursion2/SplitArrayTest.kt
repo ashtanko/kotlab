@@ -24,61 +24,59 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class GroupSumClumpTest<out T : GroupSumClump>(private val strategy: T) {
+abstract class SplitArrayTest<out T : SplitArray>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                0,
-                intArrayOf(2, 4, 8),
-                10,
+                intArrayOf(2, 2),
                 true,
             ),
             Arguments.of(
-                0,
-                intArrayOf(1, 2, 4, 8, 1),
-                14,
-                true,
-            ),
-            Arguments.of(
-                0,
-                intArrayOf(2, 4, 4, 8),
-                14,
+                intArrayOf(2, 3),
                 false,
             ),
             Arguments.of(
-                0,
-                intArrayOf(8, 2, 2, 1),
-                9,
+                intArrayOf(5, 2, 3),
                 true,
             ),
             Arguments.of(
-                0,
-                intArrayOf(8, 2, 2, 1),
-                11,
+                intArrayOf(5, 2, 2),
                 false,
             ),
             Arguments.of(
-                0,
-                intArrayOf(1),
-                1,
+                intArrayOf(1, 1, 1, 1, 1, 1),
                 true,
             ),
             Arguments.of(
-                0,
-                intArrayOf(9),
-                1,
+                intArrayOf(1, 1, 1, 1, 1),
                 false,
             ),
             Arguments.of(
-                0,
-                intArrayOf(0),
-                0,
-                true,
-            ),
-            Arguments.of(
-                0,
                 intArrayOf(),
-                0,
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(3, 5),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(5, 3, 2),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(2, 2, 10, 10, 1, 1),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 10, 10, 1, 1),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 10, 10, 1, 1),
                 true,
             ),
         )
@@ -86,12 +84,10 @@ abstract class GroupSumClumpTest<out T : GroupSumClump>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `group sum clump test`(start: Int, nums: IntArray, target: Int, expected: Boolean) {
-        val actual = strategy(start, nums, target)
+    fun `split array test`(nums: IntArray, expected: Boolean) {
+        val actual = strategy(nums)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class GroupSumClumpIterativeTest : GroupSumClumpTest<GroupSumClump>(GroupSumClumpIterative())
-class GroupSumClumpStackTest : GroupSumClumpTest<GroupSumClump>(GroupSumClumpStack())
-class GroupSumClumpRecursionTest : GroupSumClumpTest<GroupSumClump>(GroupSumClumpRecursion())
+class SplitArrayRecursiveTest : SplitArrayTest<SplitArray>(SplitArrayRecursive())

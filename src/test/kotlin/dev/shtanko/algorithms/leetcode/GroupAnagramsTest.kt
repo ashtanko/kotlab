@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,42 +17,37 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class FrequencySortTest<out T : FrequencySort>(private val strategy: T) {
+abstract class GroupAnagramsTest<out T : GroupAnagrams>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "tree",
-                "eert",
+                arrayOf("eat", "tea", "tan", "ate", "nat", "bat"),
+                listOf(listOf("bat"), listOf("nat", "tan"), listOf("ate", "eat", "tea")),
             ),
             Arguments.of(
-                "cccaaa",
-                "aaaccc",
+                arrayOf(""),
+                listOf(listOf("")),
             ),
             Arguments.of(
-                "Aabb",
-                "bbAa",
-            ),
-            Arguments.of(
-                "",
-                "",
+                arrayOf("a"),
+                listOf(listOf("a")),
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `frequency sort test`(str: String, expected: String) {
-        val actual = strategy.invoke(str)
-        assertThat(actual).hasToString(expected)
+    fun `group anagrams test`(strs: Array<String>, expected: List<List<String>>) {
+        val actual = strategy(strs).flatten().sorted()
+        Assertions.assertThat(actual).containsExactly(*expected.flatten().sorted().toTypedArray())
     }
 }
 
-class FrequencyBucketSortTest : FrequencySortTest<FrequencySort>(FrequencyBucketSort())
-class FrequencySortPQTest : FrequencySortTest<FrequencySort>(FrequencySortPQ())
+class GroupAnagramsMapTest : GroupAnagramsTest<GroupAnagrams>(GroupAnagramsMap())
