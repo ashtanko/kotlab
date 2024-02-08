@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,33 +14,35 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.algorithms.extensions
 
 import java.util.stream.Stream
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class PerfectSquaresTest<out T : PerfectSquares>(private val strategy: T) {
-    private class InputArgumentsProvider : ArgumentsProvider {
+class IntExtTest {
+    private class UglyNumberInputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(12, 3),
-            Arguments.of(13, 2),
+            Arguments.of(1, true),
+            Arguments.of(2, true),
         )
     }
 
     @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num squares test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
-        assertThat(actual).isEqualTo(expected)
+    @ArgumentsSource(UglyNumberInputArgumentsProvider::class)
+    fun `is ugly number test`(n: Int, expected: Boolean) {
+        val actual = n.isUgly()
+        Assertions.assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(UglyNumberInputArgumentsProvider::class)
+    fun `is ugly2 number test`(n: Int, expected: Boolean) {
+        val actual = n.isUgly2()
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
-
-class PerfectSquaresDPTest : PerfectSquaresTest<PerfectSquares>(PerfectSquaresDP())
-class PerfectSquaresStaticDPTest : PerfectSquaresTest<PerfectSquares>(PerfectSquaresStaticDP())
-class PerfectSquaresMathTest : PerfectSquaresTest<PerfectSquares>(PerfectSquaresMath())
-class PerfectSquaresBFSTest : PerfectSquaresTest<PerfectSquares>(PerfectSquaresBFS())

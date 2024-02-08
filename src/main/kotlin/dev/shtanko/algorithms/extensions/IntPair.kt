@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,21 @@
 
 package dev.shtanko.algorithms.extensions
 
-import dev.shtanko.algorithms.TOLERANCE
-import dev.shtanko.algorithms.math.sqrt
-import kotlin.math.abs
-
 /**
- * Checks if the given number is a perfect square.
- *
- * @return true if the number is a perfect square, false otherwise.
+ * This function divides a by greatest divisible power of b
  */
-fun Number.isSquare(): Boolean {
-    val number = this.toDouble()
-    val sqrtNumber = sqrt(number)
-    val integerPart = sqrtNumber.toInt()
-    return abs(sqrtNumber - integerPart) < TOLERANCE
+fun Pair<Int, Int>.maxDivide(): Int {
+    val (a, b) = this
+    var a0 = a
+    while (a0 % b == 0) a0 /= b
+    return a0
+}
+
+fun Pair<Int, Int>.keepDividingWhenDivisible(): Int {
+    val (dividend, divisor) = this
+    var d = dividend
+    while (d % divisor == 0) {
+        d /= divisor
+    }
+    return d
 }

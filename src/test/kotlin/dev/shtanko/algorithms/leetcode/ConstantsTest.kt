@@ -23,6 +23,7 @@ import dev.shtanko.algorithms.HEXADECIMAL
 import dev.shtanko.algorithms.MOD
 import dev.shtanko.algorithms.OCTAL
 import dev.shtanko.algorithms.SHUFFLE_CONST
+import dev.shtanko.algorithms.TOLERANCE
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -36,5 +37,6 @@ class ConstantsTest {
         assertEquals(1_000_000_007, MOD)
         assertEquals(1_000_000_000.0, E_9)
         assertEquals(0.00001, EPSILON)
+        assertEquals(0.0000000001, TOLERANCE)
     }
 }
