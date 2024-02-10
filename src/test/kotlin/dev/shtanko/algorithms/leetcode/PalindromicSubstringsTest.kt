@@ -35,6 +35,14 @@ abstract class PalindromicSubstringsTest<out T : PalindromicSubstrings>(private 
                 "aaa",
                 6,
             ),
+            Arguments.of(
+                "a",
+                1,
+            ),
+            Arguments.of(
+                "",
+                0,
+            ),
         )
     }
 
