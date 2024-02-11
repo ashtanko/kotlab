@@ -90,4 +90,5 @@ abstract class SplitArrayTest<out T : SplitArray>(private val strategy: T) {
     }
 }
 
+class SplitArrayIterativeTest : SplitArrayTest<SplitArray>(SplitArrayIterative())
 class SplitArrayRecursiveTest : SplitArrayTest<SplitArray>(SplitArrayRecursive())

@@ -16,12 +16,35 @@
 
 package dev.shtanko.algorithms.codingbat.recursion2
 
+import java.util.Stack
+
 /**
  * Recursion-2 > splitArray
  * @see <a href="https://codingbat.com/prob/p185204">Source</a>
  */
 fun interface SplitArray {
     operator fun invoke(nums: IntArray): Boolean
+}
+
+class SplitArrayIterative : SplitArray {
+    override fun invoke(nums: IntArray): Boolean {
+        val stack = Stack<Triple<Int, Int, Int>>() // <idx, leftSum, rightSum>
+        stack.push(Triple(0, 0, 0))
+
+        while (stack.isNotEmpty()) {
+            val (idx, leftSum, rightSum) = stack.pop()
+            if (idx == nums.size) {
+                if (leftSum == rightSum) {
+                    return true
+                }
+                continue
+            }
+            // Push the next states onto the stack
+            stack.push(Triple(idx + 1, leftSum + nums[idx], rightSum))
+            stack.push(Triple(idx + 1, leftSum, rightSum + nums[idx]))
+        }
+        return false
+    }
 }
 
 class SplitArrayRecursive : SplitArray {
