@@ -49,14 +49,14 @@ class MajorityElementSorting : MajorityElement {
 
 class MajorityElementRandomization : MajorityElement {
     override fun invoke(nums: IntArray): Int {
-        val n = nums.size
-        if (n == 0) return 0
+        val arraySize = nums.size
+        if (arraySize == 0) return 0
         val random = Random()
         var candidate: Int
         var counter: Int
 
         while (true) {
-            candidate = nums[random.nextInt(n)]
+            candidate = nums[random.nextInt(arraySize)]
             counter = 0
 
             for (num in nums) {
@@ -65,7 +65,7 @@ class MajorityElementRandomization : MajorityElement {
                 }
             }
 
-            if (counter > n / 2) {
+            if (counter > arraySize / 2) {
                 return candidate
             }
         }
@@ -77,52 +77,52 @@ class MajorityElementDivideAndConquer : MajorityElement {
         if (nums.isEmpty()) {
             return 0
         }
-        return majority(nums.toList(), 0, nums.size - 1)
+        return findMajorityElement(nums.toList(), 0, nums.size - 1)
     }
 
-    private fun majority(nums: List<Int>, l: Int, r: Int): Int {
-        if (l == r) {
-            return nums[l]
+    private fun findMajorityElement(nums: List<Int>, leftIndex: Int, rightIndex: Int): Int {
+        if (leftIndex == rightIndex) {
+            return nums[leftIndex]
         }
 
-        val m = l + (r - l) / 2
-        val lm = majority(nums, l, m)
-        val rm = majority(nums, m + 1, r)
+        val middleIndex = leftIndex + (rightIndex - leftIndex) / 2
+        val leftMajority = findMajorityElement(nums, leftIndex, middleIndex)
+        val rightMajority = findMajorityElement(nums, middleIndex + 1, rightIndex)
 
-        if (lm == rm) {
-            return lm
+        if (leftMajority == rightMajority) {
+            return leftMajority
         }
 
-        val countLm = nums.subList(l, r + 1).count { it == lm }
-        val countRm = nums.subList(l, r + 1).count { it == rm }
+        val leftMajorityCount = nums.subList(leftIndex, rightIndex + 1).count { it == leftMajority }
+        val rightMajorityCount = nums.subList(leftIndex, rightIndex + 1).count { it == rightMajority }
 
-        return if (countLm > countRm) lm else rm
+        return if (leftMajorityCount > rightMajorityCount) leftMajority else rightMajority
     }
 }
 
 class MajorityElementBit : MajorityElement {
 
     companion object {
-        private const val POSITIONS = 32
+        private const val TOTAL_BITS = 32
     }
 
     override fun invoke(nums: IntArray): Int {
-        var majority = 0
+        var majorityElement = 0
 
-        for (i in 0 until POSITIONS) {
-            var bits = 0
+        for (bitIndex in 0 until TOTAL_BITS) {
+            var bitCount = 0
 
             for (num in nums) {
-                if (num and (1 shl i) != 0) {
-                    bits++
+                if (num and (1 shl bitIndex) != 0) {
+                    bitCount++
                 }
             }
 
-            if (bits > nums.size / 2) {
-                majority = majority or (1 shl i)
+            if (bitCount > nums.size / 2) {
+                majorityElement = majorityElement or (1 shl bitIndex)
             }
         }
 
-        return majority
+        return majorityElement
     }
 }
