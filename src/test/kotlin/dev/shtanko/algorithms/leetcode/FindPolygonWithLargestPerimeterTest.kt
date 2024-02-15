@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,46 +17,38 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class LargestPerimeterTriangleTest<out T : LargestPerimeterTriangle>(private val strategy: T) {
+abstract class FindPolygonWithLargestPerimeterTest<out T : FindPolygonWithLargestPerimeter>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(),
-                0,
+                intArrayOf(5, 5, 5),
+                15L,
             ),
             Arguments.of(
-                intArrayOf(2, 1, 2),
-                5,
+                intArrayOf(1, 12, 1, 2, 5, 50, 3),
+                12L,
             ),
             Arguments.of(
-                intArrayOf(1, 2, 1),
-                0,
-            ),
-            Arguments.of(
-                intArrayOf(3, 2, 3, 4),
-                10,
-            ),
-            Arguments.of(
-                intArrayOf(3, 6, 2, 3),
-                8,
+                intArrayOf(5, 5, 50),
+                -1L,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `largest perimeter test`(arr: IntArray, expected: Int) {
-        val actual = strategy(arr)
-        assertThat(actual).isEqualTo(expected)
+    fun `largest perimeter test`(nums: IntArray, expected: Long) {
+        val actual = strategy(nums)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class LargestPerimeterTriangleSortTest :
-    LargestPerimeterTriangleTest<LargestPerimeterTriangle>(LargestPerimeterTriangleSort())
+class FindPolygonWithLargestPerimeterSortTest :
+    FindPolygonWithLargestPerimeterTest<FindPolygonWithLargestPerimeter>(FindPolygonWithLargestPerimeterSort())

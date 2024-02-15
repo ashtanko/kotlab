@@ -20,14 +20,20 @@ package dev.shtanko.algorithms.leetcode
  * 976. Largest Perimeter Triangle
  * @see <a href="https://leetcode.com/problems/largest-perimeter-triangle/">Source</a>
  */
-fun largestPerimeter(arr: IntArray): Int {
-    if (arr.isEmpty()) return 0
-    arr.sort()
-    for (i in arr.size - 3 downTo 0) {
-        val sum = arr[i].plus(arr[i + 1])
-        if (sum > arr[i + 2]) {
-            return sum.plus(arr[i + 2])
+fun interface LargestPerimeterTriangle {
+    operator fun invoke(nums: IntArray): Int
+}
+
+class LargestPerimeterTriangleSort : LargestPerimeterTriangle {
+    override fun invoke(nums: IntArray): Int {
+        if (nums.isEmpty()) return 0
+        nums.sort()
+        for (i in nums.size - 3 downTo 0) {
+            val sum = nums[i].plus(nums[i + 1])
+            if (sum > nums[i + 2]) {
+                return sum.plus(nums[i + 2])
+            }
         }
+        return 0
     }
-    return 0
 }
