@@ -56,7 +56,7 @@ abstract class KthSmallestTest<out T : KthSmallest>(private val strategy: T) {
 }
 
 @DisplayName("kth smallest min heap strategy")
-class KthSmallestMinHeapTest : KthSmallestTest<KthSmallestStrategy.MinHeap>(KthSmallestStrategy.MinHeap)
+class KthSmallestFurthestBuildingMinHeapTest : KthSmallestTest<KthSmallestStrategy.MinHeap>(KthSmallestStrategy.MinHeap)
 
 @DisplayName("kth smallest binary search strategy")
 class KthSmallestBinarySearchTest :

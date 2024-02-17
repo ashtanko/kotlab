@@ -45,6 +45,18 @@ abstract class FurthestBuildingTest<out T : FurthestBuilding>(private val strate
                 0,
                 3,
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                5,
+                2,
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(4, 2, 7, 6, 9, 14, 12),
+                0,
+                0,
+                1,
+            ),
         )
     }
 
@@ -56,8 +68,8 @@ abstract class FurthestBuildingTest<out T : FurthestBuilding>(private val strate
     }
 }
 
-class MinHeapTest : FurthestBuildingTest<MinHeap>(MinHeap())
-class MaxHeapTest : FurthestBuildingTest<MaxHeap>(MaxHeap())
+class FurthestBuildingMinHeapTest : FurthestBuildingTest<FurthestBuildingMinHeap>(FurthestBuildingMinHeap())
+class FurthestBuildingMaxHeapTest : FurthestBuildingTest<FurthestBuildingMaxHeap>(FurthestBuildingMaxHeap())
 class FinalReachableBuildingTest : FurthestBuildingTest<FinalReachableBuilding>(FinalReachableBuilding())
 class ImprovedFinalReachableBuildingTest :
     FurthestBuildingTest<ImprovedFinalReachableBuilding>(ImprovedFinalReachableBuilding())

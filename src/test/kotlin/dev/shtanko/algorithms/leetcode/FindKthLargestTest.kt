@@ -49,6 +49,6 @@ abstract class FindKthLargestTest<out T : FindKthLargest>(private val strategy: 
 }
 
 class FindKthLargestSortTest : FindKthLargestTest<FindKthLargest>(FindKthLargestSort())
-class FindKthLargestMinHeapTest : FindKthLargestTest<FindKthLargest>(FindKthLargestMinHeap())
+class FindKthLargestFurthestBuildingMinHeapTest : FindKthLargestTest<FindKthLargest>(FindKthLargestMinHeap())
 class FindKthLargestQuickSelectTest : FindKthLargestTest<FindKthLargest>(FindKthLargestQuickSelect())
 class FindKthLargestCountingSortTest : FindKthLargestTest<FindKthLargest>(FindKthLargestCountingSort())

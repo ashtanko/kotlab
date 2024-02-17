@@ -60,6 +60,6 @@ abstract class TopKFrequentTest<out T : TopKFrequent>(private val strategy: T) {
 
 class TopKFrequentMapTest : TopKFrequentTest<TopKFrequent>(TopKFrequentMap())
 class TopKFrequentSortingTest : TopKFrequentTest<TopKFrequent>(TopKFrequentSorting())
-class TopKFrequentMinHeapTest : TopKFrequentTest<TopKFrequent>(TopKFrequentMinHeap())
+class TopKFrequentFurthestBuildingMinHeapTest : TopKFrequentTest<TopKFrequent>(TopKFrequentMinHeap())
 class TopKFrequentTrieTest : TopKFrequentTest<TopKFrequent>(TopKFrequentTrie())
 class TopKFrequentBucketSortTest : TopKFrequentTest<TopKFrequent>(TopKFrequentBucketSort())

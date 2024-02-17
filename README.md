@@ -32,15 +32,15 @@
 
 ## Complexity Report
 
-* 180,633 lines of code (loc)
+* 180,646 lines of code (loc)
 
-* 110,742 source lines of code (sloc)
+* 110,746 source lines of code (sloc)
 
-* 78,812 logical lines of code (lloc)
+* 78,819 logical lines of code (lloc)
 
-* 49,704 comment lines of code (cloc)
+* 49,703 comment lines of code (cloc)
 
-* 18,569 cyclomatic complexity (mcc)
+* 18,567 cyclomatic complexity (mcc)
 
 * 16,209 cognitive complexity
 
@@ -54,4 +54,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.23.4](https://detekt.dev/) on 2024-02-16 11:32:32 UTC
+generated with [detekt version 1.23.4](https://detekt.dev/) on 2024-02-17 12:54:42 UTC

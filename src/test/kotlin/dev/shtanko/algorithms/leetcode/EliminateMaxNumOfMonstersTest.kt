@@ -56,4 +56,4 @@ abstract class EliminateMaxNumOfMonstersTest<out T : EliminateMaxNumOfMonsters>(
 }
 
 class EliminateMaxSortTest : EliminateMaxNumOfMonstersTest<EliminateMaxNumOfMonsters>(Sort)
-class EliminateMaxHeapTest : EliminateMaxNumOfMonstersTest<EliminateMaxNumOfMonsters>(Heap)
+class EliminateFurthestBuildingMaxHeapTest : EliminateMaxNumOfMonstersTest<EliminateMaxNumOfMonsters>(Heap)

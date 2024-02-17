@@ -109,7 +109,7 @@ abstract class MaxNumberOfApplesTest<out T : MaxNumberOfApples>(private val stra
 class MaxNumberOfApplesSortTest :
     MaxNumberOfApplesTest<MaxNumberOfApplesSort>(MaxNumberOfApplesSort())
 
-class MaxNumberOfApplesMinHeapTest :
+class MaxNumberOfApplesFurthestBuildingMinHeapTest :
     MaxNumberOfApplesTest<MaxNumberOfApplesMinHeap>(MaxNumberOfApplesMinHeap())
 
 class MaxNumberOfApplesBucketSortTest :
