@@ -16,11 +16,15 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun interface PowerOfTwoStrategy {
+/**
+ * 231. Power of Two
+ * @see <a href="https://leetcode.com/problems/power-of-two">Source</a>
+ */
+fun interface PowerOfTwo {
     operator fun invoke(num: Int): Boolean
 }
 
-class PowerOfTwoIterative : PowerOfTwoStrategy {
+class PowerOfTwoIterative : PowerOfTwo {
     override fun invoke(num: Int): Boolean {
         var num1 = num
         if (num1 <= 0) return false
@@ -29,7 +33,44 @@ class PowerOfTwoIterative : PowerOfTwoStrategy {
     }
 }
 
-class PowerOfTwoBitwise : PowerOfTwoStrategy {
+class PowerOfTwoRecursive : PowerOfTwo {
+    override fun invoke(num: Int): Boolean {
+        if (num <= 0) return false
+        if (num == 1) return true
+        if (num % 2 != 0) return false
+        return invoke(num / 2)
+    }
+}
+
+class PowerOfTwoTailrec : PowerOfTwo {
+    override fun invoke(num: Int): Boolean {
+        tailrec fun isPowerOfTwoHelper(n: Int): Boolean {
+            if (n <= 0) return false
+            if (n == 1) return true
+            if (n % 2 != 0) return false
+            return isPowerOfTwoHelper(n / 2)
+        }
+        return isPowerOfTwoHelper(num)
+    }
+}
+
+class PowerOfTwoMemo : PowerOfTwo {
+    override fun invoke(num: Int): Boolean {
+        val memo = mutableMapOf<Int, Boolean>()
+
+        fun isPowerOfTwoHelper(n: Int): Boolean {
+            if (n <= 0) return false
+            if (n == 1) return true
+            if (n % 2 != 0) return false
+
+            return memo.getOrPut(n) { isPowerOfTwoHelper(n / 2) }
+        }
+
+        return isPowerOfTwoHelper(num)
+    }
+}
+
+class PowerOfTwoBitwise : PowerOfTwo {
     override fun invoke(num: Int): Boolean {
         return if (num < 1) {
             false
@@ -37,4 +78,12 @@ class PowerOfTwoBitwise : PowerOfTwoStrategy {
             0 == num - 1 and num
         }
     }
+}
+
+class PowerOfTwoMathOneLine : PowerOfTwo {
+    override fun invoke(num: Int) = num > 0 && (num and num - 1) == 0
+}
+
+class PowerOfTwoMath : PowerOfTwo {
+    override fun invoke(num: Int) = num > 0 && Integer.bitCount(num) == 1
 }

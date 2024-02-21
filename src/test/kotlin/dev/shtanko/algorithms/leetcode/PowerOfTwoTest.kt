@@ -18,14 +18,13 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val strategy: T) {
+abstract class PowerOfTwoTest<out T : PowerOfTwo>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputPositiveCasesProvider::class)
@@ -36,7 +35,7 @@ abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputNegativeCasesProvider::class)
     fun `power of two negative test`(n: Int) {
-        assertFalse(strategy(n))
+        assertThat(strategy(n)).isFalse()
     }
 
     private class InputPositiveCasesProvider : ArgumentsProvider {
@@ -101,6 +100,10 @@ abstract class PowerOfTwoTest<out T : PowerOfTwoStrategy>(private val strategy: 
     }
 }
 
-class PowerOfTwoIterativeTest : PowerOfTwoTest<PowerOfTwoIterative>(PowerOfTwoIterative())
-
-class PowerOfTwoBitwiseTest : PowerOfTwoTest<PowerOfTwoBitwise>(PowerOfTwoBitwise())
+class PowerOfTwoIterativeTest : PowerOfTwoTest<PowerOfTwo>(PowerOfTwoIterative())
+class PowerOfTwoRecursiveTest : PowerOfTwoTest<PowerOfTwo>(PowerOfTwoRecursive())
+class PowerOfTwoBitwiseTest : PowerOfTwoTest<PowerOfTwo>(PowerOfTwoBitwise())
+class PowerOfTwoTailrecTest : PowerOfTwoTest<PowerOfTwo>(PowerOfTwoTailrec())
+class PowerOfTwoMemoTest : PowerOfTwoTest<PowerOfTwo>(PowerOfTwoMemo())
+class PowerOfTwoMathOneLineTest : PowerOfTwoTest<PowerOfTwo>(PowerOfTwoMathOneLine())
+class PowerOfTwoMathTest : PowerOfTwoTest<PowerOfTwo>(PowerOfTwoMath())
