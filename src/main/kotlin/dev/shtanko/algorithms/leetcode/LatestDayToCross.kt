@@ -28,11 +28,10 @@ fun interface LatestDayToCross {
 }
 
 class DSU(n: Int) {
-    var root: IntArray
+    var root: IntArray = IntArray(n)
     var size: IntArray
 
     init {
-        root = IntArray(n)
         for (i in 0 until n) {
             root[i] = i
         }
