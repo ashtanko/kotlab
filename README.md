@@ -54,4 +54,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.23.4](https://detekt.dev/) on 2024-02-22 13:02:33 UTC
+generated with [detekt version 1.23.4](https://detekt.dev/) on 2024-02-25 13:02:38 UTC
