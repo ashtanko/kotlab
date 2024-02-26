@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class SameTreeTest {
+abstract class SameTreeTest<out T : SameTree>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -90,7 +90,9 @@ class SameTreeTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is same test test`(t1: TreeNode?, t2: TreeNode?, expected: Boolean) {
-        val actual = (t1 to t2).isSame()
+        val actual = strategy(t1, t2)
         assertEquals(expected, actual)
     }
 }
+
+class SameTreeRecursiveTest : SameTreeTest<SameTree>(SameTreeRecursive())

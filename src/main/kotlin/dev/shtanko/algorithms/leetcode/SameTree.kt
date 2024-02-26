@@ -16,12 +16,25 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun Pair<TreeNode?, TreeNode?>.isSame(): Boolean {
-    if (first == null && second == null) return true
-    if (first == null || second == null) return false
-    if (first?.value == second?.value) {
-        return (first?.left to second?.left).isSame() && (first?.right to second?.right).isSame()
-    }
+/**
+ * 100. Same Tree
+ * @see <a href="https://leetcode.com/problems/same-tree">Source</a>
+ */
+fun interface SameTree {
+    operator fun invoke(tree1: TreeNode?, tree2: TreeNode?): Boolean
+}
 
-    return false
+class SameTreeRecursive : SameTree {
+    override fun invoke(tree1: TreeNode?, tree2: TreeNode?): Boolean {
+        if (tree1 == null && tree2 == null) {
+            return true
+        }
+        if (tree1 == null || tree2 == null) {
+            return false
+        }
+        if (tree1.value == tree2.value) {
+            return invoke(tree1.left, tree2.left) && invoke(tree1.right, tree2.right)
+        }
+        return false
+    }
 }
