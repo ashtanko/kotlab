@@ -35,6 +35,14 @@ abstract class NumTilingsTest<out T : NumTilings>(private val strategy: T) {
                 1,
                 1,
             ),
+            Arguments.of(
+                4,
+                11,
+            ),
+            Arguments.of(
+                5,
+                24,
+            ),
         )
     }
 

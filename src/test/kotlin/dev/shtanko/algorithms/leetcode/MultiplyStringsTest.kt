@@ -34,6 +34,21 @@ class MultiplyStringsTest {
                 "6",
             ),
             Arguments.of(
+                "2",
+                "2",
+                "4",
+            ),
+            Arguments.of(
+                "0",
+                "0",
+                "0",
+            ),
+            Arguments.of(
+                "-1",
+                "2",
+                "-62",
+            ),
+            Arguments.of(
                 "123",
                 "456",
                 "56088",

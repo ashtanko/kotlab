@@ -32,11 +32,11 @@
 
 ## Complexity Report
 
-* 181,159 lines of code (loc)
+* 181,182 lines of code (loc)
 
-* 111,085 source lines of code (sloc)
+* 111,108 source lines of code (sloc)
 
-* 79,056 logical lines of code (lloc)
+* 79,079 logical lines of code (lloc)
 
 * 49,815 comment lines of code (cloc)
 
@@ -54,4 +54,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.23.4](https://detekt.dev/) on 2024-02-26 16:42:41 UTC
+generated with [detekt version 1.23.4](https://detekt.dev/) on 2024-02-27 00:31:21 UTC
