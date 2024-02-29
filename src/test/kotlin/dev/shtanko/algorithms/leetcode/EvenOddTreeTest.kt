@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val strategy: T) {
+abstract class EvenOddTreeTest<out T : EvenOddTree>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -78,4 +78,5 @@ abstract class EvenOddTreeTest<out T : EvenOddTreeStrategy>(private val strategy
     }
 }
 
-class EvenOddTreeBSFTest : EvenOddTreeTest<EvenOddTreeBSF>(EvenOddTreeBSF())
+class EvenOddTreeBSFTest : EvenOddTreeTest<EvenOddTree>(EvenOddTreeBSF())
+class EvenOddTreeBFSTest : EvenOddTreeTest<EvenOddTree>(EvenOddTreeBFS())
