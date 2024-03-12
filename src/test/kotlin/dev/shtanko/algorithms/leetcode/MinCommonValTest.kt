@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,52 +17,37 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class AbstractIntersectionTest<out T : IntersectionStrategy>(private val strategy: T) {
-
+abstract class MinCommonValTest<out T : MinCommonVal>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(1, 2, 2, 1),
-                intArrayOf(2, 2),
-                intArrayOf(2),
+                intArrayOf(1, 2, 3),
+                intArrayOf(2, 4),
+                2,
             ),
             Arguments.of(
-                intArrayOf(4, 9, 5),
-                intArrayOf(9, 4, 9, 8, 4),
-                intArrayOf(4, 9),
-            ),
-            Arguments.of(
-                intArrayOf(4, 8),
-                intArrayOf(15, 16, 23, 4),
-                intArrayOf(4),
-            ),
-            Arguments.of(
-                intArrayOf(4, 8),
-                intArrayOf(15, 16, 23, 42),
-                intArrayOf(),
+                intArrayOf(1, 2, 3, 6),
+                intArrayOf(2, 3, 4, 5),
+                2,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `intersection test`(nums1: IntArray, nums2: IntArray, expected: IntArray) {
-        val actual = strategy.invoke(nums1, nums2)
-        assertArrayEquals(expected, actual)
+    fun getCommonTest(nums1: IntArray, nums2: IntArray, expected: Int) {
+        val actual = strategy(nums1, nums2)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class IntersectionTwoSetsTest : AbstractIntersectionTest<IntersectionTwoSets>(IntersectionTwoSets())
-
-class IntersectionTwoPointersTest :
-    AbstractIntersectionTest<IntersectionTwoPointers>(IntersectionTwoPointers())
-
-class IntersectionBinarySearchTest :
-    AbstractIntersectionTest<IntersectionBinarySearch>(IntersectionBinarySearch())
+class MinCommonValHashSetTest : MinCommonValTest<MinCommonVal>(MinCommonValHashSet())
+class MinCommonValTwoPointersTest : MinCommonValTest<MinCommonVal>(MinCommonValTwoPointers())
+class MinCommonValBinarySearchTest : MinCommonValTest<MinCommonVal>(MinCommonValBinarySearch())

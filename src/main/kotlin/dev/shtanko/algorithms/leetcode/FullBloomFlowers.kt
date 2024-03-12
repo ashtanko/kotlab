@@ -125,7 +125,7 @@ class FullBloomFlowersSimplerBS : FullBloomFlowers {
     }
 }
 
-private fun binarySearch(arr: List<Int>, target: Int): Int {
+internal fun binarySearch(arr: List<Int>, target: Int): Int {
     var left = 0
     var right = arr.size
     while (left < right) {

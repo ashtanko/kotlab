@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,52 +17,36 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class AbstractIntersectionTest<out T : IntersectionStrategy>(private val strategy: T) {
-
+abstract class CustomSortStringTest<out T : CustomSortString>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(1, 2, 2, 1),
-                intArrayOf(2, 2),
-                intArrayOf(2),
+                "cba",
+                "abcd",
+                "cbad",
             ),
             Arguments.of(
-                intArrayOf(4, 9, 5),
-                intArrayOf(9, 4, 9, 8, 4),
-                intArrayOf(4, 9),
-            ),
-            Arguments.of(
-                intArrayOf(4, 8),
-                intArrayOf(15, 16, 23, 4),
-                intArrayOf(4),
-            ),
-            Arguments.of(
-                intArrayOf(4, 8),
-                intArrayOf(15, 16, 23, 42),
-                intArrayOf(),
+                "bcafg",
+                "abcd",
+                "bcad",
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `intersection test`(nums1: IntArray, nums2: IntArray, expected: IntArray) {
-        val actual = strategy.invoke(nums1, nums2)
-        assertArrayEquals(expected, actual)
+    fun `custom sort string test`(order: String, str: String, expected: String) {
+        val actual = strategy(order, str)
+        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }
 
-class IntersectionTwoSetsTest : AbstractIntersectionTest<IntersectionTwoSets>(IntersectionTwoSets())
-
-class IntersectionTwoPointersTest :
-    AbstractIntersectionTest<IntersectionTwoPointers>(IntersectionTwoPointers())
-
-class IntersectionBinarySearchTest :
-    AbstractIntersectionTest<IntersectionBinarySearch>(IntersectionBinarySearch())
+class CustomSortStringComparatorTest : CustomSortStringTest<CustomSortString>(CustomSortStringComparator())
+class CustomSortStringFreqTableTest : CustomSortStringTest<CustomSortString>(CustomSortStringFreqTable())
