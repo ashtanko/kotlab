@@ -68,7 +68,7 @@ class RemoveZeroSumSublistsTwoPasses : RemoveZeroSumSublists {
         i = dummy
         while (i != null) {
             prefix += i.value
-            i.next = seen[prefix]!!.next
+            i.next = seen[prefix]?.next
             i = i.next
         }
         return dummy.next
