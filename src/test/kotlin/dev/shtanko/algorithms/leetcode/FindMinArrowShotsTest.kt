@@ -65,5 +65,5 @@ abstract class FindMinArrowShotsTest<out T : FindMinArrowShots>(private val stra
     }
 }
 
-class FindMinArrowShotsGreedyTest : FindMinArrowShotsTest<FindMinArrowShots>(FindMinArrowShotsGreedy)
-class FindMinArrowShotsCompactTest : FindMinArrowShotsTest<FindMinArrowShots>(FindMinArrowShotsCompact)
+class FindMinArrowShotsGreedyTest : FindMinArrowShotsTest<FindMinArrowShots>(findMinArrowShotsGreedy)
+class FindMinArrowShotsCompactTest : FindMinArrowShotsTest<FindMinArrowShots>(findMinArrowShots)

@@ -20,38 +20,34 @@ package dev.shtanko.algorithms.leetcode
  * 452. Minimum Number of Arrows to Burst Balloons
  * @see <a href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/">Source</a>
  */
-sealed interface FindMinArrowShots {
+fun interface FindMinArrowShots {
     operator fun invoke(points: Array<IntArray>): Int
 }
 
-object FindMinArrowShotsGreedy : FindMinArrowShots {
-    override operator fun invoke(points: Array<IntArray>): Int {
-        if (points.isEmpty()) {
-            return 0
-        }
-        points.sortWith { a, b ->
-            a[1].compareTo(b[1])
-        }
-
-        var ans = 0
-        var arrow = 0
-        for (i in points.indices) {
-            if (ans == 0 || points[i][0] > arrow) {
-                ans++
-                arrow = points[i][1]
-            }
-        }
-        return ans
+val findMinArrowShotsGreedy = FindMinArrowShots { points ->
+    if (points.isEmpty()) {
+        return@FindMinArrowShots 0
     }
+    points.sortWith { a, b ->
+        a[1].compareTo(b[1])
+    }
+
+    var ans = 0
+    var arrow = 0
+    for (i in points.indices) {
+        if (ans == 0 || points[i][0] > arrow) {
+            ans++
+            arrow = points[i][1]
+        }
+    }
+    return@FindMinArrowShots ans
 }
 
-object FindMinArrowShotsCompact : FindMinArrowShots {
-    override operator fun invoke(points: Array<IntArray>): Int {
-        points.sortBy { it[1] }
-        var last = 0
-        return 1 + (1..points.lastIndex).count { e ->
-            (points[e][0] > points[last][1])
-                .also { if (it) last = e }
-        }
+val findMinArrowShots = FindMinArrowShots { points ->
+    points.sortBy { it[1] }
+    var last = 0
+    return@FindMinArrowShots 1 + (1..points.lastIndex).count { e ->
+        (points[e][0] > points[last][1])
+            .also { if (it) last = e }
     }
 }
