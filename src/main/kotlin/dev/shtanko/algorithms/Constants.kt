@@ -30,6 +30,7 @@ const val ALPHABET_LETTERS_COUNT = 26
 const val HALF = 0.5f
 const val THREE_HALVES = 1.5F
 const val QUEEN = 'Q'
+const val ASCII_A = 'A'
 const val DOT = '.'
 const val VOWELS = "aeiou"
 const val TOLERANCE = 1e-10

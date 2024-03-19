@@ -17,70 +17,85 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.ASCII_A
 import java.util.PriorityQueue
 import kotlin.math.max
 
 fun interface TaskScheduler {
-    operator fun invoke(tasks: CharArray, n: Int): Int
+    operator fun invoke(tasks: CharArray, cooldownTime: Int): Int
 }
 
 class TaskSchedulerSimple : TaskScheduler {
 
-    override operator fun invoke(tasks: CharArray, n: Int): Int {
-        val counter = IntArray(ALPHABET_LETTERS_COUNT)
-        var max = 0
-        var maxCount = 0
+    override operator fun invoke(tasks: CharArray, cooldownTime: Int): Int {
+        val taskFrequencyCounter = IntArray(ALPHABET_LETTERS_COUNT)
+        var maxFrequency = 0
+        var maxFrequencyCount = 0
         for (task in tasks) {
-            counter[task - 'A']++
-            if (max == counter[task - 'A']) {
-                maxCount++
-            } else if (max < counter[task - 'A']) {
-                max = counter[task - 'A']
-                maxCount = 1
+            taskFrequencyCounter[task - ASCII_A]++
+            if (maxFrequency == taskFrequencyCounter[task - ASCII_A]) {
+                maxFrequencyCount++
+            } else if (maxFrequency < taskFrequencyCounter[task - ASCII_A]) {
+                maxFrequency = taskFrequencyCounter[task - ASCII_A]
+                maxFrequencyCount = 1
             }
         }
 
-        val partCount = max - 1
-        val partLength = n - maxCount.minus(1)
-        val emptySlots = partCount * partLength
-        val availableTasks: Int = tasks.size - max * maxCount
-        val idles = max(0, emptySlots - availableTasks)
+        val numberOfParts = maxFrequency - 1
+        val partLength = cooldownTime - maxFrequencyCount + 1
+        val emptySlots = numberOfParts * partLength
+        val availableTasks: Int = tasks.size - maxFrequency * maxFrequencyCount
+        val idleSlots = max(0, emptySlots - availableTasks)
 
-        return tasks.size + idles
+        return tasks.size + idleSlots
     }
 }
 
 class TaskSchedulerPriorityQueue : TaskScheduler {
-    override operator fun invoke(tasks: CharArray, n: Int): Int {
-        val map: MutableMap<Char, Int> = HashMap()
-        for (i in tasks.indices) {
-            map[tasks[i]] =
-                map.getOrDefault(tasks[i], 0) + 1 // map key is TaskName, and value is number of times to be executed.
-        }
+    override operator fun invoke(tasks: CharArray, cooldownTime: Int): Int {
+        val taskFrequencyMap = calculateTaskFrequency(tasks)
+        val taskPriorityQueue = createPriorityQueue(taskFrequencyMap)
 
-        val q: PriorityQueue<Map.Entry<Char, Int>> =
+        return executeTasksWithCooldown(taskPriorityQueue, cooldownTime)
+    }
+
+    private fun calculateTaskFrequency(tasks: CharArray): MutableMap<Char, Int> {
+        val taskFrequencyMap: MutableMap<Char, Int> = HashMap()
+        for (task in tasks) {
+            taskFrequencyMap[task] = taskFrequencyMap.getOrDefault(task, 0) + 1
+        }
+        return taskFrequencyMap
+    }
+
+    private fun createPriorityQueue(taskFrequencyMap: MutableMap<Char, Int>): PriorityQueue<Map.Entry<Char, Int>> {
+        val taskPriorityQueue: PriorityQueue<Map.Entry<Char, Int>> =
             PriorityQueue { a, b -> if (a.value != b.value) b.value - a.value else a.key - b.key }
+        taskPriorityQueue.addAll(taskFrequencyMap.entries)
+        return taskPriorityQueue
+    }
 
-        q.addAll(map.entries)
-
-        var count = 0
-        while (q.isNotEmpty()) {
-            var k = n + 1
-            val tempList: MutableList<Map.Entry<Char, Int>> = ArrayList()
-            while (k > 0 && q.isNotEmpty()) {
-                val top: MutableMap.MutableEntry<Char, Int> =
-                    q.poll() as MutableMap.MutableEntry<Char, Int> // most frequency task
-                top.setValue(top.value - 1) // decrease frequency, meaning it got executed
-                tempList.add(top) // collect task to add back to queue
-                k--
-                count++ // successfully executed task
+    private fun executeTasksWithCooldown(
+        taskPriorityQueue: PriorityQueue<Map.Entry<Char, Int>>,
+        cooldownTime: Int,
+    ): Int {
+        var taskExecutions = 0
+        while (taskPriorityQueue.isNotEmpty()) {
+            var cooldown = cooldownTime + 1
+            val temporaryTaskList: MutableList<Map.Entry<Char, Int>> = ArrayList()
+            while (cooldown > 0 && taskPriorityQueue.isNotEmpty()) {
+                val mostFrequentTask: MutableMap.MutableEntry<Char, Int> =
+                    taskPriorityQueue.poll() as MutableMap.MutableEntry<Char, Int> // most frequency task
+                mostFrequentTask.setValue(mostFrequentTask.value - 1) // decrease frequency, meaning it got executed
+                temporaryTaskList.add(mostFrequentTask) // collect task to add back to queue
+                cooldown--
+                taskExecutions++ // successfully executed task
             }
-            for (e in tempList) {
-                if (e.value > 0) q.add(e) // add valid tasks
+            for (entry in temporaryTaskList) {
+                if (entry.value > 0) taskPriorityQueue.add(entry) // add valid tasks
             }
-            if (q.isEmpty()) break
-            count += k // if k > 0, then it means we need to be idle
+            if (taskPriorityQueue.isEmpty()) break
+            taskExecutions += cooldown // if cooldown > 0, then it means we need to be idle
         }
-        return count
+        return taskExecutions
     }
 }
