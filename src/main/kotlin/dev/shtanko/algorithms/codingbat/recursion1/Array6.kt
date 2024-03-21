@@ -24,11 +24,11 @@ fun interface Array6 {
     operator fun invoke(nums: IntArray, index: Int): Boolean
 }
 
-class Array6Iterative : dev.shtanko.algorithms.codingbat.recursion1.Array6 {
+class Array6Iterative : Array6 {
     override fun invoke(nums: IntArray, index: Int) = nums.sliceArray(index..<nums.size).contains(6)
 }
 
-class Array6Recursive : dev.shtanko.algorithms.codingbat.recursion1.Array6 {
+class Array6Recursive : Array6 {
     override fun invoke(nums: IntArray, index: Int): Boolean {
         if (index >= nums.size) {
             return false
