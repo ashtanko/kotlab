@@ -42,6 +42,6 @@ class FileDataSource(private val name: String) : DataSource {
         } catch (ex: IOException) {
             println(ex.message)
         }
-        return String(buffer!!)
+        return String(buffer ?: charArrayOf())
     }
 }

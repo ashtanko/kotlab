@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/reorder-list/">Source</a>
  */
 fun interface ReorderList {
-    fun reorderList(head: ListNode?)
+    operator fun invoke(head: ListNode?)
 }
 
 class ReorderListImpl : ReorderList {
-    override fun reorderList(head: ListNode?) {
+    override fun invoke(head: ListNode?) {
         // if head will be null or head.next will be null simply return
         if (head?.next == null) return
 

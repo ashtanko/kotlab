@@ -77,20 +77,20 @@ class PalindromeLinkedListRecursive : PalindromeLinkedList {
  */
 class PalindromeLinkedListReverse : PalindromeLinkedList {
     override operator fun invoke(head: ListNode): Boolean {
-        val firstHalfEnd = endOfFirstHalf(head)
-        val secondHalfStart = firstHalfEnd?.next?.let { reverseList(it) }
+        val endOfFirstHalf = endOfFirstHalf(head)
+        val startOfSecondHalfReversed = endOfFirstHalf?.next?.let { reverseList(it) }
 
-        var p1: ListNode? = head
-        var p2 = secondHalfStart
-        var result = true
-        while (result && p2 != null) {
-            if (p1?.value != p2.value) result = false
-            p1 = p1!!.next
-            p2 = p2.next
+        var firstHalfNode: ListNode? = head
+        var secondHalfNode = startOfSecondHalfReversed
+        var isPalindrome = true
+        while (isPalindrome && secondHalfNode != null) {
+            if (firstHalfNode?.value != secondHalfNode.value) isPalindrome = false
+            firstHalfNode = firstHalfNode?.next
+            secondHalfNode = secondHalfNode.next
         }
 
-        firstHalfEnd?.next = secondHalfStart?.let { reverseList(it) }
-        return result
+        endOfFirstHalf?.next = startOfSecondHalfReversed?.let { reverseList(it) }
+        return isPalindrome
     }
 
     private fun reverseList(head: ListNode): ListNode? {

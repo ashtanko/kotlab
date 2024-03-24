@@ -41,7 +41,7 @@ abstract class ReorderListTest<out T : ReorderList>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `reorder list test`(head: ListNode?, expected: List<Int>) {
-        strategy.reorderList(head)
+        strategy.invoke(head)
         val actual = head?.toList() ?: emptyList()
         assertThat(actual).containsAll(expected)
     }

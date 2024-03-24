@@ -87,15 +87,15 @@ internal fun removeDuplicates(list: LinkedList) {
     val previousNode = Node(-1)
     previousNode.next = list.head
 
-    var current = previousNode
+    var current: Node? = previousNode
 
-    while (current.next != null) {
-        val next: Node = current.next!!
+    while (current?.next != null) {
+        val next: Node? = current.next
 
-        if (seen.contains(next.data)) {
+        if (seen.contains(next?.data)) {
             current.dropNext()
         } else {
-            seen.add(next.data)
+            seen.add(next?.data ?: 0)
         }
 
         current = next
@@ -103,19 +103,19 @@ internal fun removeDuplicates(list: LinkedList) {
 }
 
 internal fun getKthToLast(list: LinkedList, k: Int): Int {
-    var trailingNode = list.head
-    var leadingNode = list.head
+    var trailingNode: Node? = list.head
+    var leadingNode: Node? = list.head
 
     for (i in 0 until k) {
-        leadingNode = leadingNode.next!!
+        leadingNode = leadingNode?.next
     }
 
-    while (leadingNode.next != null) {
-        leadingNode = leadingNode.next!!
-        trailingNode = trailingNode.next!!
+    while (leadingNode?.next != null) {
+        leadingNode = leadingNode.next
+        trailingNode = trailingNode?.next
     }
 
-    return trailingNode.data
+    return trailingNode?.data ?: 0
 }
 
 internal fun deleteCurrentNodeValue(node: Node) {
@@ -283,15 +283,15 @@ internal fun detectLoop(list: LinkedList): Node? {
     var fast: Node? = list.head
 
     while (fast?.next != null) {
-        slow = slow!!.next
-        fast = fast.next!!.next
+        slow = slow?.next
+        fast = fast.next?.next
 
         if (slow == fast) {
             slow = list.head
 
             while (slow != fast) {
-                slow = slow!!.next
-                fast = fast!!.next
+                slow = slow?.next
+                fast = fast?.next
             }
 
             return fast

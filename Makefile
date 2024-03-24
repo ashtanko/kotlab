@@ -1,4 +1,4 @@
-.PHONY: check run test lines md default jacoco spotless kover diktat
+.PHONY: check run test lines md default jacoco spotless kover diktat cloc
 
 # Run detekt + ktlint
 check:
@@ -31,6 +31,9 @@ test:
 # Print Kotlin lines count
 lines:
 	find . -name '*.kt' | xargs wc -l
+
+cloc:
+	cloc --include-lang=kotlin src
 
 kover:
 	./gradlew koverHtmlReport

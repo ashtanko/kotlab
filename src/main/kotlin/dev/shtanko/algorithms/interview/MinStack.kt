@@ -31,12 +31,12 @@ internal class MinStack {
     }
 
     fun pop(): Int {
-        val top = this.top!!
+        val top = this.top ?: throw IllegalStateException("Stack is empty")
         this.top = top.next
         return top.value
     }
 
     fun min(): Int {
-        return top!!.subStackMin
+        return top?.subStackMin ?: 0
     }
 }

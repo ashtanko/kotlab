@@ -32,7 +32,7 @@ class BinaryTreeNode(
         right?.parent = this
     }
 
-    fun isRightChild(): Boolean = this.parent!!.right == this
+    fun isRightChild(): Boolean = this.parent?.right == this
 }
 
 class TreeTraversal : TreeTraversalStrategy {
@@ -47,11 +47,11 @@ class TreeTraversal : TreeTraversalStrategy {
             if (right != null) {
                 node = getLeftmost(right)
             } else {
-                while (node!!.parent != null && node.isRightChild()) {
+                while (node?.parent != null && node.isRightChild()) {
                     node = node.parent
                 }
 
-                node = node.parent
+                node = node?.parent
             }
         }
         return list
@@ -76,11 +76,11 @@ class TreeTraversal : TreeTraversalStrategy {
     }
 
     private fun getLeftmost(startingNode: BinaryTreeNode): BinaryTreeNode {
-        var node = startingNode
-        while (node.left != null) {
-            node = node.left!!
+        var node: BinaryTreeNode? = startingNode
+        while (node?.left != null) {
+            node = node.left
         }
 
-        return node
+        return node ?: startingNode
     }
 }
