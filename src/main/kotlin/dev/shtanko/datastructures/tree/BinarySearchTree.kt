@@ -231,10 +231,12 @@ class BinarySearchTree<K : Comparable<K>, V> : Map<K, V> {
                 if (x.left == null) return x.right
                 if (x.right == null) return x.left
                 val tmp = x
-                pollMin(tmp.right)?.let {
-                    x = it
-                    x.right = pollMax(it)
-                    x.left = tmp.left
+                tmp.right?.let {
+                    pollMin(it)?.let {
+                        x = it
+                        x.right = pollMax(it)
+                        x.left = tmp.left
+                    }
                 }
                 x = pollMin(tmp.right!!)!!
                 x.right = min(tmp.right)
