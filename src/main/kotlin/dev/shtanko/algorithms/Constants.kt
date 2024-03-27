@@ -22,6 +22,7 @@ const val HEXADECIMAL = 16
 const val SHUFFLE_CONST = 0xFFFF
 const val MOD = 1_000_000_007
 const val E_9 = 1e9
+const val NANO = 1e-9
 const val BYTE = 1024
 const val HALF_OF_BYTE = 256
 const val MILLISECOND = 1000L
