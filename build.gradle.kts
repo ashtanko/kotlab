@@ -262,11 +262,13 @@ tasks {
 
 dependencies {
     libs.apply {
-        implementation(kotlin.stdlib)
-        implementation(kotlin.reflect)
-        implementation(kotlin.coroutines)
-        implementation(kotlin.coroutines.slf4j)
-        implementation(kotlin.coroutines.debug)
+        kotlin.apply {
+            implementation(stdlib)
+            implementation(reflect)
+            implementation(coroutines)
+            implementation(coroutines.slf4j)
+            implementation(coroutines.debug)
+        }
         implementation(slf4j)
         implementation(rxjava)
         implementation(rxkotlin)

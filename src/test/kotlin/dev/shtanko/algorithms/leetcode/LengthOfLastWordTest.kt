@@ -24,6 +24,7 @@ class LengthOfLastWordTest : ShouldSpec(
 
         val testCases = listOf(
             "Hello World" to 5,
+            "1" to 1,
             " " to 0,
         )
         for (testCase in testCases) {
