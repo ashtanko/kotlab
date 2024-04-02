@@ -24,20 +24,23 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class IsomorphicStringsTest {
+abstract class IsomorphicStringsTest<out T : IsomorphicStrings>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "egg" to "add",
+                "egg",
+                "add",
                 true,
             ),
             Arguments.of(
-                "foo" to "bar",
+                "foo",
+                "bar",
                 false,
             ),
             Arguments.of(
-                "paper" to "title",
+                "paper",
+                "title",
                 true,
             ),
         )
@@ -45,8 +48,10 @@ class IsomorphicStringsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is isomorphic test`(data: Pair<String, String>, expected: Boolean) {
-        val actual = data.isIsomorphic()
+    fun `is isomorphic test`(str: String, target: String, expected: Boolean) {
+        val actual = strategy(str, target)
         assertEquals(expected, actual)
     }
 }
+
+class IsomorphicStringsOneLineTest : IsomorphicStringsTest<IsomorphicStringsOneLine>(IsomorphicStringsOneLine())
