@@ -16,31 +16,38 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth?ref=badge_shield&issueType=license)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.21-blue.svg)](http://kotlinlang.org/)
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
 # detekt
 
 ## Metrics
 
-* 11,203 number of properties
+* 11,206 number of properties
 
-* 7,750 number of functions
+* 7,751 number of functions
 
-* 7,160 number of classes
+* 7,163 number of classes
 
 * 163 number of packages
 
-* 2,697 number of kt files
+* 2,698 number of kt files
 
 ## Complexity Report
 
-* 184,699 lines of code (loc)
+* 184,735 lines of code (loc)
 
-* 113,121 source lines of code (sloc)
+* 113,136 source lines of code (sloc)
 
-* 80,500 logical lines of code (lloc)
+* 80,511 logical lines of code (lloc)
 
-* 50,864 comment lines of code (cloc)
+* 50,879 comment lines of code (cloc)
 
-* 19,008 cyclomatic complexity (mcc)
+* 19,009 cyclomatic complexity (mcc)
 
 * 16,528 cognitive complexity
 
@@ -54,4 +61,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.23.5](https://detekt.dev/) on 2024-04-02 23:10:06 UTC
+generated with [detekt version 1.23.5](https://detekt.dev/) on 2024-04-03 14:42:18 UTC

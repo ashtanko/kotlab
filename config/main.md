@@ -16,3 +16,10 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Falgorithms-in-depth?ref=badge_shield&issueType=license)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.21-blue.svg)](http://kotlinlang.org/)
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
