@@ -17,6 +17,7 @@
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.21-blue.svg)](http://kotlinlang.org/)
 
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
@@ -28,25 +29,25 @@
 
 * 11,206 number of properties
 
-* 7,751 number of functions
+* 7,752 number of functions
 
-* 7,163 number of classes
+* 7,164 number of classes
 
 * 163 number of packages
 
-* 2,698 number of kt files
+* 2,699 number of kt files
 
 ## Complexity Report
 
-* 184,735 lines of code (loc)
+* 184,779 lines of code (loc)
 
-* 113,136 source lines of code (sloc)
+* 113,159 source lines of code (sloc)
 
-* 80,511 logical lines of code (lloc)
+* 80,530 logical lines of code (lloc)
 
-* 50,879 comment lines of code (cloc)
+* 50,895 comment lines of code (cloc)
 
-* 19,009 cyclomatic complexity (mcc)
+* 19,010 cyclomatic complexity (mcc)
 
 * 16,528 cognitive complexity
 
@@ -60,4 +61,4 @@
 
 ## Findings (0)
 
-generated with [detekt version 1.23.5](https://detekt.dev/) on 2024-04-03 14:42:18 UTC
+generated with [detekt version 1.23.5](https://detekt.dev/) on 2024-04-05 09:47:45 UTC

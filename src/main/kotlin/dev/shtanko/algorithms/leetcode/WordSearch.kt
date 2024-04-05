@@ -23,15 +23,15 @@ import dev.shtanko.algorithms.HALF_OF_BYTE
  * @see <a href="https://leetcode.com/problems/word-search/">Source</a>
  */
 fun interface WordSearch {
-    fun exist(board: Array<CharArray>, word: String): Boolean
+    operator fun invoke(board: Array<CharArray>, word: String): Boolean
 }
 
 class WordSearchShort : WordSearch {
-    override fun exist(board: Array<CharArray>, word: String): Boolean {
-        val w = word.toCharArray()
+    override fun invoke(board: Array<CharArray>, word: String): Boolean {
+        val chars = word.toCharArray()
         for (y in board.indices) {
             for (x in 0 until board[y].size) {
-                if (exist(board, y, x, w, 0)) {
+                if (exist(board, y, x, chars, 0)) {
                     return true
                 }
             }

@@ -54,13 +54,29 @@ abstract class WordSearchTest<out T : WordSearch>(private val strategy: T) {
                 "ABCB",
                 false,
             ),
+            Arguments.of(
+                arrayOf(
+                    charArrayOf(),
+                ),
+                "ABCB",
+                false,
+            ),
+            Arguments.of(
+                arrayOf(
+                    charArrayOf('A', 'B', 'C', 'E'),
+                    charArrayOf('S', 'F', 'C', 'S'),
+                    charArrayOf('A', 'D', 'E', 'E'),
+                ),
+                "",
+                true,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `exist test`(board: Array<CharArray>, word: String, expected: Boolean) {
-        val actual = strategy.exist(board, word)
+        val actual = strategy.invoke(board, word)
         assertThat(actual).isEqualTo(expected)
     }
 }
