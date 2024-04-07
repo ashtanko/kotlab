@@ -70,5 +70,6 @@ class ValidParenthesisStringBruteForceTest :
     ValidParenthesisStringTest<ValidParenthesisString>(ValidParenthesisStringBruteForce())
 
 class ValidParenthesisStringDPTest : ValidParenthesisStringTest<ValidParenthesisString>(ValidParenthesisStringDP())
+
 class ValidParenthesisStringGreedyTest :
     ValidParenthesisStringTest<ValidParenthesisString>(ValidParenthesisStringGreedy())
