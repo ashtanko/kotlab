@@ -53,6 +53,13 @@ jacoco {
     toolVersion = "0.8.11"
 }
 
+sonarqube {
+    properties {
+        property("sonar.projectKey", "ashtanko_kotlab")
+        property("sonar.organization", "ashtanko")
+    }
+}
+
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.kotlin.link") }
