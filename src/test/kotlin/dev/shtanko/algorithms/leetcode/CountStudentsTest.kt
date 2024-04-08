@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class CountStudentsTest {
+abstract class CountStudentsTest<out T : CountStudents>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -38,13 +38,24 @@ class CountStudentsTest {
                 intArrayOf(1, 0, 0, 0, 1, 1),
                 3,
             ),
+            Arguments.of(
+                intArrayOf(),
+                intArrayOf(),
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count students test`(students: IntArray, sandwiches: IntArray, expected: Int) {
-        val actual = countStudents(students, sandwiches)
+        val actual = strategy(students, sandwiches)
         assertThat(actual).isEqualTo(expected)
     }
 }
+
+class CountStudentsStackTest : CountStudentsTest<CountStudentsStack>(CountStudentsStack())
+
+class CountStudentsCountingTest : CountStudentsTest<CountStudentsCounting>(CountStudentsCounting())
+
+class CountStudentsArrayTest : CountStudentsTest<CountStudentsArray>(CountStudentsArray())
