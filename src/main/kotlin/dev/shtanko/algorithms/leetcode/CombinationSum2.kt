@@ -115,3 +115,31 @@ class BacktrackingWithIndex : CombinationSum2 {
         }
     }
 }
+
+class CombinationSum2Compact : CombinationSum2 {
+    override fun invoke(candidates: IntArray, target: Int): List<List<Int>> {
+        val res = mutableListOf<List<Int>>()
+        val root = TreeNode(target)
+        fun helper(
+            candidates: IntArray,
+            node: TreeNode,
+        ): List<List<Int>> {
+            if (node.target == 0) {
+                res.add(node.path)
+                return res
+            }
+
+            for (i in node.startIndex until candidates.size) {
+                val currentNum = candidates[i]
+                val remainingTarget = node.target - currentNum
+                if (remainingTarget < 0) break
+                val child = TreeNode(remainingTarget, i + 1, node.path + currentNum)
+                helper(candidates, child)
+            }
+            return res
+        }
+        return helper(candidates.sorted().toIntArray(), root).toSet().toList()
+    }
+
+    data class TreeNode(val target: Int, val startIndex: Int = 0, val path: List<Int> = emptyList())
+}
