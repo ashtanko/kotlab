@@ -41,6 +41,19 @@ abstract class FindLeavesTest<out T : FindLeaves>(private val strategy: T) {
                 },
                 listOf(listOf(4, 5, 3), listOf(2), listOf(1)),
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(5)
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7)
+                    }
+                },
+                listOf(listOf(4, 5, 6, 7), listOf(2, 3), listOf(1)),
+            ),
         )
     }
 

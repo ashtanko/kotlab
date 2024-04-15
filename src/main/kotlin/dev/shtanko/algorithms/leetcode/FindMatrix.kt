@@ -26,6 +26,9 @@ fun interface FindMatrix {
 
 class FrequencyCounter : FindMatrix {
     override fun invoke(nums: IntArray): List<List<Int>> {
+        if (nums.isEmpty()) {
+            return emptyList()
+        }
         val freq = nums.groupBy { it }
             .mapValues { it.value.toMutableList() }
         return buildList {

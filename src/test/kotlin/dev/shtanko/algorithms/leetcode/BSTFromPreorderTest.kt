@@ -42,7 +42,7 @@ abstract class BSTFromPreorderTest<out T : BSTFromPreorder>(private val strategy
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `bst from preorder test`(preorder: IntArray, expected: List<Int>) {
         val actual = strategy.invoke(preorder)
-        println(actual?.prettyPrinted())
+        println(actual?.prettyPrint())
         assertThat(actual.preorderTraversal()).isEqualTo(expected)
     }
 }

@@ -39,6 +39,22 @@ abstract class DistantBarcodesTest<out T : DistantBarcodes>(private val strategy
                 intArrayOf(),
                 intArrayOf(),
             ),
+            Arguments.of(
+                intArrayOf(1),
+                intArrayOf(1),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2),
+                intArrayOf(1, 2, 1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 2, 2, 3),
+                intArrayOf(1, 3, 1, 2, 1, 2),
+            ),
         )
     }
 

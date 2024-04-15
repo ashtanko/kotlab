@@ -35,13 +35,49 @@ internal class SquareRootTest {
                 4L,
                 2L,
             ),
+            Arguments.of(
+                9L,
+                3L,
+            ),
+            Arguments.of(
+                16L,
+                4L,
+            ),
+            Arguments.of(
+                25L,
+                5L,
+            ),
+            Arguments.of(
+                36L,
+                6L,
+            ),
+            Arguments.of(
+                49L,
+                7L,
+            ),
+            Arguments.of(
+                64L,
+                8L,
+            ),
+            Arguments.of(
+                81L,
+                9L,
+            ),
+            Arguments.of(
+                100L,
+                10L,
+            ),
+            Arguments.of(
+                121L,
+                11L,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `square root test`(n: Long, expected: Long) {
-        val actual = SquareRoot.perform(n)
+    internal fun `square root test`(num: Long, expected: Long) {
+        val actual = SquareRoot.perform(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

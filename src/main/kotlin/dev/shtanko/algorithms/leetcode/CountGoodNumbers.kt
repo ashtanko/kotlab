@@ -23,13 +23,13 @@ import dev.shtanko.algorithms.MOD
  * @see <a href="https://leetcode.com/problems/count-good-numbers">Source</a>
  */
 fun interface CountGoodNumbers {
-    operator fun invoke(n: Long): Int
+    operator fun invoke(num: Long): Int
 }
 
 class CountGoodNumbersImpl : CountGoodNumbers {
-    override fun invoke(n: Long): Int {
-        return powerMod(5, n.plus(1).div(2), MOD).times(
-            powerMod(4, n / 2, MOD),
+    override fun invoke(num: Long): Int {
+        return powerMod(5, num.plus(1).div(2), MOD).times(
+            powerMod(4, num / 2, MOD),
         ).mod(MOD)
     }
 

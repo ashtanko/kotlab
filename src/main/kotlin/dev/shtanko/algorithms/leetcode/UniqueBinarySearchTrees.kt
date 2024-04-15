@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/unique-binary-search-trees/">Source</a>
  */
 fun interface UniqueBinarySearchTrees {
-    operator fun invoke(n: Int): Int
+    operator fun invoke(numberOfNodes: Int): Int
 }
 
 /**
@@ -30,17 +30,19 @@ fun interface UniqueBinarySearchTrees {
  * Space complexity O(N)
  */
 class UniqueBSTDP : UniqueBinarySearchTrees {
-    override fun invoke(n: Int): Int {
-        val g = IntArray(n + 1)
-        g[0] = 1
-        g[1] = 1
+    override fun invoke(numberOfNodes: Int): Int {
+        val numberOfTrees = IntArray(numberOfNodes + 1)
+        numberOfTrees[0] = 1
+        if (numberOfNodes > 0) {
+            numberOfTrees[1] = 1
+        }
 
-        for (i in 2..n) {
-            for (j in 1..i) {
-                g[i] += g[j - 1] * g[i - j]
+        for (currentNode in 2..numberOfNodes) {
+            for (rootNode in 1..currentNode) {
+                numberOfTrees[currentNode] += numberOfTrees[rootNode - 1] * numberOfTrees[currentNode - rootNode]
             }
         }
-        return g[n]
+        return numberOfTrees[numberOfNodes]
     }
 }
 
@@ -50,12 +52,12 @@ class UniqueBSTDP : UniqueBinarySearchTrees {
  * Space complexity : O(1)
  */
 class UniqueBSTDeduction : UniqueBinarySearchTrees {
-    override fun invoke(n: Int): Int {
+    override fun invoke(numberOfNodes: Int): Int {
         // Note: we should use long here instead of int, otherwise overflow
-        var c: Long = 1
-        for (i in 0 until n) {
-            c = c * 2 * (2 * i + 1) / (i + 2)
+        var catalanNumber: Long = 1
+        for (index in 0 until numberOfNodes) {
+            catalanNumber = catalanNumber * 2 * (2 * index + 1) / (index + 2)
         }
-        return c.toInt()
+        return catalanNumber.toInt()
     }
 }

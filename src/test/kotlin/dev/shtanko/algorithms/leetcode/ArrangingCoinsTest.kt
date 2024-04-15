@@ -34,6 +34,8 @@ abstract class ArrangingCoinsTest<out T : ArrangingCoinsStrategy>(private val st
             Arguments.of(999, 44),
             Arguments.of(5, 2),
             Arguments.of(8, 3),
+            Arguments.of(3, 2),
+            Arguments.of(2, 1),
         )
     }
 

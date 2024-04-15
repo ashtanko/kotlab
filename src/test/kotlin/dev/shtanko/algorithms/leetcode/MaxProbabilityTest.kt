@@ -57,14 +57,14 @@ abstract class MaxProbabilityTest<out T : MaxProbability>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max probability test`(
-        n: Int,
+        num: Int,
         edges: Array<IntArray>,
         succProb: DoubleArray,
         start: Int,
         end: Int,
         expected: Double,
     ) {
-        val actual = strategy.invoke(n, edges, succProb, start, end)
+        val actual = strategy.invoke(num, edges, succProb, start, end)
         assertThat(actual).isEqualTo(expected)
     }
 }

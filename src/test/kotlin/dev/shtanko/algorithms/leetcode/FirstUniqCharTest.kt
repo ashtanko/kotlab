@@ -39,6 +39,46 @@ abstract class FirstUniqCharTest<out T : FirstUniqChar>(private val strategy: T)
                 "aabb",
                 -1,
             ),
+            Arguments.of(
+                "z",
+                0,
+            ),
+            Arguments.of(
+                "aadadaad",
+                -1,
+            ),
+            Arguments.of(
+                "dddccdbba",
+                8,
+            ),
+            Arguments.of(
+                "dddccdbbaa",
+                -1,
+            ),
+            Arguments.of(
+                "",
+                -1,
+            ),
+            Arguments.of(
+                "a",
+                0,
+            ),
+            Arguments.of(
+                "aa",
+                -1,
+            ),
+            Arguments.of(
+                "ab",
+                0,
+            ),
+            Arguments.of(
+                "abc",
+                0,
+            ),
+            Arguments.of(
+                "abcabc",
+                -1,
+            ),
         )
     }
 

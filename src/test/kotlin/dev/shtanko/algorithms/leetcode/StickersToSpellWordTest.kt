@@ -37,6 +37,31 @@ abstract class StickersToSpellWordTest<out T : StickersToSpellWord>(private val 
                 "basicbasic",
                 -1,
             ),
+            Arguments.of(
+                arrayOf("notice", "possible"),
+                "basic",
+                -1,
+            ),
+            Arguments.of(
+                arrayOf("with", "example", "science"),
+                "thehat",
+                3,
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                "",
+                0,
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                "a",
+                -1,
+            ),
+            Arguments.of(
+                arrayOf("a"),
+                "a",
+                1,
+            ),
         )
     }
 

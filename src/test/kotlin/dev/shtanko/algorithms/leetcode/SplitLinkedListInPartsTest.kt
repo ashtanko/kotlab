@@ -47,6 +47,35 @@ abstract class SplitLinkedListInPartsTest<out T : SplitLinkedListInParts>(privat
                     listOf(8, 9, 10).toNullableListNode(),
                 ),
             ),
+            Arguments.of(
+                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toNullableListNode(),
+                7,
+                arrayOf(
+                    listOf(1, 2).toNullableListNode(),
+                    listOf(3, 4).toNullableListNode(),
+                    listOf(5, 6).toNullableListNode(),
+                    listOf(7).toNullableListNode(),
+                    listOf(8).toNullableListNode(),
+                    listOf(9).toNullableListNode(),
+                    listOf(10).toNullableListNode(),
+                ),
+            ),
+            Arguments.of(
+                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toNullableListNode(),
+                1,
+                arrayOf(
+                    listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).toNullableListNode(),
+                ),
+            ),
+            Arguments.of(
+                listOf<Int>().toNullableListNode(),
+                3,
+                arrayOf(
+                    listOf<Int>().toNullableListNode(),
+                    listOf<Int>().toNullableListNode(),
+                    listOf<Int>().toNullableListNode(),
+                ),
+            ),
         )
     }
 

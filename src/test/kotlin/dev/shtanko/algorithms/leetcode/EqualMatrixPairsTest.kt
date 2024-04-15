@@ -44,13 +44,22 @@ abstract class EqualMatrixPairsTest<out T : EqualMatrixPairs>(private val strate
                 ),
                 3,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2, 3, 4),
+                    intArrayOf(1, 2, 3, 4),
+                    intArrayOf(1, 2, 3, 4),
+                    intArrayOf(1, 2, 3, 4),
+                ),
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `equal pairs test`(grid: Array<IntArray>, expected: Int) {
-        val actual = strategy.equalPairs(grid)
+        val actual = strategy.invoke(grid)
         assertThat(actual).isEqualTo(expected)
     }
 }

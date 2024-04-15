@@ -39,13 +39,29 @@ abstract class BulbSwitcherTest<out T : BulbSwitcher>(private val strategy: T) {
                 1,
                 1,
             ),
+            Arguments.of(
+                999999,
+                999,
+            ),
+            Arguments.of(
+                999998,
+                999,
+            ),
+            Arguments.of(
+                999997,
+                999,
+            ),
+            Arguments.of(
+                999996,
+                999,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `bulb switch test`(n: Int, expected: Int) {
-        val actual = strategy.bulbSwitch(n)
+    fun `bulb switch test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -20,11 +20,27 @@ import java.util.LinkedList
 import java.util.Queue
 import java.util.Stack
 
+/**
+ * Functional interface for the strategy to calculate the sum of left leaves in a binary tree.
+ */
 fun interface SumOfLeftLeavesStrategy {
+    /**
+     * Calculates the sum of left leaves in a binary tree.
+     * @param root The root node of the binary tree.
+     * @return The sum of left leaves.
+     */
     operator fun invoke(root: TreeNode?): Int
 }
 
+/**
+ * Implementation of SumOfLeftLeavesStrategy using an iterative approach.
+ */
 class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
+    /**
+     * Calculates the sum of left leaves in a binary tree using an iterative approach.
+     * @param root The root node of the binary tree.
+     * @return The sum of left leaves.
+     */
     override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
         var ans = 0
@@ -48,7 +64,15 @@ class SumOfLeftLeavesIterative : SumOfLeftLeavesStrategy {
     }
 }
 
+/**
+ * Implementation of SumOfLeftLeavesStrategy using a recursive approach.
+ */
 class SumOfLeftLeavesRecursive : SumOfLeftLeavesStrategy {
+    /**
+     * Calculates the sum of left leaves in a binary tree using a recursive approach.
+     * @param root The root node of the binary tree.
+     * @return The sum of left leaves.
+     */
     override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
         var ans = 0
@@ -64,7 +88,15 @@ class SumOfLeftLeavesRecursive : SumOfLeftLeavesStrategy {
     }
 }
 
+/**
+ * Implementation of SumOfLeftLeavesStrategy using a breadth-first search (BFS) approach.
+ */
 class SumOfLeftLeavesBSF : SumOfLeftLeavesStrategy {
+    /**
+     * Calculates the sum of left leaves in a binary tree using a breadth-first search (BFS) approach.
+     * @param root The root node of the binary tree.
+     * @return The sum of left leaves.
+     */
     override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
 

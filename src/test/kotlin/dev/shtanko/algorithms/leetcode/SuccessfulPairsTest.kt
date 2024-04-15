@@ -39,6 +39,18 @@ abstract class SuccessfulPairsTest<out T : SuccessfulPairs>(private val strategy
                 16,
                 intArrayOf(2, 0, 2),
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                intArrayOf(1, 2, 3),
+                2,
+                intArrayOf(2, 2, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                intArrayOf(1, 2, 3),
+                3,
+                intArrayOf(1, 1, 1),
+            ),
         )
     }
 

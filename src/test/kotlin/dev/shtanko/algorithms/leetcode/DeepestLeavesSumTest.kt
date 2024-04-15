@@ -43,6 +43,47 @@ abstract class DeepestLeavesSumTest<out T : DeepestLeavesSum>(private val strate
                 },
                 15,
             ),
+            Arguments.of(
+                TreeNode(6).apply {
+                    left = TreeNode(7).apply {
+                        left = TreeNode(2).apply {
+                            left = TreeNode(9)
+                        }
+                        right = TreeNode(7).apply {
+                            left = TreeNode(1)
+                            right = TreeNode(4)
+                        }
+                    }
+                    right = TreeNode(8).apply {
+                        left = TreeNode(1)
+                        right = TreeNode(3).apply {
+                            right = TreeNode(5)
+                        }
+                    }
+                },
+                19,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4).apply {
+                                left = TreeNode(5)
+                            }
+                            right = TreeNode(6)
+                        }
+                        right = TreeNode(7).apply {
+                            right = TreeNode(8).apply {
+                                right = TreeNode(9).apply {
+                                    right = TreeNode(10)
+                                }
+                            }
+                        }
+                    }
+                    right = TreeNode(2)
+                },
+                10,
+            ),
         )
     }
 

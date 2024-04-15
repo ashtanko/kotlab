@@ -44,6 +44,51 @@ abstract class AverageOfSubtreeTest<out T : AverageOfSubtree>(private val strate
                 TreeNode(1),
                 1,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(5)
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7)
+                    }
+                },
+                4,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4).apply {
+                            left = TreeNode(8)
+                            right = TreeNode(9)
+                        }
+                        right = TreeNode(5).apply {
+                            left = TreeNode(10)
+                            right = TreeNode(11)
+                        }
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6).apply {
+                            left = TreeNode(12)
+                            right = TreeNode(13)
+                        }
+                        right = TreeNode(7).apply {
+                            left = TreeNode(14)
+                            right = TreeNode(15)
+                        }
+                    }
+                },
+                8,
+            ),
         )
     }
 

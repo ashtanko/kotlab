@@ -37,6 +37,26 @@ abstract class TargetSumTest<out T : TargetSum>(private val strategy: T) {
                 1,
                 1,
             ),
+            Arguments.of(
+                intArrayOf(1, 1),
+                2,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1),
+                0,
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                3,
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                5,
+                1,
+            ),
         )
     }
 

@@ -130,8 +130,8 @@ internal class PerformanceTest {
 
     @ParameterizedTest
     @ArgumentsSource(SlowScopeStrategiesInputArgumentsProvider::class)
-    internal fun `slow strategies performance test`(n: Int, expected: Boolean) {
-        val arr = n.generateRandomArray().toTypedArray()
+    internal fun `slow strategies performance test`(num: Int, expected: Boolean) {
+        val arr = num.generateRandomArray().toTypedArray()
         val fastStrategies = listOf(
             BubbleSort(),
             SimpleBubbleSort(),
@@ -148,8 +148,8 @@ internal class PerformanceTest {
 
     @ParameterizedTest
     @ArgumentsSource(FastScopeStrategiesInputArgumentsProvider::class)
-    internal fun `fast strategies performance test`(n: Int, expected: Boolean) {
-        val arr = n.generateRandomArray().toTypedArray()
+    internal fun `fast strategies performance test`(num: Int, expected: Boolean) {
+        val arr = num.generateRandomArray().toTypedArray()
         val fastStrategies = listOf(
             MergeSort(),
             QuickSort(),

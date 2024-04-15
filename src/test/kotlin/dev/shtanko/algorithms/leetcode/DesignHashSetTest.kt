@@ -53,10 +53,10 @@ class DesignHashSetTest {
     @ArgumentsSource(InputStrategiesProvider::class)
     fun `hash set rehash test`(strategy: DesignHashSet) {
         val hashSet: DesignHashSet = strategy
-        val n = 32 * 3
-        for (i in 0 until n) {
+        val num = 32 * 3
+        for (i in 0 until num) {
             hashSet.add(i)
         }
-        assertTrue(hashSet.contains(n - 1))
+        assertTrue(hashSet.contains(num - 1))
     }
 }

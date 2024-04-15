@@ -31,13 +31,25 @@ abstract class TotalCostTest<out T : TotalCost>(private val strategy: T) {
                 intArrayOf(17, 12, 10, 2, 7, 2, 11, 20, 8),
                 3,
                 4,
-                11,
+                11L,
             ),
             Arguments.of(
                 intArrayOf(1, 2, 4, 1),
                 3,
                 3,
+                4L,
+            ),
+            Arguments.of(
+                intArrayOf(1, 8, 5, 1, 2, 5, 4, 1, 7, 6),
+                3,
                 4,
+                3L,
+            ),
+            Arguments.of(
+                intArrayOf(1, 3, 1, 2, 5, 1, 2, 4, 1, 1, 1),
+                4,
+                3,
+                4L,
             ),
         )
     }

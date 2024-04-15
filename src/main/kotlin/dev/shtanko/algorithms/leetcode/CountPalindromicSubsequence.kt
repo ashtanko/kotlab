@@ -23,7 +23,7 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
  * @see <a href="https://leetcode.com/problems/unique-length-3-palindromic-subsequences">Source</a>
  */
 fun interface CountPalindromicSubsequence {
-    operator fun invoke(s: String): Int
+    operator fun invoke(str: String): Int
 }
 
 sealed interface CountPalindromicStrategy {
@@ -32,9 +32,9 @@ sealed interface CountPalindromicStrategy {
      * Approach 1: Count Letters In-Between
      */
     data object CountLetters : CountPalindromicSubsequence, CountPalindromicStrategy {
-        override fun invoke(s: String): Int {
+        override fun invoke(str: String): Int {
             val letters: MutableSet<Char> = HashSet()
-            for (c in s.toCharArray()) {
+            for (c in str.toCharArray()) {
                 letters.add(c)
             }
 
@@ -42,8 +42,8 @@ sealed interface CountPalindromicStrategy {
             for (letter in letters) {
                 var i = -1
                 var j = 0
-                for (k in s.indices) {
-                    if (s[k] == letter) {
+                for (k in str.indices) {
+                    if (str[k] == letter) {
                         if (i == -1) {
                             i = k
                         }
@@ -52,7 +52,7 @@ sealed interface CountPalindromicStrategy {
                 }
                 val between: MutableSet<Char> = HashSet()
                 for (k in i + 1 until j) {
-                    between.add(s[k])
+                    between.add(str[k])
                 }
                 ans += between.size
             }
@@ -65,12 +65,12 @@ sealed interface CountPalindromicStrategy {
      * Approach 2: Pre-Compute First and Last Indices
      */
     data object PreComputeFirstAndLastIndices : CountPalindromicSubsequence, CountPalindromicStrategy {
-        override fun invoke(s: String): Int {
+        override fun invoke(str: String): Int {
             val first = IntArray(ALPHABET_LETTERS_COUNT) { -1 }
             val last = IntArray(ALPHABET_LETTERS_COUNT)
 
-            for (i in s.indices) {
-                val curr: Int = s[i] - 'a'
+            for (i in str.indices) {
+                val curr: Int = str[i] - 'a'
                 if (first[curr] == -1) {
                     first[curr] = i
                 }
@@ -84,7 +84,7 @@ sealed interface CountPalindromicStrategy {
                 }
                 val between: MutableSet<Char> = HashSet()
                 for (j in first[i] + 1 until last[i]) {
-                    between.add(s[j])
+                    between.add(str[j])
                 }
                 ans += between.size
             }

@@ -49,6 +49,10 @@ abstract class AbstractDecodeWays2StrategyTest<out T : DecodeWays2Strategy>(priv
             Arguments.of("*6", 11),
             Arguments.of("*7", 10),
             Arguments.of("3*7", 10),
+            Arguments.of("1*7", 19),
+            Arguments.of("2*7", 16),
+            Arguments.of("2*6", 17),
+            Arguments.of("2*9", 16),
         )
     }
 

@@ -23,7 +23,7 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/count-binary-substrings">Source</a>
  */
 fun interface CountBinarySubstrings {
-    operator fun invoke(s: String): Int
+    operator fun invoke(str: String): Int
 }
 
 /**
@@ -32,12 +32,15 @@ fun interface CountBinarySubstrings {
  * Space Complexity: O(N)
  */
 class GroupByCharacter : CountBinarySubstrings {
-    override operator fun invoke(s: String): Int {
-        val groups = IntArray(s.length)
+    override operator fun invoke(str: String): Int {
+        if (str.isEmpty()) {
+            return 0
+        }
+        val groups = IntArray(str.length)
         var t = 0
         groups[0] = 1
-        for (i in 1 until s.length) {
-            if (s[i - 1] != s[i]) {
+        for (i in 1 until str.length) {
+            if (str[i - 1] != str[i]) {
                 groups[++t] = 1
             } else {
                 groups[t]++
@@ -58,12 +61,12 @@ class GroupByCharacter : CountBinarySubstrings {
  * Space Complexity: O(1)
  */
 class CBSLinearScan : CountBinarySubstrings {
-    override operator fun invoke(s: String): Int {
+    override operator fun invoke(str: String): Int {
         var ans = 0
         var prev = 0
         var cur = 1
-        for (i in 1 until s.length) {
-            if (s[i - 1] != s[i]) {
+        for (i in 1 until str.length) {
+            if (str[i - 1] != str[i]) {
                 ans += min(prev, cur)
                 prev = cur
                 cur = 1

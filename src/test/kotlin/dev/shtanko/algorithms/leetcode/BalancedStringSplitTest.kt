@@ -39,6 +39,12 @@ class BalancedStringSplitTest {
             Arguments.of("RRRLLL", 1),
             Arguments.of("RRRRRRLLL", 0),
             Arguments.of("A", 0),
+            Arguments.of("AB", 0),
+            Arguments.of("ABAB", 0),
+            Arguments.of("ABABAB", 0),
+            Arguments.of("ABABABAB", 0),
+            Arguments.of("ABABABABAB", 0),
+            Arguments.of("ABABABABABAB", 0),
         )
     }
 

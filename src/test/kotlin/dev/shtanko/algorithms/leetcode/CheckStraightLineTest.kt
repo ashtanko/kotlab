@@ -49,6 +49,51 @@ abstract class CheckStraightLineTest<out T : CheckStraightLine>(private val stra
                 ),
                 false,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                    intArrayOf(2, 2),
+                ),
+                true,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                    intArrayOf(2, 2),
+                    intArrayOf(3, 3),
+                ),
+                true,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                    intArrayOf(2, 2),
+                    intArrayOf(3, 3),
+                    intArrayOf(4, 4),
+                ),
+                true,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                    intArrayOf(2, 2),
+                    intArrayOf(3, 3),
+                    intArrayOf(4, 4),
+                    intArrayOf(5, 5),
+                ),
+                true,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                    intArrayOf(2, 2),
+                    intArrayOf(3, 3),
+                    intArrayOf(4, 4),
+                    intArrayOf(5, 5),
+                    intArrayOf(6, 6),
+                ),
+                true,
+            ),
         )
     }
 

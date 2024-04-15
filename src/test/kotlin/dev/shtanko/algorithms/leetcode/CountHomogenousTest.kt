@@ -39,13 +39,41 @@ abstract class CountHomogenousTest<out T : CountHomogenous>(private val strategy
                 "zzzzz",
                 15,
             ),
+            Arguments.of(
+                "",
+                0,
+            ),
+            Arguments.of(
+                "a",
+                1,
+            ),
+            Arguments.of(
+                "aa",
+                3,
+            ),
+            Arguments.of(
+                "aaa",
+                6,
+            ),
+            Arguments.of(
+                "aaaa",
+                10,
+            ),
+            Arguments.of(
+                "aaaaa",
+                15,
+            ),
+            Arguments.of(
+                "aaaaaa",
+                21,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count homogenous test`(s: String, expected: Int) {
-        val actual = strategy(s)
+    fun `count homogenous test`(str: String, expected: Int) {
+        val actual = strategy(str)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

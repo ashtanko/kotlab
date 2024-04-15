@@ -37,6 +37,16 @@ abstract class AnswerQueriesTest<out T : AnswerQueries>(private val strategy: T)
                 intArrayOf(1),
                 intArrayOf(0),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(0, 1, 2, 3),
+                intArrayOf(0, 1, 1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(0, 1, 2, 3, 4),
+                intArrayOf(0, 1, 1, 2, 2),
+            ),
         )
     }
 

@@ -28,10 +28,36 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 class WaterBottlesTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(9, 3, 13),
-            Arguments.of(15, 4, 19),
-            Arguments.of(5, 5, 6),
-            Arguments.of(2, 3, 2),
+            Arguments.of(
+                9,
+                3,
+                13,
+            ),
+            Arguments.of(
+                15,
+                4,
+                19,
+            ),
+            Arguments.of(
+                5,
+                5,
+                6,
+            ),
+            Arguments.of(
+                2,
+                3,
+                2,
+            ),
+            Arguments.of(
+                15,
+                8,
+                17,
+            ),
+            Arguments.of(
+                15,
+                4,
+                19,
+            ),
         )
     }
 

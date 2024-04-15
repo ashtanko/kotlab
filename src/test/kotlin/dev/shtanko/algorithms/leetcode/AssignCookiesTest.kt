@@ -37,6 +37,26 @@ abstract class AssignCookiesTest<out T : AssignCookies>(private val strategy: T)
                 intArrayOf(1, 2, 3),
                 2,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                intArrayOf(3),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1, 2, 3, 4),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(4, 3, 2, 1),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1, 2, 3, 4),
+                4,
+            ),
         )
     }
 

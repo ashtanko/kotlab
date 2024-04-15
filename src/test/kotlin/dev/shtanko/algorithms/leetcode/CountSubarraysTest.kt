@@ -37,6 +37,21 @@ abstract class CountSubarraysTest<out T : CountSubarrays>(private val strategy: 
                 3,
                 1,
             ),
+            Arguments.of(
+                intArrayOf(2, 1, 4, 3, 2, 1, 1, 1),
+                5,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                1,
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                2,
+                0,
+            ),
         )
     }
 

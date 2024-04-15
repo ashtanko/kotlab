@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/boats-to-save-people/">Source</a>
  */
 fun interface BoatsToSavePeople {
-    fun numRescueBoats(people: IntArray, limit: Int): Int
+    operator fun invoke(people: IntArray, limit: Int): Int
 }
 
 class BoatsToSavePeopleBF : BoatsToSavePeople {
-    override fun numRescueBoats(people: IntArray, limit: Int): Int {
+    override fun invoke(people: IntArray, limit: Int): Int {
         var boatCount = 0
         people.sort()
 

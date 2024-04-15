@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/coin-path/">Source</a>
  */
 fun interface CoinPath {
-    fun cheapestJump(a: IntArray, b: Int): List<Int>
+    operator fun invoke(a: IntArray, b: Int): List<Int>
 }
 
 /**
@@ -30,7 +30,7 @@ fun interface CoinPath {
  * Space complexity : O(n).
  */
 class CoinPathMemo : CoinPath {
-    override fun cheapestJump(a: IntArray, b: Int): List<Int> {
+    override fun invoke(a: IntArray, b: Int): List<Int> {
         val next = IntArray(a.size) { -1 }
         val memo = LongArray(a.size)
         jump(a, b, 0, next, memo)
@@ -72,7 +72,7 @@ class CoinPathMemo : CoinPath {
  * Space complexity : O(n).
  */
 class CoinPathDP : CoinPath {
-    override fun cheapestJump(a: IntArray, b: Int): List<Int> {
+    override fun invoke(a: IntArray, b: Int): List<Int> {
         val next = IntArray(a.size) { -1 }
         val dp = LongArray(a.size)
         val res: MutableList<Int> = ArrayList()

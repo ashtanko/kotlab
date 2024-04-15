@@ -57,6 +57,21 @@ abstract class FindFinalValueTest<out T : FindFinalValue>(private val strategy: 
                 12,
                 48,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10),
+                10,
+                20,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10),
+                1,
+                16,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10),
+                2,
+                16,
+            ),
         )
     }
 

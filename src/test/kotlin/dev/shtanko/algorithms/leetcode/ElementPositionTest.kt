@@ -43,6 +43,26 @@ class ElementPositionTest {
                 intArrayOf(5, 7, 7, 8, 8, 10),
                 intArrayOf(-1, -1),
             ),
+            Arguments.of(
+                10,
+                intArrayOf(5, 7, 7, 8, 8, 10),
+                intArrayOf(5, 5),
+            ),
+            Arguments.of(
+                5,
+                intArrayOf(5, 7, 7, 8, 8, 10),
+                intArrayOf(0, 0),
+            ),
+            Arguments.of(
+                7,
+                intArrayOf(5, 7, 7, 8, 8, 10),
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                8,
+                intArrayOf(5, 7, 7, 8, 8, 10),
+                intArrayOf(3, 4),
+            ),
         )
     }
 

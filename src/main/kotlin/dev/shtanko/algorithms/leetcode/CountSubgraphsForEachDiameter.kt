@@ -23,14 +23,14 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/">Source</a>
  */
 fun interface CountSubgraphsForEachDiameter {
-    operator fun invoke(n: Int, edges: Array<IntArray>): IntArray
+    operator fun invoke(num: Int, edges: Array<IntArray>): IntArray
 }
 
 class CountSubgraphsForEachDiameterDFS : CountSubgraphsForEachDiameter {
 
     private var max = 0
 
-    override operator fun invoke(n: Int, edges: Array<IntArray>): IntArray {
+    override operator fun invoke(num: Int, edges: Array<IntArray>): IntArray {
         val graph: MutableMap<Int, MutableSet<Int>> = HashMap()
         for (edge in edges) {
             graph.computeIfAbsent(
@@ -40,10 +40,10 @@ class CountSubgraphsForEachDiameterDFS : CountSubgraphsForEachDiameter {
                 edge[1],
             ) { HashSet() }.add(edge[0])
         }
-        val ans = IntArray(n - 1)
-        for (bit in 0 until (1 shl n)) {
+        val ans = IntArray(num - 1)
+        for (bit in 0 until (1 shl num)) {
             val subtree: MutableSet<Int?> = HashSet()
-            for (i in 0 until n) if (bit and (1 shl i) != 0) subtree.add(i + 1)
+            for (i in 0 until num) if (bit and (1 shl i) != 0) subtree.add(i + 1)
             var edgeCount = 0
             max = 0
             for (edge in edges) {

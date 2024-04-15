@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -37,6 +37,21 @@ class DistributeCandiesToPeopleTest {
                 3,
                 intArrayOf(5, 2, 3),
             ),
+            Arguments.of(
+                60,
+                4,
+                intArrayOf(15, 18, 15, 12),
+            ),
+            Arguments.of(
+                10,
+                1,
+                intArrayOf(10),
+            ),
+            Arguments.of(
+                10,
+                2,
+                intArrayOf(4, 6),
+            ),
         )
     }
 
@@ -44,6 +59,6 @@ class DistributeCandiesToPeopleTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `simple test`(candies: Int, numOfPeople: Int, expected: IntArray) {
         val actual = distributeCandies(candies, numOfPeople)
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

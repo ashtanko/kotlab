@@ -35,13 +35,33 @@ abstract class CountBinarySubstringsTest<out T : CountBinarySubstrings>(private 
                 "10101",
                 4,
             ),
+            Arguments.of(
+                "00110",
+                3,
+            ),
+            Arguments.of(
+                "00100",
+                2,
+            ),
+            Arguments.of(
+                "0010",
+                2,
+            ),
+            Arguments.of(
+                "001",
+                1,
+            ),
+            Arguments.of(
+                "",
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count binary substrings test`(s: String, expected: Int) {
-        val actual = strategy.invoke(s)
+    fun `count binary substrings test`(str: String, expected: Int) {
+        val actual = strategy.invoke(str)
         assertThat(actual).isEqualTo(expected)
     }
 }

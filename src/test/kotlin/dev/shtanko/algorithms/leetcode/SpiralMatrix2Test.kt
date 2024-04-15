@@ -55,8 +55,8 @@ abstract class SpiralMatrix2Test<out T : SpiralMatrix2>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `generate matrix test`(n: Int, expected: Array<IntArray>) {
-        val actual = strategy.generateMatrix(n)
+    fun `generate matrix test`(num: Int, expected: Array<IntArray>) {
+        val actual = strategy.generateMatrix(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

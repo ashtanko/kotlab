@@ -39,6 +39,30 @@ abstract class CountNicePairsTest<out T : CountNicePairs>(private val strategy: 
                 intArrayOf(),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                10,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1, 1),
+                15,
+            ),
         )
     }
 

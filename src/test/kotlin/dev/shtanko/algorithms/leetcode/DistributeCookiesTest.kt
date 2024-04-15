@@ -37,6 +37,26 @@ abstract class DistributeCookiesTest<out T : DistributeCookies>(private val stra
                 3,
                 7,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                5,
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                1,
+                15,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                10,
+                2147483647,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                0,
+                2147483647,
+            ),
         )
     }
 

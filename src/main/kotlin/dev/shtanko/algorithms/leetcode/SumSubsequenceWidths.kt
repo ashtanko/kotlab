@@ -22,19 +22,21 @@ import dev.shtanko.algorithms.MOD
  * Sum of Subsequence Widths.
  * @see <a href="https://leetcode.com/problems/sum-of-subsequence-widths/">Source</a>
  */
-object SumSubseqWidths {
+object SumSubsequenceWidths {
 
-    operator fun invoke(a: IntArray): Int {
-        val n: Int = a.size
-        a.sort()
+    operator fun invoke(inputArray: IntArray): Int {
+        if (inputArray.isEmpty()) return 0
+        val arraySize: Int = inputArray.size
+        inputArray.sort()
 
-        val pow2 = LongArray(n)
-        pow2[0] = 1
-        for (i in 1 until n) pow2[i] = pow2[i - 1] * 2 % MOD
+        val powerOfTwo = LongArray(arraySize)
+        powerOfTwo[0] = 1
+        for (index in 1 until arraySize) powerOfTwo[index] = powerOfTwo[index - 1] * 2 % MOD
 
-        var ans: Long = 0
-        for (i in 0 until n) ans = (ans + (pow2[i] - pow2[n - 1 - i]) * a[i]) % MOD
+        var result: Long = 0
+        for (index in 0 until arraySize) result =
+            (result + (powerOfTwo[index] - powerOfTwo[arraySize - 1 - index]) * inputArray[index]) % MOD
 
-        return ans.toInt()
+        return result.toInt()
     }
 }

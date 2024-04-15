@@ -44,6 +44,18 @@ abstract class FindPeakElementTest<out T : FindPeakElementStrategy>(private val 
                 intArrayOf(1, 2, 1, 3, 5, 6, 4),
                 5,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                8,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                9,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9),
+                9,
+            ),
         )
     }
 

@@ -37,6 +37,16 @@ abstract class TimeNeededToBuyTicketsTest<out T : TimeNeededToBuyTickets>(privat
                 0,
                 8,
             ),
+            Arguments.of(
+                intArrayOf(4, 1, 2, 1),
+                0,
+                8,
+            ),
+            Arguments.of(
+                intArrayOf(4, 1, 2, 1),
+                1,
+                2,
+            ),
         )
     }
 

@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/combinations/">Source</a>
  */
 fun interface Combinations {
-    fun combine(n: Int, k: Int): List<List<Int>>
+    operator fun invoke(n: Int, k: Int): List<List<Int>>
 }
 
 class CombinationsBacktracking : Combinations {
-    override fun combine(n: Int, k: Int): List<List<Int>> {
+    override fun invoke(n: Int, k: Int): List<List<Int>> {
         val combs: MutableList<List<Int>> = ArrayList()
         combine(combs, ArrayList(), 1, n, k)
         return combs

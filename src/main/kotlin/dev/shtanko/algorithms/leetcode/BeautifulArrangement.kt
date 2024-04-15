@@ -23,7 +23,7 @@ import dev.shtanko.algorithms.extensions.swap
  * 526. Beautiful Arrangement
  */
 fun interface BeautifulArrangement {
-    fun countArrangement(n: Int): Int
+    operator fun invoke(num: Int): Int
 }
 
 /**
@@ -32,9 +32,9 @@ fun interface BeautifulArrangement {
 class BABruteForce : BeautifulArrangement {
     private var count = 0
 
-    override fun countArrangement(n: Int): Int {
-        val nums = IntArray(n)
-        for (i in 1..n) nums[i - 1] = i
+    override fun invoke(num: Int): Int {
+        val nums = IntArray(num)
+        for (i in 1..num) nums[i - 1] = i
         return permute(nums, 0)
     }
 
@@ -59,9 +59,9 @@ class BABruteForce : BeautifulArrangement {
 class BABacktracking : BeautifulArrangement {
     private var count = 0
 
-    override fun countArrangement(n: Int): Int {
-        val visited = BooleanArray(n + 1)
-        calculate(n, 1, visited)
+    override fun invoke(num: Int): Int {
+        val visited = BooleanArray(num + 1)
+        calculate(num, 1, visited)
         return count
     }
 

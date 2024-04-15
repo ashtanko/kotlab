@@ -42,6 +42,26 @@ abstract class AddToArrayFormTest<out T : AddToArrayForm>(private val strategy: 
                 806,
                 listOf(1, 0, 2, 1),
             ),
+            Arguments.of(
+                intArrayOf(9, 9, 9, 9, 9, 9, 9, 9, 9, 9),
+                1,
+                listOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                23,
+                listOf(2, 3),
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                10000,
+                listOf(1, 0, 0, 0, 0),
+            ),
+            Arguments.of(
+                intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                1,
+                listOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+            ),
         )
     }
 

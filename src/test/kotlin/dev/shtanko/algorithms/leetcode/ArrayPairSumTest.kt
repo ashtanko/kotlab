@@ -28,12 +28,46 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 abstract class ArrayPairSumTest<out T : PairSumStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(intArrayOf(), 0),
-            Arguments.of(intArrayOf(1, 4, 3, 2), 4),
-            Arguments.of(intArrayOf(1), 1),
-            Arguments.of(intArrayOf(-1), -1),
-            Arguments.of(intArrayOf(1, 2), 1),
-            Arguments.of(intArrayOf(1, 2, 3), 4),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 4, 3, 2),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(-1),
+                -1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                9,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                9,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7),
+                16,
+            ),
         )
     }
 

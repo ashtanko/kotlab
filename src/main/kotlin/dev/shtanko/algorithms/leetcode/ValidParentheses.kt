@@ -20,21 +20,21 @@ import java.util.Stack
 
 fun String.isValidParentheses(): Boolean {
     val stack = Stack<Char>()
-    for (c in this.toCharArray()) {
+    for (character in this.toCharArray()) {
         when {
-            c == '(' -> {
+            character == '(' -> {
                 stack.push(')')
             }
 
-            c == '{' -> {
+            character == '{' -> {
                 stack.push('}')
             }
 
-            c == '[' -> {
+            character == '[' -> {
                 stack.push(']')
             }
 
-            stack.isEmpty() || stack.pop() != c -> {
+            stack.isEmpty() || stack.pop() != character -> {
                 return false
             }
         }

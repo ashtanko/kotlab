@@ -39,14 +39,45 @@ abstract class CriticalConnectionsTest<out T : CriticalConnections>(private val 
                     listOf(1, 3),
                 ),
             ),
+            Arguments.of(
+                6,
+                listOf(
+                    listOf(0, 1),
+                    listOf(1, 2),
+                    listOf(2, 0),
+                    listOf(1, 3),
+                    listOf(3, 4),
+                    listOf(4, 5),
+                    listOf(5, 3),
+                ),
+                listOf(
+                    listOf(1, 3),
+                ),
+            ),
+            Arguments.of(
+                6,
+                listOf(
+                    listOf(0, 1),
+                    listOf(1, 2),
+                    listOf(2, 0),
+                    listOf(1, 3),
+                    listOf(3, 4),
+                    listOf(4, 5),
+                ),
+                listOf(
+                    listOf(4, 5),
+                    listOf(3, 4),
+                    listOf(1, 3),
+                ),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `critical connections test`(n: Int, connections: List<List<Int>>, expected: List<List<Int>>) {
-        val actual = strategy.invoke(n, connections)
-        assertThat(actual).isEqualTo(expected)
+    fun `critical connections test`(num: Int, connections: List<List<Int>>, expected: List<List<Int>>) {
+        val actual = strategy.invoke(num, connections)
+        assertThat(actual).containsExactlyInAnyOrder(*expected.toTypedArray())
     }
 }
 

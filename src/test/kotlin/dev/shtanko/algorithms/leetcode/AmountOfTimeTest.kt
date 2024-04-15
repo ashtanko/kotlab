@@ -48,6 +48,22 @@ abstract class AmountOfTimeTest<out T : AmountOfTime>(private val strategy: T) {
                 1,
                 0,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                },
+                1,
+                1,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                },
+                2,
+                2,
+            ),
         )
     }
 

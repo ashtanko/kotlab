@@ -54,6 +54,34 @@ abstract class ConstructQuadTreeTest<out T : ConstructQuadTree>(private val stra
                     )
                 },
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                    intArrayOf(1, 1),
+                ),
+                QuadTreeNode(
+                    isLeaf = true,
+                    value = true,
+                ),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0),
+                ),
+                QuadTreeNode(
+                    isLeaf = true,
+                    value = false,
+                ),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1),
+                ),
+                QuadTreeNode(
+                    isLeaf = true,
+                    value = true,
+                ),
+            ),
         )
     }
 

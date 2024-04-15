@@ -27,7 +27,15 @@ fun interface SumOfFlooredPairs {
     operator fun invoke(nums: IntArray): Int
 }
 
+/**
+ * Implementation of SumOfFlooredPairs using a brute force approach.
+ */
 class SumOfFlooredPairsBF : SumOfFlooredPairs {
+    /**
+     * Calculates the sum of floored pairs using a brute force approach.
+     * @param nums The array of integers.
+     * @return The sum of floored pairs.
+     */
     override operator fun invoke(nums: IntArray): Int {
         val counts = IntArray(MAX + 1)
         for (num in nums) {
@@ -59,8 +67,17 @@ class SumOfFlooredPairsBF : SumOfFlooredPairs {
     }
 }
 
+/**
+ * Another implementation of SumOfFlooredPairs using a different brute force approach.
+ */
 class SumOfFlooredPairsBF2 : SumOfFlooredPairs {
+    /**
+     * Calculates the sum of floored pairs using a different brute force approach.
+     * @param nums The array of integers.
+     * @return The sum of floored pairs.
+     */
     override operator fun invoke(nums: IntArray): Int {
+        if (nums.isEmpty()) return 0
         val max: Int = nums.max()
         val preSum = IntArray(max + 1)
         for (num in nums) preSum[num]++

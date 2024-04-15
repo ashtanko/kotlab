@@ -44,8 +44,8 @@ abstract class PrimePalindromeTest<out T : PrimePalindrome>(private val strategy
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `prime palindrome test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `prime palindrome test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

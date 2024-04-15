@@ -34,8 +34,8 @@ abstract class MinOneBitOperationsTest<out T : MinOneBitOperations>(private val 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun minimumOneBitOperationsTest(n: Int, expected: Int) {
-        val actual = strategy(n)
+    fun minimumOneBitOperationsTest(num: Int, expected: Int) {
+        val actual = strategy(num)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

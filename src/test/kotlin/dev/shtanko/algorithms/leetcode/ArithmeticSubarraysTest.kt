@@ -39,6 +39,24 @@ abstract class ArithmeticSubarraysTest<out T : ArithmeticSubarrays>(private val 
                 intArrayOf(4, 4, 9, 7, 9, 10),
                 listOf(false, true, false, false, true, true),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1),
+                intArrayOf(3),
+                listOf(true),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1),
+                intArrayOf(2),
+                listOf(true),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1, 2),
+                intArrayOf(2, 3),
+                listOf(true, true),
+            ),
         )
     }
 

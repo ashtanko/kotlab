@@ -44,8 +44,8 @@ abstract class NumOfMatchesTest<out T : NumOfMatches>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `number of matches test`(n: Int, expected: Int) {
-        val actual = strategy(n)
+    fun `number of matches test`(num: Int, expected: Int) {
+        val actual = strategy(num)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

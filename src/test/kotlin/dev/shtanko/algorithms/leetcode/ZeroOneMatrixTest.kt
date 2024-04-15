@@ -51,6 +51,18 @@ abstract class ZeroOneMatrixTest<out T : ZeroOneMatrix>(private val strategy: T)
                     intArrayOf(1, 2, 1),
                 ),
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 1, 0),
+                    intArrayOf(1, 1, 0),
+                ),
+                arrayOf(
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 1, 0),
+                    intArrayOf(1, 1, 0),
+                ),
+            ),
         )
     }
 

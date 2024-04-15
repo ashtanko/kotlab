@@ -59,8 +59,8 @@ abstract class ParallelCourses2Test<out T : ParallelCourses2>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min number of semesters test`(n: Int, relations: Array<IntArray>, k: Int, expected: Int) {
-        val actual = strategy.minNumberOfSemesters(n, relations, k)
+    fun `min number of semesters test`(num: Int, relations: Array<IntArray>, k: Int, expected: Int) {
+        val actual = strategy.minNumberOfSemesters(num, relations, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

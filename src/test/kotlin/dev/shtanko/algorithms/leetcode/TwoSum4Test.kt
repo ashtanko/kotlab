@@ -89,6 +89,30 @@ abstract class TwoSum4Test<out T : TwoSum4>(private val strategy: T) {
                 15,
                 true,
             ),
+            Arguments.of(
+                TreeNode(7).apply {
+                    left = TreeNode(5).apply {
+                        left = TreeNode(3)
+                    }
+                    right = TreeNode(9).apply {
+                        right = TreeNode(12)
+                    }
+                },
+                16,
+                true,
+            ),
+            Arguments.of(
+                TreeNode(7).apply {
+                    left = TreeNode(5).apply {
+                        left = TreeNode(3)
+                    }
+                    right = TreeNode(9).apply {
+                        right = TreeNode(12)
+                    }
+                },
+                10,
+                true,
+            ),
         )
     }
 

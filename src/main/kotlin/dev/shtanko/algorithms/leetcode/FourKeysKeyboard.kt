@@ -23,20 +23,20 @@ import kotlin.math.max
  *  @see <a href="https://leetcode.com/problems/4-keys-keyboard/">Source</a>
  */
 fun interface FourKeysKeyboard {
-    fun maxA(n: Int): Int
+    operator fun invoke(num: Int): Int
 }
 
 /**
  * Approach #1: Dynamic Programming.
  */
 class FourKeysKeyboardDP : FourKeysKeyboard {
-    override fun maxA(n: Int): Int {
-        val best = IntArray(n + 1)
-        for (k in 1..n) {
+    override fun invoke(num: Int): Int {
+        val best = IntArray(num + 1)
+        for (k in 1..num) {
             best[k] = best[k - 1] + 1
             for (x in 0 until k - 1) best[k] = max(best[k], best[x] * (k - x - 1))
         }
-        return best[n]
+        return best[num]
     }
 }
 
@@ -44,9 +44,9 @@ class FourKeysKeyboardDP : FourKeysKeyboard {
  * Approach #3: Mathematical.
  */
 class FourKeysKeyboardMath : FourKeysKeyboard {
-    override fun maxA(n: Int): Int {
-        val q = if (n > MAX) (n - N_MAX) / MULTIPLY_LIMIT else 0
-        return best[n - MULTIPLY_LIMIT * q] shl 2 * q
+    override fun invoke(inputNumber: Int): Int {
+        val quotient = if (inputNumber > MAX_VALUE) (inputNumber - MAX_N_VALUE) / MULTIPLICATION_LIMIT else 0
+        return best[inputNumber - MULTIPLICATION_LIMIT * quotient] shl 2 * quotient
     }
 
     companion object {
@@ -54,8 +54,8 @@ class FourKeysKeyboardMath : FourKeysKeyboard {
             0, 1, 2, 3, 4, 5, 6, 9, 12,
             16, 20, 27, 36, 48, 64, 81,
         )
-        private const val MAX = 15
-        private const val N_MAX = 11
-        private const val MULTIPLY_LIMIT = 5
+        private const val MAX_VALUE = 15
+        private const val MAX_N_VALUE = 11
+        private const val MULTIPLICATION_LIMIT = 5
     }
 }

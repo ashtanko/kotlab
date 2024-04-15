@@ -37,6 +37,46 @@ abstract class SubarrayProductLessThanKTest<out T : SubarrayProductLessThanK>(pr
                 0,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                1,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                2,
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                3,
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                4,
+                6,
+            ),
         )
     }
 

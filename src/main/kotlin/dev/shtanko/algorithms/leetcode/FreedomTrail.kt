@@ -24,16 +24,17 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/freedom-trail/">Source</a>
  */
 fun interface FreedomTrail {
-    fun findRotateSteps(ring: String, key: String): Int
+    operator fun invoke(ring: String, key: String): Int
 }
 
 class FreedomTrailDP : FreedomTrail {
-    override fun findRotateSteps(ring: String, key: String): Int {
+    override fun invoke(ring: String, key: String): Int {
+        if (ring.isEmpty()) return 0
         val n: Int = ring.length
         val m: Int = key.length
         val dp = Array(m + 1) { IntArray(n) }
-        val clock = preproc(ring, 1)
-        val anti = preproc(ring, -1)
+        val clock = preprocess(ring, 1)
+        val anti = preprocess(ring, -1)
         for (i in m - 1 downTo 0) {
             val idx: Int = key[i] - 'a'
             for (j in 0 until n) { // fill dp[i][j]
@@ -45,7 +46,7 @@ class FreedomTrailDP : FreedomTrail {
         return dp[0][0] + m
     }
 
-    private fun preproc(r: String, inc: Int): Array<IntArray> {
+    private fun preprocess(r: String, inc: Int): Array<IntArray> {
         val n = r.length
         val ans = Array(n) { IntArray(ALPHABET_LETTERS_COUNT) }
         val map = IntArray(ALPHABET_LETTERS_COUNT)

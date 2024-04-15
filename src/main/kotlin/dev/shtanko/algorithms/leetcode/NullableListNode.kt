@@ -16,11 +16,20 @@
 
 package dev.shtanko.algorithms.leetcode
 
+/**
+ * This data class represents a node in a linked list that can have a null value.
+ * @property value The value of the node. It can be null.
+ * @property next The next node in the linked list. It can be null.
+ */
 data class NullableListNode(
     var value: Int? = null,
     var next: NullableListNode? = null,
 )
 
+/**
+ * This extension function converts a list of integers to a linked list of NullableListNode.
+ * @return The head of the linked list.
+ */
 fun List<Int>.toNullableListNode(): NullableListNode {
     if (isEmpty()) return NullableListNode()
     var current = NullableListNode()
@@ -37,10 +46,19 @@ fun List<Int>.toNullableListNode(): NullableListNode {
     return startNode
 }
 
+/**
+ * This extension function converts a NullableListNode to a list of integers.
+ * If the NullableListNode is null, it returns an empty list.
+ * @return A list of integers representing the values in the linked list.
+ */
 fun NullableListNode?.toListOrEmpty(): List<Int> {
     return this?.toList() ?: emptyList()
 }
 
+/**
+ * This function converts a NullableListNode to a list of integers.
+ * @return A list of integers representing the values in the linked list.
+ */
 fun NullableListNode.toList(): List<Int> {
     val result = mutableListOf<Int?>()
     var node: NullableListNode? = this

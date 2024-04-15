@@ -57,6 +57,30 @@ abstract class UnivaluedBinaryTreeTest<out T : UnivaluedBinaryTree>(private val 
                 },
                 false,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(1).apply {
+                        left = TreeNode(1)
+                        right = TreeNode(1)
+                    }
+                    right = TreeNode(2).apply {
+                        right = TreeNode(1)
+                    }
+                },
+                false,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(1).apply {
+                        left = TreeNode(1)
+                        right = TreeNode(1)
+                    }
+                    right = TreeNode(1).apply {
+                        right = TreeNode(1)
+                    }
+                },
+                true,
+            ),
         )
     }
 }

@@ -37,6 +37,21 @@ abstract class CustomSortStringTest<out T : CustomSortString>(private val strate
                 "abcd",
                 "bcad",
             ),
+            Arguments.of(
+                "",
+                "",
+                "",
+            ),
+            Arguments.of(
+                "a",
+                "",
+                "",
+            ),
+            Arguments.of(
+                "a",
+                "b",
+                "b",
+            ),
         )
     }
 

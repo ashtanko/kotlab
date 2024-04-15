@@ -43,6 +43,38 @@ abstract class AsFarFromLandAsPossibleTest<out T : AsFarFromLandAsPossible>(priv
                 ),
                 4,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0, 0),
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 1),
+                ),
+                2,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 0),
+                ),
+                -1,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                ),
+                -1,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 0, 1),
+                    intArrayOf(1, 1, 1),
+                ),
+                1,
+            ),
         )
     }
 

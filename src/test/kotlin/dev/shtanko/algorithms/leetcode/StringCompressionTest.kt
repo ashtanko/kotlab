@@ -39,6 +39,14 @@ abstract class StringCompressionTest<out T : StringCompression>(private val stra
                 charArrayOf('a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'),
                 4,
             ),
+            Arguments.of(
+                charArrayOf('a', 'a', 'a', 'b', 'b', 'a', 'a'),
+                6,
+            ),
+            Arguments.of(
+                charArrayOf('a', 'b', 'c'),
+                3,
+            ),
         )
     }
 

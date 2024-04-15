@@ -41,6 +41,62 @@ abstract class DungeonGameTest<out T : DungeonGame>(private val strategy: T) {
                 ),
                 1,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(100),
+                ),
+                1,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, -3, 3),
+                    intArrayOf(0, -2, 0),
+                    intArrayOf(-3, -3, -3),
+                ),
+                3,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, -3, 3),
+                    intArrayOf(0, -2, 0),
+                    intArrayOf(-3, -3, -3),
+                    intArrayOf(0, 0, 0),
+                ),
+                3,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, -3, 3),
+                    intArrayOf(0, -2, 0),
+                    intArrayOf(-3, -3, -3),
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 0),
+                ),
+                3,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, -3, 3),
+                    intArrayOf(0, -2, 0),
+                    intArrayOf(-3, -3, -3),
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 0),
+                ),
+                3,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, -3, 3),
+                    intArrayOf(0, -2, 0),
+                    intArrayOf(-3, -3, -3),
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(0, 0, 0),
+                ),
+                3,
+            ),
         )
     }
 

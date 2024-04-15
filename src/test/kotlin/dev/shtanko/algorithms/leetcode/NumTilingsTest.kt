@@ -48,8 +48,8 @@ abstract class NumTilingsTest<out T : NumTilings>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num tilings test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `num tilings test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

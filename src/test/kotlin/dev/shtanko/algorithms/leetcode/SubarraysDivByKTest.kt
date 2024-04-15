@@ -37,6 +37,31 @@ abstract class SubarraysDivByKTest<out T : SubarraysDivByK>(private val strategy
                 9,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                5,
+                17,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                7,
+                10,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                3,
+                27,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                11,
+                5,
+            ),
         )
     }
 

@@ -16,13 +16,22 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun flipAndInvertImage(arr: Array<IntArray>): Array<IntArray> {
-    val c: Int = arr[0].size
-    for (row in arr) for (i in 0 until (c + 1) / 2) {
-        val tmp = row[i] xor 1
-        row[i] = row[c - 1 - i] xor 1
-        row[c - 1 - i] = tmp
+/**
+ * This function flips and inverts an image represented as a 2D array.
+ * The flipping is done in-place for efficiency.
+ *
+ * @param arr The 2D array representing the image. Each inner array represents a row of the image.
+ *            Each integer in the inner array represents a pixel in the image. The value of the integer
+ *            is 0 for a white pixel and 1 for a black pixel.
+ * @return The 2D array representing the flipped and inverted image.
+ */
+fun flipAndInvertImage(image: Array<IntArray>): Array<IntArray> {
+    val columnCount: Int = image[0].size
+    for (row in image) for (i in 0 until (columnCount + 1) / 2) {
+        val temp = row[i] xor 1
+        row[i] = row[columnCount - 1 - i] xor 1
+        row[columnCount - 1 - i] = temp
     }
 
-    return arr
+    return image
 }

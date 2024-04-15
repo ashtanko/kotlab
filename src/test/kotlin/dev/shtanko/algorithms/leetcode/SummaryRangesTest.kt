@@ -29,7 +29,7 @@ class SummaryRangesTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `summary ranges test`(arr: IntArray, expected: List<String>) {
-        val summaryRanges = arr.summaryRanges()
+        val summaryRanges = arr.getSummaryRanges()
         assertEquals(expected, summaryRanges)
     }
 
@@ -58,6 +58,30 @@ class SummaryRangesTest {
             Arguments.of(
                 intArrayOf(Int.MIN_VALUE, Int.MAX_VALUE),
                 listOf("${Int.MIN_VALUE}", "${Int.MAX_VALUE}"),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                listOf<String>(),
+            ),
+            Arguments.of(
+                intArrayOf(-1, 0, 1),
+                listOf("-1->1"),
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 2, 3, 3, 3, 4, 5, 6),
+                listOf("0->3", "3", "3->6"),
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6),
+                listOf("0->3", "3", "3->6", "6", "6"),
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 2, 3, 3, 3, 4, 5, 6, 8, 9, 10),
+                listOf("0->3", "3", "3->6", "8->10"),
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 2, 3, 3, 3, 4, 5, 6, 8, 9, 10, 12),
+                listOf("0->3", "3", "3->6", "8->10", "12"),
             ),
         )
     }

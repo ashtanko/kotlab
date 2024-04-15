@@ -47,6 +47,30 @@ abstract class StrobogrammaticNumberTest<out T : StrobogrammaticNumber>(private 
                 "962",
                 false,
             ),
+            Arguments.of(
+                "101",
+                true,
+            ),
+            Arguments.of(
+                "69",
+                true,
+            ),
+            Arguments.of(
+                "818",
+                true,
+            ),
+            Arguments.of(
+                "8181",
+                false,
+            ),
+            Arguments.of(
+                "81818",
+                true,
+            ),
+            Arguments.of(
+                "818181",
+                false,
+            ),
         )
     }
 

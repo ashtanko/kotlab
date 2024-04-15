@@ -28,8 +28,8 @@ abstract class FibonacciNumberTest<out T : FibonacciStrategy>(private val strate
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> =
-            numberProvider().stream().map { (n: Int, expected: Long) ->
-                Arguments.of(n, expected)
+            numberProvider().stream().map { (num: Int, expected: Long) ->
+                Arguments.of(num, expected)
             }
 
         private fun numberProvider(): List<Pair<Int, Long>> = listOf(
@@ -83,8 +83,8 @@ abstract class FibonacciNumberTest<out T : FibonacciStrategy>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `fibonacci test`(n: Int, expected: Long) {
-        val actual = strategy.invoke(n)
+    fun `fibonacci test`(num: Int, expected: Long) {
+        val actual = strategy.invoke(num)
         assertEquals(expected, actual)
     }
 }

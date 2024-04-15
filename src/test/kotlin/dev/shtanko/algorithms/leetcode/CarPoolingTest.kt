@@ -50,6 +50,77 @@ abstract class CarPoolingTest<out T : CarPooling>(private val strategy: T) {
                 0,
                 false,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(2, 1, 5),
+                    intArrayOf(3, 5, 7),
+                ),
+                3,
+                true,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(3, 2, 7),
+                    intArrayOf(3, 7, 9),
+                    intArrayOf(8, 3, 9),
+                ),
+                11,
+                true,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(3, 2, 7),
+                    intArrayOf(3, 7, 9),
+                    intArrayOf(8, 3, 9),
+                ),
+                12,
+                true,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(3, 2, 7),
+                    intArrayOf(3, 7, 9),
+                    intArrayOf(8, 3, 9),
+                ),
+                10,
+                false,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(3, 2, 7),
+                    intArrayOf(3, 7, 9),
+                    intArrayOf(8, 3, 9),
+                ),
+                9,
+                false,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(3, 2, 7),
+                    intArrayOf(3, 7, 9),
+                    intArrayOf(8, 3, 9),
+                ),
+                8,
+                false,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(3, 2, 7),
+                    intArrayOf(3, 7, 9),
+                    intArrayOf(8, 3, 9),
+                ),
+                7,
+                false,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(3, 2, 7),
+                    intArrayOf(3, 7, 9),
+                    intArrayOf(8, 3, 9),
+                ),
+                6,
+                false,
+            ),
         )
     }
 

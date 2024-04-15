@@ -24,11 +24,11 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/frog-position-after-t-seconds/">Source</a>
  */
 fun interface FrogPosition {
-    fun proceed(n: Int, edges: Array<IntArray>, t: Int, target: Int): Double
+    operator fun invoke(n: Int, edges: Array<IntArray>, t: Int, target: Int): Double
 }
 
 class FrogPositionBFS : FrogPosition {
-    override fun proceed(n: Int, edges: Array<IntArray>, t: Int, target: Int): Double {
+    override operator fun invoke(n: Int, edges: Array<IntArray>, t: Int, target: Int): Double {
         var t0 = t
         val graph: Map<Int, List<Int>> = initialize(edges)
         val visited: BooleanArray = BooleanArray(n).apply {

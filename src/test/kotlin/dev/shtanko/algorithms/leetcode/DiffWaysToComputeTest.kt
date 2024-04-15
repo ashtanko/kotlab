@@ -90,6 +90,18 @@ abstract class DiffWaysToComputeTest<out T : DiffWaysToCompute>(private val stra
                 "",
                 listOf<Int>(),
             ),
+            Arguments.of(
+                "1+1",
+                listOf(2),
+            ),
+            Arguments.of(
+                "1+1+1",
+                listOf(3, 3),
+            ),
+            Arguments.of(
+                "1+1+1+1",
+                listOf(4, 4, 4, 4, 4),
+            ),
         )
     }
 

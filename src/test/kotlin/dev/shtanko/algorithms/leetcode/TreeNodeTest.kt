@@ -75,7 +75,7 @@ class TreeNodeTest {
             right = TreeNode(7)
             left = TreeNode(5)
         }
-        tree.prettyPrinted()
+        tree.prettyPrint()
     }
 
     @Test
@@ -87,7 +87,7 @@ class TreeNodeTest {
                 right = TreeNode(7)
             }
         }
-        val actual = tree.prettyPrinted()
+        val actual = tree.prettyPrint()
 
         val expected = "            3           \n" +
             "      ┌─────┴─────┐     \n" +
@@ -100,7 +100,7 @@ class TreeNodeTest {
     @Test
     fun `pretty printed one value test`() {
         val tree = TreeNode(3)
-        val actual = tree.prettyPrinted()
+        val actual = tree.prettyPrint()
         val expected = "   3  \n"
         assertThat(actual).isEqualTo(expected)
     }
@@ -110,7 +110,7 @@ class TreeNodeTest {
         val tree = TreeNode(3).apply {
             left = TreeNode(9)
         }
-        val actual = tree.prettyPrinted()
+        val actual = tree.prettyPrint()
         println(actual)
         val expected = "      3     \n" +
             "   ┌──┘     \n" +

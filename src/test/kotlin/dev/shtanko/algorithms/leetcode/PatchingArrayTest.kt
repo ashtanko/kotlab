@@ -58,8 +58,8 @@ abstract class PatchingArrayTest<out T : PatchingArray>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min patches test`(nums: IntArray, n: Int, expected: Int) {
-        val actual = strategy.minPatches(nums, n)
+    fun `min patches test`(nums: IntArray, num: Int, expected: Int) {
+        val actual = strategy.minPatches(nums, num)
         assertThat(actual).isEqualTo(expected)
     }
 }

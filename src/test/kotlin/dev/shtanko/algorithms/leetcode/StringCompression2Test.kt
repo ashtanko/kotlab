@@ -42,13 +42,48 @@ abstract class StringCompression2Test<out T : StringCompression2>(private val st
                 0,
                 3,
             ),
+            Arguments.of(
+                "",
+                0,
+                0,
+            ),
+            Arguments.of(
+                "a",
+                0,
+                1,
+            ),
+            Arguments.of(
+                "ab",
+                0,
+                2,
+            ),
+            Arguments.of(
+                "ab",
+                1,
+                1,
+            ),
+            Arguments.of(
+                "ab",
+                2,
+                0,
+            ),
+            Arguments.of(
+                "ab",
+                3,
+                2,
+            ),
+            Arguments.of(
+                "ab",
+                4,
+                2,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `get length of optimal compression test`(s: String, k: Int, expected: Int) {
-        val actual = strategy.invoke(s, k)
+    fun `get length of optimal compression test`(str: String, k: Int, expected: Int) {
+        val actual = strategy.invoke(str, k)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

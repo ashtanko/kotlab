@@ -37,8 +37,8 @@ abstract class NotDivisibleNumberTest<out T : NotDivisibleNumber>(private val st
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `noOfNumbers test`(n: Long, expected: Long) {
-        val actual = strategy.perform(n)
+    fun `noOfNumbers test`(num: Long, expected: Long) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

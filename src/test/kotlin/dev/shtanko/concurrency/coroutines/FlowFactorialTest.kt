@@ -80,8 +80,8 @@ class FlowFactorialTest : TestBase() {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `flow factorial test`(n: Int, expected: String) = runTest {
-        val task = flowFactorial(n)
+    fun `flow factorial test`(num: Int, expected: String) = runTest {
+        val task = flowFactorial(num)
         val (msg, res) = measureMemFormatted("flow factorial") {
             withContext(Dispatchers.Default) { task }.toString()
         }

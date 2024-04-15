@@ -16,16 +16,34 @@
 
 package dev.shtanko.algorithms.leetcode
 
+/**
+ * Object that contains methods to calculate the maximum path sum in a binary tree.
+ */
 object BinaryTreeMaximumPathSum {
 
+    /**
+     * The maximum value found so far.
+     */
     private var maxValue = Int.MIN_VALUE
 
+    /**
+     * Extension function on TreeNode? to calculate the maximum path sum in the binary tree.
+     * The path may start and end at any node in the tree.
+     *
+     * @return Int The maximum path sum in the binary tree.
+     */
     fun TreeNode?.maxPathSum(): Int {
         maxValue = Int.MIN_VALUE
         this.maxPathDown()
         return maxValue
     }
 
+    /**
+     * Extension function on TreeNode? to calculate the maximum path sum from the current node down.
+     * The path may start at the current node and end at any node in the tree.
+     *
+     * @return Int The maximum path sum from the current node down.
+     */
     private fun TreeNode?.maxPathDown(): Int {
         if (this == null) return 0
         val left = 0.coerceAtLeast(this.left.maxPathDown())

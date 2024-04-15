@@ -160,8 +160,8 @@ internal class ObservableUnitTest {
         Observable.zip(
             numbers,
             letters,
-        ) { n: Int, c: String ->
-            "$n$c"
+        ) { num: Int, c: String ->
+            "$num$c"
         }.subscribe {
             result += it
         }
@@ -196,8 +196,8 @@ internal class ObservableUnitTest {
             .combineLatest(
                 numbers,
                 letters,
-            ) { n: Int, c: String ->
-                "$n$c"
+            ) { num: Int, c: String ->
+                "$num$c"
             }.subscribe {
                 result += it
             }

@@ -43,6 +43,113 @@ abstract class SumOfRootToLeafBinaryNumbersTest<out T : SumOfRootToLeafBinaryNum
                 },
                 22,
             ),
+            Arguments.of(
+                TreeNode(1),
+                1,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0)
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(1)
+                },
+                3,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0)
+                    right = TreeNode(1)
+                },
+                5,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                    }
+                    right = TreeNode(1).apply {
+                        right = TreeNode(1)
+                    }
+                },
+                11,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1)
+                    }
+                    right = TreeNode(1).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1)
+                    }
+                },
+                22,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1)
+                    }
+                    right = TreeNode(1).apply {
+                        left = TreeNode(0)
+                    }
+                },
+                15,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1)
+                    }
+                    right = TreeNode(1).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1)
+                    }
+                },
+                22,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1)
+                    }
+                    right = TreeNode(1).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1).apply {
+                            left = TreeNode(0)
+                            right = TreeNode(1)
+                        }
+                    }
+                },
+                44,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1)
+                    }
+                    right = TreeNode(1).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1).apply {
+                            left = TreeNode(0)
+                            right = TreeNode(1).apply {
+                                left = TreeNode(0)
+                                right = TreeNode(1)
+                            }
+                        }
+                    }
+                },
+                90,
+            ),
         )
     }
 

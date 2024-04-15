@@ -43,6 +43,44 @@ abstract class TriangleTest<out T : Triangle>(private val solution: T) {
                 ),
                 -10,
             ),
+            Arguments.of(
+                listOf(
+                    listOf(-1),
+                    listOf(2, 3),
+                    listOf(1, -1, -3),
+                ),
+                -1,
+            ),
+            Arguments.of(
+                listOf(
+                    listOf(1),
+                    listOf(2, 3),
+                    listOf(4, 5, 6),
+                    listOf(7, 8, 9, 10),
+                ),
+                14,
+            ),
+            Arguments.of(
+                listOf(
+                    listOf(1),
+                ),
+                1,
+            ),
+            Arguments.of(
+                listOf(
+                    listOf(1),
+                    listOf(2, 3),
+                ),
+                3,
+            ),
+            Arguments.of(
+                listOf(
+                    listOf(1),
+                    listOf(2, 3),
+                    listOf(4, 5, 6),
+                ),
+                7,
+            ),
         )
     }
 

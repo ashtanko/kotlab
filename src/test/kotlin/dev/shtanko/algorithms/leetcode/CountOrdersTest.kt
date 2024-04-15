@@ -30,13 +30,17 @@ abstract class CountOrdersTest<out T : CountOrders>(private val strategy: T) {
             Arguments.of(1, 1),
             Arguments.of(2, 6),
             Arguments.of(3, 90),
+            Arguments.of(4, 2520),
+            Arguments.of(5, 113400),
+            Arguments.of(6, 7484400),
+            Arguments.of(7, 681080400),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count orders test`(n: Int, expected: Int) {
-        val actual = strategy(n)
+    fun `count orders test`(num: Int, expected: Int) {
+        val actual = strategy(num)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

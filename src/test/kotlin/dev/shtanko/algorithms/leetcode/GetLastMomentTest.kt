@@ -50,8 +50,8 @@ abstract class GetLastMomentTest<out T : GetLastMoment>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `get last moment test`(n: Int, left: IntArray, right: IntArray, expected: Int) {
-        val actual = strategy(n, left, right)
+    fun `get last moment test`(num: Int, left: IntArray, right: IntArray, expected: Int) {
+        val actual = strategy(num, left, right)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

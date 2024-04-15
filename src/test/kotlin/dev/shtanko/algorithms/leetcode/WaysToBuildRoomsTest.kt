@@ -35,6 +35,14 @@ abstract class WaysToBuildRoomsTest<out T : WaysToBuildRooms>(private val strate
                 intArrayOf(-1, 0, 0, 1, 2),
                 6,
             ),
+            Arguments.of(
+                intArrayOf(-1, 0, 0, 2, 2),
+                8,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
         )
     }
 

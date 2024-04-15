@@ -42,6 +42,11 @@ abstract class AddTwoNumbers2Test<out T : AddTwoNumbers2>(private val strategy: 
                 listOf(0).toListNode(),
                 listOf(0),
             ),
+            Arguments.of(
+                listOf(9, 9, 9, 9, 9, 9, 9).toListNode(),
+                listOf(9, 9, 9, 9).toListNode(),
+                listOf(1, 0, 0, 0, 9, 9, 9, 8),
+            ),
         )
     }
 

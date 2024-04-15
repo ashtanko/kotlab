@@ -47,6 +47,51 @@ abstract class DivideTwoIntegersTest<out T : DivideTwoIntegers>(private val stra
                 1,
                 1,
             ),
+            Arguments.of(
+                Int.MIN_VALUE,
+                -1,
+                Int.MAX_VALUE,
+            ),
+            Arguments.of(
+                Int.MIN_VALUE,
+                1,
+                Int.MIN_VALUE,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                1,
+                Int.MAX_VALUE,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                2,
+                1073741823,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                3,
+                715827882,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                4,
+                536870911,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                5,
+                429496729,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                6,
+                357913941,
+            ),
+            Arguments.of(
+                Int.MAX_VALUE,
+                7,
+                306783378,
+            ),
         )
     }
 

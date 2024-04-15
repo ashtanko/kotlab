@@ -45,6 +45,18 @@ abstract class CountSubarraysWithFixedBoundsTest<out T : CountSubarraysWithFixed
                 7,
                 1,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                3,
+                3,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                1,
+                1,
+                1,
+            ),
         )
     }
 

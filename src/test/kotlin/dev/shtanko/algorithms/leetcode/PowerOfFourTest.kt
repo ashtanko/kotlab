@@ -41,8 +41,8 @@ abstract class PowerOfFourTest<out T : PowOfFour>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `power of four test`(n: Int, expected: Boolean) {
-        val actual = strategy.isPow4(n)
+    fun `power of four test`(num: Int, expected: Boolean) {
+        val actual = strategy.isPow4(num)
         assertThat(actual, equalTo(expected))
     }
 }

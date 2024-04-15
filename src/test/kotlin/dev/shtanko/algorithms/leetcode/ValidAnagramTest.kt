@@ -87,6 +87,11 @@ abstract class ValidAnagramTest<out T : ValidAnagram>(private val strategy: T) {
                 "vile",
                 true,
             ),
+            Arguments.of(
+                "elvis",
+                "lives",
+                true,
+            ),
         )
     }
 

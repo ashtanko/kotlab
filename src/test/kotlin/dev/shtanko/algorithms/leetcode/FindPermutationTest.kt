@@ -29,16 +29,61 @@ abstract class FindPermutationTest<out T : FindPermutation>(private val strategy
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of("I", intArrayOf(1, 2)),
-            Arguments.of("DI", intArrayOf(2, 1, 3)),
-            Arguments.of("DDIIDI", intArrayOf(3, 2, 1, 4, 6, 5, 7)),
+            Arguments.of(
+                "I",
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                "DI",
+                intArrayOf(2, 1, 3),
+            ),
+            Arguments.of(
+                "DDIIDI",
+                intArrayOf(3, 2, 1, 4, 6, 5, 7),
+            ),
+            Arguments.of(
+                "DDI",
+                intArrayOf(3, 2, 1, 4),
+            ),
+            Arguments.of(
+                "IDID",
+                intArrayOf(1, 3, 2, 5, 4),
+            ),
+            Arguments.of(
+                "IDIDD",
+                intArrayOf(1, 3, 2, 6, 5, 4),
+            ),
+            Arguments.of(
+                "IDIDDD",
+                intArrayOf(1, 3, 2, 7, 6, 5, 4),
+            ),
+            Arguments.of(
+                "IDIDID",
+                intArrayOf(1, 3, 2, 5, 4, 7, 6),
+            ),
+            Arguments.of(
+                "IDIDIDID",
+                intArrayOf(1, 3, 2, 5, 4, 7, 6, 9, 8),
+            ),
+            Arguments.of(
+                "IDIDIDIDID",
+                intArrayOf(1, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10),
+            ),
+            Arguments.of(
+                "IDIDIDIDIDID",
+                intArrayOf(1, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12),
+            ),
+            Arguments.of(
+                "IDIDIDIDIDIDID",
+                intArrayOf(1, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find permutation test`(s: String, expected: IntArray) {
-        val actual = strategy.invoke(s)
+    fun `find permutation test`(str: String, expected: IntArray) {
+        val actual = strategy.invoke(str)
         assertThat(actual, equalTo(expected))
     }
 }

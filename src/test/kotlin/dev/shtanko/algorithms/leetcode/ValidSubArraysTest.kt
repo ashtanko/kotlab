@@ -31,6 +31,9 @@ class ValidSubArraysTest {
             Arguments.of(intArrayOf(1, 4, 2, 5, 3), 11),
             Arguments.of(intArrayOf(3, 2, 1), 3),
             Arguments.of(intArrayOf(2, 2, 2), 6),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5), 15),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6), 21),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7), 28),
         )
     }
 

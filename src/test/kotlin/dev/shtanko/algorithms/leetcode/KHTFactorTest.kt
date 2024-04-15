@@ -58,8 +58,8 @@ class KHTFactorTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `kth factor test`(n: Int, k: Int, expected: Int) {
-        val actual = kthFactor(n, k)
+    fun `kth factor test`(num: Int, k: Int, expected: Int) {
+        val actual = kthFactor(num, k)
         assertEquals(expected, actual)
     }
 }

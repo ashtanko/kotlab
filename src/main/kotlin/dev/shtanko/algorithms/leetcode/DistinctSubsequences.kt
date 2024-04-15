@@ -21,23 +21,23 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/distinct-subsequences/">Source</a>
  */
 fun interface DistinctSubsequences {
-    fun numDistinct(s: String, t: String): Int
+    operator fun invoke(str: String, target: String): Int
 }
 
 class DistinctSubsequencesDP : DistinctSubsequences {
-    override fun numDistinct(s: String, t: String): Int {
+    override fun invoke(str: String, target: String): Int {
         // array creation
-        val mem = Array(t.length + 1) { IntArray(s.length + 1) }
+        val mem = Array(target.length + 1) { IntArray(str.length + 1) }
 
         // filling the first row: with 1s
-        for (j in 0..s.length) {
+        for (j in 0..str.length) {
             mem[0][j] = 1
         }
 
         // the first column is 0 by default in every other rows but the first, which we need.
-        for (i in t.indices) {
-            for (j in s.indices) {
-                if (t[i] == s[j]) {
+        for (i in target.indices) {
+            for (j in str.indices) {
+                if (target[i] == str[j]) {
                     mem[i + 1][j + 1] = mem[i][j] + mem[i + 1][j]
                 } else {
                     mem[i + 1][j + 1] = mem[i + 1][j]
@@ -45,6 +45,6 @@ class DistinctSubsequencesDP : DistinctSubsequences {
             }
         }
 
-        return mem[t.length][s.length]
+        return mem[target.length][str.length]
     }
 }

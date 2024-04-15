@@ -50,8 +50,8 @@ abstract class SpiralMatrix4Test<out T : SpiralMatrix4>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `spiral matrix test`(m: Int, n: Int, head: ListNode?, expected: Array<IntArray>) {
-        val actual = strategy.invoke(m, n, head)
+    fun `spiral matrix test`(m: Int, num: Int, head: ListNode?, expected: Array<IntArray>) {
+        val actual = strategy.invoke(m, num, head)
         assertThat(actual).isEqualTo(expected)
     }
 }

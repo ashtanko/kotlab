@@ -33,11 +33,23 @@ abstract class VowelsAllSubstringsTest<out T : VowelsAllSubstrings>(private val 
             ),
             Arguments.of(
                 "abc",
-                3,
+                3L,
             ),
             Arguments.of(
                 "ltcd",
-                0,
+                0L,
+            ),
+            Arguments.of(
+                "aeiou",
+                35L,
+            ),
+            Arguments.of(
+                "aeiouaeiouaeiou",
+                680L,
+            ),
+            Arguments.of(
+                "",
+                0L,
             ),
         )
     }

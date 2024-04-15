@@ -48,8 +48,8 @@ abstract class UglyNumbersTest<out T : UglyNumbers>(private val strategy: T) {
 
     @ArgumentsSource(InputArgumentsProvider::class)
     @ParameterizedTest
-    fun `ugly numbers test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `ugly numbers test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

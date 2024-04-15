@@ -42,6 +42,21 @@ abstract class BagOfTokensTest<out T : BagOfTokens>(private val strategy: T) {
                 200,
                 2,
             ),
+            Arguments.of(
+                intArrayOf(26),
+                51,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(100, 200, 300, 400),
+                200,
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(100, 200),
+                150,
+                1,
+            ),
         )
     }
 

@@ -31,12 +31,12 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 abstract class LCSTest<out T : LCS>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> =
-            initialArgs.stream().map { (x: String, y: String, m: Int, n: Int, expected: Int) ->
+            initialArgs.stream().map { (x: String, y: String, m: Int, num: Int, expected: Int) ->
                 Arguments.of(
                     x,
                     y,
                     m,
-                    n,
+                    num,
                     expected,
                 )
             }
@@ -53,8 +53,8 @@ abstract class LCSTest<out T : LCS>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `LCS test`(x: String, y: String, m: Int, n: Int, expected: Int) {
-        val actual = strategy.perform(x, y, m, n)
+    fun `LCS test`(x: String, y: String, m: Int, num: Int, expected: Int) {
+        val actual = strategy.perform(x, y, m, num)
         assertThat(actual).isEqualTo(expected)
     }
 }

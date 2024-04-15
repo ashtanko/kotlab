@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/equal-row-and-column-pairs/">Source</a>
  */
 fun interface EqualMatrixPairs {
-    fun equalPairs(grid: Array<IntArray>): Int
+    operator fun invoke(grid: Array<IntArray>): Int
 }
 
 class EqualMatrixPairsTrie : EqualMatrixPairs {
-    override fun equalPairs(grid: Array<IntArray>): Int {
+    override fun invoke(grid: Array<IntArray>): Int {
         val root = TrieNode()
         val n: Int = grid.size
         var res = 0

@@ -32,35 +32,55 @@ fun interface StickersToSpellWord {
  * DP + Memoization with optimization
  */
 class StickersToSpellWordDP : StickersToSpellWord {
+
+    /**
+     * This function calculates the minimum number of stickers required to spell the target.
+     * It uses a dynamic programming approach.
+     * @param stickers The array of available stickers.
+     * @param target The target string to spell.
+     * @return The minimum number of stickers required to spell the target.
+     */
     override fun invoke(stickers: Array<String>, target: String): Int {
-        val m: Int = stickers.size
-        val mp = Array(m) { IntArray(ALPHABET_LETTERS_COUNT) }
+        val stickerCount = stickers.size
+        val stickerChars = Array(stickerCount) { IntArray(ALPHABET_LETTERS_COUNT) }
         val dp: MutableMap<String, Int> = HashMap()
-        for (i in 0 until m) for (c in stickers[i].toCharArray()) mp[i][c - 'a']++
+        stickers.forEachIndexed { i, sticker -> sticker.forEach { char -> stickerChars[i][char - 'a']++ } }
         dp[""] = 0
-        return helper(dp, mp, target)
+        return calculateMinimumStickers(dp, stickerChars, target)
     }
 
-    private fun helper(dp: MutableMap<String, Int>, mp: Array<IntArray>, target: String): Int {
-        if (dp.containsKey(target)) return dp[target] ?: -1
-        var ans = Int.MAX_VALUE
-        val n = mp.size
-        val tar = IntArray(ALPHABET_LETTERS_COUNT)
-        for (c in target.toCharArray()) tar[c - 'a']++
-        // try every sticker
-        for (i in 0 until n) {
-            // optimization
-            if (mp[i][target[0] - 'a'] == 0) continue
-            val sb = StringBuilder()
-            // apply a sticker on every character a-z
-            for (j in 0 until ALPHABET_LETTERS_COUNT) {
-                if (tar[j] > 0) for (k in 0 until max(0, tar[j] - mp[i][j])) sb.append(('a'.code + j).toChar())
+    /**
+     * This function calculates the minimum number of stickers required to spell the target for a given state of the
+     * problem.
+     * It uses a dynamic programming approach.
+     * @param dp The dynamic programming table.
+     * @param stickerChars The character counts of the available stickers.
+     * @param target The target string to spell.
+     * @return The minimum number of stickers required to spell the target for the given state of the problem.
+     */
+    private fun calculateMinimumStickers(
+        dp: MutableMap<String, Int>,
+        stickerChars: Array<IntArray>,
+        target: String,
+    ): Int {
+        dp[target]?.let { return it }
+        var minStickers = Int.MAX_VALUE
+        val targetChars = IntArray(ALPHABET_LETTERS_COUNT)
+        target.forEach { char -> targetChars[char - 'a']++ }
+        stickerChars.indices.filter { stickerChars[it][target[0] - 'a'] > 0 }.forEach { i ->
+            val remainingTarget = StringBuilder()
+            targetChars.indices.forEach { j ->
+                if (targetChars[j] > 0) {
+                    repeat(max(0, targetChars[j] - stickerChars[i][j])) {
+                        remainingTarget.append(('a'.code + j).toChar())
+                    }
+                }
             }
-            val s = sb.toString()
-            val tmp = helper(dp, mp, s)
-            if (tmp != -1) ans = min(ans, 1 + tmp)
+            calculateMinimumStickers(dp, stickerChars, remainingTarget.toString()).let { remainingStickers ->
+                if (remainingStickers != -1) minStickers = min(minStickers, 1 + remainingStickers)
+            }
         }
-        dp[target] = if (ans == Int.MAX_VALUE) -1 else ans
+        dp[target] = if (minStickers == Int.MAX_VALUE) -1 else minStickers
         return dp[target] ?: -1
     }
 }

@@ -37,6 +37,11 @@ abstract class TopKFrequentElementsTest<out T : TopKFrequentElements>(private va
                 1,
                 intArrayOf(1),
             ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                2,
+                intArrayOf(1, 2),
+            ),
         )
     }
 

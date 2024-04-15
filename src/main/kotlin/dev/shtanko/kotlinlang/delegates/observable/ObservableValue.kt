@@ -21,8 +21,3 @@ import kotlin.properties.Delegates
 var observableValue: String by Delegates.observable("<no value>") { prop, old, new ->
     println("$old -> $new prop: $prop")
 }
-
-fun main() {
-    observableValue = "1"
-    observableValue = "2"
-}

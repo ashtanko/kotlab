@@ -24,22 +24,22 @@ import dev.shtanko.algorithms.MOD
  * @see <a href="https://leetcode.com/problems/distinct-subsequences-ii/">Source</a>
  */
 fun interface DistinctSubseq2 {
-    fun distinctSubseqII(s: String): Int
+    operator fun invoke(str: String): Int
 }
 
 /**
  * Approach 1: Dynamic Programming
  */
 class DistinctSubseq2DP : DistinctSubseq2 {
-    override fun distinctSubseqII(s: String): Int {
-        val n: Int = s.length
+    override fun invoke(str: String): Int {
+        val n: Int = str.length
         val dp = IntArray(n + 1)
         dp[0] = 1
 
         val last = IntArray(ALPHABET_LETTERS_COUNT) { -1 }
 
         for (i in 0 until n) {
-            val x: Int = s[i] - 'a'
+            val x: Int = str[i] - 'a'
             dp[i + 1] = dp[i] * 2 % MOD
             if (last[x] >= 0) dp[i + 1] -= dp[last[x]]
             dp[i + 1] %= MOD
@@ -53,7 +53,7 @@ class DistinctSubseq2DP : DistinctSubseq2 {
 }
 
 class DistinctSubseq2DPConstSpace : DistinctSubseq2 {
-    override fun distinctSubseqII(s: String): Int {
+    override fun invoke(str: String): Int {
         var pre = 1 // The number of subsequences till previous-location. Include empty string: ""
 
         var cur = 1 // The number of subsequences till now. Include empty string: ""
@@ -61,7 +61,7 @@ class DistinctSubseq2DPConstSpace : DistinctSubseq2 {
         // The number of subsequences that end with a character till now. Not include empty string: ""
         val lastCount = IntArray(ALPHABET_LETTERS_COUNT)
 
-        for (element in s) {
+        for (element in str) {
             val charIndex: Int = element - 'a'
             cur = pre * 2 % MOD // include-current-character  +  not-include-current-character
             // Remove duplicated characters: previous subsequences that end with current character.

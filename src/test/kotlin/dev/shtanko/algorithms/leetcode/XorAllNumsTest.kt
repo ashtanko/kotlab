@@ -37,6 +37,21 @@ abstract class XorAllNumsTest<out T : XorAllNums>(private val strategy: T) {
                 intArrayOf(3, 4),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                intArrayOf(4, 5, 6),
+                7,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                intArrayOf(),
+                0,
+            ),
         )
     }
 

@@ -34,8 +34,8 @@ abstract class MonkeyMoveTest<out T : MonkeyMove>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `monkey move test`(n: Int, expected: Int) {
-        val actual = strategy(n)
+    fun `monkey move test`(num: Int, expected: Int) {
+        val actual = strategy(num)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

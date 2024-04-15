@@ -73,14 +73,14 @@ class ValidateBinaryTreeNodesBFS : ValidateBinaryTreeNodes {
         for (i in 0 until n) if (indegree[i] == 0) root = i
         if (root == -1) return false
 
-        val q: Queue<Int> = LinkedList()
-        q.offer(root)
+        val queue: Queue<Int> = LinkedList()
+        queue.offer(root)
         var count = 0
-        while (q.isNotEmpty()) {
-            val node: Int = q.poll()
+        while (queue.isNotEmpty()) {
+            val node: Int = queue.poll()
             ++count
-            if (leftChild[node] != -1) q.offer(leftChild[node])
-            if (rightChild[node] != -1) q.offer(rightChild[node])
+            if (leftChild[node] != -1) queue.offer(leftChild[node])
+            if (rightChild[node] != -1) queue.offer(rightChild[node])
         }
 
         return count == n

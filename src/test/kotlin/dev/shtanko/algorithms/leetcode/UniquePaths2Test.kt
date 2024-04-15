@@ -108,6 +108,13 @@ abstract class UniquePaths2Test<out T : UniquePaths2>(private val strategy: T) {
                 ),
                 1,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 0),
+                    intArrayOf(1, 0),
+                ),
+                1,
+            ),
         )
     }
 

@@ -42,13 +42,18 @@ abstract class TruncateSentenceTest<out T : TruncateSentence>(private val strate
                 5,
                 "chopper is not a tanuki",
             ),
+            Arguments.of(
+                "chopper is not a tanuki",
+                7,
+                "chopper is not a tanuki",
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `truncate sentence test`(s: String, k: Int, expected: String) {
-        val actual = strategy.invoke(s, k)
+    fun `truncate sentence test`(str: String, k: Int, expected: String) {
+        val actual = strategy.invoke(str, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

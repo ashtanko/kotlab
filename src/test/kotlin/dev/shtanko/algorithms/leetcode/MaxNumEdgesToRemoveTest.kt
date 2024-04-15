@@ -63,8 +63,8 @@ abstract class MaxNumEdgesToRemoveTest<out T : MaxNumEdgesToRemove>(private val 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `max num edges to remove test`(n: Int, edges: Array<IntArray>, expected: Int) {
-        val actual = strategy.invoke(n, edges)
+    fun `max num edges to remove test`(num: Int, edges: Array<IntArray>, expected: Int) {
+        val actual = strategy.invoke(num, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -74,6 +74,17 @@ abstract class SymmetricTreeTest<out T : SymmetricTree>(private val strategy: T)
                 asymmetricTree,
                 false,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                    }
+                    right = TreeNode(2).apply {
+                        right = TreeNode(3)
+                    }
+                },
+                true,
+            ),
         )
 
         private val symmetricTree = TreeNode(1).apply {

@@ -48,6 +48,10 @@ abstract class DailyTemperaturesTest<out T : DailyTemperatures>(private val stra
                 intArrayOf(1, 0),
             ),
             Arguments.of(
+                intArrayOf(30, 60, 30),
+                intArrayOf(1, 0, 0),
+            ),
+            Arguments.of(
                 intArrayOf(),
                 intArrayOf(),
             ),

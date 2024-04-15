@@ -17,22 +17,22 @@
 package dev.shtanko.algorithms.leetcode
 
 fun interface BeautifulArrangement2 {
-    fun constructArray(n: Int, k: Int): IntArray
+    operator fun invoke(num: Int, k: Int): IntArray
 }
 
 /**
  * Approach #2: Construction
  */
 class BA2Construction : BeautifulArrangement2 {
-    override fun constructArray(n: Int, k: Int): IntArray {
-        if (n == 0) return intArrayOf()
-        val ans = IntArray(n)
+    override fun invoke(num: Int, k: Int): IntArray {
+        if (num == 0) return intArrayOf()
+        val ans = IntArray(num)
         var c = 0
-        for (v in 1 until n - k) {
+        for (v in 1 until num - k) {
             ans[c++] = v
         }
         for (i in 0..k) {
-            ans[c++] = if (i % 2 == 0) n - k + i / 2 else n - i / 2
+            ans[c++] = if (i % 2 == 0) num - k + i / 2 else num - i / 2
         }
         return ans
     }

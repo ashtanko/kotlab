@@ -23,19 +23,19 @@ import dev.shtanko.algorithms.MOD
  * @see <a href="https://leetcode.com/problems/count-number-of-homogenous-substrings">Source</a>
  */
 fun interface CountHomogenous {
-    operator fun invoke(s: String): Int
+    operator fun invoke(str: String): Int
 }
 
 /**
  * Approach: Counting Streaks
  */
 class CountHomogenousCountingStreaks : CountHomogenous {
-    override fun invoke(s: String): Int {
+    override fun invoke(str: String): Int {
         var ans = 0
         var currStreak = 0
 
-        for (i in s.indices) {
-            if (i == 0 || s[i] == s[i - 1]) {
+        for (i in str.indices) {
+            if (i == 0 || str[i] == str[i - 1]) {
                 currStreak++
             } else {
                 currStreak = 1

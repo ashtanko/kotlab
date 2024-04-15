@@ -58,6 +58,12 @@ abstract class AbstractCountNegativesTest<out T : AbstractCountNegativesStrategy
             ),
             Arguments.of(
                 arrayOf(
+                    intArrayOf(1),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf(
                     intArrayOf(),
                 ),
                 0,

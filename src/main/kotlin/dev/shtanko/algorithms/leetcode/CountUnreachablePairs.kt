@@ -22,24 +22,26 @@ package dev.shtanko.algorithms.leetcode
  *     Source</a>
  */
 fun interface CountUnreachablePairs {
-    fun countPairs(n: Int, edges: Array<IntArray>): Long
+    fun invoke(num: Int, edges: Array<IntArray>): Long
 }
 
 class CountUnreachablePairsDFS : CountUnreachablePairs {
 
-    private val x: MutableList<MutableList<Int>> = ArrayList()
+    private val adjacencyList: MutableList<MutableList<Int>> = ArrayList()
 
-    override fun countPairs(n: Int, edges: Array<IntArray>): Long {
-        for (i in 0 until n) x.add(ArrayList())
+    override fun invoke(num: Int, edges: Array<IntArray>): Long {
+        for (i in 0 until num) {
+            adjacencyList.add(ArrayList())
+        }
         for (edge in edges) {
-            x[edge[0]].add(edge[1]) // make graph
-            x[edge[1]].add(edge[0])
+            adjacencyList[edge[0]].add(edge[1]) // make graph
+            adjacencyList[edge[1]].add(edge[0])
         }
 
         var res: Long = 0
-        var sum = n.toLong()
-        val visited = BooleanArray(n)
-        for (i in 0 until n) if (!visited[i]) {
+        var sum = num.toLong()
+        val visited = BooleanArray(num)
+        for (i in 0 until num) if (!visited[i]) {
             val curr = dfs(i, visited, IntArray(1)) // find size of connected component
             sum -= curr
             res += curr * sum
@@ -51,7 +53,7 @@ class CountUnreachablePairsDFS : CountUnreachablePairs {
         if (visited[node]) return count[0]
         visited[node] = true
         count[0]++
-        for (curr in x[node]) dfs(curr, visited, count)
+        for (curr in adjacencyList[node]) dfs(curr, visited, count)
         return count[0]
     }
 }

@@ -44,6 +44,21 @@ class BinaryTreePostorderTraversalTest {
                 },
                 listOf(2, 1),
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                },
+                listOf(2, 3, 1),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                    left?.right = TreeNode(5)
+                },
+                listOf(5, 2, 3, 1),
+            ),
         )
     }
 

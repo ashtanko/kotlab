@@ -28,6 +28,21 @@ abstract class ExtraCharactersInStringTest<out T : ExtraCharactersInString>(priv
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                "",
+                arrayOf("leet", "code", "leetcode"),
+                0,
+            ),
+            Arguments.of(
+                "",
+                arrayOf(""),
+                0,
+            ),
+            Arguments.of(
+                "",
+                arrayOf<String>(),
+                0,
+            ),
+            Arguments.of(
                 "leetscode",
                 arrayOf("leet", "code", "leetcode"),
                 1,

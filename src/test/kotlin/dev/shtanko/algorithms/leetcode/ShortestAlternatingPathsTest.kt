@@ -52,12 +52,12 @@ abstract class ShortestAlternatingPathsTest<out T : ShortestAlternatingPaths>(pr
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shortest alternating paths test`(
-        n: Int,
+        num: Int,
         redEdges: Array<IntArray>,
         blueEdges: Array<IntArray>,
         expected: IntArray,
     ) {
-        val actual = strategy.invoke(n, redEdges, blueEdges)
+        val actual = strategy.invoke(num, redEdges, blueEdges)
         assertThat(actual).isEqualTo(expected)
     }
 }

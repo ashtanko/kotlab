@@ -47,6 +47,14 @@ abstract class ValidPartitionTest<out T : ValidPartition>(private val strategy: 
                 intArrayOf(1, 1, 1, 2),
                 false,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                true,
+            ),
         )
     }
 

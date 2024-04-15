@@ -45,12 +45,30 @@ abstract class CountHiddenSequencesTest<out T : CountHiddenSequences>(private va
                 6,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(-1, 2, -3, 4, 5, -6, 7),
+                0,
+                7,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                1,
+                3,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                3,
+                3,
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `number of Arrays test`(differences: IntArray, lower: Int, upper: Int, expected: Int) {
+    fun `number of arrays test`(differences: IntArray, lower: Int, upper: Int, expected: Int) {
         val actual = strategy.numberOfArrays(differences, lower, upper)
         assertThat(actual).isEqualTo(expected)
     }

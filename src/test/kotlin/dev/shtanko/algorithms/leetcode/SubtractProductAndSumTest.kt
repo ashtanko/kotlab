@@ -28,8 +28,8 @@ class SubtractProductAndSumTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `subtract product and sum test`(n: Int, expected: Int) {
-        val actual = n.subtractProductAndSum()
+    fun `subtract product and sum test`(num: Int, expected: Int) {
+        val actual = num.calculateDifferenceBetweenProductAndSum()
         assertEquals(expected, actual)
     }
 
@@ -50,6 +50,18 @@ class SubtractProductAndSumTest {
             Arguments.of(
                 4421,
                 21,
+            ),
+            Arguments.of(
+                2345,
+                106,
+            ),
+            Arguments.of(
+                100,
+                -1,
+            ),
+            Arguments.of(
+                1000,
+                -1,
             ),
         )
     }

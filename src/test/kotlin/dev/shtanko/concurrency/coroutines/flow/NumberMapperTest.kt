@@ -47,8 +47,8 @@ internal class NumberMapperTest {
     @ExperimentalCoroutinesApi
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `num mapper test`(n: Int, expected: List<String>) = runTest {
-        val actual = NumberMapper.map(n)
+    internal fun `num mapper test`(num: Int, expected: List<String>) = runTest {
+        val actual = NumberMapper.map(num)
         assertThat(actual).containsAll(expected)
     }
 }

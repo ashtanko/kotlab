@@ -43,6 +43,26 @@ abstract class FindUnsortedSubArrayTest<out T : FindUnsortedSubArray>(private va
                 intArrayOf(1),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1, 3, 2, 2, 2),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 3, 3),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 3, 2, 3, 3),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+                0,
+            ),
         )
     }
 

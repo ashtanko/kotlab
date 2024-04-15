@@ -35,6 +35,30 @@ abstract class FindNumOfLISTest<out T : FindNumOfLIS>(private val strategy: T) {
                 intArrayOf(2, 2, 2, 2, 2),
                 5,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 4, 3, 5, 4, 7, 2),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 4, 3, 5, 4, 7, 2, 3, 4, 5, 6, 7, 8, 9),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 4, 3, 5, 4, 7, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 4, 3, 5, 4, 7, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
         )
     }
 

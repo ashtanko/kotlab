@@ -65,13 +65,21 @@ abstract class BasicCalculatorTest<out T : CalculationStrategy>(private val stra
                 "2   +2",
                 4,
             ),
+            Arguments.of(
+                "2-1 + 2",
+                3,
+            ),
+            Arguments.of(
+                "2-1 + 2",
+                3,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `calculator test`(s: String, expected: Int) {
-        val actual = strategy.calculate(s)
+    fun `calculator test`(str: String, expected: Int) {
+        val actual = strategy(str)
         assertThat(actual, equalTo(expected))
     }
 }

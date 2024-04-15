@@ -59,6 +59,11 @@ class AdvantageShuffleTest {
                 intArrayOf(13, 25, 32, 11),
                 intArrayOf(24, 32, 8, 12),
             ),
+            Arguments.of(
+                intArrayOf(2, 0, 4, 1, 2),
+                intArrayOf(1, 3, 0, 0, 2),
+                intArrayOf(2, 0, 1, 2, 4),
+            ),
         )
     }
 

@@ -104,9 +104,9 @@ class SortTest {
 
     @ParameterizedTest
     @ValueSource(ints = [10, 100, 1000, 10_000, 100_000])
-    fun `new random array test`(n: Int) {
-        val array = n.toRandomArray()
-        assertThat(array.size).isEqualTo(n)
+    fun `new random array test`(num: Int) {
+        val array = num.toRandomArray()
+        assertThat(array.size).isEqualTo(num)
     }
 
     @ParameterizedTest

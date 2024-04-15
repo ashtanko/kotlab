@@ -34,15 +34,15 @@ class IntExtTest {
 
     @ParameterizedTest
     @ArgumentsSource(UglyNumberInputArgumentsProvider::class)
-    fun `is ugly number test`(n: Int, expected: Boolean) {
-        val actual = n.isUgly()
+    fun `is ugly number test`(num: Int, expected: Boolean) {
+        val actual = num.isUgly()
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(UglyNumberInputArgumentsProvider::class)
-    fun `is ugly2 number test`(n: Int, expected: Boolean) {
-        val actual = n.isUgly2()
+    fun `is ugly2 number test`(num: Int, expected: Boolean) {
+        val actual = num.isUgly2()
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

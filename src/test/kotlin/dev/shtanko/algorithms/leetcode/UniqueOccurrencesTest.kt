@@ -59,6 +59,14 @@ abstract class UniqueOccurrencesTest<out T : UniqueOccurrences>(private val stra
                 intArrayOf(1, -2),
                 false,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 1, 1, 3, 3),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 1, 1, 3, 3, 3),
+                false,
+            ),
         )
     }
 }

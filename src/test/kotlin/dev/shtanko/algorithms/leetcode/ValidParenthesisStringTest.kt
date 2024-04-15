@@ -55,6 +55,18 @@ abstract class ValidParenthesisStringTest<out T : ValidParenthesisString>(privat
                 "((",
                 false,
             ),
+            Arguments.of(
+                "(((",
+                false,
+            ),
+            Arguments.of(
+                "((()))",
+                true,
+            ),
+            Arguments.of(
+                "((()))()",
+                true,
+            ),
         )
     }
 

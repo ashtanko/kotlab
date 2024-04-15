@@ -39,13 +39,41 @@ abstract class DistinctSubseq2Test<out T : DistinctSubseq2>(private val strategy
                 "aaa",
                 3,
             ),
+            Arguments.of(
+                "a",
+                1,
+            ),
+            Arguments.of(
+                "ab",
+                3,
+            ),
+            Arguments.of(
+                "aa",
+                2,
+            ),
+            Arguments.of(
+                "abab",
+                11,
+            ),
+            Arguments.of(
+                "ababab",
+                32,
+            ),
+            Arguments.of(
+                "abababab",
+                87,
+            ),
+            Arguments.of(
+                "",
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `distinct subseq II test`(s: String, expected: Int) {
-        val actual = strategy.distinctSubseqII(s)
+    fun `distinct subseq II test`(str: String, expected: Int) {
+        val actual = strategy.invoke(str)
         assertThat(actual).isEqualTo(expected)
     }
 }

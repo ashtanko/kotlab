@@ -76,9 +76,8 @@ class NQueensTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputBoardArgumentsProvider::class)
-    fun `generate board test`(n: Int, loc: Array<Pair<Int, Char>>, expected: String) {
-        val actual = n.genBoard(*loc)
-        println(actual)
+    fun `generate board test`(num: Int, loc: Array<Pair<Int, Char>>, expected: String) {
+        val actual = num.genBoard(*loc)
         assertThat(actual, equalTo(expected))
     }
 

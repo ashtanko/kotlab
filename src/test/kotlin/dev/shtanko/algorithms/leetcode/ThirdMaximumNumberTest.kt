@@ -30,6 +30,10 @@ class ThirdMaximumNumberTest {
             Arguments.of(intArrayOf(3, 2, 1), 1),
             Arguments.of(intArrayOf(1, 2), 2),
             Arguments.of(intArrayOf(2, 2, 3, 1), 1),
+            Arguments.of(intArrayOf(1, 2, 2, 5, 3, 5), 2),
+            Arguments.of(intArrayOf(1, 2, 2, 5, 3, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), 13),
+            Arguments.of(intArrayOf(1, 2, 2, 5, 3, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), 14),
+            Arguments.of(intArrayOf(), -1),
         )
     }
 

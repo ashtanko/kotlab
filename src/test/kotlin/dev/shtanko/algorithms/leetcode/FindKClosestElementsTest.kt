@@ -40,6 +40,36 @@ class FindKClosestElementsTest {
                 -1,
                 listOf(1, 2, 3, 4),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                4,
+                6,
+                listOf(2, 3, 4, 5),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                4,
+                4,
+                listOf(2, 3, 4, 5),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+                listOf<Int>(),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+                1,
+                listOf(1),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+                1,
+                listOf(1),
+            ),
         )
     }
 

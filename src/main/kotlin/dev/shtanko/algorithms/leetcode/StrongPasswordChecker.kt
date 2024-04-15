@@ -20,10 +20,23 @@ private const val START_VALUE = 1
 private const val STRONG_PASSWORD_VALUE = 6
 private const val OVER_LENGTH = 20
 
+/**
+ * Enum class representing the types of characters that can be present in a password.
+ */
 enum class CharacterType {
     LOWER_CASE, UPPER_CASE, DIGIT
 }
 
+/**
+ * This function checks if a given password string is strong or not.
+ * A strong password is defined as one that has at least 6 characters, and contains at least one lowercase letter,
+ * one uppercase letter, and one digit.
+ * The function returns the minimum number of steps required to make the password strong.
+ * Each insertion, deletion, or replacement of any character in the password counts as one step.
+ *
+ * @param s The password string to check.
+ * @return The minimum number of steps required to make the password strong.
+ */
 fun strongPasswordChecker(s: String): Int {
     var res = 0
     var lowerCases = START_VALUE
@@ -55,6 +68,13 @@ fun strongPasswordChecker(s: String): Int {
     return res
 }
 
+/**
+ * This function calculates the counts of each type of character in the password string.
+ *
+ * @param arr An array to store the counts of each type of character.
+ * @param carr The password string converted to a character array.
+ * @param action A lambda function to update the counts of each type of character.
+ */
 private fun calculateCharacterCounts(
     arr: IntArray,
     carr: CharArray,
@@ -72,10 +92,24 @@ private fun calculateCharacterCounts(
     }
 }
 
+/**
+ * This function calculates the number of missing characters needed to make the password strong.
+ *
+ * @param size The current size of the password.
+ * @param totalMissing The total number of missing character types.
+ * @return The number of missing characters needed.
+ */
 private fun calculateMissingCharacters(size: Int, totalMissing: Int): Int {
     return totalMissing + 0.coerceAtLeast(STRONG_PASSWORD_VALUE - (size + totalMissing))
 }
 
+/**
+ * This function handles the case where the password is longer than the maximum allowed length.
+ *
+ * @param arr An array storing the counts of each type of character.
+ * @param overLen The number of characters exceeding the maximum allowed length.
+ * @return The number of steps required to reduce the password length to the maximum allowed length.
+ */
 private fun handleExcessLength(arr: IntArray, overLen: Int): Int {
     var res = overLen
     for (k in 1..2) {
@@ -93,6 +127,12 @@ private fun handleExcessLength(arr: IntArray, overLen: Int): Int {
     return res
 }
 
+/**
+ * This function calculates the number of leftover characters after handling the excess length.
+ *
+ * @param arr An array storing the counts of each type of character.
+ * @return The number of leftover characters.
+ */
 private fun calculateLeftOver(arr: IntArray): Int {
     var leftOver = 0
     var overLen = 0

@@ -42,6 +42,21 @@ abstract class CountBallsTest<out T : CountBalls>(private val strategy: T) {
                 28,
                 2,
             ),
+            Arguments.of(
+                1,
+                100000,
+                6000,
+            ),
+            Arguments.of(
+                5,
+                15,
+                2,
+            ),
+            Arguments.of(
+                4,
+                7,
+                1,
+            ),
         )
     }
 

@@ -95,6 +95,30 @@ abstract class FindJudgeTest<out T : FindJudge>(private val strategy: T) {
                 ),
                 -1,
             ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 1),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 3),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 4),
+                ),
+                -1,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 1),
+                ),
+                -1,
+            ),
         )
     }
 

@@ -39,6 +39,25 @@ abstract class FlattenBinaryTreeTest<out T : FlattenBinaryTree>(private val stra
                 },
                 listOf(1, 2, 3, 4, 5, 6),
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                            right = TreeNode(5)
+                        }
+                        right = TreeNode(6).apply {
+                            left = TreeNode(7)
+                            right = TreeNode(8)
+                        }
+                    }
+                    right = TreeNode(9).apply {
+                        left = TreeNode(10)
+                        right = TreeNode(11)
+                    }
+                },
+                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+            ),
         )
     }
 

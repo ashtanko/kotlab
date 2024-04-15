@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
 import kotlin.math.min
 
 /**
@@ -28,6 +29,13 @@ fun interface StringCompression2 {
 
 class StringCompression2DP : StringCompression2 {
 
+    /**
+     * This function compresses the given string and returns the length of the compressed string.
+     * It uses dynamic programming to find the optimal solution.
+     * @param s The string to compress.
+     * @param k The maximum number of changes that can be made to the string.
+     * @return The length of the compressed string.
+     */
     override fun invoke(s: String, k: Int): Int {
         val n: Int = s.length
         val dp = initializeDP(n, k)
@@ -41,12 +49,25 @@ class StringCompression2DP : StringCompression2 {
         return dp[n][k]
     }
 
+    /**
+     * This function initializes the dynamic programming table.
+     * @param n The length of the string.
+     * @param k The maximum number of changes that can be made to the string.
+     * @return The initialized dynamic programming table.
+     */
     private fun initializeDP(n: Int, k: Int): Array<IntArray> {
         val dp = Array(n + 1) { IntArray(k + 1) { n } }
         dp[0][0] = 0
         return dp
     }
 
+    /**
+     * This function updates the dynamic programming table for a given string and index.
+     * @param dp The dynamic programming table.
+     * @param s The string to compress.
+     * @param i The current index in the string.
+     * @param m The current number of changes made to the string.
+     */
     private fun updateDP(dp: Array<IntArray>, s: String, i: Int, m: Int) {
         if (m > 0) {
             dp[i][m] = min(dp[i][m], dp[i - 1][m - 1])
@@ -69,6 +90,11 @@ class StringCompression2DP : StringCompression2 {
         }
     }
 
+    /**
+     * This function calculates the length of the compressed string for a given count of characters.
+     * @param count The count of characters.
+     * @return The length of the compressed string.
+     */
     private fun getLen(count: Int): Int {
         return when {
             count == 1 -> 1
@@ -80,6 +106,5 @@ class StringCompression2DP : StringCompression2 {
 
     companion object {
         private const val LIMIT = 100
-        private const val DECIMAL = 10
     }
 }

@@ -48,8 +48,8 @@ class HappyNumberTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `happy number test`(n: Int, expected: Boolean) {
-        val actual = n.isHappy()
+    fun `happy number test`(num: Int, expected: Boolean) {
+        val actual = num.isHappy()
         assertEquals(expected, actual)
     }
 

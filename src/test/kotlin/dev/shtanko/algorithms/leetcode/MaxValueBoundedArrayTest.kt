@@ -44,8 +44,8 @@ abstract class MaxValueBoundedArrayTest<out T : MaxValueBoundedArray>(private va
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `max value test`(n: Int, index: Int, maxSum: Int, expected: Int) {
-        val actual = strategy.maxValue(n, index, maxSum)
+    fun `max value test`(num: Int, index: Int, maxSum: Int, expected: Int) {
+        val actual = strategy.maxValue(num, index, maxSum)
         assertThat(actual).isEqualTo(expected)
     }
 }

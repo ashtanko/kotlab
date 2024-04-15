@@ -38,6 +38,9 @@ abstract class VerifyPreorderInBinarySearchTreeTest<out T : VerifyPreorderInBina
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(5, 2, 6, 1, 3), false),
             Arguments.of(intArrayOf(5, 2, 1, 3, 6), true),
+            Arguments.of(intArrayOf(5, 2, 1, 3, 6, 7), true),
+            Arguments.of(intArrayOf(5, 2, 1, 3, 6, 4), false),
+            Arguments.of(intArrayOf(5, 2, 1, 3, 6, 4, 7), false),
         )
     }
 

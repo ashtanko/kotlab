@@ -38,6 +38,21 @@ abstract class TwoSumLessThanKTest<out T : TwoSumLessThanKStrategy>(private val 
                 15,
                 -1,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                -1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                10,
+                9,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                0,
+                -1,
+            ),
         )
     }
 

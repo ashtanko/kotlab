@@ -39,6 +39,22 @@ abstract class AsteroidCollisionTest<out T : AsteroidCollision>(private val stra
                 intArrayOf(10, 2, -5),
                 intArrayOf(10),
             ),
+            Arguments.of(
+                intArrayOf(-2, -1, 1, 2),
+                intArrayOf(-2, -1, 1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(-2, -2, 1, -2),
+                intArrayOf(-2, -2, -2),
+            ),
+            Arguments.of(
+                intArrayOf(-2, -2, -2, -2),
+                intArrayOf(-2, -2, -2, -2),
+            ),
+            Arguments.of(
+                intArrayOf(-2, -2, -2, -2, -2),
+                intArrayOf(-2, -2, -2, -2, -2),
+            ),
         )
     }
 

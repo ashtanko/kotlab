@@ -25,40 +25,43 @@ fun interface UniquePaths3 {
 }
 
 class UniquePaths3Backtracking : UniquePaths3 {
-    private var res = 0
-    private var empty: Int = 1
-    private var sx: Int = 0
-    private var sy: Int = 0
+    private var result = 0
+    private var emptyCells: Int = 1
+    private var startX: Int = 0
+    private var startY: Int = 0
     override operator fun invoke(grid: Array<IntArray>): Int {
-        val m: Int = grid.size
-        val n: Int = grid[0].size
-        for (i in 0 until m) {
-            for (j in 0 until n) {
-                if (grid[i][j] == 0) {
-                    empty++
-                } else if (grid[i][j] == 1) {
-                    sx = i
-                    sy = j
+        if (grid.isEmpty() || grid[0].isEmpty()) {
+            return 0
+        }
+        val gridHeight: Int = grid.size
+        val gridWidth: Int = grid[0].size
+        for (row in 0 until gridHeight) {
+            for (column in 0 until gridWidth) {
+                if (grid[row][column] == 0) {
+                    emptyCells++
+                } else if (grid[row][column] == 1) {
+                    startX = row
+                    startY = column
                 }
             }
         }
-        dfs(grid, sx, sy)
-        return res
+        dfs(grid, startX, startY)
+        return result
     }
 
-    fun dfs(grid: Array<IntArray>, x: Int, y: Int) {
+    private fun dfs(grid: Array<IntArray>, x: Int, y: Int) {
         if (x < 0 || x >= grid.size || y < 0 || y >= grid[0].size || grid[x][y] < 0) return
         if (grid[x][y] == 2) {
-            if (empty == 0) res++
+            if (emptyCells == 0) result++
             return
         }
         grid[x][y] = -2
-        empty--
+        emptyCells--
         dfs(grid, x + 1, y)
         dfs(grid, x - 1, y)
         dfs(grid, x, y + 1)
         dfs(grid, x, y - 1)
         grid[x][y] = 0
-        empty++
+        emptyCells++
     }
 }

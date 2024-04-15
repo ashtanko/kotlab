@@ -42,13 +42,32 @@ abstract class EscapeLargeMazeTest<out T : EscapeLargeMaze>(private val strategy
                 intArrayOf(999999, 999999),
                 true,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(1, 0),
+                ),
+                intArrayOf(0, 0),
+                intArrayOf(0, 1),
+                false,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0, 1, 1),
+                    intArrayOf(1, 0, 1),
+                    intArrayOf(1, 1, 0),
+                ),
+                intArrayOf(0, 0),
+                intArrayOf(2, 2),
+                false,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is escape possible test`(blocked: Array<IntArray>, source: IntArray, target: IntArray, expected: Boolean) {
-        val actual = strategy.isEscapePossible(blocked, source, target)
+        val actual = strategy.invoke(blocked, source, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

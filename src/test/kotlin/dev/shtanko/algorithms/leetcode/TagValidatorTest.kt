@@ -36,6 +36,9 @@ abstract class TagValidatorTest<out T : TagValidatorStrategy>(private val strate
             Arguments.of("<DIV> closed tags with invalid tag name  <b>123</b> </DIV>", false),
             Arguments.of("<DIV> unmatched tags with invalid tag name  </1234567890> and <CDATA[[]]>  </DIV>", false),
             Arguments.of("<DIV>  unmatched start tag <B>  and unmatched end tag </C>  </DIV>", false),
+            Arguments.of("<![CDATA[wahaha]]]><![CDATA[]> wahaha]]>", false),
+            Arguments.of("<A><A></A></A>", true),
+            Arguments.of("<A></A><B></B>", false),
         )
     }
 

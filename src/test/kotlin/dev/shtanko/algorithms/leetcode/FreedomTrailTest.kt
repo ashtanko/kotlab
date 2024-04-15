@@ -37,13 +37,53 @@ abstract class FreedomTrailTest<out T : FreedomTrail>(private val strategy: T) {
                 "godding",
                 13,
             ),
+            Arguments.of(
+                "godding",
+                "god",
+                5,
+            ),
+            Arguments.of(
+                "godding",
+                "godding",
+                13,
+            ),
+            Arguments.of(
+                "godding",
+                "god",
+                5,
+            ),
+            Arguments.of(
+                "",
+                "",
+                0,
+            ),
+            Arguments.of(
+                "",
+                "a",
+                0,
+            ),
+            Arguments.of(
+                "a",
+                "a",
+                1,
+            ),
+            Arguments.of(
+                "a",
+                "b",
+                1,
+            ),
+            Arguments.of(
+                "a",
+                "aa",
+                2,
+            ),
         )
     }
 
     @ArgumentsSource(InputArgumentsProvider::class)
     @ParameterizedTest
     fun `find rotate steps test`(ring: String, key: String, expected: Int) {
-        val actual = strategy.findRotateSteps(ring, key)
+        val actual = strategy.invoke(ring, key)
         assertThat(actual).isEqualTo(expected)
     }
 }

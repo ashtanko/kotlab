@@ -33,6 +33,10 @@ abstract class ContainerWithMostWaterStrategyTest<out T : ContainerWithMostWater
             Arguments.of(intArrayOf(1), 0),
             Arguments.of(intArrayOf(1, 1), 1),
             Arguments.of(intArrayOf(1, 1, 3), 2),
+            Arguments.of(intArrayOf(1, 2, 1), 2),
+            Arguments.of(intArrayOf(1, 2, 3), 2),
+            Arguments.of(intArrayOf(1, 2, 3, 4), 4),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5), 6),
         )
     }
 

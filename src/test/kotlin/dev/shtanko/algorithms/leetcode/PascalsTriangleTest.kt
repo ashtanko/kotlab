@@ -47,8 +47,8 @@ abstract class PascalsTriangleTest<out T : PascalsTriangle>(private val strategy
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `pascals triangle test`(n: Int, expected: List<List<Int>>) {
-        val actual = strategy(n)
+    fun `pascals triangle test`(num: Int, expected: List<List<Int>>) {
+        val actual = strategy(num)
         assertEquals(expected, actual)
     }
 }

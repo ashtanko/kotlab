@@ -44,6 +44,26 @@ class CanMakeArithmeticProgressionTest {
                 intArrayOf(),
                 true,
             ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                true,
+            ),
         )
     }
 

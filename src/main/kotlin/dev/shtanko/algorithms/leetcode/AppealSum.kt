@@ -23,29 +23,45 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
  * @see <a href="https://leetcode.com/problems/total-appeal-of-a-string/">Source</a>
  */
 fun interface AppealSum {
-    operator fun invoke(s: String): Long
+    /**
+     * This function calculates the total appeal of a string.
+     *
+     * @param str The string to calculate the appeal of.
+     * @return The total appeal of the string.
+     */
+    operator fun invoke(str: String): Long
 }
 
+/**
+ * This class provides an implementation of the AppealSum interface using dynamic programming.
+ * It keeps track of the current appeal and the previous occurrence of each character.
+ * For each character in the string, it updates the current appeal and the previous occurrence of the character,
+ * and adds the current appeal to the total appeal.
+ */
 class AppealSumDP : AppealSum {
 
-    override operator fun invoke(s: String): Long {
+    override operator fun invoke(str: String): Long {
         var res: Long = 0
         var cur: Long = 0
         val prev = LongArray(ALPHABET_LETTERS_COUNT)
-        for (i in s.indices) {
-            cur += i + 1 - prev[s[i] - 'a']
-            prev[s[i] - 'a'] = (i + 1).toLong()
+        for (i in str.indices) {
+            cur += i + 1 - prev[str[i] - 'a']
+            prev[str[i] - 'a'] = (i + 1).toLong()
             res += cur
         }
         return res
     }
 }
 
+/**
+ * This class provides an implementation of the AppealSum interface using Kotlin's mapIndexed function.
+ * It calculates the appeal of each character in the string and sums them up to get the total appeal.
+ */
 class AppealSumDPKt : AppealSum {
-    override operator fun invoke(s: String): Long {
+    override operator fun invoke(str: String): Long {
         var cur: Long = 0
         val prev = LongArray(ALPHABET_LETTERS_COUNT)
-        return s.mapIndexed { index, c ->
+        return str.mapIndexed { index, c ->
             cur += index + 1 - prev[c - 'a']
             prev[c - 'a'] = index.toLong() + 1
             cur

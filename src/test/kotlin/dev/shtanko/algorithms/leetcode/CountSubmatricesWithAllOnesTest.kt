@@ -43,6 +43,32 @@ abstract class CountSubmatricesWithAllOnesTest<out T : CountSubmatricesWithAllOn
                 ),
                 24,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1),
+                ),
+                21,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0, 1),
+                    intArrayOf(0, 1, 0),
+                    intArrayOf(1, 0, 1),
+                ),
+                5,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                ),
+                784,
+            ),
         )
     }
 

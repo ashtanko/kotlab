@@ -37,6 +37,11 @@ abstract class TwoEditWordsTest<out T : TwoEditWords>(private val strategy: T) {
                 arrayOf("not"),
                 emptyList<String>(),
             ),
+            Arguments.of(
+                arrayOf("yes", "no"),
+                arrayOf("not", "yes", "no"),
+                listOf("yes", "no"),
+            ),
         )
     }
 

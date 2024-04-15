@@ -25,14 +25,14 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/count-all-possible-routes/">Source</a>
  */
 fun interface CountAllPossibleRoutes {
-    fun countRoutes(locations: IntArray, start: Int, finish: Int, fuel: Int): Int
+    operator fun invoke(locations: IntArray, start: Int, finish: Int, fuel: Int): Int
 }
 
 /**
  * Approach 1: Recursive Dynamic Programming
  */
 class CountAllPossibleRoutesRec : CountAllPossibleRoutes {
-    override fun countRoutes(locations: IntArray, start: Int, finish: Int, fuel: Int): Int {
+    override fun invoke(locations: IntArray, start: Int, finish: Int, fuel: Int): Int {
         val n: Int = locations.size
         val memo = Array(n) { IntArray(fuel + 1) { -1 } }
         return solve(locations, start, finish, fuel, memo)
@@ -67,7 +67,7 @@ class CountAllPossibleRoutesRec : CountAllPossibleRoutes {
  * Approach 2: Iterative Dynamic Programming
  */
 class CountAllPossibleRoutesIter : CountAllPossibleRoutes {
-    override fun countRoutes(locations: IntArray, start: Int, finish: Int, fuel: Int): Int {
+    override fun invoke(locations: IntArray, start: Int, finish: Int, fuel: Int): Int {
         val n: Int = locations.size
         val dp = Array(n) { IntArray(fuel + 1) }
         Arrays.fill(dp[finish], 1)

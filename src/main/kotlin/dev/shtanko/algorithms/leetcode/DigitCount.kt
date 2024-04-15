@@ -27,8 +27,8 @@ fun interface DigitCount {
 class DigitCountFreqArray : DigitCount {
     override operator fun invoke(num: String): Boolean {
         val freq = IntArray(10)
-        for (c in num.toCharArray()) {
-            freq[c.code - '0'.code]++
+        for (character in num.toCharArray()) {
+            freq[character.code - '0'.code]++
         }
         for (i in num.indices) {
             if (num[i] - '0' != freq[i]) return false

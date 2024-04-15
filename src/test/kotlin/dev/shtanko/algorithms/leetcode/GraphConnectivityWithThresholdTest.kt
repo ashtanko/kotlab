@@ -66,8 +66,8 @@ abstract class GraphConnectivityWithThresholdTest<out T : GraphConnectivityWithT
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `are connected test`(n: Int, threshold: Int, queries: Array<IntArray>, expected: List<Boolean>) {
-        val actual = strategy.areConnected(n, threshold, queries)
+    fun `are connected test`(num: Int, threshold: Int, queries: Array<IntArray>, expected: List<Boolean>) {
+        val actual = strategy.areConnected(num, threshold, queries)
         assertThat(actual).isEqualTo(expected)
     }
 }

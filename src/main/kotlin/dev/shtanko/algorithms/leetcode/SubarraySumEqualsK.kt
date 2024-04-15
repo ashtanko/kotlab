@@ -71,7 +71,7 @@ class SubarraySumUsingHashmap : SubarraySumStrategy {
         map[0] = 1
         for (element in nums) {
             sum += element
-            if (map.containsKey(sum - k)) count += map[sum - k]!!
+            if (map.containsKey(sum - k)) count += map.getOrDefault(sum - k, 0)
             map[sum] = map.getOrDefault(sum, 0) + 1
         }
         return count

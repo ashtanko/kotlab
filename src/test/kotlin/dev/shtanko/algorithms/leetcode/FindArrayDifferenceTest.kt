@@ -43,6 +43,38 @@ abstract class FindArrayDifferenceTest<out T : FindArrayDifference>(private val 
                     listOf(),
                 ),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1, 2, 3, 4),
+                listOf(
+                    listOf(),
+                    listOf<Int>(),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1, 2, 3, 4, 5),
+                listOf(
+                    listOf(),
+                    listOf(5),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                intArrayOf(1, 2, 3, 4),
+                listOf(
+                    listOf(5),
+                    listOf(),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                intArrayOf(1, 2, 3, 4, 5),
+                listOf(
+                    listOf<Int>(),
+                    listOf(),
+                ),
+            ),
         )
     }
 

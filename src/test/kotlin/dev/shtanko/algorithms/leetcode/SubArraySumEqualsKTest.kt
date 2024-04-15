@@ -29,6 +29,11 @@ abstract class SubArraySumStrategyTest<out T : SubarraySumStrategy>(private val 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
                 intArrayOf(0),
                 0,
                 1,
@@ -37,6 +42,21 @@ abstract class SubArraySumStrategyTest<out T : SubarraySumStrategy>(private val 
                 intArrayOf(1, 1, 1),
                 2,
                 2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                3,
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                3,
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                5,
+                1,
             ),
         )
     }

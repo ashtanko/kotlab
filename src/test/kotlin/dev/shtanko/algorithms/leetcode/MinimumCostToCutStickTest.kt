@@ -43,8 +43,8 @@ abstract class MinimumCostToCutStickTest<out T : MinimumCostToCutStick>(private 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `minimum cost to cut a stick test`(cuts: IntArray, n: Int, expected: Int) {
-        val actual = strategy.minCost(n, cuts)
+    fun `minimum cost to cut a stick test`(cuts: IntArray, num: Int, expected: Int) {
+        val actual = strategy.minCost(num, cuts)
         assertThat(actual).isEqualTo(expected)
     }
 }

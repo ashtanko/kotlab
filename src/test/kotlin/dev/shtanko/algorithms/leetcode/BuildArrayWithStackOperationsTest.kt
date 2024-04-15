@@ -37,14 +37,15 @@ class BuildArrayWithStackOperationsTest {
             Arguments.of(intArrayOf(1), 0, emptyList<String>()),
             Arguments.of(intArrayOf(), 1, emptyList<String>()),
             Arguments.of(intArrayOf(1), 1, listOf("Push")),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5), 5, listOf("Push", "Push", "Push", "Push", "Push")),
         )
     }
 
     @DisplayName("build an array with stack operations")
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `build an array with stack operations test`(target: IntArray, n: Int, expected: List<String>) {
-        val actual = BuildArrayWithStackOperations().invoke(target, n)
+    fun `build an array with stack operations test`(target: IntArray, num: Int, expected: List<String>) {
+        val actual = BuildArrayWithStackOperations().invoke(target, num)
         assertEquals(expected, actual)
     }
 }

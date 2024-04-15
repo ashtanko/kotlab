@@ -21,9 +21,9 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/truncate-sentence/">Source</a>
  */
 fun interface TruncateSentence {
-    operator fun invoke(s: String, k: Int): String
+    operator fun invoke(str: String, k: Int): String
 }
 
 class TruncateSentenceBruteForce : TruncateSentence {
-    override operator fun invoke(s: String, k: Int) = s.split(" ").take(k).joinToString(" ")
+    override operator fun invoke(str: String, k: Int) = str.split(" ").take(k).joinToString(" ")
 }

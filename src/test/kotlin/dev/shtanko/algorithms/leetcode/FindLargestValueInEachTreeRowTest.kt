@@ -39,12 +39,47 @@ abstract class FindLargestValueInEachTreeRowTest<out T : FindLargestValueInEachT
                 },
                 listOf(1, 3, 9),
             ),
+            Arguments.of(
+                null,
+                listOf<Int>(),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                    }
+                    right = TreeNode(3).apply {
+                        right = TreeNode(5).apply {
+                            right = TreeNode(7)
+                        }
+                    }
+                },
+                listOf(1, 3, 5, 7),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4).apply {
+                            left = TreeNode(8)
+                        }
+                        right = TreeNode(5).apply {
+                            right = TreeNode(9)
+                        }
+                    }
+                    right = TreeNode(3).apply {
+                        right = TreeNode(6).apply {
+                            right = TreeNode(7)
+                        }
+                    }
+                },
+                listOf(1, 3, 6, 9),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `largest values test`(root: TreeNode, expected: List<Int>) {
+    fun `largest values test`(root: TreeNode?, expected: List<Int>) {
         val actual = strategy(root)
         Assertions.assertThat(actual).isEqualTo(expected)
     }

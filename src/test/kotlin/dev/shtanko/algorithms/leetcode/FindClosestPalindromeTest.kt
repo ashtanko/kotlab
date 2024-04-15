@@ -37,6 +37,13 @@ class FindClosestPalindromeTest {
             Arguments.of("456", "454"),
             Arguments.of("1000", "999"),
             Arguments.of("1999", "2002"),
+            Arguments.of("9999", "10001"),
+            Arguments.of("10000", "9999"),
+            Arguments.of("12345", "12321"),
+            Arguments.of("123456", "123321"),
+            Arguments.of("1234567", "1234321"),
+            Arguments.of("12345678", "12344321"),
+            Arguments.of("123456789", "123454321"),
         )
     }
 

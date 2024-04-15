@@ -55,8 +55,8 @@ abstract class MaximumBuildingHeightTest<out T : MaximumBuildingHeight>(private 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `max building test`(n: Int, restrictions: Array<IntArray>, expected: Int) {
-        val actual = strategy.maxBuilding(n, restrictions)
+    fun `max building test`(num: Int, restrictions: Array<IntArray>, expected: Int) {
+        val actual = strategy.maxBuilding(num, restrictions)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

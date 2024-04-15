@@ -23,7 +23,7 @@ private const val MAX_SIZE = 32
  * @see <a href="https://leetcode.com/problems/binary-gap/">Source</a>
  */
 fun interface BinaryGapStrategy {
-    fun binaryGap(n: Int): Int
+    operator fun invoke(num: Int): Int
 }
 
 /**
@@ -33,13 +33,13 @@ fun interface BinaryGapStrategy {
  */
 class BGStoreIndexes : BinaryGapStrategy {
 
-    override fun binaryGap(n: Int): Int {
-        val a = IntArray(MAX_SIZE)
-        var t = 0
-        for (i in 0 until MAX_SIZE) if (n shr i and 1 != 0) a[t++] = i
-        var ans = 0
-        for (i in 0 until t - 1) ans = ans.coerceAtLeast(a[i + 1] - a[i])
-        return ans
+    override fun invoke(num: Int): Int {
+        val indexes = IntArray(MAX_SIZE)
+        var indexCount = 0
+        for (i in 0 until MAX_SIZE) if (num shr i and 1 != 0) indexes[indexCount++] = i
+        var maxGap = 0
+        for (i in 0 until indexCount - 1) maxGap = maxGap.coerceAtLeast(indexes[i + 1] - indexes[i])
+        return maxGap
     }
 }
 
@@ -49,10 +49,10 @@ class BGStoreIndexes : BinaryGapStrategy {
  * Space Complexity: O(1).
  */
 class BGOnePass : BinaryGapStrategy {
-    override fun binaryGap(n: Int): Int {
+    override fun invoke(num: Int): Int {
         var last = -1
         var ans = 0
-        for (i in 0 until MAX_SIZE) if (n shr i and 1 > 0) {
+        for (i in 0 until MAX_SIZE) if (num shr i and 1 > 0) {
             if (last >= 0) ans = ans.coerceAtLeast(i - last)
             last = i
         }
@@ -62,11 +62,11 @@ class BGOnePass : BinaryGapStrategy {
 }
 
 class BGOther : BinaryGapStrategy {
-    override fun binaryGap(n: Int): Int {
+    override fun invoke(num: Int): Int {
         var max = 0
         var pos = 0
         var lastPos = -1
-        var changed = n
+        var changed = num
         while (changed != 0) {
             pos++
             if (changed and 1 == 1) {

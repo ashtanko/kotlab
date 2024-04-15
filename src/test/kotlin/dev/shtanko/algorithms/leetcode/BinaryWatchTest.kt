@@ -85,14 +85,26 @@ class BinaryWatchTest {
                 1,
                 listOf("1:00", "2:00", "4:00", "8:00", "0:01", "0:02", "0:04", "0:08", "0:16", "0:32"),
             ),
+            Arguments.of(
+                8,
+                listOf(
+                    "7:31",
+                    "7:47",
+                    "7:55",
+                    "7:59",
+                    "11:31",
+                    "11:47",
+                    "11:55",
+                    "11:59",
+                ),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `binary watch test`(n: Int, expected: List<String>) {
-        val actual = BinaryWatch.invoke(n)
-        println(actual)
+    fun `binary watch test`(num: Int, expected: List<String>) {
+        val actual = BinaryWatch.invoke(num)
         assertThat(actual, containsInAnyOrder(*expected.toTypedArray()))
     }
 }

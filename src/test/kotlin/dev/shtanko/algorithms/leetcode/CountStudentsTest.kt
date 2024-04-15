@@ -43,6 +43,16 @@ abstract class CountStudentsTest<out T : CountStudents>(private val strategy: T)
                 intArrayOf(),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 0),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                intArrayOf(1, 1, 1, 1),
+                0,
+            ),
         )
     }
 

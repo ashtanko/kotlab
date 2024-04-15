@@ -51,6 +51,16 @@ abstract class CheckCompletenessOfBinaryTreeTest<out T : CheckCompletenessOfBina
                 },
                 false,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(5)
+                    }
+                    right = TreeNode(3)
+                },
+                true,
+            ),
         )
     }
 

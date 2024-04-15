@@ -37,6 +37,16 @@ abstract class VowelSpellcheckerTest<out T : VowelSpellchecker>(private val stra
                 arrayOf("kite", "Kite", "KiTe", "Hare", "HARE", "Hear", "hear", "keti", "keet", "keto"),
                 arrayOf("kite", "KiTe", "KiTe", "Hare", "hare", "", "", "KiTe", "", "KiTe"),
             ),
+            Arguments.of(
+                arrayOf("yellow"),
+                arrayOf("YellOw"),
+                arrayOf("yellow"),
+            ),
+            Arguments.of(
+                arrayOf("yellow"),
+                arrayOf("YellOW"),
+                arrayOf("yellow"),
+            ),
         )
     }
 

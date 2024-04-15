@@ -18,7 +18,7 @@ package dev.shtanko.algorithms.leetcode
 
 data class ListTNode<T>(val value: T? = null, var next: ListTNode<T>? = null)
 
-fun <T> ListTNode<T>.prettyPrinted(): String {
+fun <T> ListTNode<T>.prettyPrint(): String {
     val sb = StringBuilder()
     var node: ListTNode<T>? = this
     while (node?.next != null) {

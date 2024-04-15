@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -54,6 +54,58 @@ class FlipAndInvertImageTest {
                     intArrayOf(1, 0, 1, 0),
                 ),
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1),
+                ),
+                arrayOf(
+                    intArrayOf(0),
+                ),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(0),
+                ),
+                arrayOf(
+                    intArrayOf(1),
+                ),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0),
+                    intArrayOf(0, 1),
+                ),
+                arrayOf(
+                    intArrayOf(1, 0),
+                    intArrayOf(0, 1),
+                ),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 0),
+                    intArrayOf(1, 0, 1),
+                    intArrayOf(0, 0, 0),
+                ),
+                arrayOf(
+                    intArrayOf(1, 0, 0),
+                    intArrayOf(0, 1, 0),
+                    intArrayOf(1, 1, 1),
+                ),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 0, 0),
+                    intArrayOf(1, 0, 0, 1),
+                    intArrayOf(0, 1, 1, 1),
+                    intArrayOf(1, 0, 1, 0),
+                ),
+                arrayOf(
+                    intArrayOf(1, 1, 0, 0),
+                    intArrayOf(0, 1, 1, 0),
+                    intArrayOf(0, 0, 0, 1),
+                    intArrayOf(1, 0, 1, 0),
+                ),
+            ),
         )
     }
 
@@ -61,6 +113,6 @@ class FlipAndInvertImageTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `flip and invert image test`(arr: Array<IntArray>, expected: Array<IntArray>) {
         val actual = flipAndInvertImage(arr)
-        assertArrayEquals(expected, actual)
+        assertThat(actual).isEqualTo(expected)
     }
 }

@@ -39,13 +39,33 @@ abstract class CountGoodNumbersTest<out T : CountGoodNumbers>(private val strate
                 50L,
                 564908303,
             ),
+            Arguments.of(
+                806166225460393L,
+                643535977,
+            ),
+            Arguments.of(
+                1000000000000000000L,
+                12845056,
+            ),
+            Arguments.of(
+                0L,
+                1,
+            ),
+            Arguments.of(
+                2L,
+                20,
+            ),
+            Arguments.of(
+                3L,
+                100,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count good numbers test`(n: Long, expected: Int) {
-        val actual = strategy(n)
+    fun `count good numbers test`(num: Long, expected: Int) {
+        val actual = strategy(num)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

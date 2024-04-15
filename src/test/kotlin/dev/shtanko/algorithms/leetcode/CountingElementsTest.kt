@@ -51,6 +51,38 @@ abstract class CountingElementsTest<out T : CountingElements>(private val strate
                 intArrayOf(1, 1, 2),
                 2,
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 3, 3, 5, 5, 7, 7, 9, 9),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5),
+                8,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6),
+                10,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7),
+                12,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8),
+                14,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9),
+                16,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10),
+                18,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11),
+                20,
+            ),
         )
     }
 

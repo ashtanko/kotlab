@@ -43,6 +43,22 @@ abstract class CountNodesTest<out T : CountNodes>(private val strategy: T) {
                 TreeNode(1),
                 1,
             ),
+            Arguments.of(
+                null,
+                0,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(2)
+                },
+                -2147483648,
+            ),
         )
     }
 

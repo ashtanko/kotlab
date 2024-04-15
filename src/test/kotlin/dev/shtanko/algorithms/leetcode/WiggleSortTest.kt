@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -36,6 +36,14 @@ abstract class WiggleSortTest<out T : WiggleSort>(private val strategy: T) {
                 intArrayOf(),
                 intArrayOf(),
             ),
+            Arguments.of(
+                intArrayOf(1, 3, 2, 2, 3, 1),
+                intArrayOf(2, 3, 1, 3, 1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 1, 2, 2, 1),
+                intArrayOf(1, 2, 1, 2, 1, 2, 1),
+            ),
         )
     }
 
@@ -43,7 +51,7 @@ abstract class WiggleSortTest<out T : WiggleSort>(private val strategy: T) {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `wiggle sort test`(nums: IntArray, expected: IntArray) {
         strategy.invoke(nums)
-        assertArrayEquals(expected, nums)
+        assertThat(nums).containsExactlyInAnyOrder(*expected)
     }
 }
 

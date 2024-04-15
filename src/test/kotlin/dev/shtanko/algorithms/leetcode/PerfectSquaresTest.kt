@@ -34,8 +34,8 @@ abstract class PerfectSquaresTest<out T : PerfectSquares>(private val strategy: 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num squares test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `num squares test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

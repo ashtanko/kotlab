@@ -41,13 +41,33 @@ abstract class CountPalindromicSubsequenceTest<out T : CountPalindromicSubsequen
                 "bbcbaba",
                 4,
             ),
+            Arguments.of(
+                "",
+                0,
+            ),
+            Arguments.of(
+                "a",
+                0,
+            ),
+            Arguments.of(
+                "aa",
+                0,
+            ),
+            Arguments.of(
+                "aaa",
+                1,
+            ),
+            Arguments.of(
+                "aaaa",
+                1,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count palindromic subsequence test`(s: String, expected: Int) {
-        val actual = strategy(s)
+    fun `count palindromic subsequence test`(str: String, expected: Int) {
+        val actual = strategy(str)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

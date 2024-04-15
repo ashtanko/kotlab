@@ -46,8 +46,8 @@ abstract class SortItemsTest<out T : SortItems>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `sort items test`(n: Int, m: Int, group: IntArray, beforeItems: List<List<Int>>, expected: IntArray) {
-        val actual = strategy(n, m, group, beforeItems)
+    fun `sort items test`(num: Int, m: Int, group: IntArray, beforeItems: List<List<Int>>, expected: IntArray) {
+        val actual = strategy(num, m, group, beforeItems)
         Assertions.assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

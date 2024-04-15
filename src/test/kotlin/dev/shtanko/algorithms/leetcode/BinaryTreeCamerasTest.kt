@@ -57,6 +57,30 @@ abstract class BinaryTreeCamerasTest<out T : BinaryTreeCamerasStrategy>(private 
                 TreeNode(0),
                 1,
             ),
+            Arguments.of(
+                TreeNode(0).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0).apply {
+                            left = TreeNode(0).apply {
+                                right = TreeNode(0)
+                            }
+                        }
+                    }
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(0).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0).apply {
+                            left = TreeNode(0).apply {
+                                right = TreeNode(0)
+                            }
+                        }
+                    }
+                },
+                2,
+            ),
         )
     }
 

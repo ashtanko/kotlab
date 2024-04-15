@@ -62,13 +62,24 @@ abstract class UniqueBST2Test<out T : UniqueBST2>(private val strategy: T) {
                     TreeNode(1),
                 ),
             ),
+            Arguments.of(
+                2,
+                listOf(
+                    TreeNode(1).apply {
+                        right = TreeNode(2)
+                    },
+                    TreeNode(2).apply {
+                        left = TreeNode(1)
+                    },
+                ),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `generate trees test`(n: Int, expected: List<TreeNode>) {
-        val actual = strategy.invoke(n).map { it.preorderTraversal() }
+    fun `generate trees test`(num: Int, expected: List<TreeNode>) {
+        val actual = strategy.invoke(num).map { it.preorderTraversal() }
         assertThat(actual).containsExactlyInAnyOrder(*expected.map { it.preorderTraversal() }.toTypedArray())
     }
 }

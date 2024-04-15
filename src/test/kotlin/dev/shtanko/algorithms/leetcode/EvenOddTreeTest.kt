@@ -67,6 +67,14 @@ abstract class EvenOddTreeTest<out T : EvenOddTree>(private val strategy: T) {
                 intArrayOf(11, 8, 6, 1, 3, 9, 11, 30, 20, 18, 16, 12, 10, 4, 2, 17).toTree(),
                 true,
             ),
+            Arguments.of(
+                intArrayOf(1, 10, 4, 3, 8, 7, 9, 2, 6, 12).toTree(),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(5, 4, 2, 3, 3, 7).toTree(),
+                false,
+            ),
         )
     }
 

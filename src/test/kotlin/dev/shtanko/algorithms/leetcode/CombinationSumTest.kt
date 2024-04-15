@@ -40,11 +40,38 @@ class CombinationSumTest {
             Arguments.of(
                 intArrayOf(2, 3, 5),
                 8,
-
                 listOf(
                     listOf(2, 2, 2, 2),
                     listOf(2, 3, 3),
                     listOf(3, 5),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(2),
+                1,
+                listOf<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+                listOf(
+                    listOf(1),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                2,
+                listOf(
+                    listOf(1, 1),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                4,
+                listOf(
+                    listOf(1, 1, 1, 1),
+                    listOf(1, 1, 2),
+                    listOf(2, 2),
                 ),
             ),
         )

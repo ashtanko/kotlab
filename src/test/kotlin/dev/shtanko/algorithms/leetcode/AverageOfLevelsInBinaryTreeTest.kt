@@ -56,6 +56,66 @@ abstract class AverageOfLevelsInBinaryTreeStrategyTest<out T : AverageOfLevelsIn
                 },
                 doubleArrayOf(2.0, 1.0),
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                    }
+                    right = TreeNode(3).apply {
+                        right = TreeNode(5)
+                    }
+                },
+                doubleArrayOf(1.0, 2.5, 4.5),
+            ),
+            Arguments.of(
+                TreeNode(2147483647).apply {
+                    left = TreeNode(2147483647)
+                    right = TreeNode(2147483647)
+                },
+                doubleArrayOf(2147483647.0, 2147483647.0),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4).apply {
+                                left = TreeNode(5)
+                            }
+                        }
+                    }
+                },
+                doubleArrayOf(1.0, 2.0, 3.0, 4.0, 5.0),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        right = TreeNode(3)
+                    }
+                    right = TreeNode(2).apply {
+                        right = TreeNode(3)
+                    }
+                },
+                doubleArrayOf(1.0, 2.0, 3.0),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4).apply {
+                                left = TreeNode(5)
+                            }
+                        }
+                    }
+                    right = TreeNode(2).apply {
+                        right = TreeNode(3).apply {
+                            right = TreeNode(4).apply {
+                                right = TreeNode(5)
+                            }
+                        }
+                    }
+                },
+                doubleArrayOf(1.0, 2.0, 3.0, 4.0, 5.0),
+            ),
         )
     }
 

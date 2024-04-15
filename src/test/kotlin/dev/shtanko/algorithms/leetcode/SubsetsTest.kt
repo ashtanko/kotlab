@@ -47,6 +47,49 @@ abstract class SubsetsTest<out T : Subsets>(private val strategy: T) {
                     listOf(0),
                 ),
             ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                listOf(
+                    listOf(),
+                    listOf(1),
+                    listOf(2),
+                    listOf(1, 2),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                listOf(
+                    listOf<Int>(),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                listOf(
+                    listOf(),
+                    listOf(1),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                listOf(
+                    listOf(),
+                    listOf(1),
+                    listOf(2),
+                    listOf(1, 2),
+                    listOf(3),
+                    listOf(1, 3),
+                    listOf(2, 3),
+                    listOf(1, 2, 3),
+                    listOf(4),
+                    listOf(1, 4),
+                    listOf(2, 4),
+                    listOf(1, 2, 4),
+                    listOf(3, 4),
+                    listOf(1, 3, 4),
+                    listOf(2, 3, 4),
+                    listOf(1, 2, 3, 4),
+                ),
+            ),
         )
     }
 
@@ -54,7 +97,7 @@ abstract class SubsetsTest<out T : Subsets>(private val strategy: T) {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `subsets test`(nums: IntArray, expected: List<List<Int>>) {
         val actual = strategy.invoke(nums)
-        assertThat(actual).containsAll(expected)
+        assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }
 

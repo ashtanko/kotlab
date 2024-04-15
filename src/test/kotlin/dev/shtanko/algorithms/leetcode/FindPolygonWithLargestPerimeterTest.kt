@@ -39,6 +39,34 @@ abstract class FindPolygonWithLargestPerimeterTest<out T : FindPolygonWithLarges
                 intArrayOf(5, 5, 50),
                 -1L,
             ),
+            Arguments.of(
+                intArrayOf(),
+                -1L,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                -1L,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1),
+                -1L,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 1),
+                7L,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 1, 2, 1),
+                10L,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 1, 2, 1, 2, 1),
+                13L,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1),
+                16L,
+            ),
         )
     }
 

@@ -20,15 +20,15 @@ package dev.shtanko.algorithms.gfg
  * Number that are not divisible
  */
 fun interface NotDivisibleNumber {
-    fun perform(n: Long): Long
+    operator fun invoke(num: Long): Long
 }
 
 class NotDivisibleNumberBruteForce : NotDivisibleNumber {
-    override fun perform(n: Long): Long {
-        val primes = prime.sumOf { n / it }
-        val a = numbersA.sumOf { n / it }
-        val b = numbersB.sumOf { n / it } - n / LAST
-        return n - (primes - a + b)
+    override fun invoke(num: Long): Long {
+        val primes = prime.sumOf { num / it }
+        val a = numbersA.sumOf { num / it }
+        val b = numbersB.sumOf { num / it } - num / LAST
+        return num - (primes - a + b)
     }
 
     companion object {

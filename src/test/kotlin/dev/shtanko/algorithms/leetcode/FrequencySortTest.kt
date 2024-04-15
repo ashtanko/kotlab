@@ -43,6 +43,22 @@ abstract class FrequencySortTest<out T : FrequencySort>(private val strategy: T)
                 "",
                 "",
             ),
+            Arguments.of(
+                "a",
+                "a",
+            ),
+            Arguments.of(
+                "aa",
+                "aa",
+            ),
+            Arguments.of(
+                "aaa",
+                "aaa",
+            ),
+            Arguments.of(
+                "tree",
+                "eert",
+            ),
         )
     }
 

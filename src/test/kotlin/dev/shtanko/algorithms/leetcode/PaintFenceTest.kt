@@ -36,8 +36,8 @@ abstract class PaintFenceTest<out T : PaintFence>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num ways test`(n: Int, k: Int, expected: Int) {
-        val actual = strategy.numWays(n, k)
+    fun `num ways test`(num: Int, k: Int, expected: Int) {
+        val actual = strategy.numWays(num, k)
         assertThat(actual, equalTo(expected))
     }
 }

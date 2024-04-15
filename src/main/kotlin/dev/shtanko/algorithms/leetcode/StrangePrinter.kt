@@ -23,15 +23,27 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/strange-printer/">Source</a>
  */
 fun interface StrangePrinter {
-    operator fun invoke(s: String): Int
+    /**
+     * This function calculates the minimum number of turns the printer will need in order to print it.
+     * @param str The string to print.
+     * @return The minimum number of turns the printer will need.
+     */
+    operator fun invoke(str: String): Int
 }
 
 /**
  * Approach 1: Bottom-Up Dynamic Programming
  */
 class StrangePrinterBottomUp : StrangePrinter {
-    override operator fun invoke(s: String): Int {
-        val n: Int = s.length
+    /**
+     * This function calculates the minimum number of turns the printer will need in order to print the string.
+     * It uses a bottom-up dynamic programming approach.
+     * @param str The string to print.
+     * @return The minimum number of turns the printer will need.
+     */
+    override operator fun invoke(str: String): Int {
+        if (str.isEmpty()) return 0
+        val n: Int = str.length
         val dp = Array(n) { IntArray(n) }
         for (length in 1..n) {
             for (left in 0..n - length) {
@@ -39,7 +51,7 @@ class StrangePrinterBottomUp : StrangePrinter {
                 var j = -1
                 dp[left][right] = n
                 for (i in left until right) {
-                    if (s[i] != s[right] && j == -1) {
+                    if (str[i] != str[right] && j == -1) {
                         j = i
                     }
                     if (j != -1) {
@@ -64,8 +76,15 @@ class StrangePrinterBottomUp : StrangePrinter {
 class StrangePrinterTopDown : StrangePrinter {
     private lateinit var dp: Array<IntArray>
 
-    override operator fun invoke(s: String): Int {
-        val n: Int = s.length
+    /**
+     * This function calculates the minimum number of turns the printer will need in order to print the string.
+     * It uses a top-down dynamic programming approach (memoization).
+     * @param str The string to print.
+     * @return The minimum number of turns the printer will need.
+     */
+    override operator fun invoke(str: String): Int {
+        if (str.isEmpty()) return 0
+        val n: Int = str.length
         dp = Array(n) { IntArray(n) }
         for (left in 0 until n) {
             for (right in 0 until n) {
@@ -73,9 +92,18 @@ class StrangePrinterTopDown : StrangePrinter {
             }
         }
 
-        return solve(s, n, 0, n - 1) + 1
+        return solve(str, n, 0, n - 1) + 1
     }
 
+    /**
+     * This function is a helper function for the top-down dynamic programming approach.
+     * It recursively solves the problem for a given substring of the string.
+     * @param s The string to print.
+     * @param n The length of the string.
+     * @param left The starting index of the substring.
+     * @param right The ending index of the substring.
+     * @return The minimum number of turns the printer will need to print the substring.
+     */
     private fun solve(s: String, n: Int, left: Int, right: Int): Int {
         if (dp[left][right] != -1) {
             return dp[left][right]

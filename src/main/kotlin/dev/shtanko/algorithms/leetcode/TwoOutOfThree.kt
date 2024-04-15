@@ -16,7 +16,6 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Collectors
 import java.util.stream.IntStream
 
 /**
@@ -48,10 +47,25 @@ class TwoOutOfThreeImpl : TwoOutOfThree {
 
 class TwoOutOfThreeStream : TwoOutOfThree {
     override operator fun invoke(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int> {
-        val a = arrayOf(nums1, nums2, nums3)
-        val c = Array(3) { IntArray(TwoOutOfThree.ARR_SIZE) }
-        for (i in a.indices) for (n in a[i]) c[i][n] = 1
-        return IntStream.range(1, TwoOutOfThree.ARR_SIZE).filter { n -> c[0][n] + c[1][n] + c[2][n] >= 2 }.boxed()
-            .collect(Collectors.toList())
+        val inputArrays = arrayOf(nums1, nums2, nums3)
+        val countArrays = Array(3) { IntArray(TwoOutOfThree.ARR_SIZE) }
+        for (index in inputArrays.indices) for (number in inputArrays[index]) countArrays[index][number] = 1
+        return IntStream.range(1, TwoOutOfThree.ARR_SIZE)
+            .filter { number -> countArrays[0][number] + countArrays[1][number] + countArrays[2][number] >= 2 }.boxed()
+            .toList()
+    }
+}
+
+class TwoOutOfThreeKotlinWay : TwoOutOfThree {
+    override fun invoke(nums1: IntArray, nums2: IntArray, nums3: IntArray): List<Int> {
+        val inputArrays = listOf(nums1, nums2, nums3)
+        val countArrays = Array(3) { IntArray(TwoOutOfThree.ARR_SIZE) }
+        for ((index, array) in inputArrays.withIndex()) {
+            for (number in array) {
+                countArrays[index][number] = 1
+            }
+        }
+        return (1 until TwoOutOfThree.ARR_SIZE)
+            .filter { number -> countArrays.sumBy { it[number] } >= 2 }
     }
 }

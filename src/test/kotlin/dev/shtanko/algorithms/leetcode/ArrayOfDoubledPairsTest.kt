@@ -43,6 +43,22 @@ abstract class ArrayOfDoubledPairsTest<out T : ArrayOfDoubledPairs>(private val 
                 intArrayOf(),
                 true,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 4, 16, 8, 4),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 4, 4),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 2, 1),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 2, 1, 1, 1, 2, 2),
+                true,
+            ),
         )
     }
 

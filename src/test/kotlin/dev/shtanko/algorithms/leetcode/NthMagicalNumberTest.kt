@@ -28,8 +28,8 @@ abstract class NthMagicalNumberTest<out T : NthMagicalNumber>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `nth magical number test`(n: Int, a: Int, b: Int, expected: Int) {
-        val actual = strategy.invoke(n, a, b)
+    fun `nth magical number test`(num: Int, a: Int, b: Int, expected: Int) {
+        val actual = strategy.invoke(num, a, b)
         assertEquals(expected, actual)
     }
 

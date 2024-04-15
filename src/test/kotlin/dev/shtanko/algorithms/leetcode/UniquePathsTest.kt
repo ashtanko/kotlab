@@ -62,8 +62,8 @@ abstract class UniquePathsTest<out T : UniquePaths>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `unique paths test`(m: Int, n: Int, expected: Int) {
-        val actual = strategy(m, n)
+    fun `unique paths test`(m: Int, num: Int, expected: Int) {
+        val actual = strategy(m, num)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

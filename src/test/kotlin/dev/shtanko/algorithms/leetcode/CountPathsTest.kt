@@ -35,6 +35,18 @@ abstract class CountPathsTest<out T : CountPaths>(private val strategy: T) {
                 arrayOf(intArrayOf(1), intArrayOf(2)),
                 3,
             ),
+            Arguments.of(
+                arrayOf(intArrayOf(1, 2, 3), intArrayOf(4, 5, 6)),
+                22,
+            ),
+            Arguments.of(
+                arrayOf(intArrayOf(1, 2, 3, 4), intArrayOf(5, 6, 7, 8)),
+                40,
+            ),
+            Arguments.of(
+                arrayOf(intArrayOf(1, 2, 3, 4, 5), intArrayOf(6, 7, 8, 9, 10)),
+                65,
+            ),
         )
     }
 

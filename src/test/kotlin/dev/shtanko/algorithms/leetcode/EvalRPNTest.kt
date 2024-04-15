@@ -47,13 +47,37 @@ abstract class EvalRPNTest<out T : EvalRPN>(private val solution: T) {
                 arrayOf("2", "1", "-", "3", "*"),
                 3,
             ),
+            Arguments.of(
+                arrayOf("4", "13", "5", "/", "-"),
+                2,
+            ),
+            Arguments.of(
+                arrayOf("10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "-"),
+                12,
+            ),
+            Arguments.of(
+                arrayOf("1", "1", "+"),
+                2,
+            ),
+            Arguments.of(
+                arrayOf("1", "1", "-"),
+                0,
+            ),
+            Arguments.of(
+                arrayOf("1", "1", "*"),
+                1,
+            ),
+            Arguments.of(
+                arrayOf("1", "1", "/"),
+                1,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `eval RPN test`(tokens: Array<String>, expected: Int) {
-        val actual = solution.invoke(tokens)
+        val actual = solution(tokens)
         assertThat(actual).isEqualTo(expected)
     }
 }

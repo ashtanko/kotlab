@@ -56,8 +56,8 @@ class ParallelSmartMergeSortTest {
 
     @ParameterizedTest
     @ArgumentsSource(ParallelInputArguments::class)
-    fun `test parallel`(n: Int, parallelism: Int) {
-        val array = n.toRandomArray()
+    fun `test parallel`(num: Int, parallelism: Int) {
+        val array = num.toRandomArray()
         val forkJoinPool = ForkJoinPool(parallelism)
         forkJoinPool.invoke(ParallelSmartMergeSort(array, 0, array.size - 1))
     }

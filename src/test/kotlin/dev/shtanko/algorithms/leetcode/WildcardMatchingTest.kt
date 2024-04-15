@@ -76,6 +76,16 @@ class WildcardMatchingTest {
                 "2",
                 false,
             ),
+            Arguments.of(
+                "1",
+                "*",
+                true,
+            ),
+            Arguments.of(
+                "1",
+                "?",
+                true,
+            ),
         )
     }
 }

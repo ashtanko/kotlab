@@ -36,7 +36,97 @@ abstract class FourSumTest<out T : FourSum>(private val strategy: T) {
             Arguments.of(
                 intArrayOf(1, 0, -1, 0, -2, 2),
                 0,
-                listOf(listOf(-2, -1, 1, 2), listOf(-2, 0, 0, 2), listOf(-1, 0, 0, 1)),
+                listOf(
+                    listOf(-2, -1, 1, 2),
+                    listOf(-2, 0, 0, 2),
+                    listOf(-1, 0, 0, 1),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(2, 2, 2, 2, 2),
+                8,
+                listOf(
+                    listOf(2, 2, 2, 2),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(-2, -1, -1, 1, 1, 2, 2),
+                0,
+                listOf(
+                    listOf(-2, -1, 1, 2),
+                    listOf(-1, -1, 1, 1),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(-3, -2, -1, 0, 0, 1, 2, 3),
+                0,
+                listOf(
+                    listOf(-3, -2, 2, 3),
+                    listOf(-3, -1, 1, 3),
+                    listOf(-3, 0, 0, 3),
+                    listOf(-3, 0, 1, 2),
+                    listOf(-2, -1, 0, 3),
+                    listOf(-2, -1, 1, 2),
+                    listOf(-2, 0, 0, 2),
+                    listOf(-1, 0, 0, 1),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(-1, 0, 1, 2, -1, -4),
+                -1,
+                listOf(
+                    listOf(-4, 0, 1, 2),
+                    listOf(-1, -1, 0, 1),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(0, 0, 0, 0),
+                0,
+                listOf(
+                    listOf(0, 0, 0, 0),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                4,
+                listOf(
+                    listOf(1, 1, 1, 1),
+                ),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                5,
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                3,
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                2,
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                1,
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                0,
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                -1,
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                -2,
+                emptyList<List<Int>>(),
             ),
         )
     }

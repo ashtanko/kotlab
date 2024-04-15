@@ -106,22 +106,22 @@ internal class LongTest {
 
     @ParameterizedTest
     @ArgumentsSource(ToReverseInputArgumentsProvider::class)
-    internal fun `reverse long test`(n: Long, expected: Long) {
-        val actual = n.reverse()
+    internal fun `reverse long test`(num: Long, expected: Long) {
+        val actual = num.reverse()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputPalindromeArgumentsProvider::class)
-    internal fun `is palindrome test`(n: Long, expected: Boolean) {
-        val actual = n.isSuperPalindrome()
+    internal fun `is palindrome test`(num: Long, expected: Boolean) {
+        val actual = num.isSuperPalindrome()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is super palindrome test`(n: Long, expected: Boolean) {
-        val actual = n.isSuperPalindrome()
+    internal fun `is super palindrome test`(num: Long, expected: Boolean) {
+        val actual = num.isSuperPalindrome()
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -35,8 +35,8 @@ abstract class KthSymbolInGrammarTest<out T : KthSymbolInGrammar>(private val st
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `kth grammar test`(n: Int, k: Int, expected: Int) {
-        val actual = strategy(n, k)
+    fun `kth grammar test`(num: Int, k: Int, expected: Int) {
+        val actual = strategy(num, k)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

@@ -42,6 +42,21 @@ abstract class CountConsistentStringsTest<out T : CountConsistentStrings>(privat
                 arrayOf("cc", "acd", "b", "ba", "bac", "bad", "ac", "d"),
                 4,
             ),
+            Arguments.of(
+                "abc",
+                arrayOf("a", "b", "c", "ab", "ac", "bc", "abc"),
+                7,
+            ),
+            Arguments.of(
+                "cad",
+                arrayOf("cc", "acd", "b", "ba", "bac", "bad", "ac", "d"),
+                4,
+            ),
+            Arguments.of(
+                "a",
+                arrayOf("a", "b", "c", "ab", "ac", "bc", "abc"),
+                1,
+            ),
         )
     }
 

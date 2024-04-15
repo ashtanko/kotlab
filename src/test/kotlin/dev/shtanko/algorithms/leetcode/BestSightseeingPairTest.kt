@@ -33,6 +33,12 @@ class BestSightseeingPairTest {
             Arguments.of(intArrayOf(1, 2, 3), 4),
             Arguments.of(intArrayOf(-1), 0),
             Arguments.of(intArrayOf(8, 1, 5, 2, 6), 11),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6), 10),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7), 12),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8), 14),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9), 16),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 18),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), 20),
         )
     }
 

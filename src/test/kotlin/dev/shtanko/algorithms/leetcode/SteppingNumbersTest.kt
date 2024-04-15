@@ -27,8 +27,54 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 abstract class SteppingNumbersTest<out T : SteppingNumbers>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(0, 21, listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 21)),
-            Arguments.of(10, 15, listOf(10, 12)),
+            Arguments.of(
+                0,
+                0,
+                listOf(0),
+            ),
+            Arguments.of(
+                0,
+                21,
+                listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 21),
+            ),
+            Arguments.of(
+                10,
+                15,
+                listOf(10, 12),
+            ),
+            Arguments.of(
+                0,
+                100,
+                listOf(
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    12,
+                    21,
+                    23,
+                    32,
+                    34,
+                    43,
+                    45,
+                    54,
+                    56,
+                    65,
+                    67,
+                    76,
+                    78,
+                    87,
+                    89,
+                    98,
+                ),
+            ),
         )
     }
 

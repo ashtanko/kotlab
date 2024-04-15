@@ -37,6 +37,31 @@ abstract class SubarraysWithKDistinctTest<out T : SubarraysWithKDistinct>(privat
                 3,
                 3,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 3),
+                3,
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 3),
+                4,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 3),
+                5,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 1, 2, 3),
+                6,
+                0,
+            ),
         )
     }
 

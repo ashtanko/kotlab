@@ -41,8 +41,8 @@ class EvenOrOddTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `even or odd test`(n: Int, expected: Boolean) {
-        val actual = evenOrOdd(n)
+    fun `even or odd test`(num: Int, expected: Boolean) {
+        val actual = evenOrOdd(num)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

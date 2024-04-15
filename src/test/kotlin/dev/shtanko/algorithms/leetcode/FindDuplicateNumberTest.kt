@@ -51,6 +51,34 @@ abstract class FindDuplicateNumberTest<out T : FindDuplicateNumber>(private val 
                 intArrayOf(1, 1, 2),
                 1,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 2),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(2, 2, 2, 2, 2),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10),
+                10,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 5),
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 6),
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 7),
+                7,
+            ),
         )
     }
 

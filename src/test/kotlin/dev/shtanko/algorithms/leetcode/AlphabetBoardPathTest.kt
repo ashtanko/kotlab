@@ -39,6 +39,18 @@ abstract class AlphabetBoardPathTest<out T : AlphabetBoardPath>(private val stra
                 "",
                 "",
             ),
+            Arguments.of(
+                "zdz",
+                "DDDDD!UUUUURRR!DDDDLLLD!",
+            ),
+            Arguments.of(
+                "zb",
+                "DDDDD!UUUUUR!",
+            ),
+            Arguments.of(
+                "zdz",
+                "DDDDD!UUUUURRR!DDDDLLLD!",
+            ),
         )
     }
 

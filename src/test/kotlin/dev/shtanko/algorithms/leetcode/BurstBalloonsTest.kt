@@ -35,13 +35,37 @@ abstract class BurstBalloonsTest<out T : BurstBalloons>(private val strategy: T)
                 intArrayOf(1, 5),
                 10,
             ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                110,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                2420,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+                3652,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+                5304,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13),
+                7462,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `max coins test`(nums: IntArray, expected: Int) {
-        val actual = strategy.maxCoins(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

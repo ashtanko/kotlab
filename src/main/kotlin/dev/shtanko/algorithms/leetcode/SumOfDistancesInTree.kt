@@ -25,10 +25,10 @@ class SumOfDistancesInTree {
     private lateinit var ans: IntArray
     private lateinit var count: IntArray
     private var graph: MutableList<MutableSet<Int>> = ArrayList()
-    private var n = 0
+    private var num = 0
 
     operator fun invoke(n: Int, edges: Array<IntArray>): IntArray {
-        this.n = n
+        this.num = n
         ans = IntArray(n)
         count = IntArray(n) { 1 }
 
@@ -54,7 +54,7 @@ class SumOfDistancesInTree {
 
     private fun dfs2(node: Int, parent: Int) {
         for (child in graph[node]) if (child != parent) {
-            ans[child] = ans[node] - count[child] + n - count[child]
+            ans[child] = ans[node] - count[child] + num - count[child]
             dfs2(child, node)
         }
     }

@@ -31,6 +31,9 @@ abstract class ContainsDuplicate2Test<out T : ContainsDuplicate2>(private val st
             Arguments.of(intArrayOf(1, 2, 3, 1), 3, true),
             Arguments.of(intArrayOf(1, 0, 1, 1), 1, true),
             Arguments.of(intArrayOf(1, 2, 3, 1, 2, 3), 2, false),
+            Arguments.of(intArrayOf(99, 99), 2, true),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 9), 3, true),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 9), 1, true),
         )
     }
 

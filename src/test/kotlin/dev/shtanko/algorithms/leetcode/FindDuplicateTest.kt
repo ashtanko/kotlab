@@ -46,6 +46,24 @@ abstract class FindDuplicateTest<out T : FindDuplicate>(private val strategy: T)
                     listOf("root/a/1.txt", "root/c/3.txt"),
                 ),
             ),
+            Arguments.of(
+                arrayOf("root/a 1.txt(abcd)", "root/c 3.txt(abcd)"),
+                listOf(
+                    listOf("root/a/1.txt"),
+                    listOf("root/c/3.txt"),
+                ),
+            ),
+            Arguments.of(
+                arrayOf("root/a 1.txt(abcd)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)"),
+                listOf(
+                    listOf("root/a/1.txt"),
+                    listOf("root/c/3.txt"),
+                ),
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                listOf<String>(),
+            ),
         )
     }
 

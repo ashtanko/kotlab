@@ -63,6 +63,16 @@ abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
                 6,
                 intArrayOf(0, 1),
             ),
+            Arguments.of(
+                intArrayOf(3, 2, 3),
+                6,
+                intArrayOf(0, 2),
+            ),
+            Arguments.of(
+                intArrayOf(3, 2, 4),
+                6,
+                intArrayOf(1, 2),
+            ),
         )
     }
 

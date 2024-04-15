@@ -44,8 +44,8 @@ abstract class ColorfulNumbersTest<out T : ColorfulNumbers>(private val strategy
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is colorful test`(n: Int, expected: String) {
-        val actual = strategy.isColorful(n)
+    fun `is colorful test`(num: Int, expected: String) {
+        val actual = strategy.isColorful(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

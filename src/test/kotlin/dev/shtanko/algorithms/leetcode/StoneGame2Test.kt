@@ -35,6 +35,46 @@ abstract class StoneGame2Test<out T : StoneGame2>(private val strategy: T) {
                 intArrayOf(1, 2, 3, 4, 5, 100),
                 104,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                8,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                10,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7),
+                15,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8),
+                18,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                25,
+            ),
         )
     }
 
@@ -46,4 +86,4 @@ abstract class StoneGame2Test<out T : StoneGame2>(private val strategy: T) {
     }
 }
 
-class StoneGame2MemoizationTest : StoneGame2Test<StoneGame2>(StoneGame2Memoization())
+class StoneGame2MemoizationTest : StoneGame2Test<StoneGame2>(StoneGame2WithMemoization())

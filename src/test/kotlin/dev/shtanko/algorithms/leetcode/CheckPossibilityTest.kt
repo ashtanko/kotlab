@@ -47,6 +47,26 @@ abstract class CheckPossibilityTest<out T : CheckPossibility>(private val strate
                 intArrayOf(1, 2),
                 true,
             ),
+            Arguments.of(
+                intArrayOf(2, 1),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(3, 4, 2, 3),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(5, 7, 1, 8),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0),
+                true,
+            ),
         )
     }
 

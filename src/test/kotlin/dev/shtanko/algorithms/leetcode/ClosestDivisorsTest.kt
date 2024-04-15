@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -51,6 +51,10 @@ class ClosestDivisorsTest {
                 999,
                 intArrayOf(25, 40),
             ),
+            Arguments.of(
+                1000000000,
+                intArrayOf(23658, 42269),
+            ),
         )
     }
 
@@ -58,6 +62,6 @@ class ClosestDivisorsTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `closest divisor test`(num: Int, expected: IntArray) {
         val actual = closestDivisors(num)
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

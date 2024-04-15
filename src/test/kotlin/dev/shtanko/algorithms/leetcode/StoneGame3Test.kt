@@ -39,6 +39,30 @@ abstract class StoneGame3Test<out T : StoneGame3>(private val strategy: T) {
                 intArrayOf(1, 2, 3, 6),
                 "Tie",
             ),
+            Arguments.of(
+                intArrayOf(),
+                "Tie",
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                "Alice",
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                "Alice",
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                "Alice",
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                "Alice",
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                "Bob",
+            ),
         )
     }
 

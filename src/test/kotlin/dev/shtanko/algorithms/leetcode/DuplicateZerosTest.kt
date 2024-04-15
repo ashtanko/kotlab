@@ -36,6 +36,22 @@ class DuplicateZerosTest {
                 intArrayOf(1, 2, 3),
                 intArrayOf(1, 2, 3),
             ),
+            Arguments.of(
+                intArrayOf(0, 0, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 0, 0, 0, 0),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 0, 0, 0),
+                intArrayOf(1, 2, 3, 0, 0, 0),
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 7, 6, 0, 2, 0, 7),
+                intArrayOf(0, 0, 1, 7, 6, 0, 0, 2),
+            ),
+            Arguments.of(
+                intArrayOf(0, 0, 0, 0, 0, 0, 0),
+                intArrayOf(0, 0, 0, 0, 0, 0, 0),
+            ),
         )
     }
 

@@ -18,6 +18,8 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -52,6 +54,26 @@ class SuperPalindromesTest {
                 "2",
                 1,
             ),
+            Arguments.of(
+                "4",
+                "10000",
+                4,
+            ),
+            Arguments.of(
+                "1",
+                "2",
+                1,
+            ),
+            Arguments.of(
+                "0",
+                "0",
+                0,
+            ),
+            Arguments.of(
+                "1",
+                "1",
+                1,
+            ),
         )
     }
 
@@ -60,5 +82,12 @@ class SuperPalindromesTest {
     fun `super palindromes test`(left: String, right: String, expected: Int) {
         val actual = SuperPalindromes.superPalindromesInRange(left, right)
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `empty test`() {
+        assertThrows<NumberFormatException> {
+            SuperPalindromes.superPalindromesInRange("", "")
+        }
     }
 }

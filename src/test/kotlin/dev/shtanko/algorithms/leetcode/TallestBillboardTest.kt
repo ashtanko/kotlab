@@ -39,6 +39,14 @@ abstract class TallestBillboardTest<out T : TallestBillboard>(private val strate
                 intArrayOf(1, 2),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                27,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+                33,
+            ),
         )
     }
 

@@ -40,8 +40,8 @@ abstract class SoupServingsTest<out T : SoupServings>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `soup servings test`(n: Int, expected: Double) {
-        val actual = strategy.invoke(n)
+    fun `soup servings test`(num: Int, expected: Double) {
+        val actual = strategy.invoke(num)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

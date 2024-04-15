@@ -65,95 +65,95 @@ fun TreeNode?.clone(offset: Int): TreeNode? {
  *
  * @return A string containing the pretty-printed binary tree.
  */
-fun TreeNode.prettyPrinted(): String {
-    val lines: MutableList<List<String?>> = ArrayList()
-    var level: MutableList<TreeNode?> = ArrayList()
-    var next: MutableList<TreeNode?> = ArrayList()
-    val sb = StringBuffer()
+fun TreeNode.prettyPrint(): String {
+    val treeLines: MutableList<List<String?>> = ArrayList()
+    var currentLevel: MutableList<TreeNode?> = ArrayList()
+    var nextLevel: MutableList<TreeNode?> = ArrayList()
+    val output = StringBuffer()
 
-    level.add(this)
-    var nn = 1
-    var widest = 0
-    while (nn != 0) {
+    currentLevel.add(this)
+    var nodeCount = 1
+    var widestValue = 0
+    while (nodeCount != 0) {
         val line: MutableList<String?> = ArrayList()
-        nn = 0
-        for (n in level) {
-            if (n == null) {
+        nodeCount = 0
+        for (node in currentLevel) {
+            if (node == null) {
                 line.add(null)
-                next.add(null)
-                next.add(null)
+                nextLevel.add(null)
+                nextLevel.add(null)
             } else {
-                val aa = "${n.value}"
-                line.add(aa)
-                if (aa.length > widest) widest = aa.length
-                next.add(n.left)
-                next.add(n.right)
-                if (n.left != null) nn++
-                if (n.right != null) nn++
+                val nodeValue = "${node.value}"
+                line.add(nodeValue)
+                if (nodeValue.length > widestValue) widestValue = nodeValue.length
+                nextLevel.add(node.left)
+                nextLevel.add(node.right)
+                if (node.left != null) nodeCount++
+                if (node.right != null) nodeCount++
             }
         }
-        if (widest % 2 == 1) widest++
-        lines.add(line)
-        val tmp: MutableList<TreeNode?> = level
-        level = next
-        next = tmp
-        next.clear()
+        if (widestValue % 2 == 1) widestValue++
+        treeLines.add(line)
+        val temp: MutableList<TreeNode?> = currentLevel
+        currentLevel = nextLevel
+        nextLevel = temp
+        nextLevel.clear()
     }
-    var perpiece = lines[lines.size - 1].size * (widest + 4)
-    for (i in lines.indices) {
-        val line = lines[i]
-        val hpw = floor((perpiece / 2f).toDouble()).toInt() - 1
+    var charactersPerPiece = treeLines[treeLines.size - 1].size * (widestValue + 4)
+    for (i in treeLines.indices) {
+        val line = treeLines[i]
+        val halfPieceWidth = floor((charactersPerPiece / 2f).toDouble()).toInt() - 1
         if (i > 0) {
             for (j in line.indices) {
                 // split node
-                var c = ' '
+                var cornerChar = ' '
                 if (j % 2 == 1) {
                     if (line[j - 1] != null) {
-                        c = if (line[j] != null) '┴' else '┘'
+                        cornerChar = if (line[j] != null) '┴' else '┘'
                     } else {
-                        if (line[j] != null) c = '└'
+                        if (line[j] != null) cornerChar = '└'
                     }
                 }
-                sb.append(c)
+                output.append(cornerChar)
 
                 // lines and spaces
                 if (line[j] == null) {
-                    for (k in 0 until perpiece - 1) {
-                        sb.append(" ")
+                    for (k in 0 until charactersPerPiece - 1) {
+                        output.append(" ")
                     }
                 } else {
-                    for (k in 0 until hpw) {
-                        sb.append(if (j % 2 == 0) " " else "─")
+                    for (k in 0 until halfPieceWidth) {
+                        output.append(if (j % 2 == 0) " " else "─")
                     }
-                    sb.append(if (j % 2 == 0) "┌" else "┐")
-                    for (k in 0 until hpw) {
-                        sb.append(if (j % 2 == 0) "─" else " ")
+                    output.append(if (j % 2 == 0) "┌" else "┐")
+                    for (k in 0 until halfPieceWidth) {
+                        output.append(if (j % 2 == 0) "─" else " ")
                     }
                 }
             }
-            sb.append("\n")
+            output.append("\n")
         }
 
         // print line of numbers
         for (j in line.indices) {
-            var f = line[j]
-            if (f == null) f = ""
-            val gap1 = ceil((perpiece / 2f - f.length / 2f).toDouble()).toInt()
-            val gap2 = floor((perpiece / 2f - f.length / 2f).toDouble()).toInt()
+            var nodeValue = line[j]
+            if (nodeValue == null) nodeValue = ""
+            val gap1 = ceil((charactersPerPiece / 2f - nodeValue.length / 2f).toDouble()).toInt()
+            val gap2 = floor((charactersPerPiece / 2f - nodeValue.length / 2f).toDouble()).toInt()
 
             // a number
             for (k in 0 until gap1) {
-                sb.append(" ")
+                output.append(" ")
             }
-            sb.append(f)
+            output.append(nodeValue)
             for (k in 0 until gap2) {
-                sb.append(" ")
+                output.append(" ")
             }
         }
-        sb.append("\n")
-        perpiece /= 2
+        output.append("\n")
+        charactersPerPiece /= 2
     }
-    return sb.toString()
+    return output.toString()
 }
 
 /**

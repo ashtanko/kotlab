@@ -55,18 +55,32 @@ abstract class DistanceLimitedPathsExistTest<out T : DistanceLimitedPathsExist>(
                 ),
                 booleanArrayOf(true, false),
             ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1, 10),
+                    intArrayOf(1, 2, 1),
+                    intArrayOf(2, 3, 2),
+                    intArrayOf(3, 4, 1),
+                ),
+                arrayOf(
+                    intArrayOf(0, 4, 14),
+                    intArrayOf(1, 4, 13),
+                ),
+                booleanArrayOf(true, true),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `distance limited paths exist test`(
-        n: Int,
+        num: Int,
         edgeList: Array<IntArray>,
         queries: Array<IntArray>,
         expected: BooleanArray,
     ) {
-        val actual = strategy.invoke(n, edgeList, queries)
+        val actual = strategy.invoke(num, edgeList, queries)
         assertThat(actual).isEqualTo(expected)
     }
 }

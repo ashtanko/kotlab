@@ -35,6 +35,18 @@ abstract class UnequalTripletsTest<out T : UnequalTriplets>(private val strategy
                 intArrayOf(1, 1, 1, 1, 1),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                10,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                4,
+            ),
         )
     }
 

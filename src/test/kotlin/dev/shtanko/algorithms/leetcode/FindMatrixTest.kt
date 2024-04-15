@@ -35,6 +35,18 @@ abstract class FindMatrixTest<out T : FindMatrix>(private val strategy: T) {
                 intArrayOf(1, 2, 3, 4),
                 listOf(listOf(1, 2, 3, 4)),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                listOf(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
+                listOf(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                emptyList<List<Int>>(),
+            ),
         )
     }
 

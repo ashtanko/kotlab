@@ -24,11 +24,6 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-data class BuddyStringsTestCase(
-    val buddyString: Pair<String, String>,
-    val expected: Boolean,
-)
-
 class BuddyStringsTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -75,6 +70,21 @@ class BuddyStringsTest {
             Arguments.of(
                 "",
                 "a",
+                false,
+            ),
+            Arguments.of(
+                "ab",
+                "ac",
+                false,
+            ),
+            Arguments.of(
+                "ab",
+                "ca",
+                false,
+            ),
+            Arguments.of(
+                "ab",
+                "cd",
                 false,
             ),
         )

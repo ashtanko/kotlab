@@ -42,8 +42,8 @@ abstract class MinTapsTest<out T : MinTaps>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min taps test`(n: Int, ranges: IntArray, expected: Int) {
-        val actual = strategy(n, ranges)
+    fun `min taps test`(num: Int, ranges: IntArray, expected: Int) {
+        val actual = strategy(num, ranges)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

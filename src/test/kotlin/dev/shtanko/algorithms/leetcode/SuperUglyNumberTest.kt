@@ -28,8 +28,8 @@ abstract class SuperUglyNumberTest<out T : SuperUglyNumber>(private val strategy
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `super ugly number test`(n: Int, primes: IntArray, expected: Int) {
-        val actual = strategy.invoke(n, primes)
+    fun `super ugly number test`(num: Int, primes: IntArray, expected: Int) {
+        val actual = strategy.invoke(num, primes)
         assertEquals(expected, actual)
     }
 

@@ -47,6 +47,26 @@ abstract class DeleteAndEarnTest<out T : DeleteAndEarn>(private val strategy: T)
                 intArrayOf(1, 2),
                 2,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                9,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                12,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7),
+                16,
+            ),
         )
     }
 

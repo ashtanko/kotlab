@@ -45,6 +45,71 @@ abstract class CreateBinaryTreeTest<out T : CreateBinaryTree>(private val strate
                 ),
                 listOf(1, 2, 3, 4),
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2, 1),
+                    intArrayOf(1, 3, 0),
+                    intArrayOf(2, 4, 1),
+                    intArrayOf(2, 5, 0),
+                ),
+                listOf(1, 2, 4, 5, 3),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2, 1),
+                    intArrayOf(1, 3, 0),
+                    intArrayOf(2, 4, 1),
+                    intArrayOf(2, 5, 0),
+                    intArrayOf(3, 6, 1),
+                    intArrayOf(3, 7, 0),
+                ),
+                listOf(1, 2, 4, 5, 3, 6, 7),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2, 1),
+                    intArrayOf(1, 3, 0),
+                    intArrayOf(2, 4, 1),
+                    intArrayOf(2, 5, 0),
+                    intArrayOf(3, 6, 1),
+                    intArrayOf(3, 7, 0),
+                    intArrayOf(4, 8, 1),
+                    intArrayOf(4, 9, 0),
+                ),
+                listOf(1, 2, 4, 8, 9, 5, 3, 6, 7),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2, 1),
+                    intArrayOf(1, 3, 0),
+                    intArrayOf(2, 4, 1),
+                    intArrayOf(2, 5, 0),
+                    intArrayOf(3, 6, 1),
+                    intArrayOf(3, 7, 0),
+                    intArrayOf(4, 8, 1),
+                    intArrayOf(4, 9, 0),
+                    intArrayOf(5, 10, 1),
+                    intArrayOf(5, 11, 0),
+                ),
+                listOf(1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 7),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2, 1),
+                    intArrayOf(1, 3, 0),
+                    intArrayOf(2, 4, 1),
+                    intArrayOf(2, 5, 0),
+                    intArrayOf(3, 6, 1),
+                    intArrayOf(3, 7, 0),
+                    intArrayOf(4, 8, 1),
+                    intArrayOf(4, 9, 0),
+                    intArrayOf(5, 10, 1),
+                    intArrayOf(5, 11, 0),
+                    intArrayOf(6, 12, 1),
+                    intArrayOf(6, 13, 0),
+                ),
+                listOf(1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 12, 13, 7),
+            ),
         )
     }
 

@@ -42,6 +42,21 @@ abstract class WordPatternTest<out T : WordPattern>(private val strategy: T) {
                 "dog cat cat dog",
                 false,
             ),
+            Arguments.of(
+                "abba",
+                "dog dog dog dog",
+                false,
+            ),
+            Arguments.of(
+                "ab",
+                "dog dog",
+                false,
+            ),
+            Arguments.of(
+                "",
+                "",
+                false,
+            ),
         )
     }
 

@@ -70,6 +70,15 @@ abstract class WordSearchTest<out T : WordSearch>(private val strategy: T) {
                 "",
                 true,
             ),
+            Arguments.of(
+                arrayOf(
+                    charArrayOf('A', 'B', 'C', 'E'),
+                    charArrayOf('S', 'F', 'C', 'S'),
+                    charArrayOf('A', 'D', 'E', 'E'),
+                ),
+                "ABCESEEDAS",
+                true,
+            ),
         )
     }
 
