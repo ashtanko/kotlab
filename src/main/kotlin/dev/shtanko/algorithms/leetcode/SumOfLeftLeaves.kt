@@ -20,6 +20,10 @@ import java.util.LinkedList
 import java.util.Queue
 import java.util.Stack
 
+/**
+ * 404. Sum of Left Leaves
+ * @see <a href="https://leetcode.com/problems/sum-of-left-leaves">Source</a>
+ */
 fun interface SumOfLeftLeavesStrategy {
     operator fun invoke(root: TreeNode?): Int
 }
