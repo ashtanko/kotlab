@@ -21,7 +21,8 @@ import java.util.Queue
 import java.util.Stack
 
 /**
- * Functional interface for the strategy to calculate the sum of left leaves in a binary tree.
+ * 404. Sum of Left Leaves
+ * @see <a href="https://leetcode.com/problems/sum-of-left-leaves">Source</a>
  */
 fun interface SumOfLeftLeavesStrategy {
     /**
