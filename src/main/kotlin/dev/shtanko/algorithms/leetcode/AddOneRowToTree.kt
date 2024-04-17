@@ -16,16 +16,14 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.LinkedList
-import java.util.Queue
-import java.util.Stack
+import java.util.*
 
 /**
  * 623. Add One Row to Tree
  * @see <a href="https://leetcode.com/problems/add-one-row-to-tree/">Source</a>
  */
 fun interface AddOneRowToTree {
-    operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode?
+    operator fun invoke(root: TreeNode?, value: Int, depth: Int): TreeNode?
 }
 
 /**
@@ -36,18 +34,18 @@ class AddOneRowToTreeRec : AddOneRowToTree {
      * Adds a row with a specified value to a binary tree at a specified depth.
      *
      * @param root The root of the binary tree.
-     * @param v The value to be inserted in the new nodes.
-     * @param d The depth at which the new row should be inserted.
+     * @param value The value to be inserted in the new nodes.
+     * @param depth The depth at which the new row should be inserted.
      * @return The modified binary tree with the new row inserted.
      */
-    override operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode? {
-        if (d == 1) {
-            return TreeNode(v).apply {
+    override operator fun invoke(root: TreeNode?, value: Int, depth: Int): TreeNode? {
+        if (depth == 1) {
+            return TreeNode(value).apply {
                 left = root
                 right = null
             }
         }
-        return insert(root, v, d - 1, 1)
+        return insert(root, value, depth - 1, 1)
     }
 
     /**
@@ -86,9 +84,9 @@ class AddOneRowToTreeStack : AddOneRowToTree {
 
     data class Node(val node: TreeNode?, val depth: Int)
 
-    override operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode? {
-        if (d == 1) {
-            return TreeNode(v).apply {
+    override operator fun invoke(root: TreeNode?, value: Int, depth: Int): TreeNode? {
+        if (depth == 1) {
+            return TreeNode(value).apply {
                 left = root
             }
         }
@@ -99,12 +97,12 @@ class AddOneRowToTreeStack : AddOneRowToTree {
             if (n.node == null) {
                 continue
             }
-            if (n.depth == d - 1) {
+            if (n.depth == depth - 1) {
                 var tmp = n.node.left
-                n.node.left = TreeNode(v)
+                n.node.left = TreeNode(value)
                 n.node.left?.left = tmp
                 tmp = n.node.right
-                n.node.right = TreeNode(v)
+                n.node.right = TreeNode(value)
                 n.node.right?.right = tmp
             } else {
                 stack.push(Node(n.node.left, n.depth + 1))
@@ -119,9 +117,9 @@ class AddOneRowToTreeStack : AddOneRowToTree {
  * Approach #3 Using queue(BFS)
  */
 class AddOneRowToTreeQueue : AddOneRowToTree {
-    override operator fun invoke(root: TreeNode?, v: Int, d: Int): TreeNode? {
+    override operator fun invoke(root: TreeNode?, value: Int, d: Int): TreeNode? {
         if (d == 1) {
-            return TreeNode(v).apply {
+            return TreeNode(value).apply {
                 left = root
             }
         }
@@ -146,10 +144,10 @@ class AddOneRowToTreeQueue : AddOneRowToTree {
         while (queue.isNotEmpty()) {
             val node = queue.remove()
             var tmp = node?.left
-            node?.left = TreeNode(v)
+            node?.left = TreeNode(value)
             node?.left?.left = tmp
             tmp = node?.right
-            node?.right = TreeNode(v)
+            node?.right = TreeNode(value)
             node?.right?.right = tmp
         }
         return root
