@@ -31,7 +31,7 @@ class SplitArrayLargestSumMaxSum : SplitArrayLargestSum {
     override fun invoke(nums: IntArray, k: Int): Int {
         // validation
         if (nums.isEmpty() || k < 1) {
-            return -1
+            return 0
         }
 
         // get [minMaxSum, maxMaxSum]

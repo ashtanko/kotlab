@@ -42,15 +42,35 @@ abstract class OpenLockTest<out T : OpenLock>(private val strategy: T) {
                 "8888",
                 -1,
             ),
+            Arguments.of(
+                arrayOf("0000"),
+                "8888",
+                -1,
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                "",
+                -1,
+            ),
+            Arguments.of(
+                arrayOf("0000"),
+                "",
+                -1,
+            ),
+            Arguments.of(
+                arrayOf("0000"),
+                "0000",
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `open lock test`(deadEnds: Array<String>, target: String, expected: Int) {
-        val actual = strategy.openLock(deadEnds, target)
+        val actual = strategy.invoke(deadEnds, target)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-class OpenLockBFSTest : OpenLockTest<OpenLock>(OpenLockBFS())
+class LockOpenerBFSTest : OpenLockTest<OpenLock>(LockOpenerBFS())

@@ -39,6 +39,10 @@ abstract class FruitIntoBasketsTest<out T : FruitIntoBaskets>(private val strate
                 intArrayOf(1, 2, 3, 2, 2),
                 4,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
         )
     }
 

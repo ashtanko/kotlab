@@ -50,6 +50,25 @@ abstract class SpiralMatrix2Test<out T : SpiralMatrix2>(private val strategy: T)
                     intArrayOf(7, 6, 5),
                 ),
             ),
+            Arguments.of(
+                4,
+                arrayOf(
+                    intArrayOf(1, 2, 3, 4),
+                    intArrayOf(12, 13, 14, 5),
+                    intArrayOf(11, 16, 15, 6),
+                    intArrayOf(10, 9, 8, 7),
+                ),
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(1, 2, 3, 4, 5),
+                    intArrayOf(16, 17, 18, 19, 6),
+                    intArrayOf(15, 24, 25, 20, 7),
+                    intArrayOf(14, 23, 22, 21, 8),
+                    intArrayOf(13, 12, 11, 10, 9),
+                ),
+            ),
         )
     }
 

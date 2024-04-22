@@ -23,7 +23,17 @@ fun interface SpiralOrder {
     operator fun invoke(matrix: Array<IntArray>): List<Int>
 }
 
+/**
+ * 54. Spiral Matrix
+ * @see <a href="https://leetcode.com/problems/spiral-matrix/">Source</a>
+ */
 class SpiralOrderSolution : SpiralOrder {
+
+    /**
+     * This function returns the elements of the matrix in spiral order.
+     * @param matrix The 2D array (matrix) to traverse.
+     * @return The elements of the matrix in spiral order.
+     */
     override fun invoke(matrix: Array<IntArray>): List<Int> {
         val res: MutableList<Int> = ArrayList()
         if (matrix.isEmpty()) {
@@ -56,24 +66,56 @@ class SpiralOrderSolution : SpiralOrder {
         return res
     }
 
+    /**
+     * This function traverses the matrix from left to right.
+     * @param matrix The 2D array (matrix) to traverse.
+     * @param row The row to traverse.
+     * @param startCol The starting column.
+     * @param endCol The ending column.
+     * @param res The list to add the traversed elements to.
+     */
     private fun traverseRight(matrix: Array<IntArray>, row: Int, startCol: Int, endCol: Int, res: MutableList<Int>) {
         for (j in startCol..endCol) {
             res.add(matrix[row][j])
         }
     }
 
+    /**
+     * This function traverses the matrix from top to bottom.
+     * @param matrix The 2D array (matrix) to traverse.
+     * @param col The column to traverse.
+     * @param startRow The starting row.
+     * @param endRow The ending row.
+     * @param res The list to add the traversed elements to.
+     */
     private fun traverseDown(matrix: Array<IntArray>, col: Int, startRow: Int, endRow: Int, res: MutableList<Int>) {
         for (j in startRow..endRow) {
             res.add(matrix[j][col])
         }
     }
 
+    /**
+     * This function traverses the matrix from right to left.
+     * @param matrix The 2D array (matrix) to traverse.
+     * @param row The row to traverse.
+     * @param startCol The starting column.
+     * @param endCol The ending column.
+     * @param res The list to add the traversed elements to.
+     */
     private fun traverseLeft(matrix: Array<IntArray>, row: Int, startCol: Int, endCol: Int, res: MutableList<Int>) {
         for (j in endCol downTo startCol) {
             res.add(matrix[row][j])
         }
     }
 
+    /**
+     * This function traverses the matrix from bottom to top.
+     * @param matrix The 2D array (matrix) to traverse.
+     * @param col The column to traverse.
+     * @param startRow The starting row.
+     * @param endRow The ending row.
+     * @param res The list to add the traversed elements to.
+     */
     private fun traverseUp(matrix: Array<IntArray>, col: Int, startRow: Int, endRow: Int, res: MutableList<Int>) {
         for (j in endRow downTo startRow) {
             res.add(matrix[j][col])

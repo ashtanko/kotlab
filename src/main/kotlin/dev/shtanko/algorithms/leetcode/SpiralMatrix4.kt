@@ -21,28 +21,38 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/spiral-matrix-iv/">Source</a>
  */
 fun interface SpiralMatrix4 {
-    operator fun invoke(m: Int, n: Int, head: ListNode?): Array<IntArray>
+    operator fun invoke(matHeight: Int, matWidth: Int, head: ListNode?): Array<IntArray>
 }
 
 class WalkSpiralMatrix4 : SpiralMatrix4 {
-    override operator fun invoke(m: Int, n: Int, head: ListNode?): Array<IntArray> {
-        var h = head
-        val spiral = Array(m) { IntArray(n) { -1 } }
-        var r = 0
-        var c = 0
-        var ri = 0
-        var ci = 1
-        while (h != null) {
-            spiral[r][c] = h.value
-            h = h.next
-            if (spiral[(r + ri + m) % m][(c + ci + n) % n] != -1) {
-                val temp = ri
-                ri = ci
-                ci = -temp
+
+    /**
+     * This function generates a 2D array (matrix) in a spiral order from a linked list.
+     * @param matHeight The height of the matrix.
+     * @param matWidth The width of the matrix.
+     * @param head The head of the linked list.
+     * @return A 2D array representing the matrix.
+     */
+    override operator fun invoke(matHeight: Int, matWidth: Int, head: ListNode?): Array<IntArray> {
+        var currentNode = head
+        val spiralMatrix = Array(matHeight) { IntArray(matWidth) { -1 } }
+        var rowIdx = 0
+        var columnIdx = 0
+        var rowIdxInc = 0
+        var columnIdxInc = 1
+        while (currentNode != null) {
+            spiralMatrix[rowIdx][columnIdx] = currentNode.value
+            currentNode = currentNode.next
+            if (spiralMatrix[(rowIdx + rowIdxInc + matHeight) % matHeight]
+                    [(columnIdx + columnIdxInc + matWidth) % matWidth] != -1
+            ) {
+                val temp = rowIdxInc
+                rowIdxInc = columnIdxInc
+                columnIdxInc = -temp
             }
-            r += ri
-            c += ci
+            rowIdx += rowIdxInc
+            columnIdx += columnIdxInc
         }
-        return spiral
+        return spiralMatrix
     }
 }
