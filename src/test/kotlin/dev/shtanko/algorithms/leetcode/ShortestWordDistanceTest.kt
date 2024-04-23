@@ -39,6 +39,42 @@ abstract class ShortestWordDistanceTest<out T : ShortestWordDistanceStrategy>(pr
                 "coding",
                 1,
             ),
+            Arguments.of(
+                arrayOf("a", "a", "b", "b"),
+                "a",
+                "b",
+                1,
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                "a",
+                "b",
+                0,
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                "",
+                "b",
+                0,
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                "a",
+                "",
+                0,
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                "",
+                "",
+                0,
+            ),
+            Arguments.of(
+                arrayOf("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+                "a",
+                "j",
+                9,
+            ),
         )
     }
 

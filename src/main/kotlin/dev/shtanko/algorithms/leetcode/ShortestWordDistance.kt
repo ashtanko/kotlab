@@ -41,19 +41,19 @@ class ShortestWordDistanceBruteForce : ShortestWordDistanceStrategy {
 
 class ShortestWordDistanceOnePass : ShortestWordDistanceStrategy {
     override operator fun invoke(words: Array<String>, word1: String, word2: String): Int {
-        var i1 = -1
-        var i2 = -1
-        var minDistance: Int = words.size
-        for (i in words.indices) {
-            if (words[i] == word1) {
-                i1 = i
-            } else if (words[i] == word2) {
-                i2 = i
+        var word1Index = -1
+        var word2Index = -1
+        var minimumDistance: Int = words.size
+        for (currentIndex in words.indices) {
+            if (words[currentIndex] == word1) {
+                word1Index = currentIndex
+            } else if (words[currentIndex] == word2) {
+                word2Index = currentIndex
             }
-            if (i1 != -1 && i2 != -1) {
-                minDistance = min(minDistance, abs(i1 - i2))
+            if (word1Index != -1 && word2Index != -1) {
+                minimumDistance = min(minimumDistance, abs(word1Index - word2Index))
             }
         }
-        return minDistance
+        return minimumDistance
     }
 }

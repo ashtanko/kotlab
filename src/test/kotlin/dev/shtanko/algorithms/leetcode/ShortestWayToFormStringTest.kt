@@ -31,6 +31,9 @@ class ShortestWayToFormStringTest {
             Arguments.of("abc", "acdbc", -1),
             Arguments.of("", "", 0),
             Arguments.of("xyz", "xzyxz", 3),
+            Arguments.of("xyz", "xyz", 1),
+            Arguments.of("xyz", "xyyzyzyx", 5),
+            Arguments.of("xyz", "xyyzyzyxzyx", 7),
         )
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,57 +24,43 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class ShuffleArrayTest {
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `shuffle test`(arr: IntArray, num: Int, expected: IntArray) {
-        val actual = arr.shuffle(num)
-        assertThat(actual).isEqualTo(expected)
-    }
-
+abstract class MinHeightTreesTest<out T : MinHeightTrees>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(2, 5, 1, 3, 4, 7),
-                3,
-                intArrayOf(2, 3, 5, 4, 1, 7),
-            ),
-            Arguments.of(
-                intArrayOf(1, 2, 3, 4, 4, 3, 2, 1),
                 4,
-                intArrayOf(1, 4, 2, 3, 3, 2, 4, 1),
+                arrayOf(
+                    intArrayOf(1, 0),
+                    intArrayOf(1, 2),
+                    intArrayOf(1, 3),
+                ),
+                listOf(1),
             ),
             Arguments.of(
-                intArrayOf(1, 1, 2, 2),
-                2,
-                intArrayOf(1, 2, 1, 2),
+                6,
+                arrayOf(
+                    intArrayOf(3, 0),
+                    intArrayOf(3, 1),
+                    intArrayOf(3, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(5, 4),
+                ),
+                listOf(3, 4),
             ),
             Arguments.of(
-                intArrayOf(),
-                0,
-                intArrayOf(),
-            ),
-            Arguments.of(
-                intArrayOf(),
                 1,
-                intArrayOf(),
-            ),
-            Arguments.of(
-                intArrayOf(1),
-                0,
-                intArrayOf(1),
-            ),
-            Arguments.of(
-                intArrayOf(1, 2),
-                0,
-                intArrayOf(1, 2),
-            ),
-            Arguments.of(
-                intArrayOf(1, 2),
-                1,
-                intArrayOf(1, 2),
+                arrayOf<IntArray>(),
+                listOf(0),
             ),
         )
     }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun findMinHeightTreesTest(num: Int, edges: Array<IntArray>, expected: List<Int>) {
+        val actual = strategy(num, edges)
+        assertThat(actual).isEqualTo(expected)
+    }
 }
+
+class MinHeightTreesBFSTest : MinHeightTreesTest<MinHeightTreesBFS>(MinHeightTreesBFS())

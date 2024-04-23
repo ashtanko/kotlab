@@ -47,6 +47,34 @@ abstract class SimplifyPathTest<out T : SimplifyPath>(private val strategy: T) {
                 "",
                 "/",
             ),
+            Arguments.of(
+                "/a/./b/../../c/",
+                "/c",
+            ),
+            Arguments.of(
+                "/a/../../b/../c//.//",
+                "/c",
+            ),
+            Arguments.of(
+                "/a//b////c/d//././/..",
+                "/a/b/c",
+            ),
+            Arguments.of(
+                "/a/./b/../../c/",
+                "/c",
+            ),
+            Arguments.of(
+                "/a/../../b/../c//.//",
+                "/c",
+            ),
+            Arguments.of(
+                "/a//b////c/d//././/..",
+                "/a/b/c",
+            ),
+            Arguments.of(
+                "/a/./b/../../c/",
+                "/c",
+            ),
         )
     }
 
