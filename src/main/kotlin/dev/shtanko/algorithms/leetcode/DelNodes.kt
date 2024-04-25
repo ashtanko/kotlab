@@ -28,7 +28,7 @@ fun delNodes(root: TreeNode?, toDelete: IntArray): List<TreeNode?> {
     return res
 }
 
-private fun dfs(node: TreeNode?, set: Set<Int>, res: MutableList<TreeNode?>): TreeNode? {
+internal fun dfs(node: TreeNode?, set: Set<Int>, res: MutableList<TreeNode?>): TreeNode? {
     if (node == null) {
         return null
     }
