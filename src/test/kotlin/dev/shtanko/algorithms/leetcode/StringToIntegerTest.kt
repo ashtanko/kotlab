@@ -72,13 +72,45 @@ class StringToIntegerTest {
                 "A",
                 0,
             ),
+            Arguments.of(
+                "A 1",
+                0,
+            ),
+            Arguments.of(
+                " 1 A",
+                1,
+            ),
+            Arguments.of(
+                " 1 A 2",
+                1,
+            ),
+            Arguments.of(
+                " 1 2 A",
+                1,
+            ),
+            Arguments.of(
+                " 1 2 A 3",
+                1,
+            ),
+            Arguments.of(
+                " 1 2 3 A",
+                1,
+            ),
+            Arguments.of(
+                " 1 2 3 A 4",
+                1,
+            ),
+            Arguments.of(
+                " 1 2 3 4 A",
+                1,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `string to int test`(s: String, expected: Int) {
-        val actual = s.atoi()
+    fun `string to int test`(str: String, expected: Int) {
+        val actual = str.atoi()
         assertEquals(expected, actual)
     }
 }

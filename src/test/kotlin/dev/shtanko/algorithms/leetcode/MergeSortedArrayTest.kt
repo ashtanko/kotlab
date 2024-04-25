@@ -53,8 +53,8 @@ abstract class MergeSortedArrayTest<out T : MergeSortedArray>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `merge test`(nums1: IntArray, m: Int, nums2: IntArray, n: Int, expected: IntArray) {
-        strategy(nums1, m, nums2, n)
+    fun `merge test`(nums1: IntArray, m: Int, nums2: IntArray, num: Int, expected: IntArray) {
+        strategy(nums1, m, nums2, num)
         Assertions.assertThat(nums1).isEqualTo(expected)
     }
 }

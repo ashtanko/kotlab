@@ -37,6 +37,21 @@ abstract class FindKthLargestTest<out T : FindKthLargest>(private val strategy: 
                 4,
                 4,
             ),
+            Arguments.of(
+                intArrayOf(3, 2, 1, 5, 6, 4),
+                1,
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(3, 2, 1, 5, 6, 4),
+                6,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(3, 2, 1, 5, 6, 4),
+                3,
+                4,
+            ),
         )
     }
 

@@ -39,11 +39,44 @@ abstract class FindModeInBinarySearchTreeTest<out T : FindModeInBinarySearchTree
             ),
             Arguments.of(
                 TreeNode(1).apply {
+                    right = TreeNode(2)
+                },
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
                     right = TreeNode(2).apply {
                         left = TreeNode(2)
                     }
                 },
                 intArrayOf(2),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(1)
+                    right = TreeNode(2)
+                },
+                intArrayOf(1),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(1)
+                    right = TreeNode(2).apply {
+                        left = TreeNode(2)
+                    }
+                },
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(1).apply {
+                        left = TreeNode(1)
+                    }
+                    right = TreeNode(2).apply {
+                        left = TreeNode(2)
+                    }
+                },
+                intArrayOf(1),
             ),
         )
     }

@@ -36,8 +36,8 @@ abstract class CrackingSafeStrategyTest<out T : CrackingSafeStrategy>(private va
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `cracking the safe test`(n: Int, k: Int, expected: String) {
-        val actual = strategy.invoke(n, k)
+    fun `cracking the safe test`(num: Int, k: Int, expected: String) {
+        val actual = strategy.invoke(num, k)
         val resultList = expected.toList().map { it.toString() }
         val actualList = actual.toList().map { it.toString() }
         assertThat(actualList).containsExactlyInAnyOrder(*resultList.toTypedArray())

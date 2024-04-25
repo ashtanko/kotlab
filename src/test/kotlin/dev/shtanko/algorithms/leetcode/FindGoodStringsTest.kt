@@ -30,13 +30,15 @@ abstract class FindGoodStringsTest<out T : FindGoodStrings>(private val strategy
             Arguments.of(2, "aa", "da", "b", 51),
             Arguments.of(8, "leetcode", "leetgoes", "leet", 0),
             Arguments.of(2, "gx", "gz", "x", 2),
+            Arguments.of(8, "pzdanyao", "wgpmtywi", "sdka", 500543753),
+            Arguments.of(2, "p", "p", "p", 0),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find good strings test`(n: Int, s1: String, s2: String, evil: String, expected: Int) {
-        val actual = strategy.invoke(n, s1, s2, evil)
+    fun `find good strings test`(num: Int, s1: String, s2: String, evil: String, expected: Int) {
+        val actual = strategy.invoke(num, s1, s2, evil)
         assertThat(actual).isEqualTo(expected)
     }
 }

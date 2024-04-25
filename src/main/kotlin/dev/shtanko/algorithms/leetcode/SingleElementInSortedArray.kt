@@ -21,11 +21,26 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/single-element-in-a-sorted-array/">Source</a>
  */
 fun interface SingleElementInSortedArray {
-    fun singleNonDuplicate(nums: IntArray): Int
+    /**
+     * Finds the single element in a sorted array.
+     * @param nums The sorted array of integers.
+     * @return The single element in the array.
+     */
+    operator fun invoke(nums: IntArray): Int
 }
 
+/**
+ * Implementation of SingleElementInSortedArray using binary search.
+ * This implementation assumes that the input array is sorted in non-decreasing order.
+ */
 class SingleElementInSortedArrayBS : SingleElementInSortedArray {
-    override fun singleNonDuplicate(nums: IntArray): Int {
+    /**
+     * Finds the single element in a sorted array using binary search.
+     * @param nums The sorted array of integers.
+     * @return The single element in the array.
+     */
+    override fun invoke(nums: IntArray): Int {
+        if (nums.isEmpty()) return 0
         var left = 0
         var right = nums.size - 1
         while (left < right) {

@@ -45,13 +45,25 @@ abstract class ValidateBinaryTreeNodesTest<out T : ValidateBinaryTreeNodes>(priv
                 intArrayOf(-1, -1),
                 false,
             ),
+            Arguments.of(
+                6,
+                intArrayOf(1, -1, -1, 4, -1, -1),
+                intArrayOf(2, -1, -1, 5, -1, -1),
+                false,
+            ),
+            Arguments.of(
+                4,
+                intArrayOf(1, 2, 0, -1),
+                intArrayOf(-1, -1, -1, -1),
+                false,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `validate binary tree nodes test`(n: Int, leftChild: IntArray, rightChild: IntArray, expected: Boolean) {
-        val actual = strategy(n, leftChild, rightChild)
+    fun `validate binary tree nodes test`(num: Int, leftChild: IntArray, rightChild: IntArray, expected: Boolean) {
+        val actual = strategy(num, leftChild, rightChild)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

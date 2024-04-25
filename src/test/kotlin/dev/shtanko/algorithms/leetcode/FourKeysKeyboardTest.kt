@@ -30,13 +30,16 @@ abstract class FourKeysKeyboardTest<out T : FourKeysKeyboard>(private val strate
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(3, 3),
             Arguments.of(7, 9),
+            Arguments.of(11, 27),
+            Arguments.of(20, 324),
+            Arguments.of(50, 1327104),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `max A test`(n: Int, expected: Int) {
-        val actual = strategy.maxA(n)
+    fun `max A test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual, equalTo(expected))
     }
 }

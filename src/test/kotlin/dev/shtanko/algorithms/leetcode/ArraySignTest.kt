@@ -59,6 +59,30 @@ abstract class ArraySignTest<out T : ArraySign>(private val strategy: T) {
                 intArrayOf(2),
                 1,
             ),
+            Arguments.of(
+                intArrayOf(-2),
+                -1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(-1, -2, -3, -4, -5, -6, -7, -8, -9),
+                -1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(-1, -2, -3, -4, -5, -6, -7, -8, -9, 0),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1),
+                0,
+            ),
         )
     }
 

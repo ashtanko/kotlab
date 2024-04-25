@@ -35,6 +35,24 @@ abstract class TransposeMatrixTest<out T : TransposeMatrix>(private val strategy
                 arrayOf(intArrayOf(1, 2, 3), intArrayOf(4, 5, 6)),
                 arrayOf(intArrayOf(1, 4), intArrayOf(2, 5), intArrayOf(3, 6)),
             ),
+            Arguments.of(
+                arrayOf(intArrayOf(1, 2), intArrayOf(3, 4), intArrayOf(5, 6)),
+                arrayOf(intArrayOf(1, 3, 5), intArrayOf(2, 4, 6)),
+            ),
+            Arguments.of(
+                arrayOf(intArrayOf(1, 2, 3), intArrayOf(4, 5, 6), intArrayOf(7, 8, 9), intArrayOf(10, 11, 12)),
+                arrayOf(intArrayOf(1, 4, 7, 10), intArrayOf(2, 5, 8, 11), intArrayOf(3, 6, 9, 12)),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2, 3),
+                    intArrayOf(4, 5, 6),
+                    intArrayOf(7, 8, 9),
+                    intArrayOf(10, 11, 12),
+                    intArrayOf(13, 14, 15),
+                ),
+                arrayOf(intArrayOf(1, 4, 7, 10, 13), intArrayOf(2, 5, 8, 11, 14), intArrayOf(3, 6, 9, 12, 15)),
+            ),
         )
     }
 

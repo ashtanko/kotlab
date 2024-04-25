@@ -48,7 +48,7 @@ internal open class Account
 
 internal class Deposit : Account()
 
-fun copy(from: Array<out Any>, to: Array<Any>) {
+fun copy(from: Array<out Any>, to: Array<Any?>) {
     assert(from.size == to.size)
     for (i in from.indices)
         to[i] = from[i]

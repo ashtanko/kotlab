@@ -49,6 +49,35 @@ abstract class ConstructStringFromBinaryTreeTest<out T : ConstructStringFromBina
                 TreeNode(1),
                 "1",
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                    left?.left = TreeNode(4)
+                    right?.right = TreeNode(5)
+                },
+                "1(2(4))(3()(5))",
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                    left?.right = TreeNode(4)
+                    right?.right = TreeNode(5)
+                },
+                "1(2()(4))(3()(5))",
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                    left?.left = TreeNode(4)
+                    left?.right = TreeNode(5)
+                    right?.left = TreeNode(6)
+                    right?.right = TreeNode(7)
+                },
+                "1(2(4)(5))(3(6)(7))",
+            ),
         )
     }
 

@@ -25,14 +25,14 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/bus-routes/">Source</a>
  */
 fun interface BusRoutes {
-    fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int
+    operator fun invoke(routes: Array<IntArray>, source: Int, target: Int): Int
 }
 
 /**
  * Approach #1: Breadth First Search
  */
 class BusRoutesBFS : BusRoutes {
-    override fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int {
+    override fun invoke(routes: Array<IntArray>, source: Int, target: Int): Int {
         if (source == target) return 0
         val n: Int = routes.size
 
@@ -93,7 +93,7 @@ class BusRoutesBFS : BusRoutes {
 }
 
 class BusRoutesBFS2 : BusRoutes {
-    override fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int {
+    override fun invoke(routes: Array<IntArray>, source: Int, target: Int): Int {
         val n: Int = routes.size
         val toRoutes = HashMap<Int, HashSet<Int>>()
         for (i in routes.indices) {

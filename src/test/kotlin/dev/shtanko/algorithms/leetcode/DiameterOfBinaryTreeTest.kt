@@ -43,6 +43,71 @@ abstract class DiameterOfBinaryTreeTest<out T : DiameterOfBinaryTree>(private va
                 },
                 1,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                    }
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(4)
+                    }
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(4)
+                    }
+                    right = TreeNode(5).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7)
+                    }
+                },
+                4,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(4)
+                    }
+                    right = TreeNode(5).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7).apply {
+                            left = TreeNode(8)
+                            right = TreeNode(9)
+                        }
+                    }
+                },
+                5,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(4)
+                    }
+                    right = TreeNode(5).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7).apply {
+                            left = TreeNode(8)
+                            right = TreeNode(9).apply {
+                                left = TreeNode(10)
+                                right = TreeNode(11)
+                            }
+                        }
+                    }
+                },
+                6,
+            ),
         )
     }
 

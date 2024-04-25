@@ -41,6 +41,10 @@ abstract class ThreeSumTest<out T : ThreeSum>(private val strategy: T) {
                 intArrayOf(-1, 0, 1, 2, -1, -4),
                 listOf(listOf(-1, -1, 2), listOf(-1, 0, 1)),
             ),
+            Arguments.of(
+                intArrayOf(0, 0, 0),
+                listOf(listOf(0, 0, 0)),
+            ),
         )
     }
 

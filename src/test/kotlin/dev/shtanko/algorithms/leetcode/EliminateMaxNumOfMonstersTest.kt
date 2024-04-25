@@ -44,6 +44,11 @@ abstract class EliminateMaxNumOfMonstersTest<out T : EliminateMaxNumOfMonsters>(
                 intArrayOf(5, 3, 2),
                 1,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                intArrayOf(1, 1, 1, 1, 1, 1),
+                6,
+            ),
         )
     }
 

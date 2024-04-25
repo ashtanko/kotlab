@@ -48,6 +48,48 @@ class BinaryTreeLevelOrderTraversalTest {
                     listOf(3),
                 ),
             ),
+            Arguments.of(
+                TreeNode(3).apply {
+                    left = TreeNode(9)
+                    right = TreeNode(20)
+                    right?.apply {
+                        left = TreeNode(15)
+                        right = TreeNode(7)
+                    }
+                    left?.apply {
+                        left = TreeNode(1)
+                        right = TreeNode(2)
+                    }
+                },
+                listOf(
+                    listOf(3),
+                    listOf(9, 20),
+                    listOf(1, 2, 15, 7),
+                ),
+            ),
+            Arguments.of(
+                TreeNode(3).apply {
+                    left = TreeNode(9)
+                    right = TreeNode(20)
+                    right?.apply {
+                        left = TreeNode(15)
+                        right = TreeNode(7)
+                    }
+                    left?.apply {
+                        left = TreeNode(1)
+                        right = TreeNode(2)
+                    }
+                    right?.apply {
+                        left = TreeNode(1)
+                        right = TreeNode(2)
+                    }
+                },
+                listOf(
+                    listOf(3),
+                    listOf(9, 20),
+                    listOf(1, 2, 1, 2),
+                ),
+            ),
         )
     }
 

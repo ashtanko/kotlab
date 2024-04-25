@@ -46,8 +46,8 @@ abstract class ProfitableSchemesTest<out T : ProfitableSchemes>(private val stra
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `profitable schemes test`(n: Int, minProfit: Int, group: IntArray, profit: IntArray, expected: Int) {
-        val actual = strategy.invoke(n, minProfit, group, profit)
+    fun `profitable schemes test`(num: Int, minProfit: Int, group: IntArray, profit: IntArray, expected: Int) {
+        val actual = strategy.invoke(num, minProfit, group, profit)
         assertThat(actual).isEqualTo(expected)
     }
 }

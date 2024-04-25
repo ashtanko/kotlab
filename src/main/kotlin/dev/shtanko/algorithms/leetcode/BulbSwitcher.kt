@@ -23,9 +23,9 @@ import kotlin.math.sqrt
  * @see <a href="https://leetcode.com/problems/bulb-switcher/">Source</a>
  */
 fun interface BulbSwitcher {
-    fun bulbSwitch(n: Int): Int
+    operator fun invoke(num: Int): Int
 }
 
 class BulbSwitcherMath : BulbSwitcher {
-    override fun bulbSwitch(n: Int): Int = sqrt(n.toDouble()).toInt()
+    override fun invoke(num: Int): Int = sqrt(num.toDouble()).toInt()
 }

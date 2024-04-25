@@ -43,6 +43,10 @@ abstract class SplitIntoFibonacciTest<out T : SplitIntoFibonacci>(private val st
                 "",
                 listOf<Int>(),
             ),
+            Arguments.of(
+                "123456579",
+                listOf(123, 456, 579),
+            ),
         )
     }
 

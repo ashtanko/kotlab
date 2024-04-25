@@ -62,6 +62,26 @@ abstract class ConstrainedSubsequenceSumTest<out T : ConstrainedSubsequenceSum>(
                 3,
                 1,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                3,
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                7,
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                6,
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                5,
+                6,
+            ),
         )
     }
 

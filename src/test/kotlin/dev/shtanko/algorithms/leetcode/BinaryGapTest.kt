@@ -91,13 +91,29 @@ abstract class BinaryGapTest<out T : BinaryGapStrategy>(private val strategy: T)
                 2345,
                 3,
             ),
+            Arguments.of(
+                3456,
+                2,
+            ),
+            Arguments.of(
+                6543,
+                4,
+            ),
+            Arguments.of(
+                12345,
+                7,
+            ),
+            Arguments.of(
+                123456,
+                4,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `binary gap test`(n: Int, expected: Int) {
-        val actual = strategy.binaryGap(n)
+    fun `binary gap test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

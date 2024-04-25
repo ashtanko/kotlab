@@ -24,14 +24,14 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/escape-a-large-maze">Source</a>
  */
 fun interface EscapeLargeMaze {
-    fun isEscapePossible(blocked: Array<IntArray>, source: IntArray, target: IntArray): Boolean
+    operator fun invoke(blocked: Array<IntArray>, source: IntArray, target: IntArray): Boolean
 }
 
 class EscapeLargeMazeBFS : EscapeLargeMaze {
 
     private val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, -1))
 
-    override fun isEscapePossible(blocked: Array<IntArray>, source: IntArray, target: IntArray): Boolean {
+    override fun invoke(blocked: Array<IntArray>, source: IntArray, target: IntArray): Boolean {
         val blocks: MutableSet<String> = HashSet()
         for (block in blocked) {
             blocks.add(block[0].toString() + ":" + block[1])

@@ -37,8 +37,8 @@ class XOROperationTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `XOR operation test`(n: Int, start: Int, expected: Int) {
-        val actual = n.xorOperation(start)
+    fun `XOR operation test`(num: Int, start: Int, expected: Int) {
+        val actual = num.xorOperation(start)
         assertEquals(expected, actual)
     }
 }

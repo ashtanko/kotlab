@@ -43,13 +43,24 @@ abstract class FindLongestChainTest<out T : FindLongestChain>(private val strate
                 ),
                 3,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 6),
+                    intArrayOf(6, 7),
+                ),
+                3,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find longest chain test`(pairs: Array<IntArray>, expected: Int) {
-        val actual = strategy.invoke(pairs)
+        val actual = strategy(pairs)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

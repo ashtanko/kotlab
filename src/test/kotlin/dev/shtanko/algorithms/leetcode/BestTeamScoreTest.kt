@@ -42,6 +42,16 @@ abstract class BestTeamScoreTest<out T : BestTeamScore>(private val strategy: T)
                 intArrayOf(8, 9, 10, 1),
                 6,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                intArrayOf(8, 9, 10, 1, 1),
+                9,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                intArrayOf(1, 2, 3, 4, 5),
+                15,
+            ),
         )
     }
 

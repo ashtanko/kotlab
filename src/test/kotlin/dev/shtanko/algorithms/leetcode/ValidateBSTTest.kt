@@ -258,6 +258,44 @@ abstract class ValidateBSTTest<out T : ValidateBinarySearchTree>(private val str
                 },
                 true,
             ),
+            Arguments.of(
+                TreeNode(7).apply {
+                    left = TreeNode(5).apply {
+                        right = TreeNode(8)
+                    }
+                },
+                false,
+            ),
+            Arguments.of(
+                TreeNode(7).apply {
+                    left = TreeNode(5).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(6)
+                    }
+                },
+                true,
+            ),
+            Arguments.of(
+                TreeNode(7).apply {
+                    left = TreeNode(5).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(8)
+                    }
+                },
+                false,
+            ),
+            Arguments.of(
+                TreeNode(7).apply {
+                    left = TreeNode(5).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(6)
+                    }
+                    right = TreeNode(9).apply {
+                        left = TreeNode(8)
+                    }
+                },
+                true,
+            ),
         )
     }
 

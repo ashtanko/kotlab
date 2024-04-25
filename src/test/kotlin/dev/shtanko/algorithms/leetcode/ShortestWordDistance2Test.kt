@@ -40,6 +40,12 @@ class ShortestWordDistance2Test {
                 "coding",
                 1,
             ),
+            Arguments.of(
+                arrayOf<String>(),
+                "makes",
+                "coding",
+                2147483647,
+            ),
         )
     }
 

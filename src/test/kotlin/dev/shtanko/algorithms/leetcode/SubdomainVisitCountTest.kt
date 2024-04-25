@@ -16,11 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.utils.assertListEquals
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -51,6 +49,32 @@ class SubdomainVisitCountTest {
                     "50 yahoo.com",
                 ),
             ),
+            Arguments.of(
+                arrayOf("1 a", "1 b", "1 c"),
+                listOf(
+                    "1 a",
+                    "1 b",
+                    "1 c",
+                ),
+            ),
+            Arguments.of(
+                arrayOf("1 a", "1 b", "1 c", "1 a"),
+                listOf(
+                    "2 a",
+                    "1 b",
+                    "1 c",
+                ),
+            ),
+            Arguments.of(
+                arrayOf<String>(),
+                listOf<String>(),
+            ),
+            Arguments.of(
+                arrayOf("1 a"),
+                listOf(
+                    "1 a",
+                ),
+            ),
         )
     }
 
@@ -59,7 +83,6 @@ class SubdomainVisitCountTest {
     fun `subdomain visits test`(cpDomains: Array<String>, expected: List<String>) {
         val actual = cpDomains.subdomainVisits()
         assertEquals(expected, actual)
-        assertTrue(assertListEquals(expected, actual))
         assertThat(actual).isEqualTo(expected)
     }
 }

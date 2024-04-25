@@ -35,8 +35,8 @@ class MinPartitionsTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min partitions test`(n: String, expected: Int) {
-        val actual = n.minPartitions()
+    fun `min partitions test`(num: String, expected: Int) {
+        val actual = num.minPartitions()
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,47 +24,48 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class StampingSequenceTest {
+abstract class RemoveKDigitsTest<out T : RemoveKDigits>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "abc",
-                "ababc",
-                intArrayOf(1, 0, 2),
+                "1432219",
+                3,
+                "1219",
             ),
             Arguments.of(
-                "abca",
-                "aabcaca",
-                intArrayOf(2, 3, 0, 1),
+                "10200",
+                1,
+                "200",
             ),
             Arguments.of(
-                "",
-                "aabcaca",
-                intArrayOf(),
+                "10",
+                2,
+                "0",
             ),
             Arguments.of(
-                "",
-                "",
-                intArrayOf(0),
+                "9",
+                1,
+                "0",
             ),
             Arguments.of(
-                "abca",
-                "",
-                intArrayOf(),
+                "112",
+                1,
+                "11",
             ),
             Arguments.of(
-                "q",
-                "q",
-                intArrayOf(0),
+                "1234567890",
+                9,
+                "0",
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `moves to stamp test`(stamp: String, target: String, expected: IntArray) {
-        val source = StampingSequence()
-        val actual = source.movesToStamp(stamp, target)
-        assertThat(actual).containsExactlyInAnyOrder(*expected)
+    fun removeKDigitsSolutionsTest(num: String, k: Int, expected: String) {
+        val actual = strategy(num, k)
+        assertThat(actual).isEqualTo(expected)
     }
 }
+
+class RemoveKDigitsStackTest : RemoveKDigitsTest<RemoveKDigitsStack>(RemoveKDigitsStack())

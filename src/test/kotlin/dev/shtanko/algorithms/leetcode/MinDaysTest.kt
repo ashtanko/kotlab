@@ -34,8 +34,8 @@ abstract class MinDaysTest<out T : MinDays>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min days test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `min days test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -91,13 +91,41 @@ abstract class AllPossibleFullBinaryTreesTest<out T : AllPossibleFullBinaryTrees
                     },
                 ),
             ),
+            Arguments.of(
+                1,
+                listOf(
+                    TreeNode(0),
+                ),
+            ),
+            Arguments.of(
+                5,
+                listOf(
+                    TreeNode(0).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(0).apply {
+                            left = TreeNode(0)
+                            right = TreeNode(0)
+                        }
+                    },
+                    TreeNode(0).apply {
+                        left = TreeNode(0).apply {
+                            left = TreeNode(0)
+                            right = TreeNode(0)
+                        }
+                        right = TreeNode(0).apply {
+                            left = TreeNode(0)
+                            right = TreeNode(0)
+                        }
+                    },
+                ),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `allPossibleFBT test`(n: Int, expected: List<TreeNode?>) {
-        val actual = strategy.invoke(n)
+    fun `allPossibleFBT test`(num: Int, expected: List<TreeNode?>) {
+        val actual = strategy.invoke(num)
         assertThat(actual.size).isEqualTo(expected.size)
     }
 }

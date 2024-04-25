@@ -40,6 +40,10 @@ abstract class SumOfAllOddLengthSubArraysTest<out T : SumOfAllOddLengthSubArrays
             Arguments.of(intArrayOf(1, 4, 2, 5, 3), 58),
             Arguments.of(intArrayOf(1, 2), 3),
             Arguments.of(intArrayOf(10, 11, 12), 66),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 605),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), 876),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), 1183),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13), 1617),
         )
     }
 }

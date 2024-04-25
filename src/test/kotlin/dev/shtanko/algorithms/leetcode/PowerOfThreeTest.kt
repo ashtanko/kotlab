@@ -83,8 +83,8 @@ abstract class PowerOfThreeTest<out T : PowerOfThreeStrategy>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is power of tree test`(n: Int, expected: Boolean) {
-        val actual = strategy.isPowerOfThree(n)
+    fun `is power of tree test`(num: Int, expected: Boolean) {
+        val actual = strategy.isPowerOfThree(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

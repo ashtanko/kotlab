@@ -37,6 +37,30 @@ class TwoCitySchedulingTest {
                 ),
                 110,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(259, 770),
+                    intArrayOf(448, 54),
+                    intArrayOf(926, 667),
+                    intArrayOf(184, 139),
+                    intArrayOf(840, 118),
+                    intArrayOf(577, 469),
+                ),
+                1859,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(515, 563),
+                    intArrayOf(451, 713),
+                    intArrayOf(537, 709),
+                    intArrayOf(343, 819),
+                    intArrayOf(855, 779),
+                    intArrayOf(457, 60),
+                    intArrayOf(650, 359),
+                    intArrayOf(631, 42),
+                ),
+                3086,
+            ),
         )
     }
 

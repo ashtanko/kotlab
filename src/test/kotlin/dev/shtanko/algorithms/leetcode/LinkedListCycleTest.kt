@@ -30,11 +30,11 @@ abstract class LinkedListCycleTest<out T : LinkedListCycle>(private val strategy
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 ListNode(3).apply {
-                    val n = ListNode(2)
-                    next = n.apply {
+                    val node = ListNode(2)
+                    next = node.apply {
                         next = ListNode(0).apply {
                             next = ListNode(-4).apply {
-                                next = n
+                                next = node
                             }
                         }
                     }

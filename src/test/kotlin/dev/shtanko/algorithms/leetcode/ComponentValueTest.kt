@@ -42,6 +42,23 @@ abstract class ComponentValueTest<out T : ComponentValue>(private val strategy: 
                 arrayOf<IntArray>(),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1),
+                arrayOf(
+                    intArrayOf(0, 0),
+                ),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(4, 2, 2, 2, 4),
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(1, 2),
+                    intArrayOf(1, 3),
+                    intArrayOf(3, 4),
+                ),
+                0,
+            ),
         )
     }
 

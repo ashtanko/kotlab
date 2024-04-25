@@ -33,6 +33,11 @@ abstract class CloseStringsTest<out T : CloseStrings>(private val strategy: T) {
                 true,
             ),
             Arguments.of(
+                "",
+                "",
+                true,
+            ),
+            Arguments.of(
                 "a",
                 "aa",
                 false,
@@ -41,6 +46,21 @@ abstract class CloseStringsTest<out T : CloseStrings>(private val strategy: T) {
                 "cabbba",
                 "abbccc",
                 true,
+            ),
+            Arguments.of(
+                "cabbba",
+                "aabbss",
+                false,
+            ),
+            Arguments.of(
+                "cabbba",
+                "aabbcc",
+                false,
+            ),
+            Arguments.of(
+                "cabbba",
+                "aabbccc",
+                false,
             ),
             Arguments.of(
                 "aaabbbbccddeeeeefffff",

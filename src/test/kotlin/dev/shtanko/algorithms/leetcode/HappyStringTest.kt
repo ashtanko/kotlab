@@ -47,8 +47,8 @@ abstract class HappyStringTest<out T : HappyString>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `get happy string test`(n: Int, k: Int, expected: String) {
-        val actual = strategy.invoke(n, k)
+    fun `get happy string test`(num: Int, k: Int, expected: String) {
+        val actual = strategy.invoke(num, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

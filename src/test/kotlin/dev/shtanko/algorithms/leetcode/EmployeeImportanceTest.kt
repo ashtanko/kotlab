@@ -59,6 +59,54 @@ class EmployeeImportanceTest {
                 ),
                 0,
             ),
+            Arguments.of(
+                1,
+                listOf(
+                    Employee(1, 5, listOf(2, 3)),
+                    Employee(2, 3, listOf(4)),
+                    Employee(3, 3, listOf()),
+                    Employee(4, 1, listOf()),
+                ),
+                12,
+            ),
+            Arguments.of(
+                1,
+                listOf(
+                    Employee(1, 2, listOf(2)),
+                    Employee(2, 3, listOf()),
+                ),
+                5,
+            ),
+            Arguments.of(
+                1,
+                listOf(
+                    Employee(1, 2, listOf(2)),
+                    Employee(2, 3, listOf(3)),
+                    Employee(3, 3, listOf()),
+                ),
+                8,
+            ),
+            Arguments.of(
+                1,
+                listOf(
+                    Employee(1, 2, listOf(2)),
+                    Employee(2, 3, listOf(3)),
+                    Employee(3, 3, listOf(4)),
+                    Employee(4, 4, listOf()),
+                ),
+                12,
+            ),
+            Arguments.of(
+                1,
+                listOf(
+                    Employee(1, 2, listOf(2)),
+                    Employee(2, 3, listOf(3)),
+                    Employee(3, 3, listOf(4)),
+                    Employee(4, 4, listOf(5)),
+                    Employee(5, 5, listOf()),
+                ),
+                17,
+            ),
         )
     }
 

@@ -35,6 +35,18 @@ abstract class TotalStepsTest<out T : TotalSteps>(private val strategy: T) {
                 intArrayOf(4, 5, 7, 7, 13),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(3, 3, 3, 3, 3),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(7, 10, 7, 7, 7, 7, 7, 7, 7),
+                7,
+            ),
         )
     }
 

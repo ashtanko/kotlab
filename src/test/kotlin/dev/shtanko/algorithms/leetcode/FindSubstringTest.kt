@@ -43,6 +43,16 @@ abstract class AbstractFindSubstringTest<T : AbstractFindSubstring>(private val 
                 arrayOf("word", "good", "best", "word"),
                 emptyList<Int>(),
             ),
+            Arguments.of(
+                "barfoofoobarthefoobarman",
+                arrayOf("bar", "foo", "the"),
+                listOf(6, 9, 12),
+            ),
+            Arguments.of(
+                "lingmindraboofooowingdingbarrwingmonkeypoundcake",
+                arrayOf("fooo", "barr", "wing", "ding", "wing"),
+                listOf(13),
+            ),
         )
     }
 

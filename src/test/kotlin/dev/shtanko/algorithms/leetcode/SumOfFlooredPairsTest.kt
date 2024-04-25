@@ -39,6 +39,14 @@ abstract class SumOfFlooredPairsTest<out T : SumOfFlooredPairs>(private val stra
                 intArrayOf(1, 2),
                 4,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                127,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
         )
     }
 

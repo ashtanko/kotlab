@@ -111,6 +111,12 @@ class WordFilterTrieTest {
                 "e",
                 -1,
             ),
+            Arguments.of(
+                WordFilterWrappedWords(arrayOf("apple")),
+                "app",
+                "le",
+                0,
+            ),
         )
     }
 

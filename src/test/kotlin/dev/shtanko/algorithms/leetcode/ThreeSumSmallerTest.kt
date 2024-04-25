@@ -43,6 +43,16 @@ abstract class ThreeSumSmallerTest<out T : ThreeSumSmallerStrategy>(val strategy
                 0,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(0, 0, 0),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                4,
+                4,
+            ),
         )
     }
 

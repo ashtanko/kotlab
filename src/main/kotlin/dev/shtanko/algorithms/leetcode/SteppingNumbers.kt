@@ -30,7 +30,7 @@ class SteppingNumbersBFS : SteppingNumbers {
     override fun invoke(low: Int, high: Int): List<Int> {
         val list: MutableList<Int> = ArrayList()
 
-        for (i in 0..9) {
+        for (i in 0..<DECIMAL) {
             dfs(low, high, i.toLong(), list)
         }
         list.sort()

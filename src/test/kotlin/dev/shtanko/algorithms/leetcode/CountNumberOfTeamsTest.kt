@@ -44,6 +44,14 @@ abstract class CountNumberOfTeamsTest<out T : CountNumberOfTeams>(private val st
                 intArrayOf(1, 2, 3, 4),
                 4,
             ),
+            Arguments.of(
+                intArrayOf(1, 3, 2, 4),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                10,
+            ),
         )
     }
 

@@ -39,6 +39,18 @@ abstract class SumSubarrayMinsTest<out T : SumSubarrayMins>(private val strategy
                 intArrayOf(),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                20,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                220,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
+                680,
+            ),
         )
     }
 

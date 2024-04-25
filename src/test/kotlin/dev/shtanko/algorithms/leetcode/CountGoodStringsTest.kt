@@ -29,6 +29,7 @@ abstract class CountGoodStringsTest<out T : CountGoodStrings>(private val strate
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(3, 3, 1, 1, 8),
             Arguments.of(2, 3, 1, 2, 5),
+            Arguments.of(50, 100, 25, 25, 28),
         )
     }
 

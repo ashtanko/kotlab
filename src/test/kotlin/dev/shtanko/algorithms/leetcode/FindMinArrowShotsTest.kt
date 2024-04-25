@@ -54,6 +54,27 @@ abstract class FindMinArrowShotsTest<out T : FindMinArrowShots>(private val stra
                 ),
                 2,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 6),
+                ),
+                3,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 6),
+                    intArrayOf(6, 7),
+                ),
+                3,
+            ),
         )
     }
 

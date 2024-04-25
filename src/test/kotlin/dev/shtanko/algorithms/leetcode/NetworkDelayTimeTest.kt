@@ -58,8 +58,8 @@ abstract class NetworkDelayTimeTest<out T : NetworkDelayTime>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `network delay time test`(times: Array<IntArray>, n: Int, k: Int, expected: Int) {
-        val actual = strategy.invoke(times, n, k)
+    fun `network delay time test`(times: Array<IntArray>, num: Int, k: Int, expected: Int) {
+        val actual = strategy.invoke(times, num, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

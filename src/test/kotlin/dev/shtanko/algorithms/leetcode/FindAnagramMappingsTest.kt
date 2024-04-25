@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -33,13 +33,33 @@ class FindAnagramMappingsTest {
                 intArrayOf(50, 12, 32, 46, 28),
                 intArrayOf(1, 4, 3, 2, 0),
             ),
+            Arguments.of(
+                intArrayOf(84, 8, 84, 84, 79),
+                intArrayOf(84, 79, 8, 84, 84),
+                intArrayOf(4, 2, 4, 4, 1),
+            ),
+            Arguments.of(
+                intArrayOf(84, 47),
+                intArrayOf(84, 47),
+                intArrayOf(0, 1),
+            ),
+            Arguments.of(
+                intArrayOf(84, 47),
+                intArrayOf(47, 84),
+                intArrayOf(1, 0),
+            ),
+            Arguments.of(
+                intArrayOf(84, 47, 84),
+                intArrayOf(47, 84, 84),
+                intArrayOf(2, 0, 2),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `test`(a: IntArray, b: IntArray, expected: IntArray) {
+    fun `find anagram mappings test`(a: IntArray, b: IntArray, expected: IntArray) {
         val actual = FindAnagramMappings.invoke(a, b)
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

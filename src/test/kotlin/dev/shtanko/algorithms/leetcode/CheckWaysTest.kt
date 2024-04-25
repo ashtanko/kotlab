@@ -55,6 +55,17 @@ abstract class CheckWaysTest<out T : CheckWays>(private val strategy: T) {
                 arrayOf<IntArray>(),
                 0,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 6),
+                    intArrayOf(6, 7),
+                ),
+                0,
+            ),
         )
     }
 

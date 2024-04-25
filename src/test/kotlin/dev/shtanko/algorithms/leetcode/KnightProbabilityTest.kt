@@ -34,8 +34,8 @@ abstract class KnightProbabilityTest<out T : KnightProbability>(private val stra
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `knight probability test`(n: Int, k: Int, row: Int, column: Int, expected: Double) {
-        val actual = strategy.invoke(n, k, row, column)
+    fun `knight probability test`(num: Int, k: Int, row: Int, column: Int, expected: Double) {
+        val actual = strategy.invoke(num, k, row, column)
         assertThat(actual).isEqualTo(expected)
     }
 }

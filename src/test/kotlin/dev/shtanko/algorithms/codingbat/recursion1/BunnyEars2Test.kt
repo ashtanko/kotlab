@@ -92,6 +92,10 @@ abstract class BunnyEars2Test<out T : BunnyEars2>(private val strategy: T) {
                 15,
                 37,
             ),
+            Arguments.of(
+                16,
+                40,
+            ),
         )
     }
 

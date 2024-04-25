@@ -38,6 +38,26 @@ abstract class CourseScheduleTest<out T : CourseSchedule>(private val strategy: 
                 arrayOf(intArrayOf(1, 0), intArrayOf(0, 1)),
                 false,
             ),
+            Arguments.of(
+                3,
+                arrayOf(intArrayOf(1, 0), intArrayOf(1, 2), intArrayOf(0, 1)),
+                false,
+            ),
+            Arguments.of(
+                3,
+                arrayOf(intArrayOf(1, 0), intArrayOf(2, 1)),
+                true,
+            ),
+            Arguments.of(
+                4,
+                arrayOf(intArrayOf(1, 0), intArrayOf(2, 0), intArrayOf(3, 1), intArrayOf(3, 2)),
+                true,
+            ),
+            Arguments.of(
+                4,
+                arrayOf(intArrayOf(1, 0), intArrayOf(2, 0), intArrayOf(3, 1), intArrayOf(3, 2), intArrayOf(1, 3)),
+                false,
+            ),
         )
     }
 

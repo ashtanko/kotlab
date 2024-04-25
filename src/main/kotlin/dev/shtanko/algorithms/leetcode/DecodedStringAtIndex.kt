@@ -21,23 +21,23 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/decoded-string-at-index">Source</a>
  */
 fun interface DecodedStringAtIndex {
-    operator fun invoke(s: String, k: Int): String
+    operator fun invoke(str: String, k: Int): String
 }
 
 class DecodedStringAtIndexSolution : DecodedStringAtIndex {
-    override fun invoke(s: String, k: Int): String {
+    override fun invoke(str: String, k: Int): String {
         var n = 0
         var k0 = k
 
         var i = 0
         while (n < k0) {
-            n = if (Character.isDigit(s[i])) n * (s[i] - '0') else n + 1
+            n = if (Character.isDigit(str[i])) n * (str[i] - '0') else n + 1
             i++
         }
         i--
         while (i > 0) {
-            if (Character.isDigit(s[i])) {
-                n /= s[i] - '0'
+            if (Character.isDigit(str[i])) {
+                n /= str[i] - '0'
                 k0 %= n
             } else {
                 if (k0 % n == 0) {
@@ -47,6 +47,6 @@ class DecodedStringAtIndexSolution : DecodedStringAtIndex {
             }
             i--
         }
-        return s[i].toString()
+        return str[i].toString()
     }
 }

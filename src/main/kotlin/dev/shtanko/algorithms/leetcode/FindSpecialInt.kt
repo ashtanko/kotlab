@@ -56,17 +56,18 @@ class FindSpecialIntCheckElement : FindSpecialInt {
 class FindSpecialIntBS : FindSpecialInt {
     override fun invoke(arr: IntArray): Int {
         val n: Int = arr.size
-        val candidates = intArrayOf(arr[n / 4], arr[n / 2], arr[3 * n / 4])
-        val target = n / 4
+        if (n > 1) {
+            val candidates = intArrayOf(arr[n / 4], arr[n / 2], arr[3 * n / 4])
+            val target = n / 4
 
-        for (candidate in candidates) {
-            val left: Int = lowerBound(arr, candidate)
-            val right: Int = upperBound(arr, candidate) - 1
-            if (right - left + 1 > target) {
-                return candidate
+            for (candidate in candidates) {
+                val left: Int = lowerBound(arr, candidate)
+                val right: Int = upperBound(arr, candidate) - 1
+                if (right - left + 1 > target) {
+                    return candidate
+                }
             }
         }
-
         return -1
     }
 

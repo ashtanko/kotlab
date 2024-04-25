@@ -23,15 +23,30 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/largest-substring-between-two-equal-characters">Source</a>
  */
 fun interface SubstringFinder {
-    operator fun invoke(s: String): Int
+    /**
+     * This function finds the largest substring between two equal characters in a string.
+     * @param str The input string.
+     * @return The length of the largest substring between two equal characters.
+     */
+    operator fun invoke(str: String): Int
 }
 
+/**
+ * This class implements the SubstringFinder interface using a brute force approach.
+ * It iterates over each pair of characters in the string and checks if they are equal.
+ * If they are, it updates the maximum length of the substring found so far.
+ */
 class SubstringFinderBF : SubstringFinder {
-    override fun invoke(s: String): Int {
+    /**
+     * This function finds the largest substring between two equal characters in a string using a brute force approach.
+     * @param str The input string.
+     * @return The length of the largest substring between two equal characters.
+     */
+    override fun invoke(str: String): Int {
         var ans = -1
-        for (left in s.indices) {
-            for (right in left + 1 until s.length) {
-                if (s[left] == s[right]) {
+        for (left in str.indices) {
+            for (right in left + 1 until str.length) {
+                if (str[left] == str[right]) {
                     ans = max(ans.toDouble(), (right - left - 1).toDouble()).toInt()
                 }
             }
@@ -41,17 +56,27 @@ class SubstringFinderBF : SubstringFinder {
     }
 }
 
+/**
+ * This class implements the SubstringFinder interface using a hashmap to store the first index of each character.
+ * It iterates over each character in the string and checks if it has been seen before.
+ * If it has, it updates the maximum length of the substring found so far.
+ */
 class SubstringFinderHashMap : SubstringFinder {
-    override fun invoke(s: String): Int {
+    /**
+     * This function finds the largest substring between two equal characters in a string using a hashmap.
+     * @param str The input string.
+     * @return The length of the largest substring between two equal characters.
+     */
+    override fun invoke(str: String): Int {
         val firstIndex: MutableMap<Char, Int> = HashMap()
         var ans = -1
 
-        for (i in s.indices) {
-            if (firstIndex.containsKey(s[i])) {
-                ans = max(ans.toDouble(), (i - firstIndex.getOrDefault(s[i], 0) - 1).toDouble())
+        for (i in str.indices) {
+            if (firstIndex.containsKey(str[i])) {
+                ans = max(ans.toDouble(), (i - firstIndex.getOrDefault(str[i], 0) - 1).toDouble())
                     .toInt()
             } else {
-                firstIndex[s[i]] = i
+                firstIndex[str[i]] = i
             }
         }
 

@@ -52,8 +52,8 @@ abstract class BeautifulArrangementTest<out T : BeautifulArrangement>(private va
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count arrangement test`(n: Int, expected: Int) {
-        val actual = strategy.countArrangement(n)
+    fun `count arrangement test`(num: Int, expected: Int) {
+        val actual = strategy(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

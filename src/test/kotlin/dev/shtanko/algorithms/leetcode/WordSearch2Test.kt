@@ -45,6 +45,15 @@ abstract class WordSearch2Test<out T : WordSearch2>(private val strategy: T) {
                 arrayOf("abcb"),
                 emptyList<String>(),
             ),
+            Arguments.of(
+                arrayOf(
+                    charArrayOf('a', 'b', 'c', 'e'),
+                    charArrayOf('s', 'f', 'c', 's'),
+                    charArrayOf('a', 'd', 'e', 'e'),
+                ),
+                arrayOf("abcced", "see", "abcb"),
+                listOf("abcced", "see"),
+            ),
         )
     }
 

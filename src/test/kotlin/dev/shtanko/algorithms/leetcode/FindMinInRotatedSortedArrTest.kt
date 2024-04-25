@@ -39,6 +39,18 @@ class FindMinInRotatedSortedArrTest {
                 intArrayOf(11, 13, 15, 17),
                 11,
             ),
+            Arguments.of(
+                intArrayOf(2, 1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+            ),
         )
     }
 

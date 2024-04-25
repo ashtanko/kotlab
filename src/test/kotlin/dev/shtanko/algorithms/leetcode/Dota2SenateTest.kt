@@ -35,13 +35,29 @@ abstract class Dota2SenateTest<out T : Dota2Senate>(private val strategy: T) {
                 "RDD",
                 "Dire",
             ),
+            Arguments.of(
+                "DDRRR",
+                "Dire",
+            ),
+            Arguments.of(
+                "DRRDRDRDRDDRDRDR",
+                "Radiant",
+            ),
+            Arguments.of(
+                "DRRDRDRDRDDRDRDRD",
+                "Dire",
+            ),
+            Arguments.of(
+                "DRRDRDRDRDDRDRDRDR",
+                "Dire",
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `predict party victory test`(senate: String, expected: String) {
-        val actual = strategy.predictPartyVictory(senate)
+        val actual = strategy.invoke(senate)
         assertThat(actual).isEqualTo(expected)
     }
 }

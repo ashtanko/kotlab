@@ -43,6 +43,26 @@ class DivisorGameTest {
                 1000,
                 true,
             ),
+            Arguments.of(
+                1001,
+                false,
+            ),
+            Arguments.of(
+                1002,
+                true,
+            ),
+            Arguments.of(
+                1003,
+                false,
+            ),
+            Arguments.of(
+                1004,
+                true,
+            ),
+            Arguments.of(
+                1005,
+                false,
+            ),
         )
     }
 

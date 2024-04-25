@@ -39,6 +39,26 @@ class CountGoodNodesInBinaryTreeTest {
                 intArrayOf(3, 3, 4, 2).toTree(),
                 3,
             ),
+            Arguments.of(
+                intArrayOf(1).toTree(),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2).toTree(),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3).toTree(),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4).toTree(),
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5).toTree(),
+                5,
+            ),
         )
     }
 

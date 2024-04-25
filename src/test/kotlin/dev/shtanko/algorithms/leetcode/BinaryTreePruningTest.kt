@@ -84,13 +84,37 @@ abstract class BinaryTreePruningTest<out T : BinaryTreePruning>(private val stra
                 TreeNode(1),
                 TreeNode(1),
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0)
+                    right = TreeNode(0)
+                },
+                TreeNode(1),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(0)
+                    }
+                    right = TreeNode(0).apply {
+                        left = TreeNode(0)
+                        right = TreeNode(1)
+                    }
+                },
+                TreeNode(1).apply {
+                    right = TreeNode(1).apply {
+                        right = TreeNode(1)
+                    }
+                },
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `prune tree test`(root: TreeNode?, expected: TreeNode?) {
-        val actual = strategy.pruneTree(root)
+        val actual = strategy.invoke(root)
         assertThat(actual.postOrderTraversal()).containsAll(expected.postOrderTraversal())
     }
 }

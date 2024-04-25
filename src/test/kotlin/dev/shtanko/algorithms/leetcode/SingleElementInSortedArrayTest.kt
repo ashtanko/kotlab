@@ -35,13 +35,33 @@ abstract class SingleElementInSortedArrayTest<out T : SingleElementInSortedArray
                 intArrayOf(3, 3, 7, 7, 10, 11, 11),
                 10,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 2),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 2, 3),
+                3,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `single non duplicate test`(nums: IntArray, expected: Int) {
-        val actual = strategy.singleNonDuplicate(nums)
+        val actual = strategy.invoke(nums)
         assertThat(actual).isEqualTo(expected)
     }
 }

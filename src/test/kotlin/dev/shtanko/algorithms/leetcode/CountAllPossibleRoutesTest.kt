@@ -48,13 +48,41 @@ abstract class CountAllPossibleRoutesTest<out T : CountAllPossibleRoutes>(privat
                 3,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(2, 1, 5),
+                0,
+                0,
+                3,
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                0,
+                2,
+                40,
+                615088286,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                0,
+                2,
+                3,
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                0,
+                2,
+                0,
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `count routes test`(locations: IntArray, start: Int, finish: Int, fuel: Int, expected: Int) {
-        val actual = strategy.countRoutes(locations, start, finish, fuel)
+        val actual = strategy.invoke(locations, start, finish, fuel)
         assertThat(actual).isEqualTo(expected)
     }
 }

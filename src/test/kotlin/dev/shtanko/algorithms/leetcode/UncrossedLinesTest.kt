@@ -43,6 +43,21 @@ abstract class UncrossedLinesTest<out T : UncrossedLines>(private val strategy: 
                 intArrayOf(1, 9, 2, 5, 1),
                 2,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                intArrayOf(6, 7, 8, 9, 10),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                intArrayOf(6, 5, 4, 3, 2, 1),
+                1,
+            ),
         )
     }
 

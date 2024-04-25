@@ -20,22 +20,28 @@ import java.util.LinkedList
 import java.util.Stack
 
 /**
- * Binary Tree Preorder Traversal
+ * Extension function for TreeNode? to perform a pre-order traversal of a binary tree.
+ *
+ * Pre-order traversal is a tree traversal method where each node is processed before its subtrees.
+ * In this method, the root is visited first, then the left subtree, and finally the right subtree.
+ * This function uses an iterative approach with a stack to keep track of nodes.
+ *
+ * @return List<Int> A list of node values in the order they were visited during the pre-order traversal.
  */
 fun TreeNode?.preorderTraversal(): List<Int> {
-    val list: MutableList<Int> = LinkedList()
-    val stack: Stack<TreeNode> = Stack()
-    var node = this
-    while (node != null) {
-        list.add(node.value)
-        if (node.right != null) {
-            stack.push(node.right)
+    val traversalResult: MutableList<Int> = LinkedList() // Stores the result of the traversal
+    val nodeStack: Stack<TreeNode> = Stack() // Stack to keep track of nodes to visit
+    var currentNode = this // The current node being processed
+    while (currentNode != null) {
+        traversalResult.add(currentNode.value) // Add the value of the current node to the result
+        if (currentNode.right != null) {
+            nodeStack.push(currentNode.right) // Push the right child to the stack if it exists
         }
-        node = node.left
-        if (node == null && stack.isNotEmpty()) {
-            node = stack.pop()
+        currentNode = currentNode.left // Move to the left child
+        if (currentNode == null && nodeStack.isNotEmpty()) {
+            currentNode = nodeStack.pop() // Pop a node from the stack if the current node is null
         }
     }
 
-    return list
+    return traversalResult
 }

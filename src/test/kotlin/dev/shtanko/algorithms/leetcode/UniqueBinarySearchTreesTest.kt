@@ -43,13 +43,25 @@ abstract class UniqueBinarySearchTreesTest<out T : UniqueBinarySearchTrees>(priv
                 12,
                 208012,
             ),
+            Arguments.of(
+                19,
+                1767263190,
+            ),
+            Arguments.of(
+                0,
+                1,
+            ),
+            Arguments.of(
+                2,
+                2,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num trees test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `num trees test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

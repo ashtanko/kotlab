@@ -42,6 +42,24 @@ abstract class AbstractWordLadder2StrategyTest<out T : AbstractWordLadder2Strate
                 listOf("hot", "dot", "dog", "lot", "log"),
                 emptyList<List<String>>(),
             ),
+            Arguments.of(
+                "a",
+                "c",
+                listOf("a", "b", "c"),
+                listOf(listOf("a", "c")),
+            ),
+            Arguments.of(
+                "hot",
+                "dog",
+                listOf("hot", "dog"),
+                emptyList<List<String>>(),
+            ),
+            Arguments.of(
+                "",
+                "",
+                emptyList<List<String>>(),
+                emptyList<List<String>>(),
+            ),
         )
     }
 

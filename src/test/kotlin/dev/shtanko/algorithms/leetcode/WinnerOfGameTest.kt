@@ -39,6 +39,22 @@ abstract class WinnerOfGameTest<out T : WinnerOfGame>(private val strategy: T) {
                 "ABBBBBBBAAA",
                 false,
             ),
+            Arguments.of(
+                "ABABABABAB",
+                false,
+            ),
+            Arguments.of(
+                "A",
+                false,
+            ),
+            Arguments.of(
+                "AB",
+                false,
+            ),
+            Arguments.of(
+                "",
+                false,
+            ),
         )
     }
 

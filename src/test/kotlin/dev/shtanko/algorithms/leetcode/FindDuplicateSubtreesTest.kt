@@ -67,6 +67,39 @@ abstract class FindDuplicateSubtreesTest<out T : FindDuplicateSubtrees>(private 
                     intArrayOf(3),
                 ),
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                        }
+                    }
+                    right = TreeNode(2).apply {
+                        left = TreeNode(4)
+                    }
+                },
+                listOf(
+                    intArrayOf(4),
+                ),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                        }
+                    }
+                    right = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                        }
+                    }
+                },
+                listOf(
+                    intArrayOf(4),
+                    intArrayOf(3, 4),
+                ),
+            ),
         )
     }
 

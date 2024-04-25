@@ -47,6 +47,11 @@ abstract class CountKDifferenceTest<out T : CountKDifference>(private val strate
                 5,
                 3,
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                1,
+                0,
+            ),
         )
     }
 

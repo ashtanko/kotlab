@@ -43,8 +43,8 @@ internal class ImmutableSetTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `contains test`(n: Int, value: Int, expected: Boolean) {
-        val actual = immutableSetOf(n).contains(value)
+    internal fun `contains test`(num: Int, value: Int, expected: Boolean) {
+        val actual = immutableSetOf(num).contains(value)
         assertThat(actual, equalTo(expected))
     }
 

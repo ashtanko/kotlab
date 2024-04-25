@@ -63,8 +63,8 @@ abstract class PossibleBipartitionTest<out T : PossibleBipartition>(private val 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `possible bi partition test`(n: Int, dislikes: Array<IntArray>, expected: Boolean) {
-        val actual = strategy.invoke(n, dislikes)
+    fun `possible bi partition test`(num: Int, dislikes: Array<IntArray>, expected: Boolean) {
+        val actual = strategy.invoke(num, dislikes)
         assertThat(actual).isEqualTo(expected)
     }
 }

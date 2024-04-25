@@ -37,14 +37,19 @@ class BoldWordsInStringTest {
             Arguments.of(arrayOf("ab"), "ab", "<b>ab</b>"),
             Arguments.of(arrayOf("a", "b"), "ab", "<b>ab</b>"),
             Arguments.of(arrayOf("a", "c"), "ab", "<b>a</b>b"),
+            Arguments.of(arrayOf("a", "b", "c"), "abc", "<b>abc</b>"),
+            Arguments.of(arrayOf("a", "b", "c"), "ab", "<b>ab</b>"),
+            Arguments.of(arrayOf("a", "b", "c"), "bc", "<b>bc</b>"),
+            Arguments.of(arrayOf("a", "b", "c"), "ac", "<b>ac</b>"),
+            Arguments.of(arrayOf("a", "b", "c"), "a", "<b>a</b>"),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `bold words in string test`(words: Array<String>, s: String, expected: String) {
+    fun `bold words in string test`(words: Array<String>, str: String, expected: String) {
         val solution = BoldWordsInString()
-        val actual = solution.invoke(words, s)
+        val actual = solution.invoke(words, str)
         assertThat(actual, equalTo(expected))
     }
 }

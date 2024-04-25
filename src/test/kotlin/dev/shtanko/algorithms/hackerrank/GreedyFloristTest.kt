@@ -50,8 +50,8 @@ class GreedyFloristTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `greedy florist test`(n: Int, k: Int, c: IntArray, expected: Int) {
-        val actual = GreedyFlorist.solution(n, k, c)
+    internal fun `greedy florist test`(num: Int, k: Int, c: IntArray, expected: Int) {
+        val actual = GreedyFlorist.solution(num, k, c)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

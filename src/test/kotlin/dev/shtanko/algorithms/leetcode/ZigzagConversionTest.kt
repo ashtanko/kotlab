@@ -42,6 +42,21 @@ abstract class ZigzagConversionTest<out T : ZigzagConversion>(private val strate
                 1,
                 "A",
             ),
+            Arguments.of(
+                "AB",
+                1,
+                "AB",
+            ),
+            Arguments.of(
+                "AB",
+                2,
+                "AB",
+            ),
+            Arguments.of(
+                "",
+                0,
+                "",
+            ),
         )
     }
 

@@ -35,7 +35,7 @@ class SequenceGenerator {
         currentValue -= 1
     }
 
-    suspend fun proceed(nCoroutines: Int = 100, times: Int = 10, action: suspend () -> Unit) {
+    suspend operator fun invoke(nCoroutines: Int = 100, times: Int = 10, action: suspend () -> Unit) {
         coroutineScope {
             repeat(nCoroutines) {
                 launch {

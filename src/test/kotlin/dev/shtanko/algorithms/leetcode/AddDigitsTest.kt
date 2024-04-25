@@ -39,6 +39,7 @@ abstract class AddDigitsTest<out T : AddDigits>(private val strategy: T) {
             Arguments.of(111, 3),
             Arguments.of(1111, 4),
             Arguments.of(11112, 6),
+            Arguments.of(111111, 6),
             Arguments.of(Int.MAX_VALUE, 1),
         )
     }

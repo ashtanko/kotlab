@@ -23,34 +23,34 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
  * @see <a href="https://leetcode.com/problems/number-of-nodes-in-the-sub-tree-with-the-same-label/">Source</a>
  */
 fun interface CountSubTrees {
-    operator fun invoke(n: Int, edges: Array<IntArray>, labels: String): IntArray
+    operator fun invoke(num: Int, edges: Array<IntArray>, labels: String): IntArray
 }
 
 class CountSubTreesDFS : CountSubTrees {
-    override operator fun invoke(n: Int, edges: Array<IntArray>, labels: String): IntArray {
-        val g: MutableMap<Int, MutableList<Int>> = HashMap()
+    override operator fun invoke(num: Int, edges: Array<IntArray>, labels: String): IntArray {
+        val graph: MutableMap<Int, MutableList<Int>> = HashMap()
         for (e in edges) {
-            g.computeIfAbsent(e[0]) { ArrayList() }.add(e[1])
-            g.computeIfAbsent(e[1]) { ArrayList() }.add(e[0])
+            graph.computeIfAbsent(e[0]) { ArrayList() }.add(e[1])
+            graph.computeIfAbsent(e[1]) { ArrayList() }.add(e[0])
         }
-        val ans = IntArray(n)
-        dfs(g, 0, -1, labels, ans)
+        val ans = IntArray(num)
+        dfs(graph, 0, -1, labels, ans)
         return ans
     }
 
-    private fun dfs(g: Map<Int, List<Int>>, node: Int, parent: Int, labels: String, ans: IntArray): IntArray {
-        val cnt = IntArray(ALPHABET_LETTERS_COUNT)
-        val c = labels[node]
-        for (child in g[node] ?: emptyList()) {
+    private fun dfs(graph: Map<Int, List<Int>>, node: Int, parent: Int, labels: String, ans: IntArray): IntArray {
+        val count = IntArray(ALPHABET_LETTERS_COUNT)
+        val currentLabel = labels[node]
+        for (child in graph[node] ?: emptyList()) {
             if (child != parent) {
-                val sub = dfs(g, child, node, labels, ans)
+                val sub = dfs(graph, child, node, labels, ans)
                 for (i in 0 until ALPHABET_LETTERS_COUNT) {
-                    cnt[i] += sub[i]
+                    count[i] += sub[i]
                 }
             }
         }
-        ++cnt[c.code - 'a'.code]
-        ans[node] = cnt[c.code - 'a'.code]
-        return cnt
+        ++count[currentLabel.code - 'a'.code]
+        ans[node] = count[currentLabel.code - 'a'.code]
+        return count
     }
 }

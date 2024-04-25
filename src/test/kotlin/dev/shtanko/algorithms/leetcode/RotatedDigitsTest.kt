@@ -41,8 +41,8 @@ abstract class RotatedDigitsTest<out T : RotatedDigits>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `rotated digits test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `rotated digits test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual, equalTo(expected))
     }
 }

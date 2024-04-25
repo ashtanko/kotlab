@@ -55,6 +55,26 @@ abstract class DigitCountTest<out T : DigitCount>(private val strategy: T) {
                 "10",
                 false,
             ),
+            Arguments.of(
+                "101",
+                false,
+            ),
+            Arguments.of(
+                "1010",
+                false,
+            ),
+            Arguments.of(
+                "10101",
+                false,
+            ),
+            Arguments.of(
+                "101010",
+                false,
+            ),
+            Arguments.of(
+                "1010101",
+                false,
+            ),
         )
     }
 

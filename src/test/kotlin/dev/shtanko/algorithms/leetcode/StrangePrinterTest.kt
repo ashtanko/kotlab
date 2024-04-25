@@ -35,13 +35,29 @@ abstract class StrangePrinterTest<out T : StrangePrinter>(private val strategy: 
                 "aba",
                 2,
             ),
+            Arguments.of(
+                "",
+                0,
+            ),
+            Arguments.of(
+                "abc",
+                3,
+            ),
+            Arguments.of(
+                "abac",
+                3,
+            ),
+            Arguments.of(
+                "abacab",
+                4,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `strange printer test`(s: String, expected: Int) {
-        val actual = strategy.invoke(s)
+    fun `strange printer test`(str: String, expected: Int) {
+        val actual = strategy.invoke(str)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

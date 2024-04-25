@@ -103,21 +103,21 @@ class ListTNodeTest {
     @ArgumentsSource(PrettyPrintIntArgumentsProvider::class)
     @ParameterizedTest
     fun `print list node int test`(node: ListTNode<Int>, expected: String) {
-        val actual = node.prettyPrinted()
+        val actual = node.prettyPrint()
         Assertions.assertEquals(expected, actual)
     }
 
     @ArgumentsSource(PrettyPrintStringArgumentsProvider::class)
     @ParameterizedTest
     fun `print list node string test`(node: ListTNode<String>, expected: String) {
-        val actual = node.prettyPrinted()
+        val actual = node.prettyPrint()
         Assertions.assertEquals(expected, actual)
     }
 
     @ArgumentsSource(PrettyPrintObjectArgumentsProvider::class)
     @ParameterizedTest
     fun `print list node object test`(node: ListTNode<DummyObject>, expected: String) {
-        val actual = node.prettyPrinted()
+        val actual = node.prettyPrint()
         Assertions.assertEquals(expected, actual)
     }
 

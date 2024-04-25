@@ -68,8 +68,8 @@ class BinaryRepresentationTest {
 
     @ParameterizedTest
     @ArgumentsSource(LongArgs::class)
-    fun `long to bin string test`(n: Long, expected: String) {
-        val actual = n.bin()
+    fun `long to bin string test`(num: Long, expected: String) {
+        val actual = num.bin()
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -24,12 +24,12 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/number-of-beautiful-partitions">Source</a>
  */
 fun interface BeautifulPartitions {
-    operator fun invoke(s: String, k: Int, minLength: Int): Int
+    operator fun invoke(str: String, k: Int, minLength: Int): Int
 }
 
 class BeautifulPartitionsDP : BeautifulPartitions {
-    override operator fun invoke(s: String, k: Int, minLength: Int): Int {
-        val cs: CharArray = s.toCharArray()
+    override operator fun invoke(str: String, k: Int, minLength: Int): Int {
+        val cs: CharArray = str.toCharArray()
         val n = cs.size
         // make sure the input is valid
         if (!prime(cs[0]) || prime(cs[n - 1])) return 0

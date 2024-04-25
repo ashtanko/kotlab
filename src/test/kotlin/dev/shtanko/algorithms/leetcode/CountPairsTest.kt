@@ -39,6 +39,26 @@ abstract class CountPairsTest<out T : CountPairs>(private val strategy: T) {
                 intArrayOf(),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                10,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1, 1),
+                15,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                21,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1, 1, 1, 1),
+                28,
+            ),
         )
     }
 

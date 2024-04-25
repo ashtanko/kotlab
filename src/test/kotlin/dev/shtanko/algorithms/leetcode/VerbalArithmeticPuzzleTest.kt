@@ -62,6 +62,16 @@ abstract class VerbalArithmeticPuzzleTest<out T : VerbalArithmeticPuzzle>(privat
                 "A",
                 true,
             ),
+            Arguments.of(
+                arrayOf("A", "B"),
+                "C",
+                true,
+            ),
+            Arguments.of(
+                arrayOf("A", "B"),
+                "D",
+                true,
+            ),
         )
     }
 

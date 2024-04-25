@@ -44,8 +44,8 @@ abstract class NumRollsToTargetTest<out T : NumRollsToTarget>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `number of dice rolls with target sum test`(n: Int, k: Int, target: Int, expected: Int) {
-        val actual = strategy(n, k, target)
+    fun `number of dice rolls with target sum test`(num: Int, k: Int, target: Int, expected: Int) {
+        val actual = strategy(num, k, target)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

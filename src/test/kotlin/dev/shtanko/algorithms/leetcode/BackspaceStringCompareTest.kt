@@ -42,6 +42,16 @@ abstract class BackspaceStringCompareTest<out T : BackspaceStringCompare>(privat
                 "b",
                 false,
             ),
+            Arguments.of(
+                "a##c",
+                "#a#c",
+                true,
+            ),
+            Arguments.of(
+                "a#c",
+                "b",
+                false,
+            ),
         )
     }
 

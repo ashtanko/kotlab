@@ -45,6 +45,36 @@ abstract class SuperEggDropTest<out T : SuperEggDrop>(private val strategy: T) {
                 14,
                 4,
             ),
+            Arguments.of(
+                2,
+                2,
+                2,
+            ),
+            Arguments.of(
+                1,
+                2,
+                2,
+            ),
+            Arguments.of(
+                2,
+                100,
+                14,
+            ),
+            Arguments.of(
+                3,
+                100,
+                9,
+            ),
+            Arguments.of(
+                4,
+                100,
+                8,
+            ),
+            Arguments.of(
+                5,
+                100,
+                7,
+            ),
         )
     }
 }

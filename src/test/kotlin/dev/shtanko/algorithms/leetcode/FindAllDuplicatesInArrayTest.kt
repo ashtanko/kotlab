@@ -39,6 +39,34 @@ abstract class FindAllDuplicatesInArrayTest<out T : FindAllDuplicatesInArray>(pr
                 intArrayOf(1),
                 emptyList<Int>(),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8),
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1),
+                listOf(1),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 1),
+                listOf(1),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 1, 2),
+                listOf(1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3),
+                listOf(1, 2, 3),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4),
+                listOf(1, 2, 3, 4),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5),
+                listOf(1, 2, 3, 4, 5),
+            ),
         )
     }
 

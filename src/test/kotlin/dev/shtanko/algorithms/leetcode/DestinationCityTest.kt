@@ -47,6 +47,12 @@ abstract class DestinationCityTest<out T : DestinationCityStrategy>(private val 
                 ),
                 "A",
             ),
+            Arguments.of(
+                listOf(
+                    listOf("A", "Z"),
+                ),
+                "Z",
+            ),
         )
     }
 
@@ -59,6 +65,5 @@ abstract class DestinationCityTest<out T : DestinationCityStrategy>(private val 
 }
 
 class DestinationCitySetTest : DestinationCityTest<DestinationCityStrategy>(DestinationCitySet())
-
 class DestinationCityHashMapTest : DestinationCityTest<DestinationCityStrategy>(DestinationCityHashMap())
 class DestinationCityStrategyBFTest : DestinationCityTest<DestinationCityStrategy>(DestinationCityStrategyBF())

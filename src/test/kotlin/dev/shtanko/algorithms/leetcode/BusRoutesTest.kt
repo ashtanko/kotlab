@@ -67,6 +67,15 @@ abstract class BusRoutesTest<out T : BusRoutes>(private val strategy: T) {
                 12,
                 -1,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 2, 7),
+                    intArrayOf(3, 6, 7),
+                ),
+                1,
+                6,
+                2,
+            ),
         )
     }
 
@@ -74,7 +83,7 @@ abstract class BusRoutesTest<out T : BusRoutes>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun numBusesToDestinationTest(routes: Array<IntArray>, source: Int, target: Int, expected: Int) {
-        val actual = strategy.numBusesToDestination(routes, source, target)
+        val actual = strategy.invoke(routes, source, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

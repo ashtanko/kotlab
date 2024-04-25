@@ -79,13 +79,29 @@ abstract class AreOccurrencesEqualTest<out T : AreOccurrencesEqual>(private val 
                 "jfdntzwmzrsurunnoezrybmtm",
                 false,
             ),
+            Arguments.of(
+                "z",
+                true,
+            ),
+            Arguments.of(
+                "zz",
+                true,
+            ),
+            Arguments.of(
+                "zzz",
+                true,
+            ),
+            Arguments.of(
+                "zzzz",
+                true,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `are occurrences equal test`(s: String, expected: Boolean) {
-        val actual = strategy.invoke(s)
+    fun `are occurrences equal test`(str: String, expected: Boolean) {
+        val actual = strategy.invoke(str)
         assertThat(actual).isEqualTo(expected)
     }
 }

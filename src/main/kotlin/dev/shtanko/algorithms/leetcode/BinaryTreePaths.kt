@@ -24,21 +24,21 @@ private const val FORMAT = "%s%s%s"
 private const val ARROW = "->"
 
 fun interface BinaryTreePathsStrategy {
-    fun binaryTreePaths(root: TreeNode?): List<String>
+    operator fun invoke(root: TreeNode?): List<String>
 }
 
 class BinaryTreePathsRecursion : BinaryTreePathsStrategy {
-    override fun binaryTreePaths(root: TreeNode?): List<String> {
+    override fun invoke(root: TreeNode?): List<String> {
         val sList: MutableList<String> = LinkedList()
         if (root == null) return sList
         if (root.left == null && root.right == null) {
             sList.add(root.value.toString())
             return sList
         }
-        for (s in binaryTreePaths(root.left)) {
+        for (s in invoke(root.left)) {
             sList.add(String.format(FORMAT, root.value.toString(), ARROW, s))
         }
-        for (s in binaryTreePaths(root.right)) {
+        for (s in invoke(root.right)) {
             sList.add(String.format(FORMAT, root.value.toString(), ARROW, s))
         }
         return sList
@@ -47,7 +47,7 @@ class BinaryTreePathsRecursion : BinaryTreePathsStrategy {
 
 class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {
 
-    override fun binaryTreePaths(root: TreeNode?): List<String> {
+    override fun invoke(root: TreeNode?): List<String> {
         val list: MutableList<String> = ArrayList()
         val qNode: Queue<TreeNode> = LinkedList()
         val qStr: Queue<String> = LinkedList()
@@ -72,7 +72,7 @@ class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {
 }
 
 class BinaryTreePathsBFSStack : BinaryTreePathsStrategy {
-    override fun binaryTreePaths(root: TreeNode?): List<String> {
+    override fun invoke(root: TreeNode?): List<String> {
         val list: MutableList<String> = ArrayList()
         val sNode: Stack<TreeNode> = Stack<TreeNode>()
         val sStr: Stack<String> = Stack<String>()

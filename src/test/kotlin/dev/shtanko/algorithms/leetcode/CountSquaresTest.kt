@@ -44,6 +44,23 @@ class CountSquaresTest {
                 ),
                 7,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                ),
+                14,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                ),
+                20,
+            ),
         )
     }
 

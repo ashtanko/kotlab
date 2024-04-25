@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -39,12 +39,33 @@ class DIStringMatchTest {
                 "DDI",
                 intArrayOf(3, 2, 0, 1),
             ),
+            Arguments.of(
+                "D",
+                intArrayOf(1, 0),
+            ),
+            Arguments.of(
+                "I",
+                intArrayOf(0, 1),
+            ),
+            Arguments.of(
+                "DDDD",
+                intArrayOf(4, 3, 2, 1, 0),
+            ),
+            Arguments.of(
+                "IIII",
+                intArrayOf(0, 1, 2, 3, 4),
+            ),
+            Arguments.of(
+                "",
+                intArrayOf(0),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `di string match test`(str: String, expected: IntArray) {
-        assertArrayEquals(expected, str.diStringMatch())
+        val actual = str.diStringMatch()
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

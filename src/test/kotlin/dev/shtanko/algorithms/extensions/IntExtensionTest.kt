@@ -80,15 +80,15 @@ internal class IntExtensionTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputIsEvenArgumentsProvider::class)
-    internal fun `is even test`(n: Int, expected: Boolean) {
-        val actual = n.isEven
+    internal fun `is even test`(num: Int, expected: Boolean) {
+        val actual = num.isEven
         assertThat(actual, `is`(expected))
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputIsEvenArgumentsProvider::class)
-    internal fun `is even fun interface test`(n: Int, expected: Boolean) {
-        val actual = isEven.accept(n)
+    internal fun `is even fun interface test`(num: Int, expected: Boolean) {
+        val actual = isEven.accept(num)
         assertThat(actual, `is`(expected))
     }
 

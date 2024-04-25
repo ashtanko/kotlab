@@ -30,6 +30,13 @@ class StrStrTest {
             Arguments.of("", "", 0),
             Arguments.of("hello", "ll", 2),
             Arguments.of("aaaaa", "bba", -1),
+            Arguments.of("a", "a", 0),
+            Arguments.of("mississippi", "issip", 4),
+            Arguments.of("mississippi", "issipi", -1),
+            Arguments.of("mississippi", "pi", 9),
+            Arguments.of("mississippi", "mississippi", 0),
+            Arguments.of("mississippi", "mississippii", -1),
+            Arguments.of("mississippi", "mississippiii", -1),
         )
     }
 

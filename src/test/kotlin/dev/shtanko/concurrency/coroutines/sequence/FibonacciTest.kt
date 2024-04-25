@@ -60,8 +60,8 @@ class FibonacciTest {
     @ExperimentalCoroutinesApi
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `simple test`(n: Int, expected: String) = runTest {
-        val actual = fibonacci.take(n).joinToString()
+    fun `simple test`(num: Int, expected: String) = runTest {
+        val actual = fibonacci.take(num).joinToString()
         assertThat(actual).isEqualTo(expected)
     }
 }

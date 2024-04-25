@@ -42,23 +42,28 @@ abstract class DecodedStringAtIndexTest<out T : DecodedStringAtIndex>(private va
                 1,
                 "a",
             ),
-//            Arguments.of(
-//                "ajx37nyx97niysdrzice4petvcvmcgqn282zicpbx6okybw93vhk782unctdbgmcjmbqn25rorktmu5ig2qn2y4xagtru2nehmsp",
-//                976159153,
-//                "a",
-//            ),
-//            Arguments.of(
-//                "czjkk9elaqwiz7s6kgvl4gjixan3ky7jfdg3kyop3husw3fm289thisef8blt7a7zr5v5lhxqpntenvxnmlq7l34ay3jaayikjps",
-//                768077956,
-//                "c",
-//            ),
+            Arguments.of(
+                "a2b3c4d5e6f7g8h9",
+                10,
+                "c",
+            ),
+            Arguments.of(
+                "a2b3c4d5e6f7g8h9",
+                11,
+                "a",
+            ),
+            Arguments.of(
+                "a2b3c4d5e6f7g8h9",
+                12,
+                "a",
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `decode at index test`(s: String, k: Int, expected: String) {
-        val actual = strategy(s, k)
+    fun `decode at index test`(str: String, k: Int, expected: String) {
+        val actual = strategy(str, k)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

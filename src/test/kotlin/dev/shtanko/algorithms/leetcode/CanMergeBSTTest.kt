@@ -64,6 +64,86 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
                 ),
                 emptyList<Int>(),
             ),
+            Arguments.of(
+                listOf(
+                    TreeNode(5).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(8)
+                    },
+                    TreeNode(3).apply {
+                        left = TreeNode(2)
+                        right = TreeNode(6)
+                    },
+                    TreeNode(8).apply {
+                        left = TreeNode(7)
+                    },
+                ),
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                listOf(
+                    TreeNode(5).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(8)
+                    },
+                    TreeNode(3).apply {
+                        left = TreeNode(2)
+                        right = TreeNode(6)
+                    },
+                    TreeNode(8).apply {
+                        left = TreeNode(7)
+                    },
+                    TreeNode(7).apply {
+                        left = TreeNode(6)
+                    },
+                ),
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                listOf(
+                    TreeNode(5).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(8)
+                    },
+                    TreeNode(3).apply {
+                        left = TreeNode(2)
+                        right = TreeNode(6)
+                    },
+                    TreeNode(8).apply {
+                        left = TreeNode(7)
+                    },
+                    TreeNode(7).apply {
+                        left = TreeNode(6)
+                    },
+                    TreeNode(6).apply {
+                        left = TreeNode(5)
+                    },
+                ),
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                listOf(
+                    TreeNode(5).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(8)
+                    },
+                    TreeNode(3).apply {
+                        left = TreeNode(2)
+                        right = TreeNode(6)
+                    },
+                    TreeNode(8).apply {
+                        left = TreeNode(7)
+                    },
+                    TreeNode(7).apply {
+                        left = TreeNode(6)
+                    },
+                    TreeNode(6).apply {
+                        left = TreeNode(5)
+                    },
+                    TreeNode(4),
+                ),
+                emptyList<Int>(),
+            ),
         )
     }
 

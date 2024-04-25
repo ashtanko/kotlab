@@ -21,7 +21,16 @@ import java.util.PriorityQueue
 private const val MAX = 3
 
 /**
- * Third Maximum Number
+ * This function finds the third maximum number in a given array of integers.
+ * It uses a priority queue and a set to keep track of the maximum numbers.
+ * The function iterates over the array and for each number, it adds it to the set and the priority queue.
+ * If the size of the priority queue exceeds 3, it removes the smallest number.
+ * Finally, if the size of the priority queue is 2, it removes the smallest number again, leaving the third maximum
+ * number at the top of the queue.
+ * The function returns the top of the queue, which is the third maximum number.
+ *
+ * @param nums The array of integers to find the third maximum number in.
+ * @return The third maximum number in the array.
  */
 fun thirdMax(nums: IntArray): Int {
     val pq: PriorityQueue<Int> = PriorityQueue()
@@ -33,5 +42,5 @@ fun thirdMax(nums: IntArray): Int {
         }
     }
     if (pq.size == 2) pq.poll()
-    return pq.peek()
+    return pq.peek() ?: -1
 }

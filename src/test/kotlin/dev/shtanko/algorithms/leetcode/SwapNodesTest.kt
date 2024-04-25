@@ -37,6 +37,26 @@ abstract class SwapNodesTest<out T : SwapNodes>(private val strategy: T) {
                 5,
                 listOf(7, 9, 6, 6, 8, 7, 3, 0, 9, 5),
             ),
+            Arguments.of(
+                listOf(1).toListNode(),
+                1,
+                listOf(1),
+            ),
+            Arguments.of(
+                listOf(1, 2).toListNode(),
+                1,
+                listOf(2, 1),
+            ),
+            Arguments.of(
+                listOf(1, 2, 3).toListNode(),
+                2,
+                listOf(1, 2, 3),
+            ),
+            Arguments.of(
+                listOf(1, 2, 3, 4).toListNode(),
+                2,
+                listOf(1, 3, 2, 4),
+            ),
         )
     }
 

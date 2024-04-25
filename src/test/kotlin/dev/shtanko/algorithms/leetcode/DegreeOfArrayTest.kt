@@ -39,6 +39,10 @@ class DegreeOfArrayTest {
                 intArrayOf(1, 2, 2, 3, 1, 4, 2),
                 6,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 3, 1, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
+                15,
+            ),
         )
     }
 

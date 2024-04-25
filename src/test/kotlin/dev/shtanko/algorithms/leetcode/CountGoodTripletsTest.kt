@@ -48,6 +48,20 @@ class CountGoodTripletsTest {
                 1,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(7, 3, 7, 3, 12, 1, 12, 2, 3),
+                5,
+                8,
+                1,
+                12,
+            ),
+            Arguments.of(
+                intArrayOf(3, 3, 2, 2, 3, 2, 2, 1),
+                6,
+                5,
+                15,
+                56,
+            ),
         )
     }
 

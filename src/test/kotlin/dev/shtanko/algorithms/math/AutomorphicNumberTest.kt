@@ -34,8 +34,8 @@ class AutomorphicNumberTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is automorphic test`(n: Int, expected: Boolean) {
-        val actual = n.isAutomorphic()
+    fun `is automorphic test`(num: Int, expected: Boolean) {
+        val actual = num.isAutomorphic()
         assertThat(actual).isEqualTo(expected)
     }
 }

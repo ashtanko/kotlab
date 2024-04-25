@@ -37,6 +37,21 @@ abstract class FindKthPositiveTest<out T : FindKthPositive>(private val strategy
                 2,
                 6,
             ),
+            Arguments.of(
+                intArrayOf(2, 3, 4, 7, 11),
+                1,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(2, 3, 4, 7, 11),
+                3,
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(2, 3, 4, 7, 11),
+                4,
+                8,
+            ),
         )
     }
 

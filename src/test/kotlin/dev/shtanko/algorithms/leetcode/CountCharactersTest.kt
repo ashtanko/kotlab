@@ -42,6 +42,11 @@ abstract class CountCharactersTest<out T : CountCharacters>(private val strategy
                 "welldonehoneyr",
                 10,
             ),
+            Arguments.of(
+                arrayOf("hello", "world", "leetcode"),
+                "welldonehoneyr",
+                10,
+            ),
         )
     }
 

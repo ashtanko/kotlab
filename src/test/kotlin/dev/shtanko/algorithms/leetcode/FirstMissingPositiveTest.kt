@@ -44,6 +44,42 @@ abstract class FirstMissingPositiveTest<out T : FirstMissingPositive>(private va
                 intArrayOf(1, 2, 3, 4),
                 5,
             ),
+            Arguments.of(
+                intArrayOf(),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1),
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 2, 6, 6, 6, 6, 7, 10),
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                11,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+                12,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13),
+                12,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+                13,
+            ),
         )
     }
 
@@ -59,5 +95,6 @@ class FirstMissingPositiveBoolArrayTest :
     FirstMissingPositiveTest<FirstMissingPositive>(FirstMissingPositiveBoolArray())
 
 class FirstMissingPositiveHashKeyTest : FirstMissingPositiveTest<FirstMissingPositive>(FirstMissingPositiveHashKey())
+
 class FirstMissingPositiveCycleSortTest :
     FirstMissingPositiveTest<FirstMissingPositive>(FirstMissingPositiveCycleSort())

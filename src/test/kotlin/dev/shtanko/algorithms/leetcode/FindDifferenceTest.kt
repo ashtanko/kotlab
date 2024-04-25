@@ -37,13 +37,23 @@ abstract class FindDifferenceTest<out T : FindDifference>(private val strategy: 
                 "y",
                 'y',
             ),
+            Arguments.of(
+                "a",
+                "aa",
+                'a',
+            ),
+            Arguments.of(
+                "ae",
+                "aea",
+                'a',
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find the difference test`(s: String, t: String, expected: Char) {
-        val actual = strategy.invoke(s, t)
+    fun `find the difference test`(str: String, target: String, expected: Char) {
+        val actual = strategy.invoke(str, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

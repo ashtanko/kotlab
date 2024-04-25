@@ -44,8 +44,8 @@ abstract class ParallelCourses3Test<out T : ParallelCourses3>(private val strate
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `minimum time test`(n: Int, relations: Array<IntArray>, time: IntArray, expected: Int) {
-        val actual = strategy(n, relations, time)
+    fun `minimum time test`(num: Int, relations: Array<IntArray>, time: IntArray, expected: Int) {
+        val actual = strategy(num, relations, time)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

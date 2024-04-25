@@ -39,6 +39,14 @@ abstract class ThreeEqualPartsTest<out T : ThreeEqualParts>(private val strategy
                 intArrayOf(1, 1, 0, 0, 1),
                 intArrayOf(0, 2),
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                intArrayOf(-1, -1),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 0, 1),
+                intArrayOf(-1, -1),
+            ),
         )
     }
 

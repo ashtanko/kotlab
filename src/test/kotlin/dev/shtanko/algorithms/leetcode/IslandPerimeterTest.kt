@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class IslandPerimeterTest {
+abstract class IslandPerimeterTest<out T : IslandPerimeter>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -45,13 +45,88 @@ class IslandPerimeterTest {
                 ),
                 16,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1),
+                ),
+                4,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0),
+                ),
+                4,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                ),
+                6,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1),
+                ),
+                8,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1),
+                ),
+                10,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1),
+                ),
+                12,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1),
+                ),
+                14,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1),
+                ),
+                16,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1, 1),
+                ),
+                18,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1),
+                ),
+                20,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+                ),
+                22,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+                ),
+                24,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `island perimeter test`(arr: Array<IntArray>, expected: Int) {
-        val actual = arr.islandPerimeter()
+        val actual = strategy.invoke(arr)
         assertEquals(expected, actual)
     }
 }
+
+class IslandPerimeterApproach1Test : IslandPerimeterTest<IslandPerimeter>(islandPerimeterApproach1)
+class CalculateIslandPerimeterTest : IslandPerimeterTest<IslandPerimeter>(calculateIslandPerimeter)

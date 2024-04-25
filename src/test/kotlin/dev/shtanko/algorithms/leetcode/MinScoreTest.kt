@@ -51,8 +51,8 @@ abstract class MinScoreTest<out T : MinScore>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `min score test`(n: Int, roads: Array<IntArray>, expected: Int) {
-        val actual = strategy.invoke(n, roads)
+    fun `min score test`(num: Int, roads: Array<IntArray>, expected: Int) {
+        val actual = strategy.invoke(num, roads)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -52,6 +52,20 @@ abstract class FindBottomLeftTreeValTest<out T : FindBottomLeftTreeVal>(private 
                 },
                 7,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4).apply {
+                            left = TreeNode(7)
+                        }
+                        right = TreeNode(5)
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6)
+                    }
+                },
+                7,
+            ),
         )
     }
 

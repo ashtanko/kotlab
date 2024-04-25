@@ -59,6 +59,28 @@ abstract class TreeQueriesTest<out T : TreeQueries>(private val strategy: T) {
                 intArrayOf(3, 2, 4, 8),
                 intArrayOf(3, 2, 3, 2),
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                        }
+                    }
+                },
+                intArrayOf(5, 4, 3, 2, 1),
+                intArrayOf(0, 2, 1, 0, 0),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                        }
+                    }
+                },
+                intArrayOf(1, 2, 3, 4, 5),
+                intArrayOf(0, 0, 1, 2, 0),
+            ),
         )
     }
 

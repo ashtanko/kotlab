@@ -40,8 +40,8 @@ abstract class NumOfWaysGridTest<out T : NumOfWaysGrid>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num of ways test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `num of ways test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

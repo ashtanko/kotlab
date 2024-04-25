@@ -53,13 +53,18 @@ abstract class CoinPathTest<out T : CoinPath>(private val strategy: T) {
                 1,
                 listOf(1),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 4, -1, 2),
+                2,
+                listOf(1, 3, 5),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `cheapest jump test`(a: IntArray, b: Int, expected: List<Int>) {
-        val actual = strategy.cheapestJump(a, b)
+        val actual = strategy.invoke(a, b)
         assertThat(actual, equalTo(expected))
     }
 }

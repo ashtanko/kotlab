@@ -23,7 +23,7 @@ import dev.shtanko.algorithms.MOD
  * @see <a href="https://leetcode.com/problems/find-all-good-strings/">Source</a>
  */
 fun interface FindGoodStrings {
-    operator fun invoke(n: Int, s1: String, s2: String, evil: String): Int
+    operator fun invoke(num: Int, s1: String, s2: String, evil: String): Int
 }
 
 class FindGoodStringsDFS : FindGoodStrings {
@@ -75,7 +75,7 @@ class FindGoodStringsDFS : FindGoodStrings {
         }
     }
 
-    override operator fun invoke(n: Int, s1: String, s2: String, evil: String): Int {
+    override operator fun invoke(num: Int, s1: String, s2: String, evil: String): Int {
         val dp = IntArray(1 shl BITS)
         return dfs(
             DfsParams(
@@ -83,7 +83,7 @@ class FindGoodStringsDFS : FindGoodStrings {
                 0,
                 true,
                 true,
-                n,
+                num,
                 s1.toCharArray(),
                 s2.toCharArray(),
                 evil.toCharArray(),

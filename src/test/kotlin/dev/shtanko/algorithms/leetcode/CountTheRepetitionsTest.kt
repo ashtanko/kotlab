@@ -31,6 +31,7 @@ abstract class CountTheRepetitionsTest<out T : CountTheRepetitionsStrategy>(priv
             Arguments.of("", 0, "", 0, 0),
             Arguments.of("", 0, "", 1, 0),
             Arguments.of("acb", 4, "ab", 2, 2),
+            Arguments.of("acb", 1, "acb", 1, 1),
         )
     }
 

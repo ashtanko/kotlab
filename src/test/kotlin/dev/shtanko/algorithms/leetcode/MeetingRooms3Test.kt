@@ -42,8 +42,8 @@ abstract class MeetingRooms3Test<out T : MeetingRooms3>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `most booked test`(n: Int, meetings: Array<IntArray>, expected: Int) {
-        val actual = strategy(n, meetings)
+    fun `most booked test`(num: Int, meetings: Array<IntArray>, expected: Int) {
+        val actual = strategy(num, meetings)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

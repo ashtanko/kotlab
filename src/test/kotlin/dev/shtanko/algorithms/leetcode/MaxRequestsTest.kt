@@ -63,8 +63,8 @@ abstract class MaxRequestsTest<out T : MaxRequests>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `max product test`(n: Int, requests: Array<IntArray>, expected: Int) {
-        val actual = strategy.maximumRequests(n, requests)
+    fun `max product test`(num: Int, requests: Array<IntArray>, expected: Int) {
+        val actual = strategy.maximumRequests(num, requests)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -37,6 +37,11 @@ abstract class ConstructBinaryTree2Test<out T : ConstructBinaryTree2>(private va
                 intArrayOf(-1),
                 listOf(-1),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1, 3, 4, 2),
+                listOf(2, 1, 4, 3),
+            ),
         )
     }
 

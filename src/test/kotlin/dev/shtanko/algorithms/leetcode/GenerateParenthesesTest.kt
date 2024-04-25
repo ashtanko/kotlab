@@ -41,8 +41,8 @@ abstract class GenerateParenthesesTest<out T : GenerateParentheses>(private val 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `generate parenthesis test`(n: Int, expected: List<String>) {
-        val actual = strategy.invoke(n)
+    fun `generate parenthesis test`(num: Int, expected: List<String>) {
+        val actual = strategy.invoke(num)
         assertThat(actual, containsInAnyOrder(*expected.toTypedArray()))
     }
 }

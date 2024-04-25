@@ -28,8 +28,16 @@ abstract class SubstringFinderTest<out T : SubstringFinder>(private val strategy
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                "",
+                -1,
+            ),
+            Arguments.of(
                 "aa",
                 0,
+            ),
+            Arguments.of(
+                "a",
+                -1,
             ),
             Arguments.of(
                 "abca",
@@ -39,13 +47,21 @@ abstract class SubstringFinderTest<out T : SubstringFinder>(private val strategy
                 "cbzxy",
                 -1,
             ),
+            Arguments.of(
+                "cabbac",
+                4,
+            ),
+            Arguments.of(
+                "mgntdygtxrvxjnwksqhxuxtrv",
+                18,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun maxLengthBetweenEqualCharactersTest(s: String, expected: Int) {
-        val actual = strategy(s)
+    fun maxLengthBetweenEqualCharactersTest(str: String, expected: Int) {
+        val actual = strategy(str)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

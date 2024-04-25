@@ -24,11 +24,11 @@ fun Pair<String, String>.buddyStrings(): Boolean {
     if (first.length != second.length) return false
 
     if (first == second) {
-        val s = hashSetOf<Char>()
+        val characters = hashSetOf<Char>()
         for (c in first.toCharArray()) {
-            s.add(c)
+            characters.add(c)
         }
-        return s.size < first.length
+        return characters.size < first.length
     }
     val dif = mutableListOf<Int>()
     for (i in first.indices) {

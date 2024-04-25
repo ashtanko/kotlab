@@ -47,6 +47,43 @@ abstract class CherryPickup2Test<out T : CherryPickup2Strategy>(private val stra
                 ),
                 0,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1),
+                ),
+                1,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0),
+                    intArrayOf(0, 0),
+                ),
+                1,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1),
+                    intArrayOf(1, 1),
+                ),
+                4,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                ),
+                6,
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                    intArrayOf(1, 1, 1),
+                ),
+                8,
+            ),
         )
     }
 

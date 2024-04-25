@@ -71,22 +71,22 @@ internal class FibonacciSequenceTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputSimpleArgumentsProvider::class)
-    internal fun `simple test`(n: Int, expected: Int) {
-        val actual = n.toFibonacciSequence()
+    internal fun `simple test`(num: Int, expected: Int) {
+        val actual = num.toFibonacciSequence()
         assertThat(actual, equalTo(expected))
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputIterativeArgumentsProvider::class)
-    internal fun `iterative test`(n: Long, expected: Long) {
-        val actual = Fibonacci.ITERATIVE.invoke(n)
+    internal fun `iterative test`(num: Long, expected: Long) {
+        val actual = Fibonacci.ITERATIVE.invoke(num)
         assertThat(actual, equalTo(expected))
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputRecursiveArgumentsProvider::class)
-    internal fun `recursive test`(n: Long, expected: Long) {
-        val actual = Fibonacci.RECURSIVE.invoke(n)
+    internal fun `recursive test`(num: Long, expected: Long) {
+        val actual = Fibonacci.RECURSIVE.invoke(num)
         assertThat(actual, equalTo(expected))
     }
 }

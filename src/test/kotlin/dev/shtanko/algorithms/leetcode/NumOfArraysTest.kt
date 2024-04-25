@@ -50,8 +50,8 @@ abstract class NumOfArraysTest<out T : NumOfArrays>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num of arrays test`(n: Int, m: Int, k: Int, expected: Int) {
-        val actual = strategy(n, m, k)
+    fun `num of arrays test`(num: Int, m: Int, k: Int, expected: Int) {
+        val actual = strategy(num, m, k)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

@@ -23,14 +23,14 @@ fun String.isNumberRegex(): Boolean {
 }
 
 fun String.isNumber(): Boolean {
-    var s = this
-    s = s.lowercase(Locale.ROOT).trim { it <= ' ' }
+    var str = this
+    str = str.lowercase(Locale.ROOT).trim { it <= ' ' }
     var dotSeen = false
     var eSeen = false
     var numberBeforeE = false
     var numberAfterE = false
-    for (i in s.indices) {
-        val cur = s[i]
+    for (i in str.indices) {
+        val cur = str[i]
         when (cur) {
             in '0'..'9' -> {
                 if (!eSeen) {
@@ -41,7 +41,7 @@ fun String.isNumber(): Boolean {
             }
 
             '-', '+' -> {
-                if (i != 0 && s[i - 1] != 'e') return false
+                if (i != 0 && str[i - 1] != 'e') return false
             }
 
             '.' -> {

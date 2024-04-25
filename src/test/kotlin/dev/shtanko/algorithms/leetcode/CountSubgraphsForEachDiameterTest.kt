@@ -51,13 +51,73 @@ abstract class CountSubgraphsForEachDiameterTest<out T : CountSubgraphsForEachDi
                 ),
                 intArrayOf(2, 1),
             ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                ),
+                intArrayOf(4, 3, 2, 1),
+            ),
+            Arguments.of(
+                6,
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 6),
+                ),
+                intArrayOf(5, 4, 3, 2, 1),
+            ),
+            Arguments.of(
+                7,
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 6),
+                    intArrayOf(6, 7),
+                ),
+                intArrayOf(6, 5, 4, 3, 2, 1),
+            ),
+            Arguments.of(
+                8,
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 6),
+                    intArrayOf(6, 7),
+                    intArrayOf(7, 8),
+                ),
+                intArrayOf(7, 6, 5, 4, 3, 2, 1),
+            ),
+            Arguments.of(
+                9,
+                arrayOf(
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 5),
+                    intArrayOf(5, 6),
+                    intArrayOf(6, 7),
+                    intArrayOf(7, 8),
+                    intArrayOf(8, 9),
+                ),
+                intArrayOf(8, 7, 6, 5, 4, 3, 2, 1),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count subgraphs for each diameter test`(n: Int, edges: Array<IntArray>, expected: IntArray) {
-        val actual = strategy.invoke(n, edges)
+    fun `count subgraphs for each diameter test`(num: Int, edges: Array<IntArray>, expected: IntArray) {
+        val actual = strategy.invoke(num, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

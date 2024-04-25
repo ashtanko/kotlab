@@ -35,6 +35,10 @@ abstract class FindSpecialIntTest<out T : FindSpecialInt>(private val strategy: 
                 intArrayOf(1, 1),
                 1,
             ),
+            Arguments.of(
+                intArrayOf(),
+                -1,
+            ),
         )
     }
 

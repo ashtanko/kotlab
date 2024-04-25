@@ -71,8 +71,8 @@ internal class MaxPowerOfTwoTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputDecomposeArgumentsProvider::class)
-    fun `decompose into the sum powers of two test`(n: Int, expected: List<Int>) {
-        val actual = MaxPowerOfTwo().decompose(n)
+    fun `decompose into the sum powers of two test`(num: Int, expected: List<Int>) {
+        val actual = MaxPowerOfTwo().decompose(num)
         assertThat(actual, `is`(expected))
     }
 }

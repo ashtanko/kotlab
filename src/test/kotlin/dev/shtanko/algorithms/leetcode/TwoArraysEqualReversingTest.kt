@@ -27,11 +27,36 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 abstract class TwoArraysEqualReversingTest<out T : CanBeEqualStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(intArrayOf(1, 2, 3, 4), intArrayOf(2, 4, 1, 3), true),
-            Arguments.of(intArrayOf(7), intArrayOf(7), true),
-            Arguments.of(intArrayOf(1, 12), intArrayOf(12, 1), true),
-            Arguments.of(intArrayOf(3, 7, 9), intArrayOf(3, 7, 11), false),
-            Arguments.of(intArrayOf(1, 1, 1, 1, 1), intArrayOf(1, 1, 1, 1, 1), true),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(2, 4, 1, 3),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(7),
+                intArrayOf(7),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 12),
+                intArrayOf(12, 1),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(3, 7, 9),
+                intArrayOf(3, 7, 11),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                intArrayOf(1, 1, 1, 1, 1),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(2, 4, 1, 3),
+                true,
+            ),
         )
     }
 

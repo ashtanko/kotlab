@@ -39,6 +39,24 @@ abstract class CountRangeSumTest<out T : CountRangeSum>(private val strategy: T)
                 0,
                 1,
             ),
+            Arguments.of(
+                intArrayOf(0, 0),
+                0,
+                0,
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(0, 0, 0),
+                0,
+                0,
+                6,
+            ),
+            Arguments.of(
+                intArrayOf(0, 0, 0, 0),
+                0,
+                0,
+                10,
+            ),
         )
     }
 

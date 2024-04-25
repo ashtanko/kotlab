@@ -35,6 +35,14 @@ abstract class FrogJumpTest<out T : FrogJump>(private val strategy: T) {
                 intArrayOf(0, 1, 2, 3, 4, 8, 9, 11),
                 false,
             ),
+            Arguments.of(
+                intArrayOf(0, 1, 3, 6, 10, 15, 16, 21),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 3, 6, 10, 15, 16, 22),
+                false,
+            ),
         )
     }
 

@@ -23,23 +23,23 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
  * link https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
  */
 fun interface AreOccurrencesEqual {
-    operator fun invoke(s: String): Boolean
+    operator fun invoke(str: String): Boolean
 }
 
 class AreOccurrencesEqualKotlin : AreOccurrencesEqual {
-    override operator fun invoke(s: String): Boolean {
-        val num = s.count { it == s[0] }
-        for (i in 1 until s.length) {
-            if (num != s.count { it == s[i] }) return false
+    override operator fun invoke(str: String): Boolean {
+        val num = str.count { it == str[0] }
+        for (i in 1 until str.length) {
+            if (num != str.count { it == str[i] }) return false
         }
         return true
     }
 }
 
 class AreOccurrencesEqualBF : AreOccurrencesEqual {
-    override operator fun invoke(s: String): Boolean {
+    override operator fun invoke(str: String): Boolean {
         val fr = IntArray(ALPHABET_LETTERS_COUNT)
-        s.chars().forEach { c -> fr[c - 'a'.code]++ }
+        str.chars().forEach { c -> fr[c - 'a'.code]++ }
         return fr.filter { f ->
             f > 0
         }.all { f ->

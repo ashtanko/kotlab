@@ -20,12 +20,12 @@ package dev.shtanko.algorithms.leetcode
 fun interface SmallestDivisorStrategy {
     operator fun invoke(nums: IntArray, threshold: Int): Int
 
-    fun computeSum(nums: IntArray, x: Int): Long {
-        var s: Long = 0
-        for (n in nums) {
-            s += (n / x + if (n % x == 0) 0 else 1).toLong()
+    fun computeSum(nums: IntArray, divisor: Int): Long {
+        var sum: Long = 0
+        for (number in nums) {
+            sum += (number / divisor + if (number % divisor == 0) 0 else 1).toLong()
         }
-        return s
+        return sum
     }
 }
 
@@ -60,9 +60,8 @@ class SmallestDivisorBinarySearch : SmallestDivisorStrategy {
 
 class SmallestDivisorMath : SmallestDivisorStrategy {
     override operator fun invoke(nums: IntArray, threshold: Int): Int {
-        // binary search
-        // binary search
         var left = 1
+
         var right = nums[nums.size - 1]
         while (left <= right) {
             val pivot = left + (right - left shr 1)
@@ -73,16 +72,6 @@ class SmallestDivisorMath : SmallestDivisorStrategy {
                 right = pivot - 1
             }
         }
-
-        // at the end of loop, left > right,
-        // computeSum(right) > threshold
-        // computeSum(left) <= threshold
-        // --> return left
-
-        // at the end of loop, left > right,
-        // computeSum(right) > threshold
-        // computeSum(left) <= threshold
-        // --> return left
         return left
     }
 }

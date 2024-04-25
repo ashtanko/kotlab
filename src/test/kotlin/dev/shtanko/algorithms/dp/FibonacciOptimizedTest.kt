@@ -41,8 +41,8 @@ internal class FibonacciOptimizedTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `optimized fibonacci test`(n: Int, expected: Long) {
-        val actual = FibonacciOptimized().perform(n)
+    internal fun `optimized fibonacci test`(num: Int, expected: Long) {
+        val actual = FibonacciOptimized().perform(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

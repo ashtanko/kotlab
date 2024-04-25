@@ -32,13 +32,14 @@ abstract class TribonacciTest<out T : Tribonacci>(private val strategy: T) {
             Arguments.of(2, 1),
             Arguments.of(4, 4),
             Arguments.of(25, 1389537),
+            Arguments.of(37, 2082876103),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `tribonacci test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `tribonacci test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -27,11 +27,11 @@ private const val DIRE = "Dire"
  * @see <a href="https://leetcode.com/problems/dota2-senate/">Source</a>
  */
 fun interface Dota2Senate {
-    fun predictPartyVictory(senate: String): String
+    operator fun invoke(senate: String): String
 }
 
 class Dota2SenateGreedy : Dota2Senate {
-    override fun predictPartyVictory(senate: String): String {
+    override fun invoke(senate: String): String {
         // Convert to StringBuilder for easy deletion
         val senateArray = StringBuilder(senate)
 
@@ -103,7 +103,7 @@ class Dota2SenateGreedy : Dota2Senate {
 }
 
 class Dota2SenateBooleanArray : Dota2Senate {
-    override fun predictPartyVictory(senate: String): String {
+    override fun invoke(senate: String): String {
         // To mark Banned Senators
         val banned = BooleanArray(senate.length)
 
@@ -153,7 +153,7 @@ class Dota2SenateBooleanArray : Dota2Senate {
 }
 
 class Dota2SenateTwoQueues : Dota2Senate {
-    override fun predictPartyVictory(senate: String): String {
+    override fun invoke(senate: String): String {
         // Number of Senator
         val n: Int = senate.length
 
@@ -193,7 +193,7 @@ class Dota2SenateTwoQueues : Dota2Senate {
 }
 
 class Dota2SenateSingleQueue : Dota2Senate {
-    override fun predictPartyVictory(senate: String): String {
+    override fun invoke(senate: String): String {
         // Number of Senators of each party
         var rCount = 0
         var dCount = 0

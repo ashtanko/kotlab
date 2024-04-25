@@ -44,8 +44,8 @@ abstract class IntegerReplacementTest<out T : IntegerReplacement>(private val st
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `integer replacement test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `integer replacement test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -48,8 +48,8 @@ abstract class PowTest<out T : Pow>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `pow test`(x: Double, n: Int, expected: Double) {
-        val actual = strategy.invoke(x, n)
+    fun `pow test`(x: Double, num: Int, expected: Double) {
+        val actual = strategy.invoke(x, num)
         assertThat(actual).isEqualTo(expected)
     }
 }

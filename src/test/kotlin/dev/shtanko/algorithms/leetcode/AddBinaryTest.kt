@@ -65,6 +65,16 @@ abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T)
                 "11001100",
                 "101110110",
             ),
+            Arguments.of(
+                "1111",
+                "1111",
+                "11110",
+            ),
+            Arguments.of(
+                "1111",
+                "1110",
+                "11101",
+            ),
         )
     }
 

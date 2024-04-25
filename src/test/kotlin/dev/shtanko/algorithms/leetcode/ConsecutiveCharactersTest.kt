@@ -34,6 +34,9 @@ abstract class ConsecutiveCharactersTest<out T : ConsecutiveCharactersStrategy>(
             Arguments.of("tourist", 1),
             Arguments.of("", 0),
             Arguments.of("a", 1),
+            Arguments.of("aa", 2),
+            Arguments.of("aaa", 3),
+            Arguments.of("aaaa", 4),
         )
     }
 

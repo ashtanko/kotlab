@@ -61,8 +61,8 @@ internal class DecimalToBinaryTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `decimal to binary string test`(n: Int, expected: String) {
-        val actual = DecimalToBinary().perform(n)
+    fun `decimal to binary string test`(num: Int, expected: String) {
+        val actual = DecimalToBinary().perform(num)
         assertThat(actual, equalTo(expected))
     }
 }

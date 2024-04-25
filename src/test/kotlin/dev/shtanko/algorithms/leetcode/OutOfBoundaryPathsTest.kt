@@ -48,8 +48,8 @@ abstract class OutOfBoundaryPathsTest<out T : OutOfBoundaryPaths>(private val st
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find paths test`(m: Int, n: Int, maxMove: Int, startRow: Int, startColumn: Int, expected: Int) {
-        val actual = strategy.invoke(m, n, maxMove, startRow, startColumn)
+    fun `find paths test`(m: Int, num: Int, maxMove: Int, startRow: Int, startColumn: Int, expected: Int) {
+        val actual = strategy.invoke(m, num, maxMove, startRow, startColumn)
         assertThat(actual).isEqualTo(expected)
     }
 }

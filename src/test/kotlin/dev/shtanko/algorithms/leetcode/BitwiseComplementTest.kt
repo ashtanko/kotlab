@@ -47,13 +47,33 @@ abstract class BitwiseComplementTest<out T : BitwiseComplement>(private val stra
                 10_000,
                 6383,
             ),
+            Arguments.of(
+                1_000_000,
+                48575,
+            ),
+            Arguments.of(
+                1_000_000_000,
+                73741823,
+            ),
+            Arguments.of(
+                1_073_741_823,
+                0,
+            ),
+            Arguments.of(
+                1_073_741_824,
+                1073741823,
+            ),
+            Arguments.of(
+                2_147_483_647,
+                0,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `bitwise complement test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `bitwise complement test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

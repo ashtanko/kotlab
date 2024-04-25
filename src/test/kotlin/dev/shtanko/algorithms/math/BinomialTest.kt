@@ -52,8 +52,8 @@ internal class BinomialTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `binomial test`(n: Int, k: Int, expected: Long) {
-        val actual = binomial(n, k)
+    internal fun `binomial test`(num: Int, k: Int, expected: Long) {
+        val actual = binomial(num, k)
         assertThat(actual, equalTo(expected))
     }
 }

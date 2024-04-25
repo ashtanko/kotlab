@@ -17,22 +17,32 @@
 package dev.shtanko.algorithms.leetcode
 
 object ShortestWayToFormString {
+    /**
+     * Function twoPointers calculates the minimum number of subsequences required to form a string `target` from a
+     * string `source`.
+     * It uses two pointers to traverse the `source` and `target` strings, and counts the number of subsequences.
+     *
+     * @param source The source string from which subsequences are formed.
+     * @param target The target string to be formed from the subsequences.
+     * @return The minimum number of subsequences required to form the target string. Returns -1 if it is not possible
+     * to form the target string from the source string.
+     */
     fun twoPointers(source: String, target: String): Int {
-        var t = 0
-        var ans = 0
-        while (t < target.length) {
-            val pt = t
-            for (s in source.indices) {
-                if (t < target.length && source[s] == target[t]) {
-                    t++
+        var targetIndex = 0
+        var sequenceCount = 0
+        while (targetIndex < target.length) {
+            val previousTargetIndex = targetIndex
+            for (sourceIndex in source.indices) {
+                if (targetIndex < target.length && source[sourceIndex] == target[targetIndex]) {
+                    targetIndex++
                 }
             }
 
-            if (t == pt) {
+            if (targetIndex == previousTargetIndex) {
                 return -1
             }
-            ans++
+            sequenceCount++
         }
-        return ans
+        return sequenceCount
     }
 }

@@ -58,13 +58,46 @@ abstract class FindCriticalEdgesTest<out T : FindCriticalEdges>(
                     listOf(0, 1, 2, 3),
                 ),
             ),
+            Arguments.of(
+                6,
+                arrayOf(
+                    intArrayOf(0, 1, 1),
+                    intArrayOf(1, 2, 1),
+                    intArrayOf(0, 2, 1),
+                    intArrayOf(2, 3, 4),
+                    intArrayOf(3, 4, 2),
+                    intArrayOf(3, 5, 2),
+                    intArrayOf(4, 5, 2),
+                ),
+                listOf(
+                    listOf(3),
+                    listOf(0, 1, 2, 4, 5, 6),
+                ),
+            ),
+            Arguments.of(
+                6,
+                arrayOf(
+                    intArrayOf(0, 1, 1),
+                    intArrayOf(1, 2, 1),
+                    intArrayOf(0, 2, 1),
+                    intArrayOf(2, 3, 4),
+                    intArrayOf(3, 4, 2),
+                    intArrayOf(3, 5, 2),
+                    intArrayOf(4, 5, 2),
+                    intArrayOf(0, 5, 10),
+                ),
+                listOf(
+                    listOf(3),
+                    listOf(0, 1, 2, 4, 5, 6),
+                ),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find critical and pseudo critical edges test`(n: Int, edges: Array<IntArray>, expected: List<List<Int>>) {
-        val actual = strategy(n, edges)
+    fun `find critical and pseudo critical edges test`(num: Int, edges: Array<IntArray>, expected: List<List<Int>>) {
+        val actual = strategy(num, edges)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

@@ -39,13 +39,37 @@ abstract class DecodeWaysTest<out T : DecodeWays>(private val strategy: T) {
                 "06",
                 0,
             ),
+            Arguments.of(
+                "0",
+                0,
+            ),
+            Arguments.of(
+                "1",
+                1,
+            ),
+            Arguments.of(
+                "10",
+                1,
+            ),
+            Arguments.of(
+                "2101",
+                1,
+            ),
+            Arguments.of(
+                "210",
+                1,
+            ),
+            Arguments.of(
+                "2102",
+                1,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun numDecodingsTest(s: String, expected: Int) {
-        val actual = strategy(s)
+    fun numDecodingsTest(str: String, expected: Int) {
+        val actual = strategy(str)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

@@ -45,6 +45,30 @@ abstract class TwoOutOfThreeTest<out T : TwoOutOfThree>(private val strategy: T)
                 intArrayOf(5),
                 emptyList<Int>(),
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 2),
+                intArrayOf(4, 3, 3),
+                intArrayOf(2, 1),
+                listOf(1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 2),
+                intArrayOf(4, 3, 3),
+                intArrayOf(2, 3),
+                listOf(2, 3),
+            ),
+            Arguments.of(
+                intArrayOf(3, 1),
+                intArrayOf(2, 3),
+                intArrayOf(1, 2),
+                listOf(1, 2, 3),
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 3, 2),
+                intArrayOf(2, 3),
+                intArrayOf(3),
+                listOf(3, 2),
+            ),
         )
     }
 
@@ -58,3 +82,4 @@ abstract class TwoOutOfThreeTest<out T : TwoOutOfThree>(private val strategy: T)
 
 class TwoOutOfThreeImplTest : TwoOutOfThreeTest<TwoOutOfThree>(TwoOutOfThreeImpl())
 class TwoOutOfThreeStreamTest : TwoOutOfThreeTest<TwoOutOfThree>(TwoOutOfThreeStream())
+class TwoOutOfThreeKotlinWayTest : TwoOutOfThreeTest<TwoOutOfThree>(TwoOutOfThreeKotlinWay())

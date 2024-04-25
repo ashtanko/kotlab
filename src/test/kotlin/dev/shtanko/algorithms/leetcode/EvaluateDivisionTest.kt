@@ -68,6 +68,38 @@ abstract class EvaluateDivisionTest<out T : EvaluateDivision>(private val strate
                 ),
                 doubleArrayOf(0.50000, 2.00000, -1.00000, -1.00000),
             ),
+            Arguments.of(
+                listOf(
+                    listOf("a", "b"),
+                    listOf("c", "d"),
+                ),
+                doubleArrayOf(1.0, 1.0),
+                listOf(
+                    listOf("a", "c"),
+                    listOf("b", "d"),
+                    listOf("b", "a"),
+                    listOf("d", "c"),
+                ),
+                doubleArrayOf(-1.00000, -1.00000, 1.00000, 1.00000),
+            ),
+            Arguments.of(
+                listOf(
+                    listOf("a", "b"),
+                    listOf("b", "c"),
+                    listOf("c", "d"),
+                    listOf("d", "e"),
+                ),
+                doubleArrayOf(2.0, 3.0, 4.0, 5.0),
+                listOf(
+                    listOf("a", "e"),
+                    listOf("e", "a"),
+                    listOf("a", "c"),
+                    listOf("a", "d"),
+                    listOf("a", "a"),
+                    listOf("x", "x"),
+                ),
+                doubleArrayOf(120.0, 0.008333333333333333, 6.0, 24.0, 1.0, -1.0),
+            ),
         )
     }
 

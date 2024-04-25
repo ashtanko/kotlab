@@ -67,6 +67,44 @@ class BalancedBinaryTreeTest {
                 },
                 true,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(2).apply {
+                        right = TreeNode(3)
+                    }
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                    }
+                },
+                true,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(2).apply {
+                        right = TreeNode(3)
+                    }
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                        }
+                    }
+                },
+                false,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(2).apply {
+                        right = TreeNode(3)
+                    }
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                            right = TreeNode(4)
+                        }
+                    }
+                },
+                false,
+            ),
         )
     }
 

@@ -42,13 +42,23 @@ abstract class DistributeRepeatingIntegersTest<out T : DistributeRepeatingIntege
                 intArrayOf(2, 2),
                 true,
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 2, 3),
+                intArrayOf(2, 2),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                intArrayOf(2, 3),
+                true,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `can distribute test`(nums: IntArray, quantity: IntArray, expected: Boolean) {
-        val actual = strategy.canDistribute(nums, quantity)
+        val actual = strategy.invoke(nums, quantity)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

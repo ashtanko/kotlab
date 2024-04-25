@@ -21,7 +21,7 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/counting-bits">Source</a>
  */
 fun interface CountingBits {
-    operator fun invoke(n: Int): IntArray
+    operator fun invoke(num: Int): IntArray
 }
 
 /**
@@ -30,9 +30,9 @@ fun interface CountingBits {
  * Space complexity: O(1)
  */
 class CountingBitsPopCount : CountingBits {
-    override operator fun invoke(n: Int): IntArray {
-        val ans = IntArray(n + 1)
-        for (x in 0..n) {
+    override operator fun invoke(num: Int): IntArray {
+        val ans = IntArray(num + 1)
+        for (x in 0..num) {
             ans[x] = popCount(x)
         }
         return ans
@@ -55,13 +55,13 @@ class CountingBitsPopCount : CountingBits {
  * Space complexity: O(1)
  */
 class MostSignificantBit : CountingBits {
-    override operator fun invoke(n: Int): IntArray {
-        val ans = IntArray(n + 1)
+    override operator fun invoke(num: Int): IntArray {
+        val ans = IntArray(num + 1)
         var x = 0
         var b = 1
 
-        while (b <= n) {
-            while (x < b && x + b <= n) {
+        while (b <= num) {
+            while (x < b && x + b <= num) {
                 ans[x + b] = ans[x] + 1
                 ++x
             }
@@ -79,9 +79,9 @@ class MostSignificantBit : CountingBits {
  * Space complexity: O(1)
  */
 class LeastSignificantBit : CountingBits {
-    override operator fun invoke(n: Int): IntArray {
-        val ans = IntArray(n + 1)
-        for (x in 1..n) {
+    override operator fun invoke(num: Int): IntArray {
+        val ans = IntArray(num + 1)
+        for (x in 1..num) {
             ans[x] = ans[x shr 1] + (x and 1)
         }
         return ans
@@ -94,9 +94,9 @@ class LeastSignificantBit : CountingBits {
  * Space complexity: O(1)
  */
 class LastSetBit : CountingBits {
-    override operator fun invoke(n: Int): IntArray {
-        val ans = IntArray(n + 1)
-        for (x in 1..n) {
+    override operator fun invoke(num: Int): IntArray {
+        val ans = IntArray(num + 1)
+        for (x in 1..num) {
             ans[x] = ans[x and x - 1] + 1
         }
         return ans

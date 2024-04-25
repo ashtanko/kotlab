@@ -43,13 +43,45 @@ abstract class FlipGame2Test<out T : FlipGame2>(private val solution: T) {
                 "+++",
                 true,
             ),
+            Arguments.of(
+                "+++++",
+                false,
+            ),
+            Arguments.of(
+                "++++++",
+                true,
+            ),
+            Arguments.of(
+                "+++++++",
+                true,
+            ),
+            Arguments.of(
+                "",
+                false,
+            ),
+            Arguments.of(
+                "+-",
+                false,
+            ),
+            Arguments.of(
+                "+-+",
+                false,
+            ),
+            Arguments.of(
+                "+-++",
+                true,
+            ),
+            Arguments.of(
+                "+-+++",
+                true,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `can win test`(currentState: String, expected: Boolean) {
-        val actual = solution.canWin(currentState)
+    fun canWinTest(currentState: String, expected: Boolean) {
+        val actual = solution.invoke(currentState)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -30,6 +30,12 @@ class FindNumbersWithEvenNumberOfDigitsTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(12, 345, 2, 6, 7896), 2),
             Arguments.of(intArrayOf(555, 901, 482, 1771), 1),
+            Arguments.of(intArrayOf(), 0),
+            Arguments.of(intArrayOf(1), 0),
+            Arguments.of(intArrayOf(100000), 1),
+            Arguments.of(intArrayOf(100000, 100000), 2),
+            Arguments.of(intArrayOf(100000, 100000, 100000), 3),
+            Arguments.of(intArrayOf(100000, 100000, 100000, 100000), 4),
         )
     }
 

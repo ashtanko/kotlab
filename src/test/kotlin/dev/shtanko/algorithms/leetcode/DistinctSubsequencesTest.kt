@@ -37,13 +37,33 @@ abstract class DistinctSubsequencesTest<out T : DistinctSubsequences>(private va
                 "bag",
                 5,
             ),
+            Arguments.of(
+                "",
+                "",
+                1,
+            ),
+            Arguments.of(
+                "a",
+                "a",
+                1,
+            ),
+            Arguments.of(
+                "a",
+                "b",
+                0,
+            ),
+            Arguments.of(
+                "a",
+                "",
+                1,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num distinct test`(s: String, t: String, expected: Int) {
-        val actual = strategy.numDistinct(s, t)
+    fun `num distinct test`(str: String, target: String, expected: Int) {
+        val actual = strategy.invoke(str, target)
         assertThat(actual).isEqualTo(expected)
     }
 }

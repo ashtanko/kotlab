@@ -110,15 +110,15 @@ internal class FibonacciSequenceTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `fibonacci number test`(n: Int, expected: Long) {
-        val actual = fibonacciAt(n)
+    internal fun `fibonacci number test`(num: Int, expected: Long) {
+        val actual = fibonacciAt(num)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @ArgumentsSource(SequenceArgumentsProvider::class)
-    internal fun `fibonacci sequence test`(n: Int, expected: List<Int>) {
-        val actual = fibonacci().take(n).toList()
+    internal fun `fibonacci sequence test`(num: Int, expected: List<Int>) {
+        val actual = fibonacci().take(num).toList()
         assertEquals(expected, actual)
     }
 }

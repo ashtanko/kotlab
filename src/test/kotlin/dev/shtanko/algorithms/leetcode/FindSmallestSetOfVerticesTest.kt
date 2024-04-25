@@ -51,13 +51,63 @@ class FindSmallestSetOfVerticesTest {
                 ),
                 listOf(0, 2, 3),
             ),
+            Arguments.of(
+                5,
+                listOf(
+                    listOf(0, 1),
+                    listOf(2, 1),
+                    listOf(3, 1),
+                    listOf(4, 1),
+                    listOf(2, 4),
+                ),
+                listOf(0, 2, 3),
+            ),
+            Arguments.of(
+                5,
+                listOf(
+                    listOf(0, 1),
+                    listOf(2, 1),
+                    listOf(3, 1),
+                    listOf(4, 1),
+                    listOf(2, 4),
+                    listOf(4, 3),
+                ),
+                listOf(0, 2),
+            ),
+            Arguments.of(
+                5,
+                listOf(
+                    listOf(0, 1),
+                    listOf(2, 1),
+                    listOf(3, 1),
+                    listOf(4, 1),
+                    listOf(2, 4),
+                    listOf(4, 3),
+                    listOf(3, 2),
+                ),
+                listOf(0),
+            ),
+            Arguments.of(
+                5,
+                listOf(
+                    listOf(0, 1),
+                    listOf(2, 1),
+                    listOf(3, 1),
+                    listOf(4, 1),
+                    listOf(2, 4),
+                    listOf(4, 3),
+                    listOf(3, 2),
+                    listOf(1, 0),
+                ),
+                listOf<Int>(),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find smallest set of vertices test`(n: Int, edges: List<List<Int>>, expected: List<Int>) {
-        val actual = FindSmallestSetOfVertices.invoke(n, edges)
+    fun `find smallest set of vertices test`(num: Int, edges: List<List<Int>>, expected: List<Int>) {
+        val actual = FindSmallestSetOfVertices.invoke(num, edges)
         assertThat(actual, equalTo(expected))
     }
 }

@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -43,6 +43,14 @@ class CreateTargetArrayTest {
                 intArrayOf(1) to intArrayOf(0),
                 intArrayOf(1),
             ),
+            Arguments.of(
+                intArrayOf(4, 2, 4, 3, 2) to intArrayOf(0, 0, 1, 3, 1),
+                intArrayOf(2, 2, 4, 4, 3),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5) to intArrayOf(0, 0, 1, 3, 3),
+                intArrayOf(2, 3, 1, 5, 4),
+            ),
         )
     }
 
@@ -50,13 +58,13 @@ class CreateTargetArrayTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `create target array solution test`(pair: Pair<IntArray, IntArray>, expected: IntArray) {
         val actual = pair.createTargetArray()
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactly(*expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `create target array solution 2 test`(pair: Pair<IntArray, IntArray>, expected: IntArray) {
         val actual = pair.createTargetArray2()
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactly(*expected)
     }
 }

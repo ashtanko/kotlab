@@ -57,13 +57,28 @@ abstract class BoatsToSavePeopleTest<out T : BoatsToSavePeople>(private val stra
                 1,
                 1,
             ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                2,
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                3,
+                3,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `num rescue boats test`(people: IntArray, limit: Int, expected: Int) {
-        val actual = strategy.numRescueBoats(people, limit)
+        val actual = strategy.invoke(people, limit)
         assertThat(actual).isEqualTo(expected)
     }
 }

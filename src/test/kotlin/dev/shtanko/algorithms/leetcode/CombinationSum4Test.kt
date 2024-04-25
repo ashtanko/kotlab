@@ -47,6 +47,11 @@ abstract class CombinationSum4Test<out T : CombinationSum4>(private val strategy
                 0,
                 1,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                32,
+                181997601,
+            ),
         )
     }
 

@@ -37,6 +37,16 @@ abstract class CountSubarraysMaxElementTest<out T : CountSubarraysMaxElement>(pr
                 3,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(2, 1, 4, 1, 1, 2, 2, 1),
+                5,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(2, 9, 2, 5, 6),
+                2,
+                0,
+            ),
         )
     }
 

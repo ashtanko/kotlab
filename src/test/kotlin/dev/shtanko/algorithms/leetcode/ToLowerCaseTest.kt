@@ -31,6 +31,13 @@ class ToLowerCaseTest {
             Arguments.of("here", "here"),
             Arguments.of("LOVELY", "lovely"),
             Arguments.of("QWERTYUIOPASDFGHJKLZXCVBNM", "qwertyuiopasdfghjklzxcvbnm"),
+            Arguments.of("qwertyuiopasdfghjklzxcvbnm", "qwertyuiopasdfghjklzxcvbnm"),
+            Arguments.of("", ""),
+            Arguments.of(" ", " "),
+            Arguments.of("1234567890", "1234567890"),
+            Arguments.of("Hello, World!", "hello, world!"),
+            Arguments.of("Hello, World! 1234567890", "hello, world! 1234567890"),
+            Arguments.of("Hello, World! 1234567890 !@#$%^&*()", "hello, world! 1234567890 !@#$%^&*()"),
         )
     }
 

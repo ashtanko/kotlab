@@ -34,8 +34,8 @@ abstract class IntegerBreakTest<out T : IntegerBreak>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `integer break test`(n: Int, expected: Int) {
-        assertThat(strategy.invoke(n)).isEqualTo(expected)
+    fun `integer break test`(num: Int, expected: Int) {
+        assertThat(strategy.invoke(num)).isEqualTo(expected)
     }
 }
 

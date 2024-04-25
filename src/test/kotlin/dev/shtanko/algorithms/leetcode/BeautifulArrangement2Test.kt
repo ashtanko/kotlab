@@ -154,13 +154,18 @@ abstract class BeautifulArrangement2Test<out T : BeautifulArrangement2>(private 
                 2,
                 intArrayOf(1, 3, 2),
             ),
+            Arguments.of(
+                5,
+                2,
+                intArrayOf(1, 2, 3, 5, 4),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `construct array test`(n: Int, k: Int, expected: IntArray) {
-        val actual = strategy.constructArray(n, k)
+    fun `construct array test`(num: Int, k: Int, expected: IntArray) {
+        val actual = strategy.invoke(num, k)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

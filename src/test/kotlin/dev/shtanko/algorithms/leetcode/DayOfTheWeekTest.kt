@@ -51,6 +51,26 @@ class DayOfTheWeekTest {
                 Triple(27, 10, 1999),
                 "Wednesday",
             ),
+            Arguments.of(
+                Triple(31, 12, 2000),
+                "Sunday",
+            ),
+            Arguments.of(
+                Triple(1, 1, 2001),
+                "Monday",
+            ),
+            Arguments.of(
+                Triple(1, 1, 1971),
+                "Friday",
+            ),
+            Arguments.of(
+                Triple(1, 1, 1972),
+                "Saturday",
+            ),
+            Arguments.of(
+                Triple(1, 1, 1973),
+                "Monday",
+            ),
         )
     }
 

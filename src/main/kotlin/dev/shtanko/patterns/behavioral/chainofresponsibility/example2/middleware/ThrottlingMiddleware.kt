@@ -36,7 +36,7 @@ class ThrottlingMiddleware(private val requestPerMinute: Int) : Middleware() {
      * checks by running its check after all other checks.
      */
     override fun check(email: String, password: String): Boolean {
-        if (System.currentTimeMillis() > currentTime + throttle) {
+        if (System.currentTimeMillis() > currentTime + THROTTLE) {
             request = 0
             currentTime = System.currentTimeMillis()
         }
@@ -49,6 +49,6 @@ class ThrottlingMiddleware(private val requestPerMinute: Int) : Middleware() {
     }
 
     companion object {
-        private const val throttle = 60000
+        private const val THROTTLE = 6
     }
 }

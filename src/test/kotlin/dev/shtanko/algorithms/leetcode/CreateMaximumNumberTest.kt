@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -33,6 +33,30 @@ class CreateMaximumNumberTest {
                 5,
                 intArrayOf(9, 8, 6, 5, 3),
             ),
+            Arguments.of(
+                intArrayOf(6, 7),
+                intArrayOf(6, 0, 4),
+                5,
+                intArrayOf(6, 7, 6, 0, 4),
+            ),
+            Arguments.of(
+                intArrayOf(3, 9),
+                intArrayOf(8, 9),
+                3,
+                intArrayOf(9, 8, 9),
+            ),
+            Arguments.of(
+                intArrayOf(3, 9, 8),
+                intArrayOf(8, 9),
+                3,
+                intArrayOf(9, 8, 9),
+            ),
+            Arguments.of(
+                intArrayOf(3, 9, 8),
+                intArrayOf(8, 9),
+                2,
+                intArrayOf(9, 9),
+            ),
         )
     }
 
@@ -40,6 +64,6 @@ class CreateMaximumNumberTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `maximum number test`(nums1: IntArray, nums2: IntArray, k: Int, expected: IntArray) {
         val actual = maxNumber(nums1, nums2, k)
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

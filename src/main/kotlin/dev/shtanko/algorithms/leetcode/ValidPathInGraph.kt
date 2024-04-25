@@ -24,15 +24,15 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/find-if-path-exists-in-graph">Source</a>
  */
 fun interface ValidPathInGraph {
-    operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean
+    operator fun invoke(num: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean
 }
 
 /**
  * 1. Simple union-find without any rank consideration
  */
 class ValidPathUnionFind : ValidPathInGraph {
-    override operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
-        val set = DisjointSetUnion(n)
+    override operator fun invoke(num: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+        val set = DisjointSetUnion(num)
         for (edge in edges) {
             set.union(edge[0], edge[1])
         }
@@ -75,8 +75,8 @@ class ValidPathUnionFind : ValidPathInGraph {
  * 2. Disjoint Set Union by Rank
  */
 class ValidPathUnionByRank : ValidPathInGraph {
-    override operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
-        val set = DisjointSetUnion(n)
+    override operator fun invoke(num: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+        val set = DisjointSetUnion(num)
         for (edge in edges) {
             set.union(edge[0], edge[1])
         }
@@ -135,9 +135,9 @@ class ValidPathDFS : ValidPathInGraph {
 
     private var seen = false
 
-    override operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
-        val visited = BooleanArray(n)
-        val graph: Array<HashSet<Int>> = Array(n) { HashSet() }
+    override operator fun invoke(num: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+        val visited = BooleanArray(num)
+        val graph: Array<HashSet<Int>> = Array(num) { HashSet() }
         for (edge in edges) {
             graph[edge[0]].add(edge[1])
             graph[edge[1]].add(edge[0])
@@ -171,9 +171,9 @@ class ValidPathDFS : ValidPathInGraph {
  * 3. BFS - Breadth First Search
  */
 class ValidPathBFS : ValidPathInGraph {
-    override operator fun invoke(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
-        val visited = BooleanArray(n)
-        val graph: Array<HashSet<Int>> = Array(n) { java.util.HashSet() }
+    override operator fun invoke(num: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+        val visited = BooleanArray(num)
+        val graph: Array<HashSet<Int>> = Array(num) { java.util.HashSet() }
         for (edge in edges) {
             graph[edge[0]].add(edge[1])
             graph[edge[1]].add(edge[0])

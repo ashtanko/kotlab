@@ -42,8 +42,8 @@ abstract class MaxRunTimeTest<out T : MaxRunTime>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `max run time test`(n: Int, batteries: IntArray, expected: Long) {
-        val actual = strategy.invoke(n, batteries)
+    fun `max run time test`(num: Int, batteries: IntArray, expected: Long) {
+        val actual = strategy.invoke(num, batteries)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

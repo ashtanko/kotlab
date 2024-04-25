@@ -71,13 +71,17 @@ class AmbiguousCoordinatesTest {
                 "(100)",
                 listOf("(10, 0)"),
             ),
+            Arguments.of(
+                "(1000)",
+                listOf("(100, 0)"),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `name test`(s: String, expected: List<String>) {
-        val actual = AmbiguousCoordinates().invoke(s)
-        assertThat(actual).hasSameElementsAs(expected)
+    fun `name test`(str: String, expected: List<String>) {
+        val actual = AmbiguousCoordinates().invoke(str)
+        assertThat(actual).containsExactlyInAnyOrder(*expected.toTypedArray())
     }
 }

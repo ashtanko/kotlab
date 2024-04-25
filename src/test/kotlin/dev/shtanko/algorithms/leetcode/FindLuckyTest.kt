@@ -32,6 +32,8 @@ abstract class FindLuckyTest<out T : FindLuckyStrategy>(private val strategy: T)
             Arguments.of(intArrayOf(2, 2, 2, 3, 3), -1),
             Arguments.of(intArrayOf(5), -1),
             Arguments.of(intArrayOf(7, 7, 7, 7, 7, 7, 7), 7),
+            Arguments.of(intArrayOf(), -1),
+            Arguments.of(intArrayOf(1, 1, 2, 2, 2, 3, 3, 3, 3, 3), -1),
         )
     }
 

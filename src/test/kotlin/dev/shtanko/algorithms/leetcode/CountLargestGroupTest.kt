@@ -47,13 +47,25 @@ class CountLargestGroupTest {
                 24,
                 5,
             ),
+            Arguments.of(
+                46,
+                6,
+            ),
+            Arguments.of(
+                47,
+                6,
+            ),
+            Arguments.of(
+                48,
+                6,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count largest group test`(n: Int, expected: Int) {
-        val actual = n.countLargestGroup()
+    fun `count largest group test`(num: Int, expected: Int) {
+        val actual = num.countLargestGroup()
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -51,6 +51,18 @@ abstract class DeleteTreeNodesTest<out T : DeleteTreeNodes>(private val strategy
                 intArrayOf(-686, -842, 616, -739, -746),
                 5,
             ),
+            Arguments.of(
+                5,
+                intArrayOf(-1, 0, 1, 2, 3),
+                intArrayOf(1, -1, 0, 0, 0),
+                0,
+            ),
+            Arguments.of(
+                5,
+                intArrayOf(-1, 0, 1, 2, 3),
+                intArrayOf(1, -1, 0, 1, 0),
+                1,
+            ),
         )
     }
 

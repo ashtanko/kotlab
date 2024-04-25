@@ -42,6 +42,11 @@ abstract class VerifyingAlienDictionaryTest<out T : VerifyingAlienDictionary>(pr
                 "abcdefghijklmnopqrstuvwxyz",
                 false,
             ),
+            Arguments.of(
+                arrayOf("kuvp", "q"),
+                "ngxlkthsjuoqcpavbfdermiywz",
+                true,
+            ),
         )
     }
 

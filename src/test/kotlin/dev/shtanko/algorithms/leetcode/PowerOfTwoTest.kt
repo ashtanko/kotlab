@@ -28,14 +28,14 @@ abstract class PowerOfTwoTest<out T : PowerOfTwo>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputPositiveCasesProvider::class)
-    fun `power of two positive test`(n: Int) {
-        assertThat(strategy(n)).isTrue()
+    fun `power of two positive test`(num: Int) {
+        assertThat(strategy(num)).isTrue()
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputNegativeCasesProvider::class)
-    fun `power of two negative test`(n: Int) {
-        assertThat(strategy(n)).isFalse()
+    fun `power of two negative test`(num: Int) {
+        assertThat(strategy(num)).isFalse()
     }
 
     private class InputPositiveCasesProvider : ArgumentsProvider {

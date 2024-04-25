@@ -39,6 +39,22 @@ abstract class Find132PatternTest<out T : Find132Pattern>(private val strategy: 
                 intArrayOf(-1, 3, 2, 0),
                 true,
             ),
+            Arguments.of(
+                intArrayOf(1, 0, 1, -4, -3),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(3, 5, 0, 3, 4),
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 0, 1, -4, -3),
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                false,
+            ),
         )
     }
 

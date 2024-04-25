@@ -59,8 +59,8 @@ class BinaryGapTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     @DisplayName("find binary gap test")
-    fun `simple test`(n: Int, expected: Int) {
-        val actual = findBinaryGap(n)
+    fun `simple test`(num: Int, expected: Int) {
+        val actual = findBinaryGap(num)
         assertEquals(expected, actual)
     }
 }

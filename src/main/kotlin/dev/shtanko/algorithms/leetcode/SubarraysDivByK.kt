@@ -42,6 +42,7 @@ class SubarraysDivByKMap : SubarraysDivByK {
 
 class SubarraysDivByKPrefixSum : SubarraysDivByK {
     override operator fun invoke(nums: IntArray, k: Int): Int {
+        if (nums.isEmpty()) return 0
         val map = IntArray(k)
         map[0] = 1
         var count = 0

@@ -24,7 +24,17 @@ fun interface SubsetXORSum {
     operator fun invoke(nums: IntArray): Int
 }
 
+/**
+ * This class implements the SubsetXORSum interface using a bitwise approach.
+ * It calculates the XOR of all elements in the array and then multiplies it by 2 to the power of (n-1), where n
+ * is the size of the array.
+ */
 class SubsetXORSumBitwise : SubsetXORSum {
+    /**
+     * This function calculates the sum of all subset XOR totals using a bitwise approach.
+     * @param nums The input array of integers.
+     * @return The sum of XOR of all subsets.
+     */
     override operator fun invoke(nums: IntArray): Int {
         var res = 0
         for (num in nums) {

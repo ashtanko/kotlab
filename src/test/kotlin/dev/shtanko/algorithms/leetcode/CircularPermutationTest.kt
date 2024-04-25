@@ -47,13 +47,18 @@ abstract class CircularPermutationTest<out T : CircularPermutation>(private val 
                 0,
                 listOf<Int>(),
             ),
+            Arguments.of(
+                1,
+                1,
+                listOf(1, 0),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `circular permutation test`(n: Int, start: Int, expected: List<Int>) {
-        val actual = strategy.invoke(n, start)
+    fun `circular permutation test`(num: Int, start: Int, expected: List<Int>) {
+        val actual = strategy.invoke(num, start)
         assertThat(actual).containsAll(expected)
     }
 }

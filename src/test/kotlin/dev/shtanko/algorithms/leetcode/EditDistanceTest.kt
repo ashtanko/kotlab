@@ -37,6 +37,51 @@ abstract class EditDistanceTest<out T : EditDistance>(private val strategy: T) {
                 "execution",
                 5,
             ),
+            Arguments.of(
+                "a",
+                "b",
+                1,
+            ),
+            Arguments.of(
+                "a",
+                "",
+                1,
+            ),
+            Arguments.of(
+                "",
+                "a",
+                1,
+            ),
+            Arguments.of(
+                "",
+                "",
+                0,
+            ),
+            Arguments.of(
+                "a",
+                "a",
+                0,
+            ),
+            Arguments.of(
+                "a",
+                "aa",
+                1,
+            ),
+            Arguments.of(
+                "a",
+                "aaa",
+                2,
+            ),
+            Arguments.of(
+                "aaa",
+                "a",
+                2,
+            ),
+            Arguments.of(
+                "aaa",
+                "aaa",
+                0,
+            ),
         )
     }
 

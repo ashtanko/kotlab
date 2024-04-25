@@ -56,6 +56,50 @@ abstract class ArithmeticSlicesTest<out T : ArithmeticSlices>(private val strate
                 intArrayOf(1, 2),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6),
+                10,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7),
+                15,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8),
+                21,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                28,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                36,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+                45,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+                55,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13),
+                66,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14),
+                78,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
+                91,
+            ),
         )
     }
 

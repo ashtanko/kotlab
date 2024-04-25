@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/find-pivot-index/?envType=study-plan&id=level-1">Source</a>
  */
 fun interface FindPivotIndex {
-    fun pivotIndex(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class FindPivotIndexPrefixSum : FindPivotIndex {
-    override fun pivotIndex(nums: IntArray): Int {
+    override fun invoke(nums: IntArray): Int {
         var sum = 0
         var leftsum = 0
         for (x in nums) sum += x

@@ -31,6 +31,8 @@ abstract class ContainsDuplicateTest<out T : ContainsDuplicateStrategy>(private 
             Arguments.of(intArrayOf(1, 2, 3, 1), true),
             Arguments.of(intArrayOf(1, 1, 1, 3, 3, 4, 3, 2, 4, 2), true),
             Arguments.of(intArrayOf(1, 2, 3, 4), false),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5), false),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 9), true),
         )
     }
 

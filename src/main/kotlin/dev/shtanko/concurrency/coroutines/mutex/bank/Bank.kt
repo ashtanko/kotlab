@@ -38,7 +38,7 @@ class Bank {
         }
     }
 
-    suspend fun proceed(nCoroutines: Int = 100, times: Int = 10, action: suspend () -> Unit) {
+    suspend operator fun invoke(nCoroutines: Int = 100, times: Int = 10, action: suspend () -> Unit) {
         val time = measureTimeMillis {
             coroutineScope {
                 repeat(nCoroutines) {

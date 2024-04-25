@@ -47,6 +47,21 @@ abstract class CoinChange2Test<out T : CoinChange2>(private val strategy: T) {
                 intArrayOf(9, 1),
                 2,
             ),
+            Arguments.of(
+                500,
+                intArrayOf(3, 5, 7, 8, 9, 10, 11),
+                35502874,
+            ),
+            Arguments.of(
+                500,
+                intArrayOf(1, 2, 5),
+                12701,
+            ),
+            Arguments.of(
+                500,
+                intArrayOf(1, 2, 5, 10, 20, 50, 100),
+                5824071,
+            ),
         )
     }
 

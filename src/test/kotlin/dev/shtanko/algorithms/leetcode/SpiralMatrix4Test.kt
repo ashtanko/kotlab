@@ -45,13 +45,22 @@ abstract class SpiralMatrix4Test<out T : SpiralMatrix4>(private val strategy: T)
                     intArrayOf(0, 1, 2, -1),
                 ),
             ),
+            Arguments.of(
+                2,
+                4,
+                listOf(0, 1, 2, 3, 4).toListNode(),
+                arrayOf(
+                    intArrayOf(0, 1, 2, 3),
+                    intArrayOf(-1, -1, -1, 4),
+                ),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `spiral matrix test`(m: Int, n: Int, head: ListNode?, expected: Array<IntArray>) {
-        val actual = strategy.invoke(m, n, head)
+    fun `spiral matrix test`(m: Int, num: Int, head: ListNode?, expected: Array<IntArray>) {
+        val actual = strategy.invoke(m, num, head)
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -30,7 +30,7 @@ class ShuffleArrayTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shuffle test`(arr: IntArray, num: Int, expected: IntArray) {
         val actual = arr.shuffle(num)
-        assertArrayEquals(expected, actual)
+        assertThat(actual).isEqualTo(expected)
     }
 
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -49,6 +49,31 @@ class ShuffleArrayTest {
                 intArrayOf(1, 1, 2, 2),
                 2,
                 intArrayOf(1, 2, 1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                intArrayOf(),
+            ),
+            Arguments.of(
+                intArrayOf(),
+                1,
+                intArrayOf(),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+                intArrayOf(1),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                0,
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+                intArrayOf(1, 2),
             ),
         )
     }

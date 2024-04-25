@@ -22,12 +22,12 @@ fun interface SumOfAllOddLengthSubArrays {
 
 class SumOfAllOddLengthSubArraysSF : SumOfAllOddLengthSubArrays {
     override operator fun invoke(arr: IntArray): Int {
-        var res = 0
-        val n: Int = arr.size
-        for (i in 0 until n) {
-            val local = i.plus(1) * n.minus(i) + 1
-            res += local / 2 * arr[i]
+        var totalSum = 0
+        val arraySize: Int = arr.size
+        for (i in 0 until arraySize) {
+            val currentCalculation = (i + 1) * (arraySize - i) + 1
+            totalSum += currentCalculation / 2 * arr[i]
         }
-        return res
+        return totalSum
     }
 }

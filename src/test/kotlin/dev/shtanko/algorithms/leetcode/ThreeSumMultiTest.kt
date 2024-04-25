@@ -47,6 +47,16 @@ abstract class ThreeSumMultiTest<out T : ThreeSumMulti>(private val strategy: T)
                 3,
                 0,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                6,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                7,
+                0,
+            ),
         )
     }
 

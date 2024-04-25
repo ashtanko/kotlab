@@ -39,6 +39,14 @@ abstract class SubsetXORSumTest<out T : SubsetXORSum>(private val strategy: T) {
                 intArrayOf(3, 4, 5, 6, 7, 8),
                 480,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8),
+                1920,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                7680,
+            ),
         )
     }
 

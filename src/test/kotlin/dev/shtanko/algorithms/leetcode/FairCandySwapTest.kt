@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -48,6 +48,14 @@ class FairCandySwapTest {
                 intArrayOf(1, 2, 5) to intArrayOf(2, 4),
                 intArrayOf(5, 4),
             ),
+            Arguments.of(
+                intArrayOf(35, 17, 4, 24, 10) to intArrayOf(63, 21),
+                intArrayOf(24, 21),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 5) to intArrayOf(2, 4),
+                intArrayOf(5, 4),
+            ),
         )
     }
 
@@ -55,6 +63,6 @@ class FairCandySwapTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `fair candy swap test`(candies: Pair<IntArray, IntArray>, expected: IntArray) {
         val actual = candies.fairCandySwap()
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

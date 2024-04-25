@@ -42,6 +42,51 @@ abstract class CanPartitionKSubsetsTest<out T : CanPartitionKSubsets>(private va
                 0,
                 false,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                2,
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                1,
+                true,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                4,
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                5,
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                6,
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                7,
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                8,
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                9,
+                false,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                10,
+                false,
+            ),
         )
     }
 

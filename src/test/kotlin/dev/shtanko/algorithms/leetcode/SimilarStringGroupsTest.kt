@@ -29,6 +29,7 @@ abstract class SimilarStringGroupsTest<out T : SimilarStringGroups>(private val 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf(""), 1),
+            Arguments.of(arrayOf<String>(), 0),
             Arguments.of(arrayOf("a"), 1),
             Arguments.of(arrayOf("one"), 1),
             Arguments.of(arrayOf("tars", "rats", "arts", "star"), 2),
@@ -56,13 +57,73 @@ abstract class SimilarStringGroupsTest<out T : SimilarStringGroups>(private val 
                 ),
                 4,
             ),
+            Arguments.of(
+                arrayOf(
+                    "abc",
+                    "bcdefghijklmnopqrstuvwxyzab",
+                    "cdefghijklmnopqrstuvwxyzabc",
+                    "defghijklmnopqrstuvwxyzabcd",
+                    "efghijklmnopqrstuvwxyzabcde",
+                ),
+                5,
+            ),
+            Arguments.of(
+                arrayOf(
+                    "abc",
+                    "bcdefghijklmnopqrstuvwxyzab",
+                    "cdefghijklmnopqrstuvwxyzabc",
+                    "defghijklmnopqrstuvwxyzabcd",
+                    "efghijklmnopqrstuvwxyzabcde",
+                    "fghijklmnopqrstuvwxyzabcdef",
+                ),
+                6,
+            ),
+            Arguments.of(
+                arrayOf(
+                    "abc",
+                    "bcdefghijklmnopqrstuvwxyzab",
+                    "cdefghijklmnopqrstuvwxyzabc",
+                    "defghijklmnopqrstuvwxyzabcd",
+                    "efghijklmnopqrstuvwxyzabcde",
+                    "fghijklmnopqrstuvwxyzabcdef",
+                    "ghijklmnopqrstuvwxyzabcdefg",
+                ),
+                7,
+            ),
+            Arguments.of(
+                arrayOf(
+                    "abc",
+                    "bcdefghijklmnopqrstuvwxyzab",
+                    "cdefghijklmnopqrstuvwxyzabc",
+                    "defghijklmnopqrstuvwxyzabcd",
+                    "efghijklmnopqrstuvwxyzabcde",
+                    "fghijklmnopqrstuvwxyzabcdef",
+                    "ghijklmnopqrstuvwxyzabcdefg",
+                    "hijklmnopqrstuvwxyzabcdefgh",
+                ),
+                8,
+            ),
+            Arguments.of(
+                arrayOf(
+                    "abc",
+                    "bcdefghijklmnopqrstuvwxyzab",
+                    "cdefghijklmnopqrstuvwxyzabc",
+                    "defghijklmnopqrstuvwxyzabcd",
+                    "efghijklmnopqrstuvwxyzabcde",
+                    "fghijklmnopqrstuvwxyzabcdef",
+                    "ghijklmnopqrstuvwxyzabcdefg",
+                    "hijklmnopqrstuvwxyzabcdefgh",
+                    "ijklmnopqrstuvwxyzabcdefghi",
+                ),
+                9,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `num similar groups test`(strings: Array<String>, expected: Int) {
-        val actual = strategy.numSimilarGroups(strings)
+        val actual = strategy.invoke(strings)
         assertEquals(expected, actual)
     }
 }

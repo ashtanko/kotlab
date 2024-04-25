@@ -65,6 +65,15 @@ abstract class FindNearestRightNodeTest<out T : FindNearestRightNodeStrategy>(pr
                 null,
                 null,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                    }
+                },
+                TreeNode(3),
+                null,
+            ),
         )
     }
 

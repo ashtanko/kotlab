@@ -49,6 +49,16 @@ abstract class TaskSchedulerTest<out T : TaskScheduler>(private val strategy: T)
                 0,
                 0,
             ),
+            Arguments.of(
+                charArrayOf('A', 'A', 'A', 'A', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G'),
+                2,
+                16,
+            ),
+            Arguments.of(
+                charArrayOf('A', 'A', 'A', 'A', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G'),
+                3,
+                21,
+            ),
         )
     }
 }

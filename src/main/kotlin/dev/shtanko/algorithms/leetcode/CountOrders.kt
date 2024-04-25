@@ -23,13 +23,13 @@ import dev.shtanko.algorithms.MOD
  * @see <a href="https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options">Source</a>
  */
 fun interface CountOrders {
-    operator fun invoke(n: Int): Int
+    operator fun invoke(num: Int): Int
 }
 
 class CountOrdersBottomUp : CountOrders {
-    override fun invoke(n: Int): Int {
+    override fun invoke(num: Int): Int {
         var res: Long = 1
-        for (i in 1..n) {
+        for (i in 1..num) {
             res = res * (i * 2 - 1) * i % MOD
         }
         return res.toInt()
@@ -37,17 +37,17 @@ class CountOrdersBottomUp : CountOrders {
 }
 
 class CountOrdersRecursion : CountOrders {
-    override fun invoke(n: Int): Int {
-        return if (n > 0) (invoke(n - 1).toLong() * (n * 2 - 1) * n % (MOD + 7)).toInt() else 1
+    override fun invoke(num: Int): Int {
+        return if (num > 0) (invoke(num - 1).toLong() * (num * 2 - 1) * num % (MOD + 7)).toInt() else 1
     }
 }
 
 class CountOrdersFactorial : CountOrders {
     private val memo: MutableMap<Int, Long> = HashMap()
 
-    override fun invoke(n: Int): Int {
-        val factorial = factorial(n * 2)
-        return (factorial.shr(n) % MOD).toInt()
+    override fun invoke(num: Int): Int {
+        val factorial = factorial(num * 2)
+        return (factorial.shr(num) % MOD).toInt()
     }
 
     private fun factorial(n: Int): Long {

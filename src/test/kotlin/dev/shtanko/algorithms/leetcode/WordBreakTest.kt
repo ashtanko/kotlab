@@ -42,6 +42,16 @@ abstract class WordBreakTest<out T : WordBreak>(private val strategy: T) {
                 listOf("cats", "dog", "sand", "and", "cat"),
                 false,
             ),
+            Arguments.of(
+                "cars",
+                listOf("car", "ca", "rs"),
+                true,
+            ),
+            Arguments.of(
+                "aaaaaaa",
+                listOf("aaaa", "aaa"),
+                true,
+            ),
         )
     }
 

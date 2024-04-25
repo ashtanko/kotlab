@@ -48,6 +48,8 @@ class DetectCapitalTest {
             "g" to true,
             "Google" to true,
             "leetcode" to true,
+            "Leetcode" to true,
+            "LEETCODE" to true,
             "SDKJFGHSDUGFUIESGFIUESGFIUSGEFUISDGFUISDGFUIGEIUSGEYFGDSIUFGSDUIFGHUIDSGFUIDSGFUISDGFUIDSGFIUSD" to true,
             "SDKJFGHSDUGFUIESGFIUESGFIUSGEFUISDGFUISDGFUIGEIUSGEYFGDSIUFGSDUIfGHUIDSGFUIDSGFUISDGFUIDSGFIUSD" to false,
         )

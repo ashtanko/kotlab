@@ -47,6 +47,14 @@ abstract class SwapNodesInPairsTest<out T : SwapNodesInPairs>(private val strate
                 listOf(1).toListNode(),
                 listOf(1),
             ),
+            Arguments.of(
+                listOf(1, 2).toListNode(),
+                listOf(2, 1),
+            ),
+            Arguments.of(
+                listOf(1, 2, 3).toListNode(),
+                listOf(2, 1, 3),
+            ),
         )
     }
 

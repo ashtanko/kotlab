@@ -44,8 +44,8 @@ internal class RodCuttingProblemTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `cut rod test`(price: IntArray, n: Int, expected: Int) {
-        val actual = cutRod(price, n)
+    internal fun `cut rod test`(price: IntArray, num: Int, expected: Int) {
+        val actual = cutRod(price, num)
         assertThat(actual, equalTo(expected))
     }
 }

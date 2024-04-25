@@ -38,6 +38,118 @@ abstract class SumOfLeftLeavesTest<out T : SumOfLeftLeavesStrategy>(val strategy
                 },
                 24,
             ),
+            Arguments.of(
+                TreeNode(1),
+                0,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(0).apply {
+                    left = TreeNode(-2).apply {
+                        left = TreeNode(2)
+                    }
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    right = TreeNode(3)
+                },
+                0,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                },
+                2,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                    }
+                    right = TreeNode(3)
+                },
+                4,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        right = TreeNode(4)
+                    }
+                    right = TreeNode(3)
+                },
+                0,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(5)
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7)
+                    }
+                },
+                10,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4).apply {
+                            left = TreeNode(8)
+                        }
+                        right = TreeNode(5).apply {
+                            left = TreeNode(10)
+                        }
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6).apply {
+                            right = TreeNode(12)
+                        }
+                        right = TreeNode(7).apply {
+                            right = TreeNode(14)
+                        }
+                    }
+                },
+                18,
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4).apply {
+                            left = TreeNode(8).apply {
+                                left = TreeNode(16)
+                            }
+                        }
+                        right = TreeNode(5).apply {
+                            left = TreeNode(10).apply {
+                                left = TreeNode(20)
+                            }
+                        }
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6).apply {
+                            right = TreeNode(12).apply {
+                                right = TreeNode(24)
+                            }
+                        }
+                        right = TreeNode(7).apply {
+                            right = TreeNode(14).apply {
+                                right = TreeNode(28)
+                            }
+                        }
+                    }
+                },
+                36,
+            ),
         )
     }
 

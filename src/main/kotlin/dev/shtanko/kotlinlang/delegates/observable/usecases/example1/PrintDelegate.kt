@@ -21,19 +21,3 @@ import kotlin.properties.Delegates
 fun <T> printDelegate(init: T) = Delegates.observable(init) { prop, _, new ->
     println("${prop.name} = $new")
 }
-
-fun main() {
-    var s1 by printDelegate("s1")
-    s1 = "s2"
-    s1 = "s3"
-
-    foo = Foo()
-    foo = Foo()
-
-    var fooDelegate: Foo by printDelegate(Foo())
-    fooDelegate = Foo()
-    fooDelegate = Foo()
-
-    bar = Bar()
-    bar = Bar()
-}

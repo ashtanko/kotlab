@@ -50,6 +50,16 @@ abstract class UniquePaths3Test<out T : UniquePaths3>(private val strategy: T) {
                 ),
                 0,
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0),
+                ),
+                0,
+            ),
+            Arguments.of(
+                arrayOf<IntArray>(),
+                0,
+            ),
         )
     }
 

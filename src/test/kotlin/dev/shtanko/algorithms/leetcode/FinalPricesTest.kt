@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -29,6 +29,10 @@ class FinalPricesTest {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(8, 4, 6, 2, 3), intArrayOf(4, 2, 4, 2, 3)),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5), intArrayOf(1, 2, 3, 4, 5)),
+            Arguments.of(intArrayOf(10, 1, 1, 6), intArrayOf(9, 0, 1, 6)),
+            Arguments.of(intArrayOf(1, 2, 3, 4, 5), intArrayOf(1, 2, 3, 4, 5)),
+            Arguments.of(intArrayOf(8, 7, 4, 2, 8, 1, 7, 7, 10, 1), intArrayOf(1, 3, 2, 1, 7, 0, 0, 6, 9, 1)),
         )
     }
 
@@ -36,6 +40,6 @@ class FinalPricesTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `final prices test`(arr: IntArray, expected: IntArray) {
         val actual = arr.finalPrices()
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

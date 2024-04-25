@@ -63,6 +63,42 @@ class ValidParenthesesTest {
                 "{[]}",
                 true,
             ),
+            Arguments.of(
+                "",
+                true,
+            ),
+            Arguments.of(
+                "(",
+                false,
+            ),
+            Arguments.of(
+                ")",
+                false,
+            ),
+            Arguments.of(
+                "((()))",
+                true,
+            ),
+            Arguments.of(
+                "((()))()",
+                true,
+            ),
+            Arguments.of(
+                "((()))(){}",
+                true,
+            ),
+            Arguments.of(
+                "((()))(){}[]",
+                true,
+            ),
+            Arguments.of(
+                "((()))(){}[]{}",
+                true,
+            ),
+            Arguments.of(
+                "((()))(){}[]{}()",
+                true,
+            ),
         )
     }
 }

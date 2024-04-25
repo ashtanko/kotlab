@@ -53,8 +53,8 @@ abstract class GraphValidTreeTest<out T : GraphValidTree>(private val strategy: 
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `graph valid tree test`(n: Int, edges: Array<IntArray>, expected: Boolean) {
-        val actual = strategy.validTree(n, edges)
+    fun `graph valid tree test`(num: Int, edges: Array<IntArray>, expected: Boolean) {
+        val actual = strategy.validTree(num, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

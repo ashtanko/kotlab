@@ -48,6 +48,34 @@ abstract class TheKWeakestRowsInMatrixTest<out T : KWeakestRows>(private val sol
                 2,
                 intArrayOf(0, 2),
             ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1),
+                ),
+                1,
+                intArrayOf(0),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 0),
+                    intArrayOf(1, 0),
+                    intArrayOf(1, 0),
+                    intArrayOf(1, 1),
+                ),
+                4,
+                intArrayOf(0, 1, 2, 3),
+            ),
+            Arguments.of(
+                arrayOf(
+                    intArrayOf(1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1),
+                    intArrayOf(1, 1, 1, 1, 1, 1),
+                ),
+                3,
+                intArrayOf(0, 1, 2),
+            ),
         )
     }
 

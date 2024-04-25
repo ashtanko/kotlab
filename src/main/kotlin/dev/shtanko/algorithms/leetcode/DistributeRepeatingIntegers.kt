@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/distribute-repeating-integers/">Source</a>
  */
 fun interface DistributeRepeatingIntegers {
-    fun canDistribute(nums: IntArray, quantity: IntArray): Boolean
+    operator fun invoke(nums: IntArray, quantity: IntArray): Boolean
 }
 
 class DistributeRepeatingIntegersBottomUp : DistributeRepeatingIntegers {
-    override fun canDistribute(nums: IntArray, quantity: IntArray): Boolean {
+    override fun invoke(nums: IntArray, quantity: IntArray): Boolean {
         val counts: MutableMap<Int, Int> = HashMap()
         for (num in nums) {
             counts[num] = counts.getOrDefault(num, 0) + 1

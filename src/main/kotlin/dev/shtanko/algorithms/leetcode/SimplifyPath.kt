@@ -23,10 +23,24 @@ import java.util.Stack
  * @see <a href="https://leetcode.com/problems/simplify-path/">Source</a>
  */
 fun interface SimplifyPath {
+    /**
+     * Simplifies a Unix-style file path.
+     * @param path The original file path.
+     * @return The simplified file path.
+     */
     operator fun invoke(path: String): String
 }
 
+/**
+ * Implementation of SimplifyPath using a stack.
+ * This implementation assumes that the input path is a Unix-style file path.
+ */
 class SimplifyPathStack : SimplifyPath {
+    /**
+     * Simplifies a Unix-style file path using a stack.
+     * @param path The original file path.
+     * @return The simplified file path.
+     */
     override operator fun invoke(path: String): String {
         val stack: Stack<String> = Stack()
         for (cur in path.split("/")) {

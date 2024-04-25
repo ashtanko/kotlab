@@ -42,6 +42,36 @@ abstract class SplitArrayLargestSumTest<out T : SplitArrayLargestSum>(private va
                 2,
                 2,
             ),
+            Arguments.of(
+                intArrayOf(1, 4, 4),
+                3,
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 4, 4),
+                2,
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                2,
+                9,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                3,
+                6,
+            ),
         )
     }
 
@@ -54,7 +84,9 @@ abstract class SplitArrayLargestSumTest<out T : SplitArrayLargestSum>(private va
 }
 
 class SplitArrayLargestSumMaxSumTest : SplitArrayLargestSumTest<SplitArrayLargestSum>(SplitArrayLargestSumMaxSum())
+
 class SplitArrayLargestSumGreedyTest : SplitArrayLargestSumTest<SplitArrayLargestSum>(SplitArrayLargestSumGreedy())
+
 class SplitArrayLargestSumBinarySearchTest :
     SplitArrayLargestSumTest<SplitArrayLargestSum>(SplitArrayLargestSumBinarySearch())
 

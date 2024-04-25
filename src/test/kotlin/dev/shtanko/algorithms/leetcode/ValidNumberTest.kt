@@ -106,6 +106,26 @@ class ValidNumberTest {
                 "",
                 false,
             ),
+            Arguments.of(
+                ".1",
+                true,
+            ),
+            Arguments.of(
+                "3.",
+                true,
+            ),
+            Arguments.of(
+                ".",
+                false,
+            ),
+            Arguments.of(
+                "1.",
+                true,
+            ),
+            Arguments.of(
+                "1.e1",
+                true,
+            ),
         )
     }
 }

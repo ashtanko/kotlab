@@ -24,48 +24,70 @@ import kotlin.math.min
  * @see <a href="https://leetcode.com/problems/stone-game-ii/">Source</a>
  */
 fun interface StoneGame2 {
+    /**
+     * This function calculates the maximum score a player can get.
+     * @param piles The array of piles of stones.
+     * @return The maximum score a player can get.
+     */
     operator fun invoke(piles: IntArray): Int
 }
 
 /**
  * Approach 1: Memoization
  */
-class StoneGame2Memoization : StoneGame2 {
+class StoneGame2WithMemoization : StoneGame2 {
+
+    /**
+     * This function calculates the maximum score a player can get.
+     * It uses a memoization approach.
+     * @param piles The array of piles of stones.
+     * @return The maximum score a player can get.
+     */
     override operator fun invoke(piles: IntArray): Int {
-        val dp = Array(2) {
+        val memo = Array(2) {
             Array(piles.size + 1) { IntArray(piles.size + 1) }
         }
-        for (p in 0..1) {
+        for (player in 0..1) {
             for (i in 0..piles.size) {
                 for (m in 0..piles.size) {
-                    dp[p][i][m] = -1
+                    memo[player][i][m] = -1
                 }
             }
         }
-        return f(piles, dp, 0, 0, 1)
+        return calculateMinimumTurns(piles, memo, 0, 0, 1)
     }
 
-    private fun f(piles: IntArray, dp: Array<Array<IntArray>>, p: Int, i: Int, m: Int): Int {
+    /**
+     * This function calculates the maximum score a player can get for a given state of the game.
+     * It uses a memoization approach.
+     * @param piles The array of piles of stones.
+     * @param memo The memoization table.
+     * @param player The current player (0 or 1).
+     * @param i The current index in the array of piles.
+     * @param m The maximum number of piles the player can take.
+     * @return The maximum score a player can get for the given state of the game.
+     */
+    private fun calculateMinimumTurns(piles: IntArray, memo: Array<Array<IntArray>>, player: Int, i: Int, m: Int): Int {
         if (i == piles.size) {
             return 0
         }
-        if (dp[p][i][m] != -1) {
-            return dp[p][i][m]
+        if (memo[player][i][m] != -1) {
+            return memo[player][i][m]
         }
-        var res = if (p == 1) LIM else -1
-        var s = 0
+        var result = if (player == 1) LIMIT else -1
+        var sum = 0
         for (x in 1..min(2 * m, piles.size - i)) {
-            s += piles[i + x - 1]
-            res = if (p == 0) {
-                max(res, s + f(piles, dp, 1, i + x, max(m, x)))
+            sum += piles[i + x - 1]
+            result = if (player == 0) {
+                max(result, sum + calculateMinimumTurns(piles, memo, 1, i + x, max(m, x)))
             } else {
-                min(res, f(piles, dp, 0, i + x, max(m, x)))
+                min(result, calculateMinimumTurns(piles, memo, 0, i + x, max(m, x)))
             }
         }
-        return res.also { dp[p][i][m] = it }
+        return result.also { memo[player][i][m] = it }
     }
 
     companion object {
-        private const val LIM = 1000000
+        private const val LIMIT = 1000000
     }
 }

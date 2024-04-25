@@ -23,11 +23,11 @@ import kotlin.math.max
  * @see <a href="https://leetcode.com/problems/burst-balloons/">Source</a>
  */
 fun interface BurstBalloons {
-    fun maxCoins(nums: IntArray): Int
+    operator fun invoke(nums: IntArray): Int
 }
 
 class BurstBalloonsMemoization : BurstBalloons {
-    override fun maxCoins(nums: IntArray): Int {
+    override fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         val arr = IntArray(n + 2)
         arr[0] = 1.also { arr[n + 1] = it }
@@ -55,7 +55,7 @@ class BurstBalloonsMemoization : BurstBalloons {
 }
 
 class BurstBalloonsDP : BurstBalloons {
-    override fun maxCoins(nums: IntArray): Int {
+    override fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
         val arr = IntArray(n + 2)
         arr[0] = 1.also { arr[n + 1] = it } // Giving padding of 1 to the corner elements

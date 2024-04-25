@@ -39,6 +39,22 @@ abstract class ExcelSheetColumnTitleTest<out T : ExcelSheetColumnTitle>(private 
                 701,
                 "ZY",
             ),
+            Arguments.of(
+                2147483647,
+                "FXSHRXW",
+            ),
+            Arguments.of(
+                52,
+                "AZ",
+            ),
+            Arguments.of(
+                703,
+                "AAA",
+            ),
+            Arguments.of(
+                2147483647,
+                "FXSHRXW",
+            ),
         )
     }
 

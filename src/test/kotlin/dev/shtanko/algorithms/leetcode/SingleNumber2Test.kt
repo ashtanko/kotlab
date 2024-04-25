@@ -43,6 +43,18 @@ abstract class SingleNumber2Test<out T : SingleNumber2>(private val strategy: T)
                 intArrayOf(0, 1, 0, 1, 0, 1, 99),
                 99,
             ),
+            Arguments.of(
+                intArrayOf(30000, 500, 100, 30000, 100, 30000, 100),
+                500,
+            ),
+            Arguments.of(
+                intArrayOf(30000, 500, 100, 30000, 100, 30000, 100, 500),
+                1000,
+            ),
+            Arguments.of(
+                intArrayOf(30000, 500, 100, 30000, 100, 30000, 100, 500, 500),
+                0,
+            ),
         )
     }
 

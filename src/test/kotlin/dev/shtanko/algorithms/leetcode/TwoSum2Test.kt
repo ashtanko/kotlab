@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -27,8 +28,26 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 class TwoSum2Test {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(intArrayOf(2, 7, 11, 15), 9, intArrayOf(1, 2)),
-            Arguments.of(intArrayOf(4, 8, 15, 16, 23, 42), 16, intArrayOf(2, 2)),
+            Arguments.of(
+                intArrayOf(2, 7, 11, 15),
+                9,
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(4, 8, 15, 16, 23, 42),
+                16,
+                intArrayOf(2, 2),
+            ),
+            Arguments.of(
+                intArrayOf(3, 3),
+                6,
+                intArrayOf(1, 2),
+            ),
+            Arguments.of(
+                intArrayOf(3, 2, 4),
+                6,
+                intArrayOf(2, 2),
+            ),
         )
     }
 
@@ -36,6 +55,7 @@ class TwoSum2Test {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `two sum 2 test`(arr: IntArray, target: Int, expected: IntArray) {
         val actual = arr.twoSum2(target)
+        assertThat(actual).isEqualTo(expected)
         assertArrayEquals(expected, actual)
     }
 }

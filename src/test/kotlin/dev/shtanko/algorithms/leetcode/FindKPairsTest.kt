@@ -52,6 +52,16 @@ abstract class FindKPairsTest<out T : FindKPairs>(private val strategy: T) {
                 1,
                 2,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                0,
+                1,
+            ),
         )
     }
 

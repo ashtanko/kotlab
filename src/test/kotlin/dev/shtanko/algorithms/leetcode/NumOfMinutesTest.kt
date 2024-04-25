@@ -46,8 +46,8 @@ abstract class NumOfMinutesTest<out T : NumOfMinutes>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num of minutes test`(n: Int, headID: Int, manager: IntArray, informTime: IntArray, expected: Int) {
-        val actual = strategy.invoke(n, headID, manager, informTime)
+    fun `num of minutes test`(num: Int, headID: Int, manager: IntArray, informTime: IntArray, expected: Int) {
+        val actual = strategy.invoke(num, headID, manager, informTime)
         assertThat(actual).isEqualTo(expected)
     }
 }

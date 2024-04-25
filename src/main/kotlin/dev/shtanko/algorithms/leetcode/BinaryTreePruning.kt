@@ -21,11 +21,11 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/binary-tree-pruning/">Source</a>
  */
 fun interface BinaryTreePruning {
-    fun pruneTree(root: TreeNode?): TreeNode?
+    operator fun invoke(root: TreeNode?): TreeNode?
 }
 
 class BinaryTreePruningRecursion : BinaryTreePruning {
-    override fun pruneTree(root: TreeNode?): TreeNode? {
+    override fun invoke(root: TreeNode?): TreeNode? {
         return if (containsOne(root)) root else null
     }
 
@@ -50,10 +50,10 @@ class BinaryTreePruningRecursion : BinaryTreePruning {
 }
 
 class BinaryTreePruningSimple : BinaryTreePruning {
-    override fun pruneTree(root: TreeNode?): TreeNode? {
+    override fun invoke(root: TreeNode?): TreeNode? {
         if (root == null) return null
-        root.left = pruneTree(root.left)
-        root.right = pruneTree(root.right)
+        root.left = invoke(root.left)
+        root.right = invoke(root.right)
         if (root.left == null && root.right == null && root.value == 0) return null
         return root
     }

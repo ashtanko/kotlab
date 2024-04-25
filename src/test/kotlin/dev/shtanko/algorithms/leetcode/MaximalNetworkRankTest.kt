@@ -66,8 +66,8 @@ abstract class MaximalNetworkRankTest<out T : MaximalNetworkRank>(private val st
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `maximal network rank test`(n: Int, roads: Array<IntArray>, expected: Int) {
-        val actual = strategy(n, roads)
+    fun `maximal network rank test`(num: Int, roads: Array<IntArray>, expected: Int) {
+        val actual = strategy(num, roads)
         Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

@@ -37,6 +37,11 @@ class BaseballGameTest {
             Arguments.of(arrayOf("1", "", "+"), 0),
             Arguments.of(arrayOf("5", "2", "C", "D", "+"), 30),
             Arguments.of(arrayOf("5", "-2", "4", "C", "D", "9", "+", "+"), 27),
+            Arguments.of(arrayOf("5", "2", "C", "D", "+"), 30),
+            Arguments.of(arrayOf("5", "2", "C", "D", "+", "C"), 15),
+            Arguments.of(arrayOf("5", "2", "C", "D", "+", "C", "D"), 35),
+            Arguments.of(arrayOf("5", "2", "C", "D", "+", "C", "D", "D"), 75),
+            Arguments.of(arrayOf("5", "2", "C", "D", "+", "C", "D", "D", "D"), 155),
         )
     }
 

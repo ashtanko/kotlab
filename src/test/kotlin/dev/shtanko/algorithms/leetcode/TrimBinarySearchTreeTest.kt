@@ -100,6 +100,36 @@ class TrimBinarySearchTreeTest {
                 0,
                 emptyList<List<Int>>(),
             ),
+            Arguments.of(
+                TreeNode(1),
+                2,
+                4,
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(0)
+                    right = TreeNode(2)
+                },
+                3,
+                4,
+                emptyList<List<Int>>(),
+            ),
+            Arguments.of(
+                TreeNode(3).apply {
+                    left = TreeNode(0).apply {
+                        right = TreeNode(2).apply {
+                            left = TreeNode(1)
+                        }
+                    }
+                    right = TreeNode(4)
+                },
+                4,
+                5,
+                listOf(
+                    listOf(4),
+                ),
+            ),
         )
     }
 }

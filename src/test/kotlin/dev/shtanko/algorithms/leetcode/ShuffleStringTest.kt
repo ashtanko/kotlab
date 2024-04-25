@@ -70,6 +70,41 @@ class ShuffleStringTest {
                 "",
                 "",
             ),
+            Arguments.of(
+                intArrayOf(0),
+                "a",
+                "a",
+            ),
+            Arguments.of(
+                intArrayOf(0, 1),
+                "ab",
+                "ab",
+            ),
+            Arguments.of(
+                intArrayOf(1, 0),
+                "ab",
+                "ba",
+            ),
+            Arguments.of(
+                intArrayOf(0, 1, 2),
+                "abc",
+                "abc",
+            ),
+            Arguments.of(
+                intArrayOf(0, 2, 1),
+                "abc",
+                "acb",
+            ),
+            Arguments.of(
+                intArrayOf(1, 0, 2),
+                "abc",
+                "bac",
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 0),
+                "abc",
+                "cab",
+            ),
         )
     }
 }

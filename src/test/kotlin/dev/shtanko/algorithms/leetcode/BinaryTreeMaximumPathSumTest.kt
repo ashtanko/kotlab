@@ -62,6 +62,29 @@ class BinaryTreeMaximumPathSumTest {
                 },
                 42,
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(5)
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7)
+                    }
+                },
+                18,
+            ),
+            Arguments.of(
+                TreeNode(-3),
+                -3,
+            ),
+            Arguments.of(
+                TreeNode(-2).apply {
+                    left = TreeNode(-1)
+                },
+                -1,
+            ),
         )
     }
 

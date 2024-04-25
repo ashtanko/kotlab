@@ -50,8 +50,8 @@ abstract class NumMusicPlaylistsTest<out T : NumMusicPlaylists>(private val stra
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num music playlists test`(n: Int, goal: Int, k: Int, expected: Int) {
-        val actual = strategy(n, goal, k)
+    fun `num music playlists test`(num: Int, goal: Int, k: Int, expected: Int) {
+        val actual = strategy(num, goal, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

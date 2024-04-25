@@ -35,8 +35,8 @@ abstract class NQueensIITest<out T : TotalNQueensStrategy>(private val strategy:
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `n queens 2 test`(n: Int, expected: Int) {
-        val actual = strategy.invoke(n)
+    fun `n queens 2 test`(num: Int, expected: Int) {
+        val actual = strategy.invoke(num)
         assertEquals(expected, actual)
     }
 }

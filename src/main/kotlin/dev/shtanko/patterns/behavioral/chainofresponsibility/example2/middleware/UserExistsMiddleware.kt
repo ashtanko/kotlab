@@ -21,12 +21,7 @@ import dev.shtanko.patterns.behavioral.chainofresponsibility.example2.server.Ser
 /**
  * ConcreteHandler. Checks whether a user with the given credentials exists.
  */
-class UserExistsMiddleware(server: Server) : Middleware() {
-    private val server: Server
-
-    init {
-        this.server = server
-    }
+class UserExistsMiddleware(private val server: Server) : Middleware() {
 
     override fun check(email: String, password: String): Boolean {
         if (!server.hasEmail(email)) {

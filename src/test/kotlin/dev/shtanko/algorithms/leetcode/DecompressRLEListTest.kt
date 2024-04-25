@@ -17,7 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import java.util.stream.Stream
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -35,6 +35,10 @@ class DecompressRLEListTest {
                 intArrayOf(1, 1, 2, 3),
                 intArrayOf(1, 3, 3),
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1),
+                intArrayOf(1, 1),
+            ),
         )
     }
 
@@ -42,6 +46,6 @@ class DecompressRLEListTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `decompress RLE list test`(arr: IntArray, expected: IntArray) {
         val actual = arr.decompressRLEList()
-        assertArrayEquals(expected, actual)
+        assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

@@ -37,6 +37,11 @@ abstract class BinarySubArraysWithSumTest<out T : BinarySubArraysWithSum>(privat
                 0,
                 15,
             ),
+            Arguments.of(
+                intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                0,
+                55,
+            ),
         )
     }
 

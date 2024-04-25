@@ -37,6 +37,16 @@ abstract class DestroyingAsteroidsTest<out T : DestroyingAsteroids>(private val 
                 intArrayOf(4, 9, 23, 4),
                 false,
             ),
+            Arguments.of(
+                10,
+                intArrayOf(4, 9, 19, 5, 21),
+                true,
+            ),
+            Arguments.of(
+                10,
+                intArrayOf(4, 9, 19, 5, 21, 10),
+                true,
+            ),
         )
     }
 

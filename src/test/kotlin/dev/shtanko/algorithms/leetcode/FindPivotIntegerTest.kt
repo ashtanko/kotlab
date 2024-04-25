@@ -39,6 +39,66 @@ abstract class FindPivotIntegerTest<out T : FindPivotInteger>(private val strate
                 4,
                 -1,
             ),
+            Arguments.of(
+                9,
+                -1,
+            ),
+            Arguments.of(
+                3,
+                -1,
+            ),
+            Arguments.of(
+                5,
+                -1,
+            ),
+            Arguments.of(
+                6,
+                -1,
+            ),
+            Arguments.of(
+                7,
+                -1,
+            ),
+            Arguments.of(
+                2,
+                -1,
+            ),
+            Arguments.of(
+                10,
+                -1,
+            ),
+            Arguments.of(
+                11,
+                -1,
+            ),
+            Arguments.of(
+                12,
+                -1,
+            ),
+            Arguments.of(
+                13,
+                -1,
+            ),
+            Arguments.of(
+                14,
+                -1,
+            ),
+            Arguments.of(
+                15,
+                -1,
+            ),
+            Arguments.of(
+                16,
+                -1,
+            ),
+            Arguments.of(
+                17,
+                -1,
+            ),
+            Arguments.of(
+                18,
+                -1,
+            ),
         )
     }
 

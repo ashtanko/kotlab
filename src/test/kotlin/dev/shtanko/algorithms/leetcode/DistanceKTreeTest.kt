@@ -51,6 +51,45 @@ abstract class DistanceKTreeTest<out T : DistanceKTree>(private val strategy: T)
                 3,
                 emptyList<Int>(),
             ),
+            Arguments.of(
+                TreeNode(0).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(1).apply {
+                            left = TreeNode(3)
+                        }
+                        right = TreeNode(4)
+                    }
+                },
+                TreeNode(2),
+                3,
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                TreeNode(0).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(1).apply {
+                            left = TreeNode(3)
+                        }
+                        right = TreeNode(4)
+                    }
+                },
+                TreeNode(4),
+                2,
+                listOf(0, 1),
+            ),
+            Arguments.of(
+                TreeNode(0).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(1).apply {
+                            left = TreeNode(3)
+                        }
+                        right = TreeNode(4)
+                    }
+                },
+                TreeNode(0),
+                1,
+                listOf(2),
+            ),
         )
     }
 

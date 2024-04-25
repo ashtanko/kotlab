@@ -43,14 +43,29 @@ abstract class BuyTwoChocolatesTest<out T : BuyTwoChocolates>(private val strate
                 1,
             ),
             Arguments.of(
+                intArrayOf(1, 2, 1, 2),
+                2,
+                0,
+            ),
+            Arguments.of(
                 intArrayOf(5, 5, 8, 3, 4, 5, 6, 8, 9, 76, 6, 6, 7, 5, 50, 6, 45, 6, 45, 34),
                 90,
                 83,
             ),
             Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                10,
+                7,
+            ),
+            Arguments.of(
                 intArrayOf(),
                 0,
                 0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20),
+                100,
+                97,
             ),
         )
     }

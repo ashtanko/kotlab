@@ -43,13 +43,21 @@ class TotalMoneyTest {
                 20,
                 96,
             ),
+            Arguments.of(
+                100,
+                1060,
+            ),
+            Arguments.of(
+                1000,
+                74926,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `name test`(n: Int, expected: Int) {
-        val actual = TotalMoney.invoke(n)
+    fun `name test`(num: Int, expected: Int) {
+        val actual = TotalMoney.invoke(num)
         assertThat(actual).isEqualTo(expected)
     }
 }

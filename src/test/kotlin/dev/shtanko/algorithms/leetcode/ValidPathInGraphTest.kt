@@ -74,13 +74,61 @@ abstract class ValidPathInGraphTest<out T : ValidPathInGraph>(private val strate
                 3,
                 true,
             ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                4,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                0,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                1,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                2,
+                true,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InoutArgumentsProvider::class)
-    fun `valid path test`(n: Int, edges: Array<IntArray>, source: Int, destination: Int, expected: Boolean) {
-        val actual = strategy.invoke(n, edges, source, destination)
+    fun `valid path test`(num: Int, edges: Array<IntArray>, source: Int, destination: Int, expected: Boolean) {
+        val actual = strategy.invoke(num, edges, source, destination)
         assertThat(actual).isEqualTo(expected)
     }
 }

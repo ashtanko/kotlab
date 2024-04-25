@@ -46,13 +46,49 @@ abstract class CountComponentsTest<out T : CountComponents>(private val strategy
                 ),
                 1,
             ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 0),
+                ),
+                1,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 0),
+                    intArrayOf(0, 2),
+                ),
+                1,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 3),
+                    intArrayOf(3, 4),
+                    intArrayOf(4, 0),
+                    intArrayOf(0, 2),
+                    intArrayOf(2, 4),
+                ),
+                1,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count components test`(n: Int, edges: Array<IntArray>, expected: Int) {
-        val actual = strategy.invoke(n, edges)
+    fun `count components test`(num: Int, edges: Array<IntArray>, expected: Int) {
+        val actual = strategy.invoke(num, edges)
         assertThat(actual).isEqualTo(expected)
     }
 }

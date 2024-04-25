@@ -21,6 +21,12 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/split-linked-list-in-parts">Source</a>
  */
 fun interface SplitLinkedListInParts {
+    /**
+     * This function splits a linked list into a specified number of parts.
+     * @param head The head of the linked list.
+     * @param k The number of parts to split the linked list into.
+     * @return An array of linked lists representing the parts.
+     */
     operator fun invoke(head: NullableListNode?, k: Int): Array<NullableListNode?>
 }
 
@@ -28,6 +34,12 @@ fun interface SplitLinkedListInParts {
  * Approach #1: Create New Lists
  */
 class SplitLinkedListInPartsCopy : SplitLinkedListInParts {
+    /**
+     * This function splits a linked list into a specified number of parts by creating new lists.
+     * @param head The head of the linked list.
+     * @param k The number of parts to split the linked list into.
+     * @return An array of linked lists representing the parts.
+     */
     override fun invoke(head: NullableListNode?, k: Int): Array<NullableListNode?> {
         var cur: NullableListNode? = head
         var n = 0
@@ -59,6 +71,12 @@ class SplitLinkedListInPartsCopy : SplitLinkedListInParts {
  * Approach #2: Split Input List
  */
 class SplitLinkedListInPartsInput : SplitLinkedListInParts {
+    /**
+     * This function splits a linked list into a specified number of parts by splitting the input list.
+     * @param head The head of the linked list.
+     * @param k The number of parts to split the linked list into.
+     * @return An array of linked lists representing the parts.
+     */
     override fun invoke(head: NullableListNode?, k: Int): Array<NullableListNode?> {
         var cur: NullableListNode? = head
         var n = 0

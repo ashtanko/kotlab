@@ -20,7 +20,18 @@ import java.util.LinkedList
 import java.util.Queue
 
 /**
- * Binary Tree Level Order Traversal
+ * This function performs a level order traversal on a binary tree.
+ * It takes a TreeNode as input and returns a list of lists of integers, where each list represents a level in the tree.
+ * The function uses a queue to keep track of the nodes to visit next, and a list of lists to store the values of the
+ * nodes at each level.
+ * The function starts by adding the root node to the queue. Then, while the queue is not empty, it removes nodes from
+ * the queue and adds their children to the queue.
+ * For each node that it removes from the queue, the function adds its value to the current level's list.
+ * When it has visited all the nodes at the current level, the function adds the current level's list to the list
+ * of levels and starts a new level.
+ * The function continues this process until it has visited all the nodes in the tree.
+ *
+ * @return A list of lists of integers, where each list represents a level in the tree.
  */
 fun TreeNode?.levelOrder(): List<List<Int>> {
     val queue: Queue<TreeNode> = LinkedList()

@@ -44,6 +44,57 @@ class BinaryTreePreorderTraversalTest {
                 },
                 listOf(1, 2),
             ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                },
+                listOf(1, 2, 3),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2)
+                    right = TreeNode(3)
+                    left?.right = TreeNode(5)
+                },
+                listOf(1, 2, 5, 3),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(4)
+                        right = TreeNode(5)
+                    }
+                    right = TreeNode(3).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7)
+                    }
+                },
+                listOf(1, 2, 4, 5, 3, 6, 7),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3).apply {
+                            left = TreeNode(4)
+                        }
+                    }
+                },
+                listOf(1, 2, 3, 4),
+            ),
+            Arguments.of(
+                TreeNode(1).apply {
+                    left = TreeNode(2).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(4)
+                    }
+                    right = TreeNode(5).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(7)
+                    }
+                },
+                listOf(1, 2, 3, 4, 5, 6, 7),
+            ),
         )
     }
 

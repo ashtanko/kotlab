@@ -54,8 +54,8 @@ abstract class OnesAndZeroesTest<out T : OnesAndZeroes>(private val strategy: T)
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find max form test`(strs: Array<String>, m: Int, n: Int, expected: Int) {
-        val actual = strategy.findMaxForm(strs, m, n)
+    fun `find max form test`(strs: Array<String>, m: Int, num: Int, expected: Int) {
+        val actual = strategy.findMaxForm(strs, m, num)
         assertThat(actual).isEqualTo(expected)
     }
 }
