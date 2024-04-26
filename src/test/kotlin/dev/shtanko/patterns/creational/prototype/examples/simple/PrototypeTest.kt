@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.behavioral.strategy
+package dev.shtanko.patterns.creational.prototype.examples.simple
 
-/**
- * Dummy credit card class.
- */
-data class CreditCard(
-    private val number: String,
-    private val date: String,
-    private val cvv: String,
-    var amount: Int = 100000,
-)
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotSame
+import org.junit.jupiter.api.Test
+
+class PrototypeTest {
+
+    @Test
+    fun `test prototype clone`() {
+        val prototype = ConcretePrototype(1)
+        val clone = prototype.invoke()
+
+        assertNotSame(prototype, clone)
+        assertEquals(prototype.id, (clone as ConcretePrototype).id)
+    }
+}

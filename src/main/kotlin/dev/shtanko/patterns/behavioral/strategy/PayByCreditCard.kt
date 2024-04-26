@@ -52,7 +52,7 @@ class PayByCreditCard : PayStrategy {
     override fun pay(paymentAmount: Int): Boolean {
         return if (cardIsPresent()) {
             println("Paying $paymentAmount using Credit Card.")
-            card.amount = card.amount - paymentAmount
+            card.amount -= paymentAmount
             true
         } else {
             false

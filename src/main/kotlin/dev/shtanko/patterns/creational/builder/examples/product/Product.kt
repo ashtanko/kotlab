@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,10 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.behavioral.strategy
+package dev.shtanko.patterns.creational.builder.examples.product
 
-/**
- * Dummy credit card class.
- */
-data class CreditCard(
-    private val number: String,
-    private val date: String,
-    private val cvv: String,
-    var amount: Int = 100000,
+data class Product(
+    var name: String? = null,
+    var price: Double? = null,
+    var expirationDate: String? = null,
 )

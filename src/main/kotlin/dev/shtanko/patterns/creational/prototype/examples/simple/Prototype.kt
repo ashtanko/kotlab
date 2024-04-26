@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.behavioral.strategy
+package dev.shtanko.patterns.creational.prototype.examples.simple
 
 /**
- * Dummy credit card class.
+ * The `Prototype` interface represents the Prototype design pattern.
+ * It defines a method for creating a clone of the implementing object.
  */
-data class CreditCard(
-    private val number: String,
-    private val date: String,
-    private val cvv: String,
-    var amount: Int = 100000,
-)
+fun interface Prototype {
+    /**
+     * Creates and returns a clone of the implementing object.
+     * @return A clone of the implementing object.
+     */
+    operator fun invoke(): Prototype
+}
