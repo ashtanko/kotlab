@@ -19,15 +19,7 @@ package dev.shtanko.patterns.structural.flyweight.example1.trees
 import java.awt.Color
 import java.awt.Graphics
 
-class TreeType(private val name: String, color: Color, otherTreeData: String) {
-    private val color: Color
-    private val otherTreeData: String
-
-    init {
-        this.color = color
-        this.otherTreeData = otherTreeData
-    }
-
+class TreeType(val name: String, val color: Color, val otherTreeData: String) {
     fun draw(g: Graphics, x: Int, y: Int) {
         g.color = Color.BLACK
         g.fillRect(x - 1, y, 3, 5)

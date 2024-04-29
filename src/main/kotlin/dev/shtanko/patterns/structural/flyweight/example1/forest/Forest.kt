@@ -24,7 +24,8 @@ import java.awt.Graphics
 import javax.swing.JFrame
 
 class Forest : JFrame() {
-    private val trees: MutableList<Tree> = ArrayList()
+    val trees: MutableList<Tree> = ArrayList()
+    val treeList: List<Tree> = trees
 
     fun plantTree(x: Int, y: Int, name: String, color: Color, otherTreeData: String) {
         val type: TreeType = getTreeType(name, color, otherTreeData)

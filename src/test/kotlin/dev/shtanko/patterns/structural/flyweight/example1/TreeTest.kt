@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,24 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.creational.factorymethod.examples.buttons
+package dev.shtanko.patterns.structural.flyweight.example1
 
-import org.assertj.core.api.Assertions.assertThat
+import dev.shtanko.patterns.structural.flyweight.example1.trees.Tree
+import dev.shtanko.patterns.structural.flyweight.example1.trees.TreeType
+import java.awt.Graphics
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito
 
-class DemoTest {
-
-    @Test
-    fun `windows test`() {
-        assertThat(Demo.runExample("Windows 10")).isEqualTo("Windows Button")
-    }
+class TreeTest {
 
     @Test
-    fun `mac os x test`() {
-        assertThat(Demo.runExample("Mac OS X")).isEqualTo("<button>Test Button</button>")
+    fun `draw invokes draw method of TreeType`() {
+        val graphics = Mockito.mock(Graphics::class.java)
+        val treeType = Mockito.mock(TreeType::class.java)
+        val tree = Tree(5, 10, treeType)
+
+        tree.draw(graphics)
+
+        Mockito.verify(treeType).draw(graphics, 5, 10)
     }
 }
