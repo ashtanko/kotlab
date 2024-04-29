@@ -18,12 +18,7 @@ package dev.shtanko.patterns.structural.flyweight.example1.trees
 
 import java.awt.Graphics
 
-class Tree(private val x: Int, private val y: Int, type: TreeType) {
-    private val type: TreeType
-
-    init {
-        this.type = type
-    }
+class Tree(private val x: Int, private val y: Int, private val type: TreeType) {
 
     fun draw(g: Graphics) {
         type.draw(g, x, y)

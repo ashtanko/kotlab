@@ -19,7 +19,7 @@ package dev.shtanko.patterns.structural.flyweight.example1.trees
 import java.awt.Color
 
 object TreeFactory {
-    var treeTypes: MutableMap<String, TreeType> = HashMap()
+    private var treeTypes: MutableMap<String, TreeType> = HashMap()
 
     fun getTreeType(name: String, color: Color, otherTreeData: String): TreeType {
         var result = treeTypes[name]

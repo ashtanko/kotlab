@@ -52,21 +52,20 @@ object EcommerceApp {
                 print("Do you wish to continue selecting products? Y/N: ")
                 continueChoice = reader.readLine()
             } while (continueChoice.equals("Y", ignoreCase = true))
-            if (::strategy.isInitialized) {
-                println(
-                    "Please, select a payment method:" + "\n" +
-                        "1 - PalPay" + "\n" +
-                        "2 - Credit Card",
-                )
-                val paymentMethod = reader.readLine()
 
-                // Client creates different strategies based on input from user,
-                // application configuration, etc.
-                strategy = if (paymentMethod == "1") {
-                    PayByPayPal()
-                } else {
-                    PayByCreditCard()
-                }
+            println(
+                "Please, select a payment method:" + "\n" +
+                    "1 - PalPay" + "\n" +
+                    "2 - Credit Card",
+            )
+            val paymentMethod = reader.readLine()
+
+            // Client creates different strategies based on input from user,
+            // application configuration, etc.
+            strategy = if (paymentMethod == "1") {
+                PayByPayPal()
+            } else {
+                PayByCreditCard()
             }
 
             // Order object delegates gathering payment data to strategy object,

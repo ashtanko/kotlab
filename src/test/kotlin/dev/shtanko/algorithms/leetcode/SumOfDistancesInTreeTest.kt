@@ -83,6 +83,16 @@ class SumOfDistancesInTreeTest {
                 ),
                 intArrayOf(5, 6, 8, 9, 8),
             ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(1, 3),
+                    intArrayOf(1, 4),
+                ),
+                intArrayOf(6, 5, 9, 8, 8),
+            ),
         )
     }
 
