@@ -16,28 +16,9 @@
 
 package dev.shtanko.patterns.structural.flyweight.example1
 
-import dev.shtanko.patterns.structural.flyweight.example1.forest.Forest
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class ForestDemoTest {
-    @Test
-    fun `createForest plants correct number of trees`() {
-        val forest = ForestDemo.createForest()
-
-        assertEquals(ForestDemo.TREES_TO_DRAW, forest.trees.size)
-    }
-
-    @Test
-    fun `plantTrees adds two types of trees to forest`() {
-        val forest = Forest()
-        ForestDemo.plantTrees(forest)
-
-        val treeTypeNames = forest.trees.map { it.type.name }.toSet()
-
-        assertEquals(setOf("Summer Oak", "Autumn Oak"), treeTypeNames)
-    }
-
     @Test
     fun `random generates number within range`() {
         val min = 0

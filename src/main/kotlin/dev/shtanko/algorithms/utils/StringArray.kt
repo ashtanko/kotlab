@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.creational.factorymethod.examples.buttons
+package dev.shtanko.algorithms.utils
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
-
-class ForestDemoTest {
-
-    @Test
-    fun `windows test`() {
-        assertThat(Demo.runExample("Windows 10")).isEqualTo("Windows Button")
-    }
-
-    @Test
-    fun `mac os x test`() {
-        assertThat(Demo.runExample("Mac OS X")).isEqualTo("<button>Test Button</button>")
-    }
-}
+/**
+ * This function creates an empty array of type String.
+ * The function uses the arrayOfNulls function to create an array of nulls and then casts it to Array<String>.
+ *
+ * @return An empty array of type String.
+ *
+ * @throws ClassCastException if the cast to Array<String> is unsuccessful.
+ */
+fun emptyStringArray(): Array<String> =
+    @Suppress("UNCHECKED_CAST")
+    (arrayOfNulls<String>(0) as Array<String>)

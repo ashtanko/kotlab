@@ -72,7 +72,7 @@ class MinOperationsXorBit : MinOperationsXor {
      */
     private fun incrementCountIfBitsDontMatch(tempTargetXor: Int, xorOfNums: Int, operationsCount: Int): Int {
         var newOperationsCount = operationsCount
-        if ((tempTargetXor % 2) != (xorOfNums % 2)) {
+        if (tempTargetXor % 2 != xorOfNums % 2) {
             newOperationsCount++
         }
         return newOperationsCount

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.structural.flyweight.example1.trees
+package dev.shtanko.patterns.structural.flyweight.example1.forest
 
+import dev.shtanko.patterns.structural.flyweight.example1.trees.Tree
 import java.awt.Graphics
+import javax.swing.JFrame
 
-class Tree(val x: Int, val y: Int, val type: TreeType) : DrawableTree {
-
-    override fun draw(graphics: Graphics) {
-        type.draw(graphics, x, y)
+class ForestDrawer(val trees: List<Tree>) : JFrame(), ForestPainter {
+    override fun paint(graphics: Graphics) {
+        for (tree in trees) {
+            tree.draw(graphics)
+        }
     }
 }

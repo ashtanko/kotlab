@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.structural.flyweight.example1.trees
+package dev.shtanko.patterns.structural.flyweight.example1
 
+import dev.shtanko.patterns.structural.flyweight.example1.trees.DrawableTree
 import java.awt.Graphics
 
-class Tree(val x: Int, val y: Int, val type: TreeType) : DrawableTree {
+class MockDrawableTree : DrawableTree {
+    private var drawCalled = false
 
     override fun draw(graphics: Graphics) {
-        type.draw(graphics, x, y)
+        drawCalled = true // Mark that the draw method was called
     }
 }

@@ -18,10 +18,17 @@ package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.extensions.isEven
 
+/**
+ * Represents a node in a singly-linked list.
+ * Each node has a value and a reference to the next node.
+ */
 data class ListNode(
     var value: Int = 0,
     var next: ListNode? = null,
 ) {
+    /**
+     * Returns a string representation of the list node and its successors.
+     */
     fun prettyPrinted(): String {
         val sb = StringBuilder()
         var node: ListNode? = this
@@ -37,16 +44,25 @@ data class ListNode(
         return sb.toString()
     }
 
+    /**
+     * Prints the string representation of the list node and its successors.
+     */
     fun prettyPrint() {
         println(prettyPrinted())
     }
 
     companion object {
+        /**
+         * Returns an empty list node.
+         */
         fun empty(): ListNode = ListNode(0)
     }
 }
 
-fun List<Int>.toListNode(): ListNode {
+/**
+ * Converts an IntArray to a ListNode.
+ */
+fun IntArray.toListNode(): ListNode {
     if (isEmpty()) return ListNode()
     var current = ListNode()
     var startNode = ListNode()
@@ -62,6 +78,36 @@ fun List<Int>.toListNode(): ListNode {
     return startNode
 }
 
+/**
+ * Converts an Array<Int> to a ListNode.
+ */
+fun Array<Int>.toListNode(): ListNode {
+    return toIntArray().toListNode()
+}
+
+/**
+ * Converts a List<Int> to a ListNode.
+ */
+fun List<Int>.toListNode(): ListNode {
+    return toTypedArray().toListNode()
+}
+
+/**
+ * Converts a ListNode to an IntArray.
+ */
+fun ListNode.toIntArray(): IntArray {
+    val result = mutableListOf<Int>()
+    var node: ListNode? = this
+    while (node != null) {
+        result.add(node.value)
+        node = node.next
+    }
+    return result.toIntArray()
+}
+
+/**
+ * Converts a ListNode to a List<Int>.
+ */
 fun ListNode.toList(): List<Int> {
     val result = mutableListOf<Int>()
     var node: ListNode? = this
@@ -76,20 +122,32 @@ fun ListNode.toList(): List<Int> {
     return result
 }
 
+/**
+ * Converts a ListNode to a List<Int> or returns an empty list if the ListNode is null.
+ */
 fun ListNode?.toListOrEmpty(): List<Int> {
     return this?.toList() ?: emptyList()
 }
 
+/**
+ * Checks if a ListNode is not null.
+ */
 fun ListNode?.isNotNull(): Boolean {
     return this != null
 }
 
+/**
+ * Adds a ListNode to a MutableCollection if the ListNode is not null.
+ */
 fun MutableCollection<ListNode>.addIfNotNull(node: ListNode?) {
     node?.let {
         add(it)
     }
 }
 
+/**
+ * Reverses a ListNode.
+ */
 fun ListNode.reverseList(): ListNode? {
     var prev: ListNode? = null
     var curr: ListNode? = this
@@ -102,6 +160,9 @@ fun ListNode.reverseList(): ListNode? {
     return prev
 }
 
+/**
+ * Zips two ListNodes together.
+ */
 fun ListNode.zip(head2: ListNode?): ListNode {
     var tail: ListNode? = this
     var current1 = this.next

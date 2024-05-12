@@ -14,13 +14,20 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.structural.flyweight.example1.trees
+package dev.shtanko.patterns.creational.factorymethod.examples.buttons
 
-import java.awt.Graphics
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-class Tree(val x: Int, val y: Int, val type: TreeType) : DrawableTree {
+class DemoTest {
 
-    override fun draw(graphics: Graphics) {
-        type.draw(graphics, x, y)
+    @Test
+    fun `windows test`() {
+        assertThat(Demo.runExample("Windows 10")).isEqualTo("Windows Button")
+    }
+
+    @Test
+    fun `mac os x test`() {
+        assertThat(Demo.runExample("Mac OS X")).isEqualTo("<button>Test Button</button>")
     }
 }

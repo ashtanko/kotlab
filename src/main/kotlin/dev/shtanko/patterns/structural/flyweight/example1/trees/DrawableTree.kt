@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,6 @@ package dev.shtanko.patterns.structural.flyweight.example1.trees
 
 import java.awt.Graphics
 
-class Tree(val x: Int, val y: Int, val type: TreeType) : DrawableTree {
-
-    override fun draw(graphics: Graphics) {
-        type.draw(graphics, x, y)
-    }
+interface DrawableTree {
+    fun draw(graphics: Graphics)
 }

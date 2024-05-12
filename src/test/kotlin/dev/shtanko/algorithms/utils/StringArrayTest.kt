@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,22 @@
  * limitations under the License.
  */
 
-package dev.shtanko.patterns.structural.flyweight.example1.trees
+package dev.shtanko.algorithms.utils
 
-import java.awt.Graphics
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 
-class Tree(val x: Int, val y: Int, val type: TreeType) : DrawableTree {
+class StringArrayTest {
+    @Test
+    fun `returns empty array when called`() {
+        val result = emptyStringArray()
+        assertTrue(result.isEmpty())
+    }
 
-    override fun draw(graphics: Graphics) {
-        type.draw(graphics, x, y)
+    @Test
+    fun `returns array of correct type`() {
+        val result = emptyStringArray()
+        assertThat(result).isInstanceOf(Array<String>::class.java)
     }
 }
