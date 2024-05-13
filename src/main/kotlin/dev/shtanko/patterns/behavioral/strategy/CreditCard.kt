@@ -19,6 +19,9 @@ package dev.shtanko.patterns.behavioral.strategy
 /**
  * Dummy credit card class.
  */
-class CreditCard(private val number: String, private val date: String, private val cvv: String) {
-    var amount: Int = 100000
-}
+data class CreditCard(
+    val number: String,
+    val date: String,
+    val cvv: String,
+    var amount: Int = 100000,
+)

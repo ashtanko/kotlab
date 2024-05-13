@@ -168,6 +168,48 @@ class ListNodeTest {
                 listOf(2, 4).toListNode(),
                 listOf(1, 2, 3, 4).toListNode(),
             ),
+            Arguments.of(
+                listOf<Int>().toListNode(),
+                listOf(2, 4, 6).toListNode(),
+                listOf(0, 2, 4, 6).toListNode(),
+            ),
+        )
+    }
+
+    private class IntArrayToListNodeArgs : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                intArrayOf(),
+                ListNode(),
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                ListNode(1),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                ListNode(1).apply {
+                    next = ListNode(2)
+                },
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                ListNode(1).apply {
+                    next = ListNode(2).apply {
+                        next = ListNode(3)
+                    }
+                },
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4),
+                ListNode(1).apply {
+                    next = ListNode(2).apply {
+                        next = ListNode(3).apply {
+                            next = ListNode(4)
+                        }
+                    }
+                },
+            ),
         )
     }
 
@@ -180,9 +222,16 @@ class ListNodeTest {
 
     @ParameterizedTest
     @ArgumentsSource(ToListArgs::class)
-    fun `to list node test`(list: List<Int>, expected: ListNode) {
+    fun `int list to list node test`(list: List<Int>, expected: ListNode) {
         val actual = list.toListNode().toList()
         assertThat(actual).isEqualTo(expected.toList())
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(IntArrayToListNodeArgs::class)
+    fun `int array to list node test`(array: IntArray, expected: ListNode) {
+        val actual = array.toListNode().toIntArray()
+        assertThat(actual).isEqualTo(expected.toIntArray())
     }
 
     @ArgumentsSource(PrettyPrintArgumentsProvider::class)
@@ -226,18 +275,23 @@ class ListNodeTest {
     }
 
     @Test
-    fun `addIfNotNull, when null, should skip`() {
-        val node: ListNode? = null
-        val list = ArrayList<ListNode>()
-        list.addIfNotNull(node)
-        assertThat(list).isEmpty()
+    fun `addIfNotNull, when node is not null, should add node to collection`() {
+        val node = ListNode(1)
+        val collection = mutableListOf<ListNode>()
+
+        collection.addIfNotNull(node)
+
+        assertEquals(1, collection.size)
+        assertEquals(node, collection[0])
     }
 
     @Test
-    fun `addIfNotNull, when not null, should add`() {
-        val node = ListNode(0)
-        val list = ArrayList<ListNode>()
-        list.addIfNotNull(node)
-        assertThat(list).isNotEmpty()
+    fun `addIfNotNull, when node is null, should not add to collection`() {
+        val node: ListNode? = null
+        val collection = mutableListOf<ListNode>()
+
+        collection.addIfNotNull(node)
+
+        assertEquals(0, collection.size)
     }
 }

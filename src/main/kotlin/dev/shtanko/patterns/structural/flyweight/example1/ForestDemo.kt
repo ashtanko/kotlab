@@ -20,9 +20,9 @@ import dev.shtanko.patterns.structural.flyweight.example1.forest.Forest
 import java.awt.Color
 import kotlin.math.floor
 
-object Demo {
+object ForestDemo {
     private const val CANVAS_SIZE = 500
-    private const val TREES_TO_DRAW = 1000000
+    const val TREES_TO_DRAW = 1000000
     private const val TREE_TYPES = 2
     private const val MB = 1024
     private const val THIRTY = 30
@@ -30,28 +30,40 @@ object Demo {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        createForest()
+        displayForestStats()
+    }
+
+    fun createForest(): Forest {
         val forest = Forest()
         var i = 0
         while (i < floor((TREES_TO_DRAW / TREE_TYPES).toDouble())) {
-            forest.plantTree(
-                random(0, CANVAS_SIZE),
-                random(0, CANVAS_SIZE),
-                "Summer Oak",
-                Color.GREEN,
-                "Oak texture stub",
-            )
-            forest.plantTree(
-                random(0, CANVAS_SIZE),
-                random(0, CANVAS_SIZE),
-                "Autumn Oak",
-                Color.ORANGE,
-                "Autumn Oak texture stub",
-            )
+            plantTrees(forest)
             i++
         }
         forest.setSize(CANVAS_SIZE, CANVAS_SIZE)
         forest.isVisible = true
+        return forest
+    }
 
+    fun plantTrees(forest: Forest) {
+        forest.plantTree(
+            random(0, CANVAS_SIZE),
+            random(0, CANVAS_SIZE),
+            "Summer Oak",
+            Color.GREEN,
+            "Oak texture stub",
+        )
+        forest.plantTree(
+            random(0, CANVAS_SIZE),
+            random(0, CANVAS_SIZE),
+            "Autumn Oak",
+            Color.ORANGE,
+            "Autumn Oak texture stub",
+        )
+    }
+
+    private fun displayForestStats() {
         println("$TREES_TO_DRAW trees drawn")
         println("---------------------")
         println("Memory usage:")
@@ -65,7 +77,7 @@ object Demo {
         )
     }
 
-    private fun random(min: Int, max: Int): Int {
+    fun random(min: Int, max: Int): Int {
         return min + (Math.random() * (max - min + 1)).toInt()
     }
 }

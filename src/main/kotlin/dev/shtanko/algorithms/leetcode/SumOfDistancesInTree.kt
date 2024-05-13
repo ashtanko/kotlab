@@ -22,40 +22,40 @@ package dev.shtanko.algorithms.leetcode
  */
 class SumOfDistancesInTree {
 
-    private lateinit var ans: IntArray
-    private lateinit var count: IntArray
-    private var graph: MutableList<MutableSet<Int>> = ArrayList()
-    private var num = 0
+    private lateinit var distanceSum: IntArray
+    private lateinit var nodeCount: IntArray
+    private var adjacencyList: MutableList<MutableSet<Int>> = ArrayList()
+    private var totalNodes = 0
 
-    operator fun invoke(n: Int, edges: Array<IntArray>): IntArray {
-        this.num = n
-        ans = IntArray(n)
-        count = IntArray(n) { 1 }
+    operator fun invoke(nodeCount: Int, edges: Array<IntArray>): IntArray {
+        this.totalNodes = nodeCount
+        distanceSum = IntArray(nodeCount)
+        this.nodeCount = IntArray(nodeCount) { 1 }
 
-        for (i in 0 until n) {
-            graph.add(HashSet())
+        for (i in 0 until nodeCount) {
+            adjacencyList.add(HashSet())
         }
         for (edge in edges) {
-            graph[edge[0]].add(edge[1])
-            graph[edge[1]].add(edge[0])
+            adjacencyList[edge[0]].add(edge[1])
+            adjacencyList[edge[1]].add(edge[0])
         }
-        dfs(0, -1)
-        dfs2(0, -1)
-        return ans
+        calculateNodeCountAndDistanceSum(0, -1)
+        calculateDistanceSumForAllNodes(0, -1)
+        return distanceSum
     }
 
-    private fun dfs(node: Int, parent: Int) {
-        for (child in graph[node]) if (child != parent) {
-            dfs(child, node)
-            count[node] += count[child]
-            ans[node] += ans[child] + count[child]
+    private fun calculateNodeCountAndDistanceSum(node: Int, parent: Int) {
+        for (child in adjacencyList[node]) if (child != parent) {
+            calculateNodeCountAndDistanceSum(child, node)
+            nodeCount[node] += nodeCount[child]
+            distanceSum[node] += distanceSum[child] + nodeCount[child]
         }
     }
 
-    private fun dfs2(node: Int, parent: Int) {
-        for (child in graph[node]) if (child != parent) {
-            ans[child] = ans[node] - count[child] + num - count[child]
-            dfs2(child, node)
+    private fun calculateDistanceSumForAllNodes(node: Int, parent: Int) {
+        for (child in adjacencyList[node]) if (child != parent) {
+            distanceSum[child] = distanceSum[node] - nodeCount[child] + totalNodes - nodeCount[child]
+            calculateDistanceSumForAllNodes(child, node)
         }
     }
 }

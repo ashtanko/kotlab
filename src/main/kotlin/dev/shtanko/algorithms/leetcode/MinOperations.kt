@@ -21,21 +21,21 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero">Source</a>
  */
 fun interface MinOperations {
-    operator fun invoke(nums: IntArray, x: Int): Int
+    operator fun invoke(nums: IntArray, target: Int): Int
 }
 
 /**
  * Approach 1: Hash Map
  */
 class MinOperationsHashMap : MinOperations {
-    override fun invoke(nums: IntArray, x: Int): Int {
+    override fun invoke(nums: IntArray, target: Int): Int {
         val left = mutableMapOf<Int, Int>()
         var res = Int.MAX_VALUE
         var sum = 0
 
         for (l in nums.indices) {
             left[sum] = l
-            if (sum < x) {
+            if (sum < target) {
                 sum += nums[l]
             }
         }
@@ -44,7 +44,7 @@ class MinOperationsHashMap : MinOperations {
         var r = nums.size - 1
 
         while (r >= 0) {
-            val diff = x - sum
+            val diff = target - sum
             if (left.containsKey(diff) && r + 1 >= left[diff]!!) {
                 res = minOf(res, nums.size - r - 1 + left[diff]!!)
             }
@@ -60,28 +60,28 @@ class MinOperationsHashMap : MinOperations {
  * Approach 2: Two Sum
  */
 class MinOperationsTwoSum : MinOperations {
-    override fun invoke(nums: IntArray, x: Int): Int {
-        var sum = nums.sum()
-        var l = 0
-        var r = 0
-        var res = Int.MAX_VALUE
-        val sz = nums.size
+    override fun invoke(nums: IntArray, target: Int): Int {
+        var totalSum = nums.sum()
+        var leftIndex = 0
+        var rightIndex = 0
+        var minimumOperations = Int.MAX_VALUE
+        val arraySize = nums.size
 
-        while (l <= r) {
-            if (sum >= x) {
-                if (sum == x) {
-                    res = minOf(res, l + sz - r)
+        while (leftIndex <= rightIndex) {
+            if (totalSum >= target) {
+                if (totalSum == target) {
+                    minimumOperations = minOf(minimumOperations, leftIndex + arraySize - rightIndex)
                 }
-                if (r < sz) {
-                    sum -= nums[r++]
+                if (rightIndex < arraySize) {
+                    totalSum -= nums[rightIndex++]
                 } else {
                     break
                 }
             } else {
-                sum += nums[l++]
+                totalSum += nums[leftIndex++]
             }
         }
 
-        return if (res == Int.MAX_VALUE) -1 else res
+        return if (minimumOperations == Int.MAX_VALUE) -1 else minimumOperations
     }
 }

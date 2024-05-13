@@ -18,14 +18,9 @@ package dev.shtanko.patterns.structural.flyweight.example1.trees
 
 import java.awt.Graphics
 
-class Tree(private val x: Int, private val y: Int, type: TreeType) {
-    private val type: TreeType
+class Tree(val x: Int, val y: Int, val type: TreeType) : DrawableTree {
 
-    init {
-        this.type = type
-    }
-
-    fun draw(g: Graphics) {
-        type.draw(g, x, y)
+    override fun draw(graphics: Graphics) {
+        type.draw(graphics, x, y)
     }
 }
