@@ -287,6 +287,7 @@ dependencies {
         implementation(retrofit.mock)
         implementation(retrofit.converter)
         implementation(okhttp)
+        implementation("org.openjdk.jol:jol-core:0.17")
 
         ktLintConfig(ktlint)
 
