@@ -28,6 +28,7 @@ fun interface StudentAttendanceRecord2 {
 
 /**
  * # Approach
+ *
  * - The problem can be solved using dynamic programming.
  * - Let's define a state `dp[i][j][k]` as the number of possible attendance records of length `i` with `j` absent days
  * and ending with `k` consecutive late days.
