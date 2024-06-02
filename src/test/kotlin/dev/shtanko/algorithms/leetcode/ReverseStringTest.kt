@@ -40,6 +40,10 @@ class ReverseStringTest {
                 charArrayOf(),
             ),
             Arguments.of(
+                charArrayOf('h'),
+                charArrayOf('h'),
+            ),
+            Arguments.of(
                 charArrayOf('h', 'e', 'l', 'l', 'o'),
                 charArrayOf('o', 'l', 'l', 'e', 'h'),
             ),
