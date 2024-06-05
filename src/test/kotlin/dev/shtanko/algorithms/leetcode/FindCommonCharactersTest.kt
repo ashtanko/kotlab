@@ -28,7 +28,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 private const val RANDOM_STRING_LENGTH = 6
 private const val RANDOM_ARRAY_SIZE = 100_000
 
-class FindCommonCharactersTest {
+abstract class FindCommonCharactersTest<out T : FindCommonCharacters>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<String>(), listOf<String>()),
@@ -46,7 +46,9 @@ class FindCommonCharactersTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `name test`(arr: Array<String>, expected: List<String>) {
-        val actual = arr.commonChars()
+        val actual = strategy(arr)
         assertThat(actual).isEqualTo(expected)
     }
 }
+
+class FrequencyIntersectionImplTest : FindCommonCharactersTest<FrequencyIntersection>(FrequencyIntersection())
