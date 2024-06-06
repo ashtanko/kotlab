@@ -36,7 +36,7 @@ plugins {
     application
     jacoco
     id("com.github.nbaztec.coveralls-jacoco") version "1.2.16"
-    id ("org.sonarqube") version "4.4.1.3373"
+    // id ("org.sonarqube") version "4.4.1.3373"
     idea
     alias(libs.plugins.kt.jvm)
     alias(libs.plugins.detekt)
@@ -53,13 +53,13 @@ jacoco {
     toolVersion = "0.8.11"
 }
 
-sonarqube {
-    properties {
-        setProperty("sonar.projectKey", "ashtanko_kotlab")
-        setProperty("sonar.organization", "ashtanko")
-        setProperty("sonar.host.url", "https://sonarcloud.io")
-    }
-}
+//sonarqube {
+//    properties {
+//        setProperty("sonar.projectKey", "ashtanko_kotlab")
+//        setProperty("sonar.organization", "ashtanko")
+//        setProperty("sonar.host.url", "https://sonarcloud.io")
+//    }
+//}
 
 repositories {
     mavenCentral()

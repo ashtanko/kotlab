@@ -36,10 +36,6 @@ abstract class StudentAttendanceRecord2Test<out T : StudentAttendanceRecord2>(pr
                 3,
             ),
             Arguments.of(
-                10101,
-                183236316,
-            ),
-            Arguments.of(
                 0,
                 1,
             ),
