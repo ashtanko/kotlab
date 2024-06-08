@@ -38,6 +38,36 @@ abstract class ReplaceWordsTest<out T : ReplaceWords>(private val strategy: T) {
                 "aadsfasf absbs bbab cadsfafs",
                 "a a b c",
             ),
+            Arguments.of(
+                listOf("a", "aa", "aaa", "aaaa"),
+                "a aa a aaaa aaa aaa aaa aaaaaa bbb baba ababa",
+                "a a a a a a a a bbb baba a",
+            ),
+            Arguments.of(
+                listOf("catt", "cat", "bat", "rat"),
+                "the cattle was rattled by the battery",
+                "the cat was rat by the bat",
+            ),
+            Arguments.of(
+                listOf<String>(),
+                "",
+                "",
+            ),
+            Arguments.of(
+                listOf("a"),
+                "a",
+                "a",
+            ),
+            Arguments.of(
+                listOf("a"),
+                "a a a a",
+                "a a a a",
+            ),
+            Arguments.of(
+                listOf("a"),
+                "b",
+                "b",
+            ),
         )
     }
 
