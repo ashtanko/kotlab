@@ -62,6 +62,11 @@ abstract class SubarraysDivByKTest<out T : SubarraysDivByK>(private val strategy
                 11,
                 5,
             ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                1,
+                55,
+            ),
         )
     }
 
@@ -73,5 +78,5 @@ abstract class SubarraysDivByKTest<out T : SubarraysDivByK>(private val strategy
     }
 }
 
-class SubarraysDivByKMapTest : SubarraysDivByKTest<SubarraysDivByK>(SubarraysDivByKMap())
-class SubarraysDivByKPrefixSumTest : SubarraysDivByKTest<SubarraysDivByK>(SubarraysDivByKPrefixSum())
+class SubarraysDivByKMapTest : SubarraysDivByKTest<SubarraysDivByK>(SubarraysDivisibleByKUsingMap())
+class SubarraysDivByKPrefixSumTest : SubarraysDivByKTest<SubarraysDivByK>(SubarraysDivisibleByKUsingPrefixSum())
