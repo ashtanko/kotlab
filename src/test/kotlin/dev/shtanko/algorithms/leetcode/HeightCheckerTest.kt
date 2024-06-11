@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class HeightCheckerTest {
+abstract class HeightCheckerTest<out T : HeightChecker>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -40,20 +40,45 @@ class HeightCheckerTest {
                 intArrayOf(1, 2, 3, 4, 5),
                 0,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(4, 5, 7, 2, 3, 43, 5, 7, 8, 5, 6, 7, 8),
+                12,
+            ),
+            Arguments.of(
+                intArrayOf(3, 2, 1),
+                2,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `height checker sort test`(arr: IntArray, expected: Int) {
-        val actual = arr.heightCheckerSort()
-        assertEquals(expected, actual)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `height checker test`(arr: IntArray, expected: Int) {
-        val actual = arr.heightChecker()
+        val actual = strategy(arr)
         assertEquals(expected, actual)
     }
 }
+
+class HeightCheckerBubbleSortTest : HeightCheckerTest<HeightChecker>(HeightCheckerBubbleSort())
+class HeightCheckerStdSortTest : HeightCheckerTest<HeightChecker>(HeightCheckerStdSort())
+class HeightCheckerMergeSortTest : HeightCheckerTest<HeightChecker>(HeightCheckerMergeSort())
+class HeightCheckerHeapSortTest : HeightCheckerTest<HeightChecker>(HeightCheckerHeapSort())
+class HeightCheckerCountingSortTest : HeightCheckerTest<HeightChecker>(HeightCheckerCountingSort())
+class HeightCheckerRadixSortTest : HeightCheckerTest<HeightChecker>(HeightCheckerRadixSort())
+class HeightCheckerIterativeTest : HeightCheckerTest<HeightChecker>(HeightCheckerIterative())
