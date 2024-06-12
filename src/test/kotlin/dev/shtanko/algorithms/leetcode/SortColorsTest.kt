@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class SortColorsTest<out T : SortColorsStrategy>(private val strategy: T) {
+abstract class SortColorsTest<out T : SortColors>(private val strategy: T) {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
@@ -54,6 +54,10 @@ abstract class SortColorsTest<out T : SortColorsStrategy>(private val strategy: 
             Arguments.of(
                 intArrayOf(),
                 intArrayOf(),
+            ),
+            Arguments.of(
+                intArrayOf(2, 0, 2, 1, 1, 0, 0, 1, 2, 2, 1, 0, 1, 2, 0),
+                intArrayOf(0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2),
             ),
         )
     }
