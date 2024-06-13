@@ -23,37 +23,37 @@ import kotlin.math.abs
  * @see <a href="https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/">Source</a>
  */
 fun interface MinMovesToSeat {
-    operator fun invoke(seats: IntArray, students: IntArray): Int
+    operator fun invoke(seatPositions: IntArray, studentPositions: IntArray): Int
 }
 
 class MinMovesToSeatBruteForce : MinMovesToSeat {
-    override operator fun invoke(seats: IntArray, students: IntArray): Int {
-        var moves = 0
-        seats.sort()
-        students.sort()
-        for (i in seats.indices) {
-            val seat = seats[i]
-            val student = students[i]
-            if (seat > student) {
-                moves += seat.minus(student)
-            } else if (student > seat) {
-                moves += student.minus(seat)
+    override operator fun invoke(seatPositions: IntArray, studentPositions: IntArray): Int {
+        var totalMoves = 0
+        seatPositions.sort()
+        studentPositions.sort()
+        for (index in seatPositions.indices) {
+            val seatPosition = seatPositions[index]
+            val studentPosition = studentPositions[index]
+            if (seatPosition > studentPosition) {
+                totalMoves += seatPosition.minus(studentPosition)
+            } else if (studentPosition > seatPosition) {
+                totalMoves += studentPosition.minus(seatPosition)
             }
         }
-        return moves
+        return totalMoves
     }
 }
 
 class MinMovesToSeatMath : MinMovesToSeat {
-    override operator fun invoke(seats: IntArray, students: IntArray): Int {
-        var moves = 0
-        seats.sort()
-        students.sort()
-        for (i in seats.indices) {
-            val seat = seats[i]
-            val student = students[i]
-            moves += abs(seat - student)
+    override operator fun invoke(seatPositions: IntArray, studentPositions: IntArray): Int {
+        var totalMoves = 0
+        seatPositions.sort()
+        studentPositions.sort()
+        for (index in seatPositions.indices) {
+            val seatPosition = seatPositions[index]
+            val studentPosition = studentPositions[index]
+            totalMoves += abs(seatPosition - studentPosition)
         }
-        return moves
+        return totalMoves
     }
 }

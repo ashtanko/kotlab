@@ -42,6 +42,21 @@ abstract class MinMovesToSeatTest<out T : MinMovesToSeat>(private val strategy: 
                 intArrayOf(1, 3, 2, 6),
                 4,
             ),
+            Arguments.of(
+                intArrayOf(1, 100000),
+                intArrayOf(1, 100000),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                intArrayOf(),
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                intArrayOf(1),
+                0,
+            ),
         )
     }
 
