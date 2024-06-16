@@ -28,29 +28,33 @@ abstract class PatchingArrayTest<out T : PatchingArray>(private val strategy: T)
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                intArrayOf(
-                    1,
-                    3,
-                ),
+                intArrayOf(1, 3),
                 6,
                 1,
             ),
             Arguments.of(
-                intArrayOf(
-                    1,
-                    5,
-                    10,
-                ),
+                intArrayOf(1, 5, 10),
                 20,
                 2,
             ),
             Arguments.of(
-                intArrayOf(
-                    1,
-                    2,
-                    2,
-                ),
+                intArrayOf(1, 2, 2),
                 5,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1),
+                1,
                 0,
             ),
         )
@@ -59,7 +63,7 @@ abstract class PatchingArrayTest<out T : PatchingArray>(private val strategy: T)
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min patches test`(nums: IntArray, num: Int, expected: Int) {
-        val actual = strategy.minPatches(nums, num)
+        val actual = strategy.invoke(nums, num)
         assertThat(actual).isEqualTo(expected)
     }
 }
