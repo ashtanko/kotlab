@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import kotlin.math.abs
+
 /**
  * 442. Find All Duplicates in an Array
  * @see <a href="https://leetcode.com/problems/find-all-duplicates-in-an-array">Source</a>
@@ -51,7 +53,7 @@ class FindAllDuplicatesInArrayImpl : FindAllDuplicatesInArray {
     override fun invoke(nums: IntArray): List<Int> {
         val result = mutableListOf<Int>()
         for (i in nums.indices) {
-            val index = Math.abs(nums[i]) - 1
+            val index = abs(nums[i]) - 1
             if (nums[index] < 0) {
                 result.add(index + 1)
             }

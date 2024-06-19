@@ -29,6 +29,9 @@ abstract class MinDaysTest<out T : MinDays>(private val strategy: T) {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(10, 4),
             Arguments.of(6, 3),
+            Arguments.of(1, 1),
+            Arguments.of(56, 6),
+            Arguments.of(100, 8),
         )
     }
 

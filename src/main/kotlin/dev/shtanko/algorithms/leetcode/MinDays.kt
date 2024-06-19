@@ -44,39 +44,47 @@ class MinDaysDP : MinDays {
     private var dp = mutableMapOf(0 to 0, 1 to 1, 2 to 2)
 
     override operator fun invoke(n: Int): Int {
-        return solve(n)
+        return calcMinDays(n)
     }
 
-    private fun solve(n: Int): Int {
-        if (dp.containsKey(n)) {
-            return dp.getOrDefault(n, -1)
+    private fun calcMinDays(days: Int): Int {
+        if (dp.containsKey(days)) {
+            return dp.getOrDefault(days, -1)
         }
-        var ans = Int.MAX_VALUE
-        when {
-            n % 2 == 0 && n % 3 == 0 -> {
-                ans = min(ans, 1 + min(solve(n / 2), solve(n / 3)))
-            }
 
-            n % 3 == 0 -> {
-                ans = min(ans, 1 + min(solve(n - 1), solve(n / 3)))
-            }
-
-            n % 2 == 0 -> {
-                ans = if ((n - 1) % 3 == 0) {
-                    min(ans, 1 + min(solve(n / 2), solve(n - 1)))
-                } else {
-                    min(ans, min(1 + solve(n / 2), 2 + solve(n - 2)))
-                }
-            }
-
-            else -> {
-                ans = min(ans, 1 + solve(n - 1))
-                if ((n - 2) % 3 == 0) {
-                    ans = min(ans, 2 + solve(n - 2))
-                }
-            }
+        var minDays = Int.MAX_VALUE
+        minDays = when {
+            days % 2 == 0 && days % 3 == 0 -> calculateMinDaysForMultipleOfTwoAndThree(days, minDays)
+            days % 3 == 0 -> calculateMinDaysForMultipleOfThree(days, minDays)
+            days % 2 == 0 -> calculateMinDaysForMultipleOfTwo(days, minDays)
+            else -> calculateMinDaysForOtherCases(days, minDays)
         }
-        dp[n] = ans
-        return dp.getOrDefault(n, n)
+
+        dp[days] = minDays
+        return dp.getOrDefault(days, days)
+    }
+
+    private fun calculateMinDaysForMultipleOfTwoAndThree(days: Int, minDays: Int): Int {
+        return min(minDays, 1 + min(calcMinDays(days / 2), calcMinDays(days / 3)))
+    }
+
+    private fun calculateMinDaysForMultipleOfThree(days: Int, minDays: Int): Int {
+        return min(minDays, 1 + min(calcMinDays(days - 1), calcMinDays(days / 3)))
+    }
+
+    private fun calculateMinDaysForMultipleOfTwo(days: Int, minDays: Int): Int {
+        return if ((days - 1) % 3 == 0) {
+            min(minDays, 1 + min(calcMinDays(days / 2), calcMinDays(days - 1)))
+        } else {
+            min(minDays, min(1 + calcMinDays(days / 2), 2 + calcMinDays(days - 2)))
+        }
+    }
+
+    private fun calculateMinDaysForOtherCases(days: Int, minDays: Int): Int {
+        var result = min(minDays, 1 + calcMinDays(days - 1))
+        if ((days - 2) % 3 == 0) {
+            result = min(result, 2 + calcMinDays(days - 2))
+        }
+        return result
     }
 }

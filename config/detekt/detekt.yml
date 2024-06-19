@@ -629,6 +629,7 @@ style:
       - '10'
       - '30'
       - '255'
+      - '1000000000'
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: true
     ignoreLocalVariableDeclaration: false
