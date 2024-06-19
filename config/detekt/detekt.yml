@@ -627,8 +627,16 @@ style:
       - '8'
       - '9'
       - '10'
+      - '23'
+      - '24'
+      - '25'
+      - '26'
       - '30'
+      - '50'
       - '255'
+      - '100'
+      - '120'
+      - '150'
       - '1000000000'
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: true
