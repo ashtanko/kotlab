@@ -1,4 +1,4 @@
-.PHONY: check run test lines md default jacoco spotless kover diktat cloc
+.PHONY: check run test lines md default jacoco spotless kover diktat cloc jar repo
 
 # Run detekt + ktlint
 check:
@@ -40,5 +40,12 @@ kover:
 
 diktat:
 	./gradlew diktatCheck
+
+jar:
+	./gradlew shadowJar && mv ./build/libs/*.jar config/
+
+repo:
+	java -jar config/detekt_report_parser.jar ./build/reports/detekt/detekt.html ./config/detekt.md
+
 
 .DEFAULT_GOAL := default

@@ -36,6 +36,7 @@ plugins {
     application
     jacoco
     id("com.github.nbaztec.coveralls-jacoco") version "1.2.16"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     // id ("org.sonarqube") version "4.4.1.3373"
     idea
     alias(libs.plugins.kt.jvm)
@@ -70,6 +71,7 @@ repositories {
 
 application {
     mainClass.set("link.kotlin.scripts.Application")
+    mainClass.set("dev.shtanko.report.ReportParserKt")
 }
 
 val ktlintCheck by tasks.creating(JavaExec::class) {
@@ -141,6 +143,19 @@ koverReport {
 }
 
 tasks {
+    withType<Jar> {
+        print("Build Report Parser: $name")
+        archiveFileName.set("detekt_report_parser.jar")
+        archiveVersion.set("")
+        archiveClassifier.set("")
+        manifest {
+            attributes(
+                "Main-Class" to "dev.shtanko.report.ReportParserKt",
+                "Implementation-Version" to project.version,
+            )
+        }
+    }
+
     withType<Test> {
         maxParallelForks = 1
         jvmArgs(
@@ -290,6 +305,7 @@ dependencies {
         implementation("org.openjdk.jol:jol-core:0.17")
 
         ktLintConfig(ktlint)
+        implementation(jsoup)
 
         testImplementation(mockk)
         testImplementation(junit)

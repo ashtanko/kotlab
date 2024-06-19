@@ -26,9 +26,10 @@ mockito = "5.8.0"           # https://mvnrepository.com/artifact/org.mockito/moc
 mockito_kotlin = "2.2.0"    # https://github.com/mockito/mockito-kotlin
 logback = "1.2.11"          # https://logback.qos.ch
 hamcrest = "2.2"            # https://hamcrest.org/JavaHamcrest/distributables
-mockk = "1.13.10"            # https://mockk.io
+mockk = "1.13.10"           # https://mockk.io
 kover = "0.7.6"             # https://github.com/Kotlin/kotlinx-kover
 diktat = "2.0.0"            # https://github.com/saveourtool/diktat
+jsoup = "1.17.2"            # https://jsoup.org/
 
 [libraries]
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
@@ -56,6 +57,7 @@ jmh = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
 jmh-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
 jmh-benchmarks = { module = "org.openjdk.jmh:jmh-core-benchmarks", version.ref = "jmh" }
 slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 #detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 
 # test libs
