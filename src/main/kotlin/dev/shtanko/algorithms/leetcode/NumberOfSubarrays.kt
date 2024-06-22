@@ -21,48 +21,48 @@ package dev.shtanko.algorithms.leetcode
  * @see <a href="https://leetcode.com/problems/count-number-of-nice-subarrays/">Source</a>
  */
 fun interface NumberOfSubarrays {
-    operator fun invoke(nums: IntArray, k: Int): Int
+    operator fun invoke(nums: IntArray, target: Int): Int
 }
 
 class NumberOfSubarraysOnePass : NumberOfSubarrays {
-    override operator fun invoke(nums: IntArray, k: Int): Int {
-        var res = 0
-        var i = 0
-        var count = 0
-        val n: Int = nums.size
-        var k0 = k
-        for (j in 0 until n) {
-            if (nums[j] % 2 == 1) {
-                --k0
-                count = 0
+    override operator fun invoke(nums: IntArray, target: Int): Int {
+        var result = 0
+        var startIndex = 0
+        var currentCount = 0
+        val arraySize: Int = nums.size
+        var remainingCount = target
+        for (endIndex in 0 until arraySize) {
+            if (nums[endIndex] % 2 == 1) {
+                --remainingCount
+                currentCount = 0
             }
-            while (k0 == 0) {
-                k0 += nums[i++] and 1
-                ++count
+            while (remainingCount == 0) {
+                remainingCount += nums[startIndex++] and 1
+                ++currentCount
             }
-            res += count
+            result += currentCount
         }
-        return res
+        return result
     }
 }
 
 class NumberOfSubarraysSlidingWindow : NumberOfSubarrays {
-    override operator fun invoke(nums: IntArray, k: Int): Int {
-        return atMost(nums, k) - atMost(nums, k - 1)
+    override operator fun invoke(nums: IntArray, target: Int): Int {
+        return atMost(nums, target) - atMost(nums, target - 1)
     }
 
-    private fun atMost(nums: IntArray, k: Int): Int {
-        var k0 = k
-        var res = 0
-        var i = 0
-        val n = nums.size
-        for (j in 0 until n) {
-            k0 -= nums[j] % 2
-            while (k0 < 0) {
-                k0 += nums[i++] % 2
+    private fun atMost(nums: IntArray, target: Int): Int {
+        var remainingTarget = target
+        var result = 0
+        var startIndex = 0
+        val arraySize = nums.size
+        for (endIndex in 0 until arraySize) {
+            remainingTarget -= nums[endIndex] % 2
+            while (remainingTarget < 0) {
+                remainingTarget += nums[startIndex++] % 2
             }
-            res += j - i + 1
+            result += endIndex - startIndex + 1
         }
-        return res
+        return result
     }
 }

@@ -28,6 +28,11 @@ abstract class NumberOfSubarraysTest<out T : NumberOfSubarrays>(private val stra
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
                 intArrayOf(1, 1, 2, 1, 1),
                 3,
                 2,
@@ -42,13 +47,23 @@ abstract class NumberOfSubarraysTest<out T : NumberOfSubarrays>(private val stra
                 2,
                 16,
             ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                1,
+                5,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                2,
+                4,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `number of subarrays test`(nums: IntArray, k: Int, expected: Int) {
-        val actual = strategy.invoke(nums, k)
+    fun `number of subarrays test`(nums: IntArray, target: Int, expected: Int) {
+        val actual = strategy.invoke(nums, target)
         assertThat(actual).isEqualTo(expected)
     }
 }
