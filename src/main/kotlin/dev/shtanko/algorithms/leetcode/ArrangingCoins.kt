@@ -16,43 +16,47 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BinarySearch
+import dev.shtanko.algorithms.annotations.Math
 import kotlin.math.sqrt
 
-fun interface ArrangingCoinsStrategy {
-    operator fun invoke(n: Int): Int
+fun interface ArrangingCoins {
+    operator fun invoke(coins: Int): Int
 }
 
-class ArrangingCoinsBS : ArrangingCoinsStrategy {
-    override fun invoke(n: Int): Int {
-        var left = 0
-        var right = n
-        var k: Int
-        var curr: Int
+@BinarySearch
+class ArrangingCoinsBS : ArrangingCoins {
+    override fun invoke(coins: Int): Int {
+        var lowerBound = 0
+        var upperBound = coins
+        var midPoint: Int
+        var current: Int
 
-        while (left <= right) {
-            k = left + right.minus(left) / 2
-            curr = k * k.plus(1) / 2
-            if (curr == n) return k
-            if (n < curr) {
-                right = k - 1
+        while (lowerBound <= upperBound) {
+            midPoint = lowerBound + (upperBound - lowerBound) / 2
+            current = midPoint * (midPoint + 1) / 2
+            if (current == coins) return midPoint
+            if (coins < current) {
+                upperBound = midPoint - 1
             } else {
-                left = k + 1
+                lowerBound = midPoint + 1
             }
         }
-        return right
+        return upperBound
     }
 }
 
-class ArrangingCoinsMath : ArrangingCoinsStrategy {
+@Math
+class ArrangingCoinsMath : ArrangingCoins {
 
-    override fun invoke(n: Int): Int {
-        val local = sqrt(C1 * n + C2) - C3
-        return local.toInt()
+    override fun invoke(coins: Int): Int {
+        val result = sqrt(COEFFICIENT1 * coins + COEFFICIENT2) - COEFFICIENT3
+        return result.toInt()
     }
 
     companion object {
-        private const val C1 = 2
-        private const val C2 = 0.25
-        private const val C3 = 0.5
+        private const val COEFFICIENT1 = 2
+        private const val COEFFICIENT2 = 0.25
+        private const val COEFFICIENT3 = 0.5
     }
 }

@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.MOD
+import dev.shtanko.algorithms.annotations.DP
 import kotlin.math.max
 
 /**
@@ -27,6 +28,7 @@ fun interface BeautifulPartitions {
     operator fun invoke(str: String, k: Int, minLength: Int): Int
 }
 
+@DP
 class BeautifulPartitionsDP : BeautifulPartitions {
     override operator fun invoke(str: String, k: Int, minLength: Int): Int {
         val cs: CharArray = str.toCharArray()

@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BottomUpDP
+import dev.shtanko.algorithms.annotations.TopDownDP
+
 /**
  * Combination Sum IV
  * @see <a href="https://leetcode.com/problems/combination-sum-iv/">Source</a>
@@ -30,6 +33,7 @@ fun interface CombinationSum4 {
  * Time Complexity: O(T*N)
  * Space Complexity: O(T)
  */
+@TopDownDP
 class CombinationSum4TopDown : CombinationSum4 {
 
     // Memoization map to store previously calculated results for specific remain values
@@ -75,6 +79,7 @@ class CombinationSum4TopDown : CombinationSum4 {
  * Time Complexity: O(T*N)
  * Space Complexity: O(T)
  */
+@BottomUpDP
 class CombinationSum4BottomUp : CombinationSum4 {
     override operator fun invoke(nums: IntArray, target: Int): Int {
         // minor optimization

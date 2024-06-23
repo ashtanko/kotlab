@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DFS
 import java.util.LinkedList
 import java.util.Queue
 
@@ -27,6 +28,7 @@ fun interface BraceExpansion2 {
     fun braceExpansion2(expression: String): List<String>
 }
 
+@DFS
 class BraceExpansion2DFS : BraceExpansion2 {
     override fun braceExpansion2(expression: String): List<String> {
         val queue: Queue<String> = LinkedList()

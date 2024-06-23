@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.Sort
 import kotlin.math.max
 import kotlin.math.min
 
@@ -27,6 +29,7 @@ fun interface ArithmeticSubarrays {
     operator fun invoke(nums: IntArray, l: IntArray, r: IntArray): List<Boolean>
 }
 
+@Sort
 class ArithmeticSubarraysSort : ArithmeticSubarrays {
     override fun invoke(nums: IntArray, l: IntArray, r: IntArray): List<Boolean> {
         val ans: MutableList<Boolean> = ArrayList()
@@ -53,6 +56,7 @@ class ArithmeticSubarraysSort : ArithmeticSubarrays {
     }
 }
 
+@Iterative
 class ArithmeticSubarraysSet : ArithmeticSubarrays {
     override fun invoke(nums: IntArray, l: IntArray, r: IntArray): List<Boolean> {
         val ans: MutableList<Boolean> = ArrayList()

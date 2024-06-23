@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
 import java.util.Deque
 import java.util.LinkedList
 
@@ -27,6 +28,7 @@ fun interface BagOfTokens {
     operator fun invoke(tokens: IntArray, power: Int): Int
 }
 
+@Iterative
 val bagOfTokensDeque = BagOfTokens { tokens, power ->
     var score = 0
     tokens.sort()

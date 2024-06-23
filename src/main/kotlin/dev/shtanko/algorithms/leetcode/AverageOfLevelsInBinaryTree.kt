@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BFS
+import dev.shtanko.algorithms.annotations.DFS
 import java.util.LinkedList
 import java.util.Queue
 
@@ -24,6 +26,7 @@ fun interface AverageOfLevelsInBinaryTreeStrategy {
 }
 
 // Using Depth First Search
+@DFS
 class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {
     override operator fun invoke(root: TreeNode?): DoubleArray {
         val count: MutableList<Int> = ArrayList()
@@ -48,6 +51,7 @@ class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {
 }
 
 // Using Breadth First Search
+@BFS
 class AverageOfLevelsInBinaryTreeBFS : AverageOfLevelsInBinaryTreeStrategy {
     override operator fun invoke(root: TreeNode?): DoubleArray {
         val res: MutableList<Double> = ArrayList()

@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.TwoPointers
+
 /**
  * 2486. Append Characters to String to Make Subsequence
  * @see <a href="https://leetcode.com/problems/append-characters-to-string-to-make-subsequence">Source</a>
@@ -24,6 +26,7 @@ fun interface AppendCharacters {
     operator fun invoke(source: String, target: String): Int
 }
 
+@TwoPointers
 class AppendCharactersTwoPointers : AppendCharacters {
     override fun invoke(source: String, target: String): Int {
         val targetPrefixLength = source.fold(0) { prefixLength, char ->

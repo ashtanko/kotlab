@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.annotations.Memoization
+
 /**
  * Coin Path.
  * @see <a href="https://leetcode.com/problems/coin-path/">Source</a>
@@ -29,6 +32,7 @@ fun interface CoinPath {
  * Time complexity : O(nB).
  * Space complexity : O(n).
  */
+@Memoization
 class CoinPathMemo : CoinPath {
     override fun invoke(a: IntArray, b: Int): List<Int> {
         val next = IntArray(a.size) { -1 }
@@ -71,6 +75,7 @@ class CoinPathMemo : CoinPath {
  * Time complexity : O(nB).
  * Space complexity : O(n).
  */
+@DP
 class CoinPathDP : CoinPath {
     override fun invoke(a: IntArray, b: Int): List<Int> {
         val next = IntArray(a.size) { -1 }

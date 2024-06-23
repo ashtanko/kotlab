@@ -16,13 +16,14 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.StraightForward
 import java.util.TreeSet
 
-fun interface AvoidFloodStrategy {
+fun interface AvoidFlood {
     operator fun invoke(rains: IntArray): IntArray
 }
 
-class AvoidFloodTree : AvoidFloodStrategy {
+class AvoidFloodTree : AvoidFlood {
     override operator fun invoke(rains: IntArray): IntArray {
         val full: MutableMap<Int, Int> = HashMap() // last days that is full
 
@@ -51,7 +52,8 @@ class AvoidFloodTree : AvoidFloodStrategy {
     }
 }
 
-class AvoidFloodSimple : AvoidFloodStrategy {
+@StraightForward
+class AvoidFloodSimple : AvoidFlood {
 
     private val empty = IntArray(0)
 

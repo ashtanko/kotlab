@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Bitwise
 import java.math.BigInteger
 
 /**
@@ -29,6 +30,7 @@ fun interface AddBinaryStrategy {
  * Time complexity: O(max(N,M)), where N and M are lengths of the input strings a and b.
  * Space complexity: O(max(N,M)) to keep the answer.
  */
+@Bitwise
 class AddBinaryBitByBitComputation : AddBinaryStrategy {
     /**
      * Adds two binary strings and returns their sum as a binary string.
@@ -58,6 +60,7 @@ class AddBinaryBitByBitComputation : AddBinaryStrategy {
  * Time complexity : O(N+M), where N and M are lengths of the input strings a and b.
  * Space complexity: O(max(N,M)) to keep the answer.
  */
+@Bitwise
 class AddBinaryBitManipulation : AddBinaryStrategy {
     /**
      * Performs binary addition of two strings and returns the sum as a binary string.

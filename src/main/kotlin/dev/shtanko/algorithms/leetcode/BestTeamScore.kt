@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DP
 import kotlin.math.max
 
 /**
@@ -26,6 +27,7 @@ fun interface BestTeamScore {
     operator fun invoke(scores: IntArray, ages: IntArray): Int
 }
 
+@DP
 class BestTeamScoreDP : BestTeamScore {
     override operator fun invoke(scores: IntArray, ages: IntArray): Int {
         val n: Int = ages.size

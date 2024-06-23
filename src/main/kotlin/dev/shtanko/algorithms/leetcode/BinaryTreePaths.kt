@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BFS
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.Recursive
 import java.util.LinkedList
 import java.util.Queue
 import java.util.Stack
@@ -23,11 +26,12 @@ import java.util.Stack
 private const val FORMAT = "%s%s%s"
 private const val ARROW = "->"
 
-fun interface BinaryTreePathsStrategy {
+fun interface BinaryTreePaths {
     operator fun invoke(root: TreeNode?): List<String>
 }
 
-class BinaryTreePathsRecursion : BinaryTreePathsStrategy {
+@Recursive
+class BinaryTreePathsRecursion : BinaryTreePaths {
     override fun invoke(root: TreeNode?): List<String> {
         val sList: MutableList<String> = LinkedList()
         if (root == null) return sList
@@ -45,7 +49,9 @@ class BinaryTreePathsRecursion : BinaryTreePathsStrategy {
     }
 }
 
-class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {
+@Iterative
+@BFS
+class BinaryTreePathsBFSQueue : BinaryTreePaths {
 
     override fun invoke(root: TreeNode?): List<String> {
         val list: MutableList<String> = ArrayList()
@@ -71,7 +77,8 @@ class BinaryTreePathsBFSQueue : BinaryTreePathsStrategy {
     }
 }
 
-class BinaryTreePathsBFSStack : BinaryTreePathsStrategy {
+@BFS
+class BinaryTreePathsBFSStack : BinaryTreePaths {
     override fun invoke(root: TreeNode?): List<String> {
         val list: MutableList<String> = ArrayList()
         val sNode: Stack<TreeNode> = Stack<TreeNode>()

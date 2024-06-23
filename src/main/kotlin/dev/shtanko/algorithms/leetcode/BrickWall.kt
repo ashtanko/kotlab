@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+import dev.shtanko.algorithms.annotations.BruteForceOptimized
 import kotlin.math.min
 
 /**
@@ -31,6 +33,7 @@ fun interface BrickWall {
  * Time complexity : O(n*m)
  * Space complexity : O(m)
  */
+@BruteForce
 class BrickWallBruteForce : BrickWall {
     override operator fun invoke(wall: List<List<Int>>): Int {
         if (wall.isEmpty()) return 0
@@ -59,6 +62,7 @@ class BrickWallBruteForce : BrickWall {
  * Time complexity : O(n*m)
  * Space complexity : O(m)
  */
+@BruteForceOptimized
 class BrickWallBetterBruteForce : BrickWall {
     override operator fun invoke(wall: List<List<Int>>): Int {
         if (wall.isEmpty()) return 0

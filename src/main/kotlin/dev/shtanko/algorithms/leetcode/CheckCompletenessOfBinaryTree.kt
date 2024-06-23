@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BFS
+import dev.shtanko.algorithms.annotations.DFS
 import java.util.LinkedList
 import java.util.Queue
 
@@ -27,6 +29,7 @@ fun interface CheckCompletenessOfBinaryTree {
     fun isCompleteTree(root: TreeNode?): Boolean
 }
 
+@BFS
 class CheckCompletenessOfBinaryTreeBFS : CheckCompletenessOfBinaryTree {
     override fun isCompleteTree(root: TreeNode?): Boolean {
         val bfs: Queue<TreeNode> = LinkedList()
@@ -41,6 +44,7 @@ class CheckCompletenessOfBinaryTreeBFS : CheckCompletenessOfBinaryTree {
     }
 }
 
+@DFS
 class CheckCompletenessOfBinaryTreeDFS : CheckCompletenessOfBinaryTree {
     override fun isCompleteTree(root: TreeNode?): Boolean {
         return dfs(root) >= 0

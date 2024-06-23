@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+
 /**
  * 881. Boats to Save People
  * @see <a href="https://leetcode.com/problems/boats-to-save-people/">Source</a>
@@ -24,6 +26,7 @@ fun interface BoatsToSavePeople {
     operator fun invoke(people: IntArray, limit: Int): Int
 }
 
+@BruteForce
 class BoatsToSavePeopleBF : BoatsToSavePeople {
     override fun invoke(people: IntArray, limit: Int): Int {
         var boatCount = 0

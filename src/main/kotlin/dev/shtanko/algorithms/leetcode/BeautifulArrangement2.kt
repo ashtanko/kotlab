@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
+
 fun interface BeautifulArrangement2 {
     operator fun invoke(num: Int, k: Int): IntArray
 }
@@ -23,6 +25,7 @@ fun interface BeautifulArrangement2 {
 /**
  * Approach #2: Construction
  */
+@Iterative
 class BA2Construction : BeautifulArrangement2 {
     override fun invoke(num: Int, k: Int): IntArray {
         if (num == 0) return intArrayOf()

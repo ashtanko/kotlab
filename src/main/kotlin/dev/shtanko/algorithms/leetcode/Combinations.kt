@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Backtracking
+
 /**
  * 77. Combinations
  * @see <a href="https://leetcode.com/problems/combinations/">Source</a>
@@ -24,6 +26,7 @@ fun interface Combinations {
     operator fun invoke(n: Int, k: Int): List<List<Int>>
 }
 
+@Backtracking
 class CombinationsBacktracking : Combinations {
     override fun invoke(n: Int, k: Int): List<List<Int>> {
         val combs: MutableList<List<Int>> = ArrayList()

@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Backtracking
+import dev.shtanko.algorithms.annotations.Bitwise
 import kotlin.math.pow
 
 /**
@@ -26,6 +28,7 @@ fun interface BeautifulSubsets {
     operator fun invoke(nums: IntArray, k: Int): Int
 }
 
+@Bitwise
 class BeautifulSubsetsBitset : BeautifulSubsets {
     override fun invoke(nums: IntArray, k: Int): Int {
         return countBeautifulSubsets(nums, k, 0, 0)
@@ -59,6 +62,7 @@ class BeautifulSubsetsBitset : BeautifulSubsets {
     }
 }
 
+@Backtracking
 class BeautifulSubsetsBacktracking : BeautifulSubsets {
     override fun invoke(nums: IntArray, k: Int): Int {
         val freqMap = mutableMapOf<Int, Int>()

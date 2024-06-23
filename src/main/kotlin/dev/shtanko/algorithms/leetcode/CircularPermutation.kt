@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Bitwise
+
 /**
  * 1238. Circular Permutation in Binary Representation
  * @see <a href="https://leetcode.com/problems/circular-permutation-in-binary-representation/">Source</a>
@@ -24,6 +26,7 @@ fun interface CircularPermutation {
     operator fun invoke(n: Int, start: Int): List<Int>
 }
 
+@Bitwise
 class CircularPermutationGrayCode : CircularPermutation {
     override operator fun invoke(n: Int, start: Int): List<Int> {
         val res: MutableList<Int> = ArrayList()

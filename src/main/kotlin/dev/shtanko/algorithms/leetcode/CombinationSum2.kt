@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Backtracking
+import dev.shtanko.algorithms.annotations.Recursive
 import java.util.LinkedList
 
 /**
@@ -26,6 +28,7 @@ fun interface CombinationSum2 {
     operator fun invoke(candidates: IntArray, target: Int): List<List<Int>>
 }
 
+@Backtracking
 class BacktrackingWithCounters : CombinationSum2 {
     override operator fun invoke(candidates: IntArray, target: Int): List<List<Int>> {
         // container to hold the final combinations
@@ -83,6 +86,7 @@ class BacktrackingWithCounters : CombinationSum2 {
     }
 }
 
+@Backtracking
 class BacktrackingWithIndex : CombinationSum2 {
     override operator fun invoke(candidates: IntArray, target: Int): List<List<Int>> {
         val results: MutableList<List<Int>> = ArrayList()
@@ -116,6 +120,7 @@ class BacktrackingWithIndex : CombinationSum2 {
     }
 }
 
+@Recursive
 class CombinationSum2Compact : CombinationSum2 {
     override fun invoke(candidates: IntArray, target: Int): List<List<Int>> {
         val res = mutableListOf<List<Int>>()

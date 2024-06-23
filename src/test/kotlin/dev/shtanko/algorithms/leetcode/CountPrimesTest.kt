@@ -44,4 +44,4 @@ abstract class CountPrimesTest<out T : CountPrimesStrategy>(private val strategy
 
 class CountPrimesBrutForceTest : CountPrimesTest<CountPrimesBrutForce>(CountPrimesBrutForce())
 
-class CountPrimesTimeComplexityTest : CountPrimesTest<CountPrimesTimeComplexity>(CountPrimesTimeComplexity())
+class CountPrimesSpaceComplexityTest : CountPrimesTest<CountPrimesTimeComplexity>(CountPrimesTimeComplexity())

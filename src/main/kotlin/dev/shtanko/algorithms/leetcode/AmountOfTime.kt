@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BFS
+import dev.shtanko.algorithms.annotations.DFS
 import java.util.LinkedList
 
 /**
@@ -26,6 +28,7 @@ fun interface AmountOfTime {
     operator fun invoke(root: TreeNode?, start: Int): Int
 }
 
+@BFS
 class AmountOfTimeBFS : AmountOfTime {
     override fun invoke(root: TreeNode?, start: Int): Int {
         val treeMap: MutableMap<Int, MutableSet<Int>> = mutableMapOf()
@@ -75,6 +78,7 @@ class AmountOfTimeBFS : AmountOfTime {
     }
 }
 
+@DFS
 class AmountOfTimeDFS : AmountOfTime {
 
     private var maxDistance = 0

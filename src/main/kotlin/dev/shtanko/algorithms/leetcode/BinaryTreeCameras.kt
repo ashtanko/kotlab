@@ -16,18 +16,22 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DFS
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.annotations.Greedy
 import kotlin.math.min
 
 /**
  * 968. Binary Tree Cameras
  * @see <a href="https://leetcode.com/problems/binary-tree-cameras/">Source</a>
  */
-fun interface BinaryTreeCamerasStrategy {
+fun interface BinaryTreeCameras {
 
     operator fun invoke(root: TreeNode?): Int
 }
 
-class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {
+@DFS
+class BinaryTreeCamerasDFS : BinaryTreeCameras {
 
     private var cameras = 0
 
@@ -59,7 +63,8 @@ class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {
     }
 }
 
-class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {
+@DP
+class BinaryTreeCamerasDP : BinaryTreeCameras {
 
     override operator fun invoke(root: TreeNode?): Int {
         val ans = solve(root)
@@ -86,7 +91,8 @@ class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {
     }
 }
 
-class BinaryTreeCamerasGreedy : BinaryTreeCamerasStrategy {
+@Greedy
+class BinaryTreeCamerasGreedy : BinaryTreeCameras {
 
     private var res = 0
     override operator fun invoke(root: TreeNode?): Int {

@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
 import kotlin.math.abs
 
 /**
@@ -26,6 +27,7 @@ fun interface CanBeValid {
     operator fun invoke(s: String, locked: String): Boolean
 }
 
+@Iterative
 class CanBeValidLeftRight : CanBeValid {
     override operator fun invoke(s: String, locked: String): Boolean {
         return s.length % 2 == 0 && validate(s, locked, '(') && validate(s, locked, ')')
@@ -46,6 +48,7 @@ class CanBeValidLeftRight : CanBeValid {
     }
 }
 
+@Iterative
 class CanBeValidCountingBrackets : CanBeValid {
     override operator fun invoke(s: String, locked: String): Boolean {
         if (s.length % 2 == 1) return false

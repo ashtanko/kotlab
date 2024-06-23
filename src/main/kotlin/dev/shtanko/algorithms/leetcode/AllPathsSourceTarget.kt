@@ -16,6 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Backtracking
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.complexity.RuntimeComplexity
+import dev.shtanko.algorithms.complexity.SpaceComplexity
 import java.util.LinkedList
 
 /**
@@ -31,6 +35,9 @@ fun interface AllPathsSourceTarget {
  * Time Complexity: O(2^N*N)
  * Space Complexity: O(2^N*N)
  */
+@SpaceComplexity(short = "O(2^N*N)")
+@RuntimeComplexity("O(2^N*N)")
+@Backtracking
 class AllPathsSourceBacktracking : AllPathsSourceTarget {
 
     private var target = 0
@@ -70,6 +77,7 @@ class AllPathsSourceBacktracking : AllPathsSourceTarget {
 /**
  * Top-Down Dynamic Programming.
  */
+@DP
 class AllPathsSourceDP : AllPathsSourceTarget {
 
     private var target = 0

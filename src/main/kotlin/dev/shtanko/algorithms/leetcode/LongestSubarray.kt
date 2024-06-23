@@ -31,24 +31,24 @@ fun interface LongestSubarray {
  */
 class LongestSubarraySlidingWindow : LongestSubarray {
     override operator fun invoke(nums: IntArray): Int {
-        var i = 0
-        var k = 1
-        var res = 0
-        var j = 0
-        while (j < nums.size) {
-            if (nums[j] == 0) {
-                k--
+        var startIndex = 0
+        var remainingZeros = 1
+        var result = 0
+        var endIndex = 0
+        while (endIndex < nums.size) {
+            if (nums[endIndex] == 0) {
+                remainingZeros--
             }
-            while (k < 0) {
-                if (nums[i] == 0) {
-                    k++
+            while (remainingZeros < 0) {
+                if (nums[startIndex] == 0) {
+                    remainingZeros++
                 }
-                i++
+                startIndex++
             }
-            res = max(res, j - i)
-            ++j
+            result = max(result, endIndex - startIndex)
+            ++endIndex
         }
-        return res
+        return result
     }
 }
 
@@ -57,14 +57,17 @@ class LongestSubarraySlidingWindow : LongestSubarray {
  */
 class LongestSubarraySlidingWindow2 : LongestSubarray {
     override operator fun invoke(nums: IntArray): Int {
-        var i = 0
-        var k = 1
-        var j = 0
-        while (j < nums.size) {
-            if (nums[j] == 0) k--
-            if (k < 0 && nums[i++] == 0) k++
-            ++j
+        if (nums.isEmpty()) {
+            return 0
         }
-        return j - i - 1
+        var startIndex = 0
+        var remainingZeros = 1
+        var endIndex = 0
+        while (endIndex < nums.size) {
+            if (nums[endIndex] == 0) remainingZeros--
+            if (remainingZeros < 0 && nums[startIndex++] == 0) remainingZeros++
+            ++endIndex
+        }
+        return endIndex - startIndex - 1
     }
 }

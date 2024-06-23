@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Greedy
+
 /**
  * 665. Non-decreasing Array
  * https://leetcode.com/problems/non-decreasing-array/
@@ -27,6 +29,7 @@ fun interface CheckPossibility {
 /**
  * Approach: Greedy
  */
+@Greedy
 class CheckPossibilityGreedy : CheckPossibility {
     override operator fun invoke(nums: IntArray): Boolean {
         var numViolations = 0

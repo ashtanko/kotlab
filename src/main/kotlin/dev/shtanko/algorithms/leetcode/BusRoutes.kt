@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BFS
 import java.awt.Point
 import java.util.LinkedList
 import java.util.Queue
@@ -31,6 +32,7 @@ fun interface BusRoutes {
 /**
  * Approach #1: Breadth First Search
  */
+@BFS
 class BusRoutesBFS : BusRoutes {
     override fun invoke(routes: Array<IntArray>, source: Int, target: Int): Int {
         if (source == target) return 0
@@ -92,6 +94,7 @@ class BusRoutesBFS : BusRoutes {
     }
 }
 
+@BFS
 class BusRoutesBFS2 : BusRoutes {
     override fun invoke(routes: Array<IntArray>, source: Int, target: Int): Int {
         val n: Int = routes.size

@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.TwoPointers
 import java.util.Stack
 
 /**
@@ -26,6 +28,7 @@ fun interface BackspaceStringCompare {
     operator fun invoke(s: String, t: String): Boolean
 }
 
+@Iterative
 class BackspaceStringCompareStack : BackspaceStringCompare {
     override fun invoke(s: String, t: String): Boolean {
         return build(s) == build(t)
@@ -44,6 +47,7 @@ class BackspaceStringCompareStack : BackspaceStringCompare {
     }
 }
 
+@TwoPointers
 class BackspaceStringCompareTwoPointer : BackspaceStringCompare {
     override fun invoke(s: String, t: String): Boolean {
         var i: Int = s.length - 1

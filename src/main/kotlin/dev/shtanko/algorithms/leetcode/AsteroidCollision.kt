@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
 import java.util.Stack
 import kotlin.math.abs
 
@@ -30,6 +31,7 @@ fun interface AsteroidCollision {
 /**
  * Approach: Stack
  */
+@Iterative
 class AsteroidCollisionStack : AsteroidCollision {
 
     override operator fun invoke(asteroids: IntArray): IntArray {

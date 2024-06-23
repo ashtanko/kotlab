@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DFS
 import kotlin.math.max
 
 /**
@@ -26,6 +27,7 @@ fun interface ClosestMeetingNode {
     operator fun invoke(edges: IntArray, node1: Int, node2: Int): Int
 }
 
+@DFS
 class ClosestMeetingNodeDFS : ClosestMeetingNode {
     override operator fun invoke(edges: IntArray, node1: Int, node2: Int): Int {
         val n = edges.size

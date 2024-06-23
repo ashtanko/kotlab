@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
 import java.util.Collections
 import kotlin.math.max
 
@@ -27,6 +28,7 @@ fun interface AlphabetBoardPath {
     operator fun invoke(target: String): String
 }
 
+@Iterative
 class AlphabetBoardPathSB : AlphabetBoardPath {
     override operator fun invoke(target: String): String {
         var x = 0

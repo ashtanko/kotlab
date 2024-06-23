@@ -17,6 +17,8 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.DECIMAL
+import dev.shtanko.algorithms.annotations.Math
+import dev.shtanko.algorithms.annotations.StraightForward
 
 private const val MAX = 9
 
@@ -35,6 +37,7 @@ fun interface AddDigits {
  * @property DECIMAL The base number system to be used for the calculations.
  * @property MAX The maximum value that can be present in the result of the digital root calculation.
  */
+@StraightForward
 class AddDigitsStraightForward : AddDigits {
     /**
      * Calculates the digital root of a given number.
@@ -63,6 +66,7 @@ class AddDigitsStraightForward : AddDigits {
  *
  * @param num The number to be operated on.
  */
+@Math
 class AddDigitsMath : AddDigits {
     /**
      * Calculates the remainder of dividing the given number by the maximum value.
@@ -80,6 +84,7 @@ class AddDigitsMath : AddDigits {
 /**
  * Class representing the AddDigitsDigitalRoot strategy for adding digits.
  */
+@Math
 class AddDigitsDigitalRoot : AddDigits {
     /**
      * Invokes the `AddDigitsDigitalRoot` function with the given input number.

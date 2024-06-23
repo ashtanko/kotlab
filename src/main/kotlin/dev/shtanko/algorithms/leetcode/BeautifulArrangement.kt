@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Backtracking
+import dev.shtanko.algorithms.annotations.BruteForce
 import dev.shtanko.algorithms.extensions.swap
 
 /**
@@ -29,6 +31,7 @@ fun interface BeautifulArrangement {
 /**
  * Approach #2 Better Brute Force
  */
+@BruteForce
 class BABruteForce : BeautifulArrangement {
     private var count = 0
 
@@ -56,6 +59,7 @@ class BABruteForce : BeautifulArrangement {
 /**
  * Approach #3 Backtracking
  */
+@Backtracking
 class BABacktracking : BeautifulArrangement {
     private var count = 0
 

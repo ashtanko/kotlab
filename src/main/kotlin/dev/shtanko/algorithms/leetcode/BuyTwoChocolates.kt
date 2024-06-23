@@ -16,6 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Greedy
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.OnePass
+import dev.shtanko.algorithms.annotations.StraightForward
 import kotlin.math.max
 import kotlin.math.min
 
@@ -26,6 +30,7 @@ import kotlin.math.min
 sealed interface BuyTwoChocolates {
     operator fun invoke(prices: IntArray, money: Int): Int
 
+    @Iterative
     data object CheckEveryPairOfChocolate : BuyTwoChocolates {
         override fun invoke(prices: IntArray, money: Int): Int {
             // Assume Minimum Cost to be Infinity
@@ -59,6 +64,7 @@ sealed interface BuyTwoChocolates {
         }
     }
 
+    @dev.shtanko.algorithms.annotations.Greedy
     data object Greedy : BuyTwoChocolates {
         override fun invoke(prices: IntArray, money: Int): Int {
             require(prices.size > 1) {
@@ -73,6 +79,7 @@ sealed interface BuyTwoChocolates {
         }
     }
 
+    @Iterative
     data object CountingSort : BuyTwoChocolates {
 
         private const val ARR_SIZE = 101
@@ -180,6 +187,7 @@ sealed interface BuyTwoChocolates {
         }
     }
 
+    @dev.shtanko.algorithms.annotations.OnePass
     data object OnePass : BuyTwoChocolates {
         override fun invoke(prices: IntArray, money: Int): Int {
             require(prices.size > 1) {
@@ -213,6 +221,7 @@ sealed interface BuyTwoChocolates {
         }
     }
 
+    @StraightForward
     data object Simple : BuyTwoChocolates {
         private const val ARR_SIZE = 101
         override fun invoke(prices: IntArray, money: Int): Int {

@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.Math
 import kotlin.math.max
 
 /**
@@ -26,6 +29,7 @@ fun interface Candy {
     operator fun invoke(ratings: IntArray): Int
 }
 
+@BruteForce
 class CandyBruteForce : Candy {
     override operator fun invoke(ratings: IntArray): Int {
         val candies = IntArray(ratings.size) { 1 }
@@ -51,6 +55,7 @@ class CandyBruteForce : Candy {
     }
 }
 
+@Iterative
 class Candy2Arrays : Candy {
     override operator fun invoke(ratings: IntArray): Int {
         var sum = 0
@@ -93,6 +98,7 @@ class CandyArray : Candy {
     }
 }
 
+@Math
 class CandyMath : Candy {
 
     override operator fun invoke(ratings: IntArray): Int {

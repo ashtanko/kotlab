@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DP
 import kotlin.math.max
 import kotlin.math.min
 
@@ -30,6 +31,7 @@ fun interface CherryPickup {
 /**
  * Approach #2: Dynamic Programming (Top Down)
  */
+@DP("Top Down")
 class CherryPickupTopDown : CherryPickup {
     private lateinit var memo: Array<Array<IntArray>>
     private lateinit var grid: Array<IntArray>
@@ -82,6 +84,7 @@ class CherryPickupTopDown : CherryPickup {
 /**
  * Approach #3: Dynamic Programming (Bottom Up)
  */
+@DP("Bottom Up")
 class CherryPickupBottomUp : CherryPickup {
     override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0

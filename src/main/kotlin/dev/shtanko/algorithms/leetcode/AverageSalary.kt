@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+import dev.shtanko.algorithms.annotations.StraightForward
+
 /**
  * 1491. Average Salary Excluding the Minimum and Maximum Salary
  * @see <a href="https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary">
@@ -25,6 +28,7 @@ fun interface AverageSalary {
     fun average(salary: IntArray): Double
 }
 
+@BruteForce
 class AverageSalaryBruteForce : AverageSalary {
     override fun average(salary: IntArray): Double {
         var sum = 0.0
@@ -43,6 +47,7 @@ class AverageSalaryBruteForce : AverageSalary {
     }
 }
 
+@StraightForward
 class AverageSalarySimple : AverageSalary {
     override fun average(salary: IntArray): Double {
         return salary.sorted().toTypedArray().copyOfRange(1, salary.size - 1).average()

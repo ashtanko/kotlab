@@ -17,6 +17,8 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.DECIMAL
+import dev.shtanko.algorithms.annotations.OnePass
+import dev.shtanko.algorithms.annotations.StraightForward
 import java.util.LinkedList
 
 /**
@@ -27,6 +29,7 @@ fun interface AddToArrayForm {
     operator fun invoke(num: IntArray, k: Int): List<Int>
 }
 
+@StraightForward
 class AddToArrayFormSimple : AddToArrayForm {
     /**
      * Adds an integer value to each element of an array of integers using a specified base.
@@ -50,6 +53,7 @@ class AddToArrayFormSimple : AddToArrayForm {
     }
 }
 
+@OnePass
 class AddToArrayFormOnePass : AddToArrayForm {
     /**
      * Calculates the result of adding an integer to an array of integers in decimal form.

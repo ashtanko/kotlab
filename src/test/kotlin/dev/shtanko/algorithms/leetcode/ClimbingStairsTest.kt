@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class ClimbingStairsTest<out T : ClimbingStairsStrategy>(private val strategy: T) {
+abstract class ClimbingStairsTest<out T : ClimbingStairs>(private val strategy: T) {
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(1, 1),

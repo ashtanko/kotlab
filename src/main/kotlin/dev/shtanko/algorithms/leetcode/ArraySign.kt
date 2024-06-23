@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
+
 /**
  * 1822. Sign of the Product of an Array
  * @see <a href="https://leetcode.com/problems/sign-of-the-product-of-an-array/">Source</a>
@@ -27,6 +29,7 @@ fun interface ArraySign {
 /**
  * Approach 1: Counting Negative Numbers
  */
+@Iterative
 class ArraySignCountingNegativeNumbers : ArraySign {
     override operator fun invoke(nums: IntArray): Int {
         var countNegativeNumbers = 0
@@ -46,6 +49,7 @@ class ArraySignCountingNegativeNumbers : ArraySign {
 /**
  * Approach 2: Tracking the Sign of the Product
  */
+@Iterative
 class ArraySignTracking : ArraySign {
     override operator fun invoke(nums: IntArray): Int {
         var sign = 1
@@ -64,6 +68,7 @@ class ArraySignTracking : ArraySign {
 /**
  * Approach 3: Tracking the Sign of the Product
  */
+@Iterative
 class ArraySignSimple : ArraySign {
     override operator fun invoke(nums: IntArray): Int {
         var sign = 1

@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Greedy
+
 /**
  * 605. Can Place Flowers
  * @see <a href="https://leetcode.com/problems/can-place-flowers/">Source</a>
@@ -24,6 +26,7 @@ fun interface CanPlaceFlowers {
     operator fun invoke(flowerbed: IntArray, n: Int): Boolean
 }
 
+@Greedy
 class CanPlaceFlowersGreedy : CanPlaceFlowers {
     override operator fun invoke(flowerbed: IntArray, n: Int): Boolean {
         var count = 0

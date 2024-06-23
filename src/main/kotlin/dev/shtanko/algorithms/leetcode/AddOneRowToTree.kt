@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Recursive
 import java.util.*
 
 /**
@@ -29,6 +30,7 @@ fun interface AddOneRowToTree {
 /**
  * Approach #1 Using Recursion(DFS)
  */
+@Recursive
 class AddOneRowToTreeRec : AddOneRowToTree {
     /**
      * Adds a row with a specified value to a binary tree at a specified depth.

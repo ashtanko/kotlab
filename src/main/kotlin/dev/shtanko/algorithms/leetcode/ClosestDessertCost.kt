@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Backtracking
 import kotlin.math.abs
 
 /**
@@ -26,6 +27,7 @@ fun interface ClosestDessertCost {
     operator fun invoke(baseCosts: IntArray, toppingCosts: IntArray, target: Int): Int
 }
 
+@Backtracking
 class ClosestDessertCostBacktracking : ClosestDessertCost {
     private var result = 0
 

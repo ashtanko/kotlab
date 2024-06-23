@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Math
 import kotlin.math.sqrt
 
 /**
@@ -26,6 +27,7 @@ fun interface BulbSwitcher {
     operator fun invoke(num: Int): Int
 }
 
+@Math
 class BulbSwitcherMath : BulbSwitcher {
     override fun invoke(num: Int): Int = sqrt(num.toDouble()).toInt()
 }

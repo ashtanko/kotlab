@@ -16,10 +16,14 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BottomUpDP
+import dev.shtanko.algorithms.annotations.TopDownDP
+
 fun interface CherryPickup2Strategy {
     operator fun invoke(grid: Array<IntArray>): Int
 }
 
+@TopDownDP
 class CherryPickup2DPTopDown : CherryPickup2Strategy {
     override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0
@@ -71,6 +75,7 @@ class CherryPickup2DPTopDown : CherryPickup2Strategy {
     private fun isOutOfBounds(col: Int, size: Int) = col < 0 || col >= size
 }
 
+@BottomUpDP
 class CherryPickup2DPBottomUp : CherryPickup2Strategy {
     override operator fun invoke(grid: Array<IntArray>): Int {
         if (grid.isEmpty()) return 0

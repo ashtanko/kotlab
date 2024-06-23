@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DP
 import kotlin.math.min
 
 /**
@@ -25,6 +26,7 @@ fun interface CoinChange {
     operator fun invoke(coins: IntArray, amount: Int): Int
 }
 
+@DP
 class CoinChangeDP : CoinChange {
     override operator fun invoke(coins: IntArray, amount: Int): Int {
         val dp = IntArray(amount + 1) { amount + 1 }

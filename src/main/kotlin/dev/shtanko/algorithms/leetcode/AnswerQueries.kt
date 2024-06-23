@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BinarySearch
 import java.util.Arrays
 import kotlin.math.abs
 
@@ -27,6 +28,7 @@ fun interface AnswerQueries {
     operator fun invoke(nums: IntArray, queries: IntArray): IntArray
 }
 
+@BinarySearch
 class AnswerQueriesBinarySearch : AnswerQueries {
     override operator fun invoke(nums: IntArray, queries: IntArray): IntArray {
         nums.sort()

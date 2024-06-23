@@ -16,6 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.OnePass
+import dev.shtanko.algorithms.annotations.PrefixSum
+import dev.shtanko.algorithms.annotations.SlidingWindow
+
 /**
  * 930. Binary Subarrays With Sum
  * @see <a href="https://leetcode.com/problems/binary-subarrays-with-sum">Source</a>
@@ -24,6 +28,7 @@ fun interface BinarySubArraysWithSum {
     operator fun invoke(nums: IntArray, goal: Int): Int
 }
 
+@PrefixSum
 class BinarySubArraysWithSumPrefixSum : BinarySubArraysWithSum {
     override fun invoke(nums: IntArray, goal: Int): Int {
         var totalCount = 0
@@ -50,6 +55,7 @@ class BinarySubArraysWithSumPrefixSum : BinarySubArraysWithSum {
     }
 }
 
+@SlidingWindow
 class BinarySubArraysWithSumSlidingWindow : BinarySubArraysWithSum {
     override fun invoke(nums: IntArray, goal: Int): Int {
         return slidingWindowAtMost(nums, goal) - slidingWindowAtMost(nums, goal - 1)
@@ -78,6 +84,7 @@ class BinarySubArraysWithSumSlidingWindow : BinarySubArraysWithSum {
     }
 }
 
+@OnePass
 class BinarySubArraysWithSumOnePass : BinarySubArraysWithSum {
     override fun invoke(nums: IntArray, goal: Int): Int {
         var start = 0

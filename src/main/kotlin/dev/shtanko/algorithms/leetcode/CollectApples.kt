@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DFS
+
 /**
  * 1443. Minimum Time to Collect All Apples in a Tree
  * @see <a href="https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/">Source</a>
@@ -24,6 +26,7 @@ fun interface CollectApples {
     fun minTime(n: Int, edges: Array<IntArray>, hasApple: List<Boolean>): Int
 }
 
+@DFS
 class CollectApplesDFS : CollectApples {
     override fun minTime(n: Int, edges: Array<IntArray>, hasApple: List<Boolean>): Int {
         val graph: Array<MutableList<Int>> = Array(n) { ArrayList() }

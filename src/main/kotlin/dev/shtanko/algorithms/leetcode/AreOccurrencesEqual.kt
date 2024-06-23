@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.annotations.Iterative
 
 /**
  * 1941. Check if All Characters Have Equal Number of Occurrences
@@ -26,6 +27,7 @@ fun interface AreOccurrencesEqual {
     operator fun invoke(str: String): Boolean
 }
 
+@Iterative
 class AreOccurrencesEqualKotlin : AreOccurrencesEqual {
     override operator fun invoke(str: String): Boolean {
         val num = str.count { it == str[0] }

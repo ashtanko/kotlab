@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BinarySearch
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.Recursive
 import java.util.LinkedList
 import kotlin.math.abs
 
@@ -32,6 +35,7 @@ fun interface ClosestBST {
  * Time complexity : O(N)
  * Space complexity : O(N)
  */
+@Recursive
 class RecursiveInorder : ClosestBST {
     override fun closestValue(root: TreeNode?, target: Double): Int {
         val nums = inorder(root)
@@ -56,6 +60,7 @@ class RecursiveInorder : ClosestBST {
 /**
  * Approach 2: Iterative Inorder, O(k) time
  */
+@Iterative
 class IterativeInorder : ClosestBST {
     override fun closestValue(root: TreeNode?, target: Double): Int {
         val stack: LinkedList<TreeNode?> = LinkedList()
@@ -89,6 +94,7 @@ class IterativeInorder : ClosestBST {
  * Time complexity : O(H)
  * Space complexity : O(1)
  */
+@BinarySearch
 class ClosestBSTBinarySearch : ClosestBST {
     override fun closestValue(root: TreeNode?, target: Double): Int {
         var value: Int

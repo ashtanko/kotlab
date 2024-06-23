@@ -16,12 +16,15 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Bitwise
+import dev.shtanko.algorithms.annotations.BruteForce
 import kotlin.math.ln
 
 /**
  * 1009. Complement of Base 10 Integer
  * @see <a href="https://leetcode.com/problems/complement-of-base-10-integer/">Source</a>
  */
+@Bitwise
 fun interface BitwiseComplement {
     operator fun invoke(n: Int): Int
 }
@@ -98,6 +101,7 @@ class HighestOneBit : BitwiseComplement {
     }
 }
 
+@BruteForce
 class BitwiseComplementBruteForce : BitwiseComplement {
     override operator fun invoke(n: Int): Int {
         var x = 1

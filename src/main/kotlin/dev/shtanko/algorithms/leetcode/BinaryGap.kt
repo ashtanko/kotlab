@@ -16,13 +16,16 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.OnePass
+
 private const val MAX_SIZE = 32
 
 /**
  * 868. Binary Gap
  * @see <a href="https://leetcode.com/problems/binary-gap/">Source</a>
  */
-fun interface BinaryGapStrategy {
+fun interface BinaryGap {
     operator fun invoke(num: Int): Int
 }
 
@@ -31,12 +34,17 @@ fun interface BinaryGapStrategy {
  * Time Complexity: O(log N).
  * Space Complexity: O(log N).
  */
-class BGStoreIndexes : BinaryGapStrategy {
+@Iterative
+class BGStoreIndexes : BinaryGap {
 
     override fun invoke(num: Int): Int {
         val indexes = IntArray(MAX_SIZE)
         var indexCount = 0
-        for (i in 0 until MAX_SIZE) if (num shr i and 1 != 0) indexes[indexCount++] = i
+        for (i in 0 until MAX_SIZE) {
+            if (num shr i and 1 != 0) {
+                indexes[indexCount++] = i
+            }
+        }
         var maxGap = 0
         for (i in 0 until indexCount - 1) maxGap = maxGap.coerceAtLeast(indexes[i + 1] - indexes[i])
         return maxGap
@@ -48,7 +56,8 @@ class BGStoreIndexes : BinaryGapStrategy {
  * Time Complexity: O(log N).
  * Space Complexity: O(1).
  */
-class BGOnePass : BinaryGapStrategy {
+@OnePass
+class BGOnePass : BinaryGap {
     override fun invoke(num: Int): Int {
         var last = -1
         var ans = 0
@@ -61,7 +70,7 @@ class BGOnePass : BinaryGapStrategy {
     }
 }
 
-class BGOther : BinaryGapStrategy {
+class BGOther : BinaryGap {
     override fun invoke(num: Int): Int {
         var max = 0
         var pos = 0

@@ -17,6 +17,9 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.annotations.Bitwise
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.Sort
 
 /**
  * 1657. Determine if Two Strings Are Close
@@ -26,6 +29,7 @@ fun interface CloseStrings {
     operator fun invoke(word1: String, word2: String): Boolean
 }
 
+@Iterative
 class CloseStringsMap : CloseStrings {
 
     override operator fun invoke(word1: String, word2: String): Boolean {
@@ -51,6 +55,7 @@ class CloseStringsMap : CloseStrings {
     }
 }
 
+@Bitwise
 class CloseStringsBitwise : CloseStrings {
 
     override operator fun invoke(word1: String, word2: String): Boolean {
@@ -89,6 +94,7 @@ class CloseStringsBitwise : CloseStrings {
     }
 }
 
+@Sort
 class CloseStringsSort : CloseStrings {
     override operator fun invoke(word1: String, word2: String): Boolean {
         val freq1 = IntArray(ALPHABET_LETTERS_COUNT)

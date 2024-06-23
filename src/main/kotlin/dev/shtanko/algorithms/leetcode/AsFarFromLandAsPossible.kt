@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DP
 import kotlin.math.max
 import kotlin.math.min
 
@@ -27,6 +28,7 @@ fun interface AsFarFromLandAsPossible {
     fun maxDistance(grid: Array<IntArray>): Int
 }
 
+@DP
 class AsFarFromLandAsPossibleDP : AsFarFromLandAsPossible {
     override fun maxDistance(grid: Array<IntArray>): Int {
         val n: Int = grid.size

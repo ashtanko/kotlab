@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DFS
+
 /**
  * 1719. Number Of Ways To Reconstruct A Tree
  * @see <a href="https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/">Source</a>
@@ -24,6 +26,7 @@ fun interface CheckWays {
     operator fun invoke(pairs: Array<IntArray>): Int
 }
 
+@DFS
 class CheckWaysDFS : CheckWays {
 
     var result = 1

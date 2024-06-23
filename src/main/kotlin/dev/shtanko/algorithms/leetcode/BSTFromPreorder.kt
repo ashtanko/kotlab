@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Recursive
+
 /**
  * 1008. Construct Binary Search Tree from Preorder Traversal
  * @see <a href="https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal">
@@ -25,6 +27,7 @@ fun interface BSTFromPreorder {
     operator fun invoke(preorder: IntArray): TreeNode?
 }
 
+@Recursive
 class BSTFromPreorderRecursion : BSTFromPreorder {
 
     private var i = 0

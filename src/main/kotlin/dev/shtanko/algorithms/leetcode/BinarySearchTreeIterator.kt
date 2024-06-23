@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Recursive
 import java.util.Stack
 
 interface BSTIterator {
@@ -24,6 +25,7 @@ interface BSTIterator {
     fun hasNext(): Boolean
 }
 
+@Recursive
 class BSTIteratorFlattening(root: TreeNode?) : BSTIterator {
 
     private val nodesSorted: MutableList<Int> = ArrayList()
@@ -45,6 +47,7 @@ class BSTIteratorFlattening(root: TreeNode?) : BSTIterator {
     }
 }
 
+@Recursive
 class BSTIteratorControlledRecursion(root: TreeNode?) : BSTIterator {
 
     private val stack = Stack<TreeNode>()

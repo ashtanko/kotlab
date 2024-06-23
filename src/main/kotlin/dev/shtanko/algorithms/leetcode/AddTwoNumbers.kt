@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.DECIMAL
+import dev.shtanko.algorithms.annotations.Math
 
 /**
  * 2. Add Two Numbers
@@ -26,6 +27,7 @@ fun interface AddTwoNumbers {
     operator fun invoke(l1: ListNode?, l2: ListNode?): ListNode?
 }
 
+@Math
 class AddTwoNumbersMath : AddTwoNumbers {
     override fun invoke(l1: ListNode?, l2: ListNode?): ListNode? {
         val dummy = ListNode(0) // creating a dummy list

@@ -16,8 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
 import java.util.Arrays
 
+@Iterative
 class BoldWordsInString {
     operator fun invoke(words: Array<String>, str: String): String {
         val bold = BooleanArray(str.length + 1)

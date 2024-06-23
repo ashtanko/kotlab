@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.annotations.Memoization
 import kotlin.math.max
 
 /**
@@ -26,6 +28,7 @@ fun interface BurstBalloons {
     operator fun invoke(nums: IntArray): Int
 }
 
+@Memoization
 class BurstBalloonsMemoization : BurstBalloons {
     override fun invoke(nums: IntArray): Int {
         val n: Int = nums.size
@@ -54,6 +57,7 @@ class BurstBalloonsMemoization : BurstBalloons {
     }
 }
 
+@DP
 class BurstBalloonsDP : BurstBalloons {
     override fun invoke(nums: IntArray): Int {
         val n: Int = nums.size

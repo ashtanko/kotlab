@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BottomUpDP
+import dev.shtanko.algorithms.annotations.TopDownDP
+
 /**
  * 518. Coin Change II
  * @see <a href="https://leetcode.com/problems/coin-change-ii/">Source</a>
@@ -27,6 +30,7 @@ fun interface CoinChange2 {
 /**
  * Approach 1: Top-Down Dynamic Programming
  */
+@TopDownDP
 class CoinChange2TopDown : CoinChange2 {
 
     private lateinit var memo: Array<IntArray>
@@ -59,6 +63,7 @@ class CoinChange2TopDown : CoinChange2 {
 /**
  * Approach 2: Bottom-Up Dynamic Programming
  */
+@BottomUpDP
 class CoinChange2BottomUp : CoinChange2 {
     override fun change(amount: Int, coins: IntArray): Int {
         val n: Int = coins.size

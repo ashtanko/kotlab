@@ -17,6 +17,8 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.annotations.BFS
+import dev.shtanko.algorithms.annotations.DFS
 import java.util.LinkedList
 import java.util.Queue
 import kotlin.math.min
@@ -33,6 +35,7 @@ fun interface AlienDictionary {
  * Approach 1: Breadth-First Search
  * Time complexity : O(C).
  */
+@BFS
 class AlienDictionaryBFS : AlienDictionary {
     override fun invoke(words: Array<String>): String {
         val adjList: MutableMap<Char, MutableList<Char>> = HashMap()
@@ -119,6 +122,7 @@ class AlienDictionaryBFS : AlienDictionary {
  * Approach 2: Depth-First Search
  * Time complexity : O(C).
  */
+@DFS
 class AlienDictionaryDFS : AlienDictionary {
 
     override fun invoke(words: Array<String>): String {

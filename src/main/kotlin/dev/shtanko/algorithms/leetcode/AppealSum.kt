@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.annotations.DP
 
 /**
  * 2262. Total Appeal of A String
@@ -38,6 +39,7 @@ fun interface AppealSum {
  * For each character in the string, it updates the current appeal and the previous occurrence of the character,
  * and adds the current appeal to the total appeal.
  */
+@DP
 class AppealSumDP : AppealSum {
 
     override operator fun invoke(str: String): Long {
@@ -57,6 +59,7 @@ class AppealSumDP : AppealSum {
  * This class provides an implementation of the AppealSum interface using Kotlin's mapIndexed function.
  * It calculates the appeal of each character in the string and sums them up to get the total appeal.
  */
+@DP
 class AppealSumDPKt : AppealSum {
     override operator fun invoke(str: String): Long {
         var cur: Long = 0

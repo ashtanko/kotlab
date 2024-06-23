@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
+import dev.shtanko.algorithms.annotations.Recursive
+
 /**
  * 894. All Possible Full Binary Trees
  * @see <a href="https://leetcode.com/problems/all-possible-full-binary-trees/">Source</a>
@@ -24,6 +27,7 @@ fun interface AllPossibleFullBinaryTrees {
     operator fun invoke(n: Int): List<TreeNode?>
 }
 
+@Iterative
 class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
     override fun invoke(n: Int): List<TreeNode?> {
         val ret: MutableList<TreeNode> = mutableListOf()
@@ -90,6 +94,7 @@ class AllPossibleFullBinaryTreesIterative : AllPossibleFullBinaryTrees {
     }
 }
 
+@Recursive
 class AllPossibleFullBinaryTreesRecursive : AllPossibleFullBinaryTrees {
     override fun invoke(n: Int): List<TreeNode?> {
         val ret: MutableList<TreeNode> = ArrayList()

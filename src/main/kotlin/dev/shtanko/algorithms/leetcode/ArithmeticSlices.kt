@@ -16,6 +16,14 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+import dev.shtanko.algorithms.annotations.BruteForceOptimized
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.annotations.Math
+import dev.shtanko.algorithms.annotations.Recursive
+import dev.shtanko.algorithms.complexity.RuntimeComplexity
+import dev.shtanko.algorithms.complexity.SpaceComplexity
+
 /**
  * Arithmetic Slices
  * @see <a href="https://leetcode.com/problems/arithmetic-slices/">Source</a>
@@ -29,6 +37,9 @@ fun interface ArithmeticSlices {
  * Time complexity : O(n^3).
  * Space complexity : O(1).
  */
+@RuntimeComplexity(short = "O(n^3)")
+@SpaceComplexity(short = "O(1)")
+@BruteForce
 class ArSlicesBruteForce : ArithmeticSlices {
     override fun invoke(arr: IntArray): Int {
         var count = 0
@@ -52,6 +63,9 @@ class ArSlicesBruteForce : ArithmeticSlices {
  * Time complexity : O(n^2).
  * Space complexity : O(1).
  */
+@RuntimeComplexity(short = "O(n^2)")
+@SpaceComplexity(short = "O(1)")
+@BruteForceOptimized
 class ArSlicesBetterBruteForce : ArithmeticSlices {
     override fun invoke(arr: IntArray): Int {
         var count = 0
@@ -70,6 +84,7 @@ class ArSlicesBetterBruteForce : ArithmeticSlices {
  * Time complexity : O(n).
  * Space complexity : O(n).
  */
+@Recursive
 class ArSlicesRecursion : ArithmeticSlices {
 
     private var sum = 0
@@ -97,6 +112,7 @@ class ArSlicesRecursion : ArithmeticSlices {
  * Time complexity : O(n).
  * Space complexity : O(n).
  */
+@DP
 class ArSlicesDP : ArithmeticSlices {
     override fun invoke(arr: IntArray): Int {
         val dp = IntArray(arr.size)
@@ -116,6 +132,7 @@ class ArSlicesDP : ArithmeticSlices {
  * Time complexity : O(n).
  * Space complexity : O(1).
  */
+@DP("Constant Space DP")
 class ArSlicesConstantSpaceDP : ArithmeticSlices {
     override fun invoke(arr: IntArray): Int {
         var dp = 0
@@ -137,6 +154,7 @@ class ArSlicesConstantSpaceDP : ArithmeticSlices {
  * Time complexity : O(n).
  * Space complexity : O(1).
  */
+@Math
 class ArSlicesFormula : ArithmeticSlices {
     override fun invoke(arr: IntArray): Int {
         var count = 0

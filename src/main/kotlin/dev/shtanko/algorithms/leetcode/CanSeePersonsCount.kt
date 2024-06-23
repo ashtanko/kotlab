@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
 import java.util.Stack
 
 /**
@@ -26,6 +27,7 @@ fun interface CanSeePersonsCount {
     operator fun invoke(heights: IntArray): IntArray
 }
 
+@Iterative
 class CanSeePersonsCountStack : CanSeePersonsCount {
     override operator fun invoke(heights: IntArray): IntArray {
         val n: Int = heights.size

@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Greedy
 import java.util.TreeMap
 
 /**
@@ -26,6 +27,7 @@ fun interface ArrayOfDoubledPairs {
     operator fun invoke(arr: IntArray): Boolean
 }
 
+@Greedy
 class ArrayOfDoubledPairsGreedy : ArrayOfDoubledPairs {
     override fun invoke(arr: IntArray): Boolean {
         val count: MutableMap<Int, Int> = TreeMap()

@@ -16,6 +16,10 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.annotations.Math
+import dev.shtanko.algorithms.annotations.Memoization
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -23,11 +27,12 @@ import kotlin.math.sqrt
  * 70. Climbing Stairs
  * @see <a href="https://leetcode.com/problems/climbing-stairs">Source</a>
  */
-fun interface ClimbingStairsStrategy {
+fun interface ClimbingStairs {
     operator fun invoke(n: Int): Int
 }
 
-class ClimbingStairsBruteForce : ClimbingStairsStrategy {
+@BruteForce
+class ClimbingStairsBruteForce : ClimbingStairs {
     override operator fun invoke(n: Int): Int {
         return climbStairs(0, n)
     }
@@ -44,7 +49,8 @@ class ClimbingStairsBruteForce : ClimbingStairsStrategy {
     }
 }
 
-class ClimbingStairsRecursionMemo : ClimbingStairsStrategy {
+@Memoization
+class ClimbingStairsRecursionMemo : ClimbingStairs {
     override operator fun invoke(n: Int): Int {
         val memo = IntArray(n + 1)
         return climbStairs(0, n, memo)
@@ -65,7 +71,8 @@ class ClimbingStairsRecursionMemo : ClimbingStairsStrategy {
     }
 }
 
-class ClimbingStairsDP : ClimbingStairsStrategy {
+@DP
+class ClimbingStairsDP : ClimbingStairs {
     override operator fun invoke(n: Int): Int {
         if (n == 1) {
             return 1
@@ -82,7 +89,8 @@ class ClimbingStairsDP : ClimbingStairsStrategy {
     }
 }
 
-class ClimbingStairsFibonacci : ClimbingStairsStrategy {
+@Math
+class ClimbingStairsFibonacci : ClimbingStairs {
     override operator fun invoke(n: Int): Int {
         if (n == 1) {
             return 1
@@ -98,7 +106,8 @@ class ClimbingStairsFibonacci : ClimbingStairsStrategy {
     }
 }
 
-class ClimbingStairsBinetsMethod : ClimbingStairsStrategy {
+@Math
+class ClimbingStairsBinetsMethod : ClimbingStairs {
     override operator fun invoke(n: Int): Int {
         val q = arrayOf(intArrayOf(1, 1), intArrayOf(1, 0))
         val res = pow(q, n)
@@ -130,7 +139,8 @@ class ClimbingStairsBinetsMethod : ClimbingStairsStrategy {
     }
 }
 
-class ClimbingStairsFibonacciFormula : ClimbingStairsStrategy {
+@Math
+class ClimbingStairsFibonacciFormula : ClimbingStairs {
 
     override operator fun invoke(n: Int): Int {
         val sqrt5 = sqrt(FIB_FORMULA_VALUE)

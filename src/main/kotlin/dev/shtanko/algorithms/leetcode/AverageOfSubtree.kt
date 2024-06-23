@@ -29,6 +29,7 @@ sealed interface AverageOfSubtreeStrategy {
     /**
      * Approach: Depth First Search (DFS)
      */
+    @dev.shtanko.algorithms.annotations.DFS
     data object DFS : AverageOfSubtree, AverageOfSubtreeStrategy {
         private var result = 0
 

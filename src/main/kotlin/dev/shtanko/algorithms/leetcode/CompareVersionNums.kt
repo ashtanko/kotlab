@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Iterative
+
 /**
  * 165. Compare Version Numbers
  * @see <a href="https://leetcode.com/problems/compare-version-numbers/">Source</a>
@@ -24,6 +26,7 @@ fun interface CompareVersionNums {
     operator fun invoke(version1: String, version2: String): Int
 }
 
+@Iterative
 class CompareVersionNumsStream : CompareVersionNums {
     override fun invoke(version1: String, version2: String): Int {
         val versionStream1 = VersionStream(version1)

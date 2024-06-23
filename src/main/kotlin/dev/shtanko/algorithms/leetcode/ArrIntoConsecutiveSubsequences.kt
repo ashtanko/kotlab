@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Greedy
 import java.util.LinkedList
 import java.util.Queue
 
@@ -68,6 +69,7 @@ class ArrIntoConsecutiveSubsequencesQueue : ArrIntoConsecutiveSubsequences {
  * Time Complexity: O(N).
  * Space Complexity: O(N).
  */
+@Greedy
 class ArrIntoConsecutiveSubsequencesGreedy : ArrIntoConsecutiveSubsequences {
     override fun invoke(nums: IntArray): Boolean {
         val count = CounterMap()
