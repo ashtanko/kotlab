@@ -36,7 +36,7 @@ class SmallestStrStartingFromLeafDFS : SmallestStrStartingFromLeaf {
         return smallest
     }
 
-    private tailrec fun dfs(root: TreeNode?, sb: StringBuilder) {
+    private fun dfs(root: TreeNode?, sb: StringBuilder) {
         if (root == null) {
             return
         }

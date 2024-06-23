@@ -66,6 +66,6 @@ class TwoOutOfThreeKotlinWay : TwoOutOfThree {
             }
         }
         return (1 until TwoOutOfThree.ARR_SIZE)
-            .filter { number -> countArrays.sumBy { it[number] } >= 2 }
+            .filter { number -> countArrays.sumOf { it[number] } >= 2 }
     }
 }
