@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.interview.traversals
+package dev.shtanko.algorithms.tree.traversals
 
-interface TreeTraversalStrategy {
-    fun inOrderIterative(root: BinaryTreeNode): List<Int>
-    fun inOrderIterativeStack(root: BinaryTreeNode): List<Int>
+/**
+ * BinaryTreeTraversalStrategy is a functional interface that represents a tree traversal operation.
+ * It defines a single method `invoke` that takes a root of a binary tree and returns a list of integers.
+ * The list of integers represents the order of node visitation in the traversal.
+ *
+ * @param root The root node of the binary tree to be traversed.
+ * @return A list of integers representing the order of node visitation in the traversal.
+ */
+fun interface BinaryTreeTraversalStrategy {
+    operator fun invoke(root: BinaryTreeNode): List<Int>
 }

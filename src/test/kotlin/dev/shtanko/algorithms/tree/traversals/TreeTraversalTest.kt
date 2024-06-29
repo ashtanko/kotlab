@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.interview.traversals
+package dev.shtanko.algorithms.tree.traversals
 
+import dev.shtanko.algorithms.tree.traversals.inorder.BinaryTreeInorderIterativeTraversal
+import dev.shtanko.algorithms.tree.traversals.inorder.BinaryTreeInorderStackTraversal
 import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -24,7 +26,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private val strategy: T) {
+internal abstract class TreeTraversalTest<out T : BinaryTreeTraversalStrategy>(private val strategy: T) {
 
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -65,16 +67,15 @@ internal abstract class TreeTraversalTest<out T : TreeTraversalStrategy>(private
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `in order iterative test`(root: BinaryTreeNode, expected: List<Int>) {
-        val actual = strategy.inOrderIterative(root)
-        assertEquals(expected, actual)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `in order iterative using stack test`(root: BinaryTreeNode, expected: List<Int>) {
-        val actual = strategy.inOrderIterativeStack(root)
+        val actual = strategy(root)
         assertEquals(expected, actual)
     }
 }
 
-internal class TreeTraversalImplTest : TreeTraversalTest<TreeTraversal>(TreeTraversal())
+internal class BinaryTreeInorderIterativeTraversalTest : TreeTraversalTest<BinaryTreeTraversalStrategy>(
+    BinaryTreeInorderIterativeTraversal(),
+)
+
+internal class BinaryTreeInorderStackTraversalTest : TreeTraversalTest<BinaryTreeTraversalStrategy>(
+    BinaryTreeInorderStackTraversal(),
+)

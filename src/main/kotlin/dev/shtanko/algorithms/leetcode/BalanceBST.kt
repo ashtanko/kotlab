@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Recursive
+
 /**
  * 1382. Balance a Binary Search Tree
  * @see <a href="https://leetcode.com/problems/balance-a-binary-search-tree/">Source</a>
@@ -24,6 +26,10 @@ fun interface BalanceBST {
     operator fun invoke(root: TreeNode?): TreeNode?
 }
 
+/**
+ * Approach 1: Inorder Traversal + Recursive Construction
+ */
+@Recursive(info = "Inorder Traversal")
 class BalanceBSTInorder : BalanceBST {
     private val sortedArr: MutableList<TreeNode> = ArrayList()
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,29 +14,15 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.interview.traversals
+package dev.shtanko.algorithms.tree.traversals.inorder
 
+import dev.shtanko.algorithms.tree.traversals.BinaryTreeNode
+import dev.shtanko.algorithms.tree.traversals.BinaryTreeTraversalStrategy
 import java.util.LinkedList
 import java.util.Stack
 
-class BinaryTreeNode(
-    var left: BinaryTreeNode? = null,
-    var right: BinaryTreeNode? = null,
-    val data: Int,
-) {
-
-    var parent: BinaryTreeNode? = null
-
-    init {
-        left?.parent = this
-        right?.parent = this
-    }
-
-    fun isRightChild(): Boolean = this.parent?.right == this
-}
-
-class TreeTraversal : TreeTraversalStrategy {
-    override fun inOrderIterative(root: BinaryTreeNode): List<Int> {
+class BinaryTreeInorderIterativeTraversal : BinaryTreeTraversalStrategy {
+    override fun invoke(root: BinaryTreeNode): List<Int> {
         var node: BinaryTreeNode? = getLeftmost(root)
         val list = LinkedList<Int>()
 
@@ -57,7 +43,18 @@ class TreeTraversal : TreeTraversalStrategy {
         return list
     }
 
-    override fun inOrderIterativeStack(root: BinaryTreeNode): List<Int> {
+    private fun getLeftmost(startingNode: BinaryTreeNode): BinaryTreeNode {
+        var node: BinaryTreeNode? = startingNode
+        while (node?.left != null) {
+            node = node.left
+        }
+
+        return node ?: startingNode
+    }
+}
+
+class BinaryTreeInorderStackTraversal : BinaryTreeTraversalStrategy {
+    override fun invoke(root: BinaryTreeNode): List<Int> {
         val stack = Stack<BinaryTreeNode>()
         var current: BinaryTreeNode? = root
         val list = LinkedList<Int>()
@@ -73,14 +70,5 @@ class TreeTraversal : TreeTraversalStrategy {
             }
         }
         return list
-    }
-
-    private fun getLeftmost(startingNode: BinaryTreeNode): BinaryTreeNode {
-        var node: BinaryTreeNode? = startingNode
-        while (node?.left != null) {
-            node = node.left
-        }
-
-        return node ?: startingNode
     }
 }
