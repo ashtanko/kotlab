@@ -16,15 +16,17 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.UnionFind
+
 /**
  * 1579. Remove Max Number of Edges to Keep Graph Fully Traversable
- * @see <a href="https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable">
- *     Source</a>
+ * @see <a href="https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable">Source</a>
  */
 fun interface MaxNumEdgesToRemove {
     operator fun invoke(n: Int, edges: Array<IntArray>): Int
 }
 
+@UnionFind
 class MaxNumEdgesToRemoveDSU : MaxNumEdgesToRemove {
     override operator fun invoke(n: Int, edges: Array<IntArray>): Int {
         // Different objects for Alice and Bob.
