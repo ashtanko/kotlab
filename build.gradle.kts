@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
 
@@ -143,7 +144,11 @@ koverReport {
 }
 
 tasks {
-    withType<Jar> {
+    named("distZip") {
+        dependsOn(withType<ShadowJar>())
+    }
+
+    withType<ShadowJar> {
         print("Build Report Parser: $name")
         archiveFileName.set("detekt_report_parser.jar")
         archiveVersion.set("")

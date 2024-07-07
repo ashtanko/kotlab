@@ -8,7 +8,7 @@ In Kotlin coroutines, dispatchers determine the thread or threads on which a cor
 - **Characteristics**: Uses a shared pool of threads, typically equal to the number of CPU cores available.
 - **Example**:
   
-  ```kotlin
+```kotlin
   import kotlinx.coroutines.*
 
   fun main() = runBlocking {

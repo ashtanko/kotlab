@@ -28,6 +28,24 @@ abstract class NQueensTest<out T : NQueens>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                0,
+                listOf(emptyList<List<String>>()),
+            ),
+            Arguments.of(
+                1,
+                listOf(
+                    listOf("Q"),
+                ),
+            ),
+            Arguments.of(
+                2,
+                emptyList<List<String>>(),
+            ),
+            Arguments.of(
+                3,
+                emptyList<List<String>>(),
+            ),
+            Arguments.of(
                 4,
                 listOf(
                     listOf(".Q..", "...Q", "Q...", "..Q."),
@@ -35,16 +53,19 @@ abstract class NQueensTest<out T : NQueens>(private val strategy: T) {
                 ),
             ),
             Arguments.of(
-                1,
-                listOf(listOf("Q")),
-            ),
-            Arguments.of(
-                2,
-                emptyList<List<String>>(),
-            ),
-            Arguments.of(
-                0,
-                listOf(emptyList<List<String>>()),
+                5,
+                listOf(
+                    listOf("Q....", "..Q..", "....Q", ".Q...", "...Q."),
+                    listOf("Q....", "...Q.", ".Q...", "....Q", "..Q.."),
+                    listOf(".Q...", "...Q.", "Q....", "..Q..", "....Q"),
+                    listOf(".Q...", "....Q", "..Q..", "Q....", "...Q."),
+                    listOf("..Q..", "Q....", "...Q.", ".Q...", "....Q"),
+                    listOf("..Q..", "....Q", ".Q...", "...Q.", "Q...."),
+                    listOf("...Q.", "Q....", "..Q..", "....Q", ".Q..."),
+                    listOf("...Q.", ".Q...", "....Q", "..Q..", "Q...."),
+                    listOf("....Q", ".Q...", "...Q.", "Q....", "..Q.."),
+                    listOf("....Q", "..Q..", "Q....", "...Q.", ".Q..."),
+                ),
             ),
         )
     }
