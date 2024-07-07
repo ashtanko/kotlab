@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,46 +24,29 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class WaterBottlesTest {
+abstract class PassThePillowTest<out T : PassThePillow>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                9,
-                3,
-                13,
-            ),
-            Arguments.of(
-                15,
                 4,
-                19,
-            ),
-            Arguments.of(
                 5,
-                5,
-                6,
-            ),
-            Arguments.of(
-                2,
-                3,
                 2,
             ),
             Arguments.of(
-                15,
-                8,
-                17,
-            ),
-            Arguments.of(
-                15,
-                4,
-                19,
+                3,
+                2,
+                3,
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `num water bottles test`(numBottles: Int, numExchange: Int, expected: Int) {
-        val actual = WaterBottles().invoke(numBottles, numExchange)
+    fun `pass the pillow test`(num: Int, time: Int, expected: Int) {
+        val actual = strategy(num, time)
         assertThat(actual).isEqualTo(expected)
     }
 }
+
+class PassThePillowSimulationTest : PassThePillowTest<PassThePillow>(PassThePillowSimulation())
+class PassThePillowMathTest : PassThePillowTest<PassThePillow>(PassThePillowMath())

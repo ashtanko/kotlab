@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package dev.shtanko.algorithms.leetcode
+package dev.shtanko.concurrency
 
-/**
- * 1518. Water Bottles
- * @see <a href="https://leetcode.com/problems/water-bottles/">Source</a>
- */
-class WaterBottles {
-    operator fun invoke(numBottles: Int, numExchange: Int): Int {
-        if (numExchange == 0) return numBottles
-        var nBottles = numBottles
-        var ans = nBottles
-        while (nBottles >= numExchange) {
-            val remainder = nBottles % numExchange
-            nBottles /= numExchange
-            ans += nBottles
-            nBottles += remainder
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
+
+fun main() = runBlocking {
+    // Example of a simple flow emitting values
+    val flow = flow {
+        for (i in 1..3) {
+            delay(100) // Simulating asynchronous behavior
+            emit(i) // Emitting values asynchronously
         }
-        return ans
+    }
+
+    // Collecting values emitted by the flow
+    flow.collect { value ->
+        println(value) // Prints: 1, 2, 3
     }
 }
