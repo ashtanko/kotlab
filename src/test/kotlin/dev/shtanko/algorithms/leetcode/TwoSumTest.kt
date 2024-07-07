@@ -86,7 +86,7 @@ abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
     }
 }
 
-class TwoSumBruteForceTest : TwoSumTest<TwoSumBruteForce>(TwoSumBruteForce())
-class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumTwoPassHashTable>(TwoSumTwoPassHashTable())
-class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumOnePassHashTable>(TwoSumOnePassHashTable())
-class TwoSumOneHashMapTest : TwoSumTest<TwoSumOneHashMap>(TwoSumOneHashMap())
+class TwoSumBruteForceTest : TwoSumTest<TwoSumStrategy>(TwoSumBruteForce())
+class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumStrategy>(TwoSumTwoPassHashTable())
+class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumStrategy>(TwoSumOnePassHashTable())
+class TwoSumOneHashMapTest : TwoSumTest<TwoSumStrategy>(TwoSumOneHashMap())

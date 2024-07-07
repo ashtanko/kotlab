@@ -16,40 +16,23 @@
 
 package dev.shtanko.algorithms.twopointers
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class ValidPalindromeTest {
 
+    private val testCases = listOf(
+        "A man, a plan, a canal: Panama" to true,
+        "race a car" to false,
+        "Was it a car or a cat I saw?" to true,
+        "" to true,
+    )
+
     @Test
     fun `test valid palindrome with alphanumeric characters`() {
-        val input = "A man, a plan, a canal: Panama"
-        val isValid = isPalindrome(input)
-
-        assertEquals(true, isValid)
-    }
-
-    @Test
-    fun `test invalid palindrome with alphanumeric characters`() {
-        val input = "race a car"
-        val isValid = isPalindrome(input)
-
-        assertEquals(false, isValid)
-    }
-
-    @Test
-    fun `test valid palindrome with special characters and spaces`() {
-        val input = "Was it a car or a cat I saw?"
-        val isValid = isPalindrome(input)
-
-        assertEquals(true, isValid)
-    }
-
-    @Test
-    fun `test empty string`() {
-        val input = ""
-        val isValid = isPalindrome(input)
-
-        assertEquals(true, isValid)
+        testCases.forEach { (s, expected) ->
+            val actual = s.isPalindrome()
+            assertThat(actual).isEqualTo(expected)
+        }
     }
 }

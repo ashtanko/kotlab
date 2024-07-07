@@ -17,12 +17,14 @@
 package dev.shtanko.algorithms.annotations
 
 /**
- * This annotation is used to mark classes, functions, or properties that implement or are related to the
- * Binary Search algorithm.
- *
- * @property info An optional string that provides additional information about the Binary Search implementation
- * or usage.
- * @constructor Creates a new Binary Search annotation.
+ * # How Two Pointers Work
+ * * Initialization: Typically, you initialize two pointers at different positions.
+ * For example, one pointer might start at the beginning of an array, and the other might start at the end.
+ * * Movement: The pointers are then moved towards each other or in a way that helps in achieving the desired condition.
+ * This movement is usually based on some condition or criteria defined by the problem.
+ * * Comparison or Calculation: At each step, you perform some comparison or calculation involving the elements at the
+ * pointers’ positions.
+ * * Termination: The process continues until the pointers meet or cross each other, or until a certain condition is met
  */
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)

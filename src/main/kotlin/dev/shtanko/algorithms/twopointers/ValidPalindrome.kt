@@ -20,15 +20,15 @@ package dev.shtanko.algorithms.twopointers
  *  Valid Palindrome:
  * Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
  */
-fun isPalindrome(s: String): Boolean {
+fun String.isPalindrome(): Boolean {
     var left = 0
-    var right = s.length - 1
+    var right = length - 1
 
     while (left < right) {
-        while (left < right && !s[left].isLetterOrDigit()) left++
-        while (left < right && !s[right].isLetterOrDigit()) right--
+        while (left < right && !get(left).isLetterOrDigit()) left++
+        while (left < right && !get(right).isLetterOrDigit()) right--
 
-        if (s[left].lowercaseChar() != s[right].lowercaseChar()) {
+        if (get(left).lowercaseChar() != get(right).lowercaseChar()) {
             return false
         }
         left++

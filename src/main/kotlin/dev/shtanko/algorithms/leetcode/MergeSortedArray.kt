@@ -16,38 +16,41 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.TwoPointers
+
 /**
  * 88. Merge Sorted Array
  * @see <a href="https://leetcode.com/problems/merge-sorted-array">Source</a>
  */
 fun interface MergeSortedArray {
-    operator fun invoke(nums1: IntArray, m: Int, nums2: IntArray, n: Int)
+    operator fun invoke(firstArray: IntArray, firstArraySize: Int, secondArray: IntArray, secondArraySize: Int)
 }
 
 class MergeSortedArrayStl : MergeSortedArray {
-    override fun invoke(nums1: IntArray, m: Int, nums2: IntArray, n: Int) {
-        var j = 0
-        var i = m
-        while (j < n) {
-            nums1[i] = nums2[j]
-            i++
-            j++
+    override fun invoke(firstArray: IntArray, firstArraySize: Int, secondArray: IntArray, secondArraySize: Int) {
+        var secondArrayIndex = 0
+        var mergeIndex = firstArraySize
+        while (secondArrayIndex < secondArraySize) {
+            firstArray[mergeIndex] = secondArray[secondArrayIndex]
+            mergeIndex++
+            secondArrayIndex++
         }
-        nums1.sort()
+        firstArray.sort()
     }
 }
 
+@TwoPointers
 class MergeSortedArrayTwoPointer : MergeSortedArray {
-    override fun invoke(nums1: IntArray, m: Int, nums2: IntArray, n: Int) {
-        var i = m - 1
-        var j = n - 1
-        var k = m + n - 1
+    override fun invoke(firstArray: IntArray, firstArraySize: Int, secondArray: IntArray, secondArraySize: Int) {
+        var firstIndex = firstArraySize - 1
+        var secondIndex = secondArraySize - 1
+        var mergeIndex = firstArraySize + secondArraySize - 1
 
-        while (j >= 0) {
-            if (i >= 0 && nums1[i] > nums2[j]) {
-                nums1[k--] = nums1[i--]
+        while (secondIndex >= 0) {
+            if (firstIndex >= 0 && firstArray[firstIndex] > secondArray[secondIndex]) {
+                firstArray[mergeIndex--] = firstArray[firstIndex--]
             } else {
-                nums1[k--] = nums2[j--]
+                firstArray[mergeIndex--] = secondArray[secondIndex--]
             }
         }
     }

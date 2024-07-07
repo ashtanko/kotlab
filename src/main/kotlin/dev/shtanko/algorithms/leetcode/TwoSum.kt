@@ -16,6 +16,8 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+
 /**
  * 1. Two Sum
  * @see <a href="https://leetcode.com/problems/two-sum/">Source</a>
@@ -29,6 +31,7 @@ fun interface TwoSumStrategy {
  * Time complexity : O(n^2).
  * Space complexity : O(1).
  */
+@BruteForce
 class TwoSumBruteForce : TwoSumStrategy {
     override operator fun invoke(nums: IntArray, target: Int): IntArray {
         for (i in nums.indices) {
