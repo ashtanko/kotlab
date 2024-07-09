@@ -16,7 +16,7 @@
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0
 
 val projectJvmTarget = 17
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
@@ -25,7 +25,7 @@ val isK2Enabled = true
 val k2CompilerArg = if (isK2Enabled) listOf("-Xuse-k2") else emptyList()
 val outputDir = "${project.layout.buildDirectory}/reports/ktlint/"
 val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
-val kotlinVersion = KOTLIN_1_9
+val kotlinVersion = KOTLIN_2_0
 
 fun isLinux(): Boolean {
     val osName = System.getProperty("os.name").lowercase()
