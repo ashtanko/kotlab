@@ -26,50 +26,69 @@ import java.util.Queue
  * @see <a href="https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/">Source</a>
  */
 fun interface ReverseParentheses {
-    operator fun invoke(s: String): String
+    operator fun invoke(str: String): String
 }
 
 class ReverseParenthesesBF : ReverseParentheses {
-    override operator fun invoke(s: String): String {
-        val st: Stack<Char> = Stack()
-        for (c in s.toCharArray()) {
-            if (c == ')') {
-                val p: Queue<Char> = LinkedList()
-                while (st.isNotEmpty() && st.peek() != '(') p.add(st.poll())
-                if (st.isNotEmpty()) st.poll()
-                while (p.isNotEmpty()) st.push(p.remove())
+    override operator fun invoke(str: String): String {
+        val stack: Stack<Char> = Stack()
+        for (char in str.toCharArray()) {
+            if (char == ')') {
+                val queue: Queue<Char> = LinkedList()
+                while (stack.isNotEmpty() && stack.peek() != '(') queue.add(stack.poll())
+                if (stack.isNotEmpty()) stack.poll() // Remove the '(' from stack
+                while (queue.isNotEmpty()) stack.push(queue.remove())
             } else {
-                st.push(c)
+                stack.push(char)
             }
         }
-        val sb = StringBuilder()
-        while (st.isNotEmpty()) sb.append(st.poll())
+        val result = StringBuilder()
+        while (stack.isNotEmpty()) result.append(stack.poll())
 
-        return sb.reverse().toString()
+        return result.reverse().toString()
     }
 }
 
 class ReverseParenthesesSort : ReverseParentheses {
-    override operator fun invoke(s: String): String {
-        val dq: Deque<StringBuilder> = LinkedList()
-        dq.push(java.lang.StringBuilder()) // In case the first char is NOT '(', need an empty StringBuilder.
+    override operator fun invoke(str: String): String {
+        val deque: Deque<StringBuilder> = LinkedList()
+        deque.push(StringBuilder())
 
-        for (c in s.toCharArray()) {
-            when (c) {
-                '(' -> { // need a new StringBuilder to save substring in brackets pair
-                    dq.offer(java.lang.StringBuilder())
+        for (char in str.toCharArray()) {
+            when (char) {
+                '(' -> {
+                    deque.offer(StringBuilder())
                 }
 
-                ')' -> { // found a matched brackets pair and reverse the substring between them.
-                    val end = dq.pollLast()
-                    dq.peekLast().append(end.reverse())
+                ')' -> {
+                    val current = deque.pollLast()
+                    deque.peekLast().append(current.reverse())
                 }
 
-                else -> { // append the char to the last StringBuilder.
-                    dq.peekLast().append(c)
+                else -> {
+                    deque.peekLast().append(char)
                 }
             }
         }
-        return dq.pollLast().toString()
+        return deque.pollLast().toString()
+    }
+}
+
+class ReverseParenthesesStringBuilder : ReverseParentheses {
+    override fun invoke(str: String): String {
+        val n = str.length
+        var i = 0
+        fun dfs(): StringBuilder = StringBuilder().apply {
+            while (i < n && str[i] != ')') {
+                if (str[i] == '(') {
+                    i += 1
+                    append(dfs().reverse())
+                } else {
+                    append(str[i])
+                }
+                i += 1
+            }
+        }
+        return dfs().toString()
     }
 }

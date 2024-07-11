@@ -68,3 +68,5 @@ abstract class ReverseParenthesesTest<out T : ReverseParentheses>(private val st
 
 class ReverseParenthesesBFTest : ReverseParenthesesTest<ReverseParentheses>(ReverseParenthesesBF())
 class ReverseParenthesesSortTest : ReverseParenthesesTest<ReverseParentheses>(ReverseParenthesesSort())
+class ReverseParenthesesStringBuilderTest :
+    ReverseParenthesesTest<ReverseParentheses>(ReverseParenthesesStringBuilder())
