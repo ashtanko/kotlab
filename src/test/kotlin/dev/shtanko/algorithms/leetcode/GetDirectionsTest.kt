@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,40 +24,40 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class NumberOfAtomsTest<out T : NumberOfAtoms>(private val strategy: T) {
+abstract class GetDirectionsTest<out T : GetDirections>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                "",
-                "",
+                TreeNode(5).apply {
+                    left = TreeNode(1).apply {
+                        left = TreeNode(3)
+                    }
+                    right = TreeNode(2).apply {
+                        left = TreeNode(6)
+                        right = TreeNode(4)
+                    }
+                },
+                3,
+                6,
+                "UURL",
             ),
             Arguments.of(
-                "H",
-                "H",
-            ),
-            Arguments.of(
-                "H2O",
-                "H2O",
-            ),
-            Arguments.of(
-                "Mg(OH)2",
-                "H2MgO2",
-            ),
-            Arguments.of(
-                "K4(ON(SO3)2)2",
-                "K4N2O14S4",
+                TreeNode(2).apply {
+                    left = TreeNode(1)
+                },
+                2,
+                1,
+                "L",
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `count of atoms test`(formula: String, expected: String) {
-        val actual = strategy.invoke(formula)
+    fun `get directions test`(root: TreeNode?, startValue: Int, destValue: Int, expected: String) {
+        val actual = strategy(root, startValue, destValue)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-class NumberOfAtomsRecursionTest : NumberOfAtomsTest<NumberOfAtoms>(NumberOfAtomsRecursion())
-class NumberOfAtomsStackTest : NumberOfAtomsTest<NumberOfAtoms>(NumberOfAtomsStack())
-class NumberOfAtomsRegexTest : NumberOfAtomsTest<NumberOfAtoms>(NumberOfAtomsRegex())
+class GetDirectionsBFSTest : GetDirectionsTest<GetDirections>(GetDirectionsBFS())

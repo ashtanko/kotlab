@@ -28,6 +28,10 @@ abstract class CreateBinaryTreeTest<out T : CreateBinaryTree>(private val strate
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
+                arrayOf<IntArray>(),
+                listOf<Int>(),
+            ),
+            Arguments.of(
                 arrayOf(
                     intArrayOf(20, 15, 1),
                     intArrayOf(20, 17, 0),

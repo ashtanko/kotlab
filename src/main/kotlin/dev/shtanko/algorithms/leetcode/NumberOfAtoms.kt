@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Recursive
 import java.util.Stack
 import java.util.TreeMap
 import java.util.regex.Matcher
@@ -26,16 +27,17 @@ import java.util.regex.Pattern
  * @see <a href="https://leetcode.com/problems/number-of-atoms/">Source</a>
  */
 fun interface NumberOfAtoms {
-    fun countOfAtoms(formula: String): String
+    operator fun invoke(formula: String): String
 }
 
 /**
  * Approach #1: Recursion
  */
+@Recursive
 class NumberOfAtomsRecursion : NumberOfAtoms {
     var i = 0
 
-    override fun countOfAtoms(formula: String): String {
+    override fun invoke(formula: String): String {
         val ans = StringBuilder()
         i = 0
         val count = parse(formula)
@@ -90,7 +92,7 @@ class NumberOfAtomsRecursion : NumberOfAtoms {
  * Approach #2: Stack
  */
 class NumberOfAtomsStack : NumberOfAtoms {
-    override fun countOfAtoms(formula: String): String {
+    override fun invoke(formula: String): String {
         val n: Int = formula.length
         val stack: Stack<MutableMap<String, Int>> = Stack()
         stack.push(TreeMap())
@@ -145,7 +147,7 @@ class NumberOfAtomsStack : NumberOfAtoms {
  * Approach #3: Regular Expressions
  */
 class NumberOfAtomsRegex : NumberOfAtoms {
-    override fun countOfAtoms(formula: String): String {
+    override fun invoke(formula: String): String {
         val matcher: Matcher = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))(\\d*)").matcher(formula)
         val stack: Stack<MutableMap<String, Int>> = Stack()
         stack.push(TreeMap())
@@ -158,7 +160,7 @@ class NumberOfAtomsRegex : NumberOfAtoms {
                 val top: Map<String, Int> = stack.pop()
                 val multiplicity = if (match.length > 1) match.substring(1, match.length).toInt() else 1
                 for (name in top.keys) {
-                    stack.peek()[name] = stack.peek().getOrDefault(name, 0) + top[name]!! * multiplicity
+                    stack.peek()[name] = stack.peek().getOrDefault(name, 0) + top.getOrDefault(name, 0) * multiplicity
                 }
             } else {
                 var i = 1

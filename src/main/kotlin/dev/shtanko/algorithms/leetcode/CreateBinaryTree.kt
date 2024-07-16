@@ -26,32 +26,22 @@ fun interface CreateBinaryTree {
 
 class CreateBinaryTreeHashMap : CreateBinaryTree {
     override operator fun invoke(descriptions: Array<IntArray>): TreeNode? {
-        val map = HashMap<Int, TreeNode?>()
-        val children: MutableSet<Int> = HashSet()
-        for (arr in descriptions) {
-            val parent = arr[0]
-            val child = arr[1]
-            val isLeft = arr[2]
-            children.add(child)
-            val node = map.getOrDefault(parent, TreeNode(parent))
+        val parentToNodeMap = HashMap<Int, TreeNode?>()
+        val childNodes = HashSet<Int>()
+        descriptions.forEach { (parent, child, isLeft) ->
+            childNodes.add(child)
+            val parentNode = parentToNodeMap.getOrDefault(parent, TreeNode(parent))
             if (isLeft == 1) {
-                node?.left = map.getOrDefault(child, TreeNode(child))
-                map[child] = node?.left
+                parentNode?.left = parentToNodeMap.getOrDefault(child, TreeNode(child))
+                parentToNodeMap[child] = parentNode?.left
             } else {
-                node?.right = map.getOrDefault(child, TreeNode(child))
-                map[child] = node?.right
+                parentNode?.right = parentToNodeMap.getOrDefault(child, TreeNode(child))
+                parentToNodeMap[child] = parentNode?.right
             }
-            map[parent] = node
+            parentToNodeMap[parent] = parentNode
         }
 
-        var root = -1
-        for (arr in descriptions) {
-            if (!children.contains(arr[0])) {
-                root = arr[0]
-                break
-            }
-        }
-
-        return map.getOrDefault(root, null)
+        val rootId = descriptions.find { !childNodes.contains(it[0]) }?.get(0) ?: -1
+        return parentToNodeMap[rootId]
     }
 }
