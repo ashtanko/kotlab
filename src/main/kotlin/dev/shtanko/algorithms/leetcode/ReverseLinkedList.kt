@@ -29,9 +29,10 @@ fun reverseListIterative(head: ListNode?): ListNode? {
 }
 
 fun reverseListRecursive(head: ListNode?): ListNode? {
-    if (head?.next == null) return head
-    val p: ListNode? = reverseListRecursive(head.next)
+    val next = head?.next
+    if (head == null || next == null) return head
+    val reversedRest: ListNode? = reverseListRecursive(next)
     head.next?.next = head
     head.next = null
-    return p
+    return reversedRest
 }

@@ -17,6 +17,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.MOD
+import dev.shtanko.kotlinlang.functions.sum
 
 /**
  * 1711. Count Good Meals
@@ -36,7 +37,7 @@ class CountPairsTwoSum : CountPairs {
                 res += map.getOrDefault((1 shl i) - e, 0).toLong()
             }
             map.merge(e, 1) { a: Int, b: Int ->
-                Integer.sum(a, b)
+                sum(a, b)
             }
         }
         return (res % MOD).toInt()
