@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
+@Suppress("MagicNumber")
 fun main() = runBlocking {
-    val flow = (1..5).asFlow()
-        .map { it * it } // Transforming each emitted value
-        .filter { it % 2 == 0 } // Filtering even numbers
-
-    flow.collect { value ->
-        println(value) // Prints: 4, 16
+    val deferred = async {
+        delay(1000)
+        "Deferred result"
     }
+    println("Waiting for async computation...")
+    println("Result: ${deferred.await()}")
 }

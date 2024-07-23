@@ -16,15 +16,20 @@
 
 package dev.shtanko.concurrency
 
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
+import org.jetbrains.kotlinx.lincheck.annotations.Operation
+import org.jetbrains.kotlinx.lincheck.check
+import org.jetbrains.kotlinx.lincheck.strategy.managed.modelchecking.ModelCheckingOptions
+import org.junit.jupiter.api.Test
 
-fun main() = runBlocking {
-    // Example of a cold flow that emits values when collected
-    val flow = flowOf(1, 2, 3)
+class CounterLinearizabilityTest {
+    private val counter = Counter()
 
-    // Collecting values emitted by the cold flow
-    flow.collect { value ->
-        println(value) // Prints: 1, 2, 3
-    }
+    @Operation
+    fun inc() = counter.inc()
+
+    @Operation
+    fun get() = counter.get()
+
+    @Test
+    fun modelCheckingTest() = ModelCheckingOptions().check(this::class)
 }

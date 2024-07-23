@@ -14,22 +14,29 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-@Suppress("TooGenericExceptionThrown")
 fun main() = runBlocking {
-    val flow = flow {
-        emit(1)
-        throw Error("Exception emitted")
+    // Create a channel of integers with a buffer size of 3
+    val channel = Channel<Int>(capacity = 3)
+
+    // Launch a coroutine to send data
+    launch {
+        repeat(5) {
+            println("Sending $it")
+            channel.send(it)
+        }
+        channel.close() // Close the channel when done sending
     }
 
-    flow.catch { e ->
-        println("Caught exception: $e") // Handling the emitted exception
-    }.collect { value ->
-        println(value) // This line won't be reached due to the thrown exception
+    // Receive data from the channel
+    for (value in channel) {
+        println("Received $value")
     }
+
+    println("Done receiving")
 }

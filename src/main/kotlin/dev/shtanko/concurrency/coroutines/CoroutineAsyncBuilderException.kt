@@ -14,25 +14,32 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @Suppress("MagicNumber")
 fun main() = runBlocking {
-    // Launching a coroutine and getting its Job
-    val job = launch {
-        repeat(1000) { i ->
-            println("Job: I'm sleeping $i ...")
-            delay(500L)
+    val deferred = async {
+        try {
+            delay(1000)
+            "Deferred result"
+        } catch (e: CancellationException) {
+            "Error occurred: ${e.message}"
         }
     }
-
-    delay(1300L) // Delay a bit
-    println("main: I'm tired of waiting!")
-    job.cancelAndJoin() // Cancels the job and waits for its completion
-    println("main: Now I can quit.")
+    val deferred2 = async {
+        try {
+            delay(2000)
+            "Deferred result"
+        } catch (e: CancellationException) {
+            "Error occurred: ${e.message}"
+        }
+    }
+    println("Waiting for async computation...")
+    println("Result: ${awaitAll(deferred, deferred2)}")
 }

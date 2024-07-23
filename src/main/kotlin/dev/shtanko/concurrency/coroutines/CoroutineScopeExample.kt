@@ -14,19 +14,30 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-fun main(): Unit = runBlocking {
-    launch(Dispatchers.Unconfined) {
-        // Executes in the main thread until the first suspension
-        println("Coroutine started in thread: ${Thread.currentThread().name}")
+@Suppress("MagicNumber")
+fun main() = runBlocking {
+    println("Start")
 
-        delay(100)
-        println("Coroutine resumed in thread: ${Thread.currentThread().name}")
+    val job = launch {
+        coroutineScope {
+            launch {
+                delay(1000)
+                println("Task 1 completed")
+            }
+            launch {
+                delay(2000)
+                println("Task 2 completed")
+            }
+        }
     }
+
+    job.join() // Wait for the completion of the job and all its children
+    println("End")
 }

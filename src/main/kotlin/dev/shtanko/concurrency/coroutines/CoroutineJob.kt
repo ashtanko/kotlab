@@ -14,39 +14,25 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @Suppress("MagicNumber")
 fun main() = runBlocking {
-    val flow = flow {
-        emit(1)
-        delay(100)
-        emit(2)
-        delay(100)
-        emit(3)
-    }
-
+    // Launching a coroutine and getting its Job
     val job = launch {
-        try {
-            flow.collect { value ->
-                println(value)
-                if (value == 2) cancel() // Cancelling the flow collection
-            }
-        } catch (e: CancellationException) {
-            println("Flow collection cancelled: ${e.message}")
-            e.printStackTrace() // Log the exception
-            throw e // Optionally rethrow the exception if you want to propagate it
+        repeat(1000) { i ->
+            println("Job: I'm sleeping $i ...")
+            delay(500L)
         }
     }
 
-    delay(250) // Delay to allow some elements to be emitted
-    job.cancelAndJoin() // Cancelling the job collecting the flow
+    delay(1300L) // Delay a bit
+    println("main: I'm tired of waiting!")
+    job.cancelAndJoin() // Cancels the job and waits for its completion
+    println("main: Now I can quit.")
 }

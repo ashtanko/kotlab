@@ -14,29 +14,26 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-fun main() = runBlocking {
-    // Create a channel of integers with a buffer size of 3
-    val channel = Channel<Int>(capacity = 3)
-
-    // Launch a coroutine to send data
+@Suppress("MagicNumber")
+suspend fun doWork() = coroutineScope {
     launch {
-        repeat(5) {
-            println("Sending $it")
-            channel.send(it)
-        }
-        channel.close() // Close the channel when done sending
+        delay(1000)
+        println("Task 1 completed")
     }
-
-    // Receive data from the channel
-    for (value in channel) {
-        println("Received $value")
+    launch {
+        delay(2000)
+        println("Task 2 completed")
     }
+}
 
-    println("Done receiving")
+fun main() = runBlocking {
+    doWork()
+    println("Main function completed")
 }

@@ -14,23 +14,19 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import java.util.concurrent.Executors
-import kotlin.system.exitProcess
-import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-@Suppress("MagicNumber")
 fun main(): Unit = runBlocking {
-    val customDispatcher =
-        Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()).asCoroutineDispatcher()
+    launch(Dispatchers.Unconfined) {
+        // Executes in the main thread until the first suspension
+        println("Coroutine started in thread: ${Thread.currentThread().name}")
 
-    launch(customDispatcher) {
-        // Perform task using custom dispatcher
-        delay(1000)
-        exitProcess(0)
+        delay(100)
+        println("Coroutine resumed in thread: ${Thread.currentThread().name}")
     }
 }

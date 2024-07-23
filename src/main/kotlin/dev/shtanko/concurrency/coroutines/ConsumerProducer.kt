@@ -14,8 +14,13 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
+import kotlin.also
+import kotlin.collections.forEachIndexed
+import kotlin.let
+import kotlin.ranges.until
+import kotlin.text.toInt
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch

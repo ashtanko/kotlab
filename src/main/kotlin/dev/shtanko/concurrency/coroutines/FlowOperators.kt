@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 
-suspend fun fetchData() {
-    val result = withContext(Dispatchers.IO) {
-        // Perform network or disk I/O operation
+fun main() = runBlocking {
+    val flow = (1..5).asFlow()
+        .map { it * it } // Transforming each emitted value
+        .filter { it % 2 == 0 } // Filtering even numbers
+
+    flow.collect { value ->
+        println(value) // Prints: 4, 16
     }
-    // Process the fetched data
-}
-
-fun main(): Unit = runBlocking {
-    fetchData()
 }

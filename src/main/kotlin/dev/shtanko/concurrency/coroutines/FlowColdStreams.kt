@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
-    // Example of a simple flow emitting values
-    val flow = flow {
-        for (i in 1..3) {
-            delay(100) // Simulating asynchronous behavior
-            emit(i) // Emitting values asynchronously
-        }
-    }
+    // Example of a cold flow that emits values when collected
+    val flow = flowOf(1, 2, 3)
 
-    // Collecting values emitted by the flow
+    // Collecting values emitted by the cold flow
     flow.collect { value ->
         println(value) // Prints: 1, 2, 3
     }

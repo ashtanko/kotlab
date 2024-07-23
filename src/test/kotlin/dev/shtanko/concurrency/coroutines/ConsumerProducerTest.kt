@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.channels.Channel

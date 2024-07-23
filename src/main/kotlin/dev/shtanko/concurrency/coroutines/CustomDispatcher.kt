@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.async
+import java.util.concurrent.Executors
+import kotlin.system.exitProcess
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @Suppress("MagicNumber")
-fun main() = runBlocking {
-    val deferred = async {
+fun main(): Unit = runBlocking {
+    val customDispatcher =
+        Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()).asCoroutineDispatcher()
+
+    launch(customDispatcher) {
+        // Perform task using custom dispatcher
         delay(1000)
-        "Deferred result"
+        exitProcess(0)
     }
-    println("Waiting for async computation...")
-    println("Result: ${deferred.await()}")
 }

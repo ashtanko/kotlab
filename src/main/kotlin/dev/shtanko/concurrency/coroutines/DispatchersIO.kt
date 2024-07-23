@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
-fun main() = runBlocking {
-    val flow = flow {
-        emit(1)
+suspend fun fetchData() {
+    val result = withContext(Dispatchers.IO) {
+        // Perform network or disk I/O operation
     }
+    // Process the fetched data
+}
 
-    val transformed = flow.map { value ->
-        value * 2 // Transformation preserves the context of the original flow
-    }
-
-    transformed.collect { value ->
-        println(value) // Prints: 2
-    }
+fun main(): Unit = runBlocking {
+    fetchData()
 }

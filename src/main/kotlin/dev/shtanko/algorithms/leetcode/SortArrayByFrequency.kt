@@ -14,26 +14,20 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.algorithms.leetcode
 
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-
-@Suppress("MagicNumber")
-suspend fun doWork() = coroutineScope {
-    launch {
-        delay(1000)
-        println("Task 1 completed")
-    }
-    launch {
-        delay(2000)
-        println("Task 2 completed")
-    }
+/**
+ * 1636. Sort Array by Increasing Frequency
+ * @see <a href="https://leetcode.com/problems/sort-array-by-increasing-frequency">Source</a>
+ */
+fun interface SortArrayByFrequency {
+    operator fun invoke(nums: IntArray): IntArray
 }
 
-fun main() = runBlocking {
-    doWork()
-    println("Main function completed")
+class SortArrayByFrequencyImpl : SortArrayByFrequency {
+    override fun invoke(nums: IntArray): IntArray {
+        val map = mutableMapOf<Int, Int>()
+        nums.forEach { num -> map[num] = map.getOrDefault(num, 0) + 1 }
+        return nums.sortedWith(compareBy({ map[it] }, { -it })).toIntArray()
+    }
 }

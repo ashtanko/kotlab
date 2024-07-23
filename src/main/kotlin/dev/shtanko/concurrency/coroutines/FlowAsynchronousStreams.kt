@@ -14,22 +14,23 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.buffer
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
-    val flow = (1..50).asFlow()
-        .onEach { delay(100) } // Simulating time-consuming emissions
-        .buffer(capacity = BUFFERED, onBufferOverflow = BufferOverflow.SUSPEND) // Buffering emissions
-        .collectLatest { value ->
-            println("Collected: $value") // Prints only the latest collected value
+    // Example of a simple flow emitting values
+    val flow = flow {
+        for (i in 1..3) {
+            delay(100) // Simulating asynchronous behavior
+            emit(i) // Emitting values asynchronously
         }
+    }
+
+    // Collecting values emitted by the flow
+    flow.collect { value ->
+        println(value) // Prints: 1, 2, 3
+    }
 }

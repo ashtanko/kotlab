@@ -14,30 +14,22 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
-@Suppress("MagicNumber")
 fun main() = runBlocking {
-    println("Start")
-
-    val job = launch {
-        coroutineScope {
-            launch {
-                delay(1000)
-                println("Task 1 completed")
-            }
-            launch {
-                delay(2000)
-                println("Task 2 completed")
-            }
-        }
+    val flow = flow {
+        emit(1)
     }
 
-    job.join() // Wait for the completion of the job and all its children
-    println("End")
+    val transformed = flow.map { value ->
+        value * 2 // Transformation preserves the context of the original flow
+    }
+
+    transformed.collect { value ->
+        println(value) // Prints: 2
+    }
 }

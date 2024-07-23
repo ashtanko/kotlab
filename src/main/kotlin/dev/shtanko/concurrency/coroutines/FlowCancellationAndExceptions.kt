@@ -14,32 +14,39 @@
  * limitations under the License.
  */
 
-package dev.shtanko.concurrency
+package dev.shtanko.concurrency.coroutines
 
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @Suppress("MagicNumber")
 fun main() = runBlocking {
-    val deferred = async {
+    val flow = flow {
+        emit(1)
+        delay(100)
+        emit(2)
+        delay(100)
+        emit(3)
+    }
+
+    val job = launch {
         try {
-            delay(1000)
-            "Deferred result"
+            flow.collect { value ->
+                println(value)
+                if (value == 2) cancel() // Cancelling the flow collection
+            }
         } catch (e: CancellationException) {
-            "Error occurred: ${e.message}"
+            println("Flow collection cancelled: ${e.message}")
+            e.printStackTrace() // Log the exception
+            throw e // Optionally rethrow the exception if you want to propagate it
         }
     }
-    val deferred2 = async {
-        try {
-            delay(2000)
-            "Deferred result"
-        } catch (e: CancellationException) {
-            "Error occurred: ${e.message}"
-        }
-    }
-    println("Waiting for async computation...")
-    println("Result: ${awaitAll(deferred, deferred2)}")
+
+    delay(250) // Delay to allow some elements to be emitted
+    job.cancelAndJoin() // Cancelling the job collecting the flow
 }
