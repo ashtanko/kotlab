@@ -37,7 +37,6 @@ object DeadLockSample {
         thread {
             synchronized(res2) {
                 println("Lock res 2 in thread: ${Thread.currentThread().name}")
-
                 synchronized(res1) {
                     println("Lock res 2 in thread: ${Thread.currentThread().name}")
                 }
