@@ -16,7 +16,6 @@
 
 package dev.shtanko.api
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.lang.String.format
 import java.util.Base64
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -102,7 +101,6 @@ fun createRetrofit(httpClient: OkHttpClient, baseUrl: HttpUrl = BASE_URL.toHttpU
     val contentType = JSON_CONTENT_TYPE.toMediaType()
     return Retrofit.Builder()
         .baseUrl(baseUrl)
-        .addConverterFactory(json.asConverterFactory(contentType))
         .client(httpClient)
         .build()
 }

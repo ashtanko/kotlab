@@ -26,32 +26,32 @@ fun interface CountNumberOfTeams {
 
 class CountNumberOfTeamsSolution : CountNumberOfTeams {
     override fun invoke(rating: IntArray): Int {
-        var res = 0
+        var teamCount = 0
         for (i in 1 until rating.size - 1) {
-            val less = countLess(rating, i)
-            val greater = countGreater(rating, i)
-            res += less[0] * greater[1] + greater[0] * less[1]
+            val lessCounts = countLess(rating, i)
+            val greaterCounts = countGreater(rating, i)
+            teamCount += lessCounts[0] * greaterCounts[1] + greaterCounts[0] * lessCounts[1]
         }
-        return res
+        return teamCount
     }
 
     private fun countLess(rating: IntArray, index: Int): IntArray {
-        val less = intArrayOf(0, 0)
+        val lessCounts = intArrayOf(0, 0)
         for (j in rating.indices) {
             if (rating[index] < rating[j]) {
-                ++less[if (j > index) 1 else 0]
+                ++lessCounts[if (j > index) 1 else 0]
             }
         }
-        return less
+        return lessCounts
     }
 
     private fun countGreater(rating: IntArray, index: Int): IntArray {
-        val greater = intArrayOf(0, 0)
+        val greaterCounts = intArrayOf(0, 0)
         for (j in rating.indices) {
             if (rating[index] > rating[j]) {
-                ++greater[if (j > index) 1 else 0]
+                ++greaterCounts[if (j > index) 1 else 0]
             }
         }
-        return greater
+        return greaterCounts
     }
 }

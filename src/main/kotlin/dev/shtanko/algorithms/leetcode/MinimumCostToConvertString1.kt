@@ -17,6 +17,8 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.annotations.Dijkstra
+import dev.shtanko.algorithms.annotations.FloydWarshall
 import java.util.PriorityQueue
 
 /**
@@ -30,6 +32,7 @@ fun interface MinimumCostToConvertString1 {
 /**
  * Approach 1: Dijkstra's Algorithm
  */
+@Dijkstra
 class MinimumCostDijkstra : MinimumCostToConvertString1 {
     override fun invoke(
         source: String,
@@ -104,6 +107,7 @@ class MinimumCostDijkstra : MinimumCostToConvertString1 {
 /**
  * Approach 2: Floyd-Warshall Algorithm
  */
+@FloydWarshall
 class MinimumCostFloydWarshall : MinimumCostToConvertString1 {
     override fun invoke(
         source: String,

@@ -1,35 +1,34 @@
 [versions]
-coroutines = "1.8.0"        # https://github.com/Kotlin/kotlinx.coroutines
-junit = "5.10.2"            # https://junit.org/junit5/
-kotlin = "2.0.0"            # https://github.com/JetBrains/kotlin
-detekt = "1.23.5"           # https://github.com/detekt/detekt
+coroutines = " 1.9.0-RC"    # https://github.com/Kotlin/kotlinx.coroutines
+junit = "5.11.0-M2"         # https://junit.org/junit5/
+kotlin = "2.0.0"            # https://kotlinlang.org/docs/releases.html
+detekt = "1.23.6"           # https://github.com/detekt/detekt
 dokka = "1.9.20"            # https://github.com/Kotlin/dokka
-spotless = "6.25.0"         # https://github.com/diffplug/spotless
-dependency = "1.30.0"       # https://github.com/autonomousapps/dependency-analysis-gradle-plugin
+spotless = "7.0.0.BETA1"    # https://github.com/diffplug/spotless
+dependency = "1.33.0"       # https://github.com/autonomousapps/dependency-analysis-gradle-plugin
 pitest = "1.15.0"           # https://plugins.gradle.org/plugin/info.solidsoft.pitest
 ktlint = "0.49.0"           # https://github.com/pinterest/ktlint
-kapt = "1.9.23"             # https://kotlinlang.org/docs/kapt.html
+kapt = "2.0.0"              # https://kotlinlang.org/docs/kapt.html
 slf4j = "1.7.36"            # https://www.slf4j.org TODO remove
 rxjava = "3.1.8"            # https://github.com/ReactiveX/RxJava TODO remove
 rxkotlin = "3.0.1"          # https://github.com/ReactiveX/RxKotlin TODO remove
 lincheck = "2.32"           # https://github.com/JetBrains/lincheck
-serialization = "1.6.3"     # https://github.com/Kotlin/kotlinx.serialization
-retrofit = "2.9.0"          # https://github.com/square/retrofit TODO remove
-serializationconv = "1.0.0" # https://github.com/JakeWharton/retrofit2-kotlinx-serialization-converter TODO remove
+serialization = "1.7.1"     # https://github.com/Kotlin/kotlinx.serialization
+retrofit = "2.11.0"         # https://github.com/square/retrofit TODO remove
 okhttp = "5.0.0-alpha.12"   # https://square.github.io/okhttp/changelogs/changelog TODO remove
-dagger = "2.51"             # https://dagger.dev TODO remove
+dagger = "2.51.1"           # https://dagger.dev TODO remove
 jmh = "1.37"                # https://github.com/openjdk/jmh
 kotlintest = "3.4.2"        # https://mvnrepository.com/artifact/io.kotlintest/kotlintest-core
-kotest = "5.8.1"            # https://kotest.io
-assertj = "3.25.3"          # https://mvnrepository.com/artifact/org.assertj/assertj-core
-mockito = "5.8.0"           # https://mvnrepository.com/artifact/org.mockito/mockito-core
+kotest = "5.9.1"            # https://kotest.io
+assertj = "3.26.3"          # https://mvnrepository.com/artifact/org.assertj/assertj-core
+mockito = "5.12.0"          # https://mvnrepository.com/artifact/org.mockito/mockito-core
 mockito_kotlin = "2.2.0"    # https://github.com/mockito/mockito-kotlin
 logback = "1.2.11"          # https://logback.qos.ch
 hamcrest = "2.2"            # https://hamcrest.org/JavaHamcrest/distributables
-mockk = "1.13.10"           # https://mockk.io
+mockk = "1.13.12"           # https://mockk.io
 kover = "0.7.6"             # https://github.com/Kotlin/kotlinx-kover
 diktat = "2.0.0"            # https://github.com/saveourtool/diktat
-jsoup = "1.17.2"            # https://jsoup.org/
+jsoup = "1.18.1"            # https://jsoup.org/
 
 [libraries]
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
@@ -49,7 +48,6 @@ rxkotlin = { module = "io.reactivex.rxjava3:rxkotlin", version.ref = "rxkotlin" 
 lincheck = { module = "org.jetbrains.kotlinx:lincheck", version.ref = "lincheck" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-mock = { module = "com.squareup.retrofit2:retrofit-mock", version.ref = "retrofit" }
-retrofit-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serializationconv" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }

@@ -23,15 +23,15 @@ import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
  * @see <a href="https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique">Source</a>
  */
 fun interface MinDeletions {
-    operator fun invoke(s: String): Int
+    operator fun invoke(str: String): Int
 }
 
 class MinDeletionsGreedy : MinDeletions {
-    override fun invoke(s: String): Int {
+    override fun invoke(str: String): Int {
         val cnt = IntArray(ALPHABET_LETTERS_COUNT)
         var res = 0
         val used: MutableSet<Int> = HashSet()
-        for (element in s) {
+        for (element in str) {
             ++cnt[element - 'a']
         }
         for (i in 0 until ALPHABET_LETTERS_COUNT) {

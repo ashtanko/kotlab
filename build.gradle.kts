@@ -243,7 +243,7 @@ tasks {
         description = "Runs over whole code base without the starting overhead for each module."
         parallel = true
         baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
-        config.from(file("config/detekt/detekt.yml"))
+        config.from(file("$rootDir/config/detekt/detekt.yml"))
         jvmTarget = "$projectJvmTarget"
 
         setSource(files("src/main/kotlin", "src/test/kotlin"))
@@ -305,7 +305,6 @@ dependencies {
         implementation(kotlin.serialization.json)
         implementation(retrofit)
         implementation(retrofit.mock)
-        implementation(retrofit.converter)
         implementation(okhttp)
         implementation("org.openjdk.jol:jol-core:0.17")
 

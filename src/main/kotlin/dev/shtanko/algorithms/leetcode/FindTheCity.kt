@@ -16,6 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BellmanFord
+import dev.shtanko.algorithms.annotations.Dijkstra
+import dev.shtanko.algorithms.annotations.FloydWarshall
 import java.util.Deque
 import java.util.PriorityQueue
 
@@ -57,6 +60,7 @@ private fun getCityWithFewestReachable(
 /**
  * Approach 1: Dijkstra Algorithm
  */
+@Dijkstra
 class FindTheCityDijkstra : FindTheCity {
 
     override fun invoke(
@@ -121,6 +125,7 @@ class FindTheCityDijkstra : FindTheCity {
     }
 }
 
+@BellmanFord
 class FindTheCityBellmanFord : FindTheCity {
     override fun invoke(
         num: Int,
@@ -261,6 +266,7 @@ class FindTheCitySPFA : FindTheCity {
 /**
  * Approach 4: Floyd-Warshall Algorithm
  */
+@FloydWarshall
 class FindTheCityFloydWarshall : FindTheCity {
     override fun invoke(
         num: Int,
