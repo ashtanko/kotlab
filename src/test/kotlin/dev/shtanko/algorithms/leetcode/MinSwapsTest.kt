@@ -32,6 +32,10 @@ abstract class MinSwapsTestTest<out T : MinSwaps>(private val strategy: T) {
                 1,
             ),
             Arguments.of(
+                intArrayOf(0, 1, 0, 1, 1, 0, 0),
+                1,
+            ),
+            Arguments.of(
                 intArrayOf(0, 0, 0, 1, 0),
                 0,
             ),

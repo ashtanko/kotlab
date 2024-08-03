@@ -16,6 +16,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.TwoPointers
 import kotlin.math.max
 
 /**
@@ -31,6 +32,7 @@ fun interface MinSwaps {
  * Time complexity: O(n)
  * Space complexity: O(1)
  */
+@TwoPointers
 class MinSwapsTwoPointers : MinSwaps {
     override operator fun invoke(data: IntArray): Int {
         val ones: Int = data.sum()
