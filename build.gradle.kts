@@ -55,21 +55,6 @@ jacoco {
     toolVersion = "0.8.11"
 }
 
-//sonarqube {
-//    properties {
-//        setProperty("sonar.projectKey", "ashtanko_kotlab")
-//        setProperty("sonar.organization", "ashtanko")
-//        setProperty("sonar.host.url", "https://sonarcloud.io")
-//    }
-//}
-
-repositories {
-    mavenCentral()
-    maven { url = uri("https://repo.kotlin.link") }
-    gradlePluginPortal()
-    maven("https://plugins.gradle.org/m2/")
-}
-
 application {
     mainClass.set("link.kotlin.scripts.Application")
     mainClass.set("dev.shtanko.report.ReportParserKt")
