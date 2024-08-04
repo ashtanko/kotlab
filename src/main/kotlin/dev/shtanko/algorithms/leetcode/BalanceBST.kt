@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,18 +16,24 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Recursive
+
 /**
  * 1382. Balance a Binary Search Tree
- * @link https://leetcode.com/problems/balance-a-binary-search-tree/
+ * @see <a href="https://leetcode.com/problems/balance-a-binary-search-tree/">Source</a>
  */
-interface BalanceBST {
-    fun perform(root: TreeNode?): TreeNode?
+fun interface BalanceBST {
+    operator fun invoke(root: TreeNode?): TreeNode?
 }
 
+/**
+ * Approach 1: Inorder Traversal + Recursive Construction
+ */
+@Recursive(info = "Inorder Traversal")
 class BalanceBSTInorder : BalanceBST {
     private val sortedArr: MutableList<TreeNode> = ArrayList()
 
-    override fun perform(root: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?): TreeNode? {
         inorderTraverse(root)
         return sortedArrayToBST(0, sortedArr.size - 1)
     }
@@ -51,7 +57,7 @@ class BalanceBSTInorder : BalanceBST {
 
 class BalanceBSTreeDSW : BalanceBST {
 
-    override fun perform(root: TreeNode?): TreeNode? {
+    override operator fun invoke(root: TreeNode?): TreeNode? {
         val pseudoRoot = TreeNode(0)
         pseudoRoot.right = root
 

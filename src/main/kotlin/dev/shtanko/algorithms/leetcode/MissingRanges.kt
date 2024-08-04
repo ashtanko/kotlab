@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,14 +16,12 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Collections
-
 //  Missing Ranges
 class MissingRanges {
-    fun findMissingRanges(nums: IntArray, lower: Int, upper: Int): List<String>? {
+    fun findMissingRanges(nums: IntArray, lower: Int, upper: Int): List<String> {
         val n = nums.size
         if (n == 0) {
-            return Collections.singletonList(formatRange(lower, upper))
+            return listOf(formatRange(lower, upper))
         }
         val missingRanges: MutableList<String> = ArrayList()
 

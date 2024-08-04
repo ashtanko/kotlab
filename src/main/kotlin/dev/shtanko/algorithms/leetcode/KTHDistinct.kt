@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +18,14 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2053. Kth Distinct String in an Array
- * link https://leetcode.com/problems/kth-distinct-string-in-an-array/
+ * @see <a href="https://leetcode.com/problems/kth-distinct-string-in-an-array">Source</a>
  */
-interface KTHDistinct {
-    fun perform(arr: Array<String>, k: Int): String
+fun interface KTHDistinct {
+    operator fun invoke(arr: Array<String>, k: Int): String
 }
 
 class KTHDistinctImpl : KTHDistinct {
-    override fun perform(arr: Array<String>, k: Int): String {
+    override operator fun invoke(arr: Array<String>, k: Int): String {
         val map: MutableMap<String, Boolean> = HashMap()
         var k0 = k
         for (s in arr) {

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,10 +18,10 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 947. Most Stones Removed with Same Row or Column
- * @link https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
+ * @see <a href="https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/">Source</a>
  */
 fun interface RemoveStones {
-    fun perform(stones: Array<IntArray>): Int
+    operator fun invoke(stones: Array<IntArray>): Int
 }
 
 class RemoveStonesMap : RemoveStones {
@@ -29,7 +29,7 @@ class RemoveStonesMap : RemoveStones {
     private val f: MutableMap<Int, Int> = HashMap()
     private var islands = 0
 
-    override fun perform(stones: Array<IntArray>): Int {
+    override operator fun invoke(stones: Array<IntArray>): Int {
         for (i in stones.indices) union(stones[i][0], stones[i][1].inv())
         return stones.size - islands
     }
@@ -59,7 +59,7 @@ class RemoveStonesMap : RemoveStones {
 }
 
 class RemoveStonesDFS : RemoveStones {
-    override fun perform(stones: Array<IntArray>): Int {
+    override operator fun invoke(stones: Array<IntArray>): Int {
         val graph: MutableMap<Int, MutableList<Int>> = HashMap()
         for (stone in stones) {
             graph.computeIfAbsent(stone[0]) { ArrayList() }.add(stone[1].inv())

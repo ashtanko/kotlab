@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -47,6 +47,15 @@ internal class CharTest {
             Arguments.of('q', false),
             Arguments.of('z', false),
             Arguments.of('x', false),
+            Arguments.of('A', true),
+            Arguments.of('E', true),
+            Arguments.of('I', true),
+            Arguments.of('O', true),
+            Arguments.of('U', true),
+            Arguments.of('R', false),
+            Arguments.of('Q', false),
+            Arguments.of('Z', false),
+            Arguments.of('X', false),
         )
     }
 

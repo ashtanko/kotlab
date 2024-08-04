@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,18 +16,29 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.DECIMAL
+import dev.shtanko.algorithms.annotations.OnePass
+import dev.shtanko.algorithms.annotations.StraightForward
 import java.util.LinkedList
 
 /**
  * 989. Add to Array-Form of Integer
- * @link https://leetcode.com/problems/add-to-array-form-of-integer/
+ * @see <a href="https://leetcode.com/problems/add-to-array-form-of-integer/">Source</a>
  */
-interface AddToArrayForm {
-    fun perform(num: IntArray, k: Int): List<Int>
+fun interface AddToArrayForm {
+    operator fun invoke(num: IntArray, k: Int): List<Int>
 }
 
+@StraightForward
 class AddToArrayFormSimple : AddToArrayForm {
-    override fun perform(num: IntArray, k: Int): List<Int> {
+    /**
+     * Adds an integer value to each element of an array of integers using a specified base.
+     *
+     * @param num The array of integers to be modified.
+     * @param k The integer value to be added to each element.
+     * @return A list of integers representing the modified array.
+     */
+    override operator fun invoke(num: IntArray, k: Int): List<Int> {
         val res: MutableList<Int> = LinkedList()
         var k0 = k
         for (i in num.size - 1 downTo 0) {
@@ -42,8 +53,16 @@ class AddToArrayFormSimple : AddToArrayForm {
     }
 }
 
+@OnePass
 class AddToArrayFormOnePass : AddToArrayForm {
-    override fun perform(num: IntArray, k: Int): List<Int> {
+    /**
+     * Calculates the result of adding an integer to an array of integers in decimal form.
+     *
+     * @param num The array of integers representing the decimal form.
+     * @param k The integer to be added.
+     * @return The result of adding the integer to the array of integers.
+     */
+    override operator fun invoke(num: IntArray, k: Int): List<Int> {
         val res: MutableList<Int> = LinkedList()
         var i: Int = num.size - 1
         var k0 = k

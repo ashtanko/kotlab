@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,9 +25,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AddDigitsTest<out T : AddDigitsStrategy>(private val strategy: T) {
+abstract class AddDigitsTest<out T : AddDigits>(private val strategy: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(38, 2),
             Arguments.of(0, 0),
@@ -39,16 +39,19 @@ internal abstract class AddDigitsTest<out T : AddDigitsStrategy>(private val str
             Arguments.of(111, 3),
             Arguments.of(1111, 4),
             Arguments.of(11112, 6),
+            Arguments.of(111111, 6),
+            Arguments.of(Int.MAX_VALUE, 1),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `add digits test`(digits: Int, expected: Int) {
-        val actual = strategy.perform(digits)
+    fun `add digits test`(digits: Int, expected: Int) {
+        val actual = strategy.invoke(digits)
         assertThat(actual, equalTo(expected))
     }
 }
 
-internal class AddDigitsStraightForwardTest : AddDigitsTest<AddDigitsStraightForward>(AddDigitsStraightForward())
-internal class AddDigitsMathTest : AddDigitsTest<AddDigitsMath>(AddDigitsMath())
+class AddDigitsStraightForwardTest : AddDigitsTest<AddDigits>(AddDigitsStraightForward())
+class AddDigitsMathTest : AddDigitsTest<AddDigits>(AddDigitsMath())
+class AddDigitsDigitalRootTest : AddDigitsTest<AddDigits>(AddDigitsDigitalRoot())

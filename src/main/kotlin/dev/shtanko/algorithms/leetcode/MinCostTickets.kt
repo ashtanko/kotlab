@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,8 +22,8 @@ import kotlin.math.min
  * 983. Minimum Cost For Tickets
  * https://leetcode.com/problems/minimum-cost-for-tickets/
  */
-interface MinCostTickets {
-    fun perform(days: IntArray, costs: IntArray): Int
+fun interface MinCostTickets {
+    operator fun invoke(days: IntArray, costs: IntArray): Int
 }
 
 /**
@@ -35,7 +35,7 @@ class DPDayVariant : MinCostTickets {
     private var memo: Array<Int?> = arrayOfNulls(LEAP_YEAR_DAYS)
     private var dayset: MutableSet<Int> = HashSet()
 
-    override fun perform(days: IntArray, costs: IntArray): Int {
+    override operator fun invoke(days: IntArray, costs: IntArray): Int {
         this.costs = costs
         for (d in days) dayset.add(d)
         return dp(1)
@@ -43,7 +43,9 @@ class DPDayVariant : MinCostTickets {
 
     private fun dp(i: Int): Int {
         if (i > YEAR_DAYS) return 0
-        if (memo[i] != null) return memo[i] ?: 0
+        if (memo[i] != null) {
+            return memo[i] ?: 0
+        }
         var ans: Int
         if (dayset.contains(i)) {
             ans = min(
@@ -74,7 +76,7 @@ class DPWindowVariant : MinCostTickets {
     private lateinit var memo: Array<Int?>
     private var durations = intArrayOf(ONE_DAY, ONE_WEEK, ONE_MONTH)
 
-    override fun perform(days: IntArray, costs: IntArray): Int {
+    override operator fun invoke(days: IntArray, costs: IntArray): Int {
         this.days = days
         this.costs = costs
         memo = arrayOfNulls(days.size)
@@ -83,11 +85,15 @@ class DPWindowVariant : MinCostTickets {
 
     private fun dp(i: Int): Int {
         if (i >= days.size) return 0
-        if (memo[i] != null) return memo[i] ?: 0
+        if (memo[i] != null) {
+            return memo[i] ?: 0
+        }
         var ans = Int.MAX_VALUE
         var j = i
         for (k in 0..2) {
-            while (j < days.size && days[j] < days[i] + durations[k]) j++
+            while (j < days.size && days[j] < days[i] + durations[k]) {
+                j++
+            }
             ans = min(ans, dp(j) + costs[k])
         }
         memo[i] = ans

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,12 +22,12 @@ import java.util.Queue
 
 private val DIRECTIONS = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, -1))
 
-interface PacificAtlanticWaterFlow {
-    fun perform(matrix: Array<IntArray>): List<List<Int>>
+fun interface PacificAtlanticWaterFlow {
+    operator fun invoke(matrix: Array<IntArray>): List<List<Int>>
 }
 
 class PacificAtlanticDFS : PacificAtlanticWaterFlow {
-    override fun perform(matrix: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(matrix: Array<IntArray>): List<List<Int>> {
         val res: MutableList<MutableList<Int>> = LinkedList()
         if (matrix.isEmpty() || matrix[0].isEmpty()) {
             return res
@@ -62,7 +62,7 @@ class PacificAtlanticDFS : PacificAtlanticWaterFlow {
 
 class PacificAtlanticBFS : PacificAtlanticWaterFlow {
 
-    override fun perform(matrix: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(matrix: Array<IntArray>): List<List<Int>> {
         val res: MutableList<MutableList<Int>> = LinkedList()
         if (matrix.isEmpty() || matrix[0].isEmpty()) {
             return res
@@ -98,7 +98,7 @@ class PacificAtlanticBFS : PacificAtlanticWaterFlow {
     private fun bfs(matrix: Array<IntArray>, queue: Queue<IntArray>, visited: Array<BooleanArray>) {
         val n = matrix.size
         val m: Int = matrix[0].size
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val cur = queue.poll()
             for (d in DIRECTIONS) {
                 val x = cur[0] + d[0]

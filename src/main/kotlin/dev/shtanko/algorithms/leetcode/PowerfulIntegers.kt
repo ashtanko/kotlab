@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,17 +21,17 @@ import kotlin.math.pow
 
 /**
  * 970. Powerful Integers
- * @link https://leetcode.com/problems/powerful-integers/
+ * @see <a href="https://leetcode.com/problems/powerful-integers/">Source</a>
  */
-interface PowerfulIntegers {
-    fun perform(x: Int, y: Int, bound: Int): List<Int>
+fun interface PowerfulIntegers {
+    operator fun invoke(x: Int, y: Int, bound: Int): List<Int>
 }
 
 /**
  * Approach: Logarithmic Bounds
  */
 class LogarithmicBounds : PowerfulIntegers {
-    override fun perform(x: Int, y: Int, bound: Int): List<Int> {
+    override operator fun invoke(x: Int, y: Int, bound: Int): List<Int> {
         val a = if (x == 1) bound else (ln(bound.toDouble()) / ln(x.toDouble())).toInt()
         val b = if (y == 1) bound else (ln(bound.toDouble()) / ln(y.toDouble())).toInt()
 

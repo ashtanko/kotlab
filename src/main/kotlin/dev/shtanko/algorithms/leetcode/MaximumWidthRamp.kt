@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,15 +18,17 @@ package dev.shtanko.algorithms.leetcode
 
 import java.awt.Point
 
-interface MaximumWidthRampStrategy {
-    fun maxWidthRamp(arr: IntArray): Int
+fun interface MaximumWidthRampStrategy {
+    operator fun invoke(arr: IntArray): Int
 }
 
 class MaximumWidthRampSort : MaximumWidthRampStrategy {
-    override fun maxWidthRamp(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         val n: Int = arr.size
         val b = Array(n) { 0 }
-        for (i in 0 until n) b[i] = i
+        for (i in 0 until n) {
+            b[i] = i
+        }
         b.sortWith { i, j ->
             arr[i].compareTo(arr[j])
         }
@@ -42,11 +44,11 @@ class MaximumWidthRampSort : MaximumWidthRampStrategy {
 }
 
 class MaximumWidthRampBinarySearch : MaximumWidthRampStrategy {
-    override fun maxWidthRamp(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         val n: Int = arr.size
-
+        if (n == 0) return 0
         var ans = 0
-        val candidates: MutableList<Point?> = ArrayList()
+        val candidates: MutableList<Point> = ArrayList()
         candidates.add(Point(arr[n - 1], n - 1))
 
         // candidates: i's decreasing, by increasing value of A[i]
@@ -57,15 +59,11 @@ class MaximumWidthRampBinarySearch : MaximumWidthRampStrategy {
             while (lo < hi) {
                 val local = hi - lo
                 val mi = lo + local / 2
-                candidates[mi]?.x?.let {
-                    if (it < arr[i]) lo = mi + 1 else hi = mi
-                }
+                if (candidates[mi].x < arr[i]) lo = mi + 1 else hi = mi
             }
             if (lo < candidates.size) {
-                val j: Int? = candidates[lo]?.y
-                j?.let {
-                    ans = ans.coerceAtLeast(it - i)
-                }
+                val j: Int = candidates[lo].y
+                ans = ans.coerceAtLeast(j - i)
             } else {
                 candidates.add(Point(arr[i], i))
             }

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +18,14 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2488. Count Subarrays With Median K
- * @link https://leetcode.com/problems/count-subarrays-with-median-k/
+ * @see <a href="https://leetcode.com/problems/count-subarrays-with-median-k/">Source</a>
  */
-interface CountSubarrays {
-    fun perform(nums: IntArray, k: Int): Int
+fun interface CountSubarrays {
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class CountSubarraysMap : CountSubarrays {
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         val prefixSumOfBalance: MutableMap<Int, Int> = HashMap()
         prefixSumOfBalance[0] = 1 // Dummy value of 0's frequency is 1.
         var ans = 0

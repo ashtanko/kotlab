@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,21 +16,40 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+import dev.shtanko.algorithms.annotations.StraightForward
+
 /**
- * Given an array of unique integers salary where salary[i] is the salary of the employee i.
+ * 1491. Average Salary Excluding the Minimum and Maximum Salary
+ * @see <a href="https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary">
+ *     Source</a>
  */
-fun IntArray.averageSalary(): Double {
-    var sum = 0.0
-    var min = Int.MAX_VALUE
-    var max = 0
-    for (salary in this) {
-        sum += salary
-        if (salary < min) {
-            min = salary
+fun interface AverageSalary {
+    fun average(salary: IntArray): Double
+}
+
+@BruteForce
+class AverageSalaryBruteForce : AverageSalary {
+    override fun average(salary: IntArray): Double {
+        var sum = 0.0
+        var min = Int.MAX_VALUE
+        var max = 0
+        for (s in salary) {
+            sum += s
+            if (s < min) {
+                min = s
+            }
+            if (s > max) {
+                max = s
+            }
         }
-        if (salary > max) {
-            max = salary
-        }
+        return sum.minus(max).minus(min) / salary.size.minus(2)
     }
-    return sum.minus(max).minus(min) / size.minus(2)
+}
+
+@StraightForward
+class AverageSalarySimple : AverageSalary {
+    override fun average(salary: IntArray): Double {
+        return salary.sorted().toTypedArray().copyOfRange(1, salary.size - 1).average()
+    }
 }

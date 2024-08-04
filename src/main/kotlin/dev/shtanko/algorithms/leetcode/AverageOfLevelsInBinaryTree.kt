@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,16 +16,19 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BFS
+import dev.shtanko.algorithms.annotations.DFS
 import java.util.LinkedList
 import java.util.Queue
 
-internal interface AverageOfLevelsInBinaryTreeStrategy {
-    fun perform(root: TreeNode?): DoubleArray
+fun interface AverageOfLevelsInBinaryTreeStrategy {
+    operator fun invoke(root: TreeNode?): DoubleArray
 }
 
 // Using Depth First Search
-internal class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {
-    override fun perform(root: TreeNode?): DoubleArray {
+@DFS
+class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrategy {
+    override operator fun invoke(root: TreeNode?): DoubleArray {
         val count: MutableList<Int> = ArrayList()
         val res: MutableList<Double> = ArrayList()
         average(root, 0, res, count)
@@ -48,16 +51,17 @@ internal class AverageOfLevelsInBinaryTreeDFS : AverageOfLevelsInBinaryTreeStrat
 }
 
 // Using Breadth First Search
-internal class AverageOfLevelsInBinaryTreeBFS : AverageOfLevelsInBinaryTreeStrategy {
-    override fun perform(root: TreeNode?): DoubleArray {
+@BFS
+class AverageOfLevelsInBinaryTreeBFS : AverageOfLevelsInBinaryTreeStrategy {
+    override operator fun invoke(root: TreeNode?): DoubleArray {
         val res: MutableList<Double> = ArrayList()
         var queue: Queue<TreeNode?> = LinkedList()
         queue.add(root)
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             var sum: Long = 0
             var count: Long = 0
             val temp: Queue<TreeNode?> = LinkedList()
-            while (!queue.isEmpty()) {
+            while (queue.isNotEmpty()) {
                 val n: TreeNode? = queue.remove()
                 if (n != null) {
                     sum += n.value

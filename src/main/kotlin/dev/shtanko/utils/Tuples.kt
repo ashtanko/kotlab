@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -59,7 +59,8 @@ data class Quintuple<out A, out B, out C, out D, out E>(
 ) : Serializable {
 
     /**
-     * Returns string representation of the [Quadruple] including its [first], [second] and [third] and [fourth] and [fifth] values.
+     * Returns string representation of the [Quadruple] including its [first], [second] and [third] and [fourth]
+     * and [fifth] values.
      */
     override fun toString(): String = "($first, $second, $third, $fourth), $fifth)"
 

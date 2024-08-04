@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +18,14 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 143. Reorder List
- * @link https://leetcode.com/problems/reorder-list/
+ * @see <a href="https://leetcode.com/problems/reorder-list/">Source</a>
  */
-interface ReorderList {
-    fun reorderList(head: ListNode?)
+fun interface ReorderList {
+    operator fun invoke(head: ListNode?)
 }
 
 class ReorderListImpl : ReorderList {
-    override fun reorderList(head: ListNode?) {
+    override fun invoke(head: ListNode?) {
         // if head will be null or head.next will be null simply return
         if (head?.next == null) return
 

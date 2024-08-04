@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,10 +16,20 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun IntArray.runningSumNaive(): IntArray {
-    if (isEmpty() || size <= 1) return intArrayOf()
-    for (i in 1 until size) {
-        this[i] += this[i - 1]
+fun interface RunningSum {
+    operator fun invoke(nums: IntArray): IntArray
+}
+
+class RunningSumNaive : RunningSum {
+    override operator fun invoke(nums: IntArray): IntArray {
+        return nums.naive()
     }
-    return this
+
+    private fun IntArray.naive(): IntArray {
+        if (isEmpty() || size <= 1) return intArrayOf()
+        for (i in 1 until size) {
+            this[i] += this[i - 1]
+        }
+        return this
+    }
 }

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,19 +16,22 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DFS
+
 /**
  * 1719. Number Of Ways To Reconstruct A Tree
- * @link https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/
+ * @see <a href="https://leetcode.com/problems/number-of-ways-to-reconstruct-a-tree/">Source</a>
  */
-interface CheckWays {
-    fun perform(pairs: Array<IntArray>): Int
+fun interface CheckWays {
+    operator fun invoke(pairs: Array<IntArray>): Int
 }
 
+@DFS
 class CheckWaysDFS : CheckWays {
 
     var result = 1
 
-    override fun perform(pairs: Array<IntArray>): Int {
+    override operator fun invoke(pairs: Array<IntArray>): Int {
         result = 1
         val graph: HashMap<Int, HashSet<Int>> = HashMap()
 
@@ -39,7 +42,7 @@ class CheckWaysDFS : CheckWays {
 
         val nodes: ArrayList<Int> = ArrayList(graph.keys)
         nodes.sortWith { a, b ->
-            graph[a]!!.size - graph[b]!!.size
+            graph.getOrDefault(a, HashSet()).size - graph.getOrDefault(b, HashSet()).size
         }
 
         val tree: HashMap<Int, ArrayList<Int>> = HashMap()
@@ -48,7 +51,7 @@ class CheckWaysDFS : CheckWays {
         for (l in nodes.indices) {
             var p = l + 1
             val leaf = nodes[l]
-            while (p < nodes.size && !graph[nodes[p]]!!.contains(leaf)) p++
+            while (p < nodes.size && !graph.getOrDefault(nodes[p], HashSet()).contains(leaf)) p++
             if (p < nodes.size) {
                 tree.computeIfAbsent(nodes[p]) { ArrayList() }.add(leaf)
                 if (graph[nodes[p]]?.size == graph[leaf]?.size) {
@@ -68,7 +71,7 @@ class CheckWaysDFS : CheckWays {
         return result
     }
 
-    fun dfs(
+    private fun dfs(
         root: Int,
         depth: Int,
         tree: HashMap<Int, ArrayList<Int>>,
@@ -82,13 +85,15 @@ class CheckWaysDFS : CheckWays {
         }
         visited.add(root)
         var descendantsNum = 0
-        for (node in tree.getOrDefault(root, ArrayList())) descendantsNum += dfs(
-            node,
-            depth + 1,
-            tree,
-            graph,
-            visited,
-        )
+        for (node in tree.getOrDefault(root, ArrayList())) {
+            descendantsNum += dfs(
+                node,
+                depth + 1,
+                tree,
+                graph,
+                visited,
+            )
+        }
         if (descendantsNum + depth != graph[root]?.size) {
             result = 0
             return -1

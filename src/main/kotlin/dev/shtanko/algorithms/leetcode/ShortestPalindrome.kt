@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,12 +16,12 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface ShortestPalindromeStrategy {
-    fun perform(s: String): String
+fun interface ShortestPalindromeStrategy {
+    operator fun invoke(s: String): String
 }
 
 class ShortestPalindromeBruteForce : ShortestPalindromeStrategy {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val n = s.length
         var len = 0
         for (k in n - 1 downTo 0) {
@@ -47,7 +47,7 @@ class ShortestPalindromeBruteForce : ShortestPalindromeStrategy {
 }
 
 class ShortestPalindromeTwoPointers : ShortestPalindromeStrategy {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         var str = s
         var i = 0
         var j = str.length - 1
@@ -67,7 +67,7 @@ class ShortestPalindromeTwoPointers : ShortestPalindromeStrategy {
 }
 
 class ShortestPalindromeMP : ShortestPalindromeStrategy {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val temp = s + "#" + StringBuilder(s).reverse().toString()
         val table = getTable(temp)
         return StringBuilder(s.substring(table[table.size - 1])).reverse().toString() + s
@@ -92,7 +92,8 @@ class ShortestPalindromeMP : ShortestPalindromeStrategy {
                 // prefix part that we used to match postfix ended at i - 1
                 index = table[i - 1]
                 while (index > 0 && s[index] != s[i]) {
-                    // we will try to shorten the match string length until we revert to the beginning of match (index 1)
+                    // we will try to shorten the match string length until we revert to the beginning of
+                    // match (index 1)
                     index = table[index - 1]
                 }
 

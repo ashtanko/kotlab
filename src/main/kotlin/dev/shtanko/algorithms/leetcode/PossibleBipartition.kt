@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +18,14 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 886. Possible Bipartition
- * @link https://leetcode.com/problems/possible-bipartition/description/
+ * @see <a href="https://leetcode.com/problems/possible-bipartition">Source</a>
  */
-interface PossibleBipartition {
-    fun perform(n: Int, dislikes: Array<IntArray>): Boolean
+fun interface PossibleBipartition {
+    operator fun invoke(n: Int, dislikes: Array<IntArray>): Boolean
 }
 
 class PossibleBipartitionDFS : PossibleBipartition {
-    override fun perform(n: Int, dislikes: Array<IntArray>): Boolean {
+    override operator fun invoke(n: Int, dislikes: Array<IntArray>): Boolean {
         val graph: Array<MutableList<Int>> = Array(n + 1) { mutableListOf() }
 
         for (dislike in dislikes) {

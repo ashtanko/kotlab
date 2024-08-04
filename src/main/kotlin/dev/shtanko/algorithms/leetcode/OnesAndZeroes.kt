@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,9 +21,9 @@ import kotlin.math.max
 
 /**
  * Ones and Zeroes
- * @link https://leetcode.com/problems/ones-and-zeroes/solution/
+ * @see <a href="https://leetcode.com/problems/ones-and-zeroes">Source</a>
  */
-interface OnesAndZeroes {
+fun interface OnesAndZeroes {
     fun findMaxForm(strs: Array<String>, m: Int, n: Int): Int
 }
 

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,12 +19,12 @@ package dev.shtanko.algorithms.leetcode
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal abstract class NAryTreePreorderTraversalTest<out T : NAryTreePreorderTraversalStrategy>(
+abstract class NAryTreePreorderTraversalTest<out T : NAryTreePreorderTraversalStrategy>(
     private val strategy: T,
 ) {
 
     @Test
-    internal fun `NAry tree preorder traversal test`() {
+    fun `NAry tree preorder traversal test`() {
         val root = NAryNode(1)
         val third = NAryNode(3)
         third.children = listOf(NAryNode(5), NAryNode(6))
@@ -34,7 +34,7 @@ internal abstract class NAryTreePreorderTraversalTest<out T : NAryTreePreorderTr
     }
 
     @Test
-    internal fun `NAry tree preorder traversal 2 test`() {
+    fun `NAry tree preorder traversal 2 test`() {
         val root = NAryNode(1)
         val third = NAryNode(3)
         val seventh = NAryNode(7)
@@ -59,8 +59,8 @@ internal abstract class NAryTreePreorderTraversalTest<out T : NAryTreePreorderTr
     }
 }
 
-internal class NAryTreePreorderTraversalIterativeTest :
+class NAryTreePreorderTraversalIterativeTest :
     NAryTreePreorderTraversalTest<NAryTreePreorderTraversalIterative>(NAryTreePreorderTraversalIterative())
 
-internal class NAryTreePreorderTraversalRecursiveTest :
+class NAryTreePreorderTraversalRecursiveTest :
     NAryTreePreorderTraversalTest<NAryTreePreorderTraversalRecursive>(NAryTreePreorderTraversalRecursive())

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,16 +16,18 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 438. Find All Anagrams in a String
- * @link https://leetcode.com/problems/find-all-anagrams-in-a-string/
+ * @see <a href="https://leetcode.com/problems/find-all-anagrams-in-a-string/">Source</a>
  */
-interface FindAnagrams {
-    fun perform(s: String, p: String): List<Int>
+fun interface FindAnagrams {
+    operator fun invoke(s: String, p: String): List<Int>
 }
 
 class FindAnagramsHashTable : FindAnagrams {
-    override fun perform(s: String, p: String): List<Int> {
+    override operator fun invoke(s: String, p: String): List<Int> {
         val list: MutableList<Int> = ArrayList()
         if (p.length > s.length) return list // Base Condition
         val n: Int = s.length // Array1 of s
@@ -51,7 +53,7 @@ class FindAnagramsHashTable : FindAnagrams {
     }
 
     private fun areSame(x: IntArray, y: IntArray): Boolean {
-        for (i in 0 until LIMIT) {
+        for (i in 0 until ALPHABET_LETTERS_COUNT) {
             // compare all the frequency & doesn't find any di-similar frequency return true otherwise false
             if (x[i] != y[i]) {
                 return false
@@ -61,14 +63,10 @@ class FindAnagramsHashTable : FindAnagrams {
     }
 
     private fun freq(s: String): IntArray {
-        val count = IntArray(LIMIT) // create array of size 26
+        val count = IntArray(ALPHABET_LETTERS_COUNT) // create array of size 26
         for (element in s) {
             count[element.code - 'a'.code]++ // update acc. to it's frequency
         }
         return count // and return count
-    }
-
-    companion object {
-        private const val LIMIT = 26
     }
 }

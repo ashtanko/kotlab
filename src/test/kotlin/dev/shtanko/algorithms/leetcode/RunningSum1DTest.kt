@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,15 +19,13 @@ package dev.shtanko.algorithms.leetcode
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertArrayEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class RunningSum1DTest {
+abstract class RunningSum1DTest<out T : RunningSum>(private val strategy: T) {
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -66,16 +64,13 @@ internal class RunningSum1DTest {
         )
     }
 
-    @Test
-    internal fun `is empty test`() {
-        assertTrue(intArrayOf().runningSumNaive().isEmpty())
-    }
-
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `running sum naive test`(arr: IntArray, expected: IntArray) {
-        val actual = arr.runningSumNaive()
+    fun `running sum naive test`(arr: IntArray, expected: IntArray) {
+        val actual = strategy.invoke(arr)
         assertThat(actual).isEqualTo(expected)
         assertArrayEquals(expected, actual)
     }
 }
+
+class RunningSumNaiveTest : RunningSum1DTest<RunningSum>(RunningSumNaive())

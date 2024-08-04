@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,19 +16,21 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
+
 /**
  * 212. Word Search II
- * @link https://leetcode.com/problems/word-search-ii/
+ * @see <a href="https://leetcode.com/problems/word-search-ii/">Source</a>
  */
-interface WordSearch2 {
-    fun findWords(board: Array<CharArray>, words: Array<String>): List<String>
+fun interface WordSearch2 {
+    operator fun invoke(board: Array<CharArray>, words: Array<String>): List<String>
 }
 
 /**
  * Backtracking + Trie
  */
 class WordSearch2Trie : WordSearch2 {
-    override fun findWords(board: Array<CharArray>, words: Array<String>): List<String> {
+    override fun invoke(board: Array<CharArray>, words: Array<String>): List<String> {
         val res: MutableList<String> = ArrayList()
         val root: TrieNode = buildTrie(words)
         for (i in board.indices) {
@@ -71,11 +73,7 @@ class WordSearch2Trie : WordSearch2 {
     }
 
     class TrieNode {
-        var next = arrayOfNulls<TrieNode>(ARR_SIZE)
+        var next = arrayOfNulls<TrieNode>(ALPHABET_LETTERS_COUNT)
         var word: String? = null
-    }
-
-    companion object {
-        private const val ARR_SIZE = 26
     }
 }

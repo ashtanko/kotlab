@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +18,14 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2425. Bitwise XOR of All Pairings
- * @link https://leetcode.com/problems/bitwise-xor-of-all-pairings/
+ * @see <a href="https://leetcode.com/problems/bitwise-xor-of-all-pairings/">Source</a>
  */
 fun interface XorAllNums {
-    fun perform(nums1: IntArray, nums2: IntArray): Int
+    operator fun invoke(nums1: IntArray, nums2: IntArray): Int
 }
 
 class XorAllNumsConcise : XorAllNums {
-    override fun perform(nums1: IntArray, nums2: IntArray): Int {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): Int {
         var x = 0
         var y = 0
         for (a in nums1) x = x xor a
@@ -35,7 +35,7 @@ class XorAllNumsConcise : XorAllNums {
 }
 
 class XorAllNumsSimple : XorAllNums {
-    override fun perform(nums1: IntArray, nums2: IntArray): Int {
+    override operator fun invoke(nums1: IntArray, nums2: IntArray): Int {
         if (nums1.size % 2 == 0 && nums2.size % 2 == 0) { // if both arrays have even length
             return 0
         }

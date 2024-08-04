@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,11 +20,11 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-internal class ImplementTrieTest {
+abstract class ImplementTrieTest<out T : Trie>(private val strategy: T) {
 
     @Test
-    internal fun `trie test`() {
-        val trie = TrieImpl()
+    fun `trie test`() {
+        val trie = strategy
         trie.insert("apple")
         assertTrue(trie.search("apple"))
         assertFalse(trie.search("app"))
@@ -34,15 +34,18 @@ internal class ImplementTrieTest {
     }
 
     @Test
-    internal fun `empty string trie test`() {
-        val trie = TrieImpl()
+    fun `empty string trie test`() {
+        val trie = strategy
         trie.insert("")
         assertFalse(trie.search("app"))
     }
 
     @Test
-    internal fun `empty trie test`() {
-        val trie = TrieImpl()
+    fun `empty trie test`() {
+        val trie = strategy
         assertFalse(trie.search(""))
     }
 }
+
+class TrieArrayTest : ImplementTrieTest<Trie>(TrieArray())
+class TrieMapTest : ImplementTrieTest<Trie>(TrieHashMap())

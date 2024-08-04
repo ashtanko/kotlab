@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -37,13 +37,18 @@ abstract class TwoEditWordsTest<out T : TwoEditWords>(private val strategy: T) {
                 arrayOf("not"),
                 emptyList<String>(),
             ),
+            Arguments.of(
+                arrayOf("yes", "no"),
+                arrayOf("not", "yes", "no"),
+                listOf("yes", "no"),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `two edit words test`(queries: Array<String>, dictionary: Array<String>, expected: List<String>) {
-        val actual = strategy.perform(queries, dictionary)
+        val actual = strategy.invoke(queries, dictionary)
         assertThat(actual).isEqualTo(expected)
     }
 }

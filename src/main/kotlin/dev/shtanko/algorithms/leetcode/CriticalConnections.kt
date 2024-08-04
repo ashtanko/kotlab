@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,10 +22,10 @@ import kotlin.math.min
 
 /**
  * 1192. Critical Connections in a Network
- * @link https://leetcode.com/problems/critical-connections-in-a-network
+ * @see <a href="https://leetcode.com/problems/critical-connections-in-a-network">Source</a>
  */
-interface CriticalConnections {
-    fun perform(n: Int, connections: List<List<Int>>): List<List<Int>>
+fun interface CriticalConnections {
+    operator fun invoke(n: Int, connections: List<List<Int>>): List<List<Int>>
 }
 
 /**
@@ -37,7 +37,7 @@ class CycleDetection : CriticalConnections {
     private var rank: MutableMap<Int, Int?> = HashMap()
     private var connDict: MutableMap<Pair<Int, Int>, Boolean> = HashMap()
 
-    override fun perform(n: Int, connections: List<List<Int>>): List<List<Int>> {
+    override operator fun invoke(n: Int, connections: List<List<Int>>): List<List<Int>> {
         formGraph(n, connections)
         this.dfs(0, 0)
 
@@ -52,7 +52,7 @@ class CycleDetection : CriticalConnections {
     private fun dfs(node: Int, discoveryRank: Int): Int {
         // That means this node is already visited. We simply return the rank.
         if (rank[node] != null) {
-            return rank[node]!!
+            return rank.getOrDefault(node, 0) ?: 0
         }
 
         // Update the rank of this node.
@@ -60,7 +60,7 @@ class CycleDetection : CriticalConnections {
 
         // This is the max we have seen till now. So we start with this instead of INT_MAX or something.
         var minRank = discoveryRank + 1
-        for (neighbor in graph[node]!!) {
+        for (neighbor in graph.getOrDefault(node, ArrayList())) {
             // Skip the parent.
             val neighRank = rank[neighbor]
             if (neighRank != null && neighRank == discoveryRank - 1) {
@@ -106,7 +106,7 @@ class CriticalConnectionsGraph : CriticalConnections {
     var time = 0
     private val bridges = ArrayList<List<Int>>()
 
-    override fun perform(n: Int, connections: List<List<Int>>): List<List<Int>> {
+    override operator fun invoke(n: Int, connections: List<List<Int>>): List<List<Int>> {
         val graph = buildGraph(n, connections)
         graph.vertices.forEach {
             if (it.visited.not()) dfs(it, graph)

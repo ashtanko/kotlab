@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,12 +16,20 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BruteForce
+import dev.shtanko.algorithms.annotations.BruteForceOptimized
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.annotations.Math
+import dev.shtanko.algorithms.annotations.Recursive
+import dev.shtanko.algorithms.complexity.RuntimeComplexity
+import dev.shtanko.algorithms.complexity.SpaceComplexity
+
 /**
  * Arithmetic Slices
- * @link https://leetcode.com/problems/arithmetic-slices/
+ * @see <a href="https://leetcode.com/problems/arithmetic-slices/">Source</a>
  */
-interface ArithmeticSlices {
-    fun numberOfArithmeticSlices(arr: IntArray): Int
+fun interface ArithmeticSlices {
+    operator fun invoke(arr: IntArray): Int
 }
 
 /**
@@ -29,8 +37,11 @@ interface ArithmeticSlices {
  * Time complexity : O(n^3).
  * Space complexity : O(1).
  */
+@RuntimeComplexity(short = "O(n^3)")
+@SpaceComplexity(short = "O(1)")
+@BruteForce
 class ArSlicesBruteForce : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         var count = 0
         for (s in 0 until arr.size - 2) {
             val d: Int = arr[s + 1] - arr[s]
@@ -52,8 +63,11 @@ class ArSlicesBruteForce : ArithmeticSlices {
  * Time complexity : O(n^2).
  * Space complexity : O(1).
  */
+@RuntimeComplexity(short = "O(n^2)")
+@SpaceComplexity(short = "O(1)")
+@BruteForceOptimized
 class ArSlicesBetterBruteForce : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         var count = 0
         for (s in 0 until arr.size - 2) {
             val d: Int = arr[s + 1] - arr[s]
@@ -70,11 +84,12 @@ class ArSlicesBetterBruteForce : ArithmeticSlices {
  * Time complexity : O(n).
  * Space complexity : O(n).
  */
+@Recursive
 class ArSlicesRecursion : ArithmeticSlices {
 
     private var sum = 0
 
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         slices(arr, arr.size - 1)
         return sum
     }
@@ -97,8 +112,9 @@ class ArSlicesRecursion : ArithmeticSlices {
  * Time complexity : O(n).
  * Space complexity : O(n).
  */
+@DP
 class ArSlicesDP : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         val dp = IntArray(arr.size)
         var sum = 0
         for (i in 2 until dp.size) {
@@ -116,8 +132,9 @@ class ArSlicesDP : ArithmeticSlices {
  * Time complexity : O(n).
  * Space complexity : O(1).
  */
+@DP("Constant Space DP")
 class ArSlicesConstantSpaceDP : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         var dp = 0
         var sum = 0
         for (i in 2 until arr.size) {
@@ -137,8 +154,9 @@ class ArSlicesConstantSpaceDP : ArithmeticSlices {
  * Time complexity : O(n).
  * Space complexity : O(1).
  */
+@Math
 class ArSlicesFormula : ArithmeticSlices {
-    override fun numberOfArithmeticSlices(arr: IntArray): Int {
+    override fun invoke(arr: IntArray): Int {
         var count = 0
         var sum = 0
         for (i in 2 until arr.size) {

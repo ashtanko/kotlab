@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,9 +25,9 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import org.junit.jupiter.params.provider.MethodSource
 
-internal abstract class LongestValidParenthesesTest<out T : LongestValidParenthesesStrategy>(private val strategy: T) {
+abstract class LongestValidParenthesesTest<out T : LongestValidParenthesesStrategy>(private val strategy: T) {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",
@@ -56,16 +56,16 @@ internal abstract class LongestValidParenthesesTest<out T : LongestValidParenthe
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `longest valid parentheses brute force test`(s: String, expected: Int) {
-        val actual = LongestValidParenthesesBruteForce().perform(s)
+    fun `longest valid parentheses brute force test`(s: String, expected: Int) {
+        val actual = LongestValidParenthesesBruteForce().invoke(s)
         assertEquals(expected, actual)
     }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    internal fun `longest valid parentheses test`(testCase: Pair<String, Int>) {
+    fun `longest valid parentheses test`(testCase: Pair<String, Int>) {
         val (s, expected) = testCase
-        val actual = strategy.perform(s)
+        val actual = strategy.invoke(s)
         assertEquals(expected, actual)
     }
 }
@@ -74,11 +74,11 @@ internal abstract class LongestValidParenthesesTest<out T : LongestValidParenthe
 // class LongestValidParenthesesBruteForceTest :
 //    LongestValidParenthesesTest<LongestValidParenthesesBruteForce>(LongestValidParenthesesBruteForce())
 
-internal class LongestValidParenthesesDPTest :
+class LongestValidParenthesesDPTest :
     LongestValidParenthesesTest<LongestValidParenthesesDP>(LongestValidParenthesesDP())
 
-internal class LongestValidParenthesesStackTest :
+class LongestValidParenthesesStackTest :
     LongestValidParenthesesTest<LongestValidParenthesesStack>(LongestValidParenthesesStack())
 
-internal class LongestValidParenthesesWithoutExtraSpaceTest :
+class LongestValidParenthesesWithoutExtraSpaceTest :
     LongestValidParenthesesTest<LongestValidParenthesesWithoutExtraSpace>(LongestValidParenthesesWithoutExtraSpace())

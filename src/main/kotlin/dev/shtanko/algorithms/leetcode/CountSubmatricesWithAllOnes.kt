@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,9 +18,9 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1504. Count Submatrices With All Ones
- * @link https://leetcode.com/problems/count-submatrices-with-all-ones/
+ * @see <a href="https://leetcode.com/problems/count-submatrices-with-all-ones/">Source</a>
  */
-interface CountSubmatricesWithAllOnes {
+fun interface CountSubmatricesWithAllOnes {
     fun numSubmat(mat: Array<IntArray>): Int
 }
 

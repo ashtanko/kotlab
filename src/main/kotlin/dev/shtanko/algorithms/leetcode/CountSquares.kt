@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,10 +20,10 @@ import kotlin.math.min
 
 /**
  * Count Square Submatrices with All Ones.
- * @link https://leetcode.com/problems/count-square-submatrices-with-all-ones/
+ * @see <a href="https://leetcode.com/problems/count-square-submatrices-with-all-ones/">Source</a>
  */
 object CountSquares {
-    fun perform(matrix: Array<IntArray>): Int {
+    operator fun invoke(matrix: Array<IntArray>): Int {
         var res = 0
         for (i in matrix.indices) {
             for (j in matrix.first().indices) {

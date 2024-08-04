@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -61,8 +61,8 @@ abstract class SortArrayByParityTest<out T : SortArrayByParity>(private val stra
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sort array by parity test`(arr: IntArray, expected: IntArray) {
-        val actual = strategy.perform(arr)
+    fun `sort array by parity test`(arr: IntArray, expected: IntArray) {
+        val actual = strategy.invoke(arr)
         assertThat(actual).containsExactlyInAnyOrder(*expected)
     }
 }

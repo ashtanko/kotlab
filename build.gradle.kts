@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import java.util.Locale
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0
 
-val projectJvmTarget = "11"
+val projectJvmTarget = 17
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktLintConfig: Configuration by configurations.creating
-val isK2Enabled = false // kapt currently doesn't support new kotlin compiler
+val isK2Enabled = true
 val k2CompilerArg = if (isK2Enabled) listOf("-Xuse-k2") else emptyList()
+val outputDir = "${project.layout.buildDirectory}/reports/ktlint/"
+val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
+val kotlinVersion = KOTLIN_2_0
 
 fun isLinux(): Boolean {
-    val osName = System.getProperty("os.name").toLowerCase(Locale.ROOT)
+    val osName = System.getProperty("os.name").lowercase()
     return listOf("linux", "mac os", "macos").contains(osName)
 }
 
@@ -32,6 +36,9 @@ fun isLinux(): Boolean {
 plugins {
     application
     jacoco
+    id("com.github.nbaztec.coveralls-jacoco") version "1.2.16"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    // id ("org.sonarqube") version "4.4.1.3373"
     idea
     alias(libs.plugins.kt.jvm)
     alias(libs.plugins.detekt)
@@ -40,9 +47,22 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.pitest)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.kover)
+    alias(libs.plugins.diktat)
     alias(libs.plugins.protobuf)
-    kotlin("kapt") version "1.8.10"
 }
+
+jacoco {
+    toolVersion = "0.8.11"
+}
+
+//sonarqube {
+//    properties {
+//        setProperty("sonar.projectKey", "ashtanko_kotlab")
+//        setProperty("sonar.organization", "ashtanko")
+//        setProperty("sonar.host.url", "https://sonarcloud.io")
+//    }
+//}
 
 repositories {
     mavenCentral()
@@ -53,10 +73,8 @@ repositories {
 
 application {
     mainClass.set("link.kotlin.scripts.Application")
+    mainClass.set("dev.shtanko.report.ReportParserKt")
 }
-
-val outputDir = "${project.buildDir}/reports/ktlint/"
-val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
 
 val ktlintCheck by tasks.creating(JavaExec::class) {
     inputs.files(inputFiles)
@@ -80,16 +98,17 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
 
 plugins.withId("info.solidsoft.pitest") {
     configure<info.solidsoft.gradle.pitest.PitestPluginExtension> {
-        jvmArgs.set(listOf("-Xmx1024m"))
+        jvmArgs.set(listOf("-Xmx2048m"))
         avoidCallsTo.set(setOf("kotlin.jvm.internal", "kotlin.Result"))
         targetClasses.set(setOf("dev.shtanko.*"))
         targetTests.set(setOf("dev.shtanko.*"))
-        pitestVersion.set("1.9.0")
+        pitestVersion.set("1.15.0")
         verbose.set(true)
+        timestampedReports.set(false)
         threads.set(System.getenv("PITEST_THREADS")?.toInt() ?: satisfyingNumberOfCores)
         outputFormats.set(setOf("XML", "HTML"))
         testPlugin.set("junit5")
-        junit5PluginVersion.set("0.12")
+        junit5PluginVersion.set("1.0.0")
     }
 }
 
@@ -117,7 +136,59 @@ subprojects {
     apply<com.diffplug.gradle.spotless.SpotlessPlugin>()
 }
 
+koverReport {
+    verify {
+        rule {
+            minBound(80)
+        }
+    }
+}
+
 tasks {
+    named("distZip") {
+        dependsOn(withType<ShadowJar>())
+    }
+
+    withType<ShadowJar> {
+        print("Build Report Parser: $name")
+        archiveFileName.set("detekt_report_parser.jar")
+        archiveVersion.set("")
+        archiveClassifier.set("")
+        manifest {
+            attributes(
+                "Main-Class" to "dev.shtanko.report.ReportParserKt",
+                "Implementation-Version" to project.version,
+            )
+        }
+    }
+
+    withType<Test> {
+        maxParallelForks = 1
+        jvmArgs(
+            "--add-opens", "java.base/jdk.internal.misc=ALL-UNNAMED",
+            "--add-exports", "java.base/jdk.internal.util=ALL-UNNAMED",
+            "--add-exports", "java.base/sun.security.action=ALL-UNNAMED",
+        )
+    }
+    compileKotlin {
+        compilerOptions {
+            apiVersion.set(kotlinVersion)
+            languageVersion.set(kotlinVersion)
+        }
+    }
+    kotlin {
+        jvmToolchain(projectJvmTarget)
+    }
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = "0.5".toBigDecimal()
+                }
+            }
+        }
+    }
+
     register<Copy>("copyGitHooks") {
         description = "Copies the git hooks from scripts/git-hooks to the .git folder."
         group = "git hooks"
@@ -154,17 +225,17 @@ tasks {
     }
 
     jacocoTestReport {
+        dependsOn(test)
         reports {
-            html.required.set(true)
-            xml.required.set(true)
-            xml.outputLocation.set(file("$buildDir/reports/jacoco/report.xml"))
+            listOf(
+                html, xml, csv,
+            ).map { it.required }.forEach { it.set(true) }
         }
-        executionData(file("build/jacoco/test.exec"))
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = projectJvmTarget
+            jvmTarget = "$projectJvmTarget"
             freeCompilerArgs = freeCompilerArgs + k2CompilerArg
         }
     }
@@ -173,26 +244,31 @@ tasks {
         description = "Runs over whole code base without the starting overhead for each module."
         parallel = true
         baseline.set(file("$rootDir/config/detekt/detekt-baseline.xml"))
-        config.from(file("config/detekt/detekt.yml"))
-        jvmTarget = projectJvmTarget
+        config.from(file("$rootDir/config/detekt/detekt.yml"))
+        jvmTarget = "$projectJvmTarget"
 
         setSource(files("src/main/kotlin", "src/test/kotlin"))
-        include("**/*.kt")
-        include("**/*.kts")
-        exclude(".*/resources/.*")
-        exclude(".*/build/.*")
-        exclude("/versions.gradle.kts")
+        setOf(
+            "**/*.kt",
+            "**/*.kts",
+            ".*/resources/.*",
+            ".*/build/.*",
+            "/versions.gradle.kts",
+        ).forEach {
+            include(it)
+        }
 
         reports {
-            xml.required.set(true)
-            html.required.set(true)
-            txt.required.set(true)
-            md.required.set(true)
+            reports.apply {
+                listOf(xml, html, txt, md).map { it.required }.forEach {
+                    it.set(true)
+                }
+            }
         }
     }
 
     withType<DetektCreateBaselineTask> {
-        jvmTarget = projectJvmTarget
+        jvmTarget = "$projectJvmTarget"
     }
 
     withType<Test>().configureEach {
@@ -204,11 +280,12 @@ tasks {
         }
         testLogging.showStandardStreams = true
         useJUnitPlatform()
+        finalizedBy(withType(JacocoReport::class.java))
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = projectJvmTarget
+            jvmTarget = "$projectJvmTarget"
         }
     }
 }
@@ -230,54 +307,52 @@ protobuf {
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlin.reflect)
-    implementation(libs.kotlin.coroutines)
-    implementation(libs.kotlin.coroutines.slf4j)
-    implementation(libs.kotlin.coroutines.debug)
-    implementation(libs.slf4j)
-    implementation(libs.rxjava)
-    implementation(libs.rxkotlin)
-    implementation(libs.lincheck)
-    implementation(libs.kotlin.serialization.json)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.mock)
-    implementation(libs.retrofit.converter)
-    implementation(libs.okhttp)
-    implementation(libs.dagger)
-    implementation(libs.autovalue.annotations)
-    implementation(libs.jmh)
+    libs.apply {
+        kotlin.apply {
+            implementation(stdlib)
+            implementation(reflect)
+            implementation(coroutines)
+            implementation(coroutines.slf4j)
+            implementation(coroutines.debug)
+        }
+        implementation(slf4j)
+        implementation(rxjava)
+        implementation(rxkotlin)
+        implementation(lincheck)
+        implementation(kotlin.serialization.json)
+        implementation(retrofit)
+        implementation(retrofit.mock)
+        implementation(okhttp)
+        implementation("org.openjdk.jol:jol-core:0.17")
 
-    implementation("com.google.protobuf:protobuf-java:3.19.1")
-    implementation("com.google.protobuf:protobuf-kotlin-lite:3.19.6")
-    implementation("io.grpc:grpc-stub:1.15.1")
-    implementation("io.grpc:grpc-protobuf:1.15.1")
+        ktLintConfig(ktlint)
+        implementation(jsoup)
+        implementation("com.google.protobuf:protobuf-java:3.19.1")
+        implementation("com.google.protobuf:protobuf-kotlin-lite:3.19.6")
+        implementation("io.grpc:grpc-stub:1.15.1")
+        implementation("io.grpc:grpc-protobuf:1.15.1")
 
-    ktLintConfig(libs.ktlint)
 
-    kapt(libs.dagger.compiler)
-    kapt(libs.autovalue)
-    kapt(libs.jmh.annprocess)
-
-    testImplementation(libs.mockk)
-    testImplementation(libs.junit)
-    testImplementation(libs.jmh.annprocess)
-    testImplementation(libs.jmh.benchmarks)
-    testImplementation(libs.lincheck)
-    testApi(libs.kotlin.coroutines.core)
-    testImplementation(libs.kotlin.coroutines.test)
-    testImplementation(libs.kotlintest.core)
-    testImplementation(libs.kotlintest.junit5)
-    testImplementation(libs.assertj)
-    testImplementation(libs.hamcrest)
-    testImplementation(libs.mockk)
-    testImplementation(libs.mockito)
-    testImplementation(libs.mockito.kotlin)
-    testImplementation(libs.logback)
-    testImplementation(libs.logback.classic)
-    testImplementation(libs.rxjava)
-    testImplementation(libs.junit.benchmarks)
-    testImplementation(libs.kotlin.serialization.json)
+        testImplementation(mockk)
+        testImplementation(junit)
+        testImplementation(lincheck)
+        testApi(kotlin.coroutines.core)
+        testImplementation(kotlin.coroutines.test)
+        testImplementation(kotlintest.core)
+        testImplementation(kotlintest.junit5)
+        testImplementation(assertj)
+        testImplementation(hamcrest)
+        testImplementation(mockk)
+        testImplementation(mockito)
+        testImplementation(mockito.kotlin)
+        testImplementation(logback)
+        testImplementation(logback.classic)
+        testImplementation(rxjava)
+        testImplementation(kotlin.serialization.json)
+        testImplementation(kotest)
+        testImplementation(kotest.assertions)
+        testImplementation(kotest.property)
+        testImplementation(okhttp.mockwebserver)
+    }
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("com.squareup.okhttp3:mockwebserver:5.0.0-alpha.11")
 }

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -51,13 +51,84 @@ abstract class ValidPathInGraphTest<out T : ValidPathInGraph>(private val strate
                 2,
                 true,
             ),
+            Arguments.of(
+                3,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(1, 2),
+                    intArrayOf(2, 0),
+                ),
+                0,
+                1,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                3,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                4,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                0,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                1,
+                true,
+            ),
+            Arguments.of(
+                5,
+                arrayOf(
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(3, 4),
+                    intArrayOf(2, 4),
+                ),
+                0,
+                2,
+                true,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InoutArgumentsProvider::class)
-    fun `valid path test`(n: Int, edges: Array<IntArray>, source: Int, destination: Int, expected: Boolean) {
-        val actual = strategy.perform(n, edges, source, destination)
+    fun `valid path test`(num: Int, edges: Array<IntArray>, source: Int, destination: Int, expected: Boolean) {
+        val actual = strategy.invoke(num, edges, source, destination)
         assertThat(actual).isEqualTo(expected)
     }
 }

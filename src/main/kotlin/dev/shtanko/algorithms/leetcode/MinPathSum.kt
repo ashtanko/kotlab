@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,17 +16,23 @@
 
 package dev.shtanko.algorithms.leetcode
 
-fun minPathSum(grid: Array<IntArray>): Int {
-    val m: Int = grid.size
-    val n: Int = grid.first().size
-    for (i in 1 until n) {
-        grid.first()[i] += grid.first()[i - 1]
-    }
-    for (i in 1 until m) {
-        grid[i][0] += grid[i - 1].first()
-        for (j in 1 until n) {
-            grid[i][j] += grid[i][j - 1].coerceAtMost(grid[i - 1][j])
+fun interface MinimumPathSum {
+    operator fun invoke(grid: Array<IntArray>): Int
+}
+
+class MinimumPathSumDP : MinimumPathSum {
+    override operator fun invoke(grid: Array<IntArray>): Int {
+        val m: Int = grid.size
+        val n: Int = grid.first().size
+        for (i in 1 until n) {
+            grid.first()[i] += grid.first()[i - 1]
         }
+        for (i in 1 until m) {
+            grid[i][0] += grid[i - 1].first()
+            for (j in 1 until n) {
+                grid[i][j] += grid[i][j - 1].coerceAtMost(grid[i - 1][j])
+            }
+        }
+        return grid[m - 1][n - 1]
     }
-    return grid[m - 1][n - 1]
 }

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,18 +16,20 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DP
 import kotlin.math.max
 
 /**
  * 1626. Best Team With No Conflicts
- * @link https://leetcode.com/problems/best-team-with-no-conflicts/
+ * @see <a href="https://leetcode.com/problems/best-team-with-no-conflicts/">Source</a>
  */
-interface BestTeamScore {
-    fun perform(scores: IntArray, ages: IntArray): Int
+fun interface BestTeamScore {
+    operator fun invoke(scores: IntArray, ages: IntArray): Int
 }
 
+@DP
 class BestTeamScoreDP : BestTeamScore {
-    override fun perform(scores: IntArray, ages: IntArray): Int {
+    override operator fun invoke(scores: IntArray, ages: IntArray): Int {
         val n: Int = ages.size
         val candidate = Array(n) { IntArray(2) }
 

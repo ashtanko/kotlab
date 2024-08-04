@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,27 +21,56 @@ import kotlin.math.pow
 import kotlin.math.roundToLong
 import kotlin.math.sqrt
 
-interface FibonacciStrategy {
-    fun perform(n: Int): Long
+/**
+ * 509. Fibonacci Number
+ * @see <a href="https://leetcode.com/problems/fibonacci-number/">Source</a>
+ */
+fun interface FibonacciStrategy {
+    operator fun invoke(n: Int): Long
 }
 
+/**
+ * Solution 1: Iterative
+ */
+class FibonacciIterative : FibonacciStrategy {
+    override operator fun invoke(n: Int): Long {
+        var n1: Long = n.toLong()
+        if (n1 <= 1) return n1
+        var a = 0
+        var b = 1
+
+        while (n1-- > 1) {
+            val sum = a + b
+            a = b
+            b = sum
+        }
+        return b.toLong()
+    }
+}
+
+/**
+ * Solution 2: Recursive
+ */
 class FibonacciRecursion : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
-        return perform(n - 1) + perform(n - 2)
+        return invoke(n - 1) + invoke(n - 2)
     }
 }
 
 class FibonacciOptimizedRecursion : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         return fibonacciAt(n)
     }
 }
 
+/**
+ * Solution 4: Dynamic Programming - Bottom Up Approach
+ */
 class FibonacciBottomUp : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
@@ -58,11 +87,17 @@ class FibonacciBottomUp : FibonacciStrategy {
     }
 }
 
+/**
+ * Solution 3: Dynamic Programming - Top-Down Approach
+ */
 class FibonacciTopDown : FibonacciStrategy {
+    private val cache = arrayOfNulls<Long>(SIZE)
 
-    private val cache = arrayOfNulls<Long>(60)
+    private companion object {
+        private const val SIZE = 60
+    }
 
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
@@ -81,7 +116,7 @@ class FibonacciTopDown : FibonacciStrategy {
 }
 
 class FibonacciIterativeTopDown : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
@@ -103,7 +138,7 @@ class FibonacciIterativeTopDown : FibonacciStrategy {
 }
 
 class FibonacciMatrixExponentiation : FibonacciStrategy {
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         if (n <= 1) {
             return n.toLong()
         }
@@ -139,7 +174,7 @@ class FibonacciMatrixExponentiation : FibonacciStrategy {
 
 class FibonacciMath : FibonacciStrategy {
 
-    override fun perform(n: Int): Long {
+    override operator fun invoke(n: Int): Long {
         val goldenRatio = 1.plus(sqrt(GOLDEN_RATIO_VALUE)) / 2
         return goldenRatio.pow(n).div(sqrt(GOLDEN_RATIO_VALUE)).roundToLong()
     }

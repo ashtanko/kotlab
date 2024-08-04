@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,6 +17,7 @@
 package dev.shtanko.concurrency.coroutines
 
 import dev.shtanko.concurrency.TestBase
+import dev.shtanko.utils.measureMemFormatted
 import java.util.stream.Stream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -79,8 +80,12 @@ class FlowFactorialTest : TestBase() {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `flow factorial test`(n: Int, expected: String) = runTest {
-        val actual = withContext(Dispatchers.Default) { flowFactorial(n) }.toString()
-        assertThat(actual).isEqualTo(expected)
+    fun `flow factorial test`(num: Int, expected: String) = runTest {
+        val task = flowFactorial(num)
+        val (msg, res) = measureMemFormatted("flow factorial") {
+            withContext(Dispatchers.Default) { task }.toString()
+        }
+        println(msg)
+        assertThat(res).isEqualTo(expected)
     }
 }

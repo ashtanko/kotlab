@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,10 +20,10 @@ import kotlin.math.max
 
 /**
  * 2458. Height of Binary Tree After Subtree Removal Queries
- * @link https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
+ * @see <a href="https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/">Source</a>
  */
-interface TreeQueries {
-    fun invoke(root: TreeNode, queries: IntArray): IntArray
+fun interface TreeQueries {
+    operator fun invoke(root: TreeNode, queries: IntArray): IntArray
 }
 
 class TreeQueriesDP : TreeQueries {
@@ -34,7 +34,7 @@ class TreeQueriesDP : TreeQueries {
         private const val SIZE = 100001
     }
 
-    override fun invoke(root: TreeNode, queries: IntArray): IntArray {
+    override operator fun invoke(root: TreeNode, queries: IntArray): IntArray {
         dfs(root, 0, 0)
         return queries.map { q -> answer[q] }.toIntArray()
     }

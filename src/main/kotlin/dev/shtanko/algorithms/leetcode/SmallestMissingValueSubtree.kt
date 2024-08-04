@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,10 +18,10 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 2003. Smallest Missing Genetic Value in Each Subtree
- * @link https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/
+ * @see <a href="https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/">Source</a>
  */
-interface SmallestMissingValueSubtree {
-    fun perform(parents: IntArray, nums: IntArray): IntArray
+fun interface SmallestMissingValueSubtree {
+    operator fun invoke(parents: IntArray, nums: IntArray): IntArray
 }
 
 class SmallestMissingValueSubtreeStrict : SmallestMissingValueSubtree {
@@ -30,7 +30,7 @@ class SmallestMissingValueSubtreeStrict : SmallestMissingValueSubtree {
     var miss = 1
     var set: HashSet<Int> = HashSet()
 
-    override fun perform(parents: IntArray, nums: IntArray): IntArray {
+    override operator fun invoke(parents: IntArray, nums: IntArray): IntArray {
         val n: Int = parents.size
         val res = IntArray(n)
         for (i in 0 until n) {

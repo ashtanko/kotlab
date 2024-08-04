@@ -1,20 +1,51 @@
-.PHONY: check run test lines md b
-check:
-	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
+.PHONY: check run test lines md default jacoco spotless kover diktat cloc jar repo
 
+# Run detekt + ktlint
+check:
+	./gradlew detekt ktlintCheck --profile --daemon
+
+# Run spotless, more info: https://github.com/diffplug/spotless
+spotless:
+	./gradlew spotlessApply spotlessCheck spotlessKotlin
+
+# Update the README.md file in accordance with the detekt report
 md:
 	truncate -s0 README.md && cat config/main.md >> README.md && cat build/reports/detekt/detekt.md >> README.md
 
-b:
-	make check && make md
+# Copy jacoco report
+jacoco:
+	cp -r build/reports/jacoco/test/html jacocoReport
 
+# Run code style check + update the README.md file in accordance with the detekt report
+default:
+	make spotless && make check && make md
+
+# Build the project
 run:
 	./gradlew build
 
+# Run tests
 test:
 	./gradlew test
 
+# Print Kotlin lines count
 lines:
 	find . -name '*.kt' | xargs wc -l
 
-.DEFAULT_GOAL := check
+cloc:
+	cloc --include-lang=kotlin src
+
+kover:
+	./gradlew koverHtmlReport
+
+diktat:
+	./gradlew diktatCheck
+
+jar:
+	./gradlew shadowJar && mv ./build/libs/*.jar config/
+
+repo:
+	java -jar config/detekt_report_parser.jar ./build/reports/detekt/detekt.html ./config/detekt.md
+
+
+.DEFAULT_GOAL := default

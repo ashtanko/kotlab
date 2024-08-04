@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -35,7 +35,7 @@ class Wizard {
     }
 
     fun undoLastSpell() {
-        if (!undoStack.isEmpty()) {
+        if (undoStack.isNotEmpty()) {
             val previousSpell = undoStack.pollLast()
             redoStack.offerLast(previousSpell)
             LOGGER.info("{} undoes {}", this, previousSpell)
@@ -44,7 +44,7 @@ class Wizard {
     }
 
     fun redoLastSpell() {
-        if (!redoStack.isEmpty()) {
+        if (redoStack.isNotEmpty()) {
             val previousSpell = redoStack.pollLast()
             undoStack.offerLast(previousSpell)
             LOGGER.info("{} redoes {}", this, previousSpell)

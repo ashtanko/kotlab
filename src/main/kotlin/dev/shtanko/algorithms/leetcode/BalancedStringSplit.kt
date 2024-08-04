@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,8 +24,8 @@ package dev.shtanko.algorithms.leetcode
 fun String.balancedStringSplit(): Int {
     var c = 0
     var count = 0
-    for (s in this) {
-        count += if (s == 'L') 1 else -1
+    for (character in this) {
+        count += if (character == 'L') 1 else -1
         if (count == 0) {
             c++
         }

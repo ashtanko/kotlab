@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -48,6 +48,27 @@ abstract class CanSeePersonsCountTest<out T : CanSeePersonsCount>(private val st
                 intArrayOf(1, 2),
                 intArrayOf(1, 0),
             ),
+            Arguments.of(
+                intArrayOf(2, 1),
+                intArrayOf(1, 0),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                intArrayOf(1, 1, 1, 1, 0),
+            ),
+            Arguments.of(
+                intArrayOf(5, 4, 3, 2, 1),
+                intArrayOf(1, 1, 1, 1, 0),
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 0),
+            ),
+            Arguments.of(
+                intArrayOf(10, 9, 8, 7, 6, 5, 4, 3, 2, 1),
+                intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 0),
+            ),
+
         )
     }
 
@@ -55,7 +76,7 @@ abstract class CanSeePersonsCountTest<out T : CanSeePersonsCount>(private val st
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun canSeePersonsCount(heights: IntArray, expected: IntArray) {
-        val actual = strategy.perform(heights)
+        val actual = strategy.invoke(heights)
         assertThat(actual).isEqualTo(expected)
     }
 }

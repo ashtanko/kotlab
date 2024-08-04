@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -43,8 +43,8 @@ internal class ImmutableSetTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `contains test`(n: Int, value: Int, expected: Boolean) {
-        val actual = immutableSetOf(n).contains(value)
+    internal fun `contains test`(num: Int, value: Int, expected: Boolean) {
+        val actual = immutableSetOf(num).contains(value)
         assertThat(actual, equalTo(expected))
     }
 

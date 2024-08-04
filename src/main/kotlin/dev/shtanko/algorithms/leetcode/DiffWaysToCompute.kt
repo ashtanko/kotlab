@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,16 +18,16 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 241. Different Ways to Add Parentheses
- * @link https://leetcode.com/problems/different-ways-to-add-parentheses/
+ * @see <a href="https://leetcode.com/problems/different-ways-to-add-parentheses/">Source</a>
  */
-interface DiffWaysToCompute {
+fun interface DiffWaysToCompute {
     fun compute(expression: String): List<Int>
 }
 
 class DiffWaysToComputeRecursive : DiffWaysToCompute {
 
     // function to get the result of the operation
-    fun perform(x: Int, y: Int, op: Char): Int {
+    operator fun invoke(x: Int, y: Int, op: Char): Int {
         if (op == '+') return x + y
         if (op == '-') return x - y
         return if (op == '*') x * y else 0
@@ -53,7 +53,7 @@ class DiffWaysToComputeRecursive : DiffWaysToCompute {
                 // performing operations
                 for (x in left) {
                     for (y in right) {
-                        val value = perform(x, y, expression[i])
+                        val value = invoke(x, y, expression[i])
                         results.add(value)
                     }
                 }

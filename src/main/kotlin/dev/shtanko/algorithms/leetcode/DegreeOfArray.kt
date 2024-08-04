@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,17 +16,16 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Collections
 import kotlin.math.min
 
 /**
  * Degree of an Array
- * @link https://leetcode.com/problems/degree-of-an-array/
+ * @see <a href="https://leetcode.com/problems/degree-of-an-array/">Source</a>
  */
 object DegreeOfArray {
     fun findShortestSubArray(nums: IntArray): Int {
         if (nums.isEmpty()) return 0
-        val left: MutableMap<Int, Int?> = HashMap()
+        val left: MutableMap<Int, Int> = HashMap()
         val right: MutableMap<Int, Int> = HashMap()
         val count: MutableMap<Int, Int> = HashMap()
 
@@ -38,10 +37,10 @@ object DegreeOfArray {
         }
 
         var ans: Int = nums.size
-        val degree = Collections.max(count.values)
+        val degree = count.values.max()
         for (x in count.keys) {
             if (count[x] == degree) {
-                ans = min(ans, right[x]!! - left[x]!! + 1)
+                ans = min(ans, right.getOrDefault(x, 0) - left.getOrDefault(x, 0) + 1)
             }
         }
         return ans

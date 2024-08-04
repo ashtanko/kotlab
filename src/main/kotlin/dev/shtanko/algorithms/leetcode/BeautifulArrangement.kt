@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,25 +16,28 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Backtracking
+import dev.shtanko.algorithms.annotations.BruteForce
 import dev.shtanko.algorithms.extensions.swap
 
 /**
  * https://leetcode.com/problems/beautiful-arrangement/
  * 526. Beautiful Arrangement
  */
-interface BeautifulArrangement {
-    fun countArrangement(n: Int): Int
+fun interface BeautifulArrangement {
+    operator fun invoke(num: Int): Int
 }
 
 /**
  * Approach #2 Better Brute Force
  */
+@BruteForce
 class BABruteForce : BeautifulArrangement {
     private var count = 0
 
-    override fun countArrangement(n: Int): Int {
-        val nums = IntArray(n)
-        for (i in 1..n) nums[i - 1] = i
+    override fun invoke(num: Int): Int {
+        val nums = IntArray(num)
+        for (i in 1..num) nums[i - 1] = i
         return permute(nums, 0)
     }
 
@@ -56,12 +59,13 @@ class BABruteForce : BeautifulArrangement {
 /**
  * Approach #3 Backtracking
  */
+@Backtracking
 class BABacktracking : BeautifulArrangement {
     private var count = 0
 
-    override fun countArrangement(n: Int): Int {
-        val visited = BooleanArray(n + 1)
-        calculate(n, 1, visited)
+    override fun invoke(num: Int): Int {
+        val visited = BooleanArray(num + 1)
+        calculate(num, 1, visited)
         return count
     }
 

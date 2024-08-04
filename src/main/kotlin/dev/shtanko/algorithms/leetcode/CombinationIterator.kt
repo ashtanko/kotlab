@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,13 +18,13 @@ package dev.shtanko.algorithms.leetcode
 
 import java.util.Stack
 
-internal interface CombinationIterator {
+interface CombinationIterator {
     fun next(): String
 
     fun hasNext(): Boolean
 }
 
-internal class CombinationIteratorImpl(characters: String, combinationLength: Int) : CombinationIterator {
+class CombinationIteratorImpl(characters: String, combinationLength: Int) : CombinationIterator {
 
     private val st = Stack<Char>()
     private val ch2Idx = hashMapOf<Char, Int>()

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,19 +16,22 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.MOD
+import dev.shtanko.algorithms.annotations.DP
 import kotlin.math.max
 
 /**
  * 2478. Number of Beautiful Partitions
- * @link https://leetcode.com/problems/number-of-beautiful-partitions/description/
+ * @see <a href="https://leetcode.com/problems/number-of-beautiful-partitions">Source</a>
  */
-interface BeautifulPartitions {
-    fun perform(s: String, k: Int, minLength: Int): Int
+fun interface BeautifulPartitions {
+    operator fun invoke(str: String, k: Int, minLength: Int): Int
 }
 
+@DP
 class BeautifulPartitionsDP : BeautifulPartitions {
-    override fun perform(s: String, k: Int, minLength: Int): Int {
-        val cs: CharArray = s.toCharArray()
+    override operator fun invoke(str: String, k: Int, minLength: Int): Int {
+        val cs: CharArray = str.toCharArray()
         val n = cs.size
         // make sure the input is valid
         if (!prime(cs[0]) || prime(cs[n - 1])) return 0

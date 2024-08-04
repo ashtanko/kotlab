@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -151,5 +151,64 @@ internal class IntMapTest {
         map.put(1, "1")
         map.removeAt(1)
         assertFalse(map.containsKey(1))
+    }
+
+    @Test
+    fun testEmptyMap() {
+        val map = IntMap<String>()
+        assertTrue(map.isEmpty())
+        assertEquals(null, map[1])
+        assertFalse(map.containsKey(1))
+        assertEquals(-1, map.indexOfKey(1))
+    }
+
+    @Test
+    fun testPutAndGet() {
+        val map = IntMap<String>()
+        map.put(1, "one")
+        map.put(2, "two")
+        assertEquals("one", map[1])
+        assertEquals("two", map[2])
+        assertEquals(null, map[3])
+        assertEquals(0, map.indexOfKey(1))
+        assertEquals(1, map.indexOfKey(2))
+        assertFalse(map.isEmpty())
+        assertTrue(map.containsKey(1))
+        assertFalse(map.containsKey(3))
+        assertEquals(1, map.keyAt(0))
+        assertEquals("one", map.valueAt(0))
+        map.setValueAt(1, "newTwo")
+        assertEquals("newTwo", map.valueAt(1))
+    }
+
+    @Test
+    fun testDelete() {
+        val map = IntMap<String>()
+        map.put(1, "one")
+        map.put(2, "two")
+        map.put(3, "three")
+        assertEquals(3, map.size)
+        map.delete(1)
+        assertEquals(2, map.size)
+        assertEquals(-1, map.indexOfKey(1))
+        assertEquals(0, map.indexOfKey(2))
+        assertEquals(1, map.indexOfKey(3))
+        assertEquals(null, map[1])
+        assertEquals("two", map[2])
+        assertEquals("three", map[3])
+        assertTrue(map.containsKey(3))
+    }
+
+    @Test
+    fun testLargeMap() {
+        val map = IntMap<String>()
+        val count = 100000
+        for (i in 0 until count) {
+            map.put(i, "value$i")
+        }
+        assertEquals(count, map.size)
+        for (i in 0 until count) {
+            assertEquals("value$i", map[i])
+        }
     }
 }

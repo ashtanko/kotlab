@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,15 +16,14 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.Collections
 import kotlin.math.min
 
 /**
  * 1681. Minimum Incompatibility
- * link https://leetcode.com/problems/minimum-incompatibility/
+ * @see <a href="https://leetcode.com/problems/minimum-incompatibility">Source</a>
  */
-interface MinimumIncompatibility {
-    fun perform(nums: IntArray, k: Int): Int
+fun interface MinimumIncompatibility {
+    operator fun invoke(nums: IntArray, k: Int): Int
 }
 
 class MinimumIncompatibilityDFS : MinimumIncompatibility {
@@ -33,12 +32,13 @@ class MinimumIncompatibilityDFS : MinimumIncompatibility {
     private val memo: MutableMap<String, Int> = HashMap()
     private var k0 = 0
 
-    override fun perform(nums: IntArray, k: Int): Int {
+    override operator fun invoke(nums: IntArray, k: Int): Int {
         nums.sort()
         k0 = k
         val count = IntArray(LIMIT)
         for (num in nums) if (++count[num] > k) return -1
-        // if same number more than k times, we can not answer the question cause there must be one bucket with same number twice
+        // if same number more than k times, we can not answer the question cause there must be one bucket with same
+        // number twice
         n = nums.size / k // n is the number of element in each bucket
         return dfs(HashSet(), count)
     }
@@ -60,14 +60,14 @@ class MinimumIncompatibilityDFS : MinimumIncompatibility {
             res = min(res, dfs(level, count))
             count[i]++
             level.remove(i)
-            if (level.size == 0) break // first element we don't need to expand
+            if (level.isNotEmpty()) break // first element we don't need to expand
         }
         memo[key] = res
         return res
     }
 
     private fun findDiff(level: Set<Int>): Int {
-        return Collections.max(level) - Collections.min(level)
+        return level.max() - level.min()
     }
 
     private fun end(count: IntArray): Boolean {

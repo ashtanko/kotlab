@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -51,7 +51,7 @@ abstract class ShoppingOffersTest<out T : ShoppingOffers>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `shopping offers test`(price: List<Int>, special: List<List<Int>>, needs: List<Int>, expected: Int) {
-        val actual = strategy.perform(price, special, needs)
+        val actual = strategy.invoke(price, special, needs)
         assertThat(actual).isEqualTo(expected)
     }
 }

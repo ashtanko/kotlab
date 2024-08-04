@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +18,14 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 1716. Calculate Money in Leetcode Bank
- * @link https://leetcode.com/problems/calculate-money-in-leetcode-bank/
+ * @see <a href="https://leetcode.com/problems/calculate-money-in-leetcode-bank/">Source</a>
  */
 object TotalMoney {
 
     private const val WEEK = 7
     private const val PERIOD = 3
 
-    fun perform(n: Int): Int {
+    operator fun invoke(n: Int): Int {
         var m = n / WEEK
         var ans = 0
         for (i in 1..m) {

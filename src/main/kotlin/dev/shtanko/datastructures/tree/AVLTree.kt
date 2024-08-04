@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory
 
 /**
  * AVL Tree
- * @link https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+ * @see <a href="https://www.geeksforgeeks.org/avl-tree-set-1-insertion/">leetcode page</a>
  */
 class AVLTree {
 
@@ -38,7 +38,7 @@ class AVLTree {
     var root: Node? = null
 
     fun insert(node: Node?, key: Int): Node? {
-        /* 1.  Perform the normal BST insertion */
+        // 1.  Perform the normal BST insertion
         if (node == null) return Node(key)
         when {
             key < node.key -> node.left = insert(node.left, key)
@@ -47,14 +47,16 @@ class AVLTree {
             else -> return node
         }
 
-        /* 2. Update height of this ancestor node */node.height = 1 + max(
+        // 2. Update height of this ancestor node
+        node.height = 1 + max(
             height(node.left),
             height(node.right),
         )
 
         /* 3. Get the balance factor of this ancestor
               node to check whether this node became
-              unbalanced */
+              unbalanced
+         */
         val balance = getBalance(node)
 
         // If this node becomes unbalanced, then there
@@ -76,7 +78,7 @@ class AVLTree {
             return leftRotate(node)
         }
 
-        /* return the (unchanged) node pointer */
+        // return the (unchanged) node pointer
         return node
     }
 

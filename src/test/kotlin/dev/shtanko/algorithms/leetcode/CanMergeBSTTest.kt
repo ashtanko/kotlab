@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -40,14 +40,7 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
                         left = TreeNode(4)
                     },
                 ),
-                TreeNode(3).apply {
-                    left = TreeNode(2).apply {
-                        left = TreeNode(1)
-                    }
-                    right = TreeNode(5).apply {
-                        left = TreeNode(4)
-                    }
-                }.preorderTraversal(),
+                listOf(3, 2, 5, 1, 4),
             ),
             Arguments.of(
                 listOf(
@@ -71,13 +64,94 @@ abstract class CanMergeBSTTest<out T : CanMergeBST>(private val strategy: T) {
                 ),
                 emptyList<Int>(),
             ),
+            Arguments.of(
+                listOf(
+                    TreeNode(5).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(8)
+                    },
+                    TreeNode(3).apply {
+                        left = TreeNode(2)
+                        right = TreeNode(6)
+                    },
+                    TreeNode(8).apply {
+                        left = TreeNode(7)
+                    },
+                ),
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                listOf(
+                    TreeNode(5).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(8)
+                    },
+                    TreeNode(3).apply {
+                        left = TreeNode(2)
+                        right = TreeNode(6)
+                    },
+                    TreeNode(8).apply {
+                        left = TreeNode(7)
+                    },
+                    TreeNode(7).apply {
+                        left = TreeNode(6)
+                    },
+                ),
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                listOf(
+                    TreeNode(5).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(8)
+                    },
+                    TreeNode(3).apply {
+                        left = TreeNode(2)
+                        right = TreeNode(6)
+                    },
+                    TreeNode(8).apply {
+                        left = TreeNode(7)
+                    },
+                    TreeNode(7).apply {
+                        left = TreeNode(6)
+                    },
+                    TreeNode(6).apply {
+                        left = TreeNode(5)
+                    },
+                ),
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                listOf(
+                    TreeNode(5).apply {
+                        left = TreeNode(3)
+                        right = TreeNode(8)
+                    },
+                    TreeNode(3).apply {
+                        left = TreeNode(2)
+                        right = TreeNode(6)
+                    },
+                    TreeNode(8).apply {
+                        left = TreeNode(7)
+                    },
+                    TreeNode(7).apply {
+                        left = TreeNode(6)
+                    },
+                    TreeNode(6).apply {
+                        left = TreeNode(5)
+                    },
+                    TreeNode(4),
+                ),
+                emptyList<Int>(),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `can merge test`(trees: List<TreeNode>, expected: List<Int>) {
-        val actual = strategy.perform(trees).preorderTraversal()
+        val actual = strategy.invoke(trees).preorderTraversal()
+        println("$trees ${strategy.invoke(trees)}")
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected)
     }
 }

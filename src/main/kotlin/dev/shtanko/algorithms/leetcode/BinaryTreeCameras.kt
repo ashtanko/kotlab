@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,18 +16,26 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.DFS
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.annotations.Greedy
 import kotlin.math.min
 
-interface BinaryTreeCamerasStrategy {
+/**
+ * 968. Binary Tree Cameras
+ * @see <a href="https://leetcode.com/problems/binary-tree-cameras/">Source</a>
+ */
+fun interface BinaryTreeCameras {
 
-    fun perform(root: TreeNode?): Int
+    operator fun invoke(root: TreeNode?): Int
 }
 
-class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {
+@DFS
+class BinaryTreeCamerasDFS : BinaryTreeCameras {
 
     private var cameras = 0
 
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         if (root == null) return 0
         val top = root.dfs()
         val local = if (top == NOT_MONITORED) 1 else 0
@@ -55,9 +63,10 @@ class BinaryTreeCamerasDFS : BinaryTreeCamerasStrategy {
     }
 }
 
-class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {
+@DP
+class BinaryTreeCamerasDP : BinaryTreeCameras {
 
-    override fun perform(root: TreeNode?): Int {
+    override operator fun invoke(root: TreeNode?): Int {
         val ans = solve(root)
         return min(ans[1], ans[2])
     }
@@ -82,29 +91,22 @@ class BinaryTreeCamerasDP : BinaryTreeCamerasStrategy {
     }
 }
 
-class BinaryTreeCamerasGreedy : BinaryTreeCamerasStrategy {
+@Greedy
+class BinaryTreeCamerasGreedy : BinaryTreeCameras {
 
-    private var ans = 0
-    private val covered: MutableSet<TreeNode?> = HashSet()
-
-    override fun perform(root: TreeNode?): Int {
-        covered.add(null)
-        dfs(root, null)
-        return ans
+    private var res = 0
+    override operator fun invoke(root: TreeNode?): Int {
+        return (if (dfs(root) < 1) 1 else 0) + res
     }
 
-    fun dfs(node: TreeNode?, par: TreeNode?) {
-        if (node != null) {
-            dfs(node.left, node)
-            dfs(node.right, node)
-            val leftRightPredicate = !covered.contains(node.left) || !covered.contains(node.right)
-            if (par == null && !covered.contains(node) || leftRightPredicate) {
-                ans++
-                covered.add(node)
-                covered.add(par)
-                covered.add(node.left)
-                covered.add(node.right)
-            }
+    private fun dfs(root: TreeNode?): Int {
+        if (root == null) return 2
+        val left = dfs(root.left)
+        val right = dfs(root.right)
+        if (left == 0 || right == 0) {
+            res++
+            return 1
         }
+        return if (left == 1 || right == 1) 2 else 0
     }
 }

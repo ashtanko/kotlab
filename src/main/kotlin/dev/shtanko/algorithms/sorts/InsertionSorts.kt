@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -36,8 +36,6 @@ class InsertionSort : AbstractSortStrategy {
 
 /**
  * This method implements the Generic Insertion Sort
- *
- * @param arr The array to be sorted
  * Sorts the array in increasing order
  *
  * Worst-case performance       O(n^2)
@@ -46,6 +44,11 @@ class InsertionSort : AbstractSortStrategy {
  * Worst-case space complexity  O(1)
  **/
 class InsertionSort2 : AbstractSortStrategy {
+
+    /**
+     *  * @param arr The array to be sorted
+     *  * Sorts the array in increasing order
+     */
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         for (i in 1 until arr.size) {
             val x = arr[i]

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,34 +25,39 @@ enum class SPNumType(val value: Int) {
 
 /**
  * 906. Super Palindromes
- * @link https://leetcode.com/problems/super-palindromes/
+ * @see <a href="https://leetcode.com/problems/super-palindromes/">Source</a>
  */
 object SuperPalindromes {
-    private const val MAGIC = 100_000
+    private const val MAX_ITERATIONS = 100_000
 
-    fun superPalindromesInRange(left: String, right: String): Int {
-        val l = left.toLong()
-        val r = right.toLong()
-        var ans = 0
-        countLen(l, r, SPNumType.ODD) {
-            ans++
+    fun superPalindromesInRange(leftBoundary: String, rightBoundary: String): Int {
+        val leftLimit = leftBoundary.toLong()
+        val rightLimit = rightBoundary.toLong()
+        var palindromeCount = 0
+        countPalindromes(leftLimit, rightLimit, SPNumType.ODD) {
+            palindromeCount++
         }
-        countLen(l, r, SPNumType.EVEN) {
-            ans++
+        countPalindromes(leftLimit, rightLimit, SPNumType.EVEN) {
+            palindromeCount++
         }
-        return ans
+        return palindromeCount
     }
 
-    private fun countLen(l: Long, r: Long, numType: SPNumType, increase: () -> Unit) {
-        for (k in 1 until MAGIC) {
-            val sb = StringBuilder(k.toString())
-            for (i in sb.length - numType.value downTo 0) {
-                sb.append(sb[i])
+    private fun countPalindromes(
+        leftLimit: Long,
+        rightLimit: Long,
+        palindromeType: SPNumType,
+        incrementCount: () -> Unit,
+    ) {
+        for (iteration in 1 until MAX_ITERATIONS) {
+            val stringBuilder = StringBuilder(iteration.toString())
+            for (index in stringBuilder.length - palindromeType.value downTo 0) {
+                stringBuilder.append(stringBuilder[index])
             }
-            var v = sb.toString().toLong()
-            v *= v
-            if (v > r) break
-            if (v >= l && v.isPalindrome()) increase()
+            var palindromeCandidate = stringBuilder.toString().toLong()
+            palindromeCandidate *= palindromeCandidate
+            if (palindromeCandidate > rightLimit) break
+            if (palindromeCandidate >= leftLimit && palindromeCandidate.isPalindrome()) incrementCount()
         }
     }
 }

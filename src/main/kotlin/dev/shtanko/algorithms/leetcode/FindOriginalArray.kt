@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,9 +20,9 @@ import java.util.TreeMap
 
 /**
  * 2007. Find Original Array From Doubled Array
- * @link https://leetcode.com/problems/find-original-array-from-doubled-array/
+ * @see <a href="https://leetcode.com/problems/find-original-array-from-doubled-array/">Source</a>
  */
-interface FindOriginalArray {
+fun interface FindOriginalArray {
     fun findOriginalArray(changed: IntArray): IntArray
 }
 

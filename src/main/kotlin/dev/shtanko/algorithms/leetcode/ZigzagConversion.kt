@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,14 +18,14 @@ package dev.shtanko.algorithms.leetcode
 
 /**
  * 6. Zigzag Conversion
- * @link https://leetcode.com/problems/zigzag-conversion/
+ * @see <a href="https://leetcode.com/problems/zigzag-conversion/">Source</a>
  */
-interface ZigzagConversion {
-    fun convert(s: String, numRows: Int): String
+fun interface ZigzagConversion {
+    operator fun invoke(s: String, numRows: Int): String
 }
 
 class ZigzagConversionSB : ZigzagConversion {
-    override fun convert(s: String, numRows: Int): String {
+    override fun invoke(s: String, numRows: Int): String {
         if (numRows <= 1) return s
         val sb = arrayOfNulls<StringBuilder>(numRows)
         for (i in 0 until numRows) sb[i] = StringBuilder()

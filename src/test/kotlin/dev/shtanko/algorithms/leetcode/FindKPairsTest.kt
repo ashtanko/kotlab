@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -52,13 +52,23 @@ abstract class FindKPairsTest<out T : FindKPairs>(private val strategy: T) {
                 1,
                 2,
             ),
+            Arguments.of(
+                intArrayOf(),
+                0,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1),
+                0,
+                1,
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `find pairs test`(nums: IntArray, k: Int, expected: Int) {
-        val actual = strategy.perform(nums, k)
+        val actual = strategy.invoke(nums, k)
         assertThat(actual).isEqualTo(expected)
     }
 }

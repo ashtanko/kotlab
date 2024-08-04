@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,14 +22,14 @@ import java.util.Stack
 
 /**
  * 394. Decode String
- * @link https://leetcode.com/problems/decode-string/
+ * @see <a href="https://leetcode.com/problems/decode-string/">Source</a>
  */
-interface DecodeString {
-    fun perform(s: String): String
+fun interface DecodeString {
+    operator fun invoke(s: String): String
 }
 
 class DecodeStringStack : DecodeString {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val numStack: Stack<Int> = Stack()
         val strBuild: Stack<StringBuilder> = Stack()
         var str = StringBuilder()
@@ -66,7 +66,7 @@ class DecodeStringStack : DecodeString {
 }
 
 class DecodeStringRecursive : DecodeString {
-    override fun perform(s: String): String {
+    override operator fun invoke(s: String): String {
         val queue: Deque<Char> = LinkedList()
         for (c in s.toCharArray()) {
             queue.offer(c)
@@ -77,18 +77,26 @@ class DecodeStringRecursive : DecodeString {
     fun helper(queue: Deque<Char>): String {
         val sb = java.lang.StringBuilder()
         var num = 0
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val c: Char = queue.poll()
-            if (Character.isDigit(c)) {
-                num = num * 10 + c.code - '0'.code
-            } else if (c == '[') {
-                val sub = helper(queue)
-                for (i in 0 until num) sb.append(sub)
-                num = 0
-            } else if (c == ']') {
-                break
-            } else {
-                sb.append(c)
+            when {
+                Character.isDigit(c) -> {
+                    num = num * 10 + c.code - '0'.code
+                }
+
+                c == '[' -> {
+                    val sub = helper(queue)
+                    for (i in 0 until num) sb.append(sub)
+                    num = 0
+                }
+
+                c == ']' -> {
+                    break
+                }
+
+                else -> {
+                    sb.append(c)
+                }
             }
         }
         return sb.toString()

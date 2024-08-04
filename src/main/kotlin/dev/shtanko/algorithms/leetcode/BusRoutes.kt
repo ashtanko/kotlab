@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,27 +16,29 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BFS
 import java.awt.Point
 import java.util.LinkedList
 import java.util.Queue
 
 /**
  * 815. Bus Routes
- * @link https://leetcode.com/problems/bus-routes/
+ * @see <a href="https://leetcode.com/problems/bus-routes/">Source</a>
  */
-interface BusRoutes {
-    fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int
+fun interface BusRoutes {
+    operator fun invoke(routes: Array<IntArray>, source: Int, target: Int): Int
 }
 
 /**
  * Approach #1: Breadth First Search
  */
+@BFS
 class BusRoutesBFS : BusRoutes {
-    override fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int {
+    override fun invoke(routes: Array<IntArray>, source: Int, target: Int): Int {
         if (source == target) return 0
         val n: Int = routes.size
 
-        val graph: MutableList<MutableList<Int?>?> = ArrayList()
+        val graph: MutableList<MutableList<Int>> = ArrayList()
         for (i in 0 until n) {
             routes[i].sort()
             graph.add(ArrayList())
@@ -48,8 +50,8 @@ class BusRoutesBFS : BusRoutes {
         // Build the graph.  Two buses are connected if
         // they share at least one bus stop.
         for (i in 0 until n) for (j in i + 1 until n) if (intersect(routes[i], routes[j])) {
-            graph[i]?.add(j)
-            graph[j]?.add(i)
+            graph[i].add(j)
+            graph[j].add(i)
         }
 
         // Initialize seen, queue, targets.
@@ -66,17 +68,15 @@ class BusRoutesBFS : BusRoutes {
             }
         }
 
-        while (!queue.isEmpty()) {
+        while (queue.isNotEmpty()) {
             val info: Point = queue.poll()
             val node: Int = info.x
             val depth: Int = info.y
             if (targets.contains(node)) return depth + 1
-            for (nei in graph[node]!!) {
+            for (nei in graph[node]) {
                 if (!seen.contains(nei)) {
-                    nei?.let {
-                        seen.add(it)
-                        queue.offer(Point(it, depth + 1))
-                    }
+                    seen.add(nei)
+                    queue.offer(Point(nei, depth + 1))
                 }
             }
         }
@@ -94,8 +94,9 @@ class BusRoutesBFS : BusRoutes {
     }
 }
 
+@BFS
 class BusRoutesBFS2 : BusRoutes {
-    override fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int {
+    override fun invoke(routes: Array<IntArray>, source: Int, target: Int): Int {
         val n: Int = routes.size
         val toRoutes = HashMap<Int, HashSet<Int>>()
         for (i in routes.indices) {
@@ -109,12 +110,12 @@ class BusRoutesBFS2 : BusRoutes {
         val seen = HashSet<Int>()
         seen.add(source)
         val seenRoutes = BooleanArray(n)
-        while (!bfs.isEmpty()) {
+        while (bfs.isNotEmpty()) {
             val stop = bfs.peek()[0]
             val bus = bfs.peek()[1]
             bfs.poll()
             if (stop == target) return bus
-            for (i in toRoutes[stop]!!) {
+            for (i in toRoutes.getOrDefault(stop, HashSet())) {
                 if (seenRoutes[i]) continue
                 for (j in routes[i]) {
                     if (!seen.contains(j)) {

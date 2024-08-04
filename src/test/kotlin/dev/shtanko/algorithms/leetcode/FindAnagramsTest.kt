@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -37,13 +37,38 @@ abstract class FindAnagramsTest<out T : FindAnagrams>(private val strategy: T) {
                 "ab",
                 listOf(0, 1, 2),
             ),
+            Arguments.of(
+                "aaaaaaaaaa",
+                "aaaaaaaaaaaaa",
+                emptyList<Int>(),
+            ),
+            Arguments.of(
+                "aaaaaaaaaa",
+                "aaaaaaaaaa",
+                listOf(0),
+            ),
+            Arguments.of(
+                "aaaaaaaaaa",
+                "aaaaaaaaa",
+                listOf(0, 1),
+            ),
+            Arguments.of(
+                "aaaaaaaaaa",
+                "aaaaaaaa",
+                listOf(0, 1, 2),
+            ),
+            Arguments.of(
+                "",
+                "",
+                listOf(0),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find anagrams test`(s: String, p: String, expected: List<Int>) {
-        val actual = strategy.perform(s, p)
+    fun `find anagrams test`(str: String, p: String, expected: List<Int>) {
+        val actual = strategy.invoke(str, p)
         assertThat(actual).isEqualTo(expected)
     }
 }

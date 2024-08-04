@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,14 +16,18 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Backtracking
+import dev.shtanko.algorithms.annotations.DP
+import dev.shtanko.algorithms.complexity.RuntimeComplexity
+import dev.shtanko.algorithms.complexity.SpaceComplexity
 import java.util.LinkedList
 
 /**
  * All Paths From Source to Target.
- * @link https://leetcode.com/problems/all-paths-from-source-to-target/
+ * @see <a href="https://leetcode.com/problems/all-paths-from-source-to-target/">Source</a>
  */
-interface AllPathsSourceTarget {
-    fun perform(graph: Array<IntArray>): List<List<Int>>
+fun interface AllPathsSourceTarget {
+    operator fun invoke(graph: Array<IntArray>): List<List<Int>>
 }
 
 /**
@@ -31,13 +35,16 @@ interface AllPathsSourceTarget {
  * Time Complexity: O(2^N*N)
  * Space Complexity: O(2^N*N)
  */
+@SpaceComplexity(short = "O(2^N*N)")
+@RuntimeComplexity("O(2^N*N)")
+@Backtracking
 class AllPathsSourceBacktracking : AllPathsSourceTarget {
 
     private var target = 0
     private lateinit var graph: Array<IntArray>
     private val results: MutableList<List<Int>> = ArrayList()
 
-    override fun perform(graph: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(graph: Array<IntArray>): List<List<Int>> {
         this.graph = graph
         target = graph.size - 1
         this.graph = graph
@@ -70,13 +77,14 @@ class AllPathsSourceBacktracking : AllPathsSourceTarget {
 /**
  * Top-Down Dynamic Programming.
  */
+@DP
 class AllPathsSourceDP : AllPathsSourceTarget {
 
     private var target = 0
     private lateinit var graph: Array<IntArray>
     private val memo: HashMap<Int, List<List<Int>>> = HashMap()
 
-    override fun perform(graph: Array<IntArray>): List<List<Int>> {
+    override operator fun invoke(graph: Array<IntArray>): List<List<Int>> {
         this.target = graph.size - 1
         this.graph = graph
         return allPathsToTarget(0)

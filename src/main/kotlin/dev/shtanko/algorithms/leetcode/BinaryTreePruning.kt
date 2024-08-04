@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,16 +16,20 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.Recursive
+import dev.shtanko.algorithms.annotations.StraightForward
+
 /**
  * 814. Binary Tree Pruning
- * @link https://leetcode.com/problems/binary-tree-pruning/
+ * @see <a href="https://leetcode.com/problems/binary-tree-pruning/">Source</a>
  */
-interface BinaryTreePruning {
-    fun pruneTree(root: TreeNode?): TreeNode?
+fun interface BinaryTreePruning {
+    operator fun invoke(root: TreeNode?): TreeNode?
 }
 
+@Recursive
 class BinaryTreePruningRecursion : BinaryTreePruning {
-    override fun pruneTree(root: TreeNode?): TreeNode? {
+    override fun invoke(root: TreeNode?): TreeNode? {
         return if (containsOne(root)) root else null
     }
 
@@ -49,11 +53,13 @@ class BinaryTreePruningRecursion : BinaryTreePruning {
     }
 }
 
+@StraightForward
+@Recursive
 class BinaryTreePruningSimple : BinaryTreePruning {
-    override fun pruneTree(root: TreeNode?): TreeNode? {
+    override fun invoke(root: TreeNode?): TreeNode? {
         if (root == null) return null
-        root.left = pruneTree(root.left)
-        root.right = pruneTree(root.right)
+        root.left = invoke(root.left)
+        root.right = invoke(root.right)
         if (root.left == null && root.right == null && root.value == 0) return null
         return root
     }

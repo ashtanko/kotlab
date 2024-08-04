@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,18 +16,19 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
 import java.util.stream.Collectors
 
 /**
  * 2325. Decode the Message
  * https://leetcode.com/problems/decode-the-message/
  */
-interface DecodeMessage {
-    fun perform(key: String, message: String): String
+fun interface DecodeMessage {
+    operator fun invoke(key: String, message: String): String
 }
 
 class DecodeMessageBruteForce : DecodeMessage {
-    override fun perform(key: String, message: String): String {
+    override operator fun invoke(key: String, message: String): String {
         val m: MutableMap<Char, Char> = HashMap()
         m[' '] = ' '
         var to = 'a'
@@ -41,11 +42,11 @@ class DecodeMessageBruteForce : DecodeMessage {
 }
 
 class DecodeMessageSB : DecodeMessage {
-    override fun perform(key: String, message: String): String {
-        val table = CharArray(LIMIT)
+    override operator fun invoke(key: String, message: String): String {
+        val table = CharArray(ALPHABET_LETTERS_COUNT)
         var index = 0
         for (c in key.toCharArray()) {
-            if (index < LIMIT && c != ' ' && table[c.code - 'a'.code].code == 0) {
+            if (index < ALPHABET_LETTERS_COUNT && c != ' ' && table[c.code - 'a'.code].code == 0) {
                 table[c.code - 'a'.code] = (index + 'a'.code).toChar()
                 index++
             }
@@ -55,9 +56,5 @@ class DecodeMessageSB : DecodeMessage {
             sb.append(if (c == ' ') ' ' else table[c.code - 'a'.code])
         }
         return sb.toString()
-    }
-
-    companion object {
-        private const val LIMIT = 26
     }
 }

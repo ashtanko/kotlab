@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,12 +16,12 @@
 
 package dev.shtanko.algorithms.leetcode
 
-interface CountTheRepetitionsStrategy {
-    fun perform(s1: String, n1: Int, s2: String, n2: Int): Int
+fun interface CountTheRepetitionsStrategy {
+    operator fun invoke(s1: String, n1: Int, s2: String, n2: Int): Int
 }
 
 class CountTheRepetitionsBruteForce : CountTheRepetitionsStrategy {
-    override fun perform(s1: String, n1: Int, s2: String, n2: Int): Int {
+    override operator fun invoke(s1: String, n1: Int, s2: String, n2: Int): Int {
         if (n2 == 0) return 0
         var index = 0
         var repeatCount = 0
@@ -42,7 +42,7 @@ class CountTheRepetitionsBruteForce : CountTheRepetitionsStrategy {
 
 class CountTheRepetitionsBetterBruteForce : CountTheRepetitionsStrategy {
 
-    override fun perform(s1: String, n1: Int, s2: String, n2: Int): Int {
+    override operator fun invoke(s1: String, n1: Int, s2: String, n2: Int): Int {
         val reps = IntArray(ARRAY_SIZE)
         val rests = IntArray(ARRAY_SIZE)
         var posRest = 0

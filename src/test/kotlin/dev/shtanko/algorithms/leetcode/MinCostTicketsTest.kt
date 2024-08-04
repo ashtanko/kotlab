@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -48,7 +48,7 @@ abstract class MinCostTicketsTest<out T : MinCostTickets>(private val strategy: 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min cost tickets test`(days: IntArray, costs: IntArray, expected: Int) {
-        val actual = strategy.perform(days, costs)
+        val actual = strategy.invoke(days, costs)
         assertThat(actual).isEqualTo(expected)
     }
 }

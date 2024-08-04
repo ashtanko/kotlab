@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -63,6 +63,24 @@ abstract class ClosestBSTTest<out T : ClosestBST>(private val strategy: T) {
                 },
                 25.5,
                 22,
+            ),
+            Arguments.of(
+                TreeNode(2147483647),
+                0.0,
+                2147483647,
+            ),
+            Arguments.of(
+                TreeNode(5).apply {
+                    left = TreeNode(3).apply {
+                        left = TreeNode(2).apply {
+                            left = TreeNode(1)
+                        }
+                        right = TreeNode(4)
+                    }
+                    right = TreeNode(6)
+                },
+                4.714286,
+                5,
             ),
         )
     }

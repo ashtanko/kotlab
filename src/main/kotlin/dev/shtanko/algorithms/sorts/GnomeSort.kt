@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,9 +19,9 @@ package dev.shtanko.algorithms.sorts
 import dev.shtanko.algorithms.extensions.swap
 
 /**
- * @link(https://en.wikipedia.org/wiki/Gnome_sort)
  * Gnome sort (dubbed stupid sort) is a sorting algorithm originally proposed by an Iranian computer scientist
  *  Hamid Sarbazi-Azad (professor of Computer Science and Engineering at Sharif University of Technology)[1] in 2000.
+ *  @link(https://en.wikipedia.org/wiki/Gnome_sort)
  */
 class GnomeSort : AbstractSortStrategy {
     override fun <T : Comparable<T>> perform(arr: Array<T>) {

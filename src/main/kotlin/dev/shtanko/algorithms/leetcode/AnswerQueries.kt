@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,19 +16,21 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.BinarySearch
 import java.util.Arrays
 import kotlin.math.abs
 
 /**
  * 2389. Longest Subsequence With Limited Sum
- * @link https://leetcode.com/problems/longest-subsequence-with-limited-sum/
+ * @see <a href="https://leetcode.com/problems/longest-subsequence-with-limited-sum/">Source</a>
  */
-interface AnswerQueries {
-    fun perform(nums: IntArray, queries: IntArray): IntArray
+fun interface AnswerQueries {
+    operator fun invoke(nums: IntArray, queries: IntArray): IntArray
 }
 
+@BinarySearch
 class AnswerQueriesBinarySearch : AnswerQueries {
-    override fun perform(nums: IntArray, queries: IntArray): IntArray {
+    override operator fun invoke(nums: IntArray, queries: IntArray): IntArray {
         nums.sort()
         val n: Int = nums.size
         val m: Int = queries.size

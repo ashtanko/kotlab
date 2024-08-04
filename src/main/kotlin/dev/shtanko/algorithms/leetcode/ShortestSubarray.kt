@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,10 +28,10 @@ fun shortestSubarray(a: IntArray, k: Int): Int {
     val monoq: Deque<Int> = LinkedList() // opt(y) candidates, as indices of P
     for (y in p.indices) {
         // Want opt(y) = largest x with P[x] <= P[y] - K;
-        while (!monoq.isEmpty() && p[y] <= p[monoq.last]) {
+        while (monoq.isNotEmpty() && p[y] <= p[monoq.last]) {
             monoq.removeLast()
         }
-        while (!monoq.isEmpty() && p[y] >= p[monoq.first] + k) {
+        while (monoq.isNotEmpty() && p[y] >= p[monoq.first] + k) {
             ans = ans.coerceAtMost(y - monoq.removeFirst())
         }
         monoq.addLast(y)
