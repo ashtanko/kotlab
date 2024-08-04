@@ -40,7 +40,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     // id ("org.sonarqube") version "4.4.1.3373"
     idea
-    alias(libs.plugins.kt.jvm)
+    // alias(libs.plugins.kt.jvm)
     alias(libs.plugins.detekt)
     alias(libs.plugins.dokka)
     alias(libs.plugins.spotless)
@@ -49,6 +49,13 @@ plugins {
     alias(libs.plugins.serialization)
     alias(libs.plugins.kover)
     alias(libs.plugins.diktat)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlinMultiplatform)
+}
+
+kotlin {
+    jvm("desktop")
 }
 
 jacoco {
@@ -169,12 +176,12 @@ tasks {
             "--add-exports", "java.base/sun.security.action=ALL-UNNAMED",
         )
     }
-    compileKotlin {
-        compilerOptions {
-            apiVersion.set(kotlinVersion)
-            languageVersion.set(kotlinVersion)
-        }
-    }
+//    compileKotlin {
+//        compilerOptions {
+//            apiVersion.set(kotlinVersion)
+//            languageVersion.set(kotlinVersion)
+//        }
+//    }
     kotlin {
         jvmToolchain(projectJvmTarget)
     }
@@ -314,7 +321,7 @@ dependencies {
         testImplementation(mockk)
         testImplementation(junit)
         testImplementation(lincheck)
-        testApi(kotlin.coroutines.core)
+        testImplementation(kotlin.coroutines.core)
         testImplementation(kotlin.coroutines.test)
         testImplementation(kotlintest.core)
         testImplementation(kotlintest.junit5)

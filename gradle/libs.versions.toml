@@ -29,6 +29,7 @@ mockk = "1.13.12"           # https://mockk.io
 kover = "0.7.6"             # https://github.com/Kotlin/kotlinx-kover
 diktat = "2.0.0"            # https://github.com/saveourtool/diktat
 jsoup = "1.18.1"            # https://jsoup.org/
+compose-plugin = "1.6.11"   # https://developer.android.com/jetpack/compose/tooling
 
 [libraries]
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
@@ -85,3 +86,6 @@ dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version.r
 pitest = { id = "info.solidsoft.pitest", version.ref = "pitest" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 diktat = { id = "com.saveourtool.diktat", version.ref = "diktat" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
