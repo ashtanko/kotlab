@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,48 +24,46 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class KTHDistinctTest<out T : KTHDistinct>(private val strategy: T) {
+abstract class SpiralMatrix3Test<out T : SpiralMatrix3>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                arrayOf("d", "b", "c", "b", "c", "a"),
-                2,
-                "a",
-            ),
-            Arguments.of(
-                arrayOf("aaa", "aa", "a"),
                 1,
-                "aaa",
-            ),
-            Arguments.of(
-                arrayOf("a", "b", "a"),
-                3,
-                "",
-            ),
-            Arguments.of(
-                arrayOf<String>(),
+                4,
                 0,
-                "",
-            ),
-            Arguments.of(
-                arrayOf<String>("a"),
                 0,
-                "",
+                arrayOf(
+                    intArrayOf(0, 0),
+                    intArrayOf(0, 1),
+                    intArrayOf(0, 2),
+                    intArrayOf(0, 3),
+                ),
             ),
             Arguments.of(
-                arrayOf<String>("a"),
+                5,
+                6,
                 1,
-                "a",
+                4,
+                arrayOf(
+                    intArrayOf(1, 4), intArrayOf(1, 5), intArrayOf(2, 5), intArrayOf(2, 4),
+                    intArrayOf(2, 3), intArrayOf(1, 3), intArrayOf(0, 3), intArrayOf(0, 4),
+                    intArrayOf(0, 5), intArrayOf(3, 5), intArrayOf(3, 4), intArrayOf(3, 3),
+                    intArrayOf(3, 2), intArrayOf(2, 2), intArrayOf(1, 2), intArrayOf(0, 2),
+                    intArrayOf(4, 5), intArrayOf(4, 4), intArrayOf(4, 3), intArrayOf(4, 2),
+                    intArrayOf(4, 1), intArrayOf(3, 1), intArrayOf(2, 1), intArrayOf(1, 1),
+                    intArrayOf(0, 1), intArrayOf(4, 0), intArrayOf(3, 0), intArrayOf(2, 0),
+                    intArrayOf(1, 0), intArrayOf(0, 0),
+                ),
             ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `kth distinct test`(arr: Array<String>, k: Int, expected: String) {
-        val actual = strategy.invoke(arr, k)
+    fun spiralMatrixIIITest(rows: Int, cols: Int, rStart: Int, cStart: Int, expected: Array<IntArray>) {
+        val actual = strategy(rows, cols, rStart, cStart)
         assertThat(actual).isEqualTo(expected)
     }
 }
 
-class KTHDistinctImplTest : KTHDistinctTest<KTHDistinct>(KTHDistinctImpl())
+class SpiralMatrix3SimulationTest : SpiralMatrix3Test<SpiralMatrix3Simulation>(SpiralMatrix3Simulation())
