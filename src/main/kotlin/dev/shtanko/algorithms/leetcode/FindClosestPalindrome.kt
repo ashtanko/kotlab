@@ -19,82 +19,157 @@ package dev.shtanko.algorithms.leetcode
 import kotlin.math.abs
 
 /**
- * This function finds the nearest palindromic number for a given number represented as a string.
- * It throws a NumberFormatException if the string cannot be converted to a Long.
- * @return The nearest palindromic number as a string.
+ * 564. Find the Closest Palindrome
+ * @see <a href="https://leetcode.com/problems/find-the-closest-palindrome/">Find the Closest Palindrome</a>
  */
-@Throws(NumberFormatException::class)
-fun String.nearestPalindromic(): String {
-    if (this.isEmpty()) return ""
-    if (this == "1") return "0"
-    val mirrored = mirroring()
-    val originalNumber = this.toLong()
-    val mirroredNumber = mirrored.toLong()
-    var difference1 = abs(originalNumber - mirroredNumber)
-    if (difference1 == 0L) difference1 = Long.MAX_VALUE
+fun interface FindClosestPalindrome {
+    operator fun invoke(num: String): String
+}
 
-    val smallerPalindromic = findSmallerPalindromic(this)
-    val difference2 = abs(originalNumber - smallerPalindromic.toLong())
+class FindClosestPalindromeRange : FindClosestPalindrome {
+    override fun invoke(num: String): String {
+        return num.nearestPalindromic()
+    }
 
-    val largerPalindromic = findLargerPalindromic(this)
-    val difference3 = abs(originalNumber - largerPalindromic.toLong())
+    /**
+     * This function finds the nearest palindromic number for a given number represented as a string.
+     * It throws a NumberFormatException if the string cannot be converted to a Long.
+     * @return The nearest palindromic number as a string.
+     */
+    @Throws(NumberFormatException::class)
+    private fun String.nearestPalindromic(): String {
+        if (this.isEmpty()) return ""
+        if (this == "1") return "0"
+        val mirrored = mirroring()
+        val originalNumber = this.toLong()
+        val mirroredNumber = mirrored.toLong()
+        var difference1 = abs(originalNumber - mirroredNumber)
+        if (difference1 == 0L) difference1 = Long.MAX_VALUE
 
-    return when {
-        difference2 <= difference1 && difference2 <= difference3 -> smallerPalindromic
-        difference1 <= difference3 -> mirrored
-        else -> largerPalindromic
+        val smallerPalindromic = findSmallerPalindromic(this)
+        val difference2 = abs(originalNumber - smallerPalindromic.toLong())
+
+        val largerPalindromic = findLargerPalindromic(this)
+        val difference3 = abs(originalNumber - largerPalindromic.toLong())
+
+        return when {
+            difference2 <= difference1 && difference2 <= difference3 -> smallerPalindromic
+            difference1 <= difference3 -> mirrored
+            else -> largerPalindromic
+        }
+    }
+
+    /**
+     * This function mirrors the first half of the string onto the second half.
+     * @return The mirrored string.
+     */
+    private fun String.mirroring(): String {
+        val len = this.length
+        val sb = StringBuilder(this.substring(0, (len + 1) / 2))
+        for (i in (len / 2 - 1) downTo 0) {
+            sb.append(sb[i])
+        }
+        return sb.toString()
+    }
+
+    /**
+     * This function finds the next smaller palindromic number for a given number represented as a string.
+     * @return The next smaller palindromic number as a string.
+     */
+    private fun findSmallerPalindromic(s: String): String {
+        val sb = StringBuilder(s)
+        var index = (sb.length - 1) / 2
+        while (index >= 0 && sb[index] == '0') {
+            sb.replace(index, index + 1, "9")
+            index--
+        }
+        if (index == 0 && sb[index] == '1') {
+            sb.delete(0, 1)
+            val mid = (sb.length - 1) / 2
+            sb.replace(mid, mid + 1, "9")
+        } else if (index >= 0) {
+            sb.replace(index, index + 1, (sb[index] - 1).toString())
+        }
+        return sb.toString().mirroring()
+    }
+
+    /**
+     * This function finds the next larger palindromic number for a given number represented as a string.
+     * @return The next larger palindromic number as a string.
+     */
+    private fun findLargerPalindromic(s: String): String {
+        val sb = StringBuilder(s)
+        var index = (sb.length - 1) / 2
+        while (index >= 0 && sb[index] == '9') {
+            sb.replace(index, index + 1, "0")
+            index--
+        }
+        if (index < 0) {
+            sb.insert(0, "1")
+        } else {
+            sb.replace(index, index + 1, (sb[index] + 1).toString())
+        }
+        return sb.toString().mirroring()
     }
 }
 
-/**
- * This function mirrors the first half of the string onto the second half.
- * @return The mirrored string.
- */
-private fun String.mirroring(): String {
-    val len = this.length
-    val sb = StringBuilder(this.substring(0, (len + 1) / 2))
-    for (i in (len / 2 - 1) downTo 0) {
-        sb.append(sb[i])
+class FindClosestPalindromeBS : FindClosestPalindrome {
+    override fun invoke(num: String): String {
+        val num = num.toInt()
+        val a = nextPalindrome(num)
+        val b = previousPalindrome(num)
+        return if (abs(a - num) <= abs(b - num)) {
+            a.toString()
+        } else {
+            b.toString()
+        }
     }
-    return sb.toString()
-}
 
-/**
- * This function finds the next smaller palindromic number for a given number represented as a string.
- * @return The next smaller palindromic number as a string.
- */
-private fun findSmallerPalindromic(s: String): String {
-    val sb = StringBuilder(s)
-    var index = (sb.length - 1) / 2
-    while (index >= 0 && sb[index] == '0') {
-        sb.replace(index, index + 1, "9")
-        index--
+    private fun convert(num: Int): Int {
+        val numString = num.toString()
+        val length = numString.length
+        var leftIndex = (length - 1) / 2
+        var rightIndex = length / 2
+        val charArray = numString.toCharArray()
+        while (leftIndex >= 0) {
+            charArray[rightIndex] = charArray[leftIndex]
+            rightIndex++
+            leftIndex--
+        }
+        return charArray.concatToString().toInt()
     }
-    if (index == 0 && sb[index] == '1') {
-        sb.delete(0, 1)
-        val mid = (sb.length - 1) / 2
-        sb.replace(mid, mid + 1, "9")
-    } else if (index >= 0) {
-        sb.replace(index, index + 1, (sb[index] - 1).toString())
-    }
-    return sb.toString().mirroring()
-}
 
-/**
- * This function finds the next larger palindromic number for a given number represented as a string.
- * @return The next larger palindromic number as a string.
- */
-private fun findLargerPalindromic(s: String): String {
-    val sb = StringBuilder(s)
-    var index = (sb.length - 1) / 2
-    while (index >= 0 && sb[index] == '9') {
-        sb.replace(index, index + 1, "0")
-        index--
+    private fun nextPalindrome(num: Int): Int {
+        var left = 0
+        var right = num
+        var ans = Int.MIN_VALUE
+        while (left <= right) {
+            val mid = (right - left) / 2 + left
+            val palin = convert(mid)
+            if (palin < num) {
+                ans = palin
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+        return ans
     }
-    if (index < 0) {
-        sb.insert(0, "1")
-    } else {
-        sb.replace(index, index + 1, (sb[index] + 1).toString())
+
+    private fun previousPalindrome(num: Int): Int {
+        var left = num
+        var right = 1e18.toLong().toInt()
+        var ans = Int.MIN_VALUE
+        while (left <= right) {
+            val mid = (right - left) / 2 + left
+            val palin = convert(mid)
+            if (palin > num) {
+                ans = palin
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        }
+        return ans
     }
-    return sb.toString().mirroring()
 }
