@@ -68,7 +68,5 @@ class SimpleHashMap<Key, Value>(private val size: Int) {
         }
     }
 
-    private fun hashFunction(key: Key): Int {
-        return key.hashCode() % size
-    }
+    private fun hashFunction(key: Key) = key.hashCode() % size
 }
