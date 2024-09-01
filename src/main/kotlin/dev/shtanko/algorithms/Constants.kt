@@ -35,3 +35,4 @@ const val ASCII_A = 'A'
 const val DOT = '.'
 const val VOWELS = "aeiou"
 const val TOLERANCE = 1e-10
+const val INF = 2e9
