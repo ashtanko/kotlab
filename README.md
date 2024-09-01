@@ -24,17 +24,16 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
 
 ### Metrics
-|properties|functions|classes|packages|kt files|
-|----------|---------|-------|--------|--------|
-|13161     |9034     |8031   |183     |3065    |
+```text
+13161 number of properties
+9034 number of functions
+8031 number of classes
+183 number of packages
+3065 number of kt files
+```
+
 
 ### Complexity Report
-|loc   |sloc  |lloc  |cloc |mcc  |cognitive complexity|code smells|comment source ratio|mcc per lloc|code smells|
-|------|------|------|-----|-----|--------------------|-----------|--------------------|------------|-----------|
-|225509|140938|103354|60358|22127|18587               |0          |42                  |214         |0          |
-
-### Complexity Report 2
-
 ```text
 225509 lines of code (loc)
 140938 source lines of code (sloc)
@@ -43,7 +42,6 @@
 22127 cyclomatic complexity (mcc)
 18587 cognitive complexity
 0 number of total code smells
-42% comment source ratio
+42 comment source ratio
 214 mcc per 1,000 lloc
-0 code smells per 1,000 lloc
 ```
