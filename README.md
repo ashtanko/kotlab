@@ -23,22 +23,26 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
 
-Metrics
+### Metrics
 |properties|functions|classes|packages|kt files|
 |----------|---------|-------|--------|--------|
 |13161     |9034     |8031   |183     |3065    |
-Complexity Report
+
+### Complexity Report
 |loc   |sloc  |lloc  |cloc |mcc  |cognitive complexity|code smells|comment source ratio|mcc per lloc|code smells|
 |------|------|------|-----|-----|--------------------|-----------|--------------------|------------|-----------|
 |225509|140938|103354|60358|22127|18587               |0          |42                  |214         |0          |
 
-* 225,509 lines of code (loc)
-* 140,938 source lines of code (sloc)
-* 103,354 logical lines of code (lloc)
-* 60,358 comment lines of code (cloc)
-* 22,127 cyclomatic complexity (mcc)
-* 18,587 cognitive complexity
-* 0 number of total code smells
-* 42% comment source ratio
-* 214 mcc per 1,000 lloc
-* 0 code smells per 1,000 lloc
+### Complexity Report 2
+```text
+225,509 lines of code (loc)
+140,938 source lines of code (sloc)
+103,354 logical lines of code (lloc)
+60,358 comment lines of code (cloc)
+22,127 cyclomatic complexity (mcc)
+18,587 cognitive complexity
+0 number of total code smells
+42% comment source ratio
+214 mcc per 1,000 lloc
+0 code smells per 1,000 lloc
+```text
