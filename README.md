@@ -24,9 +24,9 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ashtanko_kotlab&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ashtanko_kotlab)
 
 ## Metrics
-|Props|Funcs|Classes|Pkgs|Kt Files|
-|-----|-----|-------|----|--------|
-|13161|9034 |8031   |183 |3065    |
+|properties|functions|classes|packages|kt files|
+|----------|---------|-------|--------|--------|
+|13161     |9034     |8031   |183     |3065    |
 
 ## Complexity Report
 |loc   |sloc  |lloc  |cloc |mcc  |cognitive complexity|code smells|comment source ratio|mcc per lloc|code smells|
