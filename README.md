@@ -34,8 +34,9 @@
 |225509|140938|103354|60358|22127|18587               |0          |42                  |214         |0          |
 
 ### Complexity Report 2
+
 ```text
-225,509 lines of code (loc)
+25,509 lines of code (loc)
 140,938 source lines of code (sloc)
 103,354 logical lines of code (lloc)
 60,358 comment lines of code (cloc)
@@ -45,4 +46,4 @@
 42% comment source ratio
 214 mcc per 1,000 lloc
 0 code smells per 1,000 lloc
-```text
+```
