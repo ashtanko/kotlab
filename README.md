@@ -36,12 +36,12 @@
 ### Complexity Report 2
 
 ```text
-25,509 lines of code (loc)
-140,938 source lines of code (sloc)
-103,354 logical lines of code (lloc)
-60,358 comment lines of code (cloc)
-22,127 cyclomatic complexity (mcc)
-18,587 cognitive complexity
+225509 lines of code (loc)
+140938 source lines of code (sloc)
+103354 logical lines of code (lloc)
+60358 comment lines of code (cloc)
+22127 cyclomatic complexity (mcc)
+18587 cognitive complexity
 0 number of total code smells
 42% comment source ratio
 214 mcc per 1,000 lloc
