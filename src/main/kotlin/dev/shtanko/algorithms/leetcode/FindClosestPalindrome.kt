@@ -115,61 +115,53 @@ class FindClosestPalindromeRange : FindClosestPalindrome {
 
 class FindClosestPalindromeBS : FindClosestPalindrome {
     override fun invoke(num: String): String {
-        val num = num.toInt()
-        val a = nextPalindrome(num)
-        val b = previousPalindrome(num)
-        return if (abs(a - num) <= abs(b - num)) {
-            a.toString()
+        if (num.isEmpty()) return ""
+        val originalNumber = num.toLong()
+        val maxLimit = originalNumber * 2
+        var lowerBound = 0L
+        var upperBound = originalNumber
+
+        // Binary search for the largest palindrome less than the original number
+        while (lowerBound <= upperBound) {
+            val mid = lowerBound + (upperBound - lowerBound) / 2
+            if (transformIntoPalindrome(mid) < originalNumber) {
+                lowerBound = mid + 1
+            } else {
+                upperBound = mid - 1
+            }
+        }
+        val closestLowerPalindrome = transformIntoPalindrome(upperBound)
+
+        lowerBound = originalNumber
+        upperBound = maxLimit
+
+        // Binary search for the smallest palindrome greater than the original number
+        while (lowerBound <= upperBound) {
+            val mid = lowerBound + (upperBound - lowerBound) / 2
+            if (transformIntoPalindrome(mid) <= originalNumber) {
+                lowerBound = mid + 1
+            } else {
+                upperBound = mid - 1
+            }
+        }
+        val closestUpperPalindrome = transformIntoPalindrome(lowerBound)
+
+        return if (closestUpperPalindrome - originalNumber < originalNumber - closestLowerPalindrome) {
+            closestUpperPalindrome.toString()
         } else {
-            b.toString()
+            closestLowerPalindrome.toString()
         }
     }
 
-    private fun convert(num: Int): Int {
-        val numString = num.toString()
-        val length = numString.length
-        var leftIndex = (length - 1) / 2
-        var rightIndex = length / 2
-        val charArray = numString.toCharArray()
-        while (leftIndex >= 0) {
-            charArray[rightIndex] = charArray[leftIndex]
-            rightIndex++
-            leftIndex--
-        }
-        return charArray.concatToString().toInt()
-    }
-
-    private fun nextPalindrome(num: Int): Int {
+    private fun transformIntoPalindrome(number: Long): Long {
+        val digits = number.toString().toCharArray()
         var left = 0
-        var right = num
-        var ans = Int.MIN_VALUE
-        while (left <= right) {
-            val mid = (right - left) / 2 + left
-            val palin = convert(mid)
-            if (palin < num) {
-                ans = palin
-                left = mid + 1
-            } else {
-                right = mid - 1
-            }
+        var right = digits.size - 1
+        while (left < right) {
+            digits[right] = digits[left]
+            left++
+            right--
         }
-        return ans
-    }
-
-    private fun previousPalindrome(num: Int): Int {
-        var left = num
-        var right = 1e18.toLong().toInt()
-        var ans = Int.MIN_VALUE
-        while (left <= right) {
-            val mid = (right - left) / 2 + left
-            val palin = convert(mid)
-            if (palin > num) {
-                ans = palin
-                right = mid - 1
-            } else {
-                left = mid + 1
-            }
-        }
-        return ans
+        return String(digits).toLong()
     }
 }
