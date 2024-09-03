@@ -169,6 +169,13 @@ tasks {
             "--add-exports", "java.base/sun.security.action=ALL-UNNAMED",
         )
     }
+
+    register<GenerateDetektReportTask>("detektReportToMdTask") {
+        sourceDirectory = file("${System.getProperty("user.dir")}/build/reports/detekt")
+        metricsReportFile = file("${System.getProperty("user.dir")}/build/reports/detekt/metrics.md")
+        complexityReportFile = file("${System.getProperty("user.dir")}/build/reports/detekt/complexity.md")
+    }
+
     compileKotlin {
         compilerOptions {
             apiVersion.set(kotlinVersion)
@@ -333,4 +340,246 @@ dependencies {
         testImplementation(okhttp.mockwebserver)
     }
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+}
+
+abstract class GenerateDetektReportTask : DefaultTask() {
+
+    @get:InputDirectory
+    lateinit var sourceDirectory: File
+
+    @get:OutputFile
+    lateinit var metricsReportFile: File
+
+    @get:OutputFile
+    lateinit var complexityReportFile: File
+
+    companion object {
+        private val PROPERTIES_KEY = "number of properties" to "Props"
+        private val FUNCTIONS_KEY = "number of functions" to "Funcs"
+        private val CLASSES_KEY = "number of classes" to "Classes"
+        private val PACKAGES_KEY = "number of packages" to "Pkgs"
+        private val KT_FILES_KEY = "number of kt files" to "Kt Files"
+
+        private val LOC_KEY = "loc" to "lines of code (loc)"
+        private val SLOC_KEY = "sloc" to "source lines of code (sloc)"
+        private val LLOC_KEY = "lloc" to "logical lines of code (lloc)"
+        private val CLOC_KEY = "cloc" to "comment lines of code (cloc)"
+        private val MCC_KEY = "mcc" to "cyclomatic complexity (mcc)"
+        private val CC_KEY = "cognitive complexity" to "cognitive complexity"
+        private val CSR_KEY = "comment source ratio" to "comment source ratio"
+        private val MCC_PER_LLOC_KEY = "mcc per lloc" to "mcc per 1,000 lloc"
+        private val CS_KEY = "code smells" to "number of total code smells"
+
+    }
+
+    @TaskAction
+    fun generateReport() {
+        val report = parseDetektFile("${sourceDirectory.path}/detekt.md")
+        val metricsList = listOf(
+            "${PROPERTIES_KEY.first}" to report.metrics.numberOfProperties,
+            "${FUNCTIONS_KEY.first}" to report.metrics.numberOfFunctions,
+            "${CLASSES_KEY.first}" to report.metrics.numberOfClasses,
+            "${PACKAGES_KEY.first}" to report.metrics.numberOfPackages,
+            "${KT_FILES_KEY.first}" to report.metrics.numberOfKtFiles,
+        )
+
+        val metricsListColumns = metricsList.map { it.first }
+        val metricsListRows = listOf(metricsList.map { "${it.second}" })
+
+        val complexityList = listOf(
+            "${LOC_KEY.second}" to report.complexityReport.linesOfCode,
+            "${SLOC_KEY.second}" to report.complexityReport.sourceLinesOfCode,
+            "${LLOC_KEY.second}" to report.complexityReport.logicalLinesOfCode,
+            "${CLOC_KEY.second}" to report.complexityReport.commentLinesOfCode,
+            "${MCC_KEY.second}" to report.complexityReport.cyclomaticComplexity,
+            "${CC_KEY.second}" to report.complexityReport.cognitiveComplexity,
+            "${CS_KEY.second}" to report.complexityReport.codeSmells,
+            "${CSR_KEY.second}" to report.complexityReport.commentSourceRatio,
+            "${MCC_PER_LLOC_KEY.second}" to report.complexityReport.mccPer1000Lloc,
+            "${CS_KEY.second}" to report.complexityReport.codeSmellsPer1000Lloc,
+        )
+
+        val complexityListColumns = complexityList.map { it.first }
+        val complexityListRows = listOf(complexityList.map { "${it.second}" })
+        writeReport(metricsList.map { "${it.second} ${it.first}" }.toSet(), "Metrics", false, metricsReportFile)
+        writeReport(
+            complexityList.map { "${it.second} ${it.first}" }.toSet(),
+            "Complexity Report",
+            true,
+            complexityReportFile,
+        )
+        println("Report generated at: ${metricsReportFile.absolutePath}")
+    }
+
+    private fun writeReport(report: Set<String>, header: String, isLast: Boolean, file: File) {
+        val metricsSb = StringBuilder()
+        metricsSb.append("\n")
+        metricsSb.append("### $header")
+        metricsSb.append("\n")
+        metricsSb.append("```text")
+        report.forEach {
+            metricsSb.append("\n")
+            metricsSb.append(it)
+        }
+        metricsSb.append("\n")
+        metricsSb.append("```")
+        if (!isLast) {
+            metricsSb.append("\n")
+            metricsSb.append("\n")
+        }
+        file.writeText(metricsSb.toString())
+    }
+
+    private fun generateMarkdownTable(
+        columns: List<String>,
+        rows: List<List<String>>,
+        newline: String = "\n",
+    ): Triple<String, String, String> {
+        if (columns.isEmpty()) return Triple("", "", "")
+
+        // Calculate the maximum width for each column
+        val columnWidths = columns.map { it.length }.toMutableList()
+        rows.forEach { row ->
+            row.forEachIndexed { index, cell ->
+                if (index < columnWidths.size) {
+                    columnWidths[index] = maxOf(columnWidths[index], cell.length)
+                }
+            }
+        }
+
+        // Helper function to pad cells to match the column width
+        fun padCell(cell: String, width: Int): String = cell.padEnd(width)
+
+        // Generate the header row
+        val header = columns.mapIndexed { index, col ->
+            padCell(col, columnWidths[index])
+        }.joinToString("|", prefix = "|", postfix = "|")
+
+        // Generate the separator row
+        val separator = columnWidths.map {
+            "-".repeat(it).padEnd(it)
+        }
+            .joinToString("|", prefix = "|", postfix = "|")
+
+        // Generate the data rows
+        val dataRows = rows.joinToString(newline) { row ->
+            row.mapIndexed { index, cell ->
+                padCell(cell, columnWidths[index])
+            }.joinToString("|", prefix = "|", postfix = "|")
+        }
+
+        // Combine header, separator, and rows into the final Markdown table
+        return Triple(header, separator, dataRows)
+    }
+
+    data class Metrics(
+        val numberOfProperties: Int,
+        val numberOfFunctions: Int,
+        val numberOfClasses: Int,
+        val numberOfPackages: Int,
+        val numberOfKtFiles: Int,
+    )
+
+    data class ComplexityReport(
+        val linesOfCode: Int,
+        val sourceLinesOfCode: Int,
+        val logicalLinesOfCode: Int,
+        val commentLinesOfCode: Int,
+        val cyclomaticComplexity: Int,
+        val cognitiveComplexity: Int,
+        val codeSmells: Int,
+        val commentSourceRatio: Int, // Changed to Int to fit the example, may need adjustment
+        val mccPer1000Lloc: Int,
+        val codeSmellsPer1000Lloc: Int,
+    )
+
+    data class DetektReport(
+        val metrics: Metrics,
+        val complexityReport: ComplexityReport,
+        val findings: Int,
+        val version: String,
+        val timestamp: String,
+    )
+
+    private fun parseDetektFile(filePath: String): DetektReport {
+        val file = File(filePath)
+        val lines = file.readLines()
+
+        val metrics = Metrics(
+            numberOfProperties = extractMetricValue(lines, "number of properties"),
+            numberOfFunctions = extractMetricValue(lines, "number of functions"),
+            numberOfClasses = extractMetricValue(lines, "number of classes"),
+            numberOfPackages = extractMetricValue(lines, "number of packages"),
+            numberOfKtFiles = extractMetricValue(lines, "number of kt files"),
+        )
+
+        val complexityReport = ComplexityReport(
+            linesOfCode = extractComplexityValue(lines, "lines of code (loc)"),
+            sourceLinesOfCode = extractComplexityValue(lines, "source lines of code (sloc)"),
+            logicalLinesOfCode = extractComplexityValue(lines, "logical lines of code (lloc)"),
+            commentLinesOfCode = extractComplexityValue(lines, "comment lines of code (cloc)"),
+            cyclomaticComplexity = extractComplexityValue(lines, "cyclomatic complexity (mcc)"),
+            cognitiveComplexity = extractComplexityValue(lines, "cognitive complexity"),
+            codeSmells = extractComplexityValue(lines, "number of total code smells"),
+            commentSourceRatio = extractPercentageValue(lines, "comment source ratio"),
+            mccPer1000Lloc = extractComplexityValue(lines, "mcc per 1,000 lloc"),
+            codeSmellsPer1000Lloc = extractComplexityValue(lines, "code smells per 1,000 lloc"),
+        )
+
+        val findings = extractFindings(lines)
+        val version = extractVersion(lines)
+        val timestamp = extractTimestamp(lines)
+
+        return DetektReport(metrics, complexityReport, findings, version, timestamp)
+    }
+
+    private fun extractMetricValue(lines: List<String>, metric: String): Int {
+        val prefix = "* "
+        val suffix = " $metric"
+        return lines.find { it.startsWith(prefix) && it.endsWith(suffix) }
+            ?.substringAfter(prefix)
+            ?.substringBefore(suffix)
+            ?.replace(",", "")
+            ?.toIntOrNull() ?: 0
+    }
+
+    private fun extractComplexityValue(lines: List<String>, metric: String): Int {
+        val prefix = "* "
+        return lines.find { it.startsWith(prefix) && it.contains(metric) }
+            ?.substringAfter(prefix)
+            ?.substringBefore(metric)
+            ?.replace(",", "")
+            ?.trim()
+            ?.toIntOrNull() ?: 0
+    }
+
+    private fun extractPercentageValue(lines: List<String>, metric: String): Int {
+        val prefix = "* "
+        val suffix = " $metric"
+        return lines.find { it.startsWith(prefix) && it.endsWith(suffix) }
+            ?.substringAfter(prefix)
+            ?.substringBefore(suffix)
+            ?.replace(",", "")
+            ?.replace("%", "")
+            ?.trim()
+            ?.toIntOrNull() ?: 0
+    }
+
+    private fun extractFindings(lines: List<String>): Int {
+        return lines.find { it.startsWith("* Findings") }
+            ?.substringAfter("* Findings (")
+            ?.substringBefore(")")
+            ?.toIntOrNull() ?: 0
+    }
+
+    private fun extractVersion(lines: List<String>): String {
+        return lines.find { it.contains("detekt version") }
+            ?.substringAfter("detekt version ")
+            ?.substringBefore(" ") ?: ""
+    }
+
+    private fun extractTimestamp(lines: List<String>): String {
+        return lines.find { it.contains("on") }
+            ?.substringAfter("on ") ?: ""
+    }
 }

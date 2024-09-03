@@ -10,7 +10,7 @@ spotless:
 
 # Update the README.md file in accordance with the detekt report
 md:
-	truncate -s0 README.md && cat config/main.md >> README.md && cat build/reports/detekt/detekt.md >> README.md
+	truncate -s0 README.md && cat config/main.md >> README.md && cat build/reports/detekt/metrics.md >> README.md && cat build/reports/detekt/complexity.md >> README.md
 
 # Copy jacoco report
 jacoco:
@@ -33,7 +33,7 @@ lines:
 	find . -name '*.kt' | xargs wc -l
 
 cloc:
-	cloc --include-lang=kotlin src
+	cloc --include-lang=kotlin src/main
 
 kover:
 	./gradlew koverHtmlReport
