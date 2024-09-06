@@ -25,7 +25,7 @@ import dev.shtanko.algorithms.extensions.isEven
 data class ListNode(
     var value: Int = 0,
     var next: ListNode? = null,
-) {
+) : Comparable<ListNode> {
     /**
      * Returns a string representation of the list node and its successors.
      */
@@ -49,6 +49,10 @@ data class ListNode(
      */
     fun prettyPrint() {
         println(prettyPrinted())
+    }
+
+    override fun compareTo(other: ListNode): Int {
+        return value.compareTo(other.value)
     }
 
     companion object {
