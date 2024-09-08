@@ -18,7 +18,7 @@ jacoco:
 
 # Run code style check + update the README.md file in accordance with the detekt report
 default:
-	make spotless && make check && make md
+	make spotless && make check && make repo && make md
 
 # Build the project
 run:
@@ -45,7 +45,7 @@ jar:
 	./gradlew shadowJar && mv ./build/libs/*.jar config/
 
 repo:
-	java -jar config/detekt_report_parser.jar ./build/reports/detekt/detekt.html ./config/detekt.md
+	./gradlew detektReportToMdTask
 
 
 .DEFAULT_GOAL := default
