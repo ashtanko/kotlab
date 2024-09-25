@@ -16,13 +16,16 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import dev.shtanko.algorithms.annotations.level.Easy
 import java.util.TreeMap
 
 /**
- * Assigns ranks to elements in the array. Elements with the same value will have the same rank.
+ * 1331. Rank Transform of an Array
+ * @see <a href="https://leetcode.com/problems/rank-transform-of-an-array/">Source</a>
  *
  * @return IntArray with ranks assigned to elements.
  */
+@Easy("https://leetcode.com/problems/rank-transform-of-an-array")
 fun IntArray.arrayRankTransform(): IntArray {
     // Using TreeMap to automatically sort elements and keep track of their indices
     val map: MutableMap<Int, MutableList<Int>> = TreeMap()

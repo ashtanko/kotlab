@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Oleksii Shtanko
+ * Copyright 2024 Oleksii Shtanko
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,21 +16,9 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import dev.shtanko.algorithms.annotations.level.Easy
+interface LeetcodeProblem
 
-/**
- * 1221. Split a String in Balanced Strings
- * @see <a href="https://leetcode.com/problems/split-a-string-in-balanced-strings">Source</a>
- */
-@Easy("https://leetcode.com/problems/split-a-string-in-balanced-strings")
-fun String.balancedStringSplit(): Int {
-    var balancedCount = 0
-    var balance = 0
-    for (char in this) {
-        balance += if (char == 'L') 1 else -1
-        if (balance == 0) {
-            balancedCount++
-        }
-    }
-    return balancedCount
-}
+val problems = listOf(
+    AddBinary::class,
+    AddDigits::class,
+)
